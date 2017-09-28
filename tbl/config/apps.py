@@ -1,4 +1,8 @@
-# Application definition
+"""
+File to enter application dependencies in development and
+production environments
+"""
+
 PRODUCTION_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

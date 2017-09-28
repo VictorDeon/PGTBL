@@ -1,3 +1,7 @@
+"""
+Archive for collection of static and dynamic files.
+"""
+
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

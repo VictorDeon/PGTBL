@@ -1,4 +1,7 @@
-# Templates
+"""
+File responsible for the project templates.
+"""
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

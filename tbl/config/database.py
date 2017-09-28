@@ -1,3 +1,10 @@
+"""
+File to insert the development and production database.
+
+To more information:
+https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+"""
+
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -10,8 +17,7 @@ BASE_DIR = os.path.dirname(
     )
 )
 
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+# Development Database
 DB_DEVELOPMENT = {
     'default': {
         # Add sqlite database on development enviroment
@@ -21,6 +27,7 @@ DB_DEVELOPMENT = {
     }
 }
 
+# Production database
 DB_PRODUCTION = {
     'default': {
         # Add postgresql database on production

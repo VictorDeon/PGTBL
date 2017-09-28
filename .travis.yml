@@ -1,0 +1,33 @@
+sudo: required
+language: python
+
+# Specify the version of python
+python:
+  - "3.5"
+
+# Specify branchs that travis will monitor
+branches:
+  only:
+    - master
+    - dev
+
+# Use docker to deploy
+service:
+  - docker
+
+# Specify the docker-compose version to deploy
+env:
+  - DOCKER_COMPOSE_VERSION=1.4.2
+
+# Install project dependencies
+install:
+  - docker-compose up -d
+
+# Run the tests and create coverage.xml
+script:
+  - docker exec tbl pytest
+  # - docker exec tbl pytest --cov-report xml --cov=.
+
+# Insert a file coverage.xml into codacy to get coverage
+# after_script:
+#   - docker exec -it tbl python-codacy-coverage -r coverage.xml

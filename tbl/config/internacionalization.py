@@ -1,5 +1,7 @@
-# Internationalization
-# https://docs.djangoproject.com/en/1.11/topics/i18n/
+"""
+Archive to take care of the internationalization of the project.
+https://docs.djangoproject.com/en/1.11/topics/i18n/
+"""
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html

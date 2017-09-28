@@ -1,3 +1,7 @@
+"""
+Module to find and run tests by pytest.
+"""
+
 import os
 import django
 from django.conf import settings

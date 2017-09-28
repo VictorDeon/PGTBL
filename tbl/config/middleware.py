@@ -1,4 +1,7 @@
-# Middlewares
+"""
+File responsible for the middlewares.
+"""
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
