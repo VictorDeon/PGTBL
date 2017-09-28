@@ -1,0 +1,43 @@
+version: '2'
+services:
+  # Postgresql database
+  db:
+    image: postgres
+    ports:
+      - "5433:5432"
+    environment:
+      - DEBUG=false
+      - POSTGRES_USER=victor
+      - POSTGRES_PASSWORD=victorhad
+      - POSTGRES_DB=tbl
+
+  tbl:
+    # Uses an image that's built from the Dockerfile in the dockers directory
+    build: .
+    # Name the image and insert a version
+    image: tbl_image:2.0
+    # Specify a custom container name.
+    container_name: tbl
+    # Set the secret_key to enviroment
+    environment:
+      - SECRET_KEY='5#zs%mi13(a)^ept5*)1p)$f5#kqu36(npbsw5a88eu35dofde'
+    # Forwards the exposed port 8000 on the host machine to port 8000 on the container.
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+    # command to execute inside the docker
+    command: bash -c "python3 tbl/manage.py makemigrations && python3 tbl/manage.py migrate && django-admin compilemessages && python3 tbl/manage.py runserver 0.0.0.0:8000"
+
+  # Nginx proxy server. It will serve static files and redirect all other
+  # requests to the Django TBL application. Both containers communicate
+  # using a TCP connection on port 8000.
+  nginx-proxy:
+    image: nginx:1.11
+    container_name: nginx_proxy
+    volumes:
+      - ./tbl/staticfiles/:/usr/share/nginx/html:ro
+    depends_on:
+      - tbl
+    ports:
+      - '8080:8080'
