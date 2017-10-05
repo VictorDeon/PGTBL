@@ -5,7 +5,7 @@ Archive for collection of static and dynamic files.
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-# This represent: tbl/settings/config/database
+# This represent: tbl/settings/config/files
 BASE_DIR = os.path.dirname(
     os.path.dirname(
         os.path.dirname(

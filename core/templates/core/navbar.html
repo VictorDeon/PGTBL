@@ -1,0 +1,36 @@
+<!-- Navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse-navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand navbar-link" href="{% url 'core:home' %}"><i class="fa fa-home"></i> Team Based Learning</a>
+    </div>
+    <div class="collapse navbar-collapse" id="collapse-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        {% if home is True and logged is False %}
+            <li><a href="#features" class="navbar-link"><i class="fa fa-puzzle-piece"></i> Funcionalidades</a></li>
+            <li><a href="#news" class="navbar-link"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
+            <li><a href="#contact" class="navbar-link"><i class="fa fa-envelope-o"></i> Contato</a></li>
+            <li><a href="#footer" class="navbar-link"><i class="fa fa-slideshare"></i> Sobre</a></li>
+            <li>
+              <a style="cursor:pointer" class="navbar-link" data-toggle="modal" data-target="#register-modal">
+                <i class="fa fa-user-plus"></i> Registrar
+              </a>
+            </li>
+            <li>
+              <a style="cursor:pointer" class="navbar-link" data-toggle="modal" data-target="#login-modal">
+                <i class="fa fa-sign-in"></i> Login
+              </a>
+            </li>
+        {% endif %}
+        {% if home is False and logged is True %}
+            <li><a href="{% url 'core:home' %}" class="navbar-link"><i class="fa fa-sign-out"></i> Logout</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

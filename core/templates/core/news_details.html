@@ -1,0 +1,61 @@
+<!-- Extends all code from core/base.html -->
+{% extends "core/base.html" %}
+
+<!-- Import to staticfiles -->
+{% load static %}
+
+<!-- Insert css into core/base.html css block -->
+{% block css %}
+  <link rel="stylesheet" href="{% static 'core/css/news_list.css' %}">
+{% endblock %}
+
+<!-- Insert html into core/base.html body block -->
+{% block body %}
+  <header>
+    {% include 'core/navbar.html' %}
+  </header>
+  <main>
+    <div class="container">
+      <div class="page-header">
+        <h1 class="lighten-blue-grey">Notícias</h1>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div>
+            <h2>
+              {% if news.link %}
+                <a href="{{news.link}}" class="no-decoration" target="_blank">{{news.title}}</a><br />
+              {% else %}
+                <p>{{news.title}}</p>
+              {% endif %}
+              <small>({{news.created_at}})</small>
+            </h2>
+            <div class="divisor"></div>
+            {% if news.image %}
+              <img src="{{news.image.url}}" class="img-thumbnail img-responsive center-block" alt="Notícia 1">
+              <br />
+            {% endif %}
+            <!-- Break the text in each paragraph -->
+            <p class="text-justify text-muted">{{news.content|linebreaksbr}}</p>
+            <p class="pull-right">
+              <i class="fa fa-tags"></i> tags:
+              {% for tag in news.tags.all %}
+                <!-- Go to news-tag url and pass by argment the slug from tag -->
+                <a href="{% url 'core:news-tag' tag.slug %}" class="no-decoration">
+                  {{tag}}
+                <!-- If is the last element on loop not insert , -->
+                </a>{% if not forloop.last %},{% endif %}
+              {% empty %}
+                não há tags
+              {% endfor %}
+            </p>
+            <a class="pull-left no-decoration" href="{% url 'core:news' %}">
+              <i class="fa fa-chevron-left"></i>
+               Voltar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}

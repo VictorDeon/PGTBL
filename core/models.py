@@ -12,6 +12,11 @@ class Tag(models.Model):
         max_length=20
     )
 
+    slug = models.SlugField(
+        _('Identify'),
+        max_length=100
+    )
+
     def __str__(self):
         """
         String format of object.
@@ -55,7 +60,7 @@ class News(models.Model):
         null=True
     )
 
-    description = models.TextField(_('Description'))
+    content = models.TextField(_('Description'))
 
     tags = models.ManyToManyField(
         Tag,
@@ -64,12 +69,25 @@ class News(models.Model):
         blank=True
     )
 
+    slug = models.SlugField(
+        _('Identify'),
+        max_length=100
+    )
+
     def __str__(self):
         """
         String format of object.
         """
 
         return self.title
+
+    @models.permalink
+    def get_absolute_url(self):
+        """
+        Redirect to news-details url.
+        """
+
+        return ('core:news-details', (), {'slug': self.slug})
 
     class Meta:
         verbose_name = 'News'

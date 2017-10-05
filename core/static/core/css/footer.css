@@ -1,0 +1,29 @@
+.footer-navbar {
+  background-color: inherit !important;
+  border: 1px solid transparent !important;
+  color: #ddd !important;
+  margin-bottom: 20px !important;
+}
+
+.footer-navbar:hover {
+  color: white;
+}
+
+/* Bootstrap */
+.nav-tabs > li.active > a {
+  color: white !important;
+  border-bottom: 3px solid #3998ea !important;
+}
+
+.footer-panel-shadow {
+  box-shadow: 3px 3px 5px grey;
+}
+
+.video-frame {
+  height: 100%;
+  width: 100%;
+}
+
+.copyright:hover > a {
+  text-decoration: none;
+}

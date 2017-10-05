@@ -1,0 +1,48 @@
+<!-- Import to staticfiles -->
+{% load static %}
+
+<!-- Insert css into core/base.html css block -->
+{% block css %}
+  <link rel="stylesheet" href="{% static 'core/css/authentication.css' %}">
+{% endblock %}
+
+<!-- Component -->
+<div class="modal fade" id="login-modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
+        <h4 class="modal-title">Login</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <img src="{% static 'core/img/user.png' %}" class="img-thumbnail img-responsive center-block photo" alt="Foto de perfil">
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <form action="profile/profile.html" method="post">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+              <input id="email" type="text" class="form-control" name="email" placeholder="Email">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock icon-md"></i></span>
+              <input id="password" type="password" class="form-control" name="password" placeholder="Senha">
+            </div>
+            <button type="submit" class="btn btn-default submit-button center-block">
+              <i class="fa fa-sign-in"></i> Logar
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="{% url 'core:forget-password' %}" class="pull-right lighten-blue-grey forget-password no-decoration">Esqueceu a senha ?</a>
+        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">
+          <i class="fa fa-close"></i> Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

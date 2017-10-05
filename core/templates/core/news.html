@@ -1,0 +1,53 @@
+<!-- Import to staticfiles -->
+{% load static %}
+
+<!-- News -->
+<div class="container">
+  <div class="page-header" id="news">
+    <h1 class="white">Notícias</h1>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        {% for news in news_list %}
+          <div class="col-sm-6">
+            <div class="panel panel-default panel-shadow">
+              <div class="panel-body">
+                {% if news.image %}
+                  <img src="{{news.image.url}}" class="img-thumbnail img-responsive center-block" alt="{{news.title}}">
+                {% else %}
+                  <img src="{% static 'core/img/parallax.jpg' %}" class="img-thumbnail img-responsive center-block" alt="Sem imagem">
+                {% endif %}
+                <div class="row">
+                  <div class="col-sm-4 pull-right">
+                    {% for tag in news.tags.all %}
+                      <span class="label label-primary news-label">{{tag}}</span>
+                    {% empty %}
+                      <p>Não há tags.</p>
+                    {% endfor %}
+                  </div>
+                  <div class="col-sm-8">
+                    <h3>{{news.title}} <br /><small>({{news.created_at}})</small></h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <p class="text-justify">{{news.content|truncatewords:50}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer">
+                <a href="{% url 'core:news-details' news.slug %}"  class="btn btn-primary">Ler mais</a>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <p>Não há notícias.</p>
+        {% endfor %}
+      </div>
+      <div class="row">
+        <a href="{% url 'core:news' %}" class="btn btn-primary news-button">Ver todas as nóticias</a>
+      </div>
+    </div>
+  </div>
+</div>
