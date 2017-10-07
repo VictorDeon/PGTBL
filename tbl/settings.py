@@ -24,9 +24,10 @@ from .config.internacionalization import (
     FORMAT_DATES,
     TIMEZONE_DATETIMES
 )
+import os
 
 # development or production enviroment
-MODE_ENVIROMENT = 'development'
+MODE_ENVIROMENT = os.getenv('MODE_ENVIROMENT', 'development')
 
 # secret key
 SECRET_KEY = SECRET_KEY
