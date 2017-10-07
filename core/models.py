@@ -65,7 +65,7 @@ class News(models.Model):
     tags = models.ManyToManyField(
         Tag,
         related_name='tags',
-        related_query_name='news',
+        related_query_name='tags',
         blank=True
     )
 

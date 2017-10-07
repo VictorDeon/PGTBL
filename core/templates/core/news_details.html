@@ -4,6 +4,9 @@
 <!-- Import to staticfiles -->
 {% load static %}
 
+<!-- internationalization -->
+{% load i18n %}
+
 <!-- Insert css into core/base.html css block -->
 {% block css %}
   <link rel="stylesheet" href="{% static 'core/css/news_list.css' %}">
@@ -17,7 +20,7 @@
   <main>
     <div class="container">
       <div class="page-header">
-        <h1 class="lighten-blue-grey">Notícias</h1>
+        <h1 class="lighten-blue-grey">{% trans 'News' %}</h1>
       </div>
       <div class="panel panel-default">
         <div class="panel-body">
@@ -32,7 +35,7 @@
             </h2>
             <div class="divisor"></div>
             {% if news.image %}
-              <img src="{{news.image.url}}" class="img-thumbnail img-responsive center-block" alt="Notícia 1">
+              <img src="{{news.image.url}}" class="img-thumbnail img-responsive center-block" alt="{% trans 'Image news' %}">
               <br />
             {% endif %}
             <!-- Break the text in each paragraph -->
@@ -46,12 +49,12 @@
                 <!-- If is the last element on loop not insert , -->
                 </a>{% if not forloop.last %},{% endif %}
               {% empty %}
-                não há tags
+                {% trans 'There is no tags' %}
               {% endfor %}
             </p>
             <a class="pull-left no-decoration" href="{% url 'core:news' %}">
               <i class="fa fa-chevron-left"></i>
-               Voltar
+              {% trans 'Back' %}
             </a>
           </div>
         </div>

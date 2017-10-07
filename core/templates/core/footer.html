@@ -1,14 +1,33 @@
+<!-- internationalization -->
+{% load i18n %}
+
 <!-- Footer -->
 <ul class="nav nav-tabs nav-justified">
-  <li class="active"><a data-toggle="tab" href="#advantages" class="footer-navbar"><i class="fa fa-list-alt"></i> Vantagens</a></li>
-  <li><a data-toggle="tab" href="#about" class="footer-navbar"><i class="fa fa-slideshare"></i> Sobre</a></li>
-  <li><a data-toggle="tab" href="#wiki" class="footer-navbar"><i class="fa fa-leanpub"></i> Documentação</a></li>
-  <li><a data-toggle="tab" href="#how-to-use" class="footer-navbar"><i class="fa fa-film"></i> Como usar</a></li>
+  <li class="active">
+    <a data-toggle="tab" href="#advantages" class="footer-navbar">
+      <i class="fa fa-list-alt"></i> {% trans 'Advantages' %}
+    </a>
+  </li>
+  <li>
+    <a data-toggle="tab" href="#about" class="footer-navbar">
+      <i class="fa fa-slideshare"></i> {% trans 'About' %}
+    </a>
+  </li>
+  <li>
+    <a data-toggle="tab" href="#wiki" class="footer-navbar">
+      <i class="fa fa-leanpub"></i> {% trans 'Documentation' %}
+    </a>
+  </li>
+  <li>
+    <a data-toggle="tab" href="#how-to-use" class="footer-navbar">
+      <i class="fa fa-film"></i> {% trans 'How to use' %}
+    </a>
+  </li>
 </ul>
 <div class="tab-content container">
   <!-- Advantages -->
   <div id="advantages" class="panel panel-primary tab-pane fade in active footer-panel-shadow">
-    <div class="panel-heading">Vantagens</div>
+    <div class="panel-heading">{% trans 'Advantages' %}</div>
     <div class="panel-body text-justify">
       <p>A utilização do TBL tem algumas vantagens:</p>
       <ol>
@@ -25,7 +44,7 @@
   </div>
   <!-- About -->
   <div id="about" class="panel panel-primary tab-pane fade footer-panel-shadow">
-    <div class="panel-heading">Sobre</div>
+    <div class="panel-heading">{% trans 'About' %}</div>
     <div class="panel-body text-justify">
       <p>Projeto desenvolvido por um aluno da universidade de brasília, UnB-Gama, no curso de Engenharia de Software,
       através do trabalho de conclusão de curso ou TCC.</p>
@@ -40,7 +59,7 @@
   </div>
   <!-- Documentation -->
   <div id="wiki" class="panel panel-primary tab-pane fade footer-panel-shadow">
-    <div class="panel-heading">Documentação</div>
+    <div class="panel-heading">{% trans 'Documentation' %}</div>
     <div class="panel-body">A documentação se encontra na
       <a href="https://github.com/TeamBasedLearning/TBL/wiki" target="_blank">wiki do projeto</a>.
       <p>Repositorio do <a href="https://github.com/TeamBasedLearning" target="_blank">projeto</a>.
@@ -48,7 +67,7 @@
   </div>
   <!-- How to use -->
   <div id="how-to-use" class="panel panel-primary tab-pane fade footer-panel-shadow">
-    <div class="panel-heading">Como usar</div>
+    <div class="panel-heading">{% trans 'How to use' %}</div>
     <div class="panel-body">
       <div class="row">
         <div class="col-sm-6">
@@ -73,11 +92,11 @@
 <div class="row">
   <div class="col-sm-12">
     <p class="copyright">
-      <i class="fa fa-copyright"></i> Team Based Learning. Code licensed GPL-3.0
+      <i class="fa fa-copyright"></i> {% trans 'Team Based Learning. Code licensed GPL-3.0' %}
     </p>
     <p class="copyright">
-    Designed and built by
-    <a href="https://github.com/orgs/TeamBasedLearning/people" target="_blank">Team members</a> with the help of our
-    <a href="https://github.com/TeamBasedLearning/TBL/graphs/contributors" target="_blank">contributor</a>.
+    {% trans 'Designed and built by' %}
+    <a href="https://github.com/orgs/TeamBasedLearning/people" target="_blank">{% trans 'Team members' %}</a> {%trans 'with the help of our' %}
+    <a href="https://github.com/TeamBasedLearning/TBL/graphs/contributors" target="_blank">{% trans 'contributors' %}</a>.
   </div>
 </div>

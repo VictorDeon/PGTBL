@@ -1,14 +1,17 @@
+<!-- internationalization -->
+{% load i18n %}
+
 <!-- Features -->
 <div class="container">
   <div class="page-header" id="features">
-    <h1 id="timeline" class="white">Funcionalidades</h1>
+    <h1 id="timeline" class="white">{% trans 'Features' %}</h1>
   </div>
   <ul class="timeline">
     <li>
       <div class="timeline-badge primary"><i class="fa fa-graduation-cap"></i></div>
       <div class="timeline-panel">
         <div class="timeline-heading">
-          <h4 class="timeline-title">Administrar disciplinas e alunos</h4>
+          <h4 class="timeline-title">{% trans 'Manage disciplines and students' %}</h4>
           <hr />
         </div>
         <div class="timeline-body">
@@ -25,7 +28,7 @@
       <div class="timeline-badge warning"><i class="fa fa-users"></i></div>
       <div class="timeline-panel">
         <div class="timeline-heading">
-          <h4 class="timeline-title">Funcionalidades do TBL</h4>
+          <h4 class="timeline-title">{% trans 'TBL features' %}</h4>
           <hr />
         </div>
         <div class="timeline-body">
@@ -41,7 +44,7 @@
       <div class="timeline-badge danger"><i class="fa fa-bar-chart"></i></div>
       <div class="timeline-panel">
         <div class="timeline-heading">
-          <h4 class="timeline-title">Relatório</h4>
+          <h4 class="timeline-title">{% trans 'Report' %}</h4>
           <hr />
         </div>
         <div class="timeline-body">
@@ -57,7 +60,7 @@
       <div class="timeline-badge success"><i class="fa fa-gamepad"></i></div>
       <div class="timeline-panel">
         <div class="timeline-heading">
-          <h4 class="timeline-title">Rank e Gamificação</h4>
+          <h4 class="timeline-title">{% trans 'Rank and Gamification' %}</h4>
           <hr />
         </div>
         <div class="timeline-body">

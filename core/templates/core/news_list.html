@@ -4,6 +4,9 @@
 <!-- Import to staticfiles -->
 {% load static %}
 
+<!-- internationalization -->
+{% load i18n %}
+
 <!-- Insert css into core/base.html css block -->
 {% block css %}
   <link rel="stylesheet" href="{% static 'core/css/news_list.css' %}">
@@ -17,10 +20,10 @@
   <main>
     <div class="container">
       <div class="page-header">
-        <h1 class="lighten-blue-grey">Notícias</h1>
+        <h1 class="lighten-blue-grey">{% trans 'News' %}</h1>
         {% if tag %}
           <p class="lighten-blue-grey pull-right">{{tag}}</p>
-          <a href="{% url 'core:news' %}" class="no-decoration">voltar</a>
+          <a href="{% url 'core:news' %}" class="no-decoration">{% trans 'Back' %}</a>
         {% endif %}
       </div>
       {% include 'core/search.html' %}
@@ -34,7 +37,7 @@
               <p class="text-justify">
                 <!-- Truntate the word in character 35 -->
                 <!-- Go to absolute url defined in news model -->
-                {{news.content|truncatewords:35}} <a href="{{news.get_absolute_url}}">Ver mais</a>
+                {{news.content|truncatewords:35}} <a href="{{news.get_absolute_url}}">{% trans 'Read more' %}</a>
               </p>
               <p><i class="fa fa-tags"></i> tags:
                 {% for tag in news.tags.all %}
@@ -44,13 +47,13 @@
                   <!-- If is the last element on loop not insert , -->
                   </a>{% if not forloop.last %},{% endif %}
                 {% empty %}
-                  não há tags
+                  {% trans 'There is no tags' %}
                 {% endfor %}
               </p>
               {% if not forloop.last %}<div class="divisor"></div>{% endif %}
             </div>
             {% empty %}
-              <p>Nenhuma notícia disponibilizada.</p>
+            <p>{% trans 'No news available' %}.</p>
             {% endfor %}
         </div>
       </div>

@@ -1,12 +1,15 @@
 <!-- Import to staticfiles -->
 {% load static %}
 
+<!-- internationalization -->
+{% load i18n %}
+
 <!-- News -->
 <div class="container">
   <div class="page-header" id="news">
-    <h1 class="white">Notícias</h1>
+    <h1 class="white">{% trans 'News' %}</h1>
   </div>
-  <div class="panel panel-default">
+  <div class="pane panel-default">
     <div class="panel-body">
       <div class="row">
         {% for news in news_list %}
@@ -16,14 +19,14 @@
                 {% if news.image %}
                   <img src="{{news.image.url}}" class="img-thumbnail img-responsive center-block" alt="{{news.title}}">
                 {% else %}
-                  <img src="{% static 'core/img/parallax.jpg' %}" class="img-thumbnail img-responsive center-block" alt="Sem imagem">
+                  <img src="{% static 'core/img/parallax.jpg' %}" class="img-thumbnail img-responsive center-block" alt="{% trans 'Without image'%}">
                 {% endif %}
                 <div class="row">
                   <div class="col-sm-4 pull-right">
                     {% for tag in news.tags.all %}
                       <span class="label label-primary news-label">{{tag}}</span>
                     {% empty %}
-                      <p>Não há tags.</p>
+                      <p>{% trans 'There is no tags' %}.</p>
                     {% endfor %}
                   </div>
                   <div class="col-sm-8">
@@ -37,16 +40,16 @@
                 </div>
               </div>
               <div class="panel-footer">
-                <a href="{% url 'core:news-details' news.slug %}"  class="btn btn-primary">Ler mais</a>
+                <a href="{% url 'core:news-details' news.slug %}"  class="btn btn-primary">{% trans 'Read more' %}</a>
               </div>
             </div>
           </div>
         {% empty %}
-          <p>Não há notícias.</p>
+        <p>{% trans 'There is no news' %}.</p>
         {% endfor %}
       </div>
       <div class="row">
-        <a href="{% url 'core:news' %}" class="btn btn-primary news-button">Ver todas as nóticias</a>
+        <a href="{% url 'core:news' %}" class="btn btn-primary news-button">{% trans 'See all news' %}</a>
       </div>
     </div>
   </div>

@@ -1,15 +1,18 @@
+<!-- internationalization -->
+{% load i18n %}
+
 <!-- Contact -->
 <div class="parallax" id="contact">
   <div class="row">
     <div class="col-sm-12">
-      <h1 class="contact-header">Contact</h1>
+      <h1 class="contact-header">{% trans 'Contact' %}</h1>
     </div>
     <form class="container" action="#" method="post" autocomplete="off" novalidate>
       <div class="row">
         <div class="col-sm-6">
           <div class="input-group">
             <span class="input-group-addon gradient"><i class="fa fa-user-circle contact-icon-size"></i></span>
-            <input id="name" type="text" class="form-control" name="name" placeholder="Nome">
+            <input id="name" type="text" class="form-control" name="name" placeholder="{% trans 'Name' %}">
           </div>
         </div>
         <div class="col-sm-6">
@@ -23,13 +26,13 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="form-group">
-            <textarea class="form-control" rows="10" id="comment" placeholder="Comentário"></textarea>
+            <textarea class="form-control" rows="10" id="comment" placeholder="{% trans 'Comment' %}"></textarea>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <button type="submit" class="btn btn-primary send-button"><i class="fa fa-send"></i> Enviar</button>
+          <button type="submit" class="btn btn-primary send-button"><i class="fa fa-send"></i> {% trans 'Send' %}</button>
         </div>
       </div>
     </form>

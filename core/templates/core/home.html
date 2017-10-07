@@ -7,6 +7,7 @@
 <!-- Insert css into core/base.html css block -->
 {% block css %}
   <link rel="stylesheet" href="{% static 'core/css/parallax.css' %}">
+  <link rel="stylesheet" href="{% static 'core/css/tbl.css' %}">
   <link rel="stylesheet" href="{% static 'core/css/timeline.css' %}">
   <link rel="stylesheet" href="{% static 'core/css/news_home.css' %}">
   <link rel="stylesheet" href="{% static 'core/css/contact.css' %}">
@@ -23,6 +24,7 @@
     </header>
     <main>
       {% include 'core/parallax.html' %}
+      {% include 'core/tbl.html' %}
       {% include 'core/features.html' %}
       {% include 'core/news.html' %}
       {% include 'core/contact.html' %}

@@ -1,0 +1,114 @@
+<!-- internationalization -->
+{% load i18n %}
+
+<!-- TBL -->
+<div class="container tbl-container">
+  <div class="page-header" id="tbl">
+    <h1 id="timeline" class="white">{% trans 'What is TBL' %}?</h1>
+  </div>
+  <div id="slide-carousel" class="carousel slide text-center" data-ride="carousel" data-interval="30000">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#slide-carousel" data-slide-to="0" class="active"></li>
+      <li data-target="#slide-carousel" data-slide-to="1"></li>
+      <li data-target="#slide-carousel" data-slide-to="2"></li>
+      <li data-target="#slide-carousel" data-slide-to="3"></li>
+      <li data-target="#slide-carousel" data-slide-to="4"></li>
+      <li data-target="#slide-carousel" data-slide-to="5"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <!-- Slide 1 -->
+      <div class="item active">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 class="header">Team Based Learning</h1>
+            <p class="text">
+              Aprendizagem baseada em equipe ou TBL é uma estratégia de ensino aprendizagem colaborativa
+              que se concentra em um ciclo de três passos: <b>Preparação</b>, <b>Avaliação em classe ou RAT</b>
+              e <b>Pequeno projeto centrado na aplicação</b>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 2 -->
+      <div class="item">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 class="header">{% trans 'Preparation' %}</h1>
+            <p class="text">
+              Basicamente a(o) professor(a) irá disponibilizar de artigos e livros para estudo, na qual os alunos
+              irão poder baixar, esse material será a preparação para a avaliação, além de ter uma área para resolução
+              de lista de exercícios;
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="item">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 class="header">{% trans 'Individual test: iRAT' %}</h1>
+            <p class="text">
+              <b>iRAT</b> Individual radiness assurance test, essa avaliação é respondido individualmente
+              sem consulta a qualquer material, consiste de 10 a 20 questões de múltipla escolha contemplando os conceitos
+              mais relevantes das leituras ou das atividades indicadas previamente, cada questão vai ter um número x de
+              alternativas e o aluno poderá distribuir pontos entre as alternativas, por exemplo se a questão tem 4
+              alternativas e ele ta em duvida entre a alternativa A e C ele pode distribuir seus 4 pontos em 2 na A e
+              2 na C, se a resposta correta for a C ele ganha 2 pontos dos 4 e a somatória de todos os pontos dividido
+              pelo total de pontos da prova é calculado a nota do aluno nessa avaliação.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 4 -->
+      <div class="item">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 class="header">{% trans 'Team test: gRAT and instructor feedback' %}</h1>
+            <p class="text">
+              <b>gRAT</b> Group radiness assurance test, é a segunda avaliação do RAT, respondido em grupo sem consulta a
+              qualquer material, consiste das mesmas questões do iRAT, terá feedbacks imediatos da resposta certa, porém
+              ele pode ir raspando até acertar, se acertar de primeira recebe pontuação total, 4 se for o número de
+              alternativas existentes, porém a cada erro a pontuação da questão cai um ponto se ele raspar
+              todas as alternativa terá nota zero na questão, o somatório de todos os pontos dividido pelo total é calculado
+              a nota do grupo nessa avaliação. Após a avaliação o instrutor irá pegar as questões que mais erraram e dar
+              feedbacks sobre elas.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 5 -->
+      <div class="item">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 class="header">{% trans 'Application oriented activities and appeals' %}</h1>
+            <p class="text">
+              O projeto centrado na aplicação executa todo o conhecimento adquirido em um contexto real do tópico proposto.
+              Além desses 3 passos temos também <b>apelações</b> na qual as equipes podem recorrer no caso de não concordar
+              com a resposta indicado como correta, todo apelo deve ser feito acompanhado de argumentação, sugestão de melhoria
+              e com consulta a fontes bibliográficas pertinentes. A equipe deve também propor o novo formato e a resposta correta
+              da questão.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 6 -->
+      <div class="item">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 class="header">{% trans 'Pair test' %}</h1>
+            <p class="text">
+              Durante o semestre pode ocorrer avaliações em pares na qual cada integrante da equipe irá avaliar os outros
+              integrantes da equipe, será disponibilizado uma pontuação máxima para cada membro distribuir entre os outros
+              membros da equipe e um campo para dizer o porque da pontuação podendo inserir feedback para o colega de equipe,
+              essa avaliação não precisa se identificar ela será anônima e a pontuação fará parte da nota individual de cada
+              membro da equipe.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
