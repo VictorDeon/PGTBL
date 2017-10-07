@@ -24,20 +24,7 @@ services:
     # Forwards the exposed port 8000 on the host machine to port 8000 on the container.
     ports:
       - '8000:8000'
-    # depends_on:
-    #   - db
+    depends_on:
+      - db
     # command to execute inside the docker
     command: bash -c "python3 manage.py makemigrations && python3 manage.py migrate && django-admin compilemessages && python3 manage.py runserver 0.0.0.0:8000"
-
-  # Nginx proxy server. It will serve static files and redirect all other
-  # requests to the Django TBL application. Both containers communicate
-  # using a TCP connection on port 8000.
-  nginx-proxy:
-    image: nginx:1.11
-    container_name: nginx_proxy
-    volumes:
-      - ./tbl/staticfiles/:/usr/share/nginx/html:ro
-    depends_on:
-      - tbl
-    ports:
-      - '8080:8080'
