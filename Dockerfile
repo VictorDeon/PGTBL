@@ -16,4 +16,4 @@ RUN apt-get install -y python3-dev \
     build-essential
 
 RUN pip3 install --upgrade pip
-RUN pip3 install -r tbl/requirements.txt
+RUN pip3 install -r requirements.txt
