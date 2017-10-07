@@ -21,7 +21,7 @@ class HomePageView(ListView):
         queryset = News.objects.all()[:2]
         return queryset
 
-    def get_context_data(self):
+    def get_context_data(self, **kwargs):
         """
         Insert more elements into context data to template.
         """
@@ -42,7 +42,7 @@ class ForgetPasswordView(TemplateView):
 
     template_name = 'core/password.html'
 
-    def get_context_data(self):
+    def get_context_data(self, **kwargs):
         """
         Insert more elements into context data to template.
         """
@@ -74,7 +74,7 @@ class NewsListView(ListView):
         queryset = search_news(self.request, queryset)
         return queryset
 
-    def get_context_data(self):
+    def get_context_data(self, **kwargs):
         """
         Insert more elements into context data to template.
         """
