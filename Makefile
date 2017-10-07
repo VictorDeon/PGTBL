@@ -49,7 +49,7 @@ notebook:
 
 # TRANSLATION ---------------------------------
 
-makemessages:
+messages:
 	# Create a django.po to insert translations (pt-BR)
 	django-admin makemessages -l pt_BR
 
