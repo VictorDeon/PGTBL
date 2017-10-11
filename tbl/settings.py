@@ -47,7 +47,7 @@ WSGI_APPLICATION = 'tbl.wsgi.application'
 # Custom user profile
 # Tell Django to use our custom user model
 # instead of its built in default user model.
-# AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'accounts.User'
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = AUTH_PASSWORD_VALIDATORS
