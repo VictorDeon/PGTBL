@@ -8,7 +8,7 @@ from django.conf import settings
 User = get_user_model()
 
 
-class RegisterViewTestCase(TestCase):
+class RegisterTestCase(TestCase):
     """
     Test to register a new user into the system.
     BUG:
@@ -27,6 +27,13 @@ class RegisterViewTestCase(TestCase):
         self.user.email = 'test01@gmail.com'
         self.user.set_password('test1234')
         self.user.save()
+
+    def tearDown(self):
+        """
+        This method will run after any test.
+        """
+
+        self.user.delete()
 
     def test_register_ok(self):
         """

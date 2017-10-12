@@ -12,7 +12,7 @@ LOGIN_URL = 'accounts:login'
 LOGOUT_URL = 'accounts:logout'
 
 # Url to redirect after login
-LOGIN_REDIRECT_URL = 'core:home'
+LOGIN_REDIRECT_URL = 'accounts:profile'
 
 # Backends from django
 # This is used for any authentications (facebook, twitter, ...)

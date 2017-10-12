@@ -5,7 +5,7 @@ from django.conf import settings
 from model_mommy import mommy
 
 
-class LoginViewTestCase(TestCase):
+class LoginTestCase(TestCase):
     """
     Test all features about login.
     """

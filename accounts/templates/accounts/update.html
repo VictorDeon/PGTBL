@@ -1,0 +1,88 @@
+<!-- Extends all code from accounts/profile.html -->
+{% extends 'accounts/profile.html' %}
+
+<!-- import to staticfiles -->
+{% load static %}
+
+<!-- Import custom form fields -->
+{% load widget_tweaks %}
+
+<!-- internationalization -->
+{% load i18n %}
+
+<!-- insert css into accounts/update.html css block -->
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/edit_information.css' %}">
+{% endblock %}
+
+<!-- Edit navegation menu breadcrumb -->
+{% block breadcrumb %}
+
+{% endblock %}
+
+{% block profile %}
+  <div class="container-fluid">
+    <div class="page-header profile">
+      <h1 class="white">{% trans 'Edit personal information' %}</h1>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <form method="post">
+          <!-- Form security -->
+          {% csrf_token %}
+
+          <!-- Get all erros from form -->
+          {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">{{error}}</div>
+          {% endfor %}
+
+          <fieldset>
+            <div class="input-group center-block">
+              {% if user.photo %}
+                <img src="{{ user.photo.url }}" class="img-rounded img-responsive center-block" alt="User">
+              {% else %}
+                <img src="{% static 'accounts/img/user.png' %}" class="img-rounded img-responsive center-block" alt="User">
+              {% endif %}
+            </div>
+            <div class="input-group center-block">
+              {% render_field form.photo class="form-control" %}
+            </div>
+            <br />
+            <hr />
+            <div class="input-group">
+              <span class="input-group-addon gradient"><i class="fa fa-user icon-md"></i></span>
+              {% render_field form.name class="form-control" type="text" placeholder=form.name.label %}
+              {% for error in form.username.errors %}
+                <span class="">{{error}}</span>
+              {% endfor %}
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon gradient"><i class="fa fa-envelope"></i></span>
+              {% render_field form.email class="form-control" type="email" placeholder=form.email.label %}
+              {% for error in form.username.errors %}
+                <span class="">{{error}}</span>
+              {% endfor %}
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon gradient"><i class="fa fa-institution"></i></span>
+              {% render_field form.institution class="form-control" type="text" placeholder=form.institution.label %}
+              {% for error in form.username.errors %}
+                <span class="">{{error}}</span>
+              {% endfor %}
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon gradient"><i class="fa fa-graduation-cap"></i></span>
+              {% render_field form.course class="form-control" type="text" placeholder=form.course.label %}
+              {% for error in form.username.errors %}
+                <span class="">{{error}}</span>
+              {% endfor %}
+            </div>
+          </fieldset>
+          <button type="submit" class="btn btn-primary submit-button center-block">
+            <i class="fa fa-edit"></i> {% trans 'Edit' %}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

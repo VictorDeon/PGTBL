@@ -4,6 +4,7 @@ from . import views
 
 app_name = 'accounts'
 urlpatterns = [
+    # /logar/
     url(
         r'^logar/$',
         login,
@@ -11,6 +12,7 @@ urlpatterns = [
         {'template_name': 'accounts/login.html'},
         name='login'
     ),
+    # /logout/
     url(
         r'^logout/$',
         logout,
@@ -19,9 +21,28 @@ urlpatterns = [
         {'next_page': 'core:home'},
         name='logout'
     ),
+    # /register/
     url(
         r'^register/$',
         views.RegisterView.as_view(),
         name='register'
+    ),
+    # /profile/
+    url(
+        r'^profile/$',
+        views.ProfileView.as_view(),
+        name='profile'
+    ),
+    # /profile/edit
+    url(
+        r'^profile/edit/$',
+        views.EditProfileView.as_view(),
+        name='update'
+    ),
+    # /profile/edit-password
+    url(
+        r'^profile/edit-password/$',
+        views.EditPasswordView.as_view(),
+        name="update-password"
     ),
 ]
