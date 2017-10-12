@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import ListView, DetailView
 from django.db.models import Q
 from .models import News
 
@@ -31,25 +31,6 @@ class HomePageView(ListView):
         context = super(HomePageView, self).get_context_data()
         # Insert home and logged variables to template
         context['home'] = True
-        context['logged'] = False
-        return context
-
-
-class ForgetPasswordView(TemplateView):
-    """
-    Page to send new password to email.
-    """
-
-    template_name = 'core/password.html'
-
-    def get_context_data(self, **kwargs):
-        """
-        Insert more elements into context data to template.
-        """
-
-        context = super(ForgetPasswordView, self).get_context_data()
-        context['home'] = False
-        context['logged'] = False
         return context
 
 
@@ -81,7 +62,6 @@ class NewsListView(ListView):
 
         context = super(NewsListView, self).get_context_data()
         context['home'] = False
-        context['logged'] = False
         # Get the tag by key argument from url
         tag = self.kwargs.get('tag', '')
         if tag:

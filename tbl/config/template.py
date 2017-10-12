@@ -2,6 +2,7 @@
 File responsible for the project templates.
 """
 
+# Insert some features (user, request, ...) to all templates.
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

@@ -1,58 +1,10 @@
 from django.db import models
+from django.core import validators
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import (
-    AbstractBaseUser, PermissionsMixin, BaseUserManager
+    AbstractBaseUser, PermissionsMixin, UserManager
 )
-
-
-class UserProfileManager(BaseUserManager):
-    """
-    Object manager is another class that we can use to help manage the user
-    profiles that will give us some extra functionality like creating an
-    administrator user or creating a regular user.
-    """
-
-    def create_user(self, email, name, password=None):
-        """
-        Creates a new user profile objects.
-        """
-
-        if not email:
-            raise ValueError(_("Users must have an email address."))
-
-        # This will convert the email to lowercase.
-        # Email will be standardized in the system.
-        email = self.normalize_email(email)
-
-        # Create a new user in the system.
-        user = self.model(
-            email=email,
-            name=name
-        )
-
-        # Set the encrypt password of user
-        user.set_password(password)
-
-        # Save the created user on database
-        user.save(using=self._db)
-
-        return user
-
-    def create_superuser(self, email, name, password):
-        """
-        Create and saves a new superuser with given details.
-        """
-
-        user = self.create_user(email, name, password)
-
-        # Inserts superuser privileges for the user
-        user.is_superuser = True
-        user.is_staff = True
-
-        # Save the created superuser on database
-        user.save(using=self._db)
-
-        return user
+import re
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -60,6 +12,23 @@ class User(AbstractBaseUser, PermissionsMixin):
     Create the base of django standart user profile and allows us to
     add permission to our user model.
     """
+
+    # Username with regex validators
+    username = models.CharField(
+        _('User'),
+        max_length=30,
+        unique=True,
+        help_text='Short name that will be used uniquely on the platform.',
+        validators=[
+            validators.RegexValidator(
+                re.compile('^[\w.@+-]+$'),
+                _('Enter a valid username'),
+                _('This value should only contain letters, numbers, \
+                  and characters @/./+/-/_.'),
+                'invalid'
+            )
+        ]
+    )
 
     email = models.EmailField(
         _('E-mail'),
@@ -70,7 +39,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(
         _('Name'),
         help_text=_("Full user name."),
-        max_length=150
+        max_length=150,
+        blank=True
     )
 
     institution = models.CharField(
@@ -101,6 +71,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         default=False
     )
 
+    last_login = models.DateTimeField(
+        _('Last Login'),
+        help_text=_("Last moment the user logged in."),
+        blank=True,
+        null=True
+    )
+
     # Use to determine if this user is currently active in the system
     # You can use it to disable user accounts
     is_active = models.BooleanField(
@@ -116,19 +93,14 @@ class User(AbstractBaseUser, PermissionsMixin):
         default=False
     )
 
-    last_login = models.DateTimeField(
-        _('Last Login'),
-        help_text=_("Last moment the user logged in."),
-        blank=True,
-        null=True
-    )
-
+    # Create a date when the user is created
     created_at = models.DateTimeField(
         _('Created at'),
         help_text=_("Date that the user is created."),
         auto_now_add=True
     )
 
+    # Create or update the date after the user is updated
     updated_at = models.DateTimeField(
         _('Updated at'),
         help_text=_("Date that the user is updated."),
@@ -136,14 +108,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
 
     # Help manager the user profile
-    objects = UserProfileManager()
+    objects = UserManager()
 
     # Is the field that going to be used as the username for this user
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'username'
 
     # Is a list of fields that are required for all users, the username don't
     # need to be passed.
-    REQUIRED_FIELDS = ['name']
+    REQUIRED_FIELDS = ['email']
 
     def __str__(self):
         """
@@ -158,7 +130,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         Used to get the user full name.
         """
 
-        return self.name
+        return self.name or self.username
 
     def get_short_name(self):
         """

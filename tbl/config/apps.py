@@ -10,6 +10,7 @@ PRODUCTION_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     'accounts',
     'core',
 ]
@@ -22,6 +23,7 @@ DEVELOPMENT_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'widget_tweaks',
     'accounts',
     'core',
 ]

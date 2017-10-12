@@ -1,0 +1,193 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-12 00:57-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: accounts/admin.py:22
+msgid "Personal Information"
+msgstr ""
+
+#: accounts/admin.py:32
+msgid "Permissions"
+msgstr ""
+
+#: accounts/apps.py:7
+msgid "Accounts"
+msgstr ""
+
+#: accounts/models.py:18 accounts/models.py:156
+msgid "User"
+msgstr ""
+
+#: accounts/models.py:25
+msgid "Enter a valid username"
+msgstr ""
+
+#: accounts/models.py:26
+msgid ""
+"This value should only contain letters, numbers,                   and "
+"characters @/./+/-/_."
+msgstr ""
+
+#: accounts/models.py:34
+msgid "E-mail"
+msgstr ""
+
+#: accounts/models.py:35
+msgid "Email that will be used as username."
+msgstr ""
+
+#: accounts/models.py:40
+msgid "Name"
+msgstr ""
+
+#: accounts/models.py:41
+msgid "Full user name."
+msgstr ""
+
+#: accounts/models.py:47
+msgid "Institution"
+msgstr ""
+
+#: accounts/models.py:48
+msgid "University or School in which the user is inserted."
+msgstr ""
+
+#: accounts/models.py:54
+msgid "Course"
+msgstr ""
+
+#: accounts/models.py:55
+msgid "Course of university or Period of school."
+msgstr ""
+
+#: accounts/models.py:62
+msgid "Photo of user."
+msgstr ""
+
+#: accounts/models.py:63
+msgid "Photo"
+msgstr ""
+
+#: accounts/models.py:69
+msgid "Is Teacher?"
+msgstr ""
+
+#: accounts/models.py:70
+msgid "Verify if the user is teacher or student"
+msgstr ""
+
+#: accounts/models.py:75
+msgid "Last Login"
+msgstr ""
+
+#: accounts/models.py:76
+msgid "Last moment the user logged in."
+msgstr ""
+
+#: accounts/models.py:84
+msgid "Is Active?"
+msgstr ""
+
+#: accounts/models.py:85
+msgid "Verify if the user is active."
+msgstr ""
+
+#: accounts/models.py:91
+msgid "Is Staff?"
+msgstr ""
+
+#: accounts/models.py:92
+msgid "Verify if the user is a staff."
+msgstr ""
+
+#: accounts/models.py:98
+msgid "Created at"
+msgstr ""
+
+#: accounts/models.py:99
+msgid "Date that the user is created."
+msgstr ""
+
+#: accounts/models.py:105
+msgid "Updated at"
+msgstr ""
+
+#: accounts/models.py:106
+msgid "Date that the user is updated."
+msgstr ""
+
+#: accounts/models.py:157
+msgid "Users"
+msgstr ""
+
+#: accounts/models.py:172
+msgid "Teacher"
+msgstr ""
+
+#: accounts/models.py:173
+msgid "Teachers"
+msgstr ""
+
+#: accounts/models.py:187
+msgid "Student"
+msgstr ""
+
+#: accounts/models.py:188
+msgid "Students"
+msgstr ""
+
+#: accounts/templates/accounts/login.html:27
+#: accounts/templates/accounts/login.html:65
+msgid "Login"
+msgstr ""
+
+#: accounts/templates/accounts/login.html:34
+#: accounts/templates/accounts/register.html:34
+msgid "profile picture"
+msgstr ""
+
+#: accounts/templates/accounts/login.html:69
+msgid "Forgot password ?"
+msgstr ""
+
+#: accounts/templates/accounts/password.html:23
+msgid "Reset password"
+msgstr ""
+
+#: accounts/templates/accounts/password.html:33
+msgid "Send email"
+msgstr ""
+
+#: accounts/templates/accounts/register.html:27
+msgid "Register"
+msgstr ""
+
+#: accounts/templates/accounts/register.html:63
+msgid "Select the type of user"
+msgstr ""
+
+#: accounts/templates/accounts/register.html:86
+msgid "Back"
+msgstr ""
+
+#: accounts/tests/test_login.py:85
+#, python-format
+msgid ""
+"Please enter a correct %(username)s and password. Note that both fields may "
+"be case-sensitive."
+msgstr ""

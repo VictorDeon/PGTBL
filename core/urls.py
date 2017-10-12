@@ -9,12 +9,6 @@ urlpatterns = [
       views.HomePageView.as_view(),
       name="home"
   ),
-  # Url to recover password
-  url(
-      r'^forget-password/$',
-      views.ForgetPasswordView.as_view(),
-      name="forget-password"
-  ),
   # Url to see the list of news
   url(
       r'^news/$',

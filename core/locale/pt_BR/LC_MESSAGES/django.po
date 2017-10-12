@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-06 22:28-0300\n"
+"POT-Creation-Date: 2017-10-12 00:57-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: core/apps.py:7 core/templates/core/navbar.html:21
+#: core/templates/core/news.html:10 core/templates/core/news_details.html:23
+#: core/templates/core/news_list.html:23
+msgid "News"
+msgstr "Notícias"
+
 #: core/models.py:11 core/models.py:28
 msgid "Tag"
 msgstr ""
@@ -61,12 +68,11 @@ msgstr "Link da informação"
 msgid "Description"
 msgstr "Descrição"
 
-#: core/templates/core/contact.html:8 core/templates/core/navbar.html:21
+#: core/templates/core/contact.html:8 core/templates/core/navbar.html:22
 msgid "Contact"
 msgstr "Contato"
 
 #: core/templates/core/contact.html:15
-#: core/templates/core/register-model.html:24
 msgid "Name"
 msgstr "Nome"
 
@@ -78,7 +84,7 @@ msgstr "Comentário"
 msgid "Send"
 msgstr "Enviar"
 
-#: core/templates/core/features.html:7 core/templates/core/navbar.html:19
+#: core/templates/core/features.html:7 core/templates/core/navbar.html:20
 msgid "Features"
 msgstr "Funcionalidades"
 
@@ -103,7 +109,7 @@ msgid "Advantages"
 msgstr "Vantagens"
 
 #: core/templates/core/footer.html:13 core/templates/core/footer.html:47
-#: core/templates/core/navbar.html:22
+#: core/templates/core/navbar.html:23
 msgid "About"
 msgstr "Sobre"
 
@@ -135,41 +141,11 @@ msgstr "com a ajuda dos nossos"
 msgid "contributors"
 msgstr "contribuidores"
 
-#: core/templates/core/login-model.html:23
-msgid "Profile picture"
-msgstr "Foto de perfil"
-
-#: core/templates/core/login-model.html:35
-#: core/templates/core/register-model.html:40
-msgid "Password"
-msgstr "Senha"
-
-#: core/templates/core/login-model.html:38
-msgid "Enter"
-msgstr "Logar"
-
-#: core/templates/core/login-model.html:44
-msgid "Forgot password?"
-msgstr "Esqueceu a senha?"
-
-#: core/templates/core/login-model.html:46
-#: core/templates/core/register-model.html:53
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: core/templates/core/navbar.html:18 core/templates/core/tbl.html:7
+#: core/templates/core/navbar.html:19 core/templates/core/tbl.html:7
 msgid "What is TBL"
 msgstr "O que é TBL"
 
-#: core/templates/core/navbar.html:20 core/templates/core/news.html:10
-#: core/templates/core/news_details.html:23
-#: core/templates/core/news_list.html:23
-msgid "News"
-msgstr "Notícias"
-
-#: core/templates/core/navbar.html:25
-#: core/templates/core/register-model.html:18
-#: core/templates/core/register-model.html:47
+#: core/templates/core/navbar.html:28
 msgid "Register"
 msgstr "Cadastro"
 
@@ -207,30 +183,6 @@ msgstr "Voltar"
 msgid "No news available"
 msgstr "Nenhuma notícia disponível"
 
-#: core/templates/core/password.html:23
-msgid "Reset password"
-msgstr "Resetar senha"
-
-#: core/templates/core/password.html:33
-msgid "Send email"
-msgstr "Enviar email"
-
-#: core/templates/core/register-model.html:27
-msgid "Select the type of user"
-msgstr "Selecionar tipo de usuário"
-
-#: core/templates/core/register-model.html:29
-msgid "Teacher"
-msgstr "Professor"
-
-#: core/templates/core/register-model.html:30
-msgid "Student"
-msgstr "Aluno"
-
-#: core/templates/core/register-model.html:44
-msgid "Confirm password"
-msgstr "Confirmar senha"
-
 #: core/templates/core/search.html:8
 msgid "Search"
 msgstr "Pesquisar"
@@ -254,3 +206,36 @@ msgstr "Aplicação orientada a atividades e apelações"
 #: core/templates/core/tbl.html:101
 msgid "Pair test"
 msgstr "Avaliação em pares"
+
+#~ msgid "Profile picture"
+#~ msgstr "Foto de perfil"
+
+#~ msgid "Password"
+#~ msgstr "Senha"
+
+#~ msgid "Enter"
+#~ msgstr "Logar"
+
+#~ msgid "Forgot password?"
+#~ msgstr "Esqueceu a senha?"
+
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
+
+#~ msgid "Reset password"
+#~ msgstr "Resetar senha"
+
+#~ msgid "Send email"
+#~ msgstr "Enviar email"
+
+#~ msgid "Select the type of user"
+#~ msgstr "Selecionar tipo de usuário"
+
+#~ msgid "Teacher"
+#~ msgstr "Professor"
+
+#~ msgid "Student"
+#~ msgstr "Aluno"
+
+#~ msgid "Confirm password"
+#~ msgstr "Confirmar senha"
