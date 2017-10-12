@@ -92,11 +92,15 @@ build:
 
 images:
 	# List images
-	sudo docker-compose images
+	sudo docker images
 
 ps:
+	# List all running containers
+	sudo docker ps
+
+psall:
 	# List all containers
-	sudo docker-compose ps
+	sudo docker ps -a
 
 top:
 	# List running processes

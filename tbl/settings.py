@@ -34,7 +34,7 @@ from .config.internacionalization import (
 import os
 
 # development or production enviroment
-MODE_ENVIROMENT = os.getenv('MODE_ENVIROMENT', 'development')
+MODE_ENVIROMENT = os.getenv("MODE_ENVIROMENT", "development")
 
 # secret key
 SECRET_KEY

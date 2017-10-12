@@ -20,7 +20,9 @@ services:
     container_name: tbl
     # Set the secret_key to enviroment
     environment:
-      - SECRET_KEY='5#zs%mi13(a)^ept5*)1p)$f5#kqu36(npbsw5a88eu35dofde'
+      - SECRET_KEY
+      - MODE_ENVIROMENT='production'
+      - CODACY_PROJECT_TOKEN
     # Forwards the exposed port 8000 on the host machine to port 8000 on the container.
     ports:
       - '8000:8000'
