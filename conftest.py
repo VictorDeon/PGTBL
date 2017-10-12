@@ -16,5 +16,5 @@ def pytest_configure():
     pytest automatically calls this function once when tests are running.
     """
 
-    settings.DEBUG = False
+    settings.MODE_ENVIROMENT = 'production'
     django.setup()
