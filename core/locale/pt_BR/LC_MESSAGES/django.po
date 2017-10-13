@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-12 00:57-0300\n"
+"POT-Creation-Date: 2017-10-13 02:53-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: core/apps.py:7 core/templates/core/navbar.html:21
+#: core/apps.py:7 core/templates/core/navbar.html:20
 #: core/templates/core/news.html:10 core/templates/core/news_details.html:23
 #: core/templates/core/news_list.html:23
 msgid "News"
@@ -68,7 +68,7 @@ msgstr "Link da informação"
 msgid "Description"
 msgstr "Descrição"
 
-#: core/templates/core/contact.html:8 core/templates/core/navbar.html:22
+#: core/templates/core/contact.html:8 core/templates/core/navbar.html:21
 msgid "Contact"
 msgstr "Contato"
 
@@ -84,7 +84,7 @@ msgstr "Comentário"
 msgid "Send"
 msgstr "Enviar"
 
-#: core/templates/core/features.html:7 core/templates/core/navbar.html:20
+#: core/templates/core/features.html:7 core/templates/core/navbar.html:19
 msgid "Features"
 msgstr "Funcionalidades"
 
@@ -109,7 +109,7 @@ msgid "Advantages"
 msgstr "Vantagens"
 
 #: core/templates/core/footer.html:13 core/templates/core/footer.html:47
-#: core/templates/core/navbar.html:23
+#: core/templates/core/navbar.html:22
 msgid "About"
 msgstr "Sobre"
 
@@ -141,11 +141,17 @@ msgstr "com a ajuda dos nossos"
 msgid "contributors"
 msgstr "contribuidores"
 
-#: core/templates/core/navbar.html:19 core/templates/core/tbl.html:7
+#: core/templates/core/navbar.html:18 core/templates/core/tbl.html:7
 msgid "What is TBL"
 msgstr "O que é TBL"
 
-#: core/templates/core/navbar.html:28
+#: core/templates/core/navbar.html:26
+#, fuzzy
+#| msgid "Profile picture"
+msgid "Profile"
+msgstr "Foto de perfil"
+
+#: core/templates/core/navbar.html:30
 msgid "Register"
 msgstr "Cadastro"
 
@@ -206,9 +212,6 @@ msgstr "Aplicação orientada a atividades e apelações"
 #: core/templates/core/tbl.html:101
 msgid "Pair test"
 msgstr "Avaliação em pares"
-
-#~ msgid "Profile picture"
-#~ msgstr "Foto de perfil"
 
 #~ msgid "Password"
 #~ msgstr "Senha"

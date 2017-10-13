@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-12 00:57-0300\n"
+"POT-Creation-Date: 2017-10-13 02:53-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,177 +17,283 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
 #: accounts/admin.py:22
 msgid "Personal Information"
-msgstr ""
+msgstr "Informações Pessoais"
 
 #: accounts/admin.py:32
 msgid "Permissions"
-msgstr ""
+msgstr "Permissões"
 
 #: accounts/apps.py:7
 msgid "Accounts"
-msgstr ""
+msgstr "Contas"
 
-#: accounts/models.py:18 accounts/models.py:156
+#: accounts/forms.py:18 accounts/templates/accounts/disciplines.html:34
+#: accounts/templates/accounts/profile.html:84
+msgid "Teacher"
+msgstr "Professor(a)"
+
+#: accounts/forms.py:18 accounts/templates/accounts/profile.html:88
+msgid "Student"
+msgstr "Aluno(a)"
+
+#: accounts/forms.py:60
+msgid "There is no user found with this email"
+msgstr "Não há usuários com esse email"
+
+#: accounts/forms.py:69
+msgid "Requesting new password"
+msgstr "Solicitando nova senha"
+
+#: accounts/models.py:19 accounts/models.py:157 accounts/models.py:169
+#: accounts/tests/test_login.py:92
 msgid "User"
-msgstr ""
-
-#: accounts/models.py:25
-msgid "Enter a valid username"
-msgstr ""
+msgstr "Usuário"
 
 #: accounts/models.py:26
+msgid "Enter a valid username"
+msgstr "Entre com um usuário válido"
+
+#: accounts/models.py:27
 msgid ""
 "This value should only contain letters, numbers,                   and "
 "characters @/./+/-/_."
-msgstr ""
-
-#: accounts/models.py:34
-msgid "E-mail"
-msgstr ""
+msgstr "Este valor deve somente conter letras, números, e caracteres como @/./+/-/_."
 
 #: accounts/models.py:35
-msgid "Email that will be used as username."
-msgstr ""
+msgid "E-mail"
+msgstr "E-mail"
 
-#: accounts/models.py:40
-msgid "Name"
-msgstr ""
+#: accounts/models.py:36
+msgid "Email that will be used as username."
+msgstr "Email que será usado como usuário."
 
 #: accounts/models.py:41
+msgid "Name"
+msgstr "Nome"
+
+#: accounts/models.py:42
 msgid "Full user name."
-msgstr ""
+msgstr "Nome completo."
 
-#: accounts/models.py:47
+#: accounts/models.py:48 accounts/templates/accounts/profile.html:116
 msgid "Institution"
-msgstr ""
+msgstr "Instituição"
 
-#: accounts/models.py:48
+#: accounts/models.py:49
 msgid "University or School in which the user is inserted."
-msgstr ""
+msgstr "Universidade ou escola na qual o usuário está inserido."
 
-#: accounts/models.py:54
+#: accounts/models.py:55 accounts/templates/accounts/disciplines.html:35
+#: accounts/templates/accounts/profile.html:123
 msgid "Course"
-msgstr ""
+msgstr "Curso"
 
-#: accounts/models.py:55
+#: accounts/models.py:56
 msgid "Course of university or Period of school."
-msgstr ""
-
-#: accounts/models.py:62
-msgid "Photo of user."
-msgstr ""
+msgstr "Curso da universidade ou Série da escola."
 
 #: accounts/models.py:63
-msgid "Photo"
-msgstr ""
+msgid "Photo of user."
+msgstr "Foto do usuário."
 
-#: accounts/models.py:69
-msgid "Is Teacher?"
-msgstr ""
+#: accounts/models.py:64
+msgid "Photo"
+msgstr "Foto"
 
 #: accounts/models.py:70
-msgid "Verify if the user is teacher or student"
-msgstr ""
+msgid "Is Teacher?"
+msgstr "É professor?"
 
-#: accounts/models.py:75
-msgid "Last Login"
-msgstr ""
+#: accounts/models.py:71
+msgid "Verify if the user is teacher or student"
+msgstr "Verifica se o usuário é professor ou aluno"
 
 #: accounts/models.py:76
-msgid "Last moment the user logged in."
-msgstr ""
+msgid "Last Login"
+msgstr "Último login"
 
-#: accounts/models.py:84
-msgid "Is Active?"
-msgstr ""
+#: accounts/models.py:77
+msgid "Last moment the user logged in."
+msgstr "Último momento em que o usuário estava logado."
 
 #: accounts/models.py:85
-msgid "Verify if the user is active."
-msgstr ""
+msgid "Is Active?"
+msgstr "Está ativo?"
 
-#: accounts/models.py:91
-msgid "Is Staff?"
-msgstr ""
+#: accounts/models.py:86
+msgid "Verify if the user is active."
+msgstr "Verifica se o usuário ainda está ativo."
 
 #: accounts/models.py:92
+msgid "Is Staff?"
+msgstr "É administrador?"
+
+#: accounts/models.py:93
 msgid "Verify if the user is a staff."
-msgstr ""
+msgstr "Verifica se o usuário é um administrador."
 
-#: accounts/models.py:98
+#: accounts/models.py:99 accounts/models.py:180
 msgid "Created at"
-msgstr ""
+msgstr "Criado em"
 
-#: accounts/models.py:99
+#: accounts/models.py:100
 msgid "Date that the user is created."
-msgstr ""
-
-#: accounts/models.py:105
-msgid "Updated at"
-msgstr ""
+msgstr "Data que o usuário criou a conta."
 
 #: accounts/models.py:106
+msgid "Updated at"
+msgstr "Atualizado em"
+
+#: accounts/models.py:107
 msgid "Date that the user is updated."
-msgstr ""
+msgstr "Data que o usuário atualizou a conta."
 
-#: accounts/models.py:157
+#: accounts/models.py:158
 msgid "Users"
-msgstr ""
+msgstr "Usuários"
 
-#: accounts/models.py:172
-msgid "Teacher"
-msgstr ""
+#: accounts/models.py:174
+msgid "Key"
+msgstr "Chave"
 
-#: accounts/models.py:173
-msgid "Teachers"
-msgstr ""
+#: accounts/models.py:185
+msgid "Confirmed?"
+msgstr "Confirmado?"
 
-#: accounts/models.py:187
-msgid "Student"
-msgstr ""
+#: accounts/models.py:203
+msgid "New password"
+msgstr "Nova senha"
 
-#: accounts/models.py:188
-msgid "Students"
-msgstr ""
+#: accounts/models.py:204
+msgid "New passwords"
+msgstr "Novas senhas"
 
-#: accounts/templates/accounts/login.html:27
-#: accounts/templates/accounts/login.html:65
-msgid "Login"
-msgstr ""
+#: accounts/templates/accounts/delete.html:26
+#: accounts/templates/accounts/delete.html:43
+msgid "Delete"
+msgstr "Deletar"
 
-#: accounts/templates/accounts/login.html:34
-#: accounts/templates/accounts/register.html:34
-msgid "profile picture"
-msgstr ""
+#: accounts/templates/accounts/delete.html:32
+msgid "Are you sure you want to delete"
+msgstr "Tem certeza que deseja deletar"
 
-#: accounts/templates/accounts/login.html:69
-msgid "Forgot password ?"
-msgstr ""
+#: accounts/templates/accounts/delete.html:51
+msgid "Cancel"
+msgstr "Cancelar"
 
-#: accounts/templates/accounts/password.html:23
-msgid "Reset password"
-msgstr ""
+#: accounts/templates/accounts/edit_information.html:22
+msgid "Edit information"
+msgstr "Editar informação"
 
-#: accounts/templates/accounts/password.html:33
-msgid "Send email"
-msgstr ""
+#: accounts/templates/accounts/edit_information.html:29
+#: accounts/templates/accounts/sidebar.html:27
+msgid "Edit personal information"
+msgstr "Editar informações pessoais"
 
-#: accounts/templates/accounts/register.html:27
+#: accounts/templates/accounts/edit_information.html:156
+#: accounts/templates/accounts/edit_password.html:84
+msgid "Edit"
+msgstr "Editar"
+
+#: accounts/templates/accounts/edit_password.html:22
+#: accounts/templates/accounts/edit_password.html:29
+#: accounts/templates/accounts/sidebar.html:37
+msgid "Edit password"
+msgstr "Editar senha"
+
+#: accounts/templates/accounts/login.html:63
+msgid "Enter"
+msgstr "Entrar"
+
+#: accounts/templates/accounts/login.html:66
+msgid "Forget password"
+msgstr "Esqueceu a senha"
+
+#: accounts/templates/accounts/profile.html:31
+#: accounts/templates/accounts/profile.html:54
+#: accounts/templates/accounts/sidebar.html:17
+msgid "Profile"
+msgstr "Perfil"
+
+#: accounts/templates/accounts/profile.html:103
+msgid "Change your name!"
+msgstr "Insira seu nome!"
+
+#: accounts/templates/accounts/profile.html:109
+msgid "Email"
+msgstr "Email"
+
+#: accounts/templates/accounts/profile.html:137
+msgid "Last login"
+msgstr "Último login"
+
+#: accounts/templates/accounts/profile.html:145
+msgid "Updated "
+msgstr "Atualizado "
+
+#: accounts/templates/accounts/profile.html:145
+msgid " ago"
+msgstr " atrás"
+
+#: accounts/templates/accounts/register.html:28
 msgid "Register"
-msgstr ""
+msgstr "Cadastro"
 
-#: accounts/templates/accounts/register.html:63
+#: accounts/templates/accounts/register.html:65
 msgid "Select the type of user"
-msgstr ""
+msgstr "Selecione o tipo de usuário"
 
-#: accounts/templates/accounts/register.html:86
-msgid "Back"
-msgstr ""
+#: accounts/templates/accounts/register.html:94
+msgid "Send"
+msgstr "Enviar"
+
+#: accounts/templates/accounts/reset_password.html:32
+msgid "An email was sent with more details on how to create a new password"
+msgstr "Um email será enviado com mais informações sobre como criar uma nova senha."
+
+#: accounts/templates/accounts/reset_password.html:39
+#: accounts/templates/accounts/reset_password_confirm.html:77
+msgid "Reset password"
+msgstr "Resetar a senha"
+
+#: accounts/templates/accounts/reset_password.html:66
+msgid "Send email"
+msgstr "Enviar email"
+
+#: accounts/templates/accounts/reset_password_confirm.html:32
+msgid "Your password was successfully created"
+msgstr "Sua senha foi criada com sucesso."
+
+#: accounts/templates/accounts/reset_password_confirm.html:39
+msgid "Enter your new password"
+msgstr "Entre com sua nova senha"
+
+#: accounts/templates/accounts/reset_password_email.html:4
+msgid "To create a new password access the link"
+msgstr "Para criar uma nova senha acesse o link"
+
+#: accounts/templates/accounts/reset_password_email.html:6
+msgid "New Password"
+msgstr "Nova senha"
+
+#: accounts/templates/accounts/sidebar.html:47
+msgid "Search discipline and classroom"
+msgstr "Procurar disciplinas e turmas"
+
+#: accounts/templates/accounts/sidebar.html:56
+msgid "Create discipline and classroom"
+msgstr "Criar disciplinas e turmas"
+
+#: accounts/tests/test_edit_user.py:75 accounts/tests/test_edit_user.py:87
+msgid "This field is required."
+msgstr "Este campo é obrigatório."
 
 #: accounts/tests/test_login.py:85
 #, python-format
 msgid ""
 "Please enter a correct %(username)s and password. Note that both fields may "
 "be case-sensitive."
-msgstr ""
+msgstr "Por favor entre com o %(username)s e senha correto. Note que ambos os campos devem ser case-sensitive."
