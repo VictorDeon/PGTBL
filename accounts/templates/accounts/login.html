@@ -63,7 +63,7 @@
         <button class="btn btn-lg btn-primary btn-block login-btn" type="submit">{% trans 'Enter' %}</button>
 
         <!-- Forget password link -->
-        <a href="#" class="forget-password">{% trans 'Forget password' %} ?</a>
+        <a href="{% url 'accounts:reset-password' %}" class="forget-password">{% trans 'Forget password' %} ?</a>
       </form>
     </div>
   </main>

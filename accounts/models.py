@@ -1,6 +1,7 @@
-from django.db import models
-from django.core import validators
 from django.utils.translation import ugettext_lazy as _
+from django.core import validators
+from django.conf import settings
+from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser, PermissionsMixin, UserManager
 )
@@ -158,31 +159,47 @@ class User(AbstractBaseUser, PermissionsMixin):
         ordering = ('email',)
 
 
-class Teacher(User):
+class PasswordReset(models.Model):
     """
-    Create the specific user Teacher that will manage the TBL sessions and
-    class
+    Create a password reset key to reset and get a new password.
     """
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        verbose_name=_('User'),
+        related_name="password_resets"
+    )
+
+    key = models.CharField(
+        _('Key'),
+        max_length=100,
+        unique=True
+    )
+
+    created_at = models.DateTimeField(
+        _('Created at'),
+        auto_now_add=True
+    )
+
+    confirmed = models.BooleanField(
+        _('Confirmed?'),
+        default=False,
+        blank=True
+    )
+
+    def __str__(self):
+        """
+        Returns the object as a string, the attribute that will represent
+        the object.
+        """
+
+        return '{0} - {1}'.format(self.user, self.created_at)
 
     class Meta:
         """
-        Some information about teacher class
+        Some information about user class.
         """
 
-        verbose_name = _("Teacher")
-        verbose_name_plural = _("Teachers")
-
-
-class Student(User):
-    """
-    Create the specific user Student that will use the TBL sessions and
-    class
-    """
-
-    class Meta:
-        """
-        Some information about teacher class
-        """
-
-        verbose_name = _("Student")
-        verbose_name_plural = _("Students")
+        verbose_name = _('New password')
+        verbose_name_plural = _('New passwords')
+        ordering = ['-created_at']

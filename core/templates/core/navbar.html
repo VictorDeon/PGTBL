@@ -22,6 +22,9 @@
           <li><a href="#footer" class="navbar-link"><i class="fa fa-slideshare"></i> {% trans 'About' %}</a></li>
         {% endif %}
         {% if user.is_authenticated %}
+          {% if home %}
+            <li><a href="{% url 'accounts:profile' %}" class="navbar-link"><i class="fa fa-user"></i> {% trans 'Profile' %}</a></li>
+          {% endif %}
           <li><a href="{% url 'accounts:logout' %}" class="navbar-link"><i class="fa fa-sign-out"></i> Logout</a></li>
         {% else %}
           <li><a href="{% url 'accounts:register' %}" class="navbar-link"><i class="fa fa-user-plus"></i> {% trans 'Register' %}</a></li>

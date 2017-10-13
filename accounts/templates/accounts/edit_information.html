@@ -75,7 +75,7 @@
                   title="{{form.username.label}}">
                   <i class="fa fa-user-secret icon-md"></i>
                 </span>
-                {% render_field form.username class="form-control" type="email" placeholder=form.username.label %}
+                {% render_field form.username class="form-control" type="text" placeholder=form.username.label %}
               </div>
               {% for error in form.username.errors %}
                 <span class="error">{{ error }}</span>

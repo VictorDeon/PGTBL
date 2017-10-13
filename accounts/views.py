@@ -1,11 +1,13 @@
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import (
     CreateView, ListView, UpdateView, FormView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse_lazy
-from .forms import UserCreationForm
+from .forms import UserCreationForm, PasswordResetForm
+from .models import PasswordReset
 from datetime import datetime
 
 # Get the custom user from settings
@@ -118,3 +120,26 @@ class EditPasswordView(LoginRequiredMixin, FormView):
 
         # Return to form_valid function from django to finish edition.
         return super(EditPasswordView, self).form_valid(form)
+
+
+def reset_password(request):
+    template = 'accounts/reset_password.html'
+    form = PasswordResetForm(request.POST or None)
+    context = {}
+    if form.is_valid():
+        form.save()
+        context['success'] = True
+    context['form'] = form
+    return render(request, template, context)
+
+
+def reset_password_confirm(request, key):
+    template = 'accounts/reset_password_confirm.html'
+    context = {}
+    reset = get_object_or_404(PasswordReset, key=key)
+    form = SetPasswordForm(user=reset.user, data=request.POST or None)
+    if form.is_valid():
+        form.save()
+        context['success'] = True
+    context['form'] = form
+    return render(request, template, context)

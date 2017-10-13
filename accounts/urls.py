@@ -4,9 +4,9 @@ from . import views
 
 app_name = 'accounts'
 urlpatterns = [
-    # /logar/
+    # /login/
     url(
-        r'^logar/$',
+        r'^login/$',
         login,
         # Subscribe the template_name of login view from django.
         {'template_name': 'accounts/login.html'},
@@ -33,16 +33,28 @@ urlpatterns = [
         views.ProfileView.as_view(),
         name='profile'
     ),
-    # /profile/edit
+    # /profile/edit/
     url(
         r'^profile/edit/$',
         views.EditProfileView.as_view(),
         name='update-user'
     ),
-    # /profile/edit-password
+    # /profile/edit-password/
     url(
         r'^profile/edit-password/$',
         views.EditPasswordView.as_view(),
         name="update-password"
+    ),
+    # /reset-password/
+    url(
+        r'^reset-password/$',
+        views.reset_password,
+        name="reset-password"
+    ),
+    # /confirm-new-password/
+    url(
+        r'^confirm-new-password/(?P<key>\w+)/$',
+        views.reset_password_confirm,
+        name="reset-password-confirm"
     ),
 ]
