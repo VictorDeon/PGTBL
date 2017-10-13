@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import (
-    CreateView, ListView, UpdateView, FormView
+    CreateView, ListView, UpdateView, FormView, DeleteView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
@@ -74,6 +74,23 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
 
     # Redirect to profile
     success_url = reverse_lazy('accounts:profile')
+
+    def get_object(self):
+        """
+        Search a ID or slug from url and return a object from model.
+        In this case return the current user logged from model.
+        """
+
+        return self.request.user
+
+
+class DeleteProfileView(LoginRequiredMixin, DeleteView):
+    """
+    Delete the user account
+    """
+
+    model = User
+    success_url = reverse_lazy('core:home')
 
     def get_object(self):
         """

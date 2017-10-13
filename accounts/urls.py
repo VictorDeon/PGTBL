@@ -43,7 +43,12 @@ urlpatterns = [
     url(
         r'^profile/edit-password/$',
         views.EditPasswordView.as_view(),
-        name="update-password"
+        name='update-password'
+    ),
+    url(
+        r'^profile/delete/$',
+        views.DeleteProfileView.as_view(),
+        name='delete-user'
     ),
     # /reset-password/
     url(
