@@ -15,16 +15,32 @@
 
 {% block body %}
   <header>
+
+    <!-- Navbar -->
     {% include 'core/navbar.html' %}
+
   </header>
   <main>
-    <!-- Breadcrumbs -->
-    {% block breadcrumb %}
-      {% include 'accounts/breadcrumb.html' %}
-    {% endblock %}
+
+    <!-- Breadcrumbs navegation -->
+    <div class="row">
+      <div class="col-sm-12 navegation">
+        <ul class="breadcrumb pull-left">
+          {% block breadcrumb %}
+            <li><a href="{% url 'accounts:profile' %}">
+              {% trans 'Profile' %}
+            </a></li>
+          {% endblock %}
+        </ul>
+        <p class="pull-right">
+          {{ date }} <i class="fa fa-calendar"></i>
+        </p>
+      </div>
+    </div>
 
     <!-- Profile page -->
     <div class="row">
+
       <!-- Sidebar -->
       {% include 'accounts/sidebar.html' %}
 
@@ -32,60 +48,114 @@
       <div class="col-sm-10">
         {% block profile %}
           <div class="container-fluid">
+
+            <!-- Header -->
             <div class="page-header profile">
               <h1 class="white">{% trans 'Profile' %}</h1>
             </div>
+
+            <!-- Body -->
             <div class="row">
+
+              <!-- Profile photo -->
               <div class="col-sm-3">
                 {% if user.photo %}
-                  <img src="{{user.photo.url}}" class="img-rounded img-responsive center-block" alt="User">
+                  <img
+                    src="{{ user.photo.url }}"
+                    class="img-rounded img-responsive img-size center-block"
+                    alt="User"
+                  />
                 {% else %}
-                  <img src="{% static 'accounts/img/user.png' %}" class="img-rounded img-responsive center-block" alt="User">
+                  <img
+                    src="{% static 'accounts/img/user.png' %}"
+                    class="img-rounded img-responsive img-size cente-block"
+                    alt="User"
+                  />
                 {% endif %}
               </div>
+
+              <!-- Profile information -->
               <div class="col-sm-9">
+
+                <!-- Labels -->
                 <div class="row">
                   {% if user.is_teacher %}
-                    <span class="label label-primary pull-left label-text">{% trans 'Teacher' %}</span>
+                    <span class="label label-primary pull-left label-text">
+                      {% trans 'Teacher' %}
+                    </span>
                   {% else %}
-                    <span class="label label-primary pull-left label-text">{% trans 'Student' %}</span>
+                    <span class="label label-primary pull-left label-text">
+                      {% trans 'Student' %}
+                    </span>
                   {% endif %}
-                  <span class="label label-success pull-left label-text">Online</span>
-                  <span class="label label-primary label-number pull-right">ID: {{user.id}}</span>
+                  <span class="label label-success pull-left label-text">
+                    Online
+                  </span>
+                  <span class="label label-primary label-number pull-right">
+                    ID: {{user.id}}
+                  </span>
                 </div>
 
+                <!-- Personal informations -->
                 {% if user.name %}
                   <h2 class="name">{{user.get_short_name}}</h2>
                 {% else %}
                   <h2 class="name">{% trans 'Change your name!' %}</h2>
                 {% endif %}
-                <p class="lighten-blue-grey">
-                  <i class="fa fa-envelope"></i>
-                  <b>{% trans 'Email' %}</b>: <span class="email">{{user.email}}</span>
-                </p>
-                <p class="lighten-blue-grey">
-                  <i class="fa fa-institution"></i>
-                  <b>{% trans 'Institution' %}</b>: <span class="college">{{user.institution}}</span>
-                </p>
-                <p class="lighten-blue-grey">
-                  <i class="fa fa-graduation-cap"></i>
-                  <b>{% trans 'Course' %}</b>: <span class="course">{{user.course}}</span>
-                </p>
-              </div>
-            </div>
+                <table class="lighten-blue-grey">
+                  <tr>
+                    <td>
+                      <i class="fa fa-envelope"></i>
+                      <b>{% trans 'Email' %}</b>:
+                    </td>
+                    <td>{{ user.email }}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i class="fa fa-institution"></i>
+                      <b>{% trans 'Institution' %}</b>:
+                    </td>
+                    <td>{{ user.institution }}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i class="fa fa-graduation-cap"></i>
+                      <b>{% trans 'Course' %}</b>:
+                    </td>
+                    <td>{{ user.course }}</td>
+                  </tr>
+                </table>
+
+              </div> <!-- End profile information -->
+            </div> <!-- End body -->
+
+            <!-- Authentication information -->
             <div class="row">
               <div class="col-sm-12">
-                <p class="lighten-blue-grey pull-left"><i class="fa fa-history"></i> Último login: Online</p>
-                <p class="lighten-blue-grey pull-right">Criado em 3 dias atrás</p>
+                <p class="lighten-blue-grey pull-left">
+                  <i class="fa fa-history"></i>
+                    {% trans 'Last login' %}:
+                  {% if user.is_authenticated %}
+                    Online
+                  {% else %}
+                    {{ user.last_login }}
+                  {% endif %}
+                </p>
+                <p class="lighten-blue-grey pull-right">
+                  {% trans 'Updated ' %}{{ user.updated_at | timesince }} {% trans ' ago' %}</p>
               </div>
+            </div>
+
+            <hr />
+
+            <!-- Disciplines -->
+            {% include 'accounts/disciplines.html' %}
           </div>
-          <hr />
-          <!-- Disciplines -->
-          {% include 'accounts/disciplines.html' %}
         {% endblock %}
       </div>
     </div>
   </main>
+
   <!-- Delete modal -->
   {% include 'accounts/delete.html' %}
 {% endblock %}

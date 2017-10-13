@@ -17,76 +17,85 @@
 
 {% block body %}
   <header>
+
+    <!-- Navbar -->
     {% include 'core/navbar.html' %}
+
   </header>
   <main>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="page-header">
-            <h1 class="white">{% trans 'Register' %}</h1>
+
+    <div class="login">
+      <h1>{% trans 'Register' %}</h1>
+
+      <!-- Form -->
+      <form method="post" novalidate>
+        <!-- Form security -->
+        {% csrf_token %}
+
+        <!-- Get all erros from form -->
+        {% for error in form.non_field_errors %}
+          <div class="alert alert-danger">{{error}}</div>
+        {% endfor %}
+
+        <!-- Username field -->
+        <div class="group">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-user-circle-o icon-md white"></i></span>
+            {% render_field form.username class="form-control" type="text" placeholder=form.username.label %}
           </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <img
-                src="{% static 'core/img/user.png' %}"
-                class="img-thumbnail img-responsive center-block photo"
-                alt="{% trans 'profile picture' %}"
-              />
-            </div>
-            <form method="post" class="col-sm-12">
-              <!-- Form security -->
-              {% csrf_token %}
+          {% for error in form.username.errors %}
+            <span class="error">{{ error }}</span>
+          {% endfor %}
+        </div>
 
-              <!-- Get all erros from form -->
-              {% for error in form.non_field_errors %}
-                <div class="alert alert-danger">{{error}}</div>
-              {% endfor %}
+        <!-- Email field -->
+        <div class="group">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope icon-md white"></i></span>
+            {% render_field form.email type="text" class="form-control" placeholder=form.email.label %}
+          </div>
+          {% for error in form.email.errors %}
+            <span class="error">{{ error }}</span>
+          {% endfor %}
+        </div>
 
-              <!-- Fields from form -->
-              <fieldset>
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-user-circle-o icon-md"></i></span>
-                  {% render_field form.username class="form-control" type="text" placeholder=form.username.label %}
-                  {% for error in form.username.errors %}
-                    <span class="">{{error}}</span>
-                  {% endfor %}
-                </div>
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-envelope icon-md"></i></span>
-                  {% render_field form.email type="text" class="form-control" placeholder=form.email.label %}
-                  {% for error in form.email.errors %}
-                    <span class="">{{error}}</span>
-                  {% endfor %}
-                </div>
-                <div class="form-group">
-                  <label for="{{form.is_teacher.auto_id}}">{% trans 'Select the type of user' %}:</label>
-                  <select class="form-control" id="{{form.is_teacher.auto_id}}" name="user">
-                    <option value="teacher">Professor</option>
-                    <option value="student">Aluno</option>
-                  </select>
-                </div>
-                <hr />
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-lock icon-md"></i></span>
-                  {% render_field form.password1 type="password" class="form-control" placeholder=form.password1.label %}
-                  {% for error in form.password1.errors %}
-                    <span class="">{{error}}</span>
-                  {% endfor %}
-                </div>
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-lock icon-md"></i></span>
-                  {% render_field form.password2 type="password" class="form-control" placeholder=form.password2.label %}
-                </div>
-                <button type="submit" class="btn btn-default submit-button center-block">
-                  <i class="fa fa-user-plus"></i> Registrar
-                </button>
-              </fieldset>
-            </form>
-            <p><a href="">{% trans 'Back' %}</a></p>
+        <!-- Teacher or Student field -->
+        <div class="group">
+          <div class="form-group">
+            <label for="{{form.is_teacher.auto_id}}" class="white">{% trans 'Select the type of user' %}:</label>
+            <select class="form-control" id="{{form.is_teacher.auto_id}}" name="user">
+              <option value="True">Professor</option>
+              <option value="False">Aluno</option>
+            </select>
           </div>
         </div>
-      </div>
+
+        <!-- Password field -->
+        <div class="group">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-lock icon-md white"></i></span>
+            {% render_field form.password1 type="password" class="form-control" placeholder=form.password1.label %}
+          </div>
+          {% for error in form.password1.errors %}
+            <span class="error">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <!-- Password confirmation field -->
+        <div class="group">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-lock icon-md white"></i></span>
+            {% render_field form.password2 type="password" class="form-control" placeholder=form.password2.label %}
+          </div>
+          {% for error in form.password2.errors %}
+            <span class="error">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <hr />
+        <!-- Submit button -->
+        <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans 'Send' %}</button>
+      </form>
     </div>
   </main>
 {% endblock %}

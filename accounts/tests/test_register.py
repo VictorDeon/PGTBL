@@ -5,14 +5,13 @@ from django.test import TestCase, Client
 from model_mommy import mommy
 from django.conf import settings
 
+# Get custom user model
 User = get_user_model()
 
 
 class RegisterTestCase(TestCase):
     """
     Test to register a new user into the system.
-    BUG:
-        - Mensagens dos testes comentados vindo errada.
     """
 
     def setUp(self):

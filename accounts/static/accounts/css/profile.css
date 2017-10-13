@@ -14,16 +14,9 @@
   margin-right: 10px;
 }
 
-.email {
-  padding-left: 44px;
-}
-
-.college {
-  padding-left: 10px;
-}
-
-.course {
-  padding-left: 37px;
+td, th {
+  text-align: left;
+  padding: 8px;
 }
 
 /* class list */
@@ -60,4 +53,9 @@
 
 .pagination {
   margin: 10px 0;
+}
+
+.img-size {
+  max-height: 250px;
+  width: 250px;
 }

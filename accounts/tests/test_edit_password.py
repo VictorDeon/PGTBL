@@ -34,7 +34,7 @@ class EditPasswordTestCase(TestCase):
 
     def test_update_password_ok(self):
         """
-
+        Test to edit password with successfully.
         """
 
         data = {
@@ -71,15 +71,11 @@ class EditPasswordTestCase(TestCase):
             'new_password1': 'test12345678',
             'new_password2': 'test12345678'
         }
-
-        self.client.login(username=self.user.username, password='test1234')
-        response = self.client.post(self.url, data)
-        self.assertFormError(
-            response, 'form', 'old_password',
-            _('Your old password was entered incorrectly. Please enter it again.')
+        self.edit_password_fail(
+            data,
+            'old_password',
+            'Your old password was entered incorrectly. Please enter it again.'
         )
-        self.user.refresh_from_db()
-        self.assertTrue(self.user.check_password('test1234'))
 
     def test_update_new_password_fail(self):
         """
@@ -91,12 +87,19 @@ class EditPasswordTestCase(TestCase):
             'new_password1': 'test12345678',
             'new_password2': 'test12345'
         }
+        self.edit_password_fail(
+            data,
+            'new_password2',
+            "The two password fields didn't match."
+        )
+
+    def edit_password_fail(self, data, field, msg):
+        """
+        Function that can't edit user password.
+        """
 
         self.client.login(username=self.user.username, password='test1234')
         response = self.client.post(self.url, data)
-        self.assertFormError(
-            response, 'form', 'new_password2',
-            _("The two password fields didn't match.")
-        )
+        self.assertFormError(response, 'form', field, _(msg))
         self.user.refresh_from_db()
         self.assertTrue(self.user.check_password('test1234'))

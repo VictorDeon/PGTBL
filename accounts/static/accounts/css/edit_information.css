@@ -16,3 +16,12 @@
   width: 100%;
   margin-bottom: 10px;
 }
+
+.error {
+  color: red;
+  padding-left: 20px;
+}
+
+.input-group .form-control {
+  float: none;
+}

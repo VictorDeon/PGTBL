@@ -1,11 +1,12 @@
 from django.views.generic import (
-    CreateView, TemplateView, UpdateView, FormView
+    CreateView, ListView, UpdateView, FormView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse_lazy
 from .forms import UserCreationForm
+from datetime import datetime
 
 # Get the custom user from settings
 User = get_user_model()
@@ -26,12 +27,36 @@ class RegisterView(CreateView):
     success_url = reverse_lazy('accounts:login')
 
 
-class ProfileView(LoginRequiredMixin, TemplateView):
+class ProfileView(LoginRequiredMixin, ListView):
     """
     Class to read a profile user.
     """
 
+    paginate_by = 6
     template_name = 'accounts/profile.html'
+    # object queryset name that appears in the templates
+    context_object_name = 'disciplines'
+
+    def get_queryset(self):
+        """
+        Get the specific queryset from model database.
+        """
+
+        # Get the last two news created
+        queryset = User.objects.all()
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        """
+        Insert more elements into context data to template.
+        """
+
+        # Get the initial context from IndexView (paginator, page_obj,
+        # is_paginated, context_object_name especify or object_list)
+        context = super(ProfileView, self).get_context_data()
+        # Insert home and logged variables to template
+        context['date'] = datetime.now().date()
+        return context
 
 
 class EditProfileView(LoginRequiredMixin, UpdateView):
@@ -40,10 +65,10 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
     """
 
     model = User
-    template_name = 'accounts/update.html'
+    template_name = 'accounts/edit_information.html'
 
     # Generate the forms with this fields
-    fields = ['photo', 'name', 'email', 'institution', 'course']
+    fields = ['photo', 'name', 'username', 'email', 'institution', 'course']
 
     # Redirect to profile
     success_url = reverse_lazy('accounts:profile')
@@ -91,5 +116,5 @@ class EditPasswordView(LoginRequiredMixin, FormView):
         # When the form is valid save the instance
         form.save()
 
-        # Return to form_valid function from django.
+        # Return to form_valid function from django to finish edition.
         return super(EditPasswordView, self).form_valid(form)
