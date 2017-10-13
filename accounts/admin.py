@@ -48,6 +48,7 @@ class UserAdmin(BaseUserAdmin):
             'fields': (
                 'username',
                 'email',
+                'is_teacher',
                 'password1',
                 'password2'
             )
@@ -58,7 +59,7 @@ class UserAdmin(BaseUserAdmin):
     list_display = ['username',
                     'name',
                     'email',
-                    'institution',
+                    'is_teacher',
                     'is_active',
                     'is_staff',
                     'created_at'

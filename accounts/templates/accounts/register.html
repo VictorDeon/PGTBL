@@ -63,10 +63,7 @@
         <div class="group">
           <div class="form-group">
             <label for="{{form.is_teacher.auto_id}}" class="white">{% trans 'Select the type of user' %}:</label>
-            <select class="form-control" id="{{form.is_teacher.auto_id}}" name="user">
-              <option value="True">Professor</option>
-              <option value="False">Aluno</option>
-            </select>
+            {% render_field form.is_teacher type="select" class="form-control" id=form.is_teacher_auto_id %}
           </div>
         </div>
 

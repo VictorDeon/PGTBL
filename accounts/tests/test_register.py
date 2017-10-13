@@ -42,6 +42,7 @@ class RegisterTestCase(TestCase):
         data = {
             'username': 'person',
             'email': 'person@gmail.com',
+            'is_teacher': True,
             'password1': 'test1234',
             'password2': 'test1234'
         }
