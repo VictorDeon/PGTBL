@@ -12,7 +12,8 @@ ENGLISH = 'en-us'
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Sao_Paulo'
+SAO_PAULO = 'America/Sao_Paulo'
+USA = 'UTC'
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.

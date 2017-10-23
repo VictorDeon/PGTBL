@@ -40,7 +40,7 @@ from .config.user import (
 )
 from .config.internacionalization import (
     PORTUGUESE, ENGLISH,
-    TIME_ZONE,
+    SAO_PAULO, USA,
     INTERNATIONALIZATION,
     FORMAT_DATES,
     TIMEZONE_DATETIMES
@@ -59,6 +59,7 @@ WSGI_APPLICATION = 'tbl.wsgi.application'
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 LANGUAGE_CODE = PORTUGUESE
+TIME_ZONE = SAO_PAULO
 USE_I18N = INTERNATIONALIZATION
 USE_L10N = FORMAT_DATES
 USE_TZ = TIMEZONE_DATETIMES

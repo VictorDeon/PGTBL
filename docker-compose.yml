@@ -21,12 +21,13 @@ services:
     # Set the secret_key to enviroment
     environment:
       - SECRET_KEY
-      - MODE_ENVIROMENT='production'
       - CODACY_PROJECT_TOKEN
+      - EMAIL_PASSWORD
     # Forwards the exposed port 8000 on the host machine to port 8000 on the container.
     ports:
       - '8000:8000'
+    # Container dependencies
     depends_on:
       - db
-    # command to execute inside the docker
-    command: bash -c "python3 manage.py makemigrations && python3 manage.py migrate && django-admin compilemessages && python3 manage.py runserver 0.0.0.0:8000"
+
+  # Service
