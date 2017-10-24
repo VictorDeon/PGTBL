@@ -53,6 +53,10 @@ class PasswordResetForm(forms.Form):
     email = forms.EmailField(label='E-mail')
 
     def clean_email(self):
+        """
+        Verify if the email exists in the system and return it.
+        """
+
         email = self.cleaned_data['email']
         if User.objects.filter(email=email).exists():
             return email
@@ -61,11 +65,18 @@ class PasswordResetForm(forms.Form):
         )
 
     def save(self):
+        """
+        Save the password reset object and send a email to user.
+        """
+
         user = User.objects.get(email=self.cleaned_data['email'])
         key = generate_hash_key(user.username)
         reset_password = PasswordReset(user=user, key=key)
         reset_password.save()
-        template = 'accounts/reset_password_email.html'
-        subject = _('Requesting new password')
-        context = {'reset_password': reset_password}
-        send_email_template(subject, template, context, [user.email])
+        # Send email
+        send_email_template(
+            subject=_('Requesting new password'),
+            template='accounts/reset_password_email.html',
+            context={'reset_password': reset_password},
+            recipient_list=[user.email],
+        )

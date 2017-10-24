@@ -123,7 +123,7 @@ class EditPasswordView(LoginRequiredMixin, FormView):
         # (PasswordChangeForm)
         kwargs = super(EditPasswordView, self).get_form_kwargs()
 
-        # Insert the parameter logged user into the template
+        # Insert the parameter logged user into the form template
         kwargs['user'] = self.request.user
         return kwargs
 
@@ -140,7 +140,13 @@ class EditPasswordView(LoginRequiredMixin, FormView):
 
 
 def reset_password(request):
+    """
+    Reset the user password and send email.
+    """
+
     template = 'accounts/reset_password.html'
+    # If you do not send anything in the form you will insert None
+    # and de form will not validated (empty form)
     form = PasswordResetForm(request.POST or None)
     context = {}
     if form.is_valid():

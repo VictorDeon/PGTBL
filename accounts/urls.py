@@ -56,7 +56,7 @@ urlpatterns = [
         views.reset_password,
         name="reset-password"
     ),
-    # /confirm-new-password/
+    # /confirm-new-password/3d9j230r2m98mr2398h9r2h39rhc9/
     url(
         r'^confirm-new-password/(?P<key>\w+)/$',
         views.reset_password_confirm,

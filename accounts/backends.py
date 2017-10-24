@@ -6,7 +6,7 @@ User = get_user_model()
 
 class ModelBackend(BaseModelBackend):
     """
-    Backend of User Model to enter email as a way to log in to system
+    Backend of User Model to enter email as a way to login to system
     beyond username.
 
     More information: djangoproject.../topics/auth/customizing
