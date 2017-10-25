@@ -1,0 +1,26 @@
+engines:
+  bandit:
+    enabled: true
+  prospector:
+    enabled: true
+  pylint:
+    enabled: true
+  duplication:
+    enabled: true
+  metrics:
+    enabled: true
+  coverage:
+    enabled: true
+languages:
+  python:
+    extensions:
+      - '.py'
+exclude_paths:
+  - 'Dockerfile'
+  - 'manage.py'
+  - 'Vagrantfile'
+  - '**/tests/**'
+  - '**/migrations/**'
+  - '**/static/**'
+  - '**/templates/**'
+  - '**/__init__.py'
