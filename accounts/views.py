@@ -79,7 +79,7 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
     # Redirect to profile
     success_url = reverse_lazy('accounts:profile')
 
-    def get_object(self, queryset=None):
+    def get_object(self):
         """
         Search a ID or slug from url and return a object from model.
         In this case return the current user logged from model.

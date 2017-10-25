@@ -36,25 +36,6 @@ import os
 # development or production enviroment
 MODE_ENVIROMENT = os.getenv("MODE_ENVIROMENT", "development")
 
-# Django config
-AUTH_PASSWORD_VALIDATORS
-MIDDLEWARE
-TEMPLATES
-SECRET_KEY
-
-# Authentication config
-AUTH_USER_MODEL
-LOGIN_URL
-LOGOUT_URL
-LOGIN_REDIRECT_URL
-AUTHENTICATION_BACKENDS
-
-# Files config
-STATIC_ROOT
-MEDIA_ROOT
-STATIC_URL
-MEDIA_URL
-
 # Urls
 ROOT_URLCONF = 'tbl.urls'
 
@@ -86,11 +67,5 @@ elif MODE_ENVIROMENT == 'production':
     DATABASES = DB_PRODUCTION
     # Send email to gmail config
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    DEFAULT_FROM_EMAIL
-    EMAIL_USE_TLS
-    EMAIL_PORT
-    EMAIL_HOST
-    EMAIL_HOST_USER,
-    EMAIL_HOST_PASSWORD
     # Allow all host/domain to access this aplication
     ALLOWED_HOSTS = ['*']
