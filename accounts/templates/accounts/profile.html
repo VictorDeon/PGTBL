@@ -88,9 +88,6 @@
                       {% trans 'Student' %}
                     </span>
                   {% endif %}
-                  <span class="label label-success pull-left label-text">
-                    Online
-                  </span>
                   <span class="label label-primary label-number pull-right">
                     ID: {{user.id}}
                   </span>
@@ -136,7 +133,7 @@
                   <i class="fa fa-history"></i>
                     {% trans 'Last login' %}:
                   {% if user.is_authenticated %}
-                    Online
+                    {{user.last_login}}
                   {% else %}
                     {{ user.last_login }}
                   {% endif %}
@@ -149,7 +146,7 @@
             <hr />
 
             <!-- Disciplines -->
-            {% include 'accounts/disciplines.html' %}
+            {% include 'disciplines/list.html' %}
           </div>
         {% endblock %}
       </div>

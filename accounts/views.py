@@ -1,3 +1,4 @@
+# Django
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import (
     CreateView, ListView, UpdateView, FormView, DeleteView
@@ -6,12 +7,47 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse_lazy
+# Disciplines APP
+from disciplines.models import Discipline
+# Accounts APP
 from .forms import UserCreationForm, PasswordResetForm
 from .models import PasswordReset
+# Python
 from datetime import datetime
 
 # Get the custom user from settings
 User = get_user_model()
+
+
+class ProfileView(LoginRequiredMixin, ListView):
+    """
+    Class to read a profile user and his disciplines.
+    """
+
+    paginate_by = 6
+    template_name = 'accounts/profile.html'
+    # object queryset name that appears in the templates
+    context_object_name = 'disciplines'
+
+    def get_queryset(self):
+        """
+        Get the specific queryset from model database.
+        """
+
+        queryset = Discipline.objects.filter(teacher=self.request.user)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        """
+        Insert more elements into context data to template.
+        """
+
+        # Get the initial context from IndexView (paginator, page_obj,
+        # is_paginated, context_object_name especify or object_list)
+        context = super(ProfileView, self).get_context_data()
+        # Insert home and logged variables to template
+        context['date'] = datetime.now().date()
+        return context
 
 
 class RegisterView(CreateView):
@@ -27,38 +63,6 @@ class RegisterView(CreateView):
 
     # Redirect to login page only when the url is requested
     success_url = reverse_lazy('accounts:login')
-
-
-class ProfileView(LoginRequiredMixin, ListView):
-    """
-    Class to read a profile user.
-    """
-
-    paginate_by = 6
-    template_name = 'accounts/profile.html'
-    # object queryset name that appears in the templates
-    context_object_name = 'disciplines'
-
-    def get_queryset(self):
-        """
-        Get the specific queryset from model database.
-        """
-
-        # Get the last two news created
-        queryset = User.objects.all()
-        return queryset
-
-    def get_context_data(self, **kwargs):
-        """
-        Insert more elements into context data to template.
-        """
-
-        # Get the initial context from IndexView (paginator, page_obj,
-        # is_paginated, context_object_name especify or object_list)
-        context = super(ProfileView, self).get_context_data()
-        # Insert home and logged variables to template
-        context['date'] = datetime.now().date()
-        return context
 
 
 class EditProfileView(LoginRequiredMixin, UpdateView):
