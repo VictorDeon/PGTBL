@@ -28,13 +28,32 @@ from .config.user import (
     AUTHENTICATION_BACKENDS
 )
 from .config.internacionalization import (
-    PORTUGUESE, ENGLISH, SAO_PAULO, USA, INTERNATIONALIZATION,
+    PORTUGUESE, SAO_PAULO, INTERNATIONALIZATION,
     FORMAT_DATES, TIMEZONE_DATETIMES
 )
 import os
 
 # development or production enviroment
 MODE_ENVIROMENT = os.getenv("MODE_ENVIROMENT", "development")
+
+# Django config
+AUTH_PASSWORD_VALIDATORS
+MIDDLEWARE
+TEMPLATES
+SECRET_KEY
+
+# Authentication config
+AUTH_USER_MODEL
+LOGIN_URL
+LOGOUT_URL
+LOGIN_REDIRECT_URL
+AUTHENTICATION_BACKENDS
+
+# Files config
+STATIC_ROOT
+MEDIA_ROOT
+STATIC_URL
+MEDIA_URL
 
 # Urls
 ROOT_URLCONF = 'tbl.urls'
@@ -43,7 +62,6 @@ ROOT_URLCONF = 'tbl.urls'
 WSGI_APPLICATION = 'tbl.wsgi.application'
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.11/topics/i18n/
 LANGUAGE_CODE = PORTUGUESE
 TIME_ZONE = SAO_PAULO
 USE_I18N = INTERNATIONALIZATION
@@ -66,7 +84,13 @@ elif MODE_ENVIROMENT == 'production':
     INSTALLED_APPS = PRODUCTION_APPS
     # Postgresql database
     DATABASES = DB_PRODUCTION
-    # Send email to gmail
+    # Send email to gmail config
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    DEFAULT_FROM_EMAIL
+    EMAIL_USE_TLS
+    EMAIL_PORT
+    EMAIL_HOST
+    EMAIL_HOST_USER,
+    EMAIL_HOST_PASSWORD
     # Allow all host/domain to access this aplication
     ALLOWED_HOSTS = ['*']

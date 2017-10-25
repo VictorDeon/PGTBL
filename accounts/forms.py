@@ -1,5 +1,5 @@
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm as CreationForm
 from django.contrib.auth import get_user_model
 from django import forms
 from core.utils import generate_hash_key
@@ -10,7 +10,7 @@ from .models import PasswordReset
 User = get_user_model()
 
 
-class UserCreationForm(UserCreationForm):
+class UserCreationForm(CreationForm):
     """
     Create a form to add a new user that work with django admin.
     """

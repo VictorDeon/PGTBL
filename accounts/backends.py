@@ -12,7 +12,7 @@ class ModelBackend(BaseModelBackend):
     More information: djangoproject.../topics/auth/customizing
     """
 
-    def authenticate(self, username=None, password=None):
+    def authenticate(self, request, username=None, password=None, **kwargs):
         """
         Check the username or email and password and return a user.
         """
