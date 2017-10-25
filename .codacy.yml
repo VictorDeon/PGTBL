@@ -2,7 +2,7 @@ exclude_paths:
   - 'Dockerfile'
   - 'manage.py'
   - 'Vagrantfile'
-  - 'tbl/settings.py'
+  - '**/settings.py'
   - '**/tests/**'
   - '**/migrations/**'
   - '**/static/**'
