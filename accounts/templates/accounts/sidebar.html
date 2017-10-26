@@ -49,13 +49,15 @@
     </a>
 
     <!-- Create discipline and classroom menu -->
-    <a
-      href="create_class.html"
-      class="btn" data-toggle="tooltip"
-      data-placement="right"
-      title="{% trans 'Create discipline and classroom' %}">
-      <i class="fa fa-book icon-lg"></i>
-    </a>
+    {% if user.is_teacher %}
+      <a
+        href="{% url 'disciplines:create' %}"
+        class="btn" data-toggle="tooltip"
+        data-placement="right"
+        title="{% trans 'Create discipline and classroom' %}">
+        <i class="fa fa-book icon-lg"></i>
+      </a>
+    {% endif %}
 
     <!-- Button to open message modal -->
     <button

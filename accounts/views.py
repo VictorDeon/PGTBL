@@ -24,7 +24,7 @@ class ProfileView(LoginRequiredMixin, ListView):
     Class to read a profile user and his disciplines.
     """
 
-    paginate_by = 6
+    paginate_by = 5
     template_name = 'accounts/profile.html'
     # object queryset name that appears in the templates
     context_object_name = 'disciplines'

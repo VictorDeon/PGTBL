@@ -1,6 +1,10 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.conf import settings
+from django.contrib.auth import get_user_model
+
+# Get the custom user from settings
+User = get_user_model()
 
 
 class DisciplineManager(models.Manager):
@@ -10,12 +14,13 @@ class DisciplineManager(models.Manager):
 
     def search(self, query):
         """
-        Search a discipline by name or description
+        Search a discipline by name, description or classroom
         """
 
         return self.get_queryset().filter(
             models.Q(title__icontains=query) |
-            models.Q(description__icontains=query)
+            models.Q(description__icontains=query) |
+            models.Q(classroom__icontains=query)
         )
 
 
@@ -32,7 +37,6 @@ class Discipline(models.Model):
 
     description = models.TextField(
         _('Description'),
-        blank=True,
         help_text=_("Discipline description")
     )
 
@@ -48,11 +52,45 @@ class Discipline(models.Model):
         _('Shortcut')
     )
 
+    classroom = models.CharField(
+        _('Classroom title'),
+        max_length=10,
+        help_text=_("Classroom title of discipline.")
+    )
+
+    password = models.CharField(
+        _('Password'),
+        max_length=30,
+        help_text=_("Password to get into the class.")
+    )
+
+    student_limit = models.PositiveIntegerField(
+        _("Student limit"),
+        default=0,
+        help_text=_("Student limit to getin into the class.")
+    )
+
     # Teacher that create disciplines.
     teacher = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         verbose_name=_('Teacher'),
         related_name="disciplines"
+    )
+
+    # Class students
+    students = models.ManyToManyField(
+        User,
+        verbose_name='Students',
+        related_name='student_classes',
+        blank=True
+    )
+
+    # Class monitors
+    monitors = models.ManyToManyField(
+        User,
+        verbose_name='Monitors',
+        related_name='monitor_classes',
+        blank=True
     )
 
     # Create a date when the user is created
@@ -78,7 +116,7 @@ class Discipline(models.Model):
         the object.
         """
 
-        return '{0} - {1}'.format(self.title, self.course)
+        return '{0}: {1} - {2}'.format(self.course, self.title, self.classroom)
 
     class Meta:
         verbose_name = _('Discipline')

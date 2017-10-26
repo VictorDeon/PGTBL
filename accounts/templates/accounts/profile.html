@@ -146,7 +146,13 @@
             <hr />
 
             <!-- Disciplines -->
-            {% include 'disciplines/list.html' %}
+            {% for discipline in disciplines %}
+              {% include 'disciplines/collapse.html' %}
+            {% empty %}
+              <p class="white">{% trans 'There is no disciplines.' %}</p>
+            {% endfor %}
+
+            {% include 'core/pagination.html' %}
           </div>
         {% endblock %}
       </div>
