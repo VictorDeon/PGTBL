@@ -10,7 +10,7 @@
 {% endblock %}
 
 <!-- Delete modal -->
-<div class="modal fade" id="delete-modal" role="dialog">
+<div class="modal fade" id="{{discipline.id}}-model" role="dialog">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
 
@@ -23,13 +23,13 @@
           <i class="fa fa-close"></i>
         </button>
         <h4 class="modal-title">
-          {% trans 'Delete' %}
+          {% trans 'Delete Discipline' %}
         </h4>
       </div>
 
       <!-- Body -->
       <div class="modal-body">
-        <p>{% trans 'Are you sure you want to delete' %} ?</p>
+        <p>{% trans 'Are you sure you want to delete' %} {{discipline.title}} ?</p>
       </div>
 
       <!-- Footer -->

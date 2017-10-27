@@ -71,6 +71,12 @@ class Discipline(models.Model):
         help_text=_("Student limit to getin into the class.")
     )
 
+    is_closed = models.BooleanField(
+        _("Is closed?"),
+        default=False,
+        help_text=_("Close discipline.")
+    )
+
     # Teacher that create disciplines.
     teacher = models.ForeignKey(
         settings.AUTH_USER_MODEL,

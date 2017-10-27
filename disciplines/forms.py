@@ -1,3 +1,4 @@
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 from django import forms
@@ -35,3 +36,15 @@ class DisciplineForm(forms.ModelForm):
         instance.save()
 
         return instance
+
+
+class EnterDisciplineForm(forms.Form):
+    """
+    Form to insert students and monitors in the discipline.
+    """
+
+    password = forms.CharField(
+        label=_('Access Password'),
+        max_length=30,
+        widget=forms.PasswordInput
+    )
