@@ -45,7 +45,9 @@
             </div>
           </div>
         {% empty %}
-        <p>{% trans 'There is no news' %}.</p>
+          <div class="alert alert-info">
+            {% trans 'There is no news' %}
+          </div>
         {% endfor %}
       </div>
       <div class="row">

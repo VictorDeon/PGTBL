@@ -7,10 +7,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.views.generic import (
-    CreateView
+    CreateView, UpdateView, DeleteView
 )
 from core.mixins import PermissionRequiredMixin
-from .forms import DisciplineCreateForm
+from .forms import DisciplineForm
 from .models import Discipline
 
 # # Get the custom user from settings
@@ -25,12 +25,12 @@ class DisciplineCreationView(LoginRequiredMixin,
     """
 
     model = Discipline
-    template_name = 'disciplines/create.html'
-    form_class = DisciplineCreateForm
+    template_name = 'disciplines/form.html'
+    form_class = DisciplineForm
     success_url = reverse_lazy('accounts:profile')
 
     # Permissions
-    user_check_failure_path = reverse_lazy('accounts:login')
+    user_check_failure_path = reverse_lazy('accounts:profile')
     permission_required = 'disciplines.add_discipline'
 
     def form_valid(self, form):
@@ -43,3 +43,38 @@ class DisciplineCreationView(LoginRequiredMixin,
 
         # Return to form_valid function from django to finish creation.
         return super(DisciplineCreationView, self).form_valid(form)
+
+
+class DisciplineUpdateView(LoginRequiredMixin,
+                           PermissionRequiredMixin,
+                           UpdateView):
+    """
+    View to update a specific discipline.
+    """
+
+    model = Discipline
+    template_name = 'disciplines/form.html'
+    fields = [
+        'title', 'course', 'description', 'classroom',
+        'password', 'student_limit'
+    ]
+    success_url = reverse_lazy('accounts:profile')
+    slug_url_kwargs = 'slug'
+
+    user_check_failure_path = reverse_lazy('accounts:profile')
+    permission_required = 'disciplines.change_discipline'
+
+
+class DisciplineDeleteView(LoginRequiredMixin,
+                           PermissionRequiredMixin,
+                           DeleteView):
+    """
+    View to delete a specific discipline.
+    """
+
+    model = Discipline
+    success_url = reverse_lazy('accounts:profile')
+    slug_url_kwargs = 'slug'
+
+    user_check_failure_path = reverse_lazy('accounts:profile')
+    permission_required = 'disciplines.change_discipline'

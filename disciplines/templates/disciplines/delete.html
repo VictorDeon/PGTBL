@@ -10,7 +10,7 @@
 {% endblock %}
 
 <!-- Delete modal -->
-<div class="modal fade" id="delete-user-modal" role="dialog">
+<div class="modal fade" id="delete-modal" role="dialog">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
 
@@ -23,7 +23,7 @@
           <i class="fa fa-close"></i>
         </button>
         <h4 class="modal-title">
-          {% trans 'Delete user' %}
+          {% trans 'Delete' %}
         </h4>
       </div>
 
@@ -34,7 +34,7 @@
 
       <!-- Footer -->
       <div class="modal-footer">
-        <form action="{% url 'accounts:delete-user' %}" method="post">
+        <form action="{% url 'disciplines:delete' discipline.slug %}" method="post">
           {% csrf_token %}
           <button
             type="submit"

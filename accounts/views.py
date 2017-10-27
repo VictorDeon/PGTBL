@@ -5,6 +5,8 @@ from django.views.generic import (
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
+from django.contrib.auth import login, authenticate
+from django.http.response import HttpResponseRedirect
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse_lazy
 # Disciplines APP
@@ -62,7 +64,21 @@ class RegisterView(CreateView):
     form_class = UserCreationForm
 
     # Redirect to login page only when the url is requested
-    success_url = reverse_lazy('accounts:login')
+    success_url = reverse_lazy('accounts:profile')
+
+    def form_valid(self, form):
+        """
+        Receive the form already validated.
+        Logs the user into the system.
+        """
+
+        user = form.save()
+        user = authenticate(
+            username=user.username,
+            password=form.cleaned_data['password1']
+        )
+        login(self.request, user)
+        return HttpResponseRedirect(self.success_url)
 
 
 class EditProfileView(LoginRequiredMixin, UpdateView):

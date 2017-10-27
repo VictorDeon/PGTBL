@@ -1,7 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.conf import settings
-from django.contrib.auth import get_user_model
 
 # Get the custom user from settings
 User = get_user_model()
@@ -61,7 +61,8 @@ class Discipline(models.Model):
     password = models.CharField(
         _('Password'),
         max_length=30,
-        help_text=_("Password to get into the class.")
+        help_text=_("Password to get into the class."),
+        blank=True
     )
 
     student_limit = models.PositiveIntegerField(

@@ -1,4 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import Group, Permission
+from django.shortcuts import get_object_or_404
 from django.core import validators
 from django.conf import settings
 from django.db import models
@@ -207,3 +209,29 @@ class PasswordReset(models.Model):
         verbose_name = _('New password')
         verbose_name_plural = _('New passwords')
         ordering = ['-created_at']
+
+
+def add_user_to_group(instance, created, **kwargs):
+    """
+    Insert the created user into a group
+    """
+
+    if not Group.objects.all().exists():
+        Group.objects.create(name=_('Teacher'))
+        Group.objects.create(name=_('Student'))
+        Group.objects.create(name=_('Monitor'))
+
+    if created:
+        if instance.is_teacher:
+            group = get_object_or_404(Group, name='Teacher')
+        else:
+            group = get_object_or_404(Group, name='Student')
+        group.user_set.add(instance)
+
+
+# Run whenever create a new group.
+models.signals.post_save.connect(
+    add_user_to_group,
+    sender=User,
+    dispatch_uid='add_group'
+)
