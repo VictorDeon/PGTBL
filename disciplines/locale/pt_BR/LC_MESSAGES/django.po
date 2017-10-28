@@ -1,0 +1,174 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-28 02:14-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: disciplines/forms.py:32
+msgid "Access Password"
+msgstr ""
+
+#: disciplines/models.py:33
+msgid "Title"
+msgstr "Título"
+
+#: disciplines/models.py:35
+msgid "Discipline title"
+msgstr "Título da disciplina"
+
+#: disciplines/models.py:39
+msgid "Description"
+msgstr "Ementa"
+
+#: disciplines/models.py:40
+msgid "Discipline description"
+msgstr "Ementa da disciplina"
+
+#: disciplines/models.py:44 disciplines/templates/disciplines/collapse.html:43
+#: disciplines/templates/disciplines/list.html:42
+#: disciplines/templates/disciplines/list.html:93
+msgid "Course"
+msgstr "Curso"
+
+#: disciplines/models.py:47
+msgid "Discipline course"
+msgstr "Curso da disciplina"
+
+#: disciplines/models.py:52
+msgid "Shortcut"
+msgstr "URL atalho"
+
+#: disciplines/models.py:56
+msgid "Classroom title"
+msgstr "Turma"
+
+#: disciplines/models.py:58
+msgid "Classroom title of discipline."
+msgstr "Turma da disciplina"
+
+#: disciplines/models.py:62
+msgid "Password"
+msgstr "Senha da turma"
+
+#: disciplines/models.py:64
+msgid "Password to get into the class."
+msgstr "Senha para entrar na turma."
+
+#: disciplines/models.py:69
+msgid "Students limit"
+msgstr "Limite de estudantes"
+
+#: disciplines/models.py:71
+msgid "Students limit to get in the class."
+msgstr "Limite de estudantes para entrar na turma."
+
+#: disciplines/models.py:75
+msgid "Monitors limit"
+msgstr "Limite de monitores"
+
+#: disciplines/models.py:77
+msgid "Monitors limit to insert in the class."
+msgstr "Limite de monitores para entrar na turma."
+
+#: disciplines/models.py:81
+msgid "Is closed?"
+msgstr "Está fechada?"
+
+#: disciplines/models.py:83
+msgid "Close discipline."
+msgstr "Fechar turma."
+
+#: disciplines/models.py:89 disciplines/templates/disciplines/collapse.html:42
+#: disciplines/templates/disciplines/list.html:44
+#: disciplines/templates/disciplines/list.html:92
+msgid "Teacher"
+msgstr "Professor"
+
+#: disciplines/models.py:111
+msgid "Created at"
+msgstr "Criado em"
+
+#: disciplines/models.py:112
+msgid "Date that the discipline is created."
+msgstr "Data que a disciplina foi criada."
+
+#: disciplines/models.py:118
+msgid "Updated at"
+msgstr "Atualizado em"
+
+#: disciplines/models.py:119
+msgid "Date that the discipline is updated."
+msgstr "Data em que a disciplina foi atualizada"
+
+#: disciplines/models.py:135 disciplines/templates/disciplines/list.html:43
+msgid "Discipline"
+msgstr "Disciplina"
+
+#: disciplines/models.py:136
+msgid "Disciplines"
+msgstr "Disciplinas"
+
+#: disciplines/templates/disciplines/delete.html:26
+msgid "Delete Discipline"
+msgstr "Deletar disciplina"
+
+#: disciplines/templates/disciplines/delete.html:32
+msgid "Are you sure you want to delete"
+msgstr "Tem certeza que deseja deletar"
+
+#: disciplines/templates/disciplines/delete.html:43
+msgid "Delete"
+msgstr "Deletar"
+
+#: disciplines/templates/disciplines/delete.html:51
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: disciplines/templates/disciplines/form.html:22
+msgid "Create Discipline"
+msgstr "Criar disciplina"
+
+#: disciplines/templates/disciplines/form.html:30
+msgid "Create discipline and classes"
+msgstr "Criar disciplina e turmas"
+
+#: disciplines/templates/disciplines/form.html:91
+msgid "ClassRoom"
+msgstr "Turma"
+
+#: disciplines/templates/disciplines/form.html:161
+msgid "Send"
+msgstr "Enviar"
+
+#: disciplines/templates/disciplines/list.html:22
+msgid "Search Discipline"
+msgstr "Procurar disciplina"
+
+#: disciplines/templates/disciplines/list.html:30
+msgid "Discipline list"
+msgstr "Lista de disciplina"
+
+#: disciplines/templates/disciplines/list.html:39
+msgid "Order"
+msgstr "Ordenar"
+
+#: disciplines/templates/disciplines/list.html:47
+msgid "Search"
+msgstr "Procurar"
+
+#: disciplines/templates/disciplines/list.html:117
+msgid "There is no disciplines available"
+msgstr "Não há disciplina disponível"

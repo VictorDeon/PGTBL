@@ -10,7 +10,7 @@
 }
 
 /* Bootstrap */
-.nav-tabs > li.active > a {
+.footer-nav-black > .nav-tabs > li.active > a {
   color: white !important;
   border-bottom: 3px solid #3998ea !important;
 }

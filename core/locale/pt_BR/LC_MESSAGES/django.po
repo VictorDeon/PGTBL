@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-13 02:53-0300\n"
+"POT-Creation-Date: 2017-10-28 02:14-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,13 +20,18 @@ msgstr ""
 
 #: core/apps.py:7 core/templates/core/navbar.html:20
 #: core/templates/core/news.html:10 core/templates/core/news_details.html:23
-#: core/templates/core/news_list.html:23
+#: core/templates/core/news_list.html:25
 msgid "News"
 msgstr "Notícias"
 
+#: core/mixins.py:132
+#, python-brace-format
+msgid "Empty list and {class_name}.allow_empty is False."
+msgstr "Lista vazia e {class_name}.allow_empty é Falso."
+
 #: core/models.py:11 core/models.py:28
 msgid "Tag"
-msgstr ""
+msgstr "Tag"
 
 #: core/models.py:16 core/models.py:73
 msgid "Identify"
@@ -104,52 +109,94 @@ msgstr "Relatório"
 msgid "Rank and Gamification"
 msgstr "Rank e Gameficação"
 
-#: core/templates/core/footer.html:8 core/templates/core/footer.html:30
-msgid "Advantages"
-msgstr "Vantagens"
-
-#: core/templates/core/footer.html:13 core/templates/core/footer.html:47
+#: core/templates/core/footer.html:10 core/templates/core/footer.html:36
 #: core/templates/core/navbar.html:22
 msgid "About"
 msgstr "Sobre"
 
-#: core/templates/core/footer.html:18 core/templates/core/footer.html:62
+#: core/templates/core/footer.html:15 core/templates/core/footer.html:125
+msgid "Advantages"
+msgstr "Vantagens"
+
+#: core/templates/core/footer.html:20 core/templates/core/footer.html:143
 msgid "Documentation"
 msgstr "Documentação"
 
-#: core/templates/core/footer.html:23 core/templates/core/footer.html:70
+#: core/templates/core/footer.html:25 core/templates/core/footer.html:152
 msgid "How to use"
 msgstr "Como usar"
 
-#: core/templates/core/footer.html:95
+#: core/templates/core/footer.html:40 core/templates/core/footer.html:59
+msgid "Preparation"
+msgstr "Preparação"
+
+#: core/templates/core/footer.html:41
+msgid "iRAT"
+msgstr "iRAT"
+
+#: core/templates/core/footer.html:42
+msgid "gRAT"
+msgstr "gRAT"
+
+#: core/templates/core/footer.html:43
+msgid "Appeal"
+msgstr "Apelação"
+
+#: core/templates/core/footer.html:44
+msgid "Feedback"
+msgstr "Feedback"
+
+#: core/templates/core/footer.html:45 core/templates/core/footer.html:104
+msgid "Application oriented activities"
+msgstr "Aplicação orientada a atividades"
+
+#: core/templates/core/footer.html:46 core/templates/core/footer.html:110
+msgid "Pair test"
+msgstr "Avaliação em pares"
+
+#: core/templates/core/footer.html:67
+msgid "Individual test: iRAT"
+msgstr "Prova individual: iRAT"
+
+#: core/templates/core/footer.html:79
+msgid "Team test: gRAT"
+msgstr "Prova em grupo: gRAT"
+
+#: core/templates/core/footer.html:90
+msgid "Appels"
+msgstr "Apelações"
+
+#: core/templates/core/footer.html:98
+msgid "Instructor feedback"
+msgstr "Feedback do professor"
+
+#: core/templates/core/footer.html:179
 msgid "Team Based Learning. Code licensed GPL-3.0"
 msgstr "Team Based Learning. Licença GPL-3.0"
 
-#: core/templates/core/footer.html:98
+#: core/templates/core/footer.html:182
 msgid "Designed and built by"
 msgstr "Projetado por"
 
-#: core/templates/core/footer.html:99
+#: core/templates/core/footer.html:183
 msgid "Team members"
 msgstr "Membros do time"
 
-#: core/templates/core/footer.html:99
+#: core/templates/core/footer.html:183
 msgid "with the help of our"
 msgstr "com a ajuda dos nossos"
 
-#: core/templates/core/footer.html:100
+#: core/templates/core/footer.html:184
 msgid "contributors"
 msgstr "contribuidores"
 
-#: core/templates/core/navbar.html:18 core/templates/core/tbl.html:7
+#: core/templates/core/navbar.html:18
 msgid "What is TBL"
 msgstr "O que é TBL"
 
 #: core/templates/core/navbar.html:26
-#, fuzzy
-#| msgid "Profile picture"
 msgid "Profile"
-msgstr "Foto de perfil"
+msgstr "Perfil"
 
 #: core/templates/core/navbar.html:30
 msgid "Register"
@@ -160,19 +207,19 @@ msgid "Without image"
 msgstr "Sem imagens"
 
 #: core/templates/core/news.html:29 core/templates/core/news_details.html:52
-#: core/templates/core/news_list.html:50
+#: core/templates/core/news_list.html:63
 msgid "There is no tags"
 msgstr "Não há tags"
 
-#: core/templates/core/news.html:43 core/templates/core/news_list.html:40
+#: core/templates/core/news.html:43 core/templates/core/news_list.html:51
 msgid "Read more"
 msgstr "Leia mais"
 
-#: core/templates/core/news.html:48
+#: core/templates/core/news.html:49
 msgid "There is no news"
 msgstr "Não há notíciais"
 
-#: core/templates/core/news.html:52
+#: core/templates/core/news.html:54
 msgid "See all news"
 msgstr "Veja todas as notícias"
 
@@ -181,64 +228,14 @@ msgid "Image news"
 msgstr "Imagem da notícia"
 
 #: core/templates/core/news_details.html:57
-#: core/templates/core/news_list.html:26
+#: core/templates/core/news_list.html:30
 msgid "Back"
 msgstr "Voltar"
 
-#: core/templates/core/news_list.html:56
+#: core/templates/core/news_list.html:71
 msgid "No news available"
 msgstr "Nenhuma notícia disponível"
 
 #: core/templates/core/search.html:8
 msgid "Search"
 msgstr "Pesquisar"
-
-#: core/templates/core/tbl.html:39
-msgid "Preparation"
-msgstr "Preparação"
-
-#: core/templates/core/tbl.html:52
-msgid "Individual test: iRAT"
-msgstr "Prova individual: iRAT"
-
-#: core/templates/core/tbl.html:69
-msgid "Team test: gRAT and instructor feedback"
-msgstr "Prova em grupo: gRAT e feedback do professor"
-
-#: core/templates/core/tbl.html:86
-msgid "Application oriented activities and appeals"
-msgstr "Aplicação orientada a atividades e apelações"
-
-#: core/templates/core/tbl.html:101
-msgid "Pair test"
-msgstr "Avaliação em pares"
-
-#~ msgid "Password"
-#~ msgstr "Senha"
-
-#~ msgid "Enter"
-#~ msgstr "Logar"
-
-#~ msgid "Forgot password?"
-#~ msgstr "Esqueceu a senha?"
-
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
-
-#~ msgid "Reset password"
-#~ msgstr "Resetar senha"
-
-#~ msgid "Send email"
-#~ msgstr "Enviar email"
-
-#~ msgid "Select the type of user"
-#~ msgstr "Selecionar tipo de usuário"
-
-#~ msgid "Teacher"
-#~ msgstr "Professor"
-
-#~ msgid "Student"
-#~ msgstr "Aluno"
-
-#~ msgid "Confirm password"
-#~ msgstr "Confirmar senha"
