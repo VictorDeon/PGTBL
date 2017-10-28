@@ -67,7 +67,9 @@
               {% if not forloop.last %}<div class="divisor"></div>{% endif %}
             </div>
             {% empty %}
-              <p>{% trans 'No news available' %}.</p>
+              <div class="alert alert-info">
+                {% trans 'No news available' %}.
+              </div>
             {% endfor %}
         </div>
       </div>

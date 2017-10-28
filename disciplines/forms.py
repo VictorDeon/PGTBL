@@ -1,6 +1,5 @@
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import get_user_model
-from django.utils.text import slugify
 from django import forms
 from .models import Discipline
 
@@ -17,25 +16,11 @@ class DisciplineForm(forms.ModelForm):
         model = Discipline
         fields = [
             'title', 'course', 'description', 'classroom',
-            'password', 'student_limit'
+            'password', 'students_limit', 'monitors_limit'
         ]
         widgets = {
             'password': forms.PasswordInput()
         }
-
-    def save(self):
-        """
-        Autocomplete the slug with title before save
-        """
-
-        # Get the instance before save (commit=False)
-        instance = super(DisciplineForm, self).save(commit=False)
-        # Autocomplete slug with title
-        instance.slug = slugify(instance.title)
-        # Save the instance with slug autocomplete
-        instance.save()
-
-        return instance
 
 
 class EnterDisciplineForm(forms.Form):

@@ -19,7 +19,7 @@
 <!-- Edit navegation menu breadcrumb -->
 {% block breadcrumb %}
   {{ block.super }}
-  <li><a href="{% url 'disciplines:create' %}">{% trans 'Search Discipline' %}</a></li>
+  <li><a href="{% url 'disciplines:search' %}">{% trans 'Search Discipline' %}</a></li>
 {% endblock %}
 
 {% block profile %}
@@ -77,10 +77,10 @@
                 <div class="panel-body">
                   <div class="row">
                     <div class="col-sm-11">
-                      {{ discipline.description }}
+                      {{ discipline.description|truncatewords:35 }}
                     </div>
                     <div class="col-sm-1">
-                      <span class="label label-primary">{{ discipline.students.count }}/{{ discipline.student_limit }}</span>
+                      <span class="label label-primary">{{ discipline.students.count }}/{{ discipline.students_limit }}</span>
                     </div>
                   </div>
                 </div>
@@ -113,7 +113,9 @@
               </div>
             </div>
           {% empty %}
-            <p class="white">{% trans 'There is no disciplines available' %}.</p>
+            <div class="alert alert-info">
+              {% trans 'There is no disciplines available' %}.
+            </div>
           {% endfor %}
         </div>
       </div>

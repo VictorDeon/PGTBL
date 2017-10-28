@@ -65,10 +65,16 @@ class Discipline(models.Model):
         blank=True
     )
 
-    student_limit = models.PositiveIntegerField(
-        _("Student limit"),
+    students_limit = models.PositiveIntegerField(
+        _('Students limit'),
         default=0,
-        help_text=_("Student limit to getin into the class.")
+        help_text=_("Students limit to get in the class.")
+    )
+
+    monitors_limit = models.PositiveIntegerField(
+        _("Monitors limit"),
+        default=0,
+        help_text=_("Monitors limit to insert in the class.")
     )
 
     is_closed = models.BooleanField(

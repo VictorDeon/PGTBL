@@ -5,52 +5,52 @@
 {% load i18n %}
 
 <!-- Disciplines list -->
-{% for discipline in disciplines %}
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
 
-          <!-- Header of discipline with title and classroom -->
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" href="#{{ discipline.id }}">
-                <span><i class="fa fa-book"></i> {{ discipline.title }}</span>
-                <span class="pull-right">{{ discipline.classroom }} <i class="fa fa-slideshare"></i></span>
-              </a>
-            </h4>
-          </div>
+        <!-- Header of discipline with title and classroom -->
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" href="#{{ discipline.id }}">
+              <span><i class="fa fa-book"></i> {{ discipline.title }}</span>
+              <span class="pull-right">{{ discipline.classroom }} <i class="fa fa-slideshare"></i></span>
+            </a>
+          </h4>
+        </div>
 
-          <!-- Collapse discipline -->
-          <div id="{{ discipline.id }}" class="panel-collapse collapse out">
+        <!-- Collapse discipline -->
+        <div id="{{ discipline.id }}" class="panel-collapse collapse out">
 
-            <!-- Discipline body -->
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-sm-11">
-                  {{ discipline.description|linebreaksbr }}
-                </div>
-                <div class="col-sm-1">
-                  <span class="label label-primary">{{discipline.students.count}}/{{discipline.student_limit}}</span>
-                </div>
+          <!-- Discipline body -->
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-sm-11">
+                {{ discipline.description|truncatewords:35 }}
+              </div>
+              <div class="col-sm-1">
+                <span class="label label-primary">{{discipline.students.count}}/{{discipline.students_limit}}</span>
               </div>
             </div>
+          </div>
 
-            <!-- Discipline footer with teacher, course, and menu options edit, getin, delete and hall of fame -->
-            <div class="panel-footer">
-              <div class="row">
-                <div class="col-md-9 col-sm-8 col-xs-12">
-                  <span><b>{% trans 'Teacher' %}</b>: {{ discipline.teacher.name }}</span><br />
-                  <span><b>{% trans 'Course' %}</b>: <span class="justify">{{ discipline.course }}</span></span>
-                </div>
-                <div class="col-md-3 col-sm-4 col-xs-12">
-                  <div class="btn-group btn-group-justified">
-                    <div class="btn-group">
-                      <a href="#" class="btn btn-primary btn-class"><i class="fa fa-eye"></i></a>
-                    </div>
-                    <div class="btn-group">
-                      <a href="#" class="btn btn-primary btn-class"><i class="fa fa-trophy"></i></a>
-                    </div>
+          <!-- Discipline footer with teacher, course, and menu options edit, getin, delete and hall of fame -->
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-md-9 col-sm-8 col-xs-12">
+                <span><b>{% trans 'Teacher' %}</b>: {{ discipline.teacher.name }}</span><br />
+                <span><b>{% trans 'Course' %}</b>: <span class="justify">{{ discipline.course }}</span></span>
+              </div>
+              <div class="col-md-3 col-sm-4 col-xs-12">
+                <div class="btn-group btn-group-justified">
+                  <div class="btn-group">
+                    <a href="#" class="btn btn-primary btn-class"><i class="fa fa-eye"></i></a>
+                  </div>
+                  <div class="btn-group">
+                    <a href="#" class="btn btn-primary btn-class"><i class="fa fa-trophy"></i></a>
+                  </div>
+                  {% if discipline.teacher == user %}
                     <div class="btn-group">
                       <a href="{% url 'disciplines:update' discipline.slug %}" class="btn btn-primary btn-class"><i class="fa fa-edit"></i></a>
                     </div>
@@ -59,22 +59,17 @@
                         <i class="fa fa-trash"></i>
                       </button>
                     </div>
-                  </div>
+                  {% endif %}
                 </div>
               </div>
             </div>
-
           </div>
+
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Discipline delete model -->
-  {% include 'disciplines/delete.html' %}
-{% empty %}
-  <p class="white">{% trans 'There is no disciplines.' %}</p>
-{% endfor %}
-
-<!-- Pagination -->
-{% include 'core/pagination.html' %}
+<!-- Discipline delete model -->
+{% include 'disciplines/delete.html' %}

@@ -24,13 +24,13 @@ urlpatterns = [
     # /profile/list-discipline/
     url(
         r'^profile/list-discipline/$',
-        views.DisciplineListView.as_view(),
+        views.DisciplineListSearchView.as_view(),
         name='search'
     ),
     # /profile/enter-discipline/
     url(
         r'^profile/enter-discipline/(?P<slug>[\w_-]+)/$',
-        views.DisciplineListView.as_view(),
+        views.DisciplineListSearchView.as_view(),
         name='enter'
     ),
 ]

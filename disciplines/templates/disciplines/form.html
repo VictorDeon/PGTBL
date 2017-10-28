@@ -122,18 +122,34 @@
               {% endfor %}
             </div>
 
-            <!-- Discipline classroom student limit field -->
-            <div class="group {% if form.student_limit.errors %}alert alert-warning{% endif %}">
+            <!-- Discipline classroom students limit field -->
+            <div class="group {% if form.students_limit.errors %}alert alert-warning{% endif %}">
               <div class="input-group">
                 <span
                   class="input-group-addon gradient"
                   data-toggle="tooltip"
-                  title="{{form.student_limit.label}}">
+                  title="{{form.students_limit.label}}">
                   <i class="fa fa-users"></i>
                 </span>
-                {% render_field form.student_limit class="form-control" type="number" min="0" max="60" placeholder=form.student_limit.help_text %}
+                {% render_field form.students_limit class="form-control" type="number" min="0" max="60" placeholder=form.students_limit.help_text %}
               </div>
-              {% for error in form.student_limit.errors %}
+              {% for error in form.students_limit.errors %}
+                <span class="error">{{ error }}</span>
+              {% endfor %}
+            </div>
+
+            <!-- Discipline classroom monitors limit field -->
+            <div class="group {% if form.monitors_limit.errors %}alert alert-warning{% endif %}">
+              <div class="input-group">
+                <span
+                  class="input-group-addon gradient"
+                  data-toggle="tooltip"
+                  title="{{form.monitors_limit.label}}">
+                  <i class="fa fa-user-secret icon-md"></i>
+                </span>
+                {% render_field form.monitors_limit class="form-control" type="number" min="0" max="60" placeholder=form.monitors_limit.help_text %}
+              </div>
+              {% for error in form.monitors_limit.errors %}
                 <span class="error">{{ error }}</span>
               {% endfor %}
             </div>

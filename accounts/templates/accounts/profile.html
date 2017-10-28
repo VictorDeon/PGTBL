@@ -131,7 +131,7 @@
               <div class="col-sm-12">
                 <p class="lighten-blue-grey pull-left">
                   <i class="fa fa-history"></i>
-                    {% trans 'Last login' %}:
+                  <b>{% trans 'Last login' %}</b>:
                   {% if user.is_authenticated %}
                     {{user.last_login}}
                   {% else %}
@@ -143,10 +143,37 @@
               </div>
             </div>
 
-            <hr />
+            <!-- Disciplines list -->
+            <ul class="nav nav-tabs" id="filter">
+              <li>
+                <a href="?filter=all#filter" class="filter">
+                  {% trans 'All Disciplines' %}
+                </a>
+              </li>
+              <li>
+                <a href="?filter=monitor#filter" class="filter">
+                  {% trans 'Discipline monitor' %}
+                </a>
+              </li>
+              {% if user.is_teacher %}
+                <li>
+                  <a href="?filter=created#filter" class="filter">
+                    {% trans 'Created Disciplines' %}
+                  </a>
+                </li>
+              {% endif %}
+            </ul><br />
 
-            <!-- Disciplines -->
-            {% include 'disciplines/collapse.html' %}
+            {% for discipline in disciplines %}
+              {% include 'disciplines/collapse.html' %}
+            {% empty %}
+              <div class="alert alert-info">
+                {% trans 'There is no disciplines.' %}
+              </div>
+            {% endfor %}
+
+            <!-- Pagination -->
+            {% include 'core/pagination.html' %}
 
           </div>
         {% endblock %}

@@ -9,13 +9,13 @@ from django.contrib.auth import login, authenticate
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse_lazy
+
 # Disciplines APP
 from disciplines.models import Discipline
+
 # Accounts APP
 from .forms import UserCreationForm, PasswordResetForm
 from .models import PasswordReset
-# Python
-from datetime import datetime
 
 # Get the custom user from settings
 User = get_user_model()
@@ -36,20 +36,58 @@ class ProfileView(LoginRequiredMixin, ListView):
         Get the specific queryset from model database.
         """
 
-        queryset = Discipline.objects.filter(teacher=self.request.user)
+        # If user is a student get the disciplines that he is taking
+        queryset = self.filter_student_disciplines()
+
+        # If user is a teacher get the created disciplines and
+        # disciplines that he is monitor.
+        if self.request.user.is_teacher:
+            queryset = self.filter_teacher_disciplines()
+
         return queryset
 
-    def get_context_data(self, **kwargs):
+    def filter_teacher_disciplines(self):
         """
-        Insert more elements into context data to template.
+        Filter disciplines by created or monitors
         """
 
-        # Get the initial context from IndexView (paginator, page_obj,
-        # is_paginated, context_object_name especify or object_list)
-        context = super(ProfileView, self).get_context_data()
-        # Insert home and logged variables to template
-        context['date'] = datetime.now().date()
-        return context
+        created_disciplines = Discipline.objects.filter(
+            teacher=self.request.user
+        )
+
+        monitor_disciplines = Discipline.objects.filter(
+            monitors__email=self.request.user.email
+        )
+
+        # Join the created disciplines list and monitor disciplines list
+        queryset = created_disciplines | monitor_disciplines
+
+        # Get the filter by key argument from url
+        filtered = self.request.GET.get('filter')
+
+        if filtered == 'created':
+            queryset = queryset.filter(teacher=self.request.user)
+        elif filtered == 'monitor':
+            queryset = queryset.filter(monitors__email=self.request.user)
+
+        return queryset
+
+    def filter_student_disciplines(self):
+        """
+        Get the students disciplines that he is taking
+        """
+
+        queryset = Discipline.objects.filter(
+            students__email=self.request.user.email
+        )
+
+        # Get the filter by key argument from url
+        filtered = self.request.GET.get('filter')
+
+        if filtered == 'monitor':
+            queryset = queryset.filter(monitors__email=self.request.user)
+
+        return queryset
 
 
 class RegisterView(CreateView):
