@@ -216,16 +216,12 @@ def add_user_to_group(instance, created, **kwargs):
     Insert the created user into a group
     """
 
-    if not Group.objects.all().exists():
-        Group.objects.create(name=_('Teacher'))
-        Group.objects.create(name=_('Student'))
-        Group.objects.create(name=_('Monitor'))
-
     if created:
         if instance.is_teacher:
-            group = get_object_or_404(Group, name='Teacher')
+            group, created = Group.objects.get_or_create(name='Teacher')
+            Group.objects.get_or_create(name=_('Monitor'))
         else:
-            group = get_object_or_404(Group, name='Student')
+            group, created = Group.objects.get_or_create(name='Student')
         group.user_set.add(instance)
 
 
@@ -233,5 +229,5 @@ def add_user_to_group(instance, created, **kwargs):
 models.signals.post_save.connect(
     add_user_to_group,
     sender=User,
-    dispatch_uid='add_group'
+    dispatch_uid='add_user_to_group'
 )

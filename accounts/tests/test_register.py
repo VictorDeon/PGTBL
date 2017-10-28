@@ -50,7 +50,7 @@ class RegisterTestCase(TestCase):
         response = self.client.post(self.register_url, data)
         self.assertEquals(User.objects.count(), 2)
         self.assertEquals(response.status_code, 302)
-        profile_url = reverse('accounts:login')
+        profile_url = reverse('accounts:profile')
         self.assertRedirects(response, profile_url)
 
     def test_username_register_error(self):
