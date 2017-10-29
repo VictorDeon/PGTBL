@@ -2,8 +2,10 @@
 File to create decorator mixins
 """
 
+from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
+from django.contrib import messages
 
 
 class UserCheckMixin(object):
@@ -45,11 +47,19 @@ class PermissionRequiredMixin(UserCheckMixin):
     """
 
     user_check_failure_path = reverse_lazy('accounts:login')
-    permission_required = None
+    permissions_required = None
 
     def check_user(self, user):
         """
         Verify if user has specific permission
         """
 
-        return user.has_perm(self.permission_required)
+        if user.has_perms(self.permissions_required):
+            return True
+
+        messages.error(
+            self.request,
+            _("You are not authorized to do this action.")
+        )
+
+        return False

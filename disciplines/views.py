@@ -13,11 +13,11 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.utils.text import slugify
 from django.contrib import messages
-from django.db.models import Q
 
 # Core app
 from core.mixins import PermissionRequiredMixin
 from core.generics import FormListView
+from core.utils import create_permission
 
 # Discipline app
 from .forms import DisciplineForm, EnterDisciplineForm
@@ -41,7 +41,9 @@ class DisciplineCreationView(LoginRequiredMixin,
 
     # Permissions
     user_check_failure_path = reverse_lazy('accounts:profile')
-    permission_required = 'disciplines.add_discipline'
+    permissions_required = [
+        'disciplines.add_discipline'
+    ]
 
     def form_valid(self, form):
         """
@@ -86,7 +88,9 @@ class DisciplineUpdateView(LoginRequiredMixin,
 
     # Permissions
     user_check_failure_path = reverse_lazy('accounts:profile')
-    permission_required = 'disciplines.change_discipline'
+    permissions_required = [
+        'disciplines.change_discipline'
+    ]
 
     def form_valid(self, form):
         """
@@ -111,7 +115,9 @@ class DisciplineDeleteView(LoginRequiredMixin,
 
     # Permissions
     user_check_failure_path = reverse_lazy('accounts:profile')
-    permission_required = 'disciplines.change_discipline'
+    permissions_required = [
+        'disciplines.change_discipline'
+    ]
 
     def get_success_url(self):
         """
@@ -144,17 +150,12 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
 
         user = self.request.user
 
-        # Remove from queryset the discipline teacher, students and monitors
-        # that are inside discipline and disciplines that are closed.
-        queryset = Discipline.objects.exclude(
-            Q(teacher=user) |
-            Q(students__email=user.email) |
-            Q(monitors__email=user.email) |
-            Q(is_closed=True)
-        ).distinct()
+        # Disciplines available for user
+        queryset = Discipline.objects.available(user)
 
         queryset = self.order_disciplines(queryset)
         queryset = self.search_disciplines(queryset)
+
         return queryset
 
     def form_valid(self, form):
@@ -190,8 +191,7 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
                 messages.success(
                     self.request,
                     _("You have been entered into the discipline: {0}"
-                      .format(discipline)
-                     )
+                      .format(discipline))
                 )
 
                 return True
@@ -208,9 +208,7 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
         Insert user in the discipline and change his permissions.
         """
 
-        user = self.request.user
-
-        if user.is_teacher:
+        if self.request.user.is_teacher:
             self.insert_monitor(discipline)
         else:
             self.insert_student(discipline)
@@ -227,9 +225,9 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
                 _("There are no more vacancies to monitor")
             )
         else:
-            discipline.monitors.add(user)
+            discipline.monitors.add(self.request.user)
             group = get_object_or_404(Group, name='Monitor')
-            group.user_set.add(user)
+            group.user_set.add(self.request.user)
 
     def insert_student(self, discipline):
         """
@@ -244,7 +242,7 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
             )
             discipline.is_closed = True
         else:
-            discipline.students.add(user)
+            discipline.students.add(self.request.user)
 
     def search_disciplines(self, disciplines):
         """

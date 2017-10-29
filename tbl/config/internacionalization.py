@@ -8,13 +8,13 @@ from django.utils.translation import ugettext_lazy as _
 # Language selection
 LANGUAGES = [
     ('pt-br', _('Portuguese')),
-    ('en', _('English')),
+    ('en-us', _('English')),
+    ('fr-ca', _('French'))
 ]
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-PORTUGUESE = 'pt-br'
-ENGLISH = 'en'
+DEFAULT_LANGUAGE = 'pt-br'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

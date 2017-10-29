@@ -27,6 +27,20 @@ class DisciplineManager(models.Manager):
             models.Q(teacher__name__icontains=query)
         )
 
+    def available(self, user):
+        """
+        Remove from queryset the discipline that teacher is owner,
+        students and monitors that are inside discipline and disciplines
+        that are closed.
+        """
+
+        return self.get_queryset().exclude(
+            models.Q(teacher=user) |
+            models.Q(students__email=user.email) |
+            models.Q(monitors__email=user.email) |
+            models.Q(is_closed=True)
+        )
+
 
 class Discipline(models.Model):
     """
