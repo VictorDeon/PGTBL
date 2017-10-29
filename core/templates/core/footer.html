@@ -1,28 +1,46 @@
-<!-- internationalization -->
 {% load i18n %}
 
 <!-- Footer -->
 <div class="footer-nav-black">
+  <!-- Tab menu -->
   <ul class="nav nav-tabs nav-justified">
-    <!-- Tab menu -->
+    <!-- About tab -->
     <li class="active">
-      <a data-toggle="tab" href="#about" class="footer-navbar">
-        <i class="fa fa-slideshare"></i> {% trans 'About' %}
+      <a data-toggle="tab"
+         href="#about"
+         class="footer-navbar">
+         <i class="fa fa-slideshare"></i>
+         {% trans 'About' %}
       </a>
     </li>
+
+    <!-- Advantages tab -->
     <li>
-      <a data-toggle="tab" href="#advantages" class="footer-navbar">
-        <i class="fa fa-list-alt"></i> {% trans 'Advantages' %}
+      <a data-toggle="tab"
+         href="#advantages"
+         class="footer-navbar">
+         <i class="fa fa-list-alt"></i>
+         {% trans 'Advantages' %}
       </a>
     </li>
+
+    <!-- Documentation tab -->
     <li>
-      <a data-toggle="tab" href="#wiki" class="footer-navbar">
-        <i class="fa fa-leanpub"></i> {% trans 'Documentation' %}
+      <a data-toggle="tab"
+         href="#wiki"
+         class="footer-navbar">
+         <i class="fa fa-leanpub"></i>
+         {% trans 'Documentation' %}
       </a>
     </li>
+
+    <!-- How to use tab -->
     <li>
-      <a data-toggle="tab" href="#how-to-use" class="footer-navbar">
-        <i class="fa fa-film"></i> {% trans 'How to use' %}
+      <a data-toggle="tab"
+         href="#how-to-use"
+         class="footer-navbar">
+         <i class="fa fa-film"></i>
+         {% trans 'How to use' %}
       </a>
     </li>
   </ul>
@@ -30,11 +48,16 @@
 
 <!-- Tab options -->
 <div class="tab-content container">
-
-  <!-- About -->
+  <!-- About tab -->
   <div id="about" class="panel panel-primary tab-pane fade in active footer-panel-shadow">
-    <div class="panel-heading">{% trans 'About' %}</div>
+    <!-- heading -->
+    <div class="panel-heading">
+      {% trans 'About' %}
+    </div>
+
+    <!-- body -->
     <div class="panel-body">
+      <!-- TBL tabs -->
       <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#tbl">Team Based Learning</a></li>
         <li><a data-toggle="tab" href="#preparation">{% trans 'Preparation' %}</a></li>
@@ -46,7 +69,9 @@
         <li><a data-toggle="tab" href="#pair">{% trans 'Pair test' %}</a></li>
       </ul>
 
+      <!-- TBL content -->
       <div class="tab-content text-justify">
+        <!-- Team based learning tab -->
         <div id="tbl" class="tab-pane fade in active">
           <h3>Team Based Learning</h3>
           <p>
@@ -55,6 +80,8 @@
             e <b>Pequeno projeto centrado na aplicação</b>
           </p>
         </div>
+
+        <!-- Preparation tab -->
         <div id="preparation" class="tab-pane fade">
           <h3>{% trans 'Preparation' %}</h3>
           <p>
@@ -63,6 +90,8 @@
             de lista de exercícios;
           </p>
         </div>
+
+        <!-- iRAT tab -->
         <div id="irat" class="tab-pane fade">
           <h3>{% trans 'Individual test: iRAT' %}</h3>
           <p>
@@ -75,6 +104,8 @@
             pelo total de pontos da prova é calculado a nota do aluno nessa avaliação.
           </p>
         </div>
+
+        <!-- gRAT tab -->
         <div id="grat" class="tab-pane fade">
           <h3>{% trans 'Team test: gRAT' %}</h3>
           <p>
@@ -86,6 +117,8 @@
             a nota do grupo nessa avaliação.
           </p>
         </div>
+
+        <!-- Appeal tab -->
         <div id="appeal" class="tab-pane fade">
           <h3>{% trans 'Appels' %}</h3>
           <p>
@@ -94,18 +127,24 @@
             também propor o novo formato e a resposta correta da questão.
           </p>
         </div>
+
+        <!-- Feedback tab -->
         <div id="feedback" class="tab-pane fade">
           <h3>{% trans 'Instructor feedback' %}</h3>
           <p>
             Após a avaliação e as apelações o instrutor irá pegar as questões que mais erraram e dar feedbacks sobre elas.
           </p>
         </div>
+
+        <!-- Application tab -->
         <div id="app" class="tab-pane fade">
           <h3>{% trans 'Application oriented activities' %}</h3>
           <p>
             O projeto centrado na aplicação executa todo o conhecimento adquirido em um contexto real do tópico proposto.
           </p>
         </div>
+
+        <!-- Pair test tab -->
         <div id="pair" class="tab-pane fade">
           <h3>{% trans 'Pair test' %}</h3>
           <p>
@@ -116,31 +155,55 @@
             membro da equipe.
           </p>
         </div>
-      </div>
-    </div>
-  </div>
+      </div> <!-- Close tab content -->
+    </div> <!-- Close panel body -->
+  </div> <!-- Close about tab -->
 
   <!-- Advantages -->
   <div id="advantages" class="panel panel-primary tab-pane fade footer-panel-shadow">
-    <div class="panel-heading">{% trans 'Advantages' %}</div>
+    <!-- Heading -->
+    <div class="panel-heading">
+      {% trans 'Advantages' %}
+    </div>
+
+    <!-- Body -->
     <div class="panel-body text-justify">
       <p>A utilização do TBL tem algumas vantagens:</p>
       <ol>
-        <li><b>Colaboração</b>: O principal objetivo é o aprendizado em equipes, um ajudando o outro.</li>
-        <li><b>Entreterimento</b>: O software tem uma ideia de gameficação, tendo competição entre equipes para
-        que as equipes possam treinar a colaboração entre si.</li>
-        <li><b>Capacitação</b>: Profissionais mais capacitados para o mercado de trabalho, pois a métodologia faz o estudante
-        estudar constantemente e trabalhar em equipe..</li>
-        <li><b>Inovação</b>: Sair do comodismo e experimentar o novo.</li>
-        <li><b>Ensino aprendizado</b>: O aluno se torna mais participativo e motivado a aprender e o professor torna a aula
-        mais ativa e interessante.</li>
+        <li>
+          <b>Colaboração</b>:
+          O principal objetivo é o aprendizado em equipes, um ajudando o outro.
+        </li>
+        <li>
+          <b>Entreterimento</b>:
+          O software tem uma ideia de gameficação, tendo competição entre equipes para que as equipes possam
+          treinar a colaboração entre si.
+        </li>
+        <li>
+          <b>Capacitação</b>:
+          Profissionais mais capacitados para o mercado de trabalho, pois a métodologia faz o estudante estudar
+          constantemente e trabalhar em equipe.
+        </li>
+        <li>
+          <b>Inovação</b>:
+          Sair do comodismo e experimentar o novo.
+        </li>
+        <li>
+          <b>Ensino aprendizado</b>:
+          O aluno se torna mais participativo e motivado a aprender e o professor torna a aula mais ativa e interessante.
+        </li>
       </ol>
     </div>
   </div>
 
   <!-- Documentation -->
   <div id="wiki" class="panel panel-primary tab-pane fade footer-panel-shadow">
-    <div class="panel-heading">{% trans 'Documentation' %}</div>
+    <!-- Header -->
+    <div class="panel-heading">
+      {% trans 'Documentation' %}
+    </div>
+
+    <!-- Body -->
     <div class="panel-body">A documentação se encontra na
       <a href="https://github.com/TeamBasedLearning/TBL/wiki" target="_blank">wiki do projeto</a>.
       <p>Repositorio do <a href="https://github.com/TeamBasedLearning" target="_blank">projeto</a>.
@@ -149,19 +212,33 @@
 
   <!-- How to use -->
   <div id="how-to-use" class="panel panel-primary tab-pane fade footer-panel-shadow">
-    <div class="panel-heading">{% trans 'How to use' %}</div>
+    <!-- Heading -->
+    <div class="panel-heading">
+      {% trans 'How to use' %}
+    </div>
+
+    <!-- Body -->
     <div class="panel-body">
       <div class="row">
+        <!-- TBL video -->
         <div class="col-sm-6">
           <div class="embed-responsive embed-responsive-4by3">
-            <iframe class="video-frame embed-responsive-item" src="https://www.youtube.com/embed/LwUO6HEq6kM" frameborder="0" allowfullscreen>
+            <iframe class="video-frame embed-responsive-item"
+                    src="https://www.youtube.com/embed/LwUO6HEq6kM"
+                    frameborder="0"
+                    allowfullscreen>
             </iframe>
           </div>
           <p>Vídeo de como usar o TBL.</p>
         </div>
+
+        <!-- Software video -->
         <div class="col-sm-6">
           <div class="embed-responsive embed-responsive-4by3">
-            <iframe class="video-frame embed-responsive-item" src="https://www.youtube.com/embed/yHssVGwCgDw" frameborder="0" allowfullscreen>
+            <iframe class="video-frame embed-responsive-item"
+                    src="https://www.youtube.com/embed/yHssVGwCgDw"
+                    frameborder="0"
+                    allowfullscreen>
             </iframe>
           </div>
           <p>Vídeo de como usar o software.</p>
@@ -169,18 +246,26 @@
       </div>
     </div>
   </div>
-
 </div> <!-- Finish tab options -->
 
 <!-- Copyright -->
 <div class="row">
   <div class="col-sm-12">
+    <!-- License -->
     <p class="copyright">
-      <i class="fa fa-copyright"></i> {% trans 'Team Based Learning. Code licensed GPL-3.0' %}
+      <i class="fa fa-copyright"></i>
+      {% trans 'Team Based Learning. Code licensed GPL-3.0' %}
     </p>
+
+    <!-- Members -->
     <p class="copyright">
     {% trans 'Designed and built by' %}
-    <a href="https://github.com/orgs/TeamBasedLearning/people" target="_blank">{% trans 'Team members' %}</a> {%trans 'with the help of our' %}
-    <a href="https://github.com/TeamBasedLearning/TBL/graphs/contributors" target="_blank">{% trans 'contributors' %}</a>.
+    <a href="https://github.com/orgs/TeamBasedLearning/people" target="_blank">
+      {% trans 'Team members' %}
+    </a>
+    {%trans 'with the help of our' %}
+    <a href="https://github.com/TeamBasedLearning/TBL/graphs/contributors" target="_blank">
+      {% trans 'contributors' %}.
+    </a>
   </div>
 </div>

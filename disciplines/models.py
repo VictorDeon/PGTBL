@@ -14,13 +14,17 @@ class DisciplineManager(models.Manager):
 
     def search(self, query):
         """
-        Search a discipline by name, description or classroom
+        Search a discipline by title, description, course, classroom
+        or teacher name contains the query specify by user and filter
+        all disciplines that satisfies this query.
         """
 
         return self.get_queryset().filter(
             models.Q(title__icontains=query) |
             models.Q(description__icontains=query) |
-            models.Q(classroom__icontains=query)
+            models.Q(course__icontains=query) |
+            models.Q(classroom__icontains=query) |
+            models.Q(teacher__name__icontains=query)
         )
 
 
@@ -47,13 +51,13 @@ class Discipline(models.Model):
         help_text=_("Discipline course")
     )
 
-    # url shortcut
     slug = models.SlugField(
-        _('Shortcut')
+        _('Shortcut'),
+        help_text=_('URL string shortcut')
     )
 
     classroom = models.CharField(
-        _('Classroom title'),
+        _('Classroom'),
         max_length=10,
         help_text=_("Classroom title of discipline.")
     )
@@ -106,14 +110,14 @@ class Discipline(models.Model):
         blank=True
     )
 
-    # Create a date when the user is created
+    # Create a date when the discipline is created
     created_at = models.DateTimeField(
         _('Created at'),
         help_text=_("Date that the discipline is created."),
         auto_now_add=True
     )
 
-    # Create or update the date after the user is updated
+    # Create or update the date after the discipline is updated
     updated_at = models.DateTimeField(
         _('Updated at'),
         help_text=_("Date that the discipline is updated."),

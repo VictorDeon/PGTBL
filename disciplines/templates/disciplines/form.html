@@ -1,33 +1,29 @@
-<!-- Extends all code from accounts/profile.html -->
 {% extends 'accounts/profile.html' %}
-
-<!-- import to staticfiles -->
 {% load static %}
-
-<!-- Import custom form fields -->
 {% load widget_tweaks %}
-
-<!-- internationalization -->
 {% load i18n %}
 
-<!-- insert css into accounts/update.html css block -->
 {% block css %}
   {{ block.super }}
-  <link rel="stylesheet" href="{% static 'disciplines/css/create.css' %}">
+  <link href="{% static 'disciplines/css/create.css' %}" rel="stylesheet" />
 {% endblock %}
 
-<!-- Edit navegation menu breadcrumb -->
 {% block breadcrumb %}
   {{ block.super }}
-  <li><a href="{% url 'disciplines:create' %}">{% trans 'Create Discipline' %}</a></li>
+  <li>
+    <a href="{% url 'disciplines:create' %}">
+       {% trans 'Create Discipline' %}
+    </a>
+  </li>
 {% endblock %}
 
 {% block profile %}
   <div class="container-fluid">
-
     <!-- Header -->
     <div class="page-header profile">
-      <h1 class="white">{% trans 'Create discipline and classes' %}</h1>
+      <h1 class="white">
+        {% trans 'Create discipline' %}
+      </h1>
     </div>
 
     <!-- Form -->
@@ -40,128 +36,175 @@
 
           <!-- Get all erros from form -->
           {% for error in form.non_field_errors %}
-            <div class="alert alert-danger">{{ error }}</div>
+            <div class="alert alert-danger">
+              {{ error }}
+            </div>
           {% endfor %}
 
-
           <!-- Discipline title field -->
-          <div class="group {% if form.title.errors %}alert alert-warning{% endif %}">
+          <div class="{% if form.title.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
             <div class="input-group">
-              <span
-                class="input-group-addon gradient"
-                data-toggle="tooltip"
-                title="{{form.title.label}}">
-                <i class="fa fa-book"></i>
+              <!-- Field icon -->
+              <span class="input-group-addon gradient"
+                    data-toggle="tooltip"
+                    title="{{form.title.label}}">
+                    <i class="fa fa-book"></i>
               </span>
+
+              <!-- Field -->
               {% render_field form.title class="form-control" type="text" placeholder=form.title.help_text %}
             </div>
+
+            <!-- Field errors -->
             {% for error in form.title.errors %}
-              <span class="error">{{ error }}</span>
+              <span class="error">
+                {{ error }}
+              </span>
             {% endfor %}
           </div>
 
           <!-- Discipline course field -->
-          <div class="group {% if form.course.errors %}alert alert-warning{% endif %}">
+          <div class="{% if form.course.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
             <div class="input-group">
-              <span
-                class="input-group-addon gradient"
-                data-toggle="tooltip"
-                title="{{form.course.label}}">
-                <i class="fa fa-graduation-cap"></i>
+              <!-- Field icon -->
+              <span class="input-group-addon gradient"
+                    data-toggle="tooltip"
+                    title="{{form.course.label}}">
+                    <i class="fa fa-graduation-cap"></i>
               </span>
+
+              <!-- Field -->
               {% render_field form.course class="form-control" type="text" placeholder=form.course.help_text %}
             </div>
+
+            <!-- Field errors -->
             {% for error in form.course.errors %}
-              <span class="error">{{ error }}</span>
+              <span class="error">
+                {{ error }}
+              </span>
             {% endfor %}
           </div>
 
           <!-- Discipline description field -->
-          <div class="group {% if form.description.errors %}alert alert-warning{% endif %}">
+          <div class="{% if form.description.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
             <div class="input-group">
               {% render_field form.description class="form-control" rows="10" cols="130" type="text" placeholder=form.description.help_text %}
             </div>
+
+            <!-- Field errors -->
             {% for error in form.description.errors %}
-              <span class="error">{{ error }}</span>
+              <span class="error">
+                {{ error }}
+              </span>
             {% endfor %}
           </div>
 
           <!-- Classroom fieldset -->
           <fieldset>
             <legend>{% trans 'ClassRoom' %}</legend>
-
             <!-- Discipline classroom title field -->
-            <div class="group {% if form.classroom.errors %}alert alert-warning{% endif %}">
+            <div class="{% if form.classroom.errors %}alert alert-warning{% endif %}">
+              <!-- Input group -->
               <div class="input-group">
-                <span
-                  class="input-group-addon gradient"
-                  data-toggle="tooltip"
-                  title="{{form.classroom.label}}">
-                  <i class="fa fa-slideshare"></i>
+                <!-- Field icon -->
+                <span class="input-group-addon gradient"
+                      data-toggle="tooltip"
+                      title="{{form.classroom.label}}">
+                      <i class="fa fa-slideshare"></i>
                 </span>
+
+                <!-- Field -->
                 {% render_field form.classroom class="form-control" type="text" placeholder=form.classroom.help_text %}
               </div>
+
+              <!-- Field errors -->
               {% for error in form.classroom.errors %}
-                <span class="error">{{ error }}</span>
+                <span class="error">
+                  {{ error }}
+                </span>
               {% endfor %}
             </div>
 
             <!-- Discipline classroom password field -->
-            <div class="group {% if form.password.errors %}alert alert-warning{% endif %}">
+            <div class="{% if form.password.errors %}alert alert-warning{% endif %}">
+              <!-- Input group -->
               <div class="input-group">
-                <span
-                  class="input-group-addon gradient"
-                  data-toggle="tooltip"
-                  title="{{form.password.label}}">
-                  <i class="fa fa-lock icon-md"></i>
+                <!-- Field icon -->
+                <span class="input-group-addon gradient"
+                      data-toggle="tooltip"
+                      title="{{form.password.label}}">
+                      <i class="fa fa-lock icon-md"></i>
                 </span>
+
+                <!-- Field -->
                 {% render_field form.password class="form-control" type="password" placeholder=form.password.help_text %}
               </div>
+
+              <!-- Field errors -->
               {% for error in form.password.errors %}
-                <span class="error">{{ error }}</span>
+                <span class="error">
+                  {{ error }}
+                </span>
               {% endfor %}
             </div>
 
             <!-- Discipline classroom students limit field -->
-            <div class="group {% if form.students_limit.errors %}alert alert-warning{% endif %}">
+            <div class="{% if form.students_limit.errors %}alert alert-warning{% endif %}">
+              <!-- Input group -->
               <div class="input-group">
-                <span
-                  class="input-group-addon gradient"
-                  data-toggle="tooltip"
-                  title="{{form.students_limit.label}}">
-                  <i class="fa fa-users"></i>
+                <!-- Field icon -->
+                <span class="input-group-addon gradient"
+                      data-toggle="tooltip"
+                      title="{{form.students_limit.label}}">
+                      <i class="fa fa-users"></i>
                 </span>
+
+                <!-- Field -->
                 {% render_field form.students_limit class="form-control" type="number" min="0" max="60" placeholder=form.students_limit.help_text %}
               </div>
+
+              <!-- Field errors -->
               {% for error in form.students_limit.errors %}
-                <span class="error">{{ error }}</span>
+                <span class="error">
+                  {{ error }}
+                </span>
               {% endfor %}
             </div>
 
             <!-- Discipline classroom monitors limit field -->
-            <div class="group {% if form.monitors_limit.errors %}alert alert-warning{% endif %}">
+            <div class="{% if form.monitors_limit.errors %}alert alert-warning{% endif %}">
+              <!-- Input group -->
               <div class="input-group">
-                <span
-                  class="input-group-addon gradient"
-                  data-toggle="tooltip"
-                  title="{{form.monitors_limit.label}}">
-                  <i class="fa fa-user-secret icon-md"></i>
+                <!-- Field icon -->
+                <span class="input-group-addon gradient"
+                      data-toggle="tooltip"
+                      title="{{form.monitors_limit.label}}">
+                      <i class="fa fa-user-secret icon-md"></i>
                 </span>
+
+                <!-- Field -->
                 {% render_field form.monitors_limit class="form-control" type="number" min="0" max="60" placeholder=form.monitors_limit.help_text %}
               </div>
+
+              <!-- Field errors -->
               {% for error in form.monitors_limit.errors %}
-                <span class="error">{{ error }}</span>
+                <span class="error">
+                  {{ error }}
+                </span>
               {% endfor %}
             </div>
-
           </fieldset>
 
           <!-- Submit button -->
-          <button type="submit" class="btn btn-primary submit-button center-block">
-            <i class="fa fa-plus"></i> {% trans 'Send' %}
+          <button type="submit"
+                  class="btn btn-primary submit-button center-block">
+                  <i class="fa fa-plus"></i> {% trans 'Send' %}
           </button>
         </form>
-      </div>
-    </div>
-  </div>
+      </div> <!-- Close col -->
+    </div> <!-- Close row -->
+  </div> <!-- Close container -->
 {% endblock %}

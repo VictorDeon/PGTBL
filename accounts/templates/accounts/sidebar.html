@@ -1,81 +1,70 @@
-<!-- import from staticfiles -->
 {% load static %}
-
-<!-- internationalization -->
 {% load i18n %}
 
 <!-- Profile sidebar -->
 <div class="col-sm-2">
   <div class="btn-group-vertical">
-
     <!-- Profile menu -->
-    <a
-      href="{% url 'accounts:profile' %}"
-      class="btn"
-      data-toggle="tooltip"
-      data-placement="right"
-      title="{% trans 'Profile' %}">
-      <i class="fa fa-user icon-lg"></i>
+    <a href="{% url 'accounts:profile' %}"
+       class="btn"
+       data-toggle="tooltip"
+       data-placement="right"
+       title="{% trans 'Profile' %}">
+       <i class="fa fa-user icon-lg"></i>
     </a>
 
     <!-- Edit information menu -->
-    <a
-      href="{% url 'accounts:update-user' %}"
-      class="btn"
-      data-toggle="tooltip"
-      data-placement="right"
-      title="{% trans 'Edit personal information' %}">
-      <i class="fa fa-edit icon-lg"></i>
+    <a href="{% url 'accounts:update-user' %}"
+       class="btn"
+       data-toggle="tooltip"
+       data-placement="right"
+       title="{% trans 'Edit personal information' %}">
+       <i class="fa fa-edit icon-lg"></i>
     </a>
 
     <!-- Edit password menu -->
-    <a
-      href="{% url 'accounts:update-password' %}"
-      class="btn"
-      data-toggle="tooltip"
-      data-placement="right"
-      title="{% trans 'Edit password' %}">
-      <i class="fa fa-expeditedssl icon-lg"></i>
+    <a href="{% url 'accounts:update-password' %}"
+       class="btn"
+       data-toggle="tooltip"
+       data-placement="right"
+       title="{% trans 'Edit password' %}">
+       <i class="fa fa-expeditedssl icon-lg"></i>
     </a>
 
     <!-- Search discipline and classroom menu -->
-    <a
-      href="{% url 'disciplines:search' %}"
-      class="btn"
-      data-toggle="tooltip"
-      data-placement="right"
-      title="{% trans 'Search discipline and classroom' %}">
-      <i class="fa fa-search icon-lg"></i>
+    <a href="{% url 'disciplines:search' %}"
+       class="btn"
+       data-toggle="tooltip"
+       data-placement="right"
+       title="{% trans 'Search discipline and classroom' %}">
+       <i class="fa fa-search icon-lg"></i>
     </a>
 
     <!-- Create discipline and classroom menu -->
     {% if user.is_teacher %}
-      <a
-        href="{% url 'disciplines:create' %}"
-        class="btn" data-toggle="tooltip"
-        data-placement="right"
-        title="{% trans 'Create discipline and classroom' %}">
-        <i class="fa fa-book icon-lg"></i>
+      <a href="{% url 'disciplines:create' %}"
+         class="btn" data-toggle="tooltip"
+         data-placement="right"
+         title="{% trans 'Create discipline and classroom' %}">
+         <i class="fa fa-book icon-lg"></i>
       </a>
     {% endif %}
 
     <!-- Button to open message modal -->
-    <button
-      type="button"
-      class="btn side-button message-button"
-      data-toggle="modal"
-      data-target="#message-modal">
-      <i class="fa fa-envelope icon-lg"></i>
-      <span class="badge">05</span>
+    <button type="button"
+            class="btn side-button message-button"
+            data-toggle="modal"
+            data-target="#message-modal">
+            <i class="fa fa-envelope icon-lg"></i>
+            <span class="badge">05</span>
     </button>
 
     <!-- Button to open delete user modal -->
-    <button
-      type="button"
-      class="btn side-button"
-      data-toggle="modal"
-      data-target="#delete-user-modal">
-      <i class="fa fa-trash icon-lg"></i>
+    <button type="button"
+            class="btn side-button"
+            data-toggle="modal"
+            data-target="#delete-user-modal">
+            <i class="fa fa-trash icon-lg"></i>
     </button>
   </div>
 </div>

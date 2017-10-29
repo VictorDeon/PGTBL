@@ -1,14 +1,16 @@
 # Django
+from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
+from django.utils.translation import ugettext_lazy as _
+from django.http.response import HttpResponseRedirect
+from django.contrib.auth import login, authenticate
+from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth import get_user_model
+from django.contrib import messages
 from django.views.generic import (
     CreateView, ListView, UpdateView, FormView, DeleteView
 )
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
-from django.contrib.auth import login, authenticate
-from django.http.response import HttpResponseRedirect
-from django.contrib.auth import get_user_model
-from django.core.urlresolvers import reverse_lazy
 
 # Disciplines APP
 from disciplines.models import Discipline
@@ -16,6 +18,10 @@ from disciplines.models import Discipline
 # Accounts APP
 from .forms import UserCreationForm, PasswordResetForm
 from .models import PasswordReset
+
+# Core app
+from core.email import send_email_template
+from core.utils import generate_hash_key
 
 # Get the custom user from settings
 User = get_user_model()
@@ -116,6 +122,11 @@ class RegisterView(CreateView):
             password=form.cleaned_data['password1']
         )
         login(self.request, user)
+        messages.success(
+            self.request,
+            _("User created successfully.")
+        )
+
         return HttpResponseRedirect(self.success_url)
 
 
@@ -141,6 +152,20 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
 
         return self.request.user
 
+    def form_valid(self, form):
+        """
+        Get the form validated, send successfully message and return the
+        success_url.
+        """
+
+        messages.success(
+            self.request,
+            _("User updated successfully.")
+        )
+
+        # Save the form and redirect to success_url
+        return super(EditProfileView, self).form_valid(form)
+
 
 class DeleteProfileView(LoginRequiredMixin, DeleteView):
     """
@@ -157,6 +182,16 @@ class DeleteProfileView(LoginRequiredMixin, DeleteView):
         """
 
         return self.request.user
+
+    def get_success_url(self):
+        """
+        Redirect to success_url and show a message.
+        """
+
+        messages.success(self.request, _("Accounts deleted successfully."))
+
+        # Redirect to success_url
+        return super(DeleteProfileView, self).get_success_url()
 
 
 class EditPasswordView(LoginRequiredMixin, FormView):
@@ -193,34 +228,88 @@ class EditPasswordView(LoginRequiredMixin, FormView):
         # When the form is valid save the instance
         form.save()
 
+        messages.success(self.request, _("Password updated successfully."))
+
         # Return to form_valid function from django to finish edition.
         return super(EditPasswordView, self).form_valid(form)
 
 
-def reset_password(request):
+class ResetPasswordView(FormView):
     """
     Reset the user password and send email.
     """
 
-    template = 'accounts/reset_password.html'
-    # If you do not send anything in the form you will insert None
-    # and de form will not validated (empty form)
-    form = PasswordResetForm(request.POST or None)
-    context = {}
-    if form.is_valid():
-        form.save()
-        context['success'] = True
-    context['form'] = form
-    return render(request, template, context)
+    template_name = 'accounts/reset_password.html'
+    form_class = PasswordResetForm
+    success_url = reverse_lazy('core:home')
+
+    def form_valid(self, form):
+        """
+        Validated form and send email.
+        """
+
+        user = User.objects.get(email=form.cleaned_data['email'])
+        key = generate_hash_key(user.username)
+        reset_password = PasswordReset(user=user, key=key)
+        reset_password.save()
+        # Send email
+        send_email_template(
+            subject=_('Requesting new password'),
+            template='accounts/reset_password_email.html',
+            context={'reset_password': reset_password},
+            recipient_list=[user.email],
+        )
+
+        messages.success(
+            self.request,
+            _("An email was sent with more details on how to create a new password")
+        )
+
+        # Save and redirect to success_url
+        return super(ResetPasswordView, self).form_valid(form)
 
 
-def reset_password_confirm(request, key):
-    template = 'accounts/reset_password_confirm.html'
-    context = {}
-    reset = get_object_or_404(PasswordReset, key=key)
-    form = SetPasswordForm(user=reset.user, data=request.POST or None)
-    if form.is_valid():
+class ResetPasswordConfirmView(FormView):
+    """
+    Insert new password from email link.
+    """
+
+    template_name = 'accounts/reset_password_confirm.html'
+    form_class = SetPasswordForm
+    success_url = reverse_lazy('accounts:login')
+
+    def get_form_kwargs(self):
+        """
+        Insert arguments inside form.
+        """
+
+        # Get all arguments
+        kwargs = super(ResetPasswordConfirmView, self).get_form_kwargs()
+
+        # Get the user with kwargs key to reset his password
+        reset = get_object_or_404(
+            PasswordReset,
+            key=self.kwargs.get('key')
+        )
+
+        # Change user and data from form
+        kwargs['user'] = reset.user
+        kwargs['data'] = self.request.POST or None
+
+        return kwargs
+
+    def form_valid(self, form):
+        """
+        Validated form and reset password.
+        """
+
+        messages.success(
+            self.request,
+            _("Your password was successfully created.")
+        )
+
+        # When change the kwargs you need to save the instance
         form.save()
-        context['success'] = True
-    context['form'] = form
-    return render(request, template, context)
+
+        # Redirect to success_url
+        return super(ResetPasswordConfirmView, self).form_valid(form)

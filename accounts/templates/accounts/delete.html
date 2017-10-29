@@ -1,26 +1,20 @@
-<!-- internationalization -->
 {% load i18n %}
-
-<!-- import to staticfiles -->
 {% load static %}
 
-<!-- insert css into core/base.html css block -->
 {% block css %}
-  <link rel="stylesheet" href="{% static 'accounts/css/delete.css' %}">
+  <link rel="stylesheet" href="{% static 'accounts/css/delete.css' %}" />
 {% endblock %}
 
 <!-- Delete modal -->
-<div class="modal fade" id="delete-user-modal" role="dialog">
+<div class="modal fade" id="delete-user-modal">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
-
       <!-- Header -->
       <div class="modal-header">
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal">
-          <i class="fa fa-close"></i>
+        <button type="button"
+                class="close"
+                data-dismiss="modal">
+                <i class="fa fa-close"></i>
         </button>
         <h4 class="modal-title">
           {% trans 'Delete user' %}
@@ -29,28 +23,33 @@
 
       <!-- Body -->
       <div class="modal-body">
-        <p>{% trans 'Are you sure you want to delete your account' %} {{ user.name }} ?</p>
+        <p>
+          {% trans 'Are you sure you want to delete your account' %} {{ user.name }} ?
+        </p>
       </div>
 
       <!-- Footer -->
       <div class="modal-footer">
         <form action="{% url 'accounts:delete-user' %}" method="post">
+          <!-- Form security -->
           {% csrf_token %}
-          <button
-            type="submit"
-            class="btn btn-danger pull-right">
-            <i class="fa fa-trash"></i>
-            {% trans 'Delete' %}
+
+          <!-- Delete button -->
+          <button type="submit"
+                  class="btn btn-danger pull-right">
+                  <i class="fa fa-trash"></i>
+                  {% trans 'Delete' %}
           </button>
         </form>
-        <button
-          type="button"
-          class="btn btn-primary pull-left"
-          data-dismiss="modal">
-          <i class="fa fa-close"></i>
-          {% trans 'Cancel' %}
+
+        <!-- Cancel button -->
+        <button type="button"
+                class="btn btn-primary pull-left"
+                data-dismiss="modal">
+                <i class="fa fa-close"></i>
+                {% trans 'Cancel' %}
         </button>
-      </div>
-    </div>
-  </div>
-</div>
+      </div> <!-- Close modal footer -->
+    </div> <!-- Close modal content -->
+  </div> <!-- Close modal dialog -->
+</div> <!-- Close modal -->

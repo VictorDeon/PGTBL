@@ -1,14 +1,22 @@
-<!-- internationalization -->
 {% load i18n %}
 
 <!-- Search component -->
 <form method="GET" accept-charset="utf-8">
   <div class="input-group">
     <!-- search query ?q_info=... and store the result into value -->
-    <input type="text" class="form-control" name="q_info" value="{{ request.GET.q_info }}" placeholder="{% trans 'Search' %}">
+    <input
+      type="text"
+      class="form-control"
+      name="q_info"
+      value="{{ request.GET.q_info }}"
+      placeholder="{% trans 'Search' %}"
+    />
+
+    <!-- Submit button -->
     <div class="input-group-btn">
-      <button class="btn btn-primary btn-border" type="submit">
-        <i class="fa fa-search"></i>
+      <button class="btn btn-primary btn-border"
+              type="submit">
+              <i class="fa fa-search"></i>
       </button>
     </div>
   </div>

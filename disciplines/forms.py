@@ -18,6 +18,8 @@ class DisciplineForm(forms.ModelForm):
             'title', 'course', 'description', 'classroom',
             'password', 'students_limit', 'monitors_limit'
         ]
+
+        # Widgets about some fields
         widgets = {
             'password': forms.PasswordInput()
         }

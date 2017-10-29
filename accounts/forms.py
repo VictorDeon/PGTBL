@@ -63,20 +63,3 @@ class PasswordResetForm(forms.Form):
         raise forms.ValidationError(
             _('There is no user found with this email')
         )
-
-    def save(self):
-        """
-        Save the password reset object and send a email to user.
-        """
-
-        user = User.objects.get(email=self.cleaned_data['email'])
-        key = generate_hash_key(user.username)
-        reset_password = PasswordReset(user=user, key=key)
-        reset_password.save()
-        # Send email
-        send_email_template(
-            subject=_('Requesting new password'),
-            template='accounts/reset_password_email.html',
-            context={'reset_password': reset_password},
-            recipient_list=[user.email],
-        )

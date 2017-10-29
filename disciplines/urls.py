@@ -27,7 +27,7 @@ urlpatterns = [
         views.DisciplineListSearchView.as_view(),
         name='search'
     ),
-    # /profile/enter-discipline/
+    # /profile/enter-discipline/discipline-name
     url(
         r'^profile/enter-discipline/(?P<slug>[\w_-]+)/$',
         views.DisciplineListSearchView.as_view(),

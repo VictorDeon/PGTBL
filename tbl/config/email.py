@@ -5,7 +5,7 @@ File to insert get email informations.
 import os
 
 # Default from email.
-DEFAULT_FROM_EMAIL = 'Nome <victorhad@gmail.com>'
+DEFAULT_FROM_EMAIL = 'victorhad@gmail.com'
 
 # Use a TLS (secure) connection when talking to the SMTP server.
 EMAIL_USE_TLS = True

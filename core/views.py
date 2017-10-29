@@ -1,9 +1,19 @@
+# Django app
 from django.views.generic import ListView, DetailView
+from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import reverse_lazy
+from django.contrib import messages
+from django.conf import settings
 from django.db.models import Q
+
+# Core app
+from .email import send_email_template
+from .mixins import FormListView
+from .forms import SendEmailForm
 from .models import News
 
 
-class HomePageView(ListView):
+class HomePageView(FormListView):
     """
     Home page of application.
     """
@@ -11,6 +21,8 @@ class HomePageView(ListView):
     template_name = 'core/home.html'
     # object queryset name that appears in the templates
     context_object_name = 'news_list'
+    form_class = SendEmailForm
+    success_url = reverse_lazy('core:home')
 
     def get_queryset(self):
         """
@@ -33,6 +45,34 @@ class HomePageView(ListView):
         context['home'] = True
         return context
 
+    def form_valid(self, form):
+        """
+        Validated email fields and send email.
+        """
+
+        # Send email to adm
+        send_email_template(
+            subject=_("PGTBL - message from {0}"
+                      .format(form.cleaned_data['name'])
+                      ),
+            template='core/email.html',
+            from_email=form.cleaned_data['email'],
+            context={
+                'name': form.cleaned_data['name'],
+                'email': form.cleaned_data['email'],
+                'message': form.cleaned_data['message']
+            },
+            recipient_list=[settings.DEFAULT_FROM_EMAIL],
+        )
+
+        messages.success(
+            self.request,
+            _("Message sent successfully.")
+        )
+
+        # Save and redirect to success_url
+        return super(HomePageView, self).form_valid(form)
+
 
 class NewsListView(ListView):
     paginate_by = 6
@@ -52,7 +92,7 @@ class NewsListView(ListView):
             # elemente with that tag
             queryset = queryset.filter(tags__slug__icontains=tag)
         # return searched news
-        queryset = search_news(self.request, queryset)
+        queryset = self.search_news(queryset)
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -68,23 +108,22 @@ class NewsListView(ListView):
             context['tag'] = tag
         return context
 
+    def search_news(self, news_list):
+        """
+        Search from news list the specific news
+        """
+
+        query = self.request.GET.get("q_info")
+        if query:
+            # Verify if news title and content contains the query specify
+            # by user and filter all news that satisfies this
+            news_list = news_list.filter(
+                            Q(title__icontains=query) |
+                            Q(content__icontains=query)
+                        ).distinct()
+        return news_list
+
 
 class NewsDetailView(DetailView):
     model = News
     template_name = 'core/news_details.html'
-
-
-def search_news(request, news_list):
-    """
-    Search from news list the specific news
-    """
-
-    query = request.GET.get("q_info")
-    if query:
-        # Verify if news title and content contains the query specify by user
-        # and filter all news that satisfies this
-        news_list = news_list.filter(
-                        Q(title__icontains=query) |
-                        Q(content__icontains=query)
-                    ).distinct()
-    return news_list

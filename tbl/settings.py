@@ -10,12 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
+# Imports are being used indirectly, do not remove.
 from .config.apps import PRODUCTION_APPS, DEVELOPMENT_APPS
 from .config.database import DB_DEVELOPMENT, DB_PRODUCTION
 from .config.password import AUTH_PASSWORD_VALIDATORS
 from .config.middleware import MIDDLEWARE
 from .config.template import TEMPLATES
 from .config.security import SECRET_KEY
+from .config.messages import MESSAGE_TAGS
 from .config.files import (
     STATIC_ROOT, MEDIA_ROOT, STATIC_URL, MEDIA_URL
 )

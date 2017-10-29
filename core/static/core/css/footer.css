@@ -5,6 +5,10 @@
   margin-bottom: 20px !important;
 }
 
+.footer-nav-black {
+  margin-top: 50px;
+}
+
 .footer-navbar:hover {
   color: white;
 }

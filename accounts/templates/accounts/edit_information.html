@@ -1,32 +1,29 @@
-<!-- Extends all code from accounts/profile.html -->
 {% extends 'accounts/profile.html' %}
-
-<!-- import to staticfiles -->
 {% load static %}
-
-<!-- Import custom form fields -->
 {% load widget_tweaks %}
-
-<!-- internationalization -->
 {% load i18n %}
 
-<!-- insert css into accounts/update.html css block -->
 {% block css %}
   {{ block.super }}
-  <link rel="stylesheet" href="{% static 'accounts/css/edit_information.css' %}">
+  <link rel="stylesheet" href="{% static 'accounts/css/edit_information.css' %}" />
 {% endblock %}
 
-<!-- Edit navegation menu breadcrumb -->
 {% block breadcrumb %}
   {{ block.super }}
-  <li><a href="{% url 'accounts:update-user' %}">{% trans 'Edit information' %}</a></li>
+  <li>
+    <a href="{% url 'accounts:update-user' %}">
+      {% trans 'Edit information' %}
+    </a>
+  </li>
 {% endblock %}
 
 {% block profile %}
   <div class="container-fluid">
     <!-- Header -->
     <div class="page-header profile">
-      <h1 class="white">{% trans 'Edit personal information' %}</h1>
+      <h1 class="white">
+        {% trans 'Edit personal information' %}
+      </h1>
     </div>
 
     <!-- Form -->
@@ -39,13 +36,14 @@
 
           <!-- Get all erros from form -->
           {% for error in form.non_field_errors %}
-            <div class="alert alert-danger">{{error}}</div>
+            <div class="alert alert-danger">
+              {{ error }}
+            </div>
           {% endfor %}
 
           <!-- Fields -->
           <fieldset>
-
-            <!-- Image field -->
+            <!-- Image -->
             <div class="input-group center-block">
               {% if user.photo %}
                 <img
@@ -61,102 +59,119 @@
                 />
               {% endif %}
             </div>
+
+            <!-- Image field -->
             <div class="input-group center-block white">
               {% render_field form.photo class="form-control" type="file" %}
             </div>
+
             <hr />
 
             <!-- Username field -->
-            <div class="group {% if form.username.errors %}alert alert-warning{% endif %}">
+            <div class="{% if form.username.errors %}alert alert-warning{% endif %}">
               <div class="input-group">
-                <span
-                  class="input-group-addon gradient"
-                  data-toggle="tooltip"
-                  title="{{form.username.label}}">
-                  <i class="fa fa-user-secret icon-md"></i>
+                <span class="input-group-addon gradient"
+                      data-toggle="tooltip"
+                      title="{{ form.username.label }}">
+                      <i class="fa fa-user-secret icon-md"></i>
                 </span>
-                {% render_field form.username class="form-control" type="text" placeholder=form.username.label %}
+                {% render_field form.username class="form-control" type="text" placeholder=form.username.help_text %}
               </div>
+
+              <!-- Username errors -->
               {% for error in form.username.errors %}
-                <span class="error">{{ error }}</span>
+                <span class="error">
+                  {{ error }}
+                </span>
               {% endfor %}
             </div>
 
             <!-- Name field -->
-            <div class="group {% if form.name.errors %}alert alert-warning{% endif %}">
+            <div class="{% if form.name.errors %}alert alert-warning{% endif %}">
               <div class="input-group">
-                <span
-                  class="input-group-addon gradient"
-                  data-toggle="tooltip"
-                  title="{{form.name.label}}">
-                  <i class="fa fa-user icon-md"></i>
+                <span class="input-group-addon gradient"
+                      data-toggle="tooltip"
+                      title="{{ form.name.label }}">
+                      <i class="fa fa-user icon-md"></i>
                 </span>
-                {% render_field form.name class="form-control" type="text" placeholder=form.name.label %}
+                {% render_field form.name class="form-control" type="text" placeholder=form.name.help_text %}
               </div>
-              {% if form.name.erros %}
-                <div class="alert alert-danger">
-                  {% for error in form.name.errors %}
-                    <span class="error">{{error}}</span>
-                  {% endfor %}
-                </div>
-              {% endif %}
+
+              <!-- Name errors -->
+              {% for error in form.name.errors %}
+                  <span class="error">
+                    {{ error }}
+                  </span>
+              {% endfor %}
             </div>
 
             <!-- Email field -->
-            <div class="group {% if form.email.errors %}alert alert-warning{% endif %}">
+            <div class="{% if form.email.errors %}alert alert-warning{% endif %}">
               <div class="input-group">
-                <span
-                  class="input-group-addon gradient"
-                  data-toggle="tooltip"
-                  title="{{form.email.label}}">
-                  <i class="fa fa-envelope"></i>
+                <span class="input-group-addon gradient"
+                      data-toggle="tooltip"
+                      title="{{ form.email.label }}">
+                      <i class="fa fa-envelope"></i>
                 </span>
-                {% render_field form.email class="form-control" type="email" placeholder=form.email.label %}
+                {% render_field form.email class="form-control" type="email" placeholder=form.email.help_text %}
               </div>
+
+              <!-- Email errors -->
               {% for error in form.email.errors %}
-                <span class="error">{{error}}</span>
+                <span class="error">
+                  {{ error }}
+                </span>
               {% endfor %}
             </div>
 
             <!-- Institution field -->
-            <div class="group {% if form.institution.errors %}alert alert-warning{% endif %}">
+            <div class="{% if form.institution.errors %}alert alert-warning{% endif %}">
               <div class="input-group">
-                <span
-                  class="input-group-addon gradient"
-                  data-toggle="tooltip"
-                  title="{{form.institution.label}}">
-                  <i class="fa fa-institution"></i>
+                <span class="input-group-addon gradient"
+                      data-toggle="tooltip"
+                      title="{{ form.institution.label }}">
+                      <i class="fa fa-institution"></i>
                 </span>
-                {% render_field form.institution class="form-control" type="text" placeholder=form.institution.label %}
+                {% render_field form.institution class="form-control" type="text" placeholder=form.institution.help_text %}
               </div>
+
+              <!-- Institution errors -->
               {% for error in form.institution.errors %}
-                <span class="error">{{error}}</span>
+                <span class="error">
+                  {{ error }}
+                </span>
               {% endfor %}
             </div>
 
             <!-- Course field -->
-            <div class="group {% if form.course.errors %}alert alert-warning{% endif %}">
+            <div class="{% if form.course.errors %}alert alert-warning{% endif %}">
               <div class="input-group">
                 <span
                   class="input-group-addon gradient"
                   data-toggle="tooltip"
-                  title="{{form.course.label}}">
+                  title="{{ form.course.label }}">
                   <i class="fa fa-graduation-cap"></i>
                 </span>
-                {% render_field form.course class="form-control" type="text" placeholder=form.course.label %}
+                {% render_field form.course class="form-control" type="text" placeholder=form.course.help_text %}
               </div>
+
+              <!-- Course errors -->
               {% for error in form.course.errors %}
-                <span class="error">{{error}}</span>
+                <span class="error">
+                  {{ error }}
+                </span>
               {% endfor %}
             </div>
           </fieldset>
 
           <!-- Submit button -->
-          <button type="submit" class="btn btn-primary submit-button center-block">
-            <i class="fa fa-edit"></i> {% trans 'Edit' %}
+          <button type="submit"
+                  class="btn btn-primary submit-button center-block">
+                  <i class="fa fa-edit"></i>
+                  {% trans 'Edit' %}
           </button>
         </form>
-      </div>
-    </div>
-  </div>
+      </div> <!-- Close col -->
+    </div> <!-- Close row -->
+  </div> <!-- Close container -->
 {% endblock %}

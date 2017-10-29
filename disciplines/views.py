@@ -4,15 +4,15 @@ Disciplines functionalities
 """
 
 # Django app
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404, redirect
+from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.utils.text import slugify
-from django.views.generic import (
-    CreateView, UpdateView, DeleteView
-)
+from django.contrib import messages
 from django.db.models import Q
 
 # Core app
@@ -49,10 +49,11 @@ class DisciplineCreationView(LoginRequiredMixin,
 
         # Specifies who is the creator of the discipline
         form.instance.teacher = self.request.user
-
         form.save()
 
-        # Autocomplete slug with id - title - classroom
+        messages.success(self.request, _('Discipline created successfully.'))
+
+        # Autocomplete slug url with id-title-classroom
         form.instance.slug = slugify(
             str(form.instance.id) +
             "-" +
@@ -74,7 +75,6 @@ class DisciplineUpdateView(LoginRequiredMixin,
 
     model = Discipline
     template_name = 'disciplines/form.html'
-    slug_url_kwargs = 'slug'
 
     # Form
     fields = [
@@ -87,6 +87,16 @@ class DisciplineUpdateView(LoginRequiredMixin,
     user_check_failure_path = reverse_lazy('accounts:profile')
     permission_required = 'disciplines.change_discipline'
 
+    def form_valid(self, form):
+        """
+        Receive the form already validated.
+        """
+
+        messages.success(self.request, _("Discipline updated successfully."))
+
+        # Save and redirect to success_url.
+        return super(DisciplineUpdateView, self).form_valid(form)
+
 
 class DisciplineDeleteView(LoginRequiredMixin,
                            PermissionRequiredMixin,
@@ -97,11 +107,20 @@ class DisciplineDeleteView(LoginRequiredMixin,
 
     model = Discipline
     success_url = reverse_lazy('accounts:profile')
-    slug_url_kwargs = 'slug'
 
     # Permissions
     user_check_failure_path = reverse_lazy('accounts:profile')
     permission_required = 'disciplines.change_discipline'
+
+    def get_success_url(self):
+        """
+        Redirect to success_url and show a message.
+        """
+
+        messages.success(self.request, _("Discipline deleted successfully."))
+
+        # Redirect to success_url
+        return super(DisciplineDeleteView, self).get_success_url()
 
 
 class DisciplineListSearchView(LoginRequiredMixin, FormListView):
@@ -142,12 +161,17 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
         Form to insert students and monitors in the discipline.
         """
 
+        # Field of form.
         password = form.cleaned_data['password']
 
-        self.enter_discipline(password)
+        success = self.enter_discipline(password)
 
-        # Save form and redirect to success_url
-        return super(DisciplineListSearchView, self).form_valid(form)
+        if success:
+            # Save form and redirect to success_url
+            return super(DisciplineListSearchView, self).form_valid(form)
+        else:
+            # Redirect to same page with error.
+            return redirect('disciplines:search')
 
     def enter_discipline(self, password):
         """
@@ -161,50 +185,75 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
         for discipline in disciplines:
             if discipline.slug == slug:
                 self.insert_user(discipline)
-            else:
-                print("Disciplina não encontrada - mensagem de erro!")
+
+                messages.success(
+                    self.request,
+                    _("You have been entered into the discipline: {0}"
+                      .format(discipline)
+                     )
+                )
+
+                return True
+
+        messages.error(
+            self.request,
+            _("Incorrect Password.")
+        )
+
+        return False
 
     def insert_user(self, discipline):
         """
         Insert user in the discipline and change his permissions.
-        If user is a teacher, he will have all permission of monitor
-        If user is a student, he will have all permission of student
-        If students number if bigger than student limit of discipline, close it
         """
 
         user = self.request.user
 
         if user.is_teacher:
-            if discipline.monitors.count() >= discipline.monitors_limit:
-                print("Não há mais vagas para monitor - Mensagem de erro.")
-            else:
-                discipline.monitors.add(user)
-                group = get_object_or_404(Group, name='Monitor')
-                group.user_set.add(user)
+            self.insert_monitor(discipline)
         else:
-            if discipline.students.count() >= discipline.students_limit:
-                print("Disciplina lotada. - Mensagem de erro.")
-                discipline.is_closed = True
-            else:
-                discipline.students.add(user)
+            self.insert_student(discipline)
+
+    def insert_monitor(self, discipline):
+        """
+        If user is a teacher, he will have all permission of monitor
+        If monitor number is bigger than monitors limit, can't enter.
+        """
+
+        if discipline.monitors.count() >= discipline.monitors_limit:
+            messages.error(
+                self.request,
+                _("There are no more vacancies to monitor")
+            )
+        else:
+            discipline.monitors.add(user)
+            group = get_object_or_404(Group, name='Monitor')
+            group.user_set.add(user)
+
+    def insert_student(self, discipline):
+        """
+        If user is a student, he will have all permission of student
+        If students number is bigger than student limit of discipline, close it
+        """
+
+        if discipline.students.count() >= discipline.students_limit:
+            messages.error(
+                self.request,
+                _("Crowded discipline.")
+            )
+            discipline.is_closed = True
+        else:
+            discipline.students.add(user)
 
     def search_disciplines(self, disciplines):
         """
         Search from disciplines a specific discipline.
         """
 
+        # From url after search get the ?q_info=...
         query = self.request.GET.get("q_info")
         if query:
-            # Verify if discipline title, description, course and classroom
-            # contains the query specify by user and filter all disciplines
-            # that satisfies this query.
-            disciplines = disciplines.filter(
-                              Q(title__icontains=query) |
-                              Q(description__icontains=query) |
-                              Q(course__icontains=query) |
-                              Q(classroom__icontains=query) |
-                              Q(teacher__name__icontains=query)
-                          ).distinct()
+            disciplines = Discipline.objects.search(query)
 
         return disciplines
 
