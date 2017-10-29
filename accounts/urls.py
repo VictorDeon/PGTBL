@@ -45,6 +45,7 @@ urlpatterns = [
         views.EditPasswordView.as_view(),
         name='update-password'
     ),
+    # /profile/delete/
     url(
         r'^profile/delete/$',
         views.DeleteProfileView.as_view(),

@@ -2,10 +2,14 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import get_user_model
 from django import forms
 
+# Get the user from settings
 User = get_user_model()
 
 
 class SendEmailForm(forms.Form):
+    """
+    Form to send email to admin user.
+    """
 
     name = forms.CharField(
         max_length=100,

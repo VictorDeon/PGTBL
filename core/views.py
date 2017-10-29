@@ -8,7 +8,7 @@ from django.db.models import Q
 
 # Core app
 from .email import send_email_template
-from .mixins import FormListView
+from .generics import FormListView
 from .forms import SendEmailForm
 from .models import News
 
@@ -19,9 +19,12 @@ class HomePageView(FormListView):
     """
 
     template_name = 'core/home.html'
-    # object queryset name that appears in the templates
     context_object_name = 'news_list'
+
+    # Use SendEmailForm
     form_class = SendEmailForm
+
+    # Redirect to home page
     success_url = reverse_lazy('core:home')
 
     def get_queryset(self):
@@ -50,7 +53,7 @@ class HomePageView(FormListView):
         Validated email fields and send email.
         """
 
-        # Send email to adm
+        # Send email to admin
         send_email_template(
             subject=_("PGTBL - message from {0}"
                       .format(form.cleaned_data['name'])

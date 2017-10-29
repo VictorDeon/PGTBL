@@ -7,6 +7,10 @@ from datetime import datetime
 
 
 def today_date(request):
+    """
+    Insert today date inside templates.
+    """
+
     context = {
         'date': datetime.now()
     }

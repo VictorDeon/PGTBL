@@ -48,7 +48,7 @@
               <!-- Truntate the word in character 35 -->
               {{ news.content|truncatewords:35 }}
               <!-- Go to absolute url defined in news model -->
-              <a href="{{news.get_absolute_url}}">
+              <a href="{% url 'core:news-details' news.slug %}">
                 {% trans 'Read more' %}
               </a>
             </p>

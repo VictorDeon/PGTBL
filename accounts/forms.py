@@ -1,10 +1,8 @@
+# Django app
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm as CreationForm
 from django.contrib.auth import get_user_model
 from django import forms
-from core.utils import generate_hash_key
-from core.email import send_email_template
-from .models import PasswordReset
 
 # Get the user from settings
 User = get_user_model()

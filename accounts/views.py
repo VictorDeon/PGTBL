@@ -1,7 +1,7 @@
 # Django
 from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
@@ -34,7 +34,6 @@ class ProfileView(LoginRequiredMixin, ListView):
 
     paginate_by = 5
     template_name = 'accounts/profile.html'
-    # object queryset name that appears in the templates
     context_object_name = 'disciplines'
 
     def get_queryset(self):
@@ -54,7 +53,7 @@ class ProfileView(LoginRequiredMixin, ListView):
 
     def filter_teacher_disciplines(self):
         """
-        Filter disciplines by created or monitors
+        Get disciplines that teacher created or is a monitor.
         """
 
         created_disciplines = Discipline.objects.filter(
@@ -74,7 +73,7 @@ class ProfileView(LoginRequiredMixin, ListView):
         if filtered == 'created':
             queryset = queryset.filter(teacher=self.request.user)
         elif filtered == 'monitor':
-            queryset = queryset.filter(monitors__email=self.request.user)
+            queryset = queryset.filter(monitors__email=self.request.user.email)
 
         return queryset
 
@@ -91,7 +90,7 @@ class ProfileView(LoginRequiredMixin, ListView):
         filtered = self.request.GET.get('filter')
 
         if filtered == 'monitor':
-            queryset = queryset.filter(monitors__email=self.request.user)
+            queryset = queryset.filter(monitors__email=self.request.user.email)
 
         return queryset
 
@@ -104,10 +103,10 @@ class RegisterView(CreateView):
     model = User
     template_name = 'accounts/register.html'
 
-    # Generate the UserCreationForm
+    # Use the UserCreationForm
     form_class = UserCreationForm
 
-    # Redirect to login page only when the url is requested
+    # Redirect to profile
     success_url = reverse_lazy('accounts:profile')
 
     def form_valid(self, form):
@@ -122,6 +121,7 @@ class RegisterView(CreateView):
             password=form.cleaned_data['password1']
         )
         login(self.request, user)
+
         messages.success(
             self.request,
             _("User created successfully.")
@@ -173,6 +173,8 @@ class DeleteProfileView(LoginRequiredMixin, DeleteView):
     """
 
     model = User
+
+    # Redirect to home page
     success_url = reverse_lazy('core:home')
 
     def get_object(self):
@@ -212,8 +214,7 @@ class EditPasswordView(LoginRequiredMixin, FormView):
         Generates the arguments that will be passed to the form.
         """
 
-        # Get the get_form_kwargs() from the original class
-        # (PasswordChangeForm)
+        # Get the get_form_kwargs() from the original class FormView
         kwargs = super(EditPasswordView, self).get_form_kwargs()
 
         # Insert the parameter logged user into the form template
@@ -225,12 +226,12 @@ class EditPasswordView(LoginRequiredMixin, FormView):
         Receive the form already validated.
         """
 
-        # When the form is valid save the instance
+        # When you insert new kwargs you need to save the instance
         form.save()
 
         messages.success(self.request, _("Password updated successfully."))
 
-        # Return to form_valid function from django to finish edition.
+        # Save and redirect to success_url
         return super(EditPasswordView, self).form_valid(form)
 
 
@@ -240,7 +241,11 @@ class ResetPasswordView(FormView):
     """
 
     template_name = 'accounts/reset_password.html'
+
+    # Use the PasswordResetForm
     form_class = PasswordResetForm
+
+    # Redirect to home page
     success_url = reverse_lazy('core:home')
 
     def form_valid(self, form):
@@ -249,9 +254,12 @@ class ResetPasswordView(FormView):
         """
 
         user = User.objects.get(email=form.cleaned_data['email'])
+
+        # Generate unique key to reset password
         key = generate_hash_key(user.username)
         reset_password = PasswordReset(user=user, key=key)
         reset_password.save()
+
         # Send email
         send_email_template(
             subject=_('Requesting new password'),
@@ -275,7 +283,11 @@ class ResetPasswordConfirmView(FormView):
     """
 
     template_name = 'accounts/reset_password_confirm.html'
+
+    # Use SetPasswordForm from django
     form_class = SetPasswordForm
+
+    # Redirect to login page.
     success_url = reverse_lazy('accounts:login')
 
     def get_form_kwargs(self):

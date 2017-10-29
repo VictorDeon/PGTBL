@@ -1,10 +1,11 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
 
 class Tag(models.Model):
     """
-    Tags for improve system functionalities.
+    Tags for improve system features.
     """
 
     title = models.CharField(
@@ -80,14 +81,6 @@ class News(models.Model):
         """
 
         return self.title
-
-    @models.permalink
-    def get_absolute_url(self):
-        """
-        Redirect to news-details url.
-        """
-
-        return ('core:news-details', (), {'slug': self.slug})
 
     class Meta:
         verbose_name = 'News'

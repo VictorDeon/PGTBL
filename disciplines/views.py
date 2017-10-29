@@ -16,7 +16,8 @@ from django.contrib import messages
 from django.db.models import Q
 
 # Core app
-from core.mixins import PermissionRequiredMixin, FormListView
+from core.mixins import PermissionRequiredMixin
+from core.generics import FormListView
 
 # Discipline app
 from .forms import DisciplineForm, EnterDisciplineForm
