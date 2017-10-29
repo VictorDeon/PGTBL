@@ -3,10 +3,18 @@ Archive to take care of the internationalization of the project.
 https://docs.djangoproject.com/en/1.11/topics/i18n/
 """
 
+from django.utils.translation import ugettext_lazy as _
+
+# Language selection
+LANGUAGES = [
+    ('pt-br', _('Portuguese')),
+    ('en', _('English')),
+]
+
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-PORTUGUESE = 'pt-BR'
-ENGLISH = 'en-us'
+PORTUGUESE = 'pt-br'
+ENGLISH = 'en'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

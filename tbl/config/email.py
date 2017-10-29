@@ -4,6 +4,9 @@ File to insert get email informations.
 
 import os
 
+# Send email to console.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # Default from email.
 DEFAULT_FROM_EMAIL = 'victorhad@gmail.com'
 
