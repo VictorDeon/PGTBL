@@ -98,6 +98,15 @@ class DisciplineUpdateView(LoginRequiredMixin,
 
         messages.success(self.request, _("Discipline updated successfully."))
 
+        # Autocomplete slug url with id-title-classroom
+        form.instance.slug = slugify(
+            str(form.instance.id) +
+            "-" +
+            form.instance.title +
+            "-" +
+            form.instance.classroom
+        )
+
         # Save and redirect to success_url.
         return super(DisciplineUpdateView, self).form_valid(form)
 

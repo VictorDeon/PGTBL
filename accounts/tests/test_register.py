@@ -2,7 +2,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
-from core.test_utils import check_group, check_permissions
 
 # Get custom user model
 User = get_user_model()

@@ -14,25 +14,22 @@ from rolepermissions.checkers import (
 )
 
 
-class CheckPermissionMixin(object):
+class ModelPermissionMixin(object):
     """
-    Checks a user condition and if this condition is not
-    satisfied redirects to a specific url
+    Insert a model permission in one class based view.
     """
 
-    failure_redirect_path = ''
+    failure_redirect_path = reverse_lazy('accounts:login')
+    permissions_required = None
 
     def check_permission(self, user):
         """
-        If not override return always True.
+        Verify if user has specific group permission
         """
 
-        return True
-
-    def check_object_permission(self, user, obj):
-        """
-        If not override return always True.
-        """
+        for permission in self.permissions_required:
+            if not has_permission(user, permission):
+                return False
 
         return True
 
@@ -53,34 +50,15 @@ class CheckPermissionMixin(object):
         Try to dispatch to the right method.
         """
 
-        if not self.check_permission(request.user) or \
-           not self.check_object_permission(request.user, self.get_object()):
+        if not self.check_permission(request.user):
             return self.check_failed(request, *args, **kwargs)
 
-        return super(CheckPermissionMixin, self).dispatch(request, *args, **kwargs)
+        return super(ModelPermissionMixin, self).dispatch(
+            request, *args, **kwargs
+        )
 
 
-class ModelPermissionMixin(CheckPermissionMixin):
-    """
-    Insert a model permission in one class based view.
-    """
-
-    failure_redirect_path = reverse_lazy('accounts:login')
-    permissions_required = None
-
-    def check_permission(self, user):
-        """
-        Verify if user has specific group permission
-        """
-
-        for permission in self.permissions_required:
-            if not has_permission(user, permission):
-                return False
-
-        return True
-
-
-class ObjectPermissionMixin(CheckPermissionMixin):
+class ObjectPermissionMixin(object):
     """
     Insert a object permission in one class based view.
     """
@@ -98,3 +76,27 @@ class ObjectPermissionMixin(CheckPermissionMixin):
                 return False
 
         return True
+
+    def check_failed(self, request, *args, **kwargs):
+        """
+        If user check fail, redirect the user to another place.
+        """
+
+        messages.error(
+            self.request,
+            _("You are not authorized to do this action.")
+        )
+
+        return redirect(self.failure_redirect_path)
+
+    def dispatch(self, request, *args, **kwargs):
+        """
+        Try to dispatch to the right method.
+        """
+
+        if not self.check_object_permission(request.user, self.get_object()):
+            return self.check_failed(request, *args, **kwargs)
+
+        return super(ObjectPermissionMixin, self).dispatch(
+            request, *args, **kwargs
+        )
