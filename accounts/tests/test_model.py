@@ -18,23 +18,23 @@ class ModelTestCase(TestCase):
             email='victorhad@gmail.com',
             password='victorhad123456'
         )
-        self.user1 = User.objects.create(
+        self.user1 = User.objects.create_user(
             name='Pedro',
             username='pedro',
             email='pedro@gmail.com',
             password='pedro123456'
         )
-        self.user2 = User.objects.create(
+        self.user2 = User.objects.create_user(
             name='Maria de Fatima',
             username='maria',
             email='maria@gmail.com',
             password='maria123456'
         )
-        self.user3 = User.objects.create(
+        self.user3 = User.objects.create_user(
             name='Jose da Silva Pereira',
             username='jose',
             email='jose@gmail.com',
-            is_teacher=True,
+            is_teacher=False,
             password='jose123456',
             institution='UnB',
             course='Software Engineering',
@@ -76,7 +76,7 @@ class ModelTestCase(TestCase):
         Teste to verify if user is a teacher or a student
         """
 
-        self.assertEquals(self.superuser.is_teacher, False)
-        self.assertEquals(self.user1.is_teacher, False)
-        self.assertEquals(self.user2.is_teacher, False)
-        self.assertEquals(self.user3.is_teacher, True)
+        self.assertEquals(self.superuser.is_teacher, True)
+        self.assertEquals(self.user1.is_teacher, True)
+        self.assertEquals(self.user2.is_teacher, True)
+        self.assertEquals(self.user3.is_teacher, False)

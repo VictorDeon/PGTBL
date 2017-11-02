@@ -15,9 +15,8 @@ from django.utils.text import slugify
 from django.contrib import messages
 
 # Core app
-from core.mixins import PermissionRequiredMixin
+from core.permissions import ModelPermissionMixin, ObjectPermissionMixin
 from core.generics import FormListView
-from core.utils import create_permission
 
 # Discipline app
 from .forms import DisciplineForm, EnterDisciplineForm
@@ -28,7 +27,7 @@ User = get_user_model()
 
 
 class DisciplineCreationView(LoginRequiredMixin,
-                             PermissionRequiredMixin,
+                             ModelPermissionMixin,
                              CreateView):
     """
     View to create a new discipline.
@@ -40,9 +39,9 @@ class DisciplineCreationView(LoginRequiredMixin,
     success_url = reverse_lazy('accounts:profile')
 
     # Permissions
-    user_check_failure_path = reverse_lazy('accounts:profile')
+    failure_redirect_path = reverse_lazy('accounts:profile')
     permissions_required = [
-        'disciplines.add_discipline'
+        'create_discipline'
     ]
 
     def form_valid(self, form):
@@ -70,7 +69,7 @@ class DisciplineCreationView(LoginRequiredMixin,
 
 
 class DisciplineUpdateView(LoginRequiredMixin,
-                           PermissionRequiredMixin,
+                           ObjectPermissionMixin,
                            UpdateView):
     """
     View to update a specific discipline.
@@ -87,9 +86,9 @@ class DisciplineUpdateView(LoginRequiredMixin,
     success_url = reverse_lazy('accounts:profile')
 
     # Permissions
-    user_check_failure_path = reverse_lazy('accounts:profile')
+    failure_redirect_path = reverse_lazy('accounts:profile')
     permissions_required = [
-        'disciplines.change_discipline'
+        'change_own_discipline'
     ]
 
     def form_valid(self, form):
@@ -104,7 +103,7 @@ class DisciplineUpdateView(LoginRequiredMixin,
 
 
 class DisciplineDeleteView(LoginRequiredMixin,
-                           PermissionRequiredMixin,
+                           ObjectPermissionMixin,
                            DeleteView):
     """
     View to delete a specific discipline.
@@ -114,9 +113,9 @@ class DisciplineDeleteView(LoginRequiredMixin,
     success_url = reverse_lazy('accounts:profile')
 
     # Permissions
-    user_check_failure_path = reverse_lazy('accounts:profile')
+    failure_redirect_path = reverse_lazy('accounts:profile')
     permissions_required = [
-        'disciplines.change_discipline'
+        'change_own_discipline'
     ]
 
     def get_success_url(self):

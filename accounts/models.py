@@ -1,4 +1,5 @@
 from django.utils.translation import ugettext_lazy as _
+from rolepermissions.roles import assign_role
 from django.contrib.auth.models import Group
 from django.core import validators
 from django.conf import settings
@@ -6,6 +7,7 @@ from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser, PermissionsMixin, UserManager
 )
+from core.utils import insert_group_permissions, insert_user_permissions
 import re
 
 
@@ -15,27 +17,33 @@ class User(AbstractBaseUser, PermissionsMixin):
     add permission to our user model.
     """
 
+    username_validator = validators.RegexValidator(
+        re.compile('^[\w.@+-]+$'),
+        _('Enter a valid username'),
+        _('This value should only contain letters, numbers, \
+        and characters @/./+/-/_.'),
+        'invalid'
+    )
+
     # Username with regex validators
     username = models.CharField(
         _('User'),
         max_length=30,
         unique=True,
         help_text='Short name that will be used uniquely on the platform.',
-        validators=[
-            validators.RegexValidator(
-                re.compile('^[\w.@+-]+$'),
-                _('Enter a valid username'),
-                _('This value should only contain letters, numbers, \
-                  and characters @/./+/-/_.'),
-                'invalid'
-            )
-        ]
+        validators=[username_validator],
+        error_messages={
+            'unique': _("A user with that username already exists."),
+        }
     )
 
     email = models.EmailField(
         _('E-mail'),
         help_text=_("Email that will be used as username."),
-        unique=True
+        unique=True,
+        error_messages={
+            'unique': _("A user with that email already exists."),
+        }
     )
 
     name = models.CharField(
@@ -70,7 +78,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_teacher = models.BooleanField(
         _('Is Teacher?'),
         help_text=_("Verify if the user is teacher or student"),
-        default=False
+        default=True
     )
 
     last_login = models.DateTimeField(
@@ -210,23 +218,21 @@ class PasswordReset(models.Model):
         ordering = ['-created_at']
 
 
-def add_user_to_group(instance, created, **kwargs):
+def set_roles_to_the_new_user(instance, created, **kwargs):
     """
-    Insert the created user into a group
+    Insert the created user into a group.
     """
 
     if created:
         if instance.is_teacher:
-            group, created = Group.objects.get_or_create(name='Teacher')
-            Group.objects.get_or_create(name=_('Monitor'))
+            assign_role(instance, 'teacher')
         else:
-            group, created = Group.objects.get_or_create(name='Student')
-        group.user_set.add(instance)
+            assign_role(instance, 'student')
 
 
 # Run whenever create a new group.
 models.signals.post_save.connect(
-    add_user_to_group,
+    set_roles_to_the_new_user,
     sender=User,
-    dispatch_uid='add_user_to_group'
+    dispatch_uid='set_roles_to_the_new_user'
 )

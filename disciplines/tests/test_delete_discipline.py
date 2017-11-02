@@ -1,7 +1,10 @@
 from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from disciplines.models import Discipline
-from core.test_utils import create_user, check_messages
+from core.test_utils import check_messages
+
+User = get_user_model()
 
 
 class DeleteDisciplineTestCase(TestCase):
@@ -15,14 +18,16 @@ class DeleteDisciplineTestCase(TestCase):
         """
 
         self.client = Client()
-        self.teacher = create_user(
+        self.teacher = User.objects.create_user(
             username='Test1',
             email='test1@gmail.com',
+            password='test1234',
             is_teacher=True
         )
-        self.student = create_user(
+        self.student = User.objects.create_user(
             username='Test2',
             email='test2@gmail.com',
+            password='test1234'
         )
         self.discipline = Discipline.objects.create(
             teacher=self.teacher,
@@ -46,9 +51,10 @@ class DeleteDisciplineTestCase(TestCase):
         Try to delete a discipline from another teacher.
         """
 
-        another_teacher = create_user(
+        another_teacher = User.objects.create_user(
             username='Test3',
             email='test3@gmail.com',
+            password='test1234',
             is_teacher=True
         )
         self.client.login(

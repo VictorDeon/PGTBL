@@ -54,6 +54,9 @@ USE_TZ = TIMEZONE_DATETIMES
 # Allow all host/domain to access this aplication
 ALLOWED_HOSTS = ['*']
 
+# Permissions
+ROLEPERMISSIONS_MODULE = 'tbl.roles'
+
 # Enviroments mode (development or production)
 if MODE_ENVIROMENT == 'development':
     DEBUG = True

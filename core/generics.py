@@ -82,11 +82,3 @@ class FormListView(FormMixin, ListView):
                 _(u"Empty list and {class_name}.allow_empty is False.")
                 .format(class_name=self.__class__.__name__)
             )
-
-
-class FormDetailView(FormMixin, DetailView):
-    """
-    Details view with form.
-    """
-
-    pass
