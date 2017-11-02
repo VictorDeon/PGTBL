@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
+from core.test_utils import check_messages
 
 # Get custom user model
 User = get_user_model()
@@ -9,8 +10,6 @@ User = get_user_model()
 class DeleteUserTestCase(TestCase):
     """
     Test to delete a user account.
-    TODO:
-        - insert messages
     """
 
     def setUp(self):
@@ -52,7 +51,12 @@ class DeleteUserTestCase(TestCase):
 
         self.assertEquals(User.objects.count(), 1)
         self.client.login(username=self.user.username, password='test1234')
-        response = self.client.post(self.url)
+        response = self.client.post(self.url, follow=True)
         home_url = reverse('core:home')
         self.assertRedirects(response, home_url)
         self.assertEquals(User.objects.count(), 0)
+        check_messages(
+            self, response,
+            tag='alert-success',
+            content="Accounts deleted successfully."
+        )

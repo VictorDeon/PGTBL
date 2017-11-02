@@ -48,7 +48,7 @@ class PasswordResetForm(forms.Form):
     Form to reset the user password.
     """
 
-    email = forms.EmailField(label='E-mail')
+    email = forms.EmailField(label='E-mail', required=True)
 
     def clean_email(self):
         """

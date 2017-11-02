@@ -2,6 +2,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
+from core.test_utils import check_messages
 
 # Get custom user model
 User = get_user_model()
@@ -10,8 +11,6 @@ User = get_user_model()
 class EditUserTestCase(TestCase):
     """
     Test to edit personal information from user.
-    TODO:
-        - Insert messages
     """
 
     def setUp(self):
@@ -59,12 +58,17 @@ class EditUserTestCase(TestCase):
             'institution': 'UnB',
             'course': 'engineering',
         }
-        response = self.client.post(self.url, data)
+        response = self.client.post(self.url, data, follow=True)
         profile_url = reverse('accounts:profile')
         self.assertRedirects(response, profile_url)
         self.user.refresh_from_db()
         self.assertEquals(self.user.email, 'test@gmail.com')
         self.assertEquals(self.user.username, 'test')
+        check_messages(
+            self, response,
+            tag='alert-success',
+            content="User updated successfully."
+        )
 
     def test_update_user_email_error(self):
         """

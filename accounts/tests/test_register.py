@@ -2,6 +2,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
+from core.test_utils import check_messages
+from rolepermissions.checkers import has_role
 
 # Get custom user model
 User = get_user_model()
@@ -10,9 +12,6 @@ User = get_user_model()
 class RegisterTestCase(TestCase):
     """
     Test to register a new user into the system.
-    TODO:
-        - Insert messages
-        - Verify groups after create user
     """
 
     def setUp(self):
@@ -49,11 +48,21 @@ class RegisterTestCase(TestCase):
             'password2': 'test1234'
         }
         self.assertEquals(User.objects.count(), 1)
-        response = self.client.post(self.register_url, data)
+        response = self.client.post(self.register_url, data, follow=True)
         self.assertEquals(User.objects.count(), 2)
-        self.assertEquals(response.status_code, 302)
         profile_url = reverse('accounts:profile')
         self.assertRedirects(response, profile_url)
+        self.assertTrue(
+            has_role(
+                User.objects.get(username='person1'),
+                ['teacher']
+            )
+        )
+        check_messages(
+            self, response,
+            tag='alert-success',
+            content='Teacher created successfully.'
+        )
 
     def test_register_student_ok(self):
         """
@@ -68,11 +77,21 @@ class RegisterTestCase(TestCase):
             'password2': 'test1234'
         }
         self.assertEquals(User.objects.count(), 1)
-        response = self.client.post(self.register_url, data)
+        response = self.client.post(self.register_url, data, follow=True)
         self.assertEquals(User.objects.count(), 2)
-        self.assertEquals(response.status_code, 302)
         profile_url = reverse('accounts:profile')
         self.assertRedirects(response, profile_url)
+        self.assertTrue(
+            has_role(
+                User.objects.get(username='person2'),
+                ['student']
+            )
+        )
+        check_messages(
+            self, response,
+            tag='alert-success',
+            content='Student created successfully.'
+        )
 
     def test_username_register_error(self):
         """

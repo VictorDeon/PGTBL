@@ -124,10 +124,17 @@ class RegisterView(CreateView):
         )
         login(self.request, user)
 
-        messages.success(
-            self.request,
-            _("User created successfully.")
-        )
+        if user.is_teacher:
+            messages.success(
+                self.request,
+                _("Teacher created successfully.")
+            )
+        else:
+            messages.success(
+                self.request,
+                _("Student created successfully.")
+            )
+
 
         return HttpResponseRedirect(self.success_url)
 
@@ -317,13 +324,13 @@ class ResetPasswordConfirmView(FormView):
         Validated form and reset password.
         """
 
-        messages.success(
-            self.request,
-            _("Your password was successfully created.")
-        )
-
         # When change the kwargs you need to save the instance
         form.save()
+
+        messages.success(
+            self.request,
+            _("Your password was successfully updated.")
+        )
 
         # Redirect to success_url
         return super(ResetPasswordConfirmView, self).form_valid(form)

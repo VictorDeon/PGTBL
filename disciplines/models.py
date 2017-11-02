@@ -1,4 +1,5 @@
 from django.utils.translation import ugettext_lazy as _
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.conf import settings
@@ -86,13 +87,33 @@ class Discipline(models.Model):
     students_limit = models.PositiveIntegerField(
         _('Students limit'),
         default=0,
-        help_text=_("Students limit to get in the class.")
+        help_text=_("Students limit to get in the class."),
+        validators=[
+            MaxValueValidator(
+                60,
+                _('There can be no more than %(limit_value)s students in the class.')
+            ),
+            MinValueValidator(
+                5,
+                _('Must have at least %(limit_value)s students in class.')
+            )
+        ]
     )
 
     monitors_limit = models.PositiveIntegerField(
         _("Monitors limit"),
         default=0,
-        help_text=_("Monitors limit to insert in the class.")
+        help_text=_("Monitors limit to insert in the class."),
+        validators=[
+            MaxValueValidator(
+                5,
+                _('There can be no more than %(limit_value)s monitors in the class.')
+            ),
+            MinValueValidator(
+                0,
+                _('Ensure this value is greater than or equal to %(limit_value)s.')
+            )
+        ]
     )
 
     is_closed = models.BooleanField(

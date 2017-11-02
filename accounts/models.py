@@ -19,7 +19,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         re.compile('^[\w.@+-]+$'),
         _('Enter a valid username'),
         _('This value should only contain letters, numbers, \
-        and characters @/./+/-/_.'),
+        and characters ./@/+/-/_.'),
         'invalid'
     )
 

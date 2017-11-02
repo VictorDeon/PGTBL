@@ -46,6 +46,23 @@ class DeleteDisciplineTestCase(TestCase):
         self.discipline.delete()
         self.teacher.delete()
 
+    def test_delete_discipline_ok(self):
+        """
+        Test to delete discipline with success.
+        """
+
+        self.assertEqual(Discipline.objects.count(), 1)
+        self.client.login(username=self.teacher.username, password='test1234')
+        response = self.client.post(self.url, follow=True)
+        profile_url = reverse_lazy('accounts:profile')
+        self.assertRedirects(response, profile_url)
+        self.assertEqual(Discipline.objects.count(), 0)
+        check_messages(
+            self, response,
+            tag='alert-success',
+            content="Discipline deleted successfully."
+        )
+
     def test_delete_another_teacher_discipline(self):
         """
         Try to delete a discipline from another teacher.
@@ -87,21 +104,4 @@ class DeleteDisciplineTestCase(TestCase):
             self, response,
             tag='alert-danger',
             content="You are not authorized to do this action."
-        )
-
-    def test_delete_discipline_ok(self):
-        """
-        Test to delete discipline with success.
-        """
-
-        self.assertEqual(Discipline.objects.count(), 1)
-        self.client.login(username=self.teacher.username, password='test1234')
-        response = self.client.post(self.url, follow=True)
-        profile_url = reverse_lazy('accounts:profile')
-        self.assertRedirects(response, profile_url)
-        self.assertEqual(Discipline.objects.count(), 0)
-        check_messages(
-            self, response,
-            tag='alert-success',
-            content="Discipline deleted successfully."
         )
