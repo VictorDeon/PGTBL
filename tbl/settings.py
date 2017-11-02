@@ -55,7 +55,7 @@ USE_TZ = TIMEZONE_DATETIMES
 ALLOWED_HOSTS = ['*']
 
 # Permissions
-ROLEPERMISSIONS_MODULE = 'tbl.roles'
+ROLEPERMISSIONS_MODULE = 'core.roles'
 
 # Enviroments mode (development or production)
 if MODE_ENVIROMENT == 'development':

@@ -10,6 +10,8 @@ User = get_user_model()
 class EditUserTestCase(TestCase):
     """
     Test to edit personal information from user.
+    TODO:
+        - Insert messages
     """
 
     def setUp(self):

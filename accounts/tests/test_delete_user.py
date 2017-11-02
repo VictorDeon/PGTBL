@@ -9,6 +9,8 @@ User = get_user_model()
 class DeleteUserTestCase(TestCase):
     """
     Test to delete a user account.
+    TODO:
+        - insert messages
     """
 
     def setUp(self):

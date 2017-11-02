@@ -11,6 +11,8 @@ User = get_user_model()
 class LoginTestCase(TestCase):
     """
     Test all features about login.
+    TODO:
+        - Insert messages
     """
 
     def setUp(self):

@@ -12,7 +12,7 @@ def today_date(request):
     """
 
     context = {
-        'date': datetime.now()
+        'date': datetime.now().date()
     }
 
     return context

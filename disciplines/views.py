@@ -64,7 +64,7 @@ class DisciplineCreationView(LoginRequiredMixin,
             form.instance.classroom
         )
 
-        # Return to form_valid function from django to finish creation.
+        # Redirect to success url
         return super(DisciplineCreationView, self).form_valid(form)
 
 
@@ -107,7 +107,7 @@ class DisciplineUpdateView(LoginRequiredMixin,
             form.instance.classroom
         )
 
-        # Save and redirect to success_url.
+        # Redirect to success_url.
         return super(DisciplineUpdateView, self).form_valid(form)
 
 
@@ -177,7 +177,7 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
         success = self.enter_discipline(password)
 
         if success:
-            # Save form and redirect to success_url
+            # Redirect to success_url
             return super(DisciplineListSearchView, self).form_valid(form)
         else:
             # Redirect to same page with error.

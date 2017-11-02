@@ -10,6 +10,9 @@ User = get_user_model()
 class RegisterTestCase(TestCase):
     """
     Test to register a new user into the system.
+    TODO:
+        - Insert messages
+        - Verify groups after create user
     """
 
     def setUp(self):

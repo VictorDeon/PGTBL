@@ -1,4 +1,4 @@
-# Django
+# Django app
 from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
@@ -12,10 +12,10 @@ from django.views.generic import (
     CreateView, ListView, UpdateView, FormView, DeleteView
 )
 
-# Disciplines APP
+# Disciplines app
 from disciplines.models import Discipline
 
-# Accounts APP
+# Accounts app
 from .forms import UserCreationForm, PasswordResetForm
 from .models import PasswordReset
 
@@ -115,7 +115,9 @@ class RegisterView(CreateView):
         Logs the user into the system.
         """
 
+        # Get the user saved by form.
         user = form.save()
+
         user = authenticate(
             username=user.username,
             password=form.cleaned_data['password1']
@@ -163,7 +165,7 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
             _("User updated successfully.")
         )
 
-        # Save the form and redirect to success_url
+        # Redirect to success_url
         return super(EditProfileView, self).form_valid(form)
 
 
@@ -226,12 +228,12 @@ class EditPasswordView(LoginRequiredMixin, FormView):
         Receive the form already validated.
         """
 
-        # When you insert new kwargs you need to save the instance
+        # When you insert new kwargs you need to save the instance again
         form.save()
 
         messages.success(self.request, _("Password updated successfully."))
 
-        # Save and redirect to success_url
+        # Redirect to success_url
         return super(EditPasswordView, self).form_valid(form)
 
 
@@ -273,7 +275,7 @@ class ResetPasswordView(FormView):
             _("An email was sent with more details on how to create a new password")
         )
 
-        # Save and redirect to success_url
+        # Redirect to success_url
         return super(ResetPasswordView, self).form_valid(form)
 
 

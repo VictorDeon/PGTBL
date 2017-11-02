@@ -73,7 +73,7 @@ class HomePageView(FormListView):
             _("Message sent successfully.")
         )
 
-        # Save and redirect to success_url
+        # Redirect to success_url
         return super(HomePageView, self).form_valid(form)
 
 

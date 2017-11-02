@@ -10,6 +10,8 @@ User = get_user_model()
 class EditPasswordTestCase(TestCase):
     """
     Test to edit password from user.
+    TODO:
+        - Insert messages
     """
 
     def setUp(self):

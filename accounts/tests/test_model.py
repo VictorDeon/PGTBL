@@ -5,6 +5,10 @@ from accounts.models import User
 class ModelTestCase(TestCase):
     """
     Test all features about user model.
+    TODO:
+        - Test username validation.
+        - Test email validation
+        - Test fields validation
     """
 
     def setUp(self):
