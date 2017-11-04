@@ -78,7 +78,11 @@
                 <div class="col-md-9 col-sm-8 col-xs-12">
                   <span>
                     <b>{% trans 'Teacher' %}</b>:
-                    {{ discipline.teacher.name }}
+                    {% if discipline.teacher.name %}
+                      {{ discipline.teacher.name }}
+                    {% else %}
+                      {{ discipline.teacher.email }}
+                    {% endif %}
                   </span>
                   <br />
                   <span>

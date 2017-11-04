@@ -6,13 +6,15 @@ Disciplines functionalities
 # Django app
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import Group
 from django.utils.text import slugify
 from django.contrib import messages
+from django.db.models import Q
+
+# Permissions
+from rolepermissions.roles import assign_role
 
 # Core app
 from core.permissions import ModelPermissionMixin, ObjectPermissionMixin
@@ -51,9 +53,8 @@ class DisciplineCreationView(LoginRequiredMixin,
 
         # Specifies who is the creator of the discipline
         form.instance.teacher = self.request.user
+        # Save the instance to slugify
         form.save()
-
-        messages.success(self.request, _('Discipline created successfully.'))
 
         # Autocomplete slug url with id-title-classroom
         form.instance.slug = slugify(
@@ -63,6 +64,11 @@ class DisciplineCreationView(LoginRequiredMixin,
             "-" +
             form.instance.classroom
         )
+
+        # Save slug
+        form.save()
+
+        messages.success(self.request, _('Discipline created successfully.'))
 
         # Redirect to success url
         return super(DisciplineCreationView, self).form_valid(form)
@@ -96,8 +102,6 @@ class DisciplineUpdateView(LoginRequiredMixin,
         Receive the form already validated.
         """
 
-        messages.success(self.request, _("Discipline updated successfully."))
-
         # Autocomplete slug url with id-title-classroom
         form.instance.slug = slugify(
             str(form.instance.id) +
@@ -106,6 +110,10 @@ class DisciplineUpdateView(LoginRequiredMixin,
             "-" +
             form.instance.classroom
         )
+
+        form.save()
+
+        messages.success(self.request, _("Discipline updated successfully."))
 
         # Redirect to success_url.
         return super(DisciplineUpdateView, self).form_valid(form)
@@ -171,55 +179,50 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
         Form to insert students and monitors in the discipline.
         """
 
-        # Field of form.
-        password = form.cleaned_data['password']
-
-        success = self.enter_discipline(password)
+        success = self.enter_discipline(form)
 
         if success:
             # Redirect to success_url
             return super(DisciplineListSearchView, self).form_valid(form)
-        else:
-            # Redirect to same page with error.
-            return redirect('disciplines:search')
 
-    def enter_discipline(self, password):
+        # Redirect to same page with error.
+        return super(DisciplineListSearchView, self).form_invalid(form)
+
+    def enter_discipline(self, form):
         """
         Verify if the password is correct and insert user in the discipline.
         """
 
         queryset = self.get_queryset()
-        disciplines = queryset.filter(password=password)
-        slug = self.kwargs.get('slug', '')
 
-        for discipline in disciplines:
-            if discipline.slug == slug:
-                self.insert_user(discipline)
+        try:
+            discipline = queryset.get(
+                Q(password=form.cleaned_data['password']),
+                Q(slug=self.kwargs.get('slug', ''))
+            )
+        except Exception:
+            messages.error(
+                self.request,
+                _("Incorrect Password.")
+            )
 
-                messages.success(
-                    self.request,
-                    _("You have been entered into the discipline: {0}"
-                      .format(discipline))
-                )
-
-                return True
-
-        messages.error(
-            self.request,
-            _("Incorrect Password.")
-        )
-
-        return False
-
-    def insert_user(self, discipline):
-        """
-        Insert user in the discipline and change his permissions.
-        """
+            return False
 
         if self.request.user.is_teacher:
-            self.insert_monitor(discipline)
+            success = self.insert_monitor(discipline)
         else:
-            self.insert_student(discipline)
+            success = self.insert_student(discipline)
+
+        if success:
+            messages.success(
+                self.request,
+                _("You have been entered into the discipline: {0}"
+                  .format(discipline.title))
+            )
+
+            return True
+
+        return False
 
     def insert_monitor(self, discipline):
         """
@@ -232,10 +235,13 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
                 self.request,
                 _("There are no more vacancies to monitor")
             )
-        else:
-            discipline.monitors.add(self.request.user)
-            group = get_object_or_404(Group, name='Monitor')
-            group.user_set.add(self.request.user)
+
+            return False
+
+        assign_role(self.request.user, 'monitor')
+        discipline.monitors.add(self.request.user)
+
+        return True
 
     def insert_student(self, discipline):
         """
@@ -244,13 +250,20 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
         """
 
         if discipline.students.count() >= discipline.students_limit:
+            if not discipline.is_closed:
+                discipline.is_closed = True
+                discipline.save()
+
             messages.error(
                 self.request,
                 _("Crowded discipline.")
             )
-            discipline.is_closed = True
-        else:
-            discipline.students.add(self.request.user)
+
+            return False
+
+        discipline.students.add(self.request.user)
+
+        return True
 
     def search_disciplines(self, disciplines):
         """
