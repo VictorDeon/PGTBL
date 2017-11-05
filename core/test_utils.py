@@ -39,13 +39,13 @@ def user_factory(qtd=1,
                  email='test',
                  password='test1234',
                  is_teacher=True,
-                 count=0,
                  **fields):
     """
     Create N users and return a list.
     """
 
     users = []
+    count = User.objects.all().count()
 
     for n in range(qtd):
         user = User.objects.create_user(

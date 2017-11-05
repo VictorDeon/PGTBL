@@ -11,6 +11,58 @@ from core.test_utils import (
 User = get_user_model()
 
 
+class SimpleSearchAndEnterDisciplineTestCase(TestCase):
+    """
+    Simple test to view all user disciplines, search and enter in discipline.
+    """
+
+    def setUp(self):
+        """
+        This method will run before any test case.
+        """
+
+        self.client = Client()
+        self.teacher = user_factory()
+        self.url = reverse_lazy('disciplines:search')
+        self.client.login(username=self.teacher.username, password='test1234')
+
+    def tearDown(self):
+        self.teacher.delete()
+
+    def test_status_code_200(self):
+        """
+        Test status code and templates.
+        """
+
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'disciplines/list.html')
+
+    def test_context(self):
+        """
+        Test to get all context from page.
+        """
+
+        response = self.client.get(self.url)
+        self.assertTrue('user' in response.context)
+        self.assertTrue('paginator' in response.context)
+        self.assertTrue('is_paginated' in response.context)
+        self.assertTrue('page_obj' in response.context)
+        self.assertTrue('disciplines' in response.context)
+        self.assertTrue('date' in response.context)
+
+    def test_redirect_to_login(self):
+        """
+        Try to acess profile without logged in.
+        """
+
+        self.client.logout()
+        response = self.client.get(self.url)
+        login_url = reverse_lazy('accounts:login')
+        redirect_url = '{0}?next={1}'.format(login_url, self.url)
+        self.assertRedirects(response, redirect_url)
+
+
 class SearchAndEnterDisciplineTestCase(TestCase):
     """
     Test to view all user disciplines, search and enter in discipline.
@@ -23,7 +75,7 @@ class SearchAndEnterDisciplineTestCase(TestCase):
 
         self.client = Client()
         self.teacher = user_factory(name='Pedro')
-        self.teachers = user_factory(qtd=4, count=1)
+        self.teachers = user_factory(qtd=4)
         self.student = user_factory(
             name='Maria',
             username='maria',
@@ -32,13 +84,11 @@ class SearchAndEnterDisciplineTestCase(TestCase):
         )
         self.students1 = user_factory(
             qtd=8,
-            is_teacher=False,
-            count=5
+            is_teacher=False
         )
         self.students2 = user_factory(
             qtd=3,
-            is_teacher=False,
-            count=13,
+            is_teacher=False
         )
         self.discipline = mommy.make(
             Discipline,
@@ -90,26 +140,6 @@ class SearchAndEnterDisciplineTestCase(TestCase):
         Discipline.objects.all().delete()
         User.objects.all().delete()
 
-    def test_status_code_200(self):
-        """
-        Test status code and templates.
-        """
-
-        response = self.client.get(self.url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'disciplines/list.html')
-
-    def test_redirect_to_login(self):
-        """
-        Try to acess profile without logged in.
-        """
-
-        self.client.logout()
-        response = self.client.get(self.url)
-        login_url = reverse_lazy('accounts:login')
-        redirect_url = '{0}?next={1}'.format(login_url, self.url)
-        self.assertRedirects(response, redirect_url)
-
     def test_disciplines(self):
         """
         Test the discipline quantity.
@@ -140,19 +170,6 @@ class SearchAndEnterDisciplineTestCase(TestCase):
         # Students and monitors in discipline
         self.assertEqual(self.discipline.students.count(), 8)
         self.assertEqual(self.discipline.monitors.count(), 2)
-
-    def test_context(self):
-        """
-        Test to get all context from page.
-        """
-
-        response = self.client.get(self.url)
-        self.assertTrue('user' in response.context)
-        self.assertTrue('paginator' in response.context)
-        self.assertTrue('is_paginated' in response.context)
-        self.assertTrue('page_obj' in response.context)
-        self.assertTrue('disciplines' in response.context)
-        self.assertTrue('date' in response.context)
 
     def test_discipline_pagination(self):
         """

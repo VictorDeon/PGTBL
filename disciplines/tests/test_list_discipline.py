@@ -10,9 +10,9 @@ from core.test_utils import (
 User = get_user_model()
 
 
-class ReadProfileDisciplinesTestCase(TestCase):
+class SimpleReadProfileDisciplinesTestCase(TestCase):
     """
-    Test to view all user disciplines.
+    Simple test to view all user disciplines
     """
 
     def setUp(self):
@@ -21,35 +21,12 @@ class ReadProfileDisciplinesTestCase(TestCase):
         """
 
         self.client = Client()
-        self.teacher = user_factory(
-            username='Teacher1',
-            email='teacher1@gmail.com',
-            password='test1234'
-        )
-        self.teachers = user_factory(2)
-        self.students = user_factory(8, is_teacher=False, count=3)
-        self.disciplines = mommy.make(
-            Discipline,
-            teacher=self.teacher,
-            _quantity=6
-        )
-        self.discipline = mommy.make(
-            Discipline,
-            teacher=self.teacher,
-            students=self.students,
-            monitors=self.teachers,
-            make_m2m=True
-        )
+        self.teacher = user_factory()
         self.url = reverse_lazy('accounts:profile')
         self.client.login(username=self.teacher.username, password='test1234')
 
     def tearDown(self):
-        """
-        This method will run after any test.
-        """
-
-        Discipline.objects.all().delete()
-        User.objects.all().delete()
+        self.teacher.delete()
 
     def test_status_code_200(self):
         """
@@ -72,18 +49,6 @@ class ReadProfileDisciplinesTestCase(TestCase):
         redirect_url = '{0}?next={1}'.format(login_url, self.url)
         self.assertRedirects(response, redirect_url)
 
-    def test_disciplines(self):
-        """
-        Test the discipline quantity.
-        """
-
-        self.assertEqual(Discipline.objects.count(), 7)
-        self.assertEquals(Discipline.objects.filter(
-            teacher=self.teacher
-        ).count(), 7)
-        self.assertEqual(self.discipline.students.count(), 8)
-        self.assertEqual(self.discipline.monitors.count(), 2)
-
     def test_context(self):
         """
         Test to get all context from page.
@@ -96,6 +61,61 @@ class ReadProfileDisciplinesTestCase(TestCase):
         self.assertTrue('page_obj' in response.context)
         self.assertTrue('disciplines' in response.context)
         self.assertTrue('date' in response.context)
+
+
+class ReadProfileDisciplinesTestCase(TestCase):
+    """
+    Test to view all user disciplines.
+    """
+
+    def setUp(self):
+        """
+        This method will run before any test case.
+        """
+
+        self.client = Client()
+        self.teacher = user_factory(
+            username='Teacher1',
+            email='teacher1@gmail.com',
+            password='test1234'
+        )
+        self.teachers = user_factory(2)
+        self.students = user_factory(8, is_teacher=False)
+        mommy.make(
+            Discipline,
+            teacher=self.teacher,
+            _quantity=6
+        )
+        self.discipline = mommy.make(
+            Discipline,
+            teacher=self.teacher,
+            students=self.students,
+            monitors=self.teachers,
+            make_m2m=True
+        )
+        self.url = reverse_lazy('accounts:profile')
+        self.client.login(username=self.teacher.username, password='test1234')
+
+    def tearDown(self):
+        """
+        This method will run after any test.
+        """
+
+        Discipline.objects.all().delete()
+        User.objects.all().delete()
+
+
+    def test_disciplines(self):
+        """
+        Test the discipline quantity.
+        """
+
+        self.assertEqual(Discipline.objects.count(), 7)
+        self.assertEquals(Discipline.objects.filter(
+            teacher=self.teacher
+        ).count(), 7)
+        self.assertEqual(self.discipline.students.count(), 8)
+        self.assertEqual(self.discipline.monitors.count(), 2)
 
     def test_teacher_discipline_pagination(self):
         """
