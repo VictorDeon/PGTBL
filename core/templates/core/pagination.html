@@ -12,12 +12,14 @@
       <a href="#" disabled><span class="fa fa-chevron-left"></span></a>
     </li>
   {% endif %}
+
   <!-- Insert the buttons of pages and active the current page -->
   {% for page in paginator.page_range %}
     <li class=" waves-effect {% if page == page_obj.number %}active{% endif %}">
-      <a href="?page={{page}}">{{page}}</a>
+      <a href="?page={{page}}">{{ page }}</a>
     </li>
   {% endfor %}
+
   <!-- Verify if has next page, otherwise disable the button -->
   {% if page_obj.has_next %}
     <li class="waves-effect">
@@ -27,7 +29,9 @@
     </li>
   {% else %}
     <li class="waves-effect">
-      <a href="#" disabled><span class="fa fa-chevron-right"></span></a>
+      <a href="#" disabled>
+        <span class="fa fa-chevron-right"></span>
+      </a>
     </li>
   {% endif %}
 </ul>

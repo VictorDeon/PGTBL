@@ -148,3 +148,8 @@ main {
   background: linear-gradient(#283F4A, #286090); /* Standard syntax */
   color: white;
 }
+
+/* */
+.alert {
+  margin-top: 20px;
+}

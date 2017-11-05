@@ -1,8 +1,11 @@
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
 from django.conf import settings
-from model_mommy import mommy
+
+# Get custom user model
+User = get_user_model()
 
 
 class LoginTestCase(TestCase):
@@ -17,9 +20,12 @@ class LoginTestCase(TestCase):
 
         self.client = Client()
         self.login_url = reverse('accounts:login')
-        self.user = mommy.prepare(settings.AUTH_USER_MODEL)
-        self.user.set_password('test1234')
-        self.user.save()
+        self.user = User.objects.create_user(
+            username='teste',
+            email='teste@gmail.com',
+            password='test1234',
+            is_teacher=True
+        )
 
     def tearDown(self):
         """

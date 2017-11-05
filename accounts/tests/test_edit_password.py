@@ -2,8 +2,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
-from model_mommy import mommy
-from django.conf import settings
+from core.test_utils import check_messages
 
 # Get custom user model
 User = get_user_model()
@@ -21,9 +20,12 @@ class EditPasswordTestCase(TestCase):
 
         self.client = Client()
         self.url = reverse('accounts:update-password')
-        self.user = mommy.prepare(settings.AUTH_USER_MODEL)
-        self.user.set_password('test1234')
-        self.user.save()
+        self.user = User.objects.create_user(
+            username='teste',
+            email='teste@gmail.com',
+            password='test1234',
+            is_teacher=True
+        )
 
     def tearDown(self):
         """
@@ -44,10 +46,14 @@ class EditPasswordTestCase(TestCase):
         }
 
         self.client.login(username=self.user.username, password='test1234')
-        response = self.client.post(self.url, data)
-        self.assertEquals(response.status_code, 302)
+        response = self.client.post(self.url, data, follow=True)
         self.user.refresh_from_db()
         self.assertTrue(self.user.check_password('test12345678'))
+        check_messages(
+            self, response,
+            tag='alert-success',
+            content="Password updated successfully."
+        )
 
     def test_redirect_to_login(self):
         """

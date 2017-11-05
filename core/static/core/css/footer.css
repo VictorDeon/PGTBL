@@ -5,12 +5,16 @@
   margin-bottom: 20px !important;
 }
 
+.footer-nav-black {
+  margin-top: 50px;
+}
+
 .footer-navbar:hover {
   color: white;
 }
 
 /* Bootstrap */
-.nav-tabs > li.active > a {
+.footer-nav-black > .nav-tabs > li.active > a {
   color: white !important;
   border-bottom: 3px solid #3998ea !important;
 }

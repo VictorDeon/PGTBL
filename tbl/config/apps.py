@@ -3,29 +3,26 @@ File to enter application dependencies in development and
 production environments
 """
 
-PRODUCTION_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'widget_tweaks',
+]
+
+TBL_APPS = [
     'core',
     'accounts',
     'disciplines',
 ]
 
-DEVELOPMENT_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django_extensions',
+EXTERNAL_APPS = [
+    'rolepermissions',
     'widget_tweaks',
-    'core',
-    'accounts',
-    'disciplines',
 ]
+
+PRODUCTION_APPS = DJANGO_APPS + TBL_APPS + EXTERNAL_APPS
+
+DEVELOPMENT_APPS = ['django_extensions'] + PRODUCTION_APPS

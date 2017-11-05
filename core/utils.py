@@ -1,6 +1,10 @@
+# Python functions
 import hashlib
 import string
 import random
+
+
+# --------------------------- RESET PASSWORD KEY -------------------------- #
 
 
 def random_key(size=5):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-13 02:53-0300\n"
+"POT-Creation-Date: 2017-10-29 03:43-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,227 +18,245 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: core/apps.py:7 core/templates/core/navbar.html:20
-#: core/templates/core/news.html:10 core/templates/core/news_details.html:23
-#: core/templates/core/news_list.html:23
+#: core/apps.py:7 core/templates/core/navbar.html:46
+#: core/templates/core/news.html:9 core/templates/core/news_details.html:18
+#: core/templates/core/news_list.html:18
 msgid "News"
 msgstr "Notícias"
 
-#: core/models.py:11 core/models.py:28
-msgid "Tag"
-msgstr ""
-
-#: core/models.py:16 core/models.py:73
-msgid "Identify"
-msgstr "Identificador"
-
-#: core/models.py:29
-msgid "Tags"
-msgstr "Tags"
-
-#: core/models.py:38
-msgid "Title"
-msgstr "Título"
-
-#: core/models.py:39
-msgid "Title of information."
-msgstr "Título da informação."
-
-#: core/models.py:45
-msgid "Image about information."
-msgstr "Imagem sobre a informação."
-
-#: core/models.py:46
-msgid "Image"
-msgstr "Imagem"
-
-#: core/models.py:52
-msgid "Created at"
-msgstr "Criado em"
-
-#: core/models.py:53
-msgid "Date of creation of information"
-msgstr "Data de criação da informação"
-
-#: core/models.py:58
-msgid "Link of information"
-msgstr "Link da informação"
-
-#: core/models.py:63
-msgid "Description"
-msgstr "Descrição"
-
-#: core/templates/core/contact.html:8 core/templates/core/navbar.html:21
-msgid "Contact"
-msgstr "Contato"
-
-#: core/templates/core/contact.html:15
+#: core/forms.py:16
 msgid "Name"
 msgstr "Nome"
 
-#: core/templates/core/contact.html:29
-msgid "Comment"
-msgstr "Comentário"
+#: core/forms.py:17
+msgid "Insert your name."
+msgstr "Insira seu nome."
 
-#: core/templates/core/contact.html:35
+#: core/forms.py:21
+msgid "Email"
+msgstr "Email"
+
+#: core/forms.py:22
+msgid "Insert your email."
+msgstr "Insira seu email."
+
+#: core/forms.py:27
+msgid "Message"
+msgstr "Mensagem"
+
+#: core/forms.py:28
+msgid "Insert the message."
+msgstr "Insira sua mensagem."
+
+#: core/generics.py:82
+#, python-brace-format
+msgid "Empty list and {class_name}.allow_empty is False."
+msgstr "Lista vazia e {class_name}.allow_empty é Falso."
+
+#: core/models.py:12 core/models.py:29
+msgid "Tag"
+msgstr "Tag"
+
+#: core/models.py:17 core/models.py:74
+msgid "Identify"
+msgstr "Identificador"
+
+#: core/models.py:30
+msgid "Tags"
+msgstr "Tags"
+
+#: core/models.py:39
+msgid "Title"
+msgstr "Título"
+
+#: core/models.py:40
+msgid "Title of information."
+msgstr "Título da informação."
+
+#: core/models.py:46
+msgid "Image about information."
+msgstr "Imagem sobre a informação."
+
+#: core/models.py:47
+msgid "Image"
+msgstr "Imagem"
+
+#: core/models.py:53
+msgid "Created at"
+msgstr "Criado em"
+
+#: core/models.py:54
+msgid "Date of creation of information"
+msgstr "Data de criação da informação"
+
+#: core/models.py:59
+msgid "Link of information"
+msgstr "Link da informação"
+
+#: core/models.py:64
+msgid "Description"
+msgstr "Descrição"
+
+#: core/templates/core/contact.html:10 core/templates/core/navbar.html:55
+msgid "Contact"
+msgstr "Contato"
+
+#: core/templates/core/contact.html:90
 msgid "Send"
 msgstr "Enviar"
 
-#: core/templates/core/features.html:7 core/templates/core/navbar.html:19
+#: core/templates/core/features.html:8 core/templates/core/navbar.html:37
 msgid "Features"
 msgstr "Funcionalidades"
 
-#: core/templates/core/features.html:14
+#: core/templates/core/features.html:22
 msgid "Manage disciplines and students"
 msgstr "Gerenciar disciplinas e estudantes"
 
-#: core/templates/core/features.html:31
+#: core/templates/core/features.html:44
 msgid "TBL features"
 msgstr "Funcionalidades do TBL"
 
-#: core/templates/core/features.html:47
+#: core/templates/core/features.html:65
 msgid "Report"
 msgstr "Relatório"
 
-#: core/templates/core/features.html:63
+#: core/templates/core/features.html:86
 msgid "Rank and Gamification"
 msgstr "Rank e Gameficação"
 
-#: core/templates/core/footer.html:8 core/templates/core/footer.html:30
-msgid "Advantages"
-msgstr "Vantagens"
-
-#: core/templates/core/footer.html:13 core/templates/core/footer.html:47
-#: core/templates/core/navbar.html:22
+#: core/templates/core/footer.html:13 core/templates/core/footer.html:55
+#: core/templates/core/navbar.html:64
 msgid "About"
 msgstr "Sobre"
 
-#: core/templates/core/footer.html:18 core/templates/core/footer.html:62
+#: core/templates/core/footer.html:23 core/templates/core/footer.html:166
+msgid "Advantages"
+msgstr "Vantagens"
+
+#: core/templates/core/footer.html:33 core/templates/core/footer.html:203
 msgid "Documentation"
 msgstr "Documentação"
 
-#: core/templates/core/footer.html:23 core/templates/core/footer.html:70
+#: core/templates/core/footer.html:43 core/templates/core/footer.html:217
 msgid "How to use"
 msgstr "Como usar"
 
-#: core/templates/core/footer.html:95
-msgid "Team Based Learning. Code licensed GPL-3.0"
-msgstr "Team Based Learning. Licença GPL-3.0"
-
-#: core/templates/core/footer.html:98
-msgid "Designed and built by"
-msgstr "Projetado por"
-
-#: core/templates/core/footer.html:99
-msgid "Team members"
-msgstr "Membros do time"
-
-#: core/templates/core/footer.html:99
-msgid "with the help of our"
-msgstr "com a ajuda dos nossos"
-
-#: core/templates/core/footer.html:100
-msgid "contributors"
-msgstr "contribuidores"
-
-#: core/templates/core/navbar.html:18 core/templates/core/tbl.html:7
-msgid "What is TBL"
-msgstr "O que é TBL"
-
-#: core/templates/core/navbar.html:26
-#, fuzzy
-#| msgid "Profile picture"
-msgid "Profile"
-msgstr "Foto de perfil"
-
-#: core/templates/core/navbar.html:30
-msgid "Register"
-msgstr "Cadastro"
-
-#: core/templates/core/news.html:22
-msgid "Without image"
-msgstr "Sem imagens"
-
-#: core/templates/core/news.html:29 core/templates/core/news_details.html:52
-#: core/templates/core/news_list.html:50
-msgid "There is no tags"
-msgstr "Não há tags"
-
-#: core/templates/core/news.html:43 core/templates/core/news_list.html:40
-msgid "Read more"
-msgstr "Leia mais"
-
-#: core/templates/core/news.html:48
-msgid "There is no news"
-msgstr "Não há notíciais"
-
-#: core/templates/core/news.html:52
-msgid "See all news"
-msgstr "Veja todas as notícias"
-
-#: core/templates/core/news_details.html:38
-msgid "Image news"
-msgstr "Imagem da notícia"
-
-#: core/templates/core/news_details.html:57
-#: core/templates/core/news_list.html:26
-msgid "Back"
-msgstr "Voltar"
-
-#: core/templates/core/news_list.html:56
-msgid "No news available"
-msgstr "Nenhuma notícia disponível"
-
-#: core/templates/core/search.html:8
-msgid "Search"
-msgstr "Pesquisar"
-
-#: core/templates/core/tbl.html:39
+#: core/templates/core/footer.html:63 core/templates/core/footer.html:86
 msgid "Preparation"
 msgstr "Preparação"
 
-#: core/templates/core/tbl.html:52
-msgid "Individual test: iRAT"
-msgstr "Prova individual: iRAT"
+#: core/templates/core/footer.html:64
+msgid "iRAT"
+msgstr "iRAT"
 
-#: core/templates/core/tbl.html:69
-msgid "Team test: gRAT and instructor feedback"
-msgstr "Prova em grupo: gRAT e feedback do professor"
+#: core/templates/core/footer.html:65
+msgid "gRAT"
+msgstr "gRAT"
 
-#: core/templates/core/tbl.html:86
-msgid "Application oriented activities and appeals"
-msgstr "Aplicação orientada a atividades e apelações"
+#: core/templates/core/footer.html:66
+msgid "Appeal"
+msgstr "Apelação"
 
-#: core/templates/core/tbl.html:101
+#: core/templates/core/footer.html:67
+msgid "Feedback"
+msgstr "Feedback"
+
+#: core/templates/core/footer.html:68 core/templates/core/footer.html:141
+msgid "Application oriented activities"
+msgstr "Aplicação orientada a atividades"
+
+#: core/templates/core/footer.html:69 core/templates/core/footer.html:149
 msgid "Pair test"
 msgstr "Avaliação em pares"
 
-#~ msgid "Password"
-#~ msgstr "Senha"
+#: core/templates/core/footer.html:96
+msgid "Individual test: iRAT"
+msgstr "Prova individual: iRAT"
 
-#~ msgid "Enter"
-#~ msgstr "Logar"
+#: core/templates/core/footer.html:110
+msgid "Team test: gRAT"
+msgstr "Prova em grupo: gRAT"
 
-#~ msgid "Forgot password?"
-#~ msgstr "Esqueceu a senha?"
+#: core/templates/core/footer.html:123
+msgid "Appels"
+msgstr "Apelações"
 
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
+#: core/templates/core/footer.html:133
+msgid "Instructor feedback"
+msgstr "Feedback do professor"
 
-#~ msgid "Reset password"
-#~ msgstr "Resetar senha"
+#: core/templates/core/footer.html:257
+msgid "Team Based Learning. Code licensed GPL-3.0"
+msgstr "Team Based Learning. Licença GPL-3.0"
 
-#~ msgid "Send email"
-#~ msgstr "Enviar email"
+#: core/templates/core/footer.html:262
+msgid "Designed and built by"
+msgstr "Projetado por"
 
-#~ msgid "Select the type of user"
-#~ msgstr "Selecionar tipo de usuário"
+#: core/templates/core/footer.html:264
+msgid "Team members"
+msgstr "Membros do time"
 
-#~ msgid "Teacher"
-#~ msgstr "Professor"
+#: core/templates/core/footer.html:266
+msgid "with the help of our"
+msgstr "com a ajuda dos nossos"
 
-#~ msgid "Student"
-#~ msgstr "Aluno"
+#: core/templates/core/footer.html:268
+msgid "contributors"
+msgstr "contribuidores"
 
-#~ msgid "Confirm password"
-#~ msgstr "Confirmar senha"
+#: core/templates/core/navbar.html:79
+msgid "Profile"
+msgstr "Perfil"
+
+#: core/templates/core/navbar.html:101
+msgid "Register"
+msgstr "Cadastro"
+
+#: core/templates/core/news.html:34
+msgid "Without image"
+msgstr "Sem imagens"
+
+#: core/templates/core/news.html:47 core/templates/core/news_details.html:70
+#: core/templates/core/news_list.html:66
+msgid "There is no tags"
+msgstr "Não há tags"
+
+#: core/templates/core/news.html:74 core/templates/core/news_list.html:52
+msgid "Read more"
+msgstr "Leia mais"
+
+#: core/templates/core/news.html:82
+msgid "There is no news"
+msgstr "Não há notíciais"
+
+#: core/templates/core/news.html:91
+msgid "See all news"
+msgstr "Veja todas as notícias"
+
+#: core/templates/core/news_details.html:48
+msgid "Image news"
+msgstr "Imagem da notícia"
+
+#: core/templates/core/news_details.html:78
+#: core/templates/core/news_list.html:28
+msgid "Back"
+msgstr "Voltar"
+
+#: core/templates/core/news_list.html:76
+msgid "No news available"
+msgstr "Nenhuma notícia disponível"
+
+#: core/templates/core/search.html:12
+msgid "Search"
+msgstr "Pesquisar"
+
+#: core/views.py:58
+#, python-brace-format
+msgid "PGTBL - message from {0}"
+msgstr "PGTBL - messagem de {0}"
+
+#: core/views.py:73
+msgid "Message sent successfully."
+msgstr "Mensagem enviada com sucesso."

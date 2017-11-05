@@ -1,67 +1,185 @@
-<!-- import to staticfiles -->
+{% extends 'accounts/profile.html' %}
 {% load static %}
-
-<!-- internationalization -->
+{% load widget_tweaks %}
 {% load i18n %}
 
-<!-- Disciplines list -->
-{% for discipline in disciplines %}
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#{{discipline.id}}">
-                  <span><i class="fa fa-book"></i> {{discipline.title}}</span>
-                  <span class="pull-right">Turma A <i class="fa fa-slideshare"></i></span>
-                </a>
-              </h4>
-            </div>
-            <div id="{{discipline.id}}" class="panel-collapse collapse out">
-              <div class="panel-body">
-                <div class="row">
-                  <div class="col-sm-11">
-                    {{discipline.description|linebreaksbr}}
-                  </div>
-                  <div class="col-sm-1">
-                    <span class="label label-primary">30/50</span>
-                  </div>
-                </div>
+{% block css %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'disciplines/css/list.css' %}" />
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'disciplines:search' %}">
+       {% trans 'Search Discipline' %}
+    </a>
+  </li>
+{% endblock %}
+
+<!-- Discipline list block -->
+{% block profile %}
+  <div class="container-fluid">
+    <!-- Header -->
+    <div class="page-header">
+      <h1 class="white">
+        {% trans 'Discipline list' %}
+      </h1>
+    </div>
+
+    <!-- Discipline search and filter input -->
+    <form method="GET" accept-charset="utf-8">
+      <div class="input-group">
+        <!-- Order dropdown menu -->
+        <div class="dropdown input-group-btn">
+          <!-- Button -->
+          <button class="btn btn-primary dropdown-toggle btn-border"
+                  type="button"
+                  data-toggle="dropdown">
+                  <span class="fa fa-chevron-down"></span>
+                  <b>{% trans 'Order' %}</b>
+          </button>
+
+          <!-- Dropdown -->
+          <ul class="dropdown-menu">
+            <!-- Course order -->
+            <li>
+              <a href="?order=course">
+                 {% trans 'Course' %}
+              </a>
+            </li>
+
+            <!-- Discipline order -->
+            <li>
+              <a href="?order=title">
+                 {% trans 'Discipline' %}
+              </a>
+            </li>
+
+            <!-- Teacher order -->
+            <li>
+              <a href="?order=teacher__name">
+                 {% trans 'Teacher' %}
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Search input -->
+        <input
+          type="text"
+          class="form-control"
+          name="q_info"
+          value="{{ request.GET.q_info }}"
+          placeholder="{% trans 'Search' %}"
+        />
+
+        <!-- Submit button -->
+        <div class="input-group-btn">
+          <button class="btn btn-primary btn-border"
+                  type="submit">
+                  <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div> <!-- Input group div -->
+    </form> <!-- Form -->
+
+    <!-- Discipline list -->
+    <div class="row">
+      <div class="col-sm-12">
+        <!-- Panel group -->
+        <div class="panel-group" id="accordion">
+
+          <!-- Disciplines panel -->
+          {% for discipline in disciplines %}
+
+            <div class="panel panel-default">
+              <!-- Discipline panel header -->
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse"
+                     data-parent="#accordion"
+                     href="#{{ discipline.id }}">
+                      <span>
+                        <i class="fa fa-book"></i>
+                        {{ discipline.title }}
+                      </span>
+                      <span class="pull-right">
+                        {{ discipline.classroom }}
+                        <i class="fa fa-slideshare"></i>
+                      </span>
+                  </a>
+                </h4>
               </div>
-              <div class="panel-footer">
-                <div class="row">
-                  <div class="col-md-9 col-sm-8 col-xs-12">
-                    <span><b>{% trans 'Teacher' %}</b>: {{discipline.teacher}}</span><br />
-                    <span><b>{% trans 'Course' %}</b>: <span class="justify">{{discipline.course}}</span></span>
-                  </div>
-                  <div class="col-md-3 col-sm-4 col-xs-12">
-                    <div class="btn-group btn-group-justified">
-                      <div class="btn-group">
-                        <a href="#" class="btn btn-primary btn-class"><i class="fa fa-eye"></i></a>
-                      </div>
-                      <div class="btn-group">
-                        <a href="#" class="btn btn-primary btn-class"><i class="fa fa-trophy"></i></a>
-                      </div>
-                      <div class="btn-group">
-                        <a href="#" class="btn btn-primary btn-class"><i class="fa fa-edit"></i></a>
-                      </div>
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-danger btn-class" data-toggle="modal" data-target="#delete-modal">
-                          <i class="fa fa-trash"></i>
-                        </button>
-                      </div>
+
+              <!-- Discipline collapse -->
+              <div id="{{ discipline.id }}" class="panel-collapse collapse out">
+                <!-- Discipline panel body -->
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-sm-11">
+                      {{ discipline.description|truncatewords:35 }}
+                    </div>
+                    <div class="col-sm-1">
+                      <span class="label label-primary">
+                        {{ discipline.students.count }}/{{ discipline.students_limit }}
+                      </span>
                     </div>
                   </div>
                 </div>
-              </div>
+
+                <!-- Discipline panel footer -->
+                <div class="panel-footer">
+                  <div class="row">
+                    <!-- Discipline teacher and course -->
+                    <div class="col-sm-6">
+                      <span>
+                        <b>{% trans 'Teacher' %}</b>:
+                        {{ discipline.teacher.name }}
+                      </span>
+                      <br />
+                      <span>
+                        <b>{% trans 'Course' %}</b>:
+                        <span class="justify">
+                          {{ discipline.course }}
+                        </span>
+                      </span>
+                    </div>
+
+                    <!-- Enter in the discipline form -->
+                    <div class="col-sm-6">
+                      <form action="{% url 'disciplines:enter' discipline.slug %}" method="POST">
+                        <!-- Form security -->
+                        {% csrf_token %}
+
+                        <!-- Password field and submit button -->
+                        <div class="input-group">
+                          {% render_field form.password class="form-control" type="password" placeholder=form.password.label %}
+                          <div class="input-group-btn">
+                            <button class="btn btn-primary"
+                                    type="submit">
+                                    <i class="fa fa-user-plus"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div> <!-- Discipline panel-footer row -->
+                </div> <!-- Discipline panel-footer -->
+              </div> <!-- Discipline collapse -->
+            </div> <!-- Discipline panel-default -->
+
+          <!-- If there is no disciplines -->
+          {% empty %}
+            <div class="alert alert-info">
+              {% trans 'There is no disciplines available' %}.
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          {% endfor %}
+
+        </div> <!-- Disciplines panel group -->
+      </div> <!-- Discipline list col -->
+    </div> <!-- Discipline list row -->
+
     {% include 'core/pagination.html' %}
-  </div>
-{% empty %}
-  <p class="white">{% trans 'There is no disciplines.' %}</p>
-{% endfor %}
+  </div> <!-- Discipline list container -->
+{% endblock %}

@@ -1,29 +1,21 @@
-<!-- Extends all code from core/base.html -->
 {% extends "core/base.html" %}
-
-<!-- import to staticfiles -->
 {% load static %}
-
-<!-- Import custom form fields -->
 {% load widget_tweaks %}
-
-<!-- internationalization -->
 {% load i18n %}
 
-<!-- insert css into core/base.html css block -->
 {% block css %}
-  <link rel="stylesheet" href="{% static 'accounts/css/authentication.css' %}">
+  <link rel="stylesheet" href="{% static 'accounts/css/authentication.css' %}" />
 {% endblock %}
 
 {% block body %}
   <header>
-
     <!-- Navbar -->
     {% include 'core/navbar.html' %}
-
   </header>
   <main>
+    {% include 'core/messages.html' %}
 
+    <!-- Login block -->
     <div class="login">
       <h1>Login</h1>
 
@@ -34,37 +26,57 @@
 
         <!-- Get all generic erros from form -->
         {% for error in form.non_field_errors %}
-          <div class="alert alert-danger">{{error}}</div>
+          <div class="alert alert-danger">
+            {{ error }}
+          </div>
         {% endfor %}
 
         <!-- Username or email field -->
         <div class="group">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-user white"></i></span>
+            <span class="input-group-addon">
+              <i class="fa fa-user white"></i>
+            </span>
             {% render_field form.username class="input-login form-control" type="text" placeholder=form.username.label %}
           </div>
+
+          <!-- Username errors -->
           {% for error in form.username.errors %}
-            <span class="error">{{ error }}</span>
+            <span class="error">
+              {{ error }}
+            </span>
           {% endfor %}
         </div>
 
         <!-- Password field -->
         <div class="group">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-lock icon-md white"></i></span>
+            <span class="input-group-addon">
+              <i class="fa fa-lock icon-md white"></i>
+            </span>
             {% render_field form.password class="input-login form-control" type="password" placeholder=form.password.label %}
           </div>
+
+          <!-- Password errors -->
           {% for error in form.username.errors %}
-            <span class="error">{{ error }}</span>
+            <span class="error">
+              {{ error }}
+            </span>
           {% endfor %}
         </div>
 
         <!-- Submit button-->
-        <button class="btn btn-lg btn-primary btn-block login-btn" type="submit">{% trans 'Enter' %}</button>
+        <button class="btn btn-lg btn-primary btn-block login-btn"
+                type="submit">
+                {% trans 'Enter' %}
+        </button>
 
         <!-- Forget password link -->
-        <a href="{% url 'accounts:reset-password' %}" class="forget-password">{% trans 'Forget password' %} ?</a>
+        <a href="{% url 'accounts:reset-password' %}"
+           class="forget-password">
+           {% trans 'Forget password' %} ?
+        </a>
       </form>
-    </div>
+    </div> <!-- Close login block -->
   </main>
 {% endblock %}
