@@ -24,7 +24,7 @@ ENV MODE_ENVIROMENT='development'
 
 # Install pip dependecies
 RUN pip3 install --upgrade pip
-RUN pip3 install -r requirements-dev.txt
+RUN pip3 install -r requirements.txt
 
 # Execute django commands
 RUN python3 manage.py migrate
