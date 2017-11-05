@@ -1,7 +1,3 @@
-# Django functions
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.auth.models import Permission
-from django.shortcuts import get_object_or_404
 # Python functions
 import hashlib
 import string

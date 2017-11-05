@@ -4,7 +4,6 @@ File to provides some global functionality for testing.
 
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import get_user_model
-from disciplines.models import Discipline
 
 # Get the custom user model
 User = get_user_model()

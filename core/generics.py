@@ -4,7 +4,7 @@ File to generate new generic views.
 
 from django.utils.translation import ugettext as _
 from django.views.generic.edit import FormMixin
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 from django.http import Http404
 
 
