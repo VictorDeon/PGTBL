@@ -45,6 +45,7 @@ urlpatterns = [
         views.EditPasswordView.as_view(),
         name='update-password'
     ),
+    # /profile/delete/
     url(
         r'^profile/delete/$',
         views.DeleteProfileView.as_view(),
@@ -53,13 +54,13 @@ urlpatterns = [
     # /reset-password/
     url(
         r'^reset-password/$',
-        views.reset_password,
+        views.ResetPasswordView.as_view(),
         name="reset-password"
     ),
     # /confirm-new-password/3d9j230r2m98mr2398h9r2h39rhc9/
     url(
         r'^confirm-new-password/(?P<key>\w+)/$',
-        views.reset_password_confirm,
+        views.ResetPasswordConfirmView.as_view(),
         name="reset-password-confirm"
     ),
 ]

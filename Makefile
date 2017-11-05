@@ -51,7 +51,7 @@ notebook:
 
 messages:
 	# Create a django.po to insert translations (pt-BR)
-	django-admin makemessages -l pt_BR
+	django-admin makemessages -l pt_BR -i "tbl/*.py"
 
 compilemessages:
 	# Create translations

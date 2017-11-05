@@ -40,7 +40,7 @@ class UserAdmin(BaseUserAdmin):
         })
     )
 
-    # class that represent the admin form only when adding a new user
+    # Class that represent the admin form only when adding a new user
     add_form = UserCreationForm
     # How the admin form will be structured only when adding a new user
     add_fieldsets = (

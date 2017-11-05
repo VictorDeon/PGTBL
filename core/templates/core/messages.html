@@ -1,0 +1,19 @@
+<!-- Messages -->
+<div class="container-fluid">
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert {{ message.tags }} alert-dismissable fade in">
+        <!-- Close icon -->
+        <a href="#"
+           class="close"
+           data-dismiss="alert"
+           aria-label="close">
+           &times;
+        </a>
+
+        <!-- Message -->
+        <span>{{ message }}</span>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>

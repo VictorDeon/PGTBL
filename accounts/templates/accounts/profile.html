@@ -1,13 +1,7 @@
-<!-- Extends all code from core/base.html -->
 {% extends "core/base.html" %}
-
-<!-- import to staticfiles -->
 {% load static %}
-
-<!-- internationalization -->
 {% load i18n %}
 
-<!-- insert css into core/base.html css block -->
 {% block css %}
   <link rel="stylesheet" href="{% static 'accounts/css/profile.css' %}">
   <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}">
@@ -15,10 +9,7 @@
 
 {% block body %}
   <header>
-
-    <!-- Navbar -->
     {% include 'core/navbar.html' %}
-
   </header>
   <main>
 
@@ -27,36 +18,40 @@
       <div class="col-sm-12 navegation">
         <ul class="breadcrumb pull-left">
           {% block breadcrumb %}
-            <li><a href="{% url 'accounts:profile' %}">
-              {% trans 'Profile' %}
-            </a></li>
+            <li>
+              <a href="{% url 'accounts:profile' %}">
+                {% trans 'Profile' %}
+              </a>
+            </li>
           {% endblock %}
         </ul>
+
+        <!-- Breadcrumbs date -->
         <p class="pull-right">
-          {{ date }} <i class="fa fa-calendar"></i>
+          {{ date }}
+          <i class="fa fa-calendar"></i>
         </p>
       </div>
     </div>
 
     <!-- Profile page -->
     <div class="row">
-
-      <!-- Sidebar -->
       {% include 'accounts/sidebar.html' %}
-
-      <!-- profile -->
       <div class="col-sm-10">
+        {% include 'core/messages.html' %}
+
+        <!-- profile -->
         {% block profile %}
           <div class="container-fluid">
-
             <!-- Header -->
             <div class="page-header profile">
-              <h1 class="white">{% trans 'Profile' %}</h1>
+              <h1 class="white">
+                {% trans 'Profile' %}
+              </h1>
             </div>
 
             <!-- Body -->
             <div class="row">
-
               <!-- Profile photo -->
               <div class="col-sm-3">
                 {% if user.photo %}
@@ -76,18 +71,21 @@
 
               <!-- Profile information -->
               <div class="col-sm-9">
-
                 <!-- Labels -->
                 <div class="row">
+                  <!-- Teacher label -->
                   {% if user.is_teacher %}
                     <span class="label label-primary pull-left label-text">
                       {% trans 'Teacher' %}
                     </span>
+                  <!-- Student label -->
                   {% else %}
                     <span class="label label-primary pull-left label-text">
                       {% trans 'Student' %}
                     </span>
                   {% endif %}
+
+                  <!-- ID label -->
                   <span class="label label-primary label-number pull-right">
                     ID: {{user.id}}
                   </span>
@@ -100,6 +98,7 @@
                   <h2 class="name">{% trans 'Change your name!' %}</h2>
                 {% endif %}
                 <table class="lighten-blue-grey">
+                  <!-- Email -->
                   <tr>
                     <td>
                       <i class="fa fa-envelope"></i>
@@ -107,6 +106,8 @@
                     </td>
                     <td>{{ user.email }}</td>
                   </tr>
+
+                  <!-- Institution -->
                   <tr>
                     <td>
                       <i class="fa fa-institution"></i>
@@ -114,6 +115,8 @@
                     </td>
                     <td>{{ user.institution }}</td>
                   </tr>
+
+                  <!-- Course -->
                   <tr>
                     <td>
                       <i class="fa fa-graduation-cap"></i>
@@ -122,37 +125,27 @@
                     <td>{{ user.course }}</td>
                   </tr>
                 </table>
-
-              </div> <!-- End profile information -->
-            </div> <!-- End body -->
+              </div> <!-- Close profile information -->
+            </div> <!-- Close body -->
 
             <!-- Authentication information -->
             <div class="row">
               <div class="col-sm-12">
                 <p class="lighten-blue-grey pull-left">
                   <i class="fa fa-history"></i>
-                    {% trans 'Last login' %}:
-                  {% if user.is_authenticated %}
-                    {{user.last_login}}
-                  {% else %}
-                    {{ user.last_login }}
-                  {% endif %}
+                  <b>{% trans 'Last login' %}</b>:
+                  {{user.last_login}}
                 </p>
                 <p class="lighten-blue-grey pull-right">
-                  {% trans 'Updated ' %}{{ user.updated_at | timesince }} {% trans ' ago' %}</p>
+                  {% trans 'Updated ' %}{{ user.updated_at | timesince }} {% trans ' ago' %}
+                </p>
               </div>
             </div>
-
-            <hr />
-
-            <!-- Disciplines -->
-            {% include 'disciplines/list.html' %}
+            {% include 'disciplines/collapse.html' %}
           </div>
         {% endblock %}
       </div>
     </div>
   </main>
-
-  <!-- Delete modal -->
   {% include 'accounts/delete.html' %}
 {% endblock %}

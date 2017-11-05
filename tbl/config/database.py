@@ -37,7 +37,7 @@ DB_PRODUCTION = {
         # Name of user on postgresql
         'USER': 'victor',
         # Password of user on postgresql
-        'PASSWORD': 'victorhad',
+        'PASSWORD': os.getenv('POSTGRESQL_PASSWORD', 'victorhad'),
         # Host and port of postgresql server
         'HOST': '127.0.0.1',
         'PORT': '5432'

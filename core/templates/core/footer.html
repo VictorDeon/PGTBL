@@ -1,85 +1,244 @@
-<!-- internationalization -->
 {% load i18n %}
 
 <!-- Footer -->
-<ul class="nav nav-tabs nav-justified">
-  <li class="active">
-    <a data-toggle="tab" href="#advantages" class="footer-navbar">
-      <i class="fa fa-list-alt"></i> {% trans 'Advantages' %}
-    </a>
-  </li>
-  <li>
-    <a data-toggle="tab" href="#about" class="footer-navbar">
-      <i class="fa fa-slideshare"></i> {% trans 'About' %}
-    </a>
-  </li>
-  <li>
-    <a data-toggle="tab" href="#wiki" class="footer-navbar">
-      <i class="fa fa-leanpub"></i> {% trans 'Documentation' %}
-    </a>
-  </li>
-  <li>
-    <a data-toggle="tab" href="#how-to-use" class="footer-navbar">
-      <i class="fa fa-film"></i> {% trans 'How to use' %}
-    </a>
-  </li>
-</ul>
+<div class="footer-nav-black">
+  <!-- Tab menu -->
+  <ul class="nav nav-tabs nav-justified">
+    <!-- About tab -->
+    <li class="active">
+      <a data-toggle="tab"
+         href="#about"
+         class="footer-navbar">
+         <i class="fa fa-slideshare"></i>
+         {% trans 'About' %}
+      </a>
+    </li>
+
+    <!-- Advantages tab -->
+    <li>
+      <a data-toggle="tab"
+         href="#advantages"
+         class="footer-navbar">
+         <i class="fa fa-list-alt"></i>
+         {% trans 'Advantages' %}
+      </a>
+    </li>
+
+    <!-- Documentation tab -->
+    <li>
+      <a data-toggle="tab"
+         href="#wiki"
+         class="footer-navbar">
+         <i class="fa fa-leanpub"></i>
+         {% trans 'Documentation' %}
+      </a>
+    </li>
+
+    <!-- How to use tab -->
+    <li>
+      <a data-toggle="tab"
+         href="#how-to-use"
+         class="footer-navbar">
+         <i class="fa fa-film"></i>
+         {% trans 'How to use' %}
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- Tab options -->
 <div class="tab-content container">
+  <!-- About tab -->
+  <div id="about" class="panel panel-primary tab-pane fade in active footer-panel-shadow">
+    <!-- heading -->
+    <div class="panel-heading">
+      {% trans 'About' %}
+    </div>
+
+    <!-- body -->
+    <div class="panel-body">
+      <!-- TBL tabs -->
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#tbl">Team Based Learning</a></li>
+        <li><a data-toggle="tab" href="#preparation">{% trans 'Preparation' %}</a></li>
+        <li><a data-toggle="tab" href="#irat">{% trans 'iRAT' %}</a></li>
+        <li><a data-toggle="tab" href="#grat">{% trans 'gRAT' %}</a></li>
+        <li><a data-toggle="tab" href="#appeal">{% trans 'Appeal' %}</a></li>
+        <li><a data-toggle="tab" href="#feedback">{% trans 'Feedback' %}</a></li>
+        <li><a data-toggle="tab" href="#app">{% trans 'Application oriented activities' %}</a></li>
+        <li><a data-toggle="tab" href="#pair">{% trans 'Pair test' %}</a></li>
+      </ul>
+
+      <!-- TBL content -->
+      <div class="tab-content text-justify">
+        <!-- Team based learning tab -->
+        <div id="tbl" class="tab-pane fade in active">
+          <h3>Team Based Learning</h3>
+          <p>
+            Aprendizagem baseada em equipe ou TBL é uma estratégia de ensino aprendizagem colaborativa
+            que se concentra em um ciclo de três passos: <b>Preparação</b>, <b>Avaliação em classe ou RAT</b>
+            e <b>Pequeno projeto centrado na aplicação</b>
+          </p>
+        </div>
+
+        <!-- Preparation tab -->
+        <div id="preparation" class="tab-pane fade">
+          <h3>{% trans 'Preparation' %}</h3>
+          <p>
+            Basicamente a(o) professor(a) irá disponibilizar de artigos e livros para estudo, na qual os alunos
+            irão poder baixar, esse material será a preparação para a avaliação, além de ter uma área para resolução
+            de lista de exercícios;
+          </p>
+        </div>
+
+        <!-- iRAT tab -->
+        <div id="irat" class="tab-pane fade">
+          <h3>{% trans 'Individual test: iRAT' %}</h3>
+          <p>
+            <b>iRAT</b> Individual radiness assurance test, essa avaliação é respondido individualmente
+            sem consulta a qualquer material, consiste de 10 a 20 questões de múltipla escolha contemplando os conceitos
+            mais relevantes das leituras ou das atividades indicadas previamente, cada questão vai ter um número x de
+            alternativas e o aluno poderá distribuir pontos entre as alternativas, por exemplo se a questão tem 4
+            alternativas e ele ta em duvida entre a alternativa A e C ele pode distribuir seus 4 pontos em 2 na A e
+            2 na C, se a resposta correta for a C ele ganha 2 pontos dos 4 e a somatória de todos os pontos dividido
+            pelo total de pontos da prova é calculado a nota do aluno nessa avaliação.
+          </p>
+        </div>
+
+        <!-- gRAT tab -->
+        <div id="grat" class="tab-pane fade">
+          <h3>{% trans 'Team test: gRAT' %}</h3>
+          <p>
+            <b>gRAT</b> Group radiness assurance test, é a segunda avaliação do RAT, respondido em grupo sem consulta a
+            qualquer material, consiste das mesmas questões do iRAT, terá feedbacks imediatos da resposta certa, porém
+            ele pode ir raspando até acertar, se acertar de primeira recebe pontuação total, 4 se for o número de
+            alternativas existentes, porém a cada erro a pontuação da questão cai um ponto se ele raspar
+            todas as alternativa terá nota zero na questão, o somatório de todos os pontos dividido pelo total é calculado
+            a nota do grupo nessa avaliação.
+          </p>
+        </div>
+
+        <!-- Appeal tab -->
+        <div id="appeal" class="tab-pane fade">
+          <h3>{% trans 'Appels' %}</h3>
+          <p>
+            As equipes podem recorrer no caso de não concordar com a resposta indicado como correta, todo apelo deve ser feito
+            acompanhado de argumentação, sugestão de melhoria e com consulta a fontes bibliográficas pertinentes. A equipe deve
+            também propor o novo formato e a resposta correta da questão.
+          </p>
+        </div>
+
+        <!-- Feedback tab -->
+        <div id="feedback" class="tab-pane fade">
+          <h3>{% trans 'Instructor feedback' %}</h3>
+          <p>
+            Após a avaliação e as apelações o instrutor irá pegar as questões que mais erraram e dar feedbacks sobre elas.
+          </p>
+        </div>
+
+        <!-- Application tab -->
+        <div id="app" class="tab-pane fade">
+          <h3>{% trans 'Application oriented activities' %}</h3>
+          <p>
+            O projeto centrado na aplicação executa todo o conhecimento adquirido em um contexto real do tópico proposto.
+          </p>
+        </div>
+
+        <!-- Pair test tab -->
+        <div id="pair" class="tab-pane fade">
+          <h3>{% trans 'Pair test' %}</h3>
+          <p>
+            Durante o semestre pode ocorrer avaliações em pares na qual cada integrante da equipe irá avaliar os outros
+            integrantes da equipe, será disponibilizado uma pontuação máxima para cada membro distribuir entre os outros
+            membros da equipe e um campo para dizer o porque da pontuação podendo inserir feedback para o colega de equipe,
+            essa avaliação não precisa se identificar ela será anônima e a pontuação fará parte da nota individual de cada
+            membro da equipe.
+          </p>
+        </div>
+      </div> <!-- Close tab content -->
+    </div> <!-- Close panel body -->
+  </div> <!-- Close about tab -->
+
   <!-- Advantages -->
-  <div id="advantages" class="panel panel-primary tab-pane fade in active footer-panel-shadow">
-    <div class="panel-heading">{% trans 'Advantages' %}</div>
+  <div id="advantages" class="panel panel-primary tab-pane fade footer-panel-shadow">
+    <!-- Heading -->
+    <div class="panel-heading">
+      {% trans 'Advantages' %}
+    </div>
+
+    <!-- Body -->
     <div class="panel-body text-justify">
       <p>A utilização do TBL tem algumas vantagens:</p>
       <ol>
-        <li><b>Colaboração</b>: O principal objetivo é o aprendizado em equipes, um ajudando o outro.</li>
-        <li><b>Entreterimento</b>: O software tem uma ideia de gameficação, tendo competição entre equipes para
-        que as equipes possam treinar a colaboração entre si.</li>
-        <li><b>Capacitação</b>: Profissionais mais capacitados para o mercado de trabalho, pois a métodologia faz o estudante
-        estudar constantemente e trabalhar em equipe..</li>
-        <li><b>Inovação</b>: Sair do comodismo e experimentar o novo.</li>
-        <li><b>Ensino aprendizado</b>: O aluno se torna mais participativo e motivado a aprender e o professor torna a aula
-        mais ativa e interessante.</li>
+        <li>
+          <b>Colaboração</b>:
+          O principal objetivo é o aprendizado em equipes, um ajudando o outro.
+        </li>
+        <li>
+          <b>Entreterimento</b>:
+          O software tem uma ideia de gameficação, tendo competição entre equipes para que as equipes possam
+          treinar a colaboração entre si.
+        </li>
+        <li>
+          <b>Capacitação</b>:
+          Profissionais mais capacitados para o mercado de trabalho, pois a métodologia faz o estudante estudar
+          constantemente e trabalhar em equipe.
+        </li>
+        <li>
+          <b>Inovação</b>:
+          Sair do comodismo e experimentar o novo.
+        </li>
+        <li>
+          <b>Ensino aprendizado</b>:
+          O aluno se torna mais participativo e motivado a aprender e o professor torna a aula mais ativa e interessante.
+        </li>
       </ol>
     </div>
   </div>
-  <!-- About -->
-  <div id="about" class="panel panel-primary tab-pane fade footer-panel-shadow">
-    <div class="panel-heading">{% trans 'About' %}</div>
-    <div class="panel-body text-justify">
-      <p>Projeto desenvolvido por um aluno da universidade de brasília, UnB-Gama, no curso de Engenharia de Software,
-      através do trabalho de conclusão de curso ou TCC.</p>
-      <ul>
-        <li><b>Aluno:</b> <a href="https://github.com/VictorArnaud" target="_blank">Victor Arnaud</a></li>
-        <li><b>Stakeholder:</b> Elaine Venson, Cristiane Soares Ramos e Ricardo Ajax</li>
-        <li><b>Orientadores:</b> Cristiane Soares Ramos e Ricardo Ajax</li>
-        <li><b>Universidade:</b> Universidade de Brasília - UnB campus Gama</li>
-        <li><b>Curso:</b> Engenharia de Software</li>
-      </ul>
-    </div>
-  </div>
+
   <!-- Documentation -->
   <div id="wiki" class="panel panel-primary tab-pane fade footer-panel-shadow">
-    <div class="panel-heading">{% trans 'Documentation' %}</div>
+    <!-- Header -->
+    <div class="panel-heading">
+      {% trans 'Documentation' %}
+    </div>
+
+    <!-- Body -->
     <div class="panel-body">A documentação se encontra na
       <a href="https://github.com/TeamBasedLearning/TBL/wiki" target="_blank">wiki do projeto</a>.
       <p>Repositorio do <a href="https://github.com/TeamBasedLearning" target="_blank">projeto</a>.
     </div>
   </div>
+
   <!-- How to use -->
   <div id="how-to-use" class="panel panel-primary tab-pane fade footer-panel-shadow">
-    <div class="panel-heading">{% trans 'How to use' %}</div>
+    <!-- Heading -->
+    <div class="panel-heading">
+      {% trans 'How to use' %}
+    </div>
+
+    <!-- Body -->
     <div class="panel-body">
       <div class="row">
+        <!-- TBL video -->
         <div class="col-sm-6">
           <div class="embed-responsive embed-responsive-4by3">
-            <iframe class="video-frame embed-responsive-item" src="https://www.youtube.com/embed/LwUO6HEq6kM" frameborder="0" allowfullscreen>
+            <iframe class="video-frame embed-responsive-item"
+                    src="https://www.youtube.com/embed/LwUO6HEq6kM"
+                    frameborder="0"
+                    allowfullscreen>
             </iframe>
           </div>
           <p>Vídeo de como usar o TBL.</p>
         </div>
+
+        <!-- Software video -->
         <div class="col-sm-6">
           <div class="embed-responsive embed-responsive-4by3">
-            <iframe class="video-frame embed-responsive-item" src="https://www.youtube.com/embed/yHssVGwCgDw" frameborder="0" allowfullscreen>
+            <iframe class="video-frame embed-responsive-item"
+                    src="https://www.youtube.com/embed/yHssVGwCgDw"
+                    frameborder="0"
+                    allowfullscreen>
             </iframe>
           </div>
           <p>Vídeo de como usar o software.</p>
@@ -87,16 +246,26 @@
       </div>
     </div>
   </div>
-</div>
+</div> <!-- Finish tab options -->
+
 <!-- Copyright -->
 <div class="row">
   <div class="col-sm-12">
+    <!-- License -->
     <p class="copyright">
-      <i class="fa fa-copyright"></i> {% trans 'Team Based Learning. Code licensed GPL-3.0' %}
+      <i class="fa fa-copyright"></i>
+      {% trans 'Team Based Learning. Code licensed GPL-3.0' %}
     </p>
+
+    <!-- Members -->
     <p class="copyright">
     {% trans 'Designed and built by' %}
-    <a href="https://github.com/orgs/TeamBasedLearning/people" target="_blank">{% trans 'Team members' %}</a> {%trans 'with the help of our' %}
-    <a href="https://github.com/TeamBasedLearning/TBL/graphs/contributors" target="_blank">{% trans 'contributors' %}</a>.
+    <a href="https://github.com/orgs/TeamBasedLearning/people" target="_blank">
+      {% trans 'Team members' %}
+    </a>
+    {%trans 'with the help of our' %}
+    <a href="https://github.com/TeamBasedLearning/TBL/graphs/contributors" target="_blank">
+      {% trans 'contributors' %}.
+    </a>
   </div>
 </div>

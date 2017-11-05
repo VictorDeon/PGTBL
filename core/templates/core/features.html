@@ -1,17 +1,26 @@
-<!-- internationalization -->
 {% load i18n %}
 
 <!-- Features -->
 <div class="container">
+  <!-- Features header -->
   <div class="page-header" id="features">
-    <h1 id="timeline" class="white">{% trans 'Features' %}</h1>
+    <h1 id="timeline" class="white">
+      {% trans 'Features' %}
+    </h1>
   </div>
+
+  <!-- Features timeline -->
   <ul class="timeline">
+    <!-- Manage disciplines and students feature -->
     <li>
-      <div class="timeline-badge primary"><i class="fa fa-graduation-cap"></i></div>
+      <div class="timeline-badge primary">
+        <i class="fa fa-graduation-cap"></i>
+      </div>
       <div class="timeline-panel">
         <div class="timeline-heading">
-          <h4 class="timeline-title">{% trans 'Manage disciplines and students' %}</h4>
+          <h4 class="timeline-title">
+            {% trans 'Manage disciplines and students' %}
+          </h4>
           <hr />
         </div>
         <div class="timeline-body">
@@ -24,11 +33,16 @@
       </div>
     </li>
 
+    <!-- TBL features -->
     <li class="timeline-inverted">
-      <div class="timeline-badge warning"><i class="fa fa-users"></i></div>
+      <div class="timeline-badge warning">
+        <i class="fa fa-users"></i>
+      </div>
       <div class="timeline-panel">
         <div class="timeline-heading">
-          <h4 class="timeline-title">{% trans 'TBL features' %}</h4>
+          <h4 class="timeline-title">
+            {% trans 'TBL features' %}
+          </h4>
           <hr />
         </div>
         <div class="timeline-body">
@@ -40,11 +54,16 @@
       </div>
     </li>
 
+    <!-- Report features -->
     <li>
-      <div class="timeline-badge danger"><i class="fa fa-bar-chart"></i></div>
+      <div class="timeline-badge danger">
+        <i class="fa fa-bar-chart"></i>
+      </div>
       <div class="timeline-panel">
         <div class="timeline-heading">
-          <h4 class="timeline-title">{% trans 'Report' %}</h4>
+          <h4 class="timeline-title">
+            {% trans 'Report' %}
+          </h4>
           <hr />
         </div>
         <div class="timeline-body">
@@ -56,11 +75,16 @@
       </div>
     </li>
 
+    <!-- Rank and gamification feature -->
     <li class="timeline-inverted">
-      <div class="timeline-badge success"><i class="fa fa-gamepad"></i></div>
+      <div class="timeline-badge success">
+        <i class="fa fa-gamepad"></i>
+      </div>
       <div class="timeline-panel">
         <div class="timeline-heading">
-          <h4 class="timeline-title">{% trans 'Rank and Gamification' %}</h4>
+          <h4 class="timeline-title">
+            {% trans 'Rank and Gamification' %}
+          </h4>
           <hr />
         </div>
         <div class="timeline-body">
@@ -71,5 +95,5 @@
         </div>
       </div>
     </li>
-  </div>
-</div>
+  </ul>
+</div> <!-- Close container -->

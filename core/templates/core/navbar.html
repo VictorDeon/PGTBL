@@ -1,34 +1,116 @@
-<!-- internationalization -->
 {% load i18n %}
 
 <!-- Navbar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
+
+    <!-- Navbar header -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse-navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+      <!-- Button to open navbar in small mode -->
+      <button type="button"
+              class="navbar-toggle"
+              data-toggle="collapse"
+              data-target="#collapse-navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand navbar-link" href="{% url 'core:home' %}"><i class="fa fa-home"></i> Team Based Learning</a>
+
+      <!-- Navbar brand -->
+      <a class="navbar-brand navbar-link"
+         href="{% url 'core:home' %}">
+         <i class="fa fa-home"></i>
+         Team Based Learning
+      </a>
     </div>
+
+    <!-- Navbar body with collapse -->
     <div class="collapse navbar-collapse" id="collapse-navbar">
       <ul class="nav navbar-nav navbar-right">
+        <!-- If navbar is in home page -->
         {% if home is True %}
-          <li><a href="#tbl" class="navbar-link"><i class="fa fa-users"></i> {% trans 'What is TBL' %}</a></li>
-          <li><a href="#features" class="navbar-link"><i class="fa fa-puzzle-piece"></i> {% trans 'Features' %}</a></li>
-          <li><a href="#news" class="navbar-link"><i class="fa fa-newspaper-o"></i> {% trans 'News' %}</a></li>
-          <li><a href="#contact" class="navbar-link"><i class="fa fa-envelope-o"></i> {% trans 'Contact' %}</a></li>
-          <li><a href="#footer" class="navbar-link"><i class="fa fa-slideshare"></i> {% trans 'About' %}</a></li>
+          <!-- Features link -->
+          <li>
+            <a href="#features"
+               class="navbar-link">
+               <i class="fa fa-puzzle-piece"></i>
+               {% trans 'Features' %}
+            </a>
+          </li>
+
+          <!-- News link -->
+          <li>
+            <a href="#news"
+               class="navbar-link">
+               <i class="fa fa-newspaper-o"></i>
+               {% trans 'News' %}
+            </a>
+          </li>
+
+          <!-- Contact link -->
+          <li>
+            <a href="#contact"
+               class="navbar-link">
+               <i class="fa fa-envelope-o"></i>
+               {% trans 'Contact' %}
+            </a>
+          </li>
+
+          <!-- About link -->
+          <li>
+            <a href="#footer"
+               class="navbar-link">
+               <i class="fa fa-slideshare"></i>
+               {% trans 'About' %}
+            </a>
+          </li>
         {% endif %}
+
+        <!-- If user is logged -->
         {% if user.is_authenticated %}
+
+          <!-- If user is logged and in home page -->
           {% if home %}
-            <li><a href="{% url 'accounts:profile' %}" class="navbar-link"><i class="fa fa-user"></i> {% trans 'Profile' %}</a></li>
+            <!-- Profile link -->
+            <li>
+              <a href="{% url 'accounts:profile' %}"
+                 class="navbar-link">
+                 <i class="fa fa-user"></i>
+                 {% trans 'Profile' %}
+              </a>
+            </li>
           {% endif %}
-          <li><a href="{% url 'accounts:logout' %}" class="navbar-link"><i class="fa fa-sign-out"></i> Logout</a></li>
+
+          <!-- Logout link -->
+          <li>
+            <a href="{% url 'accounts:logout' %}"
+               class="navbar-link">
+              <i class="fa fa-sign-out"></i>
+              Logout
+            </a>
+          </li>
+
+        <!-- If user is not logged -->
         {% else %}
-          <li><a href="{% url 'accounts:register' %}" class="navbar-link"><i class="fa fa-user-plus"></i> {% trans 'Register' %}</a></li>
-          <li><a href="{% url 'accounts:login' %}" class="navbar-link"><i class="fa fa-sign-in"></i> Login</a></li>
+
+          <!-- Register link -->
+          <li>
+            <a href="{% url 'accounts:register' %}"
+               class="navbar-link">
+               <i class="fa fa-user-plus"></i>
+               {% trans 'Register' %}
+            </a>
+          </li>
+
+          <!-- Login link -->
+          <li>
+            <a href="{% url 'accounts:login' %}"
+               class="navbar-link">
+               <i class="fa fa-sign-in"></i>
+               Login
+            </a>
+          </li>
+
         {% endif %}
       </ul>
     </div>

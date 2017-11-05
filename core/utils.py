@@ -1,6 +1,14 @@
+# Django functions
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import Permission
+from django.shortcuts import get_object_or_404
+# Python functions
 import hashlib
 import string
 import random
+
+
+# --------------------------- RESET PASSWORD KEY -------------------------- #
 
 
 def random_key(size=5):

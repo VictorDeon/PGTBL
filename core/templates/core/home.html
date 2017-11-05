@@ -1,10 +1,9 @@
-<!-- Extends all code from core/base.html -->
+<!-- Extends core/base.html layout -->
 {% extends "core/base.html" %}
 
-<!-- Import to staticfiles -->
+<!-- Insert static files like images or css -->
 {% load static %}
 
-<!-- Insert css into core/base.html css block -->
 {% block css %}
   <link rel="stylesheet" href="{% static 'core/css/parallax.css' %}">
   <link rel="stylesheet" href="{% static 'core/css/tbl.css' %}">
@@ -14,7 +13,6 @@
   <link rel="stylesheet" href="{% static 'core/css/footer.css' %}">
 {% endblock %}
 
-<!-- Insert html into core/base.html body block -->
 {% block body %}
   <div data-spy="scroll" data-target=".navbar">
     <header>
@@ -22,7 +20,6 @@
     </header>
     <main>
       {% include 'core/parallax.html' %}
-      {% include 'core/tbl.html' %}
       {% include 'core/features.html' %}
       {% include 'core/news.html' %}
       {% include 'core/contact.html' %}

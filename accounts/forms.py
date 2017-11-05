@@ -1,10 +1,8 @@
+# Django app
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm as CreationForm
 from django.contrib.auth import get_user_model
 from django import forms
-from core.utils import generate_hash_key
-from core.email import send_email_template
-from .models import PasswordReset
 
 # Get the user from settings
 User = get_user_model()
@@ -50,7 +48,7 @@ class PasswordResetForm(forms.Form):
     Form to reset the user password.
     """
 
-    email = forms.EmailField(label='E-mail')
+    email = forms.EmailField(label='E-mail', required=True)
 
     def clean_email(self):
         """
@@ -62,21 +60,4 @@ class PasswordResetForm(forms.Form):
             return email
         raise forms.ValidationError(
             _('There is no user found with this email')
-        )
-
-    def save(self):
-        """
-        Save the password reset object and send a email to user.
-        """
-
-        user = User.objects.get(email=self.cleaned_data['email'])
-        key = generate_hash_key(user.username)
-        reset_password = PasswordReset(user=user, key=key)
-        reset_password.save()
-        # Send email
-        send_email_template(
-            subject=_('Requesting new password'),
-            template='accounts/reset_password_email.html',
-            context={'reset_password': reset_password},
-            recipient_list=[user.email],
         )

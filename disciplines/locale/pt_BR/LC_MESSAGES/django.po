@@ -1,0 +1,224 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-29 03:43-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: disciplines/forms.py:34
+msgid "Access Password"
+msgstr "Senha de acesso"
+
+#: disciplines/models.py:37
+msgid "Title"
+msgstr "Título"
+
+#: disciplines/models.py:39
+msgid "Discipline title"
+msgstr "Título da disciplina"
+
+#: disciplines/models.py:43
+msgid "Description"
+msgstr "Ementa"
+
+#: disciplines/models.py:44
+msgid "Discipline description"
+msgstr "Ementa da disciplina"
+
+#: disciplines/models.py:48 disciplines/templates/disciplines/collapse.html:85
+#: disciplines/templates/disciplines/list.html:48
+#: disciplines/templates/disciplines/list.html:142
+msgid "Course"
+msgstr "Curso"
+
+#: disciplines/models.py:51
+msgid "Discipline course"
+msgstr "Curso da disciplina"
+
+#: disciplines/models.py:55
+msgid "Shortcut"
+msgstr "URL atalho"
+
+#: disciplines/models.py:56
+msgid "URL string shortcut"
+msgstr "String de atalho da URL"
+
+#: disciplines/models.py:60
+msgid "Classroom"
+msgstr "Turma"
+
+#: disciplines/models.py:62
+msgid "Classroom title of discipline."
+msgstr "Turma da disciplina"
+
+#: disciplines/models.py:66
+msgid "Password"
+msgstr "Senha da turma"
+
+#: disciplines/models.py:68
+msgid "Password to get into the class."
+msgstr "Senha para entrar na turma."
+
+#: disciplines/models.py:73
+msgid "Students limit"
+msgstr "Limite de estudantes"
+
+#: disciplines/models.py:75
+msgid "Students limit to get in the class."
+msgstr "Limite de estudantes para entrar na turma."
+
+#: disciplines/models.py:79
+msgid "Monitors limit"
+msgstr "Limite de monitores"
+
+#: disciplines/models.py:81
+msgid "Monitors limit to insert in the class."
+msgstr "Limite de monitores para entrar na turma."
+
+#: disciplines/models.py:85
+msgid "Is closed?"
+msgstr "Está fechada?"
+
+#: disciplines/models.py:87
+msgid "Close discipline."
+msgstr "Fechar turma."
+
+#: disciplines/models.py:93 disciplines/templates/disciplines/collapse.html:80
+#: disciplines/templates/disciplines/list.html:62
+#: disciplines/templates/disciplines/list.html:137
+msgid "Teacher"
+msgstr "Professor"
+
+#: disciplines/models.py:115
+msgid "Created at"
+msgstr "Criado em"
+
+#: disciplines/models.py:116
+msgid "Date that the discipline is created."
+msgstr "Data que a disciplina foi criada."
+
+#: disciplines/models.py:122
+msgid "Updated at"
+msgstr "Atualizado em"
+
+#: disciplines/models.py:123
+msgid "Date that the discipline is updated."
+msgstr "Data em que a disciplina foi atualizada"
+
+#: disciplines/models.py:139 disciplines/templates/disciplines/list.html:55
+msgid "Discipline"
+msgstr "Disciplina"
+
+#: disciplines/models.py:140
+msgid "Disciplines"
+msgstr "Disciplinas"
+
+#: disciplines/templates/disciplines/collapse.html:10
+msgid "All Disciplines"
+msgstr "Todas as Disciplinas"
+
+#: disciplines/templates/disciplines/collapse.html:18
+msgid "Discipline monitor"
+msgstr "Disciplinas monitoradas"
+
+#: disciplines/templates/disciplines/collapse.html:27
+msgid "Created Disciplines"
+msgstr "Disciplinas criadas"
+
+#: disciplines/templates/disciplines/collapse.html:142
+msgid "There is no disciplines."
+msgstr "Não há disciplina disponível"
+
+#: disciplines/templates/disciplines/delete.html:20
+msgid "Delete Discipline"
+msgstr "Deletar disciplina"
+
+#: disciplines/templates/disciplines/delete.html:27
+msgid "Are you sure you want to delete"
+msgstr "Tem certeza que deseja deletar"
+
+#: disciplines/templates/disciplines/delete.html:42
+msgid "Delete"
+msgstr "Deletar"
+
+#: disciplines/templates/disciplines/delete.html:51
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: disciplines/templates/disciplines/form.html:15
+msgid "Create Discipline"
+msgstr "Criar disciplina"
+
+#: disciplines/templates/disciplines/form.html:25
+msgid "Create discipline"
+msgstr "Criar disciplina"
+
+#: disciplines/templates/disciplines/form.html:107
+msgid "ClassRoom"
+msgstr "Turma"
+
+#: disciplines/templates/disciplines/form.html:204
+msgid "Send"
+msgstr "Enviar"
+
+#: disciplines/templates/disciplines/list.html:15
+msgid "Search Discipline"
+msgstr "Procurar disciplina"
+
+#: disciplines/templates/disciplines/list.html:26
+msgid "Discipline list"
+msgstr "Lista de disciplina"
+
+#: disciplines/templates/disciplines/list.html:40
+msgid "Order"
+msgstr "Ordenar"
+
+#: disciplines/templates/disciplines/list.html:74
+msgid "Search"
+msgstr "Procurar"
+
+#: disciplines/templates/disciplines/list.html:175
+msgid "There is no disciplines available"
+msgstr "Não há disciplina disponível"
+
+#: disciplines/views.py:55
+msgid "Discipline created successfully."
+msgstr "Disciplina criada com sucesso."
+
+#: disciplines/views.py:96
+msgid "Discipline updated successfully."
+msgstr "Disciplina atualizada com sucesso."
+
+#: disciplines/views.py:121
+msgid "Discipline deleted successfully."
+msgstr "Disciplina deletada com sucesso."
+
+#: disciplines/views.py:192
+#, python-brace-format
+msgid "You have been entered into the discipline: {0}"
+msgstr "Você acabou de entrar na disciplina: {0}"
+
+#: disciplines/views.py:201
+msgid "Incorrect Password."
+msgstr "Senha incorreta."
+
+#: disciplines/views.py:227
+msgid "There are no more vacancies to monitor"
+msgstr "Não há mais vagas para monitor dessa disciplina."
+
+#: disciplines/views.py:243
+msgid "Crowded discipline."
+msgstr "Turma cheia."
