@@ -1,0 +1,39 @@
+.media {
+  margin-top: 15px !important;
+}
+
+.media-object {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+.add-button {
+  border-radius: 50%;
+  position: absolute;
+  top: 134px;
+  right: 40px;
+}
+
+.btn:active:focus, .btn:focus {
+  outline: none;
+}
+
+.submit-button {
+  background-color: #263238 !important;
+  width: 100%;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.badge {
+  font-size: 14px;
+}
+
+.dropdown-menu {
+  min-width: 150px;
+}
+
+.all {
+  padding-left: 10px;
+}

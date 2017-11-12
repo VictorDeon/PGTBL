@@ -35,3 +35,11 @@ class EnterDisciplineForm(forms.Form):
         max_length=30,
         widget=forms.PasswordInput
     )
+
+
+class InsertStudentsForm(forms.Form):
+    """
+    Form to teacher insert students or monitors in the discipline
+    """
+
+    pass

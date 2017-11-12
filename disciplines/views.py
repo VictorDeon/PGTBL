@@ -4,14 +4,17 @@ Disciplines functionalities
 """
 
 # Django app
-from django.views.generic import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
 from django.utils.text import slugify
 from django.contrib import messages
 from django.db.models import Q
+from django.views.generic import (
+    CreateView, UpdateView, DeleteView, DetailView
+)
 
 # Permissions
 from rolepermissions.roles import assign_role
@@ -19,9 +22,10 @@ from rolepermissions.roles import assign_role
 # Core app
 from core.permissions import ModelPermissionMixin, ObjectPermissionMixin
 from core.generics import FormListView
+from core.utils import order
 
 # Discipline app
-from .forms import DisciplineForm, EnterDisciplineForm
+from .forms import DisciplineForm, EnterDisciplineForm, InsertStudentsForm
 from .models import Discipline
 
 # Get the custom user from settings
@@ -169,7 +173,7 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
         # Disciplines available for user
         queryset = Discipline.objects.available(user)
 
-        queryset = self.order_disciplines(queryset)
+        queryset = order(self, queryset)
         queryset = self.search_disciplines(queryset)
 
         return queryset
@@ -277,14 +281,81 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
 
         return disciplines
 
-    def order_disciplines(self, disciplines):
+
+class ShowDisciplineView(LoginRequiredMixin, DetailView):
+    """
+    View to show a specific discipline.
+    """
+
+    model = Discipline
+    template_name = 'disciplines/details.html'
+
+
+class StudentListView(LoginRequiredMixin,
+                      ModelPermissionMixin,
+                      FormListView):
+    """
+    Insert, delete and list all students from specific discipline.
+    """
+
+    template_name = 'disciplines/students.html'
+    paginate_by = 12
+    context_object_name = 'students'
+
+    # Form
+    form_class = InsertStudentsForm
+    success_url = reverse_lazy('disciplines:students')
+
+    # Permissions
+    permissions_required = []
+
+    def get_queryset(self):
         """
-        Order disciplines by title, couse, or classroom
+        List all students and monitors from discipline.
         """
 
-        # Get the filter by key argument from url
-        ordered = self.request.GET.get('order')
-        if ordered:
-            disciplines = disciplines.order_by(ordered)
+        self.discipline = get_object_or_404(
+            Discipline,
+            slug=self.kwargs.get('slug', '')
+        )
 
-        return disciplines
+        # Insert monitors and students into one queryset
+        queryset = self.discipline.students.all() | self.discipline.monitors.all()
+
+        students = self.students_filter(queryset)
+
+        return students
+
+    def get_failure_redirect_path(self):
+        """
+        Redirect to student list if user has no specific permission.
+        """
+
+        failure_redirect_path = reverse_lazy(
+            'disciplines:students',
+            kwargs={'slug': self.discipline.slug}
+        )
+
+        return failure_redirect_path
+
+    def get_context_data(self, **kwargs):
+        """
+        Insert discipline instance into student list.
+        """
+
+        context = super(StudentListView, self).get_context_data(**kwargs)
+        context['discipline'] = self.discipline
+        return context
+
+    def students_filter(self, queryset):
+        """
+        Filter by monitor or students
+        """
+
+        filtered = self.request.GET.get('order')
+        if filtered == 'students':
+            queryset = self.discipline.students.all()
+        elif filtered == 'monitors':
+            queryset = self.discipline.monitors.all()
+
+        return queryset

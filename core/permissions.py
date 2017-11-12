@@ -33,6 +33,13 @@ class ModelPermissionMixin(object):
 
         return True
 
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        return self.failure_redirect_path
+
     def check_failed(self, request, *args, **kwargs):
         """
         If user check fail, redirect the user to another place.
@@ -43,7 +50,7 @@ class ModelPermissionMixin(object):
             _("You are not authorized to do this action.")
         )
 
-        return redirect(self.failure_redirect_path)
+        return redirect(self.get_failure_redirect_path())
 
     def dispatch(self, request, *args, **kwargs):
         """
@@ -77,6 +84,13 @@ class ObjectPermissionMixin(object):
 
         return True
 
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        return self.failure_redirect_path
+
     def check_failed(self, request, *args, **kwargs):
         """
         If user check fail, redirect the user to another place.
@@ -87,7 +101,7 @@ class ObjectPermissionMixin(object):
             _("You are not authorized to do this action.")
         )
 
-        return redirect(self.failure_redirect_path)
+        return redirect(self.get_failure_redirect_path())
 
     def dispatch(self, request, *args, **kwargs):
         """

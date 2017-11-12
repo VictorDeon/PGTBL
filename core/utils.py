@@ -25,3 +25,18 @@ def generate_hash_key(salt, random_str_size=5):
     random_str = random_key(random_str_size)
     text = random_str + salt
     return hashlib.sha224(text.encode('utf-8')).hexdigest()
+
+
+# --------------------------- ORDER ------------------------------------- #
+
+def order(self, queryset):
+    """
+    Order a queryset by some attribute.
+    """
+
+    # Get the filter by key argument from url
+    ordered = self.request.GET.get('order')
+    if ordered:
+        queryset = queryset.order_by(ordered)
+
+    return queryset

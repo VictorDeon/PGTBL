@@ -9,6 +9,12 @@ urlpatterns = [
         views.DisciplineCreationView.as_view(),
         name='create'
     ),
+    # /profile/list-discipline/
+    url(
+        r'^profile/list-discipline/$',
+        views.DisciplineListSearchView.as_view(),
+        name='search'
+    ),
     # /profile/update-discipline/discipline-name
     url(
         r'^profile/update-discipline/(?P<slug>[\w_-]+)/$',
@@ -21,16 +27,22 @@ urlpatterns = [
         views.DisciplineDeleteView.as_view(),
         name='delete'
     ),
-    # /profile/list-discipline/
-    url(
-        r'^profile/list-discipline/$',
-        views.DisciplineListSearchView.as_view(),
-        name='search'
-    ),
     # /profile/enter-discipline/discipline-name
     url(
         r'^profile/enter-discipline/(?P<slug>[\w_-]+)/$',
         views.DisciplineListSearchView.as_view(),
         name='enter'
+    ),
+    # /profile/discipline-name/
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/$',
+        views.ShowDisciplineView.as_view(),
+        name='details'
+    ),
+    # /profile/discipline-name/student-list/
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/students/$',
+        views.StudentListView.as_view(),
+        name='students'
     ),
 ]

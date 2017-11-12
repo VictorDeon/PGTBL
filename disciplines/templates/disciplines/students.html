@@ -1,0 +1,132 @@
+{% extends 'accounts/profile.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'disciplines/css/students.css' %}" />
+{% endblock %}
+
+{% block sidebar %}
+  {% include 'disciplines/sidebar.html' %}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'disciplines:details' discipline.slug %}">
+      {{discipline.title}}
+    </a>
+  </li>
+  <li>
+    <a href="{% url 'disciplines:students' discipline.slug %}">
+      {% trans 'Students list' %}
+    </a>
+  </li>
+{% endblock %}
+
+{% block content %}
+  <!-- student list header -->
+  <div class="page-header fix-row">
+    <div class="row">
+      <div class="col-sm-10">
+        <h1 class="white">
+          <i class="fa fa-users"></i> {% trans 'Student List' %}<br />
+          <small>{{discipline.title}}</small>
+        </h1>
+      </div>
+
+      <!-- student list filter -->
+      <div class="col-sm-2">
+        <div class="dropdown">
+          <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown">
+            Filtro
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="text-center" href="{% url 'disciplines:students' discipline.slug %}">
+                <i class="fa fa-list-ul"></i>
+                {% trans 'All' %}
+              </a>
+            </li>
+            <li>
+              <a class="text-center" href="?order=students">
+                <span class="badge">
+                  {{discipline.students.count}}/{{discipline.students_limit}}
+                </span>
+                {% trans 'Students' %}
+              </a>
+            </li>
+            <li>
+              <a class="text-center" href="?order=monitors">
+                <span class="badge">
+                  {{discipline.monitors.count}}/{{discipline.monitors_limit}}
+                </span>
+                {% trans 'Monitors' %}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add new student -->
+    <button type="button" class="btn btn-primary btn-lg add-button" data-toggle="modal" data-target="#add-modal">
+      <i class="fa fa-plus"></i>
+    </button>
+  </div>
+
+  <!-- Student list -->
+  <div class="row fix-row">
+    {% for student in students %}
+      <div class="col-sm-4">
+        <!-- Student -->
+        <div class="media">
+          <div class="media-left">
+            <!-- Photo -->
+            {% if student.photo %}
+              <img src="{{student.photo.url}}" class="media-object" style="width:60px">
+            {% else %}
+              <img src="{% static 'disciplines/img/user.png' %}" class="media-object" style="width:60px">
+            {% endif %}
+
+            <!-- if is student or monitor -->
+            {% if student in discipline.monitors.all %}
+              <p class="white text-center">{% trans 'Monitor' %}</p>
+            {% else %}
+              <p class="white text-center">{% trans 'Student' %}</p>
+            {% endif %}
+          </div>
+
+          <!-- Student information -->
+          <div class="media-body white">
+            <h4 class="media-heading">
+              <!-- Student name -->
+              {% if student.name %}
+                {{student.get_short_name}}
+              {% else %}
+                {{student.username|capfirst}}
+              {% endif %}
+
+              <!-- Remove student -->
+              <span class="pull-right">
+                <button type="button" class="close remove-student-button" data-toggle="modal" data-target="#delete-modal">
+                  <i class="fa fa-close"></i>
+                </button>
+              </span>
+            </h4>
+
+            <!-- student email -->
+            <p>{{student.email}}</p>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="white">{% trans 'There is no students in this class.' %}</p>
+    {% endfor %}
+  </div>
+
+  <!-- Students pagination -->
+  {% include 'core/pagination.html' %}
+{% endblock %}
