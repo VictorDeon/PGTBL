@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.text import slugify
 from django.contrib import messages
 from django.db.models import Q
@@ -25,7 +25,7 @@ from core.generics import FormListView
 from core.utils import order
 
 # Discipline app
-from .forms import DisciplineForm, EnterDisciplineForm, InsertStudentsForm
+from .forms import DisciplineForm, EnterDisciplineForm
 from .models import Discipline
 
 # Get the custom user from settings
@@ -292,22 +292,16 @@ class ShowDisciplineView(LoginRequiredMixin, DetailView):
 
 
 class StudentListView(LoginRequiredMixin,
-                      ModelPermissionMixin,
                       FormListView):
     """
     Insert, delete and list all students from specific discipline.
+    TODO: Permissions - only teacher can remove student and specific
+    student can remove itself from discipline.
     """
 
     template_name = 'disciplines/students.html'
     paginate_by = 12
     context_object_name = 'students'
-
-    # Form
-    form_class = InsertStudentsForm
-    success_url = reverse_lazy('disciplines:students')
-
-    # Permissions
-    permissions_required = []
 
     def get_queryset(self):
         """
@@ -320,23 +314,75 @@ class StudentListView(LoginRequiredMixin,
         )
 
         # Insert monitors and students into one queryset
-        queryset = self.discipline.students.all() | self.discipline.monitors.all()
+        queryset = (self.discipline.students.all() |
+                    self.discipline.monitors.all())
 
         students = self.students_filter(queryset)
 
         return students
 
-    def get_failure_redirect_path(self):
+    def get_success_url(self):
         """
-        Redirect to student list if user has no specific permission.
+        Redirect to success url after remove the specific student
+        from discipline.
         """
 
-        failure_redirect_path = reverse_lazy(
+        user = get_object_or_404(
+            User,
+            pk=self.kwargs.get('pk', '')
+        )
+
+        is_logged_user = (self.request.user.id == user.id)
+        is_teacher = (self.request.user.id == self.discipline.teacher.id)
+
+        if is_logged_user or is_teacher:
+            success_url = self.remove_from_discipline(user, is_teacher)
+            return success_url
+
+        messages.error(
+            self.request,
+            _("You can't removed {0} from {1}"
+              .format(user.get_short_name(), self.discipline.title))
+        )
+
+        redirect_url = reverse_lazy(
             'disciplines:students',
             kwargs={'slug': self.discipline.slug}
         )
 
-        return failure_redirect_path
+        return redirect_url
+
+    def remove_from_discipline(self, user, is_teacher=True):
+        """
+        Remove user from discipline.
+        """
+
+        if user in self.discipline.students.all():
+            self.discipline.students.remove(user)
+        else:
+            self.discipline.monitors.remove(user)
+
+        if is_teacher:
+            messages.success(
+                self.request,
+                _("You have removed {0} from {1}"
+                  .format(user.get_short_name(), self.discipline.title))
+            )
+
+            success_url = reverse_lazy(
+                'disciplines:students',
+                kwargs={'slug': self.discipline.slug}
+            )
+        else:
+            messages.success(
+                self.request,
+                _("You left the discipline {0}"
+                  .format(self.discipline.title))
+            )
+
+            success_url = reverse_lazy('accounts:profile')
+
+        return success_url
 
     def get_context_data(self, **kwargs):
         """

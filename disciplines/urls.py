@@ -39,10 +39,16 @@ urlpatterns = [
         views.ShowDisciplineView.as_view(),
         name='details'
     ),
-    # /profile/discipline-name/student-list/
+    # /profile/discipline-name/students/
     url(
         r'^profile/(?P<slug>[\w_-]+)/students/$',
         views.StudentListView.as_view(),
         name='students'
+    ),
+    # /profile/discipline-name/students/1/remove
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/students/(?P<pk>[0-9]+)/remove/$',
+        views.StudentListView.as_view(),
+        name='remove-student'
     ),
 ]

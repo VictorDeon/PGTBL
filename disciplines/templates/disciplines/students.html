@@ -110,11 +110,17 @@
               {% endif %}
 
               <!-- Remove student -->
-              <span class="pull-right">
-                <button type="button" class="close remove-student-button" data-toggle="modal" data-target="#delete-modal">
-                  <i class="fa fa-close"></i>
-                </button>
-              </span>
+              {% if user.id == discipline.teacher.id or user.id == student.id %}
+                <span class="pull-right">
+                  <button
+                    type="button"
+                    class="close remove-student-button"
+                    data-toggle="modal"
+                    data-target="#{{student.id}}-model">
+                    <i class="fa fa-close"></i>
+                  </button>
+                </span>
+              {% endif %}
             </h4>
 
             <!-- student email -->
@@ -122,6 +128,7 @@
           </div>
         </div>
       </div>
+      {% include 'disciplines/remove_student.html' %}
     {% empty %}
       <p class="white">{% trans 'There is no students in this class.' %}</p>
     {% endfor %}
