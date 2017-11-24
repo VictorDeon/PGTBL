@@ -24,9 +24,13 @@
       <!-- Body -->
       <div class="modal-body">
         <p class="black">
-        {% blocktrans with student=student.username %}
-          Are you sure you want to remove {{student}} from discipline ?
-        {% endblocktrans %}
+        {% if student in discipline.students.all %}
+          {% blocktrans with student=student.username %}
+            Are you sure you want to remove {{student}} from discipline ?
+          {% endblocktrans %}
+        {% else %}
+          {% trans 'Are you sure you want to leave the discipline ?' %}
+        {% endif %}
         </p>
       </div>
 
