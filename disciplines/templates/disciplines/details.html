@@ -34,14 +34,16 @@
         </div>
         <div class="col-sm-2">
             <h1 class="white">{{discipline.classroom}}</h1>
-            <form action="{% url 'disciplines:details' slug=discipline.slug %}" method="post">
-              {% csrf_token %}
-              {% if discipline.is_closed %}
-                <button type="submit" class="btn btn-danger pull-right">{% trans 'Closed' %}</button>
-              {% else %}
-                <button type="submit" class="btn btn-success pull-right">{% trans 'Open' %}</button>
-              {% endif %}
-            </form>
+            {% if user.id == discipline.teacher.id %}
+              <form action="{% url 'disciplines:close' slug=discipline.slug %}" method="post">
+                {% csrf_token %}
+                {% if discipline.is_closed %}
+                  <button type="submit" class="btn btn-danger pull-right">{% trans 'Closed' %}</button>
+                {% else %}
+                  <button type="submit" class="btn btn-success pull-right">{% trans 'Open' %}</button>
+                {% endif %}
+              </form>
+            {% endif %}
         </div>
       </div>
     </div>

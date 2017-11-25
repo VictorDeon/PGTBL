@@ -57,11 +57,11 @@ class RemoveStudentsTestCase(TestCase):
         self.client.login(
             username=self.teacher.username, password='test1234'
         )
-        students_url = reverse_lazy(
+        redirect_url = reverse_lazy(
             'disciplines:students',
             kwargs={'slug': self.discipline.slug}
         )
-        self.remove_student(self.students[0].pk, students_url, 7, 2)
+        response = self.remove_user(self.students[0].pk, redirect_url, 7, 2)
         check_messages(
             self, response,
             tag='alert-success',
@@ -71,67 +71,67 @@ class RemoveStudentsTestCase(TestCase):
             )
         )
 
-    # def test_remove_monitor_by_teacher_ok(self):
-    #     """
-    #     Test to remove specific monitor from discipline.
-    #     """
+    def test_remove_monitor_by_teacher_ok(self):
+        """
+        Test to remove specific monitor from discipline.
+        """
 
-    #     self.client.login(
-    #         username=self.teacher.username, password='test1234'
-    #     )
-    #     students_url = reverse_lazy(
-    #         'disciplines:students',
-    #         kwargs={'slug': self.discipline.slug}
-    #     )
-    #     self.remove_student(self.teachers[0].pk, students_url, 8, 1)
-    #     check_messages(
-    #         self, response,
-    #         tag='alert-success',
-    #         content='You have removed {0} from {1}'.format(
-    #             self.teachers[0].get_short_name(),
-    #             self.discipline.title
-    #         )
-    #     )
+        self.client.login(
+            username=self.teacher.username, password='test1234'
+        )
+        redirect_url = reverse_lazy(
+            'disciplines:students',
+            kwargs={'slug': self.discipline.slug}
+        )
+        response = self.remove_user(self.teachers[2].pk, redirect_url, 8, 1)
+        check_messages(
+            self, response,
+            tag='alert-success',
+            content='You have removed {0} from {1}'.format(
+                self.teachers[2].get_short_name(),
+                self.discipline.title
+            )
+        )
 
-    # def test_remove_yourself_from_discipline(self):
-    #     """
-    #     Test to remove yourself from discipline.
-    #     """
+    def test_remove_yourself_from_discipline(self):
+        """
+        Test to remove yourself from discipline.
+        """
 
-    #     self.client.login(
-    #         username=self.students[0].username, password='test1234'
-    #     )
-    #     profile_url = reverse_lazy('accounts:profile')
-    #     self.remove_student(self, self.students[0].pk, profile_url, 7, 2)
-    #     check_messages(
-    #         self, response,
-    #         tag='alert-success',
-    #         content='You left the discipline {0}'.format(self.discipline.title)
-    #     )
+        self.client.login(
+            username=self.students[0].username, password='test1234'
+        )
+        redirect_url = reverse_lazy('accounts:profile')
+        response = self.remove_user(self.students[0].pk, redirect_url, 7, 2)
+        check_messages(
+            self, response,
+            tag='alert-success',
+            content='You left the discipline {0}'.format(self.discipline.title)
+        )
 
-    # def test_can_not_remove_user_from_discipline1(self):
-    #     """
-    #     Test can't remove another user is you are not teacher from discipline.
-    #     """
+    def test_can_not_remove_user_from_discipline1(self):
+        """
+        Test can't remove another user is you are not teacher from discipline.
+        """
 
-    #     self.client.login(
-    #         username=self.students[0].username, password='test1234'
-    #     )
-    #     students_url = reverse_lazy(
-    #         'disciplines:students',
-    #         kwargs={'slug': self.discipline.slug}
-    #     )
-    #     self.remove_student(self, self.students[1].pk, profile_url, 8, 2)
-    #     check_messages(
-    #         self, response,
-    #         tag='alert-danger',
-    #         content="You can't remove {0} from {1}".format(
-    #             self.students[1].get_short_name(),
-    #             self.discipline.title
-    #         )
-    #     )
+        self.client.login(
+            username=self.students[0].username, password='test1234'
+        )
+        redirect_url = reverse_lazy(
+            'disciplines:students',
+            kwargs={'slug': self.discipline.slug}
+        )
+        response = self.remove_user(self.students[1].pk, redirect_url, 8, 2)
+        check_messages(
+            self, response,
+            tag='alert-danger',
+            content="You can't remove {0} from {1}".format(
+                self.students[1].get_short_name(),
+                self.discipline.title
+            )
+        )
 
-    def remove_student(self, user_id, redirect_url, students, monitors):
+    def remove_user(self, user_id, redirect_url, students, monitors):
         """
         Verify if user is removed from discipline.
         """
@@ -149,6 +149,7 @@ class RemoveStudentsTestCase(TestCase):
         self.assertRedirects(response, redirect_url)
         self.assertEqual(self.discipline.students.count(), students)
         self.assertEqual(self.discipline.monitors.count(), monitors)
+        return response
 
     def test_can_not_remove_user_from_discipline_if_not_logged(self):
         """

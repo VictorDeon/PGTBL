@@ -356,7 +356,7 @@ class SearchAndEnterDisciplineTestCase(TestCase):
         self.assertEqual(self.discipline.is_closed, False)
         self.assertEqual(self.discipline.students.count(), 8)
         url = reverse_lazy(
-            'disciplines:details',
+            'disciplines:close',
             kwargs={'slug': self.discipline.slug}
         )
         response = self.client.post(url, follow=True)
@@ -370,14 +370,31 @@ class SearchAndEnterDisciplineTestCase(TestCase):
         password = {'password': '12345'}
         response = self.client.post(self.enter_url, password, follow=True)
         self.assertEqual(self.discipline.students.count(), 8)
-        self.assertRedirects(response, url)
         check_messages(
             self, response,
             tag='alert-danger',
-            content='Discipline is closed'
+            content='Incorrect Password.'
         )
 
-    def teste_no_vacancies_monitor_discipline(self):
+    def test_only_teacher_can_close_discipline(self):
+        """
+        Only teacher can close your own discipline.
+        """
+
+        self.client.logout()
+        self.client.login(
+            username=self.teachers[2].username, password='test1234'
+        )
+        self.assertEqual(self.discipline.is_closed, False)
+        url = reverse_lazy(
+            'disciplines:close',
+            kwargs={'slug': self.discipline.slug}
+        )
+        self.client.post(url, follow=True)
+        self.discipline.refresh_from_db()
+        self.assertEqual(self.discipline.is_closed, False)
+
+    def test_no_vacancies_monitor_discipline(self):
         """
         Test teacher can't get into disciplines as monitor.
         """

@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.text import slugify
 from django.contrib import messages
 from django.db.models import Q
@@ -299,7 +299,19 @@ class ShowDisciplineView(LoginRequiredMixin,
         'show_discipline_permission'
     ]
 
-    def get_success_url(self):
+
+class CloseDisciplineView(LoginRequiredMixin,
+                          ObjectPermissionMixin,
+                          DeleteView):
+
+    model = Discipline
+    template_name = 'disciplines/details.html'
+    permissions_required = [
+        'show_discipline_permission',
+        'change_own_discipline'
+    ]
+
+    def delete(self, request, *args, **kwargs):
         """
         Close or open discipline.
         """
@@ -318,7 +330,7 @@ class ShowDisciplineView(LoginRequiredMixin,
 
         discipline.save()
 
-        return redirect_url
+        return redirect(redirect_url)
 
 
 class StudentListView(LoginRequiredMixin,
@@ -378,7 +390,7 @@ class StudentListView(LoginRequiredMixin,
 
 class RemoveStudentView(LoginRequiredMixin,
                         ObjectPermissionMixin,
-                        FormDetailView):
+                        DeleteView):
     """
     Remove student from discipline.
     """
@@ -404,7 +416,7 @@ class RemoveStudentView(LoginRequiredMixin,
 
         return students
 
-    def get_success_url(self):
+    def delete(self, request, *args, **kwargs):
         """
         Redirect to success url after remove the specific student
         from discipline.
@@ -420,7 +432,12 @@ class RemoveStudentView(LoginRequiredMixin,
 
         if is_logged_user or is_teacher:
             success_url = self.remove_from_discipline(user, is_teacher)
-            return success_url
+            return redirect(success_url)
+
+        redirect_url = reverse_lazy(
+            'disciplines:students',
+            kwargs={'slug': self.discipline.slug}
+        )
 
         messages.error(
             self.request,
@@ -428,12 +445,7 @@ class RemoveStudentView(LoginRequiredMixin,
               .format(user.get_short_name(), self.discipline.title))
         )
 
-        redirect_url = reverse_lazy(
-            'disciplines:students',
-            kwargs={'slug': self.discipline.slug}
-        )
-
-        return redirect_url
+        return redirect(redirect_url)
 
     def remove_from_discipline(self, user, is_teacher=True):
         """

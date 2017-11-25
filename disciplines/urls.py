@@ -39,6 +39,12 @@ urlpatterns = [
         views.ShowDisciplineView.as_view(),
         name='details'
     ),
+    # /profile/discipline-name/closed
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/close/$',
+        views.CloseDisciplineView.as_view(),
+        name='close'
+    ),
     # /profile/discipline-name/students/
     url(
         r'^profile/(?P<slug>[\w_-]+)/students/$',
