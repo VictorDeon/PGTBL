@@ -307,12 +307,6 @@ class SearchAndEnterDisciplineTestCase(TestCase):
             content='You have been entered into the discipline: {0}'
             .format(self.discipline.title)
         )
-        self.assertTrue(
-            has_role(
-                User.objects.get(username=self.teachers[0].username),
-                ['monitor']
-            )
-        )
 
     def test_teacher_enter_your_own_discipline(self):
         """
@@ -371,4 +365,25 @@ class SearchAndEnterDisciplineTestCase(TestCase):
             self, response,
             tag='alert-danger',
             content='There are no more vacancies to monitor'
+        )
+
+    def test_can_not_access_discipline(self):
+        """
+        Test can't access discipline features if user is not in discipline.
+        """
+
+        self.client.login(
+            username=self.student.username, password='test1234'
+        )
+        url = reverse_lazy(
+            'disciplines:details',
+            kwargs={'slug': self.discipline.slug}
+        )
+        response = self.client.get(url, follow=True)
+        profile_url = reverse_lazy('accounts:profile')
+        self.assertRedirects(response, profile_url)
+        check_messages(
+            self, response,
+            tag='alert-danger',
+            content="You are not authorized to do this action."
         )

@@ -10,9 +10,9 @@
 
 .add-button {
   border-radius: 50%;
-  position: absolute;
-  top: 134px;
-  right: 40px;
+  position: fixed;
+  bottom: 10px;
+  left: 1212px;
 }
 
 .btn:active:focus, .btn:focus {

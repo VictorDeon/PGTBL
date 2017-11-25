@@ -24,7 +24,7 @@ class FormListView(FormMixin, ListView):
         self.form = None
 
         # Get the form from form_class
-        if self.get_form_class() is not None:
+        if self.form_class:
             self.form = self.get_form()
 
         # Insert object_list and form into template
@@ -42,16 +42,30 @@ class FormListView(FormMixin, ListView):
             self.cheap_query(allow_empty)
 
         # Verify if form is valid and call the respective method.
-        if self.form is not None:
-            if self.form.is_valid():
-                return self.form_valid(self.form)
-            else:
-                return self.form_invalid(self.form)
+        if self.form:
+            return self.form_validation()
         else:
-            if self.request.POST:
-                return redirect(self.get_success_url())
-            else:
-                return self.render_to_response(self.get_context_data(form=self.form))
+            return self.post_validation()
+
+    def form_validation(self):
+        """
+        Forwards to the correct method depending on the form request.
+        """
+
+        if self.form.is_valid():
+            return self.form_valid(self.form)
+
+        return self.form_invalid(self.form)
+
+    def post_validation(self):
+        """
+        Redirect if method is post and render otherwise.
+        """
+
+        if self.request.POST:
+            return redirect(self.get_success_url())
+
+        return self.render_to_response(self.get_context_data(form=self.form))
 
     def post(self, request, *args, **kwargs):
         """
@@ -94,6 +108,16 @@ class FormDetailView(FormMixin, DetailView):
     Detail view with form.
     """
 
+    model = None
+    queryset = None
+    form_class = None
+    success_url = None
+    template_name = None
+    context_object_name = None
+    pk_url_kwarg = 'pk'
+    slug_url_kwarg = 'slug'
+    slug_field = 'slug'
+
     def post(self, request, *args, **kwargs):
         """
         Method POST in GET.
@@ -113,8 +137,11 @@ class FormDetailView(FormMixin, DetailView):
         Method get with form.
         """
 
+        self.form = None
+
         # Get the form from form_class
-        self.form = self.get_form()
+        if self.form_class:
+            self.form = self.get_form()
 
         # Get the object from queryset
         self.object = self.get_object()
@@ -126,10 +153,27 @@ class FormDetailView(FormMixin, DetailView):
         )
 
         # Verify if form is valid and call the respective method.
+        if self.form:
+            return self.form_validation()
+        else:
+            return self.post_validation()
+
+    def form_validation(self):
+        """
+        Forwards to the correct method depending on the form request.
+        """
+
         if self.form.is_valid():
             return self.form_valid(self.form)
-        else:
-            return self.form_invalid(self.form)
 
-        # render the template.
-        return self.render_to_response(context)
+        return self.form_invalid(self.form)
+
+    def post_validation(self):
+        """
+        Redirect if method is post and render otherwise.
+        """
+
+        if self.request.POST:
+            return redirect(self.get_success_url())
+
+        return self.render_to_response(self.get_context_data(form=self.form))

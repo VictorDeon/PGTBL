@@ -70,15 +70,20 @@
         </div>
       </div>
     </div>
-
-    <!-- Add new student -->
-    <button type="button" class="btn btn-primary btn-lg add-button" data-toggle="modal" data-target="#add-modal">
-      <i class="fa fa-plus"></i>
-    </button>
   </div>
+
 
   <!-- Student list -->
   <div class="row fix-row">
+    <!-- Add new student -->
+    <button type="button"
+            class="btn btn-primary btn-lg add-button"
+            data-toggle="modal"
+            data-target="#add-modal">
+            <i class="fa fa-plus"></i>
+    </button>
+
+    <!-- Student list -->
     {% for student in students %}
       <div class="col-sm-4">
         <!-- Student -->

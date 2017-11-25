@@ -47,8 +47,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(
         _('Name'),
         help_text=_("Full user name."),
-        max_length=150,
-        blank=True
+        max_length=150
     )
 
     institution = models.CharField(

@@ -8,12 +8,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404
 from django.utils.text import slugify
 from django.contrib import messages
 from django.db.models import Q
 from django.views.generic import (
-    CreateView, UpdateView, DeleteView, DetailView
+    CreateView, UpdateView, DeleteView, DetailView, ListView
 )
 
 # Permissions
@@ -21,7 +21,7 @@ from rolepermissions.roles import assign_role
 
 # Core app
 from core.permissions import ModelPermissionMixin, ObjectPermissionMixin
-from core.generics import FormListView
+from core.generics import FormListView, FormDetailView
 from core.utils import order
 
 # Discipline app
@@ -242,7 +242,6 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
 
             return False
 
-        assign_role(self.request.user, 'monitor')
         discipline.monitors.add(self.request.user)
 
         return True
@@ -282,26 +281,33 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
         return disciplines
 
 
-class ShowDisciplineView(LoginRequiredMixin, DetailView):
+class ShowDisciplineView(LoginRequiredMixin,
+                         ObjectPermissionMixin,
+                         DetailView):
     """
     View to show a specific discipline.
     """
 
     model = Discipline
     template_name = 'disciplines/details.html'
+    permissions_required = [
+        'show_discipline_permission'
+    ]
 
 
 class StudentListView(LoginRequiredMixin,
-                      FormListView):
+                      ObjectPermissionMixin,
+                      ListView):
     """
     Insert, delete and list all students from specific discipline.
-    TODO: Permissions - only teacher can remove student and specific
-    student can remove itself from discipline.
     """
 
     template_name = 'disciplines/students.html'
     paginate_by = 12
     context_object_name = 'students'
+    permissions_required = [
+        'show_discipline_students_permission'
+    ]
 
     def get_queryset(self):
         """
@@ -318,6 +324,57 @@ class StudentListView(LoginRequiredMixin,
                     self.discipline.monitors.all())
 
         students = self.students_filter(queryset)
+
+        return students
+
+    def get_context_data(self, **kwargs):
+        """
+        Insert discipline instance into student list.
+        """
+
+        context = super(StudentListView, self).get_context_data(**kwargs)
+        context['discipline'] = self.discipline
+        return context
+
+    def students_filter(self, queryset):
+        """
+        Filter by monitor or students
+        """
+
+        filtered = self.request.GET.get('order')
+        if filtered == 'students':
+            queryset = self.discipline.students.all()
+        elif filtered == 'monitors':
+            queryset = self.discipline.monitors.all()
+
+        return queryset
+
+
+class RemoveStudentView(LoginRequiredMixin,
+                        ObjectPermissionMixin,
+                        FormDetailView):
+    """
+    Remove student from discipline.
+    """
+
+    template_name = 'disciplines/students.html'
+    permissions_required = [
+        'show_discipline_students_permission'
+    ]
+
+    def get_queryset(self):
+        """
+        List all students and monitors from discipline.
+        """
+
+        self.discipline = get_object_or_404(
+            Discipline,
+            slug=self.kwargs.get('slug', '')
+        )
+
+        # Insert monitors and students into one queryset
+        students = (self.discipline.students.all() |
+                    self.discipline.monitors.all())
 
         return students
 
@@ -341,7 +398,7 @@ class StudentListView(LoginRequiredMixin,
 
         messages.error(
             self.request,
-            _("You can't removed {0} from {1}"
+            _("You can't remove {0} from {1}"
               .format(user.get_short_name(), self.discipline.title))
         )
 
@@ -383,25 +440,3 @@ class StudentListView(LoginRequiredMixin,
             success_url = reverse_lazy('accounts:profile')
 
         return success_url
-
-    def get_context_data(self, **kwargs):
-        """
-        Insert discipline instance into student list.
-        """
-
-        context = super(StudentListView, self).get_context_data(**kwargs)
-        context['discipline'] = self.discipline
-        return context
-
-    def students_filter(self, queryset):
-        """
-        Filter by monitor or students
-        """
-
-        filtered = self.request.GET.get('order')
-        if filtered == 'students':
-            queryset = self.discipline.students.all()
-        elif filtered == 'monitors':
-            queryset = self.discipline.monitors.all()
-
-        return queryset

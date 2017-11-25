@@ -73,13 +73,13 @@ class ObjectPermissionMixin(object):
     failure_redirect_path = reverse_lazy('accounts:profile')
     permissions_required = None
 
-    def check_object_permission(self, user, obj):
+    def check_object_permission(self, user, view):
         """
         Verify if user has object permission.
         """
 
         for permission in self.permissions_required:
-            if not has_object_permission(permission, user, obj):
+            if not has_object_permission(permission, user, view):
                 return False
 
         return True
@@ -108,7 +108,7 @@ class ObjectPermissionMixin(object):
         Try to dispatch to the right method.
         """
 
-        if not self.check_object_permission(request.user, self.get_object()):
+        if not self.check_object_permission(request.user, self):
             return self.check_failed(request, *args, **kwargs)
 
         return super(ObjectPermissionMixin, self).dispatch(

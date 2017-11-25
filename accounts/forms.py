@@ -20,6 +20,7 @@ class UserCreationForm(CreationForm):
         model = User
         # password and password confirmation has in the UserCrationForm
         fields = [
+            'name',
             'username',
             'email',
             'is_teacher',
