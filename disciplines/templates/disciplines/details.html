@@ -25,11 +25,25 @@
   <div class="container-fluid">
     <!-- Header -->
     <div class="page-header">
-      <h1 class="white">
-        <i class="fa fa-book"></i> {{discipline.title}}
-        <span class="pull-right">{{discipline.classroom}}</span> <br />
-        <small>{{discipline.course}}</small>
-      </h1>
+      <div class="row">
+        <div class="col-sm-10">
+          <h1 class="white">
+            <i class="fa fa-book"></i> {{discipline.title}} <br />
+            <small>{{discipline.course}}</small>
+          </h1>
+        </div>
+        <div class="col-sm-2">
+            <h1 class="white">{{discipline.classroom}}</h1>
+            <form action="{% url 'disciplines:details' slug=discipline.slug %}" method="post">
+              {% csrf_token %}
+              {% if discipline.is_closed %}
+                <button type="submit" class="btn btn-danger pull-right">{% trans 'Closed' %}</button>
+              {% else %}
+                <button type="submit" class="btn btn-success pull-right">{% trans 'Open' %}</button>
+              {% endif %}
+            </form>
+        </div>
+      </div>
     </div>
 
     <!-- Teacher -->

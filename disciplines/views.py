@@ -13,11 +13,8 @@ from django.utils.text import slugify
 from django.contrib import messages
 from django.db.models import Q
 from django.views.generic import (
-    CreateView, UpdateView, DeleteView, DetailView, ListView
+    CreateView, UpdateView, DeleteView, ListView
 )
-
-# Permissions
-from rolepermissions.roles import assign_role
 
 # Core app
 from core.permissions import ModelPermissionMixin, ObjectPermissionMixin
@@ -212,6 +209,14 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
 
             return False
 
+        if discipline.is_closed:
+            messages.error(
+                self.request,
+                _("Discipline is closed.")
+            )
+
+            return False
+
         if self.request.user.is_teacher:
             success = self.insert_monitor(discipline)
         else:
@@ -283,7 +288,7 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
 
 class ShowDisciplineView(LoginRequiredMixin,
                          ObjectPermissionMixin,
-                         DetailView):
+                         FormDetailView):
     """
     View to show a specific discipline.
     """
@@ -293,6 +298,27 @@ class ShowDisciplineView(LoginRequiredMixin,
     permissions_required = [
         'show_discipline_permission'
     ]
+
+    def get_success_url(self):
+        """
+        Close or open discipline.
+        """
+
+        discipline = self.get_object()
+
+        redirect_url = reverse_lazy(
+            'disciplines:details',
+            kwargs={'slug': discipline.slug}
+        )
+
+        if discipline.is_closed:
+            discipline.is_closed = False
+        else:
+            discipline.is_closed = True
+
+        discipline.save()
+
+        return redirect_url
 
 
 class StudentListView(LoginRequiredMixin,

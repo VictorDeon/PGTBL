@@ -34,6 +34,7 @@ def list_transform(queryset):
 
 
 def user_factory(qtd=1,
+                 name='Test',
                  username='Test',
                  email='test',
                  password='test1234',

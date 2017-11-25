@@ -2,7 +2,6 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from disciplines.models import Discipline
-from rolepermissions.checkers import has_role
 from model_mommy import mommy
 from core.test_utils import (
     check_messages, list_transform, user_factory
@@ -121,6 +120,7 @@ class SearchAndEnterDisciplineTestCase(TestCase):
             teacher=self.teachers[1],
             title='Discipline02',
             course='Course02',
+            is_closed=True,
             _quantity=2
         )
         self.url = reverse_lazy('disciplines:search')
@@ -179,10 +179,10 @@ class SearchAndEnterDisciplineTestCase(TestCase):
         response = self.client.get(self.url)
         paginator = response.context['paginator']
         disciplines = response.context['disciplines']
-        self.assertEqual(paginator.count, 6)
+        self.assertEqual(paginator.count, 4)
         self.assertEqual(paginator.per_page, 10)
         self.assertEqual(paginator.num_pages, 1)
-        self.assertEqual(disciplines.count(), 6)
+        self.assertEqual(disciplines.count(), 4)
 
     def test_page_not_found(self):
         """
@@ -345,6 +345,36 @@ class SearchAndEnterDisciplineTestCase(TestCase):
             self, response,
             tag='alert-danger',
             content='Crowded discipline.'
+        )
+
+    def test_user_can_not_enter_closed_disciplines(self):
+        """
+        Test that ensures that the discipline is closed and no one can
+        enter it.
+        """
+
+        self.assertEqual(self.discipline.is_closed, False)
+        self.assertEqual(self.discipline.students.count(), 8)
+        url = reverse_lazy(
+            'disciplines:details',
+            kwargs={'slug': self.discipline.slug}
+        )
+        response = self.client.post(url, follow=True)
+        self.discipline.refresh_from_db()
+        self.assertTrue(self.discipline.is_closed)
+        self.assertEqual(self.discipline.students.count(), 8)
+        self.client.logout()
+        self.client.login(
+            username=self.student.username, password='test1234'
+        )
+        password = {'password': '12345'}
+        response = self.client.post(self.enter_url, password, follow=True)
+        self.assertEqual(self.discipline.students.count(), 8)
+        self.assertRedirects(response, url)
+        check_messages(
+            self, response,
+            tag='alert-danger',
+            content='Discipline is closed'
         )
 
     def teste_no_vacancies_monitor_discipline(self):

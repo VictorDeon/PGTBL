@@ -21,6 +21,7 @@ class EditUserTestCase(TestCase):
         self.client = Client()
         self.url = reverse('accounts:update-user')
         self.user = User.objects.create_user(
+            name='Teste',
             username='teste',
             email='teste@gmail.com',
             password='test1234',
@@ -53,6 +54,7 @@ class EditUserTestCase(TestCase):
 
         self.client.login(username=self.user.username, password='test1234')
         data = {
+            'name': 'Test',
             'username': 'test',
             'email': 'test@gmail.com',
             'institution': 'UnB',
@@ -76,7 +78,7 @@ class EditUserTestCase(TestCase):
         """
 
         self.client.login(username=self.user.username, password='test1234')
-        data = {'username': 'test', 'email': ''}
+        data = {'name': 'test', 'username': 'test', 'email': ''}
         response = self.client.post(self.url, data)
         self.assertFormError(
             response, 'form', 'email', _('This field is required.')
@@ -88,8 +90,20 @@ class EditUserTestCase(TestCase):
         """
 
         self.client.login(username=self.user.username, password='test1234')
-        data = {'username': '', 'email': 'test@gmail.com'}
+        data = {'name': 'test', 'username': '', 'email': 'test@gmail.com'}
         response = self.client.post(self.url, data)
         self.assertFormError(
             response, 'form', 'username', _('This field is required.')
+        )
+
+    def test_update_user_name_error(self):
+        """
+        Test to update with no data.
+        """
+
+        self.client.login(username=self.user.username, password='test1234')
+        data = {'name': '', 'username': 'test', 'email': 'test@gmail.com'}
+        response = self.client.post(self.url, data)
+        self.assertFormError(
+            response, 'form', 'name', _('This field is required.')
         )

@@ -22,6 +22,7 @@ class RegisterTestCase(TestCase):
         self.client = Client()
         self.register_url = reverse('accounts:register')
         self.user = User.objects.create_user(
+            name='Teste',
             username='teste',
             email='teste@gmail.com',
             password='test1234',
@@ -41,6 +42,7 @@ class RegisterTestCase(TestCase):
         """
 
         data = {
+            'name': 'Person1',
             'username': 'person1',
             'email': 'person1@gmail.com',
             'is_teacher': True,
@@ -70,6 +72,7 @@ class RegisterTestCase(TestCase):
         """
 
         data = {
+            'name': 'Person2',
             'username': 'person2',
             'email': 'person2@gmail.com',
             'is_teacher': False,
@@ -125,12 +128,30 @@ class RegisterTestCase(TestCase):
             'This field is required.'
         )
 
+    def test_name_register_error(self):
+        """
+        Test that get the empty name when the user try to register.
+        """
+
+        data = {
+            'email': 'person@gmail.com',
+            'username': 'person',
+            'password1': 'test1234',
+            'password2': 'test1234'
+        }
+        self.register_error(
+            data,
+            'name',
+            'This field is required.'
+        )
+
     def test_invalid_password(self):
         """
         Test that verify incorrect password match.
         """
 
         data = {
+            'name': 'Person',
             'username': 'person',
             'email': 'person@gmail.com',
             'password1': 'test1234',
@@ -148,6 +169,7 @@ class RegisterTestCase(TestCase):
         """
 
         data = {
+            'name': 'Teste',
             'username': 'teste',
             'email': 'person@gmail.com',
             'password1': 'test1234',
@@ -165,6 +187,7 @@ class RegisterTestCase(TestCase):
         """
 
         data = {
+            'name': 'Person',
             'username': 'person',
             'email': 'teste@gmail.com',
             'password1': 'test1234',
