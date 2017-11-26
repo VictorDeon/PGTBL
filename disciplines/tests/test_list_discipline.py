@@ -4,15 +4,15 @@ from django.test import TestCase, Client
 from disciplines.models import Discipline
 from model_mommy import mommy
 from core.test_utils import (
-    user_factory
+    list_transform, user_factory
 )
 
 User = get_user_model()
 
 
-class SimpleReadProfileDisciplinesTestCase(TestCase):
+class ListDisciplineTestCase(TestCase):
     """
-    Simple test to view all user disciplines
+    Tests to view all disciplines and search or filter discipline.
     """
 
     def setUp(self):
@@ -21,12 +21,42 @@ class SimpleReadProfileDisciplinesTestCase(TestCase):
         """
 
         self.client = Client()
-        self.teacher = user_factory()
-        self.url = reverse_lazy('accounts:profile')
-        self.client.login(username=self.teacher.username, password='test1234')
+        self.teacher = user_factory(name='Pedro')
+        self.teachers = user_factory(qtd=4)
+        mommy.make(
+            Discipline,
+            teacher=self.teacher,
+            title='Discipline',
+            course='Course',
+            _quantity=6
+        )
+        mommy.make(
+            Discipline,
+            teacher=self.teachers[0],
+            title='Discipline01',
+            course='Course01',
+            _quantity=4
+        )
+        mommy.make(
+            Discipline,
+            teacher=self.teachers[1],
+            title='Discipline02',
+            course='Course02',
+            is_closed=True,
+            _quantity=2
+        )
+        self.url = reverse_lazy('disciplines:search')
+        self.client.login(
+            username=self.teacher.username, password='test1234'
+        )
 
     def tearDown(self):
-        self.teacher.delete()
+        """
+        This method will run after any test.
+        """
+
+        Discipline.objects.all().delete()
+        User.objects.all().delete()
 
     def test_status_code_200(self):
         """
@@ -35,19 +65,7 @@ class SimpleReadProfileDisciplinesTestCase(TestCase):
 
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'accounts/profile.html')
-        self.assertTemplateUsed(response, 'disciplines/collapse.html')
-
-    def test_redirect_to_login(self):
-        """
-        Try to acess profile without logged in.
-        """
-
-        self.client.logout()
-        response = self.client.get(self.url)
-        login_url = reverse_lazy('accounts:login')
-        redirect_url = '{0}?next={1}'.format(login_url, self.url)
-        self.assertRedirects(response, redirect_url)
+        self.assertTemplateUsed(response, 'disciplines/list.html')
 
     def test_context(self):
         """
@@ -62,138 +80,117 @@ class SimpleReadProfileDisciplinesTestCase(TestCase):
         self.assertTrue('disciplines' in response.context)
         self.assertTrue('date' in response.context)
 
-
-class ReadProfileDisciplinesTestCase(TestCase):
-    """
-    Test to view all user disciplines.
-    """
-
-    def setUp(self):
+    def test_redirect_to_login(self):
         """
-        This method will run before any test case.
+        Try to acess profile without logged in.
         """
 
-        self.client = Client()
-        self.teacher = user_factory(
-            username='Teacher1',
-            email='teacher1@gmail.com',
-            password='test1234'
-        )
-        self.teachers = user_factory(2)
-        self.students = user_factory(8, is_teacher=False)
-        mommy.make(
-            Discipline,
-            teacher=self.teacher,
-            _quantity=6
-        )
-        self.discipline = mommy.make(
-            Discipline,
-            teacher=self.teacher,
-            students=self.students,
-            monitors=self.teachers,
-            make_m2m=True
-        )
-        self.url = reverse_lazy('accounts:profile')
-        self.client.login(username=self.teacher.username, password='test1234')
-
-    def tearDown(self):
-        """
-        This method will run after any test.
-        """
-
-        Discipline.objects.all().delete()
-        User.objects.all().delete()
-
+        self.client.logout()
+        response = self.client.get(self.url)
+        login_url = reverse_lazy('accounts:login')
+        redirect_url = '{0}?next={1}'.format(login_url, self.url)
+        self.assertRedirects(response, redirect_url)
 
     def test_disciplines(self):
         """
         Test the discipline quantity.
         """
 
-        self.assertEqual(Discipline.objects.count(), 7)
-        self.assertEquals(Discipline.objects.filter(
-            teacher=self.teacher
-        ).count(), 7)
-        self.assertEqual(self.discipline.students.count(), 8)
-        self.assertEqual(self.discipline.monitors.count(), 2)
+        # Total disciplines
+        self.assertEqual(Discipline.objects.count(), 12)
+        # Teacher disciplines
+        self.assertEquals(
+            Discipline.objects.filter(teacher=self.teacher).count(), 6
+        )
+        # Teacher 0 disciplines
+        self.assertEquals(
+            Discipline.objects.filter(teacher=self.teachers[0]).count(), 4
+        )
+        # Teacher 1 disciplines
+        self.assertEquals(
+            Discipline.objects.filter(teacher=self.teachers[1]).count(), 2
+        )
 
-    def test_teacher_discipline_pagination(self):
+    def test_discipline_pagination(self):
         """
-        Test to show teacher disciplines pagination.
+        Test to show disciplines pagination.
         """
 
         response = self.client.get(self.url)
         paginator = response.context['paginator']
         disciplines = response.context['disciplines']
-        self.assertEqual(paginator.count, 8)
-        self.assertEqual(paginator.per_page, 6)
-        self.assertEqual(paginator.num_pages, 2)
-        self.assertEqual(disciplines.count(), 6)
+        # Total number of objects, across all pages.
+        self.assertEqual(paginator.count, 4)
+        # The maximum number of items to include on a page.
+        self.assertEqual(paginator.per_page, 10)
+        # Total number of pages.
+        self.assertEqual(paginator.num_pages, 1)
+        # Number of disciplines opened
+        self.assertEqual(disciplines.count(), 4)
 
-    def page_not_found(self):
+    def test_page_not_found(self):
         """
         Test to verify one page that not exists.
         """
 
-        response = self.client.get('{0}?page=3'.format(self.url))
+        response = self.client.get('{0}?page=2'.format(self.url))
         self.assertEqual(response.status_code, 404)
 
-    def test_filter_created_disciplines_by_teacher(self):
+    def test_order_by_course(self):
         """
-        Test to filter created disciplines by teacher.
+        Test to order disciplines by course.
         """
 
-        response = self.client.get('{0}?filter=created'.format(self.url))
-        paginator = response.context['paginator']
+        response = self.client.get('{0}?order=course'.format(self.url))
         disciplines = response.context['disciplines']
-        self.assertEqual(paginator.count, 8)
-        self.assertEqual(paginator.per_page, 6)
-        self.assertEqual(paginator.num_pages, 2)
-        self.assertEqual(disciplines.count(), 6)
-
-    def test_filter_teacher_monitor_disciplines(self):
-        """
-        Test to filter disciplines that teacher is monitor.
-        """
-
-        response = self.client.get('{0}?filter=monitor'.format(self.url))
-        paginator = response.context['paginator']
-        disciplines = response.context['disciplines']
-        self.assertEqual(paginator.count, 0)
-        self.assertEqual(paginator.per_page, 6)
-        self.assertEqual(paginator.num_pages, 1)
-        self.assertEqual(disciplines.count(), 0)
-
-    def test_all_student_disciplines(self):
-        """
-        Test to show students disciplines pagination.
-        """
-
-        self.client.logout()
-        self.client.login(
-            username=self.students[0].username, password='test1234'
+        ordered = Discipline.objects.available(
+            user=self.teacher
+        ).order_by('course')
+        self.assertEqual(
+            list_transform(disciplines),
+            list_transform(ordered)
         )
-        response = self.client.get(self.url)
-        paginator = response.context['paginator']
+
+    def test_order_by_discipline_title(self):
+        """
+        Test to order disciplines by title.
+        """
+
+        response = self.client.get('{0}?order=title'.format(self.url))
         disciplines = response.context['disciplines']
-        self.assertEqual(paginator.count, 1)
-        self.assertEqual(paginator.per_page, 6)
-        self.assertEqual(paginator.num_pages, 1)
-        self.assertEqual(disciplines.count(), 1)
-
-    def test_filter_student_monitor_disciplines(self):
-        """
-        Test to filter disciplines that teacher is monitor.
-        """
-
-        self.client.logout()
-        self.client.login(
-            username=self.students[0].username, password='test1234'
+        ordered = Discipline.objects.available(
+            user=self.teacher
+        ).order_by('title')
+        self.assertEqual(
+            list_transform(disciplines),
+            list_transform(ordered)
         )
-        response = self.client.get('{0}?filter=monitor'.format(self.url))
-        paginator = response.context['paginator']
+
+    def test_order_by_teacher(self):
+        """
+        Test to order disciplines by teacher.
+        """
+
+        response = self.client.get('{0}?order=teacher__name'.format(self.url))
         disciplines = response.context['disciplines']
-        self.assertEqual(paginator.count, 0)
-        self.assertEqual(paginator.per_page, 6)
-        self.assertEqual(paginator.num_pages, 1)
-        self.assertEqual(disciplines.count(), 0)
+        ordered = Discipline.objects.available(
+            user=self.teacher
+        ).order_by('teacher__name')
+        self.assertEqual(
+            list_transform(disciplines),
+            list_transform(ordered)
+        )
+
+    def test_to_search_discipline(self):
+        """
+        Search a specific discipline.
+        """
+
+        response = self.client.get('{0}?q_info=Discipline02'.format(self.url))
+        disciplines = response.context['disciplines']
+        self.assertEqual(disciplines.count(), 2)
+        searched = Discipline.objects.search('Discipline02')
+        self.assertEqual(
+            list_transform(disciplines),
+            list_transform(searched)
+        )

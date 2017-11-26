@@ -6,31 +6,31 @@ urlpatterns = [
     # /profile/create_discipline/
     url(
         r'^profile/create-discipline/$',
-        views.DisciplineCreationView.as_view(),
+        views.CreateDisciplineView.as_view(),
         name='create'
     ),
     # /profile/list-discipline/
     url(
         r'^profile/list-discipline/$',
-        views.DisciplineListSearchView.as_view(),
+        views.ListDisciplineView.as_view(),
         name='search'
     ),
-    # /profile/update-discipline/discipline-name
+    # /profile/update-discipline/discipline-name/
     url(
         r'^profile/update-discipline/(?P<slug>[\w_-]+)/$',
-        views.DisciplineUpdateView.as_view(),
+        views.UpdateDisciplineView.as_view(),
         name='update'
     ),
-    # /profile/delete-discipline/discipline-name
+    # /profile/delete-discipline/discipline-name/
     url(
         r'^profile/delete-discipline/(?P<slug>[\w_-]+)/$',
-        views.DisciplineDeleteView.as_view(),
+        views.DeleteDisciplineView.as_view(),
         name='delete'
     ),
-    # /profile/enter-discipline/discipline-name
+    # /profile/enter-discipline/discipline-name/
     url(
         r'^profile/enter-discipline/(?P<slug>[\w_-]+)/$',
-        views.DisciplineListSearchView.as_view(),
+        views.EnterDisciplineView.as_view(),
         name='enter'
     ),
     # /profile/discipline-name/
@@ -39,7 +39,7 @@ urlpatterns = [
         views.ShowDisciplineView.as_view(),
         name='details'
     ),
-    # /profile/discipline-name/closed
+    # /profile/discipline-name/closed/
     url(
         r'^profile/(?P<slug>[\w_-]+)/close/$',
         views.CloseDisciplineView.as_view(),

@@ -13,12 +13,12 @@ from django.utils.text import slugify
 from django.contrib import messages
 from django.db.models import Q
 from django.views.generic import (
-    CreateView, UpdateView, DeleteView, ListView
+    CreateView, UpdateView, DeleteView, DetailView,
+    ListView, FormView
 )
 
 # Core app
 from core.permissions import ModelPermissionMixin, ObjectPermissionMixin
-from core.generics import FormListView, FormDetailView
 from core.utils import order
 
 # Discipline app
@@ -29,9 +29,9 @@ from .models import Discipline
 User = get_user_model()
 
 
-class DisciplineCreationView(LoginRequiredMixin,
-                             ModelPermissionMixin,
-                             CreateView):
+class CreateDisciplineView(LoginRequiredMixin,
+                           ModelPermissionMixin,
+                           CreateView):
     """
     View to create a new discipline.
     """
@@ -72,10 +72,10 @@ class DisciplineCreationView(LoginRequiredMixin,
         messages.success(self.request, _('Discipline created successfully.'))
 
         # Redirect to success url
-        return super(DisciplineCreationView, self).form_valid(form)
+        return super(CreateDisciplineView, self).form_valid(form)
 
 
-class DisciplineUpdateView(LoginRequiredMixin,
+class UpdateDisciplineView(LoginRequiredMixin,
                            ObjectPermissionMixin,
                            UpdateView):
     """
@@ -117,10 +117,10 @@ class DisciplineUpdateView(LoginRequiredMixin,
         messages.success(self.request, _("Discipline updated successfully."))
 
         # Redirect to success_url.
-        return super(DisciplineUpdateView, self).form_valid(form)
+        return super(UpdateDisciplineView, self).form_valid(form)
 
 
-class DisciplineDeleteView(LoginRequiredMixin,
+class DeleteDisciplineView(LoginRequiredMixin,
                            ObjectPermissionMixin,
                            DeleteView):
     """
@@ -144,10 +144,10 @@ class DisciplineDeleteView(LoginRequiredMixin,
         messages.success(self.request, _("Discipline deleted successfully."))
 
         # Redirect to success_url
-        return super(DisciplineDeleteView, self).get_success_url()
+        return super(DeleteDisciplineView, self).get_success_url()
 
 
-class DisciplineListSearchView(LoginRequiredMixin, FormListView):
+class ListDisciplineView(LoginRequiredMixin, ListView):
     """
     View to search a discipline and enter it.
     """
@@ -155,10 +155,6 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
     template_name = 'disciplines/list.html'
     paginate_by = 10
     context_object_name = 'disciplines'
-
-    # Form
-    form_class = EnterDisciplineForm
-    success_url = reverse_lazy('accounts:profile')
 
     def get_queryset(self):
         """
@@ -175,6 +171,28 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
 
         return queryset
 
+    def search_disciplines(self, disciplines):
+        """
+        Search from disciplines a specific discipline.
+        """
+
+        # From url after search get the ?q_info=...
+        query = self.request.GET.get("q_info")
+        if query:
+            disciplines = Discipline.objects.search(query)
+
+        return disciplines
+
+
+class EnterDisciplineView(LoginRequiredMixin, FormView):
+    """
+    Insert students or monitors inside discipline.
+    """
+
+    form_class = EnterDisciplineForm
+    success_url = reverse_lazy('accounts:profile')
+    template_name = 'disciplines/list.html'
+
     def form_valid(self, form):
         """
         Form to insert students and monitors in the discipline.
@@ -184,20 +202,18 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
 
         if success:
             # Redirect to success_url
-            return super(DisciplineListSearchView, self).form_valid(form)
+            return super(EnterDisciplineView, self).form_valid(form)
 
         # Redirect to same page with error.
-        return super(DisciplineListSearchView, self).form_invalid(form)
+        return super(EnterDisciplineView, self).form_invalid(form)
 
     def enter_discipline(self, form):
         """
         Verify if the password is correct and insert user in the discipline.
         """
 
-        queryset = self.get_queryset()
-
         try:
-            discipline = queryset.get(
+            discipline = Discipline.objects.get(
                 Q(password=form.cleaned_data['password']),
                 Q(slug=self.kwargs.get('slug', ''))
             )
@@ -247,6 +263,14 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
 
             return False
 
+        if self.request.user.id == discipline.teacher.id:
+            messages.error(
+                self.request,
+                _("You can't get into your own discipline.")
+            )
+
+            return False
+
         discipline.monitors.add(self.request.user)
 
         return True
@@ -273,22 +297,10 @@ class DisciplineListSearchView(LoginRequiredMixin, FormListView):
 
         return True
 
-    def search_disciplines(self, disciplines):
-        """
-        Search from disciplines a specific discipline.
-        """
-
-        # From url after search get the ?q_info=...
-        query = self.request.GET.get("q_info")
-        if query:
-            disciplines = Discipline.objects.search(query)
-
-        return disciplines
-
 
 class ShowDisciplineView(LoginRequiredMixin,
                          ObjectPermissionMixin,
-                         FormDetailView):
+                         DetailView):
     """
     View to show a specific discipline.
     """
@@ -352,10 +364,7 @@ class StudentListView(LoginRequiredMixin,
         List all students and monitors from discipline.
         """
 
-        self.discipline = get_object_or_404(
-            Discipline,
-            slug=self.kwargs.get('slug', '')
-        )
+        self.discipline = self.get_discipline()
 
         # Insert monitors and students into one queryset
         queryset = (self.discipline.students.all() |
@@ -364,6 +373,18 @@ class StudentListView(LoginRequiredMixin,
         students = self.students_filter(queryset)
 
         return students
+
+    def get_discipline(self):
+        """
+        Get the specific discipline.
+        """
+
+        discipline = get_object_or_404(
+            Discipline,
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
 
     def get_context_data(self, **kwargs):
         """
@@ -379,7 +400,7 @@ class StudentListView(LoginRequiredMixin,
         Filter by monitor or students
         """
 
-        filtered = self.request.GET.get('order')
+        filtered = self.request.GET.get('filter')
         if filtered == 'students':
             queryset = self.discipline.students.all()
         elif filtered == 'monitors':
@@ -397,10 +418,10 @@ class RemoveStudentView(LoginRequiredMixin,
 
     template_name = 'disciplines/students.html'
     permissions_required = [
-        'show_discipline_students_permission'
+        'show_discipline_permission'
     ]
 
-    def get_queryset(self):
+    def get_object(self):
         """
         List all students and monitors from discipline.
         """
@@ -410,11 +431,7 @@ class RemoveStudentView(LoginRequiredMixin,
             slug=self.kwargs.get('slug', '')
         )
 
-        # Insert monitors and students into one queryset
-        students = (self.discipline.students.all() |
-                    self.discipline.monitors.all())
-
-        return students
+        return self.discipline
 
     def delete(self, request, *args, **kwargs):
         """

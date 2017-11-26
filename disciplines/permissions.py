@@ -1,5 +1,4 @@
 from rolepermissions.permissions import register_object_checker
-from disciplines.models import Discipline
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -44,10 +43,14 @@ def show_discipline_students_permission(permission, user, view):
     discipline to see discipline list features.
     """
 
-    students = view.get_queryset()
-    discipline = view.discipline
+    discipline = view.get_discipline()
 
-    if user in students or user.id == discipline.teacher.id:
+    students = discipline.students.all()
+    monitors = discipline.monitors.all()
+
+    if user in students or \
+       user in monitors or \
+       user.id == discipline.teacher.id:
         return True
 
     return False
