@@ -156,6 +156,15 @@ class ListDisciplineView(LoginRequiredMixin, ListView):
     paginate_by = 10
     context_object_name = 'disciplines'
 
+    def get_context_data(self, **kwargs):
+        """
+        Insert a form inside list disciplines.
+        """
+
+        context = super(ListDisciplineView, self).get_context_data(**kwargs)
+        context['form'] = EnterDisciplineForm()
+        return context
+
     def get_queryset(self):
         """
         Get the specific queryset from model database.
@@ -205,7 +214,8 @@ class EnterDisciplineView(LoginRequiredMixin, FormView):
             return super(EnterDisciplineView, self).form_valid(form)
 
         # Redirect to same page with error.
-        return super(EnterDisciplineView, self).form_invalid(form)
+        redirect_url = reverse_lazy('disciplines:search')
+        return redirect(redirect_url)
 
     def enter_discipline(self, form):
         """
@@ -426,12 +436,12 @@ class RemoveStudentView(LoginRequiredMixin,
         List all students and monitors from discipline.
         """
 
-        self.discipline = get_object_or_404(
+        discipline = get_object_or_404(
             Discipline,
             slug=self.kwargs.get('slug', '')
         )
 
-        return self.discipline
+        return discipline
 
     def delete(self, request, *args, **kwargs):
         """
@@ -444,8 +454,10 @@ class RemoveStudentView(LoginRequiredMixin,
             pk=self.kwargs.get('pk', '')
         )
 
+        discipline = self.get_object()
+
         is_logged_user = (self.request.user.id == user.id)
-        is_teacher = (self.request.user.id == self.discipline.teacher.id)
+        is_teacher = (self.request.user.id == discipline.teacher.id)
 
         if is_logged_user or is_teacher:
             success_url = self.remove_from_discipline(user, is_teacher)
@@ -453,13 +465,13 @@ class RemoveStudentView(LoginRequiredMixin,
 
         redirect_url = reverse_lazy(
             'disciplines:students',
-            kwargs={'slug': self.discipline.slug}
+            kwargs={'slug': discipline.slug}
         )
 
         messages.error(
             self.request,
             _("You can't remove {0} from {1}"
-              .format(user.get_short_name(), self.discipline.title))
+              .format(user.get_short_name(), discipline.title))
         )
 
         return redirect(redirect_url)
@@ -469,27 +481,33 @@ class RemoveStudentView(LoginRequiredMixin,
         Remove user from discipline.
         """
 
-        if user in self.discipline.students.all():
-            self.discipline.students.remove(user)
+        discipline = self.get_object()
+
+        if user in discipline.students.all():
+            discipline.students.remove(user)
+
+            if discipline.is_closed:
+                discipline.is_closed = False
+                discipline.save()
         else:
-            self.discipline.monitors.remove(user)
+            discipline.monitors.remove(user)
 
         if is_teacher:
             messages.success(
                 self.request,
                 _("You have removed {0} from {1}"
-                  .format(user.get_short_name(), self.discipline.title))
+                  .format(user.get_short_name(), discipline.title))
             )
 
             success_url = reverse_lazy(
                 'disciplines:students',
-                kwargs={'slug': self.discipline.slug}
+                kwargs={'slug': discipline.slug}
             )
         else:
             messages.success(
                 self.request,
                 _("You left the discipline {0}"
-                  .format(self.discipline.title))
+                  .format(discipline.title))
             )
 
             success_url = reverse_lazy('accounts:profile')

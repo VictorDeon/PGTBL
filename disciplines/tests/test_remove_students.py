@@ -34,6 +34,7 @@ class RemoveStudentsTestCase(TestCase):
             title='Discipline04',
             course='Engineering',
             password='12345',
+            is_closed=True,
             students_limit=10,
             monitors_limit=3,
             students=self.students,
@@ -51,7 +52,8 @@ class RemoveStudentsTestCase(TestCase):
 
     def test_remove_student_by_teacher_ok(self):
         """
-        Test to remove specific student from discipline.
+        Test to remove specific student from discipline and open the
+        discipline again.
         """
 
         self.client.login(
@@ -61,6 +63,7 @@ class RemoveStudentsTestCase(TestCase):
             'disciplines:students',
             kwargs={'slug': self.discipline.slug}
         )
+        self.assertEqual(self.discipline.is_closed, True)
         response = self.remove_user(self.students[0].pk, redirect_url, 7, 2)
         check_messages(
             self, response,
@@ -70,6 +73,8 @@ class RemoveStudentsTestCase(TestCase):
                 self.discipline.title
             )
         )
+        self.discipline.refresh_from_db()
+        self.assertEqual(self.discipline.is_closed, False)
 
     def test_remove_monitor_by_teacher_ok(self):
         """
@@ -83,6 +88,7 @@ class RemoveStudentsTestCase(TestCase):
             'disciplines:students',
             kwargs={'slug': self.discipline.slug}
         )
+        self.assertEqual(self.discipline.is_closed, True)
         response = self.remove_user(self.teachers[2].pk, redirect_url, 8, 1)
         check_messages(
             self, response,
@@ -92,6 +98,8 @@ class RemoveStudentsTestCase(TestCase):
                 self.discipline.title
             )
         )
+        self.discipline.refresh_from_db()
+        self.assertEqual(self.discipline.is_closed, True)
 
     def test_remove_yourself_from_discipline(self):
         """
