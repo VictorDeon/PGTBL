@@ -120,13 +120,13 @@ class ListDisciplineTestCase(TestCase):
         paginator = response.context['paginator']
         disciplines = response.context['disciplines']
         # Total number of objects, across all pages.
-        self.assertEqual(paginator.count, 4)
+        self.assertEqual(paginator.count, 6)
         # The maximum number of items to include on a page.
         self.assertEqual(paginator.per_page, 10)
         # Total number of pages.
         self.assertEqual(paginator.num_pages, 1)
         # Number of disciplines opened
-        self.assertEqual(disciplines.count(), 4)
+        self.assertEqual(disciplines.count(), 6)
 
     def test_page_not_found(self):
         """

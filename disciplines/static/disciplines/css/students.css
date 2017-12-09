@@ -13,6 +13,7 @@
   position: fixed;
   bottom: 10px;
   left: 1212px;
+  z-index: 1;
 }
 
 .btn:active:focus, .btn:focus {
@@ -36,4 +37,14 @@
 
 .all {
   padding-left: 10px;
+}
+
+.submit-link {
+  background:none!important;
+  color:inherit;
+  border:none;
+  padding:0 !important;
+  font: inherit;
+  color: white;
+  cursor: pointer;
 }

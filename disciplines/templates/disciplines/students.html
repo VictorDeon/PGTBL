@@ -76,12 +76,12 @@
   <!-- Student list -->
   <div class="row fix-row">
     <!-- Add new student -->
-    <button type="button"
-            class="btn btn-primary btn-lg add-button"
-            data-toggle="modal"
-            data-target="#add-modal">
-            <i class="fa fa-plus"></i>
-    </button>
+    {% if user == discipline.teacher %}
+      <a href="{% url 'disciplines:users' slug=discipline.slug %}"
+         class="btn btn-primary btn-lg add-button">
+         <i class="fa fa-plus"></i>
+      </a>
+    {% endif %}
 
     <!-- Student list -->
     {% for student in students %}
@@ -97,10 +97,26 @@
             {% endif %}
 
             <!-- if is student or monitor -->
-            {% if student in discipline.monitors.all %}
-              <p class="white text-center">{% trans 'Monitor' %}</p>
+            {% if user == discipline.teacher %}
+              <form action="{% url 'disciplines:change-student' discipline.slug student.pk %}" method="POST">
+                {% csrf_token %}
+
+                {% if student in discipline.monitors.all %}
+                  <button type="submit" class="submit-link center-block">
+                     {%trans 'Monitor' %}
+                  </button>
+                {% else %}
+                  <button type="submit" class="submit-link center-block">
+                     {%trans 'Student' %}
+                  </button>
+                {% endif %}
+              </form>
             {% else %}
-              <p class="white text-center">{% trans 'Student' %}</p>
+                {% if student in discipline.monitors.all %}
+                  <p class="white text-center">{% trans 'Monitor' %}</p>
+                {% else %}
+                  <p class="white text-center">{% trans 'Student' %}</p>
+                {% endif %}
             {% endif %}
           </div>
 

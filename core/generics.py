@@ -4,7 +4,7 @@ File to generate new generic views.
 
 from django.utils.translation import ugettext as _
 from django.views.generic.edit import FormMixin
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, DeleteView
 from django.shortcuts import redirect
 from django.http import Http404
 
@@ -177,3 +177,25 @@ class FormDetailView(FormMixin, DetailView):
             return redirect(self.get_success_url())
 
         return self.render_to_response(self.get_context_data(form=self.form))
+
+
+class ObjectRedirectView(DeleteView):
+    """
+    Redirect to success url after perform some action.
+    """
+
+    def post(self, request, *args, **kwargs):
+        """
+        Post method to perform some action.
+        """
+
+        return self.action(request, *args, **kwargs)
+
+    def action(self, request, *args, **kwargs):
+        """
+        Do some action.
+        """
+
+        self.object = self.get_object()
+        success_url = self.get_success_url()
+        return redirect(success_url)

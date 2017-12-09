@@ -38,8 +38,7 @@ class DisciplineManager(models.Manager):
         return self.get_queryset().exclude(
             models.Q(teacher=user) |
             models.Q(students__email=user.email) |
-            models.Q(monitors__email=user.email) |
-            models.Q(is_closed=True)
+            models.Q(monitors__email=user.email)
         )
 
 

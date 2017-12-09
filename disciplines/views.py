@@ -18,7 +18,8 @@ from django.views.generic import (
 )
 
 # Core app
-from core.permissions import ModelPermissionMixin, ObjectPermissionMixin
+from core.permissions import ModelPermissionMixin, PermissionMixin
+from core.generics import ObjectRedirectView
 from core.utils import order
 
 # Discipline app
@@ -76,7 +77,7 @@ class CreateDisciplineView(LoginRequiredMixin,
 
 
 class UpdateDisciplineView(LoginRequiredMixin,
-                           ObjectPermissionMixin,
+                           PermissionMixin,
                            UpdateView):
     """
     View to update a specific discipline.
@@ -112,6 +113,14 @@ class UpdateDisciplineView(LoginRequiredMixin,
             form.instance.classroom
         )
 
+        discipline = Discipline.objects.get(slug=self.kwargs.get('slug', ''))
+        modify_student_limit = (
+            discipline.students_limit < form.instance.students_limit
+        )
+
+        if modify_student_limit and discipline.is_closed:
+            form.instance.is_closed = False
+
         form.save()
 
         messages.success(self.request, _("Discipline updated successfully."))
@@ -121,7 +130,7 @@ class UpdateDisciplineView(LoginRequiredMixin,
 
 
 class DeleteDisciplineView(LoginRequiredMixin,
-                           ObjectPermissionMixin,
+                           PermissionMixin,
                            DeleteView):
     """
     View to delete a specific discipline.
@@ -309,7 +318,7 @@ class EnterDisciplineView(LoginRequiredMixin, FormView):
 
 
 class ShowDisciplineView(LoginRequiredMixin,
-                         ObjectPermissionMixin,
+                         PermissionMixin,
                          DetailView):
     """
     View to show a specific discipline.
@@ -323,7 +332,7 @@ class ShowDisciplineView(LoginRequiredMixin,
 
 
 class CloseDisciplineView(LoginRequiredMixin,
-                          ObjectPermissionMixin,
+                          PermissionMixin,
                           DeleteView):
 
     model = Discipline
@@ -356,7 +365,7 @@ class CloseDisciplineView(LoginRequiredMixin,
 
 
 class StudentListView(LoginRequiredMixin,
-                      ObjectPermissionMixin,
+                      PermissionMixin,
                       ListView):
     """
     Insert, delete and list all students from specific discipline.
@@ -420,7 +429,7 @@ class StudentListView(LoginRequiredMixin,
 
 
 class RemoveStudentView(LoginRequiredMixin,
-                        ObjectPermissionMixin,
+                        PermissionMixin,
                         DeleteView):
     """
     Remove student from discipline.
@@ -433,7 +442,7 @@ class RemoveStudentView(LoginRequiredMixin,
 
     def get_object(self):
         """
-        List all students and monitors from discipline.
+        Get discipline by url slug
         """
 
         discipline = get_object_or_404(
@@ -513,3 +522,271 @@ class RemoveStudentView(LoginRequiredMixin,
             success_url = reverse_lazy('accounts:profile')
 
         return success_url
+
+
+class ListUsersView(LoginRequiredMixin,
+                    PermissionMixin,
+                    ListView):
+    """
+    List of all user to insert into discipline, can search user by name,
+    username, or email
+    """
+
+    template_name = 'disciplines/users.html'
+    context_object_name = 'users'
+    ordering = 'name'
+    paginate_by = 12
+    permissions_required = [
+        'show_users_to_insert_in_discipline_permission'
+    ]
+
+    def get_context_data(self, **kwargs):
+        """
+        Insert form into list view.
+        """
+
+        context = super(ListUsersView, self).get_context_data(**kwargs)
+        context['discipline'] = self.get_discipline()
+        return context
+
+    def get_discipline(self):
+        """
+        Get the specific discipline.
+        """
+
+        discipline = get_object_or_404(
+            Discipline,
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_queryset(self, **kwargs):
+        """
+        Insert only available users, can't insert discipline teacher and users
+        that are inside the discipline.
+        """
+
+        discipline = self.get_discipline()
+        queryset = []
+
+        users = User.objects.all()
+        students = discipline.students.all() | discipline.monitors.all()
+
+        for user in users:
+            if user not in students and user != discipline.teacher:
+                queryset.append(user)
+
+        queryset = self.search(queryset)
+
+        return queryset
+
+    def search(self, users):
+        """
+        Search a specific user to insert into the discipline.
+        """
+
+        # From url after search get the ?q_info=...
+        query = self.request.GET.get("q_info")
+        if query:
+            users = User.objects.filter(
+                Q(name__icontains=query) |
+                Q(username__icontains=query) |
+                Q(email__icontains=query)
+            )
+
+        return users
+
+
+class InsertStudentView(LoginRequiredMixin,
+                        PermissionMixin,
+                        ObjectRedirectView):
+    """
+    Insert a student or monitor inside discipline by teacher.
+    """
+
+    template_name = 'disciplines/users.html'
+    permissions_required = [
+        'change_own_discipline'
+    ]
+
+    def get_object(self):
+        """
+        Get discipline by url slug
+        """
+
+        discipline = get_object_or_404(
+            Discipline,
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_success_url(self):
+        """
+        Create a success url to redirect.
+        """
+
+        discipline = self.get_object()
+
+        success_url = reverse_lazy(
+            'disciplines:users',
+            kwargs={'slug': discipline.slug}
+        )
+
+        return success_url
+
+    def action(self, request, *args, **kwargs):
+        """
+        Insert a user into discipline.
+        """
+
+        user = get_object_or_404(
+            User,
+            pk=self.kwargs.get('pk', '')
+        )
+
+        discipline = self.get_object()
+
+        if user.is_teacher:
+            success = self.insert_monitor(user, discipline)
+        else:
+            success = self.insert_student(user, discipline)
+
+        if success:
+            messages.success(
+                self.request,
+                _("{0} was inserted in the discipline: {1}"
+                  .format(user.get_short_name(), discipline.title))
+            )
+
+        return redirect(self.get_success_url())
+
+    def insert_monitor(self, user, discipline):
+        """
+        If user is a teacher, he will have all permission of monitor
+        If monitor number is bigger than monitors limit, can't enter.
+        """
+
+        if discipline.monitors.count() >= discipline.monitors_limit:
+            messages.error(
+                self.request,
+                _("There are no more vacancies to monitor")
+            )
+
+            return False
+
+        if user == discipline.teacher:
+            messages.error(
+                self.request,
+                _("You can't get into your own discipline.")
+            )
+
+            return False
+
+        discipline.monitors.add(user)
+
+        return True
+
+    def insert_student(self, user, discipline):
+        """
+        If user is a student, he will have all permission of student
+        If students number is bigger than student limit of discipline, close it
+        """
+
+        if discipline.students.count() >= discipline.students_limit:
+            if not discipline.is_closed:
+                discipline.is_closed = True
+                discipline.save()
+
+            messages.error(
+                self.request,
+                _("Crowded discipline.")
+            )
+
+            return False
+
+        discipline.students.add(user)
+
+        return True
+
+
+class ChangeStudentView(LoginRequiredMixin,
+                        PermissionMixin,
+                        ObjectRedirectView):
+    """
+    Change student to monitor or monitor to student if the monitor is no a
+    teacher.
+    """
+
+    template_name = 'disciplines/students.html'
+    permissions_required = [
+        'change_own_discipline'
+    ]
+
+    def get_object(self):
+        """
+        Get discipline by url slug
+        """
+
+        discipline = get_object_or_404(
+            Discipline,
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_success_url(self):
+        """
+        Create a success url to redirect.
+        """
+
+        discipline = self.get_object()
+
+        success_url = reverse_lazy(
+            'disciplines:students',
+            kwargs={'slug': discipline.slug}
+        )
+
+        return success_url
+
+    def action(self, request, *args, **kwargs):
+        """
+        Insert a user into discipline.
+        """
+
+        user = get_object_or_404(
+            User,
+            pk=self.kwargs.get('pk', '')
+        )
+
+        discipline = self.get_object()
+
+        success = self.change_user(user, discipline)
+
+        if success:
+            messages.success(self.request, _("Successful modification"))
+
+        return redirect(self.get_success_url())
+
+    def change_user(self, user, discipline):
+        """
+        Change user to monitor or student.
+        """
+
+        if user.is_teacher:
+            messages.error(
+                self.request,
+                _("You can't turn a teacher into a student.")
+            )
+
+            return False
+
+        if user in discipline.students.all():
+            discipline.students.remove(user)
+            discipline.monitors.add(user)
+        else:
+            discipline.monitors.remove(user)
+            discipline.students.add(user)
+
+        return True

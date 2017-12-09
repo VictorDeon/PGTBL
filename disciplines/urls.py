@@ -57,4 +57,22 @@ urlpatterns = [
         views.RemoveStudentView.as_view(),
         name='remove-student'
     ),
+    # /profile/discipline-name/students/add/
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/students/add/$',
+        views.ListUsersView.as_view(),
+        name='users'
+    ),
+    # /profile/discipline-name/students/add/1/
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/students/add/(?P<pk>[0-9]+)/$',
+        views.InsertStudentView.as_view(),
+        name='insert-students'
+    ),
+    # /profile/discipline-name/students/1/change
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/students/(?P<pk>[0-9]+)/change/$',
+        views.ChangeStudentView.as_view(),
+        name='change-student'
+    ),
 ]
