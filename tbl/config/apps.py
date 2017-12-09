@@ -21,6 +21,7 @@ TBL_APPS = [
 EXTERNAL_APPS = [
     'rolepermissions',
     'widget_tweaks',
+    'markdown_deux',
     'pagedown',
 ]
 

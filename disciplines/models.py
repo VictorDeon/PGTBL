@@ -4,6 +4,8 @@ from django.contrib.auth import get_user_model
 from django.core import validators
 from django.conf import settings
 from django.db import models
+from django.utils.safestring import mark_safe
+from markdown_deux import markdown
 import re
 
 # Get the custom user from settings
@@ -176,6 +178,14 @@ class Discipline(models.Model):
         """
 
         return '{0}: {1} - {2}'.format(self.course, self.title, self.classroom)
+
+    def description_markdown(self):
+        """
+        Transform description in markdown and render in html with safe
+        """
+
+        content = self.description
+        return mark_safe(markdown(content))
 
     class Meta:
         verbose_name = _('Discipline')

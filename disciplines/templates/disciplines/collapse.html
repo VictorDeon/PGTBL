@@ -61,7 +61,8 @@
             <div class="panel-body">
               <div class="row">
                 <div class="col-sm-11">
-                  <div class="content-markdown">{{discipline.description|truncatechars:120}}</div>
+                  <!-- Render description markdown with responsive image and truncate each html tags -->
+                  <div class="img-responsive-markdown">{{discipline.description_markdown|truncatechars_html:35}}</div>
                 </div>
                 <div class="col-sm-1">
                   <span class="label label-primary">
