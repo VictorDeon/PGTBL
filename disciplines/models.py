@@ -1,8 +1,10 @@
 from django.utils.translation import ugettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth import get_user_model
-from django.db import models
+from django.core import validators
 from django.conf import settings
+from django.db import models
+import re
 
 # Get the custom user from settings
 User = get_user_model()
@@ -70,10 +72,16 @@ class Discipline(models.Model):
         help_text=_('URL string shortcut')
     )
 
+    classroom_validator = validators.RegexValidator(
+        re.compile('^Class|^Turma [A-Z]$'),
+        _("Enter a valid classroom, the classroom need to be 'Class A-Z'")
+    )
+
     classroom = models.CharField(
         _('Classroom'),
         max_length=10,
-        help_text=_("Classroom title of discipline.")
+        help_text=_("Classroom title of discipline."),
+        validators=[classroom_validator]
     )
 
     password = models.CharField(
