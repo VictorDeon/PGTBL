@@ -8,4 +8,9 @@ $(document).ready(function(){
     var marked_content = marked(content)
     $(this).html(marked_content)
   })
+
+  // Use image responsive on markdown
+  $(".content-markdown img").each(function() {
+    $(this).addClass("img-responsive");
+  })
 })

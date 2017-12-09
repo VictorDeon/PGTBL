@@ -21,6 +21,7 @@ TBL_APPS = [
 EXTERNAL_APPS = [
     'rolepermissions',
     'widget_tweaks',
+    'pagedown',
 ]
 
 PRODUCTION_APPS = DJANGO_APPS + TBL_APPS + EXTERNAL_APPS

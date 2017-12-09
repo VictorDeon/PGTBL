@@ -118,7 +118,7 @@
                 <div class="panel-body">
                   <div class="row">
                     <div class="col-sm-11">
-                      {{ discipline.description|truncatewords:35 }}
+                      <div class="content-markdown">{{discipline.description|truncatechars:120}}</div>
                     </div>
                     <div class="col-sm-1">
                       <span class="label label-primary">
