@@ -5,6 +5,7 @@
 .wmd-button-row {
   position: relative;
   margin-bottom: 0;
+  border-radius: 3px 3px 0 0;
   height: 20px;
   background-color: white;
 }

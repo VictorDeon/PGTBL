@@ -12,9 +12,6 @@ class DisciplineForm(forms.ModelForm):
     """
     Form to create a new discipline.
     """
-    description = forms.CharField(
-        widget=PagedownWidget(css=("core/css/markdown.css"))
-    )
 
     class Meta:
         model = Discipline
@@ -25,8 +22,31 @@ class DisciplineForm(forms.ModelForm):
 
         # Widgets about some fields
         widgets = {
-            'password': forms.PasswordInput()
+            'password': forms.PasswordInput(),
+            'description': PagedownWidget(
+                css=("core/css/markdown.css"),
+                show_preview=False
+            )
         }
+
+
+class DisciplineEditForm(forms.ModelForm):
+    """
+    Form to create a new discipline.
+    """
+    description = forms.CharField(
+        widget=PagedownWidget(
+            css=("core/css/markdown.css"),
+            show_preview=False
+        )
+    )
+
+    class Meta:
+        model = Discipline
+        fields = [
+            'title', 'course', 'description', 'classroom',
+            'password', 'students_limit', 'monitors_limit'
+        ]
 
 
 class EnterDisciplineForm(forms.Form):

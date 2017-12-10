@@ -23,7 +23,7 @@ from core.generics import ObjectRedirectView
 from core.utils import order
 
 # Discipline app
-from .forms import DisciplineForm, EnterDisciplineForm
+from .forms import DisciplineForm, DisciplineEditForm, EnterDisciplineForm
 from .models import Discipline
 
 # Get the custom user from settings
@@ -85,12 +85,7 @@ class UpdateDisciplineView(LoginRequiredMixin,
 
     model = Discipline
     template_name = 'disciplines/form.html'
-
-    # Form
-    fields = [
-        'title', 'course', 'description', 'classroom',
-        'password', 'students_limit', 'monitors_limit'
-    ]
+    form_class = DisciplineEditForm
     success_url = reverse_lazy('accounts:profile')
 
     # Permissions
