@@ -6,6 +6,8 @@
 {% block css %}
   {{ block.super }}
   <link href="{% static 'disciplines/css/create.css' %}" rel="stylesheet" />
+  <link href="{% static 'core/css/markdown.css' %}" rel="stylesheet" />
+  {{form.media}}
 {% endblock %}
 
 {% block breadcrumb %}
@@ -17,7 +19,7 @@
   </li>
 {% endblock %}
 
-{% block profile %}
+{% block content %}
   <div class="container-fluid">
     <!-- Header -->
     <div class="page-header profile">
@@ -100,6 +102,12 @@
                 {{ error }}
               </span>
             {% endfor %}
+          </div>
+
+          <!-- Discipline description preview -->
+          <div class="col-sm-12">
+            <h3 class="white">{% trans 'Preview' %}</h3><hr />
+            <div class="markdown-preview white"></div>
           </div>
 
           <!-- Classroom fieldset -->

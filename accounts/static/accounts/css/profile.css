@@ -62,6 +62,7 @@ td, th {
 .img-size {
   max-height: 250px;
   width: 250px;
+  object-fit: cover;
 }
 
 .filter {

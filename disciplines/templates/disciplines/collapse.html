@@ -61,7 +61,8 @@
             <div class="panel-body">
               <div class="row">
                 <div class="col-sm-11">
-                  {{ discipline.description|truncatewords:35 }}
+                  <!-- Render description markdown with responsive image and truncate each html tags -->
+                  <div class="img-responsive-markdown">{{discipline.description_markdown|truncatechars_html:35}}</div>
                 </div>
                 <div class="col-sm-1">
                   <span class="label label-primary">
@@ -98,7 +99,7 @@
                   <div class="btn-group btn-group-justified">
                     <!-- View -->
                     <div class="btn-group">
-                      <a href="#"
+                      <a href="{% url 'disciplines:details' discipline.slug %}"
                          class="btn btn-primary btn-class">
                          <i class="fa fa-eye"></i>
                       </a>

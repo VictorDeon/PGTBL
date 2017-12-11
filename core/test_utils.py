@@ -34,6 +34,7 @@ def list_transform(queryset):
 
 
 def user_factory(qtd=1,
+                 name='Test',
                  username='Test',
                  email='test',
                  password='test1234',
@@ -44,10 +45,11 @@ def user_factory(qtd=1,
     """
 
     users = []
-    count = User.objects.all().count()
+    count = User.objects.count()
 
     for n in range(qtd):
         user = User.objects.create_user(
+            name='{0}{1}'.format(name, n+count),
             username='{0}{1}'.format(username, n+count),
             email='{0}{1}@gmail.com'.format(email, n+count),
             password=password,

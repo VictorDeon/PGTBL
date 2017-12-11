@@ -36,12 +36,19 @@
 
     <!-- Profile page -->
     <div class="row">
-      {% include 'accounts/sidebar.html' %}
+
+      <!-- Sidebar page -->
+      {% block sidebar %}
+        {% include 'accounts/sidebar.html' %}
+      {% endblock %}
+
       <div class="col-sm-10">
+        <!-- Messages -->
         {% include 'core/messages.html' %}
 
-        <!-- profile -->
-        {% block profile %}
+        <!-- Content -->
+        {% block content %}
+          <!-- profile -->
           <div class="container-fluid">
             <!-- Header -->
             <div class="page-header profile">

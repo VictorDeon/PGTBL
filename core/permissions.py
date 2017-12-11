@@ -33,6 +33,13 @@ class ModelPermissionMixin(object):
 
         return True
 
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        return self.failure_redirect_path
+
     def check_failed(self, request, *args, **kwargs):
         """
         If user check fail, redirect the user to another place.
@@ -43,7 +50,7 @@ class ModelPermissionMixin(object):
             _("You are not authorized to do this action.")
         )
 
-        return redirect(self.failure_redirect_path)
+        return redirect(self.get_failure_redirect_path())
 
     def dispatch(self, request, *args, **kwargs):
         """
@@ -58,24 +65,31 @@ class ModelPermissionMixin(object):
         )
 
 
-class ObjectPermissionMixin(object):
+class PermissionMixin(object):
     """
-    Insert a object permission in one class based view.
+    Insert a permission in one class based view.
     """
 
     failure_redirect_path = reverse_lazy('accounts:profile')
     permissions_required = None
 
-    def check_object_permission(self, user, obj):
+    def check_permission(self, user, view):
         """
-        Verify if user has object permission.
+        Verify if user has permission.
         """
 
         for permission in self.permissions_required:
-            if not has_object_permission(permission, user, obj):
+            if not has_object_permission(permission, user, view):
                 return False
 
         return True
+
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        return self.failure_redirect_path
 
     def check_failed(self, request, *args, **kwargs):
         """
@@ -87,16 +101,16 @@ class ObjectPermissionMixin(object):
             _("You are not authorized to do this action.")
         )
 
-        return redirect(self.failure_redirect_path)
+        return redirect(self.get_failure_redirect_path())
 
     def dispatch(self, request, *args, **kwargs):
         """
         Try to dispatch to the right method.
         """
 
-        if not self.check_object_permission(request.user, self.get_object()):
+        if not self.check_permission(request.user, self):
             return self.check_failed(request, *args, **kwargs)
 
-        return super(ObjectPermissionMixin, self).dispatch(
+        return super(PermissionMixin, self).dispatch(
             request, *args, **kwargs
         )

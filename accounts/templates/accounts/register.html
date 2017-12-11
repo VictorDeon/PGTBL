@@ -28,6 +28,23 @@
           </div>
         {% endfor %}
 
+        <!-- Name field -->
+        <div class="group">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="fa fa-user-circle icon-md white"></i>
+            </span>
+            {% render_field form.name class="form-control" type="text" placeholder=form.name.label %}
+          </div>
+
+          <!-- Username errors -->
+          {% for error in form.name.errors %}
+            <span class="error">
+              {{ error }}
+            </span>
+          {% endfor %}
+        </div>
+
         <!-- Username field -->
         <div class="group">
           <div class="input-group">

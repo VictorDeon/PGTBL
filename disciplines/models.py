@@ -1,8 +1,12 @@
 from django.utils.translation import ugettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth import get_user_model
-from django.db import models
+from django.core import validators
 from django.conf import settings
+from django.db import models
+from django.utils.safestring import mark_safe
+from markdown_deux import markdown
+import re
 
 # Get the custom user from settings
 User = get_user_model()
@@ -38,8 +42,7 @@ class DisciplineManager(models.Manager):
         return self.get_queryset().exclude(
             models.Q(teacher=user) |
             models.Q(students__email=user.email) |
-            models.Q(monitors__email=user.email) |
-            models.Q(is_closed=True)
+            models.Q(monitors__email=user.email)
         )
 
 
@@ -71,10 +74,16 @@ class Discipline(models.Model):
         help_text=_('URL string shortcut')
     )
 
+    classroom_validator = validators.RegexValidator(
+        re.compile('^Class|^Turma [A-Z]$'),
+        _("Enter a valid classroom, the classroom need to be 'Class A-Z'")
+    )
+
     classroom = models.CharField(
         _('Classroom'),
         max_length=10,
-        help_text=_("Classroom title of discipline.")
+        help_text=_("Classroom title of discipline."),
+        validators=[classroom_validator]
     )
 
     password = models.CharField(
@@ -169,6 +178,14 @@ class Discipline(models.Model):
         """
 
         return '{0}: {1} - {2}'.format(self.course, self.title, self.classroom)
+
+    def description_markdown(self):
+        """
+        Transform description in markdown and render in html with safe
+        """
+
+        content = self.description
+        return mark_safe(markdown(content))
 
     class Meta:
         verbose_name = _('Discipline')

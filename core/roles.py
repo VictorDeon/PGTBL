@@ -17,11 +17,3 @@ class Student(AbstractUserRole):
     """
 
     available_permissions = {}
-
-
-class Monitor(AbstractUserRole):
-    """
-    Group that contain monitor permissions.
-    """
-
-    available_permissions = {}

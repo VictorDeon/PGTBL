@@ -1,0 +1,107 @@
+{% extends 'accounts/profile.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'disciplines/css/students.css' %}" />
+{% endblock %}
+
+{% block sidebar %}
+  {% include 'disciplines/sidebar.html' %}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'disciplines:details' discipline.slug %}">
+      {{discipline.title}}
+    </a>
+  </li>
+  <li>
+    <a href="{% url 'disciplines:users' discipline.slug %}">
+      {% trans 'User list' %}
+    </a>
+  </li>
+{% endblock %}
+
+{% block content %}
+  <!-- student list header -->
+  <div class="page-header fix-row">
+    <h1 class="white">
+      <i class="fa fa-users"></i> {% trans 'User List' %}<br />
+      <small>{{discipline.title}}</small>
+    </h1>
+
+    <!-- User search input -->
+    <form method="GET" accept-charset="utf-8">
+      <div class="input-group">
+        <!-- Search input -->
+        <input
+          type="text"
+          class="form-control"
+          name="q_info"
+          value="{{ request.GET.q_info }}"
+          placeholder="{% trans 'Search' %}"
+        />
+
+        <!-- Submit button -->
+        <div class="input-group-btn">
+          <button class="btn btn-primary btn-border"
+                  type="submit">
+                  <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div> <!-- Input group div -->
+    </form> <!-- Form -->
+  </div>
+
+
+  <!-- Users list -->
+  <div class="row fix-row">
+    <span class="label label-primary">
+      {{discipline.students.count}}/{{discipline.students_limit}} {% trans 'Students' %}
+    </span>
+    <span class="label label-primary pull-right">
+      {{discipline.monitors.count}}/{{discipline.monitors_limit}} {% trans 'Monitors' %}
+    </span>
+    <!-- Student list -->
+    {% for user in users %}
+      <div class="media">
+        <div class="media-left">
+          {% if student.photo %}
+            <img src="{{user.photo.url}}" class="media-object" style="width:60px">
+          {% else %}
+            <img src="{% static 'disciplines/img/user.png' %}" class="media-object" style="width:60px">
+          {% endif %}
+        </div>
+        <div class="media-body white">
+          <h4 class="media-heading">{{user.get_short_name}} <small>{{user.username}}</small></h4>
+          <p>
+             {{user.email}}
+             {% if user.institution and user.course %}
+              - {{user.institution}}, {{user.course}}
+             {% endif %}
+             {% if user.is_teacher %}
+              - {% trans 'Teacher' %}
+             {% endif %}
+          </p>
+        </div>
+        <div class="media-right">
+          <form action="{% url 'disciplines:insert-students' slug=discipline.slug pk=user.id %}" method="POST">
+            {% csrf_token %}
+
+            <button class="btn btn-primary btn-border" type="submit">
+              <i class="fa fa-plus"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    {% empty %}
+      <p class="white">{% trans 'There is no users.' %}</p>
+    {% endfor %}
+  </div>
+
+  <!-- Students pagination -->
+  {% include 'core/pagination.html' %}
+{% endblock %}

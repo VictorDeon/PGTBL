@@ -18,7 +18,7 @@
 {% endblock %}
 
 <!-- Discipline list block -->
-{% block profile %}
+{% block content %}
   <div class="container-fluid">
     <!-- Header -->
     <div class="page-header">
@@ -118,7 +118,9 @@
                 <div class="panel-body">
                   <div class="row">
                     <div class="col-sm-11">
-                      {{ discipline.description|truncatewords:35 }}
+                      <div class="img-responsive-markdown">
+                        {{discipline.description_markdown|truncatechars_html:35}}
+                      </div>
                     </div>
                     <div class="col-sm-1">
                       <span class="label label-primary">

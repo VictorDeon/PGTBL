@@ -39,8 +39,9 @@ class UpdateDisciplineTestCase(TestCase):
             title='Discipline01',
             description='Discipline description.',
             classroom='Class A',
-            students_limit=60,
+            students_limit=59,
             monitors_limit=5,
+            is_closed=True,
             teacher=self.teacher1,
             slug='discipline01'
         )
@@ -158,4 +159,30 @@ class UpdateDisciplineTestCase(TestCase):
             self, response,
             tag='alert-danger',
             content="You are not authorized to do this action."
+        )
+
+    def test_open_discipline_if_modify_students_limit(self):
+        """
+        If discipline is closed, open it if modify students limit.
+        """
+
+        self.client.login(username=self.teacher1.username, password='test1234')
+        self.assertEqual(self.discipline.is_closed, True)
+        data = {
+            'title': 'Discipline modified',
+            'description': 'Discipline description.',
+            'classroom': 'Class A',
+            'students_limit': 60,
+            'monitors_limit': 5,
+        }
+        response = self.client.post(self.url, data, follow=True)
+        profile_url = reverse_lazy('accounts:profile')
+        self.assertRedirects(response, profile_url)
+        self.discipline.refresh_from_db()
+        self.assertEqual(self.discipline.title, 'Discipline modified')
+        self.assertEqual(self.discipline.is_closed, False)
+        check_messages(
+            self, response,
+            tag='alert-success',
+            content='Discipline updated successfully.'
         )
