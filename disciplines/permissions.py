@@ -45,11 +45,8 @@ def show_discipline_students_permission(permission, user, view):
 
     discipline = view.get_discipline()
 
-    students = discipline.students.all()
-    monitors = discipline.monitors.all()
-
-    if user in students or \
-       user in monitors or \
+    if user in discipline.students.all() or \
+       user in discipline.monitors.all() or \
        user == discipline.teacher:
         return True
 

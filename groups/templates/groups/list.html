@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="{% static 'groups/css/list.css' %}" />
 {% endblock %}
 
+{% block sidebar %}
+  {% include 'disciplines/sidebar.html' %}
+{% endblock %}
+
 {% block breadcrumb %}
   {{ block.super }}
   <li>
@@ -51,12 +55,14 @@
                 {% endif %}
                     <div class="col-sm-2">
                       <div class="thumbnail">
-                        <button class="close remove-student-button"
-                                type="button"
-                                data-toggle="modal"
-                                data-target="#delete-modal">
-                                <i class="fa fa-close"></i>
-                        </button>
+                        {% if user == discipline.teacher %}
+                          <button class="close remove-student-button"
+                                  type="button"
+                                  data-toggle="modal"
+                                  data-target="#delete-modal">
+                                  <i class="fa fa-close"></i>
+                          </button>
+                        {% endif %}
                         {% if student.photo %}
                           <img src="{{student.photo.url}}" class="img-responsive" alt="{% trans 'Student' %}" />
                         {% else %}
@@ -78,44 +84,46 @@
                 <p>{% trans 'There is no students in this group.' %}</p>
               {% endfor %}
             </div>
-            <div class="panel-footer">
-              <div class="row">
-                <div class="col-md-8">
-                  <div class="btn-group btn-group-justified">
-                    <div class="btn-group">
-                      <button class="btn btn-primary"
-                              type="button"
-                              data-toggle="modal"
-                              data-target="#add-student-{{group.id}}-modal">
-                              <i class="fa fa-user-plus"></i>
-                              {% trans 'Add student' %}
-                      </button>
-                    </div>
-                    <div class="btn-group">
-                      <a class="btn btn-primary"
-                         href="{% url 'groups:update' discipline.slug group.id %}">
-                         <i class="fa fa-edit"></i>
-                         {% trans 'Edit group' %}
-                      </a>
+            {% if user == discipline.teacher %}
+              <div class="panel-footer">
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="btn-group btn-group-justified">
+                      <div class="btn-group">
+                        <button class="btn btn-primary"
+                                type="button"
+                                data-toggle="modal"
+                                data-target="#add-student-{{group.id}}-modal">
+                                <i class="fa fa-user-plus"></i>
+                                {% trans 'Add student' %}
+                        </button>
+                      </div>
+                      <div class="btn-group">
+                        <a class="btn btn-primary"
+                           href="{% url 'groups:update' discipline.slug group.id %}">
+                           <i class="fa fa-edit"></i>
+                           {% trans 'Edit group' %}
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="btn-group btn-group-justified">
-                    <div class="btn-group">
-                      <button class="btn btn-danger"
-                              type="button"
-                              data-toggle="modal"
-                              data-target="#delete-{{group.id}}-modal">
-                              <i class="fa fa-trash"></i>
-                              {% trans 'Delete' %}
-                      </button>
+                  <div class="col-md-4">
+                    <div class="btn-group btn-group-justified">
+                      <div class="btn-group">
+                        <button class="btn btn-danger"
+                                type="button"
+                                data-toggle="modal"
+                                data-target="#delete-{{group.id}}-modal">
+                                <i class="fa fa-trash"></i>
+                                {% trans 'Delete' %}
+                        </button>
+                      </div>
+                      {% include 'groups/delete.html' %}
                     </div>
-                    {% include 'groups/delete.html' %}
                   </div>
                 </div>
               </div>
-            </div>
+            {% endif %}
           </div>
         </div>
       {% empty %}
@@ -123,14 +131,16 @@
       {% endfor %}
     </div>
 
-    <button class="btn btn-primary btn-lg add-button"
-            type="button"
-            data-toggle="modal"
-            data-target="#add-modal">
-            <i class="fa fa-plus"></i>
-    </button>
+    {% if user == discipline.teacher %}
+      <button class="btn btn-primary btn-lg add-button"
+              type="button"
+              data-toggle="modal"
+              data-target="#add-modal">
+              <i class="fa fa-plus"></i>
+      </button>
+      {% include 'groups/add_group.html' %}
+    {% endif %}
 
-    {% include 'groups/add_group.html' %}
     {% include 'core/pagination.html' %}
   </div>
 {% endblock %}

@@ -8,6 +8,10 @@
   <link href="{% static 'disciplines/css/create.css' %}" rel="stylesheet" />
 {% endblock %}
 
+{% block sidebar %}
+  {% include 'disciplines/sidebar.html' %}
+{% endblock %}
+
 {% block breadcrumb %}
   {{ block.super }}
   <li>

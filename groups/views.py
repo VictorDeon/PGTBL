@@ -6,12 +6,15 @@ from django.contrib import messages
 from django.views.generic import (
     CreateView, ListView, UpdateView, DeleteView
 )
+from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from .models import Group
 from .forms import StudentGroupForm
 
 
-class ListGroupView(LoginRequiredMixin, ListView):
+class ListGroupView(LoginRequiredMixin,
+                    PermissionMixin,
+                    ListView):
     """
     View to see all groups of discipline.
     """
@@ -19,6 +22,23 @@ class ListGroupView(LoginRequiredMixin, ListView):
     template_name = 'groups/list.html'
     paginate_by = 5
     context_object_name = 'groups'
+
+    # Permissions
+    permissions_required = [
+        'show_discipline_groups_permission'
+    ]
+
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        failure_redirect_path = reverse_lazy(
+            'disciplines:details',
+            kwargs={'slug': self.kwargs.get('slug', '')}
+        )
+
+        return failure_redirect_path
 
     def get_discipline(self):
         """
@@ -53,7 +73,9 @@ class ListGroupView(LoginRequiredMixin, ListView):
         return groups
 
 
-class CreateGroupView(LoginRequiredMixin, CreateView):
+class CreateGroupView(LoginRequiredMixin,
+                      PermissionMixin,
+                      CreateView):
     """
     View to create a new group to discipline.
     """
@@ -61,6 +83,23 @@ class CreateGroupView(LoginRequiredMixin, CreateView):
     model = Group
     template_name = 'groups/list.html'
     form_class = StudentGroupForm
+
+    # Permissions
+    permissions_required = [
+        'change_own_group'
+    ]
+
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        failure_redirect_path = reverse_lazy(
+            'disciplines:details',
+            kwargs={'slug': self.kwargs.get('slug', '')}
+        )
+
+        return failure_redirect_path
 
     def get_discipline(self):
         """
@@ -113,7 +152,9 @@ class CreateGroupView(LoginRequiredMixin, CreateView):
         return success_url
 
 
-class UpdateGroupView(LoginRequiredMixin, UpdateView):
+class UpdateGroupView(LoginRequiredMixin,
+                      PermissionMixin,
+                      UpdateView):
     """
     View to update a specific group.
     """
@@ -122,6 +163,23 @@ class UpdateGroupView(LoginRequiredMixin, UpdateView):
     template_name = 'groups/form.html'
     context_object_name = 'group'
     form_class = StudentGroupForm
+
+    # Permissions
+    permissions_required = [
+        'change_own_group'
+    ]
+
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        failure_redirect_path = reverse_lazy(
+            'disciplines:details',
+            kwargs={'slug': self.kwargs.get('slug', '')}
+        )
+
+        return failure_redirect_path
 
     def get_discipline(self):
         """
@@ -167,12 +225,31 @@ class UpdateGroupView(LoginRequiredMixin, UpdateView):
         return success_url
 
 
-class DeleteGroupView(LoginRequiredMixin, DeleteView):
+class DeleteGroupView(LoginRequiredMixin,
+                      PermissionMixin,
+                      DeleteView):
     """
     View to delete a specific group.
     """
 
     model = Group
+
+    # Permissions
+    permissions_required = [
+        'change_own_group'
+    ]
+
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        failure_redirect_path = reverse_lazy(
+            'disciplines:details',
+            kwargs={'slug': self.kwargs.get('slug', '')}
+        )
+
+        return failure_redirect_path
 
     def get_discipline(self):
         """
