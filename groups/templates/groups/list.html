@@ -86,19 +86,17 @@
                       <button class="btn btn-primary"
                               type="button"
                               data-toggle="modal"
-                              data-target="#add-student-modal">
+                              data-target="#add-student-{{group.id}}-modal">
                               <i class="fa fa-user-plus"></i>
                               {% trans 'Add student' %}
                       </button>
                     </div>
                     <div class="btn-group">
-                      <button class="btn btn-primary"
-                              type="button"
-                              data-toggle="modal"
-                              data-target="#edit-modal">
-                              <i class="fa fa-edit"></i>
-                              {% trans 'Edit group' %}
-                      </button>
+                      <a class="btn btn-primary"
+                         href="{% url 'groups:update' discipline.slug group.id %}">
+                         <i class="fa fa-edit"></i>
+                         {% trans 'Edit group' %}
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -108,11 +106,12 @@
                       <button class="btn btn-danger"
                               type="button"
                               data-toggle="modal"
-                              data-target="#delete-modal">
+                              data-target="#delete-{{group.id}}-modal">
                               <i class="fa fa-trash"></i>
                               {% trans 'Delete' %}
                       </button>
                     </div>
+                    {% include 'groups/delete.html' %}
                   </div>
                 </div>
               </div>

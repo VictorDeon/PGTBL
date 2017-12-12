@@ -19,10 +19,12 @@
           {% csrf_token %}
 
           <div class="form-group">
+            <label for="group">{% trans 'Group title' %}:</label>
             {% render_field form.title class="form-control" type="text" placeholder=form.title.help_text %}
           </div>
           <div class="form-group">
-            {% render_field form.students_limit class="form-control" type="number" min="0" placeholder=form.students_limit.help_text %}
+            <label for="number">{% trans 'Number of students' %}:</label>
+            {% render_field form.students_limit class="form-control" type="number" min="0" %}
           </div>
           <button type="submit" class="btn btn-default submit-button center-block">
             <i class="fa fa-plus"></i>

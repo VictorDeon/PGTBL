@@ -1,0 +1,105 @@
+{% extends 'accounts/profile.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block css %}
+  {{ block.super }}
+  <link href="{% static 'disciplines/css/create.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'groups:list' discipline.slug %}">
+      {% trans 'Group list' %}
+    </a>
+  </li>
+  <li>
+    <a href="{% url 'groups:update' discipline.slug group.id %}">
+      {% trans 'Edit' %} {{group}}
+    </a>
+  </li>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    <!-- Header -->
+    <div class="page-header profile">
+      <h1 class="white">
+        {% trans 'Edit' %} {{group}}
+      </h1>
+    </div>
+
+    <!-- Form -->
+    <div class="row">
+      <div class="col-sm-12">
+        <!-- Form without html5 validation -->
+        <form action="{% url 'groups:update' discipline.slug group.id %}" method="post" novalidate>
+          <!-- Form security -->
+          {% csrf_token %}
+
+          <!-- Get all erros from form -->
+          {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+              {{ error }}
+            </div>
+          {% endfor %}
+
+          <!-- Discipline title field -->
+          <div class="{% if form.title.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
+            <div class="input-group">
+              <!-- Field icon -->
+              <span class="input-group-addon gradient"
+                    data-toggle="tooltip"
+                    title="{{form.title.label}}">
+                    <i class="fa fa-book"></i>
+              </span>
+
+              <!-- Field -->
+              {% render_field form.title class="form-control" type="text" placeholder=form.title.help_text %}
+            </div>
+
+            <!-- Field errors -->
+            {% for error in form.title.errors %}
+              <span class="error">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+
+          <!-- Discipline course field -->
+          <div class="{% if form.students_limit.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
+            <div class="input-group">
+              <!-- Field icon -->
+              <span class="input-group-addon gradient"
+                    data-toggle="tooltip"
+                    title="{{form.students_limit.label}}">
+                    <i class="fa fa-graduation-cap"></i>
+              </span>
+
+              <!-- Field -->
+              {% render_field form.students_limit class="form-control" type="number" min="0" %}
+            </div>
+
+            <!-- Field errors -->
+            {% for error in form.students_limit.errors %}
+              <span class="error">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+
+          <!-- Submit button -->
+          <button type="submit"
+                  class="btn btn-default submit-button center-block gradient">
+                  <i class="fa fa-edit"></i>
+                  {% trans 'Edit' %}
+          </button>
+        </form>
+      </div> <!-- Close col -->
+    </div> <!-- Close row -->
+  </div> <!-- Close container -->
+{% endblock %}
