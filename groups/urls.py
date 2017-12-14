@@ -27,4 +27,10 @@ urlpatterns = [
         views.DeleteGroupView.as_view(),
         name='delete'
     ),
+    # /profile/discipline-name/provide/
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/groups/provide/$',
+        views.ProvideGroupView.as_view(),
+        name='provide'
+    ),
 ]

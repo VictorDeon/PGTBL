@@ -132,13 +132,25 @@
     </div>
 
     {% if user == discipline.teacher %}
-      <button class="btn btn-primary btn-lg add-button"
-              type="button"
-              data-toggle="modal"
-              data-target="#add-modal">
-              <i class="fa fa-plus"></i>
-      </button>
       {% include 'groups/add_group.html' %}
+      <div class="row fix-row">
+        <div class="col-sm-10">
+          <form action="{% url 'groups:provide' discipline.slug %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary send-button center-block">
+               <i class="fa fa-send"></i> {% trans 'Provide' %}
+            </button>
+          </form>
+        </div>
+        <div class="col-sm-2">
+          <button class="btn btn-primary btn-lg add-button"
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#add-modal">
+                  <i class="fa fa-plus"></i>
+          </button>
+        </div>
+      </div>
     {% endif %}
 
     {% include 'core/pagination.html' %}

@@ -11,8 +11,6 @@ class Group(models.Model):
     Create groups to TBL.
     """
 
-    __show_groups = True
-
     discipline = models.ForeignKey(
         Discipline,
         verbose_name='Discipline',
@@ -57,14 +55,6 @@ class Group(models.Model):
         """
 
         return self.title
-
-    @classmethod
-    def is_released(cls):
-        """
-        Show group to all students and monitors after teacher edit.
-        """
-
-        return cls.__show_groups
 
     class Meta:
         verbose_name = _("Group")

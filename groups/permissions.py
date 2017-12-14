@@ -12,7 +12,11 @@ def change_own_group(permission, user, view):
     Admin user can change all disciplines
     """
 
-    discipline = view.get_discipline()
+    # Verify if view has the method get_discipline
+    if bool(getattr(view, 'get_discipline', None)):
+        discipline = view.get_discipline()
+    else:
+        discipline = view.get_object()
 
     if user == discipline.teacher:
         return True
@@ -29,7 +33,7 @@ def show_discipline_groups_permission(permission, user, view):
 
     discipline = view.get_discipline()
 
-    if not Group.is_released():
+    if not discipline.was_group_provided and user != discipline.teacher:
         return False
 
     if user in discipline.students.all() or \

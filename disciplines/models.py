@@ -131,6 +131,12 @@ class Discipline(models.Model):
         help_text=_("Close discipline.")
     )
 
+    was_group_provided = models.BooleanField(
+        _("Was group provided?"),
+        default=False,
+        help_text=_("Provide groups to students see.")
+    )
+
     # Teacher that create disciplines.
     teacher = models.ForeignKey(
         settings.AUTH_USER_MODEL,
