@@ -50,7 +50,7 @@ class CreateDisciplineView(LoginRequiredMixin,
 
     def form_valid(self, form):
         """
-        Receive the form already validated.
+        Receive the form already validated to create a discipline.
         """
 
         # Specifies who is the creator of the discipline
@@ -162,7 +162,7 @@ class ListDisciplineView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         """
-        Insert a form inside list disciplines.
+        Insert a form inside discipline list.
         """
 
         context = super(ListDisciplineView, self).get_context_data(**kwargs)
@@ -171,7 +171,7 @@ class ListDisciplineView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         """
-        Get the specific queryset from model database.
+        Get the discipline queryset from model database.
         """
 
         user = self.request.user

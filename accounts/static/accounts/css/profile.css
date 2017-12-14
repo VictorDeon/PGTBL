@@ -68,3 +68,7 @@ td, th {
 .filter {
   color: white;
 }
+
+.btn-group-justified>.btn, .btn-group-justified>.btn-group {
+  width: 100%;
+}

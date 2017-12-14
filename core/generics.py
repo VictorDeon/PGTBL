@@ -146,12 +146,6 @@ class FormDetailView(FormMixin, DetailView):
         # Get the object from queryset
         self.object = self.get_object()
 
-        # Insert object and form into template
-        context = self.get_context_data(
-            object=self.object,
-            form=self.form
-        )
-
         # Verify if form is valid and call the respective method.
         if self.form:
             return self.form_validation()

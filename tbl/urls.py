@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'', include('core.urls')),
     url(r'', include('accounts.urls')),
     url(r'', include('disciplines.urls')),
+    url(r'', include('groups.urls')),
 ]
 
 # While in development mode we will use relative URL for static and average
