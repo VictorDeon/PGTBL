@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect, get_object_or_404
+from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.views.generic import (
     CreateView, ListView, UpdateView, DeleteView
@@ -11,6 +12,9 @@ from disciplines.models import Discipline
 from core.generics import ObjectRedirectView
 from .models import Group
 from .forms import StudentGroupForm
+
+# Get the custom user from settings
+User = get_user_model()
 
 
 class ListGroupView(LoginRequiredMixin,
@@ -348,3 +352,168 @@ class ProvideGroupView(LoginRequiredMixin,
         discipline.save()
 
         return redirect(self.get_success_url())
+
+
+class ListAvailableStudentsView(LoginRequiredMixin,
+                                ListView):
+    """
+    Show a list of students available to insert into groups.
+    """
+
+    template_name = 'groups/students.html'
+    paginate_by = 12
+    context_object_name = 'students'
+
+    def get_discipline(self):
+        """
+        Get the specific discipline by url.
+        """
+
+        discipline = get_object_or_404(
+            Discipline,
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_group(self):
+        """
+        Get the specific group by url
+        """
+
+        group = get_object_or_404(
+            Group,
+            pk=self.kwargs.get('pk', '')
+        )
+
+        return group
+
+    def get_queryset(self):
+        """
+        List all available students to insert into discipline.
+        """
+
+        self.discipline = self.get_discipline()
+        students = self.discipline.students.all()
+
+        students_available = []
+
+        for student in students:
+            available = self.is_available(student)
+
+            if available is True:
+                students_available.append(student)
+
+        return students_available
+
+    def is_available(self, student):
+        """
+        Scroll through the discipline groups and return True if it is not
+        in any group.
+        """
+
+        available = False
+
+        for group in self.discipline.groups.all():
+            if student in group.students.all():
+                available = False
+                break
+            else:
+                available = True
+
+        return available
+
+    def get_context_data(self, **kwargs):
+        """
+        Insert discipline instance into student list.
+        """
+
+        context = super(ListAvailableStudentsView, self).get_context_data(**kwargs)
+        context['discipline'] = self.get_discipline()
+        context['group'] = self.get_group()
+        return context
+
+
+class InsertStudentView(LoginRequiredMixin,
+                        ObjectRedirectView):
+    """
+    Insert a student inside group.
+    """
+
+    template_name = 'discipline/students.html'
+
+    def get_discipline(self):
+        """
+        Get the specific discipline by url.
+        """
+
+        discipline = get_object_or_404(
+            Discipline,
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_group(self):
+        """
+        Get the specific group by url
+        """
+
+        group = get_object_or_404(
+            Group,
+            pk=self.kwargs.get('group_id', '')
+        )
+
+        return group
+
+    def get_success_url(self):
+        """
+        Create a success url to redirect.
+        """
+
+        discipline = self.get_discipline()
+
+        success_url = reverse_lazy(
+            'groups:list',
+            kwargs={'slug': discipline.slug}
+        )
+
+        return success_url
+
+    def action(self, request, *args, **kwargs):
+        """
+        Insert a student into the group.
+        """
+
+        student = get_object_or_404(
+            User,
+            pk=self.kwargs.get('student_id', '')
+        )
+
+        self.insert(student)
+
+        return redirect(self.get_success_url())
+
+    def insert(self, student):
+        """
+        Insert student into group.
+        """
+
+        group = self.get_group()
+
+        if group.students.count() >= group.students_limit:
+
+            messages.error(
+                self.request,
+                _("Crowded discipline.")
+            )
+
+        else:
+
+            group.students.add(student)
+
+            messages.success(
+                self.request,
+                _("{0} was inserted in the group: {1}"
+                  .format(student.get_short_name(), group.title))
+            )

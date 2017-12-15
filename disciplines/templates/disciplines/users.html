@@ -69,7 +69,7 @@
     {% for user in users %}
       <div class="media">
         <div class="media-left">
-          {% if student.photo %}
+          {% if user.photo %}
             <img src="{{user.photo.url}}" class="media-object" style="width:60px">
           {% else %}
             <img src="{% static 'disciplines/img/user.png' %}" class="media-object" style="width:60px">

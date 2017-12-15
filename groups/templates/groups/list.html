@@ -14,6 +14,11 @@
 {% block breadcrumb %}
   {{ block.super }}
   <li>
+    <a href="{% url 'disciplines:details' discipline.slug %}">
+      {{discipline.title}}
+    </a>
+  </li>
+  <li>
     <a href="{% url 'groups:list' discipline.slug %}">
        {% trans 'Group list' %}
     </a>
@@ -90,13 +95,11 @@
                   <div class="col-md-8">
                     <div class="btn-group btn-group-justified">
                       <div class="btn-group">
-                        <button class="btn btn-primary"
-                                type="button"
-                                data-toggle="modal"
-                                data-target="#add-student-{{group.id}}-modal">
-                                <i class="fa fa-user-plus"></i>
-                                {% trans 'Add student' %}
-                        </button>
+                        <a href="{% url 'groups:students' discipline.slug group.pk %}"
+                           class="btn btn-primary">
+                           <i class="fa fa-user-plus"></i>
+                           {% trans 'Add student' %}
+                        </a>
                       </div>
                       <div class="btn-group">
                         <a class="btn btn-primary"

@@ -27,10 +27,22 @@ urlpatterns = [
         views.DeleteGroupView.as_view(),
         name='delete'
     ),
-    # /profile/discipline-name/provide/
+    # /profile/discipline-name/groups/provide/
     url(
         r'^profile/(?P<slug>[\w_-]+)/groups/provide/$',
         views.ProvideGroupView.as_view(),
         name='provide'
+    ),
+    # /profile/discipline-name/groups/group-pk/students/
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/groups/(?P<pk>[0-9]+)/students/$',
+        views.ListAvailableStudentsView.as_view(),
+        name='students'
+    ),
+    # /profile/discipline-name/groups/group-pk/students/student-pk/add/
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/groups/(?P<group_id>[0-9]+)/students/(?P<student_id>[0-9]+)/add/$',
+        views.InsertStudentView.as_view(),
+        name='add-student'
     ),
 ]

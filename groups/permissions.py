@@ -1,6 +1,5 @@
 from rolepermissions.permissions import register_object_checker
 from django.contrib.auth import get_user_model
-from groups.models import Group
 
 User = get_user_model()
 
