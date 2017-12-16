@@ -355,6 +355,7 @@ class ProvideGroupView(LoginRequiredMixin,
 
 
 class ListAvailableStudentsView(LoginRequiredMixin,
+                                PermissionMixin,
                                 ListView):
     """
     Show a list of students available to insert into groups.
@@ -363,6 +364,7 @@ class ListAvailableStudentsView(LoginRequiredMixin,
     template_name = 'groups/students.html'
     paginate_by = 12
     context_object_name = 'students'
+    permissions_required = ['change_own_group']
 
     def get_discipline(self):
         """
@@ -387,6 +389,18 @@ class ListAvailableStudentsView(LoginRequiredMixin,
         )
 
         return group
+
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        failure_redirect_path = reverse_lazy(
+            'groups:list',
+            kwargs={'slug': self.kwargs.get('slug', '')}
+        )
+
+        return failure_redirect_path
 
     def get_queryset(self):
         """
@@ -435,12 +449,14 @@ class ListAvailableStudentsView(LoginRequiredMixin,
 
 
 class InsertStudentView(LoginRequiredMixin,
+                        PermissionMixin,
                         ObjectRedirectView):
     """
     Insert a student inside group.
     """
 
     template_name = 'discipline/students.html'
+    permissions_required = ['change_own_group']
 
     def get_discipline(self):
         """
@@ -465,6 +481,18 @@ class InsertStudentView(LoginRequiredMixin,
         )
 
         return group
+
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        failure_redirect_path = reverse_lazy(
+            'groups:list',
+            kwargs={'slug': self.kwargs.get('slug', '')}
+        )
+
+        return failure_redirect_path
 
     def get_success_url(self):
         """
