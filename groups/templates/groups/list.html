@@ -64,9 +64,10 @@
                           <button class="close remove-student-button"
                                   type="button"
                                   data-toggle="modal"
-                                  data-target="#delete-modal">
+                                  data-target="#delete-{{student.id}}-modal">
                                   <i class="fa fa-close"></i>
                           </button>
+                          {% include 'groups/remove_student.html' %}
                         {% endif %}
                         {% if student.photo %}
                           <img src="{{student.photo.url}}" class="img-responsive" alt="{% trans 'Student' %}" />

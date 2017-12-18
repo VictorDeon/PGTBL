@@ -455,7 +455,7 @@ class InsertStudentView(LoginRequiredMixin,
     Insert a student inside group.
     """
 
-    template_name = 'discipline/students.html'
+    template_name = 'groups/students.html'
     permissions_required = ['change_own_group']
 
     def get_discipline(self):
@@ -545,3 +545,93 @@ class InsertStudentView(LoginRequiredMixin,
                 _("{0} was inserted in the group: {1}"
                   .format(student.get_short_name(), group.title))
             )
+
+
+class RemoveStudentView(LoginRequiredMixin,
+                        DeleteView):
+    """
+    Remove student from groups.
+    """
+
+    template_name = 'groups/students.html'
+    permissions_required = ['change_own_group']
+
+    def get_discipline(self):
+        """
+        Get the specific discipline by url.
+        """
+
+        discipline = get_object_or_404(
+            Discipline,
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_group(self):
+        """
+        Get the specific group by url
+        """
+
+        group = get_object_or_404(
+            Group,
+            pk=self.kwargs.get('group_id', '')
+        )
+
+        return group
+
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        failure_redirect_path = reverse_lazy(
+            'groups:list',
+            kwargs={'slug': self.kwargs.get('slug', '')}
+        )
+
+        return failure_redirect_path
+
+    def get_success_url(self):
+        """
+        Create a success url to redirect.
+        """
+
+        discipline = self.get_discipline()
+
+        success_url = reverse_lazy(
+            'groups:list',
+            kwargs={'slug': discipline.slug}
+        )
+
+        return success_url
+
+    def delete(self, request, *args, **kwargs):
+        """
+        Redirect to success url after remove the specific student
+        from group.
+        """
+
+        user = get_object_or_404(
+            User,
+            pk=self.kwargs.get('student_id', '')
+        )
+
+        self.remove_from_group(user)
+
+        return redirect(self.get_success_url())
+
+    def remove_from_group(self, student):
+        """
+        Remove specific student from group.
+        """
+
+        group = self.get_group()
+
+        group.students.remove(student)
+
+        messages.success(
+            self.request,
+            _("The student {0} is removed from {1}"
+              .format(student.get_short_name(), group.title))
+        )

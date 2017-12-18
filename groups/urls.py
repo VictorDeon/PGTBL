@@ -45,4 +45,10 @@ urlpatterns = [
         views.InsertStudentView.as_view(),
         name='add-student'
     ),
+    # /profile/discipline-name/groups/group-pk/students/student-pk/remove/
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/groups/(?P<group_id>[0-9]+)/students/(?P<student_id>[0-9]+)/remove/$',
+        views.RemoveStudentView.as_view(),
+        name='remove-student'
+    ),
 ]
