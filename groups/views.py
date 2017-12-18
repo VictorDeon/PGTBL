@@ -548,6 +548,7 @@ class InsertStudentView(LoginRequiredMixin,
 
 
 class RemoveStudentView(LoginRequiredMixin,
+                        PermissionMixin,
                         DeleteView):
     """
     Remove student from groups.
