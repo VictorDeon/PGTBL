@@ -1,23 +1,14 @@
-{% extends 'accounts/profile.html' %}
+{% extends 'disciplines/details.html' %}
 {% load static %}
 {% load i18n %}
 
 {% block css %}
-  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
   <link rel="stylesheet" href="{% static 'disciplines/css/students.css' %}" />
-{% endblock %}
-
-{% block sidebar %}
-  {% include 'disciplines/sidebar.html' %}
 {% endblock %}
 
 {% block breadcrumb %}
   {{ block.super }}
-  <li>
-    <a href="{% url 'disciplines:details' discipline.slug %}">
-      {{discipline.title}}
-    </a>
-  </li>
   <li>
     <a href="{% url 'disciplines:students' discipline.slug %}">
       {% trans 'Students list' %}

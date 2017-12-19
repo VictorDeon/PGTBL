@@ -1,23 +1,14 @@
-{% extends 'accounts/profile.html' %}
+{% extends 'disciplines/details.html' %}
 {% load static %}
 {% load i18n %}
 
 {% block css %}
-  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
   <link rel="stylesheet" href="{% static 'groups/css/list.css' %}" />
-{% endblock %}
-
-{% block sidebar %}
-  {% include 'disciplines/sidebar.html' %}
 {% endblock %}
 
 {% block breadcrumb %}
   {{ block.super }}
-  <li>
-    <a href="{% url 'disciplines:details' discipline.slug %}">
-      {{discipline.title}}
-    </a>
-  </li>
   <li>
     <a href="{% url 'groups:list' discipline.slug %}">
        {% trans 'Group list' %}
@@ -29,10 +20,25 @@
 {% block content %}
   <div class="container-fluid">
     <div class="page-header fix-row">
-      <h1 class="white">
-        <i class="fa fa-slideshare"></i> {% trans 'Student groups' %}<br />
-        <small>{{discipline.title}}</small>
-      </h1>
+      <div class="row">
+        <div class="col-sm-11">
+          <h1 class="white">
+            <i class="fa fa-slideshare"></i> {% trans 'Student groups' %}<br />
+            <small>{{discipline.title}}</small>
+          </h1>
+        </div>
+        <div class="col-sm-1">
+          {% if discipline.was_group_provided %}
+            <span class="label label-success">
+              {% trans 'Available' %}
+            </span>
+          {% else %}
+            <span class="label label-danger">
+              {% trans 'Unavailable' %}
+            </span>
+          {% endif %}
+        </div>
+      </div>
     </div>
     <div class="panel-group fix-row" id="accordion">
       {% for group in groups %}

@@ -1,24 +1,15 @@
-{% extends 'accounts/profile.html' %}
+{% extends 'files/list.html' %}
 {% load static %}
 {% load widget_tweaks %}
 {% load i18n %}
 
 {% block css %}
-  {{ block.super }}
-  <link href="{% static 'disciplines/css/create.css' %}" rel="stylesheet" />
-{% endblock %}
-
-{% block sidebar %}
-  {% include 'disciplines/sidebar.html' %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'files/css/create.css' %}" />
 {% endblock %}
 
 {% block breadcrumb %}
   {{ block.super }}
-  <li>
-    <a href="{% url 'files:list' discipline.slug %}">
-      {% trans 'Group list' %}
-    </a>
-  </li>
   <li>
     <a href="{% url 'files:update' discipline.slug file.id %}">
       {% trans 'Edit' %} {{file}}
@@ -39,7 +30,8 @@
     <div class="row">
       <div class="col-sm-12">
         <!-- Form without html5 validation -->
-        <form action="{% url 'files:update' discipline.slug file.id %}" method="post" enctype="multipart/form-data" novalidate>
+        <form action="{% url 'files:update' discipline.slug file.id %}"
+              method="post" enctype="multipart/form-data" novalidate>
           <!-- Form security -->
           {% csrf_token %}
 

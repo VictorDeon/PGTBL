@@ -1,0 +1,49 @@
+fieldset {
+  padding: 5px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 30px;
+}
+
+fieldset > legend {
+  color: white;
+}
+
+.class-button {
+  border-radius: 50% !important;
+  border-color: #283F4A !important;
+  width: 40px;
+  height: 40px;
+  box-shadow: 3px 7px 10px #6D6D6D;
+  position: relative;
+  top: 57px;
+  right: 10px;
+}
+
+.class-button:hover {
+  border-radius: 50% !important;
+  color: white !important;
+}
+
+textarea {
+  resize: none;
+}
+
+.input-group {
+  padding: 10px;
+}
+
+.form-group {
+  padding-bottom: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.icon-md {
+  font-size: 20px;
+}
+
+.submit-button {
+  width: 100%;
+  margin-bottom: 10px;
+}
