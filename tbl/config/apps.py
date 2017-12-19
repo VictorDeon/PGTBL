@@ -17,6 +17,7 @@ TBL_APPS = [
     'accounts',
     'disciplines',
     'groups',
+    'files',
 ]
 
 EXTERNAL_APPS = [

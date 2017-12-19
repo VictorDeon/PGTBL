@@ -199,7 +199,7 @@ class UpdateGroupView(LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         """
-        Insert a form inside group list.
+        Insert a discipline inside group form.
         """
 
         context = super(UpdateGroupView, self).get_context_data(**kwargs)

@@ -15,13 +15,13 @@
 {% block breadcrumb %}
   {{ block.super }}
   <li>
-    <a href="{% url 'groups:list' discipline.slug %}">
+    <a href="{% url 'files:list' discipline.slug %}">
       {% trans 'Group list' %}
     </a>
   </li>
   <li>
-    <a href="{% url 'groups:update' discipline.slug group.id %}">
-      {% trans 'Edit' %} {{group}}
+    <a href="{% url 'files:update' discipline.slug file.id %}">
+      {% trans 'Edit' %} {{file}}
     </a>
   </li>
 {% endblock %}
@@ -31,7 +31,7 @@
     <!-- Header -->
     <div class="page-header profile">
       <h1 class="white">
-        {% trans 'Edit' %} {{group}}
+        {% trans 'Edit' %} {{file}}
       </h1>
     </div>
 
@@ -39,7 +39,7 @@
     <div class="row">
       <div class="col-sm-12">
         <!-- Form without html5 validation -->
-        <form action="{% url 'groups:update' discipline.slug group.id %}" method="post" novalidate>
+        <form action="{% url 'files:update' discipline.slug file.id %}" method="post" enctype="multipart/form-data" novalidate>
           <!-- Form security -->
           {% csrf_token %}
 
@@ -50,7 +50,7 @@
             </div>
           {% endfor %}
 
-          <!-- Discipline title field -->
+          <!-- File title field -->
           <div class="{% if form.title.errors %}alert alert-warning{% endif %}">
             <!-- Input group -->
             <div class="input-group">
@@ -58,7 +58,7 @@
               <span class="input-group-addon gradient"
                     data-toggle="tooltip"
                     title="{{form.title.label}}">
-                    <i class="fa fa-group"></i>
+                    <i class="fa fa-file-o"></i>
               </span>
 
               <!-- Field -->
@@ -73,23 +73,61 @@
             {% endfor %}
           </div>
 
-          <!-- Discipline course field -->
-          <div class="{% if form.students_limit.errors %}alert alert-warning{% endif %}">
+          <!-- File description field -->
+          <div class="{% if form.description.errors %}alert alert-warning{% endif %}">
             <!-- Input group -->
             <div class="input-group">
               <!-- Field icon -->
               <span class="input-group-addon gradient"
                     data-toggle="tooltip"
-                    title="{{form.students_limit.label}}">
-                    <i class="fa fa-graduation-cap"></i>
+                    title="{{form.description.label}}">
+                    <i class="fa fa-file-text-o"></i>
               </span>
 
               <!-- Field -->
-              {% render_field form.students_limit class="form-control" type="number" min="0" %}
+              {% render_field form.description class="form-control" type="text" %}
             </div>
 
             <!-- Field errors -->
-            {% for error in form.students_limit.errors %}
+            {% for error in form.description.errors %}
+              <span class="error">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+
+          <!-- File extension field -->
+          <div class="{% if form.extension.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
+            <div class="input-group">
+              <!-- Field icon -->
+              <span class="input-group-addon gradient"
+                    data-toggle="tooltip"
+                    title="{{form.extension.label}}">
+                    <i class="fa fa-file-pdf-o"></i>
+              </span>
+
+              <!-- Field -->
+              {% render_field form.extension class="form-control" type="text" %}
+            </div>
+
+            <!-- Field errors -->
+            {% for error in form.extension.errors %}
+              <span class="error">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+
+          <!-- File field -->
+          <div class="{% if form.archive.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
+            <div class="input-group white">
+              {% render_field form.archive class="form-control" %}
+            </div>
+
+            <!-- Field errors -->
+            {% for error in form.archive.errors %}
               <span class="error">
                 {{ error }}
               </span>
