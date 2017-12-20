@@ -8,6 +8,7 @@ from django.contrib.auth import login, authenticate
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.contrib import messages
+from django.db.models import Q
 from django.views.generic import (
     CreateView, ListView, UpdateView, FormView, DeleteView
 )
@@ -65,15 +66,20 @@ class ProfileView(LoginRequiredMixin, ListView):
         )
 
         # Join the created disciplines list and monitor disciplines list
-        queryset = created_disciplines | monitor_disciplines
+        queryset = []
+        for discipline in created_disciplines:
+            queryset.append(discipline)
+
+        for discipline in monitor_disciplines:
+            queryset.append(discipline)
 
         # Get the filter by key argument from url
         filtered = self.request.GET.get('filter')
 
         if filtered == 'created':
-            queryset = queryset.filter(teacher=self.request.user)
+            queryset = created_disciplines
         elif filtered == 'monitor':
-            queryset = queryset.filter(monitors__email=self.request.user.email)
+            queryset = monitor_disciplines
 
         return queryset
 
