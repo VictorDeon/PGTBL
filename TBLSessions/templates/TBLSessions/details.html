@@ -1,0 +1,43 @@
+{% extends 'TBLSessions/list.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'TBLSessions/css/details.css' %}" />
+{% endblock %}
+
+{% block sidebar %}
+  {% include 'TBLSessions/sidebar.html' %}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'TBLSessions:details' discipline.slug session.id %}">
+      {{session}}
+    </a>
+  </li>
+{% endblock %}
+
+{% block content %}
+  <!-- Session -->
+  <div class="container-fluid">
+    <!-- Header -->
+    <div class="page-header">
+      <h1 class="white">
+        <i class="fa fa-book"></i> {{session}} <br />
+        <small>{{discipline.title}}</small>
+      </h1>
+    </div>
+
+    <!-- TBL session markdown description -->
+    <div class="row">
+      <div class="col-sm-12 white">
+        <div class="img-responsive-markdown">
+          {{session.description_markdown}}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

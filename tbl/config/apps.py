@@ -18,6 +18,7 @@ TBL_APPS = [
     'disciplines',
     'groups',
     'files',
+    'TBLSessions',
 ]
 
 EXTERNAL_APPS = [

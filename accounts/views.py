@@ -8,7 +8,6 @@ from django.contrib.auth import login, authenticate
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.contrib import messages
-from django.db.models import Q
 from django.views.generic import (
     CreateView, ListView, UpdateView, FormView, DeleteView
 )

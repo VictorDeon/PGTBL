@@ -40,7 +40,7 @@ class ListDisciplineFileView(LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         """
-        Insert discipline into context data.
+        Insert discipline and form into file context data.
         """
 
         context = super(ListDisciplineFileView, self).get_context_data(**kwargs)
@@ -154,7 +154,7 @@ class EditDisciplineFileView(LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         """
-        Insert a discipline inside group form.
+        Insert a discipline inside file form.
         """
 
         context = super(EditDisciplineFileView, self).get_context_data(**kwargs)
