@@ -5,26 +5,21 @@ User = get_user_model()
 
 
 @register_object_checker()
-def change_own_file(permission, user, view):
+def monitor_can_change(permission, user, view):
     """
-    Function to verify if user is the discipline owner.
-    Admin user can change all files
+    Function to allows all monitors to modify something.
     """
 
-    # Verify if view has the method get_discipline
-    if bool(getattr(view, 'get_discipline', None)):
-        discipline = view.get_discipline()
-    else:
-        discipline = view.get_object()
+    discipline = view.get_discipline()
 
-    if user == discipline.teacher:
+    if user in discipline.monitors.all() or user == discipline.teacher:
         return True
 
     return False
 
 
 @register_object_checker()
-def show_discipline_files_permission(permission, user, view):
+def show_files_permission(permission, user, view):
     """
     Permission that allows only students, monitors and teacher of specific
     discipline to see discipline files features.
@@ -38,3 +33,20 @@ def show_discipline_files_permission(permission, user, view):
         return True
 
     return False
+
+
+@register_object_checker()
+def show_tbl_file_session(permission, user, view):
+    """
+    Permission that allows only enter in tbl session files if its available.
+    """
+
+    discipline = view.get_discipline()
+    session = view.get_session()
+
+    if session.is_closed and \
+       user not in discipline.monitors.all() and \
+       user != discipline.teacher:
+        return False
+
+    return True

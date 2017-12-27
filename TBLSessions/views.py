@@ -10,6 +10,7 @@ from django.views.generic import (
 )
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
+from core.generics import ObjectRedirectView
 from .models import TBLSession
 from .forms import TBLSessionForm
 
@@ -74,7 +75,7 @@ class CreateSessionView(LoginRequiredMixin,
     form_class = TBLSessionForm
 
     permissions_required = [
-        'change_own_session'
+        'monitor_can_change_if_is_teacher'
     ]
 
     def get_discipline(self):
@@ -140,7 +141,7 @@ class EditSessionView(LoginRequiredMixin,
     form_class = TBLSessionForm
 
     permissions_required = [
-        'change_own_session'
+        'monitor_can_change_if_is_teacher'
     ]
 
     def get_discipline(self):
@@ -197,7 +198,7 @@ class DeleteSessionView(LoginRequiredMixin,
     model = TBLSession
 
     permissions_required = [
-        'change_own_session'
+        'monitor_can_change_if_is_teacher'
     ]
 
     def get_discipline(self):
@@ -238,7 +239,8 @@ class ShowSessionView(LoginRequiredMixin,
     template_name = 'TBLSessions/details.html'
     context_object_name = 'session'
     permissions_required = [
-        'show_sessions_permission'
+        'show_sessions_permission',
+        'show_tbl_session'
     ]
 
     def get_discipline(self):

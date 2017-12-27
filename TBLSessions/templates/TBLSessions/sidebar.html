@@ -13,7 +13,7 @@
        <i class="fa fa-puzzle-piece icon-lg"></i>
     </a>
     <!-- Session files menu -->
-    <a href="#"
+    <a href="{% url 'files:session-list' discipline.slug session.id %}"
        class="btn"
        data-toggle="tooltip"
        data-placement="right"

@@ -47,7 +47,7 @@
             <div class="panel-body">
               {{file.description|linebreaksbr}}
             </div>
-            {% if user == discipline.teacher %}
+            {% if user == discipline.teacher or user in discipline.monitors.all %}
               <div class="panel-footer">
                 <div class="row">
                   <div class="col-md-8">
@@ -100,7 +100,7 @@
       {% endfor %}
     </div>
 
-    {% if user == discipline.teacher %}
+    {% if user == discipline.teacher or user in discipline.monitors.all %}
       <button class="btn btn-primary btn-lg add-button"
               type="button"
               data-toggle="modal"

@@ -5,19 +5,16 @@ User = get_user_model()
 
 
 @register_object_checker()
-def change_own_session(permission, user, view):
+def monitor_can_change_if_is_teacher(permission, user, view):
     """
-    Function to verify if user is the discipline owner.
-    Admin user can change all sessions
+    Function to allows only teacher monitors to modify something.
     """
 
-    # Verify if view has the method get_discipline
-    if bool(getattr(view, 'get_discipline', None)):
-        discipline = view.get_discipline()
-    else:
-        discipline = view.get_object()
+    discipline = view.get_discipline()
 
-    if user == discipline.teacher:
+    if user in discipline.monitors.all() and \
+       user.is_teacher or \
+       user == discipline.teacher:
         return True
 
     return False
@@ -38,3 +35,20 @@ def show_sessions_permission(permission, user, view):
         return True
 
     return False
+
+
+@register_object_checker()
+def show_tbl_session(permission, user, view):
+    """
+    Permission that allows only enter in tbl session if its available.
+    """
+
+    discipline = view.get_discipline()
+    session = view.get_object()
+
+    if session.is_closed and \
+       user not in discipline.monitors.all() and \
+       user != discipline.teacher:
+        return False
+
+    return True

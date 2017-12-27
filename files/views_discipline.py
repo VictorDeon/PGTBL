@@ -8,7 +8,7 @@ from django.views.generic import (
 )
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
-from .models import File
+from .models import DisciplineFile
 from .forms import FileForm
 
 
@@ -24,7 +24,7 @@ class ListDisciplineFileView(LoginRequiredMixin,
     context_object_name = 'files'
 
     permissions_required = [
-        'show_discipline_files_permission'
+        'show_files_permission'
     ]
 
     def get_discipline(self):
@@ -55,7 +55,7 @@ class ListDisciplineFileView(LoginRequiredMixin,
 
         discipline = self.get_discipline()
 
-        files = File.objects.filter(discipline=discipline)
+        files = DisciplineFile.objects.filter(discipline=discipline)
 
         return files
 
@@ -67,12 +67,12 @@ class CreateDisciplineFileView(LoginRequiredMixin,
     View to insert a new file into the discipline.
     """
 
-    model = File
+    model = DisciplineFile
     template_name = 'files/list.html'
     form_class = FileForm
 
     permissions_required = [
-        'change_own_file'
+        'monitor_can_change'
     ]
 
     def get_discipline(self):
@@ -132,13 +132,13 @@ class EditDisciplineFileView(LoginRequiredMixin,
     View to update a specific file.
     """
 
-    model = File
+    model = DisciplineFile
     template_name = 'files/form.html'
     context_object_name = 'file'
     form_class = FileForm
 
     permissions_required = [
-        'change_own_file'
+        'monitor_can_change'
     ]
 
     def get_discipline(self):
@@ -192,10 +192,10 @@ class DeleteDisciplineFileView(LoginRequiredMixin,
     View to delete a specific file.
     """
 
-    model = File
+    model = DisciplineFile
 
     permissions_required = [
-        'change_own_file'
+        'monitor_can_change'
     ]
 
     def get_discipline(self):
