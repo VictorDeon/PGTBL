@@ -35,12 +35,15 @@
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
+            <!-- All disciplines -->
             <li>
               <a class="text-center" href="{% url 'disciplines:students' discipline.slug %}">
                 <i class="fa fa-list-ul"></i>
                 {% trans 'All' %}
               </a>
             </li>
+
+            <!-- Filter by students -->
             <li>
               <a class="text-center" href="?filter=students">
                 <span class="badge">
@@ -49,6 +52,8 @@
                 {% trans 'Students' %}
               </a>
             </li>
+
+            <!-- Filter by monitors -->
             <li>
               <a class="text-center" href="?filter=monitors">
                 <span class="badge">
@@ -91,7 +96,6 @@
             {% if user == discipline.teacher %}
               <form action="{% url 'disciplines:change-student' discipline.slug student.pk %}" method="POST">
                 {% csrf_token %}
-
                 {% if student in discipline.monitors.all %}
                   <button type="submit" class="submit-link center-block">
                      {%trans 'Monitor' %}

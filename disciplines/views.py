@@ -4,18 +4,19 @@ Disciplines functionalities
 """
 
 # Django app
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse_lazy
-from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404, redirect
-from django.utils.text import slugify
-from django.contrib import messages
-from django.db.models import Q
 from django.views.generic import (
     CreateView, UpdateView, DeleteView, DetailView,
     ListView, FormView
 )
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404, redirect
+from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth import get_user_model
+from django.utils.text import slugify
+from django.contrib import messages
+from django.db.models import Q
 
 # Core app
 from core.permissions import ModelPermissionMixin, PermissionMixin
@@ -109,6 +110,7 @@ class UpdateDisciplineView(LoginRequiredMixin,
         )
 
         discipline = Discipline.objects.get(slug=self.kwargs.get('slug', ''))
+
         modify_student_limit = (
             discipline.students_limit < form.instance.students_limit
         )
@@ -180,6 +182,7 @@ class ListDisciplineView(LoginRequiredMixin, ListView):
         queryset = Discipline.objects.available(user)
 
         queryset = order(self, queryset)
+
         queryset = self.search_disciplines(queryset)
 
         return queryset
@@ -219,6 +222,7 @@ class EnterDisciplineView(LoginRequiredMixin, FormView):
 
         # Redirect to same page with error.
         redirect_url = reverse_lazy('disciplines:search')
+
         return redirect(redirect_url)
 
     def enter_discipline(self, form):
@@ -532,7 +536,7 @@ class ListUsersView(LoginRequiredMixin,
     ordering = 'name'
     paginate_by = 12
     permissions_required = [
-        'show_users_to_insert_in_discipline_permission'
+        'change_own_discipline'
     ]
 
     def get_context_data(self, **kwargs):
