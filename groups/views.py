@@ -1,12 +1,14 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect, get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.views.generic import (
     CreateView, ListView, UpdateView, DeleteView
 )
+
+# App imports
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from core.generics import ObjectRedirectView
@@ -199,7 +201,7 @@ class UpdateGroupView(LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         """
-        Insert a discipline inside group form.
+        Insert a discipline inside group template.
         """
 
         context = super(UpdateGroupView, self).get_context_data(**kwargs)
@@ -439,7 +441,7 @@ class ListAvailableStudentsView(LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         """
-        Insert discipline instance into student list.
+        Insert discipline and group instance into student list.
         """
 
         context = super(ListAvailableStudentsView, self).get_context_data(**kwargs)
@@ -510,7 +512,8 @@ class InsertStudentView(LoginRequiredMixin,
 
     def action(self, request, *args, **kwargs):
         """
-        Insert a student into the group.
+        Insert a student into the group action.
+        and redirect to success url
         """
 
         student = get_object_or_404(

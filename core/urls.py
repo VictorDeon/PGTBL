@@ -10,13 +10,13 @@ news_patterns = [
       views.NewsListView.as_view(),
       name="news"
   ),
-  # /news/important/
+  # /news/<tag>/
   url(
       r'^tag/(?P<tag>[\w_-]+)/$',
       views.NewsListView.as_view(),
       name="news-tag"
   ),
-  # /news/new01/
+  # /news/<new.slug>/
   url(
       r'^(?P<slug>[\w_-]+)/$',
       views.NewsDetailView.as_view(),

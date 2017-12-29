@@ -19,14 +19,18 @@
 <!-- Discipline list block -->
 {% block content %}
   <div class="container-fluid">
+    <!-- Header -->
     <div class="page-header fix-row">
       <div class="row">
         <div class="col-sm-11">
+          <!-- Title -->
           <h1 class="white">
             <i class="fa fa-slideshare"></i> {% trans 'Student groups' %}<br />
             <small>{{discipline.title}}</small>
           </h1>
         </div>
+
+        <!-- Available label -->
         <div class="col-sm-1">
           {% if discipline.was_group_provided %}
             <span class="label label-success">
@@ -40,9 +44,12 @@
         </div>
       </div>
     </div>
+
+    <!-- Group panel -->
     <div class="panel-group fix-row" id="accordion">
       {% for group in groups %}
         <div class="panel panel-default">
+          <!-- Panel heading -->
           <div class="panel-heading">
             <h4 class="panel-title">
               <a data-toggle="collapse"
@@ -58,6 +65,8 @@
               </a>
             </h4>
           </div>
+
+          <!-- Panel body -->
           <div id="collapse{{group.id}}" class="panel-collapse collapse out">
             <div class="panel-body">
               {% for student in group.students.all %}
@@ -66,6 +75,7 @@
                 {% endif %}
                     <div class="col-sm-2">
                       <div class="thumbnail">
+                        <!-- Remove student button -->
                         {% if user == discipline.teacher %}
                           <button class="close remove-student-button"
                                   type="button"
@@ -75,11 +85,15 @@
                           </button>
                           {% include 'groups/remove_student.html' %}
                         {% endif %}
+
+                        <!-- Student photo -->
                         {% if student.photo %}
                           <img src="{{student.photo.url}}" class="img-responsive" alt="{% trans 'Student' %}" />
                         {% else %}
                           <img src="{% static 'groups/img/user.png' %}" class="img-responsive" alt="{% trans 'Student' %}" />
                         {% endif %}
+
+                        <!-- Student short name -->
                         <div class="caption text-center">
                           <p>{{student.get_short_name}}</p>
                         </div>
@@ -96,11 +110,14 @@
                 <p>{% trans 'There is no students in this group.' %}</p>
               {% endfor %}
             </div>
+
+            <!-- Panel footer -->
             {% if user == discipline.teacher %}
               <div class="panel-footer">
                 <div class="row">
                   <div class="col-md-8">
                     <div class="btn-group btn-group-justified">
+                      <!-- Add student button -->
                       <div class="btn-group">
                         <a href="{% url 'groups:students' discipline.slug group.pk %}"
                            class="btn btn-primary">
@@ -108,6 +125,8 @@
                            {% trans 'Add student' %}
                         </a>
                       </div>
+
+                      <!-- Edit group button -->
                       <div class="btn-group">
                         <a class="btn btn-primary"
                            href="{% url 'groups:update' discipline.slug group.id %}">
@@ -119,6 +138,7 @@
                   </div>
                   <div class="col-md-4">
                     <div class="btn-group btn-group-justified">
+                      <!-- Delete group button -->
                       <div class="btn-group">
                         <button class="btn btn-danger"
                                 type="button"
@@ -141,6 +161,7 @@
       {% endfor %}
     </div>
 
+    <!-- Add group button -->
     {% if user == discipline.teacher %}
       {% include 'groups/add_group.html' %}
       <div class="row fix-row">

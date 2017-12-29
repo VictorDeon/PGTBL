@@ -61,7 +61,7 @@ urlpatterns = [
         views.ResetPasswordView.as_view(),
         name="reset-password"
     ),
-    # /confirm-new-password/3d9j230r2m98mr2398h9r2h39rhc9/
+    # /confirm-new-password/<key>/
     url(
         r'^confirm-new-password/(?P<key>\w+)/$',
         views.ResetPasswordConfirmView.as_view(),

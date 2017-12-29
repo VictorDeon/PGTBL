@@ -1,54 +1,60 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from . import views
 
 app_name = 'groups'
-urlpatterns = [
-    # /profile/discipline-name/groups/
+
+group_patterns = [
+    # /profile/<discipline.slug>/groups/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/groups/$',
+        r'^$',
         views.ListGroupView.as_view(),
         name='list'
     ),
-    # /profile/discipline-name/groups/add/
+    # /profile/<discipline.slug>/groups/add/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/groups/add/$',
+        r'^add/$',
         views.CreateGroupView.as_view(),
         name='create'
     ),
-    # /profile/discipline-name/groups/1/edit/
+    # /profile/<discipline.slug>/groups/1/edit/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/groups/(?P<pk>[0-9]+)/edit/$',
+        r'^(?P<pk>[0-9]+)/edit/$',
         views.UpdateGroupView.as_view(),
         name='update'
     ),
-    # /profile/discipline-name/1/delete/
+    # /profile/<discipline.slug>/1/delete/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/groups/(?P<pk>[0-9]+)/delete/$',
+        r'^(?P<pk>[0-9]+)/delete/$',
         views.DeleteGroupView.as_view(),
         name='delete'
     ),
-    # /profile/discipline-name/groups/provide/
+    # /profile/<discipline.slug>/groups/provide/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/groups/provide/$',
+        r'^provide/$',
         views.ProvideGroupView.as_view(),
         name='provide'
     ),
-    # /profile/discipline-name/groups/group-pk/students/
+    # /profile/<discipline.slug>/groups/<group.id>/students/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/groups/(?P<pk>[0-9]+)/students/$',
+        r'^(?P<pk>[0-9]+)/students/$',
         views.ListAvailableStudentsView.as_view(),
         name='students'
     ),
-    # /profile/discipline-name/groups/group-pk/students/student-pk/add/
+    # /profile/<discipline.slug>/groups/<group.id>/students/<student.id>/add/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/groups/(?P<group_id>[0-9]+)/students/(?P<student_id>[0-9]+)/add/$',
+        r'^(?P<group_id>[0-9]+)/students/(?P<student_id>[0-9]+)/add/$',
         views.InsertStudentView.as_view(),
         name='add-student'
     ),
-    # /profile/discipline-name/groups/group-pk/students/student-pk/remove/
+    # /profile/<discipline.slug>/groups/<group.id>/students/<student.id>/remove/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/groups/(?P<group_id>[0-9]+)/students/(?P<student_id>[0-9]+)/remove/$',
+        r'^(?P<group_id>[0-9]+)/students/(?P<student_id>[0-9]+)/remove/$',
         views.RemoveStudentView.as_view(),
         name='remove-student'
     ),
+]
+
+
+urlpatterns = [
+    url(r'^profile/(?P<slug>[\w_-]+)/groups/', include(group_patterns)),
 ]

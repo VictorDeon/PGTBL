@@ -25,25 +25,30 @@
     </h1>
   </div>
 
-  <!-- Users list -->
   <div class="row fix-row">
+    <!-- Students count -->
     <span class="label label-primary">
       {{group.students.count}}/{{group.students_limit}} {% trans 'Students' %}
     </span>
-    <!-- Student list -->
+
+    <!-- Student List -->
     {% for student in students %}
       <div class="media">
+        <!-- Student photo -->
         <div class="media-left">
           {% if student.photo %}
-            <img src="{{student.photo.url}}" class="media-object" style="width:60px">
+            <img src="{{student.photo.url}}" class="media-object">
           {% else %}
-            <img src="{% static 'groups/img/user.png' %}" class="media-object" style="width:60px">
+            <img src="{% static 'groups/img/user.png' %}" class="media-object">
           {% endif %}
         </div>
+        <!-- Student information -->
         <div class="media-body white">
           <h4 class="media-heading">{{student.get_short_name}} <small>{{student.username}}</small></h4>
           <p>{{student.email}}</p>
         </div>
+
+        <!-- Add student button -->
         <div class="media-right">
           <form action="{% url 'groups:add-student' discipline.slug group.pk student.pk %}" method="POST">
             {% csrf_token %}
