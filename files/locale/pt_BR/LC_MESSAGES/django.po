@@ -23,68 +23,68 @@ msgstr ""
 
 #: files/models.py:21
 msgid "Title of file."
-msgstr ""
+msgstr "Título do arquivo"
 
 #: files/models.py:25
 msgid "Description"
-msgstr ""
+msgstr "Descrição"
 
 #: files/models.py:27
 msgid "Description of file."
-msgstr ""
+msgstr "Descrição do arquivo"
 
 #: files/models.py:31 files/templates/files/add_file.html:27
 #: files/templates/files/session_add_file.html:27
 msgid "File extension"
-msgstr ""
+msgstr "Extensão do arquivo"
 
 #: files/models.py:33
 msgid "File extension."
-msgstr ""
+msgstr "Extensão do arquivo"
 
 #: files/models.py:37 files/models.py:77
 msgid "File"
-msgstr ""
+msgstr "Arquivo"
 
 #: files/models.py:42
 msgid "Created at"
-msgstr ""
+msgstr "Criado em"
 
 #: files/models.py:43
 msgid "Date that the file is created."
-msgstr ""
+msgstr "Data que o arquivo foi criado."
 
 #: files/models.py:48
 msgid "Updated at"
-msgstr ""
+msgstr "Atualizado em"
 
 #: files/models.py:49
 msgid "Date that the file is updated"
-msgstr ""
+msgstr "Data em que o arquivo foi modificado."
 
 #: files/models.py:78
 msgid "Files"
-msgstr ""
+msgstr "Arquivos"
 
 #: files/templates/files/add_file.html:14
 #: files/templates/files/session_add_file.html:14
 msgid "Add file"
-msgstr ""
+msgstr "Adicionar arquivo"
 
 #: files/templates/files/add_file.html:23
 #: files/templates/files/session_add_file.html:23
 msgid "File title"
-msgstr ""
+msgstr "Titulo do arquivo"
 
 #: files/templates/files/add_file.html:31
 #: files/templates/files/session_add_file.html:31
 msgid "File description"
-msgstr ""
+msgstr "Descrição do arquivo"
 
 #: files/templates/files/add_file.html:39
 #: files/templates/files/session_add_file.html:39
 msgid "Add"
-msgstr ""
+msgstr "Adicionar"
 
 #: files/templates/files/delete.html:20 files/templates/files/delete.html:42
 #: files/templates/files/list.html:78
@@ -92,17 +92,17 @@ msgstr ""
 #: files/templates/files/session_delete.html:42
 #: files/templates/files/session_list.html:78
 msgid "Delete"
-msgstr ""
+msgstr "Deletar"
 
 #: files/templates/files/delete.html:27
 #: files/templates/files/session_delete.html:27
 msgid "Are you sure you want to delete"
-msgstr ""
+msgstr "Tem certeza que deseja remover"
 
 #: files/templates/files/delete.html:51
 #: files/templates/files/session_delete.html:51
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: files/templates/files/form.html:15 files/templates/files/form.html:25
 #: files/templates/files/form.html:133
@@ -110,49 +110,49 @@ msgstr ""
 #: files/templates/files/session_form.html:25
 #: files/templates/files/session_form.html:133
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #: files/templates/files/list.html:14
 #: files/templates/files/session_list.html:14
 msgid "File list"
-msgstr ""
+msgstr "Lista de arquivos"
 
 #: files/templates/files/list.html:24
 msgid "Discipline files"
-msgstr ""
+msgstr "Arquivos da disciplina"
 
 #: files/templates/files/list.html:58 files/templates/files/list.html:91
 #: files/templates/files/session_list.html:58
 #: files/templates/files/session_list.html:91
 msgid "Download"
-msgstr ""
+msgstr "Baixar"
 
 #: files/templates/files/list.html:65
 #: files/templates/files/session_list.html:65
 msgid "Edit file"
-msgstr ""
+msgstr "Editar arquivo"
 
 #: files/templates/files/list.html:99
 #: files/templates/files/session_list.html:99
 msgid "There is no files"
-msgstr ""
+msgstr "Não há arquivos disponiveis"
 
 #: files/templates/files/session_list.html:24
 msgid "TBL Session files"
-msgstr ""
+msgstr "Arquivos da sessão do TBL"
 
 #: files/views_discipline.py:97 files/views_sessions.py:129
 msgid "File created successfully."
-msgstr ""
+msgstr "Arquivos criado com sucesso."
 
 #: files/views_discipline.py:108 files/views_sessions.py:140
 msgid "Invalid fields, please fill in the fields correctly."
-msgstr ""
+msgstr "Campo invalido, por favor preencha os campos corretamente."
 
 #: files/views_discipline.py:169 files/views_sessions.py:233
 msgid "File updated successfully."
-msgstr ""
+msgstr "Arquivo atualizado com sucesso."
 
 #: files/views_discipline.py:224 files/views_sessions.py:323
 msgid "File deleted successfully."
-msgstr ""
+msgstr "Arquivo deletado com sucesso."

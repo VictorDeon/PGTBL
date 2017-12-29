@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.views.generic import (
     CreateView, ListView, UpdateView, DeleteView
 )
+
+# App imports
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from .models import DisciplineFile

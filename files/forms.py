@@ -1,5 +1,5 @@
-from django import forms
 from .models import DisciplineFile, SessionFile
+from django import forms
 
 
 class FileForm(forms.ModelForm):

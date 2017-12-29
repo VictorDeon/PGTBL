@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.views.generic import (
     CreateView, ListView, UpdateView, DeleteView
 )
+
+# App imports
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
@@ -54,7 +56,7 @@ class ListSessionFileView(LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         """
-        Insert discipline and form into file context data.
+        Insert discipline, session and form into file context data.
         """
 
         context = super(ListSessionFileView, self).get_context_data(**kwargs)
@@ -217,7 +219,7 @@ class EditSessionFileView(LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         """
-        Insert a discipline inside file form.
+        Insert a discipline and session inside file form template.
         """
 
         context = super(EditSessionFileView, self).get_context_data(**kwargs)

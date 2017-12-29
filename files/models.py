@@ -1,5 +1,7 @@
-from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.db import models
+
+# App imports
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
 
