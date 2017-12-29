@@ -1,12 +1,12 @@
 # Django app
 from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.views.generic import (
     CreateView, ListView, UpdateView, FormView, DeleteView
@@ -38,14 +38,13 @@ class ProfileView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         """
-        Get the specific queryset from model database.
+        If user is a student get the disciplines that he is taking
+        If user is a teacher get the created disciplines and disciplines
+        that he is monitor
         """
 
-        # If user is a student get the disciplines that he is taking
         queryset = self.filter_student_disciplines()
 
-        # If user is a teacher get the created disciplines and
-        # disciplines that he is monitor.
         if self.request.user.is_teacher:
             queryset = self.filter_teacher_disciplines()
 
@@ -61,7 +60,7 @@ class ProfileView(LoginRequiredMixin, ListView):
         )
 
         monitor_disciplines = Discipline.objects.filter(
-            monitors__email=self.request.user.email
+            monitors=self.request.user
         )
 
         # Join the created disciplines list and monitor disciplines list
@@ -88,14 +87,14 @@ class ProfileView(LoginRequiredMixin, ListView):
         """
 
         queryset = Discipline.objects.filter(
-            students__email=self.request.user.email
+            students=self.request.user
         )
 
         # Get the filter by key argument from url
         filtered = self.request.GET.get('filter')
 
         if filtered == 'monitor':
-            queryset = queryset.filter(monitors__email=self.request.user.email)
+            queryset = queryset.filter(monitors=self.request.user)
 
         return queryset
 
@@ -107,8 +106,6 @@ class RegisterView(CreateView):
 
     model = User
     template_name = 'accounts/register.html'
-
-    # Use the UserCreationForm
     form_class = UserCreationForm
 
     # Redirect to profile
@@ -139,7 +136,6 @@ class RegisterView(CreateView):
                 self.request,
                 _("Student created successfully.")
             )
-
 
         return HttpResponseRedirect(self.success_url)
 
@@ -212,7 +208,7 @@ class DeleteProfileView(LoginRequiredMixin, DeleteView):
 
 class EditPasswordView(LoginRequiredMixin, FormView):
     """
-    Edit password from user.
+    Edit user password.
     """
 
     template_name = 'accounts/edit_password.html'
@@ -228,7 +224,7 @@ class EditPasswordView(LoginRequiredMixin, FormView):
         Generates the arguments that will be passed to the form.
         """
 
-        # Get the get_form_kwargs() from the original class FormView
+        # Get the kwargs from the original class FormView
         kwargs = super(EditPasswordView, self).get_form_kwargs()
 
         # Insert the parameter logged user into the form template
@@ -240,7 +236,8 @@ class EditPasswordView(LoginRequiredMixin, FormView):
         Receive the form already validated.
         """
 
-        # When you insert new kwargs you need to save the instance again
+        # In this case when you insert new kwargs, you need to save
+        # the instance again
         form.save()
 
         messages.success(self.request, _("Password updated successfully."))
@@ -309,7 +306,7 @@ class ResetPasswordConfirmView(FormView):
         Insert arguments inside form.
         """
 
-        # Get all arguments
+        # Get all arguments kwargs from SetPasswordForm
         kwargs = super(ResetPasswordConfirmView, self).get_form_kwargs()
 
         # Get the user with kwargs key to reset his password
@@ -329,7 +326,8 @@ class ResetPasswordConfirmView(FormView):
         Validated form and reset password.
         """
 
-        # When change the kwargs you need to save the instance
+        # In this case when you insert new kwargs, you need to save
+        # the instance again
         form.save()
 
         messages.success(

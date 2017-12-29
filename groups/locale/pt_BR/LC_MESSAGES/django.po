@@ -1,0 +1,195 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-29 18:21-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: groups/models.py:21
+msgid "Title"
+msgstr ""
+
+#: groups/models.py:23
+msgid "Title of group"
+msgstr ""
+
+#: groups/models.py:27
+msgid "Students limit"
+msgstr ""
+
+#: groups/models.py:29
+msgid "Students limit to get into the group."
+msgstr ""
+
+#: groups/models.py:40
+msgid "Created at"
+msgstr ""
+
+#: groups/models.py:41
+msgid "Date that the group is created."
+msgstr ""
+
+#: groups/models.py:46
+msgid "Updated at"
+msgstr ""
+
+#: groups/models.py:47
+msgid "Date that the group is updated"
+msgstr ""
+
+#: groups/models.py:60 groups/templates/groups/students.html:14
+msgid "Group"
+msgstr ""
+
+#: groups/models.py:61
+msgid "Groups"
+msgstr ""
+
+#: groups/templates/groups/add_group.html:14
+msgid "Add group"
+msgstr ""
+
+#: groups/templates/groups/add_group.html:22
+msgid "Group title"
+msgstr ""
+
+#: groups/templates/groups/add_group.html:26
+msgid "Number of students"
+msgstr ""
+
+#: groups/templates/groups/add_group.html:31
+msgid "Add"
+msgstr ""
+
+#: groups/templates/groups/delete.html:20
+msgid "Delete Group"
+msgstr ""
+
+#: groups/templates/groups/delete.html:27
+msgid "Are you sure you want to delete"
+msgstr ""
+
+#: groups/templates/groups/delete.html:42 groups/templates/groups/list.html:128
+msgid "Delete"
+msgstr ""
+
+#: groups/templates/groups/delete.html:51
+#: groups/templates/groups/remove_student.html:51
+msgid "Cancel"
+msgstr ""
+
+#: groups/templates/groups/form.html:15 groups/templates/groups/form.html:25
+#: groups/templates/groups/form.html:94
+msgid "Edit"
+msgstr ""
+
+#: groups/templates/groups/list.html:14
+msgid "Group list"
+msgstr ""
+
+#: groups/templates/groups/list.html:26
+msgid "Student groups"
+msgstr ""
+
+#: groups/templates/groups/list.html:33
+msgid "Available"
+msgstr ""
+
+#: groups/templates/groups/list.html:37
+msgid "Unavailable"
+msgstr ""
+
+#: groups/templates/groups/list.html:79 groups/templates/groups/list.html:81
+msgid "Student"
+msgstr ""
+
+#: groups/templates/groups/list.html:96
+msgid "There is no students in this group."
+msgstr ""
+
+#: groups/templates/groups/list.html:108
+msgid "Add student"
+msgstr ""
+
+#: groups/templates/groups/list.html:115
+msgid "Edit group"
+msgstr ""
+
+#: groups/templates/groups/list.html:140
+msgid "There is no groups"
+msgstr ""
+
+#: groups/templates/groups/list.html:151
+msgid "Provide"
+msgstr ""
+
+#: groups/templates/groups/remove_student.html:20
+#: groups/templates/groups/remove_student.html:42
+msgid "Remove"
+msgstr ""
+
+#: groups/templates/groups/remove_student.html:27
+msgid "Are you sure you want to remove"
+msgstr ""
+
+#: groups/templates/groups/students.html:23
+msgid "Students List"
+msgstr ""
+
+#: groups/templates/groups/students.html:31
+msgid "Students"
+msgstr ""
+
+#: groups/templates/groups/students.html:58
+msgid "There is no students."
+msgstr ""
+
+#: groups/views.py:129
+msgid "Group created successfully."
+msgstr ""
+
+#: groups/views.py:140
+msgid "Invalid fields, please fill in the fields correctly."
+msgstr ""
+
+#: groups/views.py:214
+msgid "Group updated successfully."
+msgstr ""
+
+#: groups/views.py:282
+msgid "Group deleted successfully."
+msgstr ""
+
+#: groups/views.py:334
+msgid "Groups available."
+msgstr ""
+
+#: groups/views.py:336
+msgid "Groups unavailable."
+msgstr ""
+
+#: groups/views.py:536
+msgid "Crowded discipline."
+msgstr ""
+
+#: groups/views.py:545
+#, python-brace-format
+msgid "{0} was inserted in the group: {1}"
+msgstr ""
+
+#: groups/views.py:636
+#, python-brace-format
+msgid "The student {0} is removed from {1}"
+msgstr ""

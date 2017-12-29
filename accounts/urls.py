@@ -1,8 +1,36 @@
-from django.conf.urls import url
 from django.contrib.auth.views import login, logout
+from django.conf.urls import url, include
 from . import views
 
 app_name = 'accounts'
+
+profile_patterns = [
+    # /profile/
+    url(
+        r'^$',
+        views.ProfileView.as_view(),
+        name='profile'
+    ),
+    # /profile/edit/
+    url(
+        r'^edit/$',
+        views.EditProfileView.as_view(),
+        name='update-user'
+    ),
+    # /profile/edit-password/
+    url(
+        r'^edit-password/$',
+        views.EditPasswordView.as_view(),
+        name='update-password'
+    ),
+    # /profile/delete/
+    url(
+        r'^delete/$',
+        views.DeleteProfileView.as_view(),
+        name='delete-user'
+    ),
+]
+
 urlpatterns = [
     # /login/
     url(
@@ -27,30 +55,6 @@ urlpatterns = [
         views.RegisterView.as_view(),
         name='register'
     ),
-    # /profile/
-    url(
-        r'^profile/$',
-        views.ProfileView.as_view(),
-        name='profile'
-    ),
-    # /profile/edit/
-    url(
-        r'^profile/edit/$',
-        views.EditProfileView.as_view(),
-        name='update-user'
-    ),
-    # /profile/edit-password/
-    url(
-        r'^profile/edit-password/$',
-        views.EditPasswordView.as_view(),
-        name='update-password'
-    ),
-    # /profile/delete/
-    url(
-        r'^profile/delete/$',
-        views.DeleteProfileView.as_view(),
-        name='delete-user'
-    ),
     # /reset-password/
     url(
         r'^reset-password/$',
@@ -63,4 +67,6 @@ urlpatterns = [
         views.ResetPasswordConfirmView.as_view(),
         name="reset-password-confirm"
     ),
+    # /profile/
+    url(r'^profile/', include(profile_patterns)),
 ]

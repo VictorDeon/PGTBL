@@ -19,7 +19,13 @@ td, th {
   padding: 8px;
 }
 
-/* class list */
+.img-size {
+  max-height: 250px;
+  width: 250px;
+  object-fit: cover;
+}
+
+/* disciplines list */
 .panel-title > a:hover,
 .panel-title > a:focus {
   text-decoration: none;
@@ -55,20 +61,15 @@ td, th {
   border: 1px solid #292C33;
 }
 
-.pagination {
-  margin: 10px 0;
-}
-
-.img-size {
-  max-height: 250px;
-  width: 250px;
-  object-fit: cover;
-}
-
 .filter {
   color: white;
 }
 
 .btn-group-justified>.btn, .btn-group-justified>.btn-group {
   width: 100%;
+}
+
+/* core/pagination.html */
+.pagination {
+  margin: 10px 0;
 }

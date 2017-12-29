@@ -1,0 +1,158 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-29 18:21-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: files/models.py:19
+msgid "Title"
+msgstr ""
+
+#: files/models.py:21
+msgid "Title of file."
+msgstr ""
+
+#: files/models.py:25
+msgid "Description"
+msgstr ""
+
+#: files/models.py:27
+msgid "Description of file."
+msgstr ""
+
+#: files/models.py:31 files/templates/files/add_file.html:27
+#: files/templates/files/session_add_file.html:27
+msgid "File extension"
+msgstr ""
+
+#: files/models.py:33
+msgid "File extension."
+msgstr ""
+
+#: files/models.py:37 files/models.py:77
+msgid "File"
+msgstr ""
+
+#: files/models.py:42
+msgid "Created at"
+msgstr ""
+
+#: files/models.py:43
+msgid "Date that the file is created."
+msgstr ""
+
+#: files/models.py:48
+msgid "Updated at"
+msgstr ""
+
+#: files/models.py:49
+msgid "Date that the file is updated"
+msgstr ""
+
+#: files/models.py:78
+msgid "Files"
+msgstr ""
+
+#: files/templates/files/add_file.html:14
+#: files/templates/files/session_add_file.html:14
+msgid "Add file"
+msgstr ""
+
+#: files/templates/files/add_file.html:23
+#: files/templates/files/session_add_file.html:23
+msgid "File title"
+msgstr ""
+
+#: files/templates/files/add_file.html:31
+#: files/templates/files/session_add_file.html:31
+msgid "File description"
+msgstr ""
+
+#: files/templates/files/add_file.html:39
+#: files/templates/files/session_add_file.html:39
+msgid "Add"
+msgstr ""
+
+#: files/templates/files/delete.html:20 files/templates/files/delete.html:42
+#: files/templates/files/list.html:78
+#: files/templates/files/session_delete.html:20
+#: files/templates/files/session_delete.html:42
+#: files/templates/files/session_list.html:78
+msgid "Delete"
+msgstr ""
+
+#: files/templates/files/delete.html:27
+#: files/templates/files/session_delete.html:27
+msgid "Are you sure you want to delete"
+msgstr ""
+
+#: files/templates/files/delete.html:51
+#: files/templates/files/session_delete.html:51
+msgid "Cancel"
+msgstr ""
+
+#: files/templates/files/form.html:15 files/templates/files/form.html:25
+#: files/templates/files/form.html:133
+#: files/templates/files/session_form.html:15
+#: files/templates/files/session_form.html:25
+#: files/templates/files/session_form.html:133
+msgid "Edit"
+msgstr ""
+
+#: files/templates/files/list.html:14
+#: files/templates/files/session_list.html:14
+msgid "File list"
+msgstr ""
+
+#: files/templates/files/list.html:24
+msgid "Discipline files"
+msgstr ""
+
+#: files/templates/files/list.html:58 files/templates/files/list.html:91
+#: files/templates/files/session_list.html:58
+#: files/templates/files/session_list.html:91
+msgid "Download"
+msgstr ""
+
+#: files/templates/files/list.html:65
+#: files/templates/files/session_list.html:65
+msgid "Edit file"
+msgstr ""
+
+#: files/templates/files/list.html:99
+#: files/templates/files/session_list.html:99
+msgid "There is no files"
+msgstr ""
+
+#: files/templates/files/session_list.html:24
+msgid "TBL Session files"
+msgstr ""
+
+#: files/views_discipline.py:97 files/views_sessions.py:129
+msgid "File created successfully."
+msgstr ""
+
+#: files/views_discipline.py:108 files/views_sessions.py:140
+msgid "Invalid fields, please fill in the fields correctly."
+msgstr ""
+
+#: files/views_discipline.py:169 files/views_sessions.py:233
+msgid "File updated successfully."
+msgstr ""
+
+#: files/views_discipline.py:224 files/views_sessions.py:323
+msgid "File deleted successfully."
+msgstr ""
