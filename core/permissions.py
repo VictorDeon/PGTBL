@@ -20,6 +20,7 @@ class ModelPermissionMixin(object):
     """
 
     failure_redirect_path = reverse_lazy('accounts:login')
+
     permissions_required = None
 
     def check_permission(self, user):
@@ -71,6 +72,7 @@ class PermissionMixin(object):
     """
 
     failure_redirect_path = reverse_lazy('accounts:profile')
+
     permissions_required = None
 
     def check_permission(self, user, view):

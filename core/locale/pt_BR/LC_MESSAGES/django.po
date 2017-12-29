@@ -99,7 +99,7 @@ msgstr "Descrição"
 
 #: core/permissions.py:50 core/permissions.py:101
 msgid "You are not authorized to do this action."
-msgstr ""
+msgstr "Você não tem autorização para fazer essa ação."
 
 #: core/templates/core/contact.html:10 core/templates/core/navbar.html:55
 msgid "Contact"

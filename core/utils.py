@@ -5,8 +5,6 @@ import random
 
 
 # --------------------------- RESET PASSWORD KEY -------------------------- #
-
-
 def random_key(size=5):
     """
     Generates the key with a random character set.
@@ -28,7 +26,6 @@ def generate_hash_key(salt, random_str_size=5):
 
 
 # --------------------------- ORDER ------------------------------------- #
-
 def order(self, queryset):
     """
     Order a queryset by some attribute.
@@ -36,6 +33,7 @@ def order(self, queryset):
 
     # Get the filter by key argument from url
     ordered = self.request.GET.get('order')
+
     if ordered:
         queryset = queryset.order_by(ordered)
 
