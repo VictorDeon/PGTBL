@@ -1,36 +1,42 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from . import views
 
 app_name = 'TBLSessions'
-urlpatterns = [
-    # /profile/<discipline.slug>/sessions/
+
+session_patterns = [
+    # /
     url(
-        r'^profile/(?P<slug>[\w_-]+)/sessions/$',
+        r'^$',
         views.ListTBLSessionView.as_view(),
         name='list'
     ),
-    # /profile/<discipline.slug>/sessions/add/
+    # add/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/sessions/add/$',
+        r'^add/$',
         views.CreateSessionView.as_view(),
         name='create'
     ),
-    # /profile/<discipline.slug>/sessions/<session.id>/edit/
+    # <session.id>/edit/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/edit/$',
+        r'^(?P<pk>[0-9]+)/edit/$',
         views.EditSessionView.as_view(),
         name='update'
     ),
-    # /profile/<discipline.slug>/sessions/<session.id>/delete/
+    # <session.id>/delete/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/delete/$',
+        r'^(?P<pk>[0-9]+)/delete/$',
         views.DeleteSessionView.as_view(),
         name='delete'
     ),
-    # /profile/<discipline.slug>/sessions/<session.id>/details/
+    # <session.id>/details/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/details/$',
+        r'^(?P<pk>[0-9]+)/details/$',
         views.ShowSessionView.as_view(),
         name='details'
     ),
+]
+
+urlpatterns = [
+    # /profile/<discipline.slug>/sessions/...
+    url(r'^profile/(?P<slug>[\w_-]+)/sessions/', include(session_patterns)),
 ]

@@ -5,25 +5,25 @@ from . import views
 app_name = 'accounts'
 
 profile_patterns = [
-    # /profile/
+    # /
     url(
         r'^$',
         views.ProfileView.as_view(),
         name='profile'
     ),
-    # /profile/edit/
+    # edit/
     url(
         r'^edit/$',
         views.EditProfileView.as_view(),
         name='update-user'
     ),
-    # /profile/edit-password/
+    # edit-password/
     url(
         r'^edit-password/$',
         views.EditPasswordView.as_view(),
         name='update-password'
     ),
-    # /profile/delete/
+    # delete/
     url(
         r'^delete/$',
         views.DeleteProfileView.as_view(),
@@ -67,6 +67,6 @@ urlpatterns = [
         views.ResetPasswordConfirmView.as_view(),
         name="reset-password-confirm"
     ),
-    # /profile/
+    # /profile/...
     url(r'^profile/', include(profile_patterns)),
 ]

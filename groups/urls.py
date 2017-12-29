@@ -4,49 +4,49 @@ from . import views
 app_name = 'groups'
 
 group_patterns = [
-    # /profile/<discipline.slug>/groups/
+    # /
     url(
         r'^$',
         views.ListGroupView.as_view(),
         name='list'
     ),
-    # /profile/<discipline.slug>/groups/add/
+    # add/
     url(
         r'^add/$',
         views.CreateGroupView.as_view(),
         name='create'
     ),
-    # /profile/<discipline.slug>/groups/1/edit/
+    # <group.id>/edit/
     url(
         r'^(?P<pk>[0-9]+)/edit/$',
         views.UpdateGroupView.as_view(),
         name='update'
     ),
-    # /profile/<discipline.slug>/1/delete/
+    # <group.id>/delete/
     url(
         r'^(?P<pk>[0-9]+)/delete/$',
         views.DeleteGroupView.as_view(),
         name='delete'
     ),
-    # /profile/<discipline.slug>/groups/provide/
+    # provide/
     url(
         r'^provide/$',
         views.ProvideGroupView.as_view(),
         name='provide'
     ),
-    # /profile/<discipline.slug>/groups/<group.id>/students/
+    # <group.id>/students/
     url(
         r'^(?P<pk>[0-9]+)/students/$',
         views.ListAvailableStudentsView.as_view(),
         name='students'
     ),
-    # /profile/<discipline.slug>/groups/<group.id>/students/<student.id>/add/
+    # <group.id>/students/<student.id>/add/
     url(
         r'^(?P<group_id>[0-9]+)/students/(?P<student_id>[0-9]+)/add/$',
         views.InsertStudentView.as_view(),
         name='add-student'
     ),
-    # /profile/<discipline.slug>/groups/<group.id>/students/<student.id>/remove/
+    # <group.id>/students/<student.id>/remove/
     url(
         r'^(?P<group_id>[0-9]+)/students/(?P<student_id>[0-9]+)/remove/$',
         views.RemoveStudentView.as_view(),
@@ -56,5 +56,6 @@ group_patterns = [
 
 
 urlpatterns = [
+    # /profile/<discipline.slug>/groups/...
     url(r'^profile/(?P<slug>[\w_-]+)/groups/', include(group_patterns)),
 ]

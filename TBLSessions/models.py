@@ -30,20 +30,18 @@ class TBLSession(models.Model):
     is_closed = models.BooleanField(
         _("Is closed?"),
         default=False,
-        help_text=_("Close discipline.")
+        help_text=_("Close TBL session.")
     )
 
-    # Create a date when the discipline is created
     created_at = models.DateTimeField(
         _('Created at'),
-        help_text=_("Date that the discipline is created."),
+        help_text=_("Date that the session is created."),
         auto_now_add=True
     )
 
-    # Create or update the date after the discipline is updated
     updated_at = models.DateTimeField(
         _('Updated at'),
-        help_text=_("Date that the discipline is updated."),
+        help_text=_("Date that the session is updated."),
         auto_now=True
     )
 

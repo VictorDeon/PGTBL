@@ -12,7 +12,6 @@ from django.views.generic import (
 # App imports
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
-from core.generics import ObjectRedirectView
 from .models import TBLSession
 from .forms import TBLSessionForm
 
@@ -159,7 +158,7 @@ class EditSessionView(LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         """
-        Insert a discipline inside tbl session form.
+        Insert a discipline inside tbl session form template.
         """
 
         context = super(EditSessionView, self).get_context_data(**kwargs)
