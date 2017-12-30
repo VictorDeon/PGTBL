@@ -49,3 +49,8 @@ img {
   z-index: 1;
   border-radius: 50%;
 }
+
+.submit-button {
+  width: 100%;
+  margin-bottom: 10px;
+}

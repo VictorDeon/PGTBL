@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-29 18:21-0200\n"
+"POT-Creation-Date: 2017-12-30 19:35-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,7 +48,8 @@ msgstr "Entre com um usuário válido"
 
 #: accounts/models.py:21
 msgid ""
-"This value should only contain letters, numbers, and characters ./@/+/-/_."
+"This value should only contain letters, numbers,         and characters ./@/"
+"+/-/_."
 msgstr ""
 "Este valor deve somente conter letras, números, e caracteres como @/./+/-/_."
 
@@ -209,11 +210,11 @@ msgstr "Editar"
 msgid "Edit password"
 msgstr "Editar senha"
 
-#: accounts/templates/accounts/login.html:71
+#: accounts/templates/accounts/login.html:70
 msgid "Enter"
 msgstr "Entrar"
 
-#: accounts/templates/accounts/login.html:77
+#: accounts/templates/accounts/login.html:76
 msgid "Forget password"
 msgstr "Esqueceu a senha"
 
@@ -299,35 +300,35 @@ msgstr ""
 "Por favor entre com o %(username)s e senha correto. Note que ambos os campos "
 "devem ser case-sensitive."
 
-#: accounts/tests/test_reset_password.py:48 accounts/views.py:276
+#: accounts/tests/test_reset_password.py:48 accounts/views.py:289
 msgid "Requesting new password"
 msgstr "Solicitando nova senha"
 
-#: accounts/views.py:132
+#: accounts/views.py:145
 msgid "Teacher created successfully."
 msgstr "Professor criado com sucesso."
 
-#: accounts/views.py:137
+#: accounts/views.py:150
 msgid "Student created successfully."
 msgstr "Estudante criado com sucesso."
 
-#: accounts/views.py:173
+#: accounts/views.py:186
 msgid "User updated successfully."
 msgstr "Usuário atualizado com sucesso."
 
-#: accounts/views.py:203
+#: accounts/views.py:216
 msgid "Accounts deleted successfully."
 msgstr "Conta deletada com sucesso."
 
-#: accounts/views.py:243
+#: accounts/views.py:256
 msgid "Password updated successfully."
 msgstr "Sua senha foi atualizada com sucesso."
 
-#: accounts/views.py:284
+#: accounts/views.py:297
 msgid "An email was sent with more details on how to create a new password"
 msgstr ""
 "Um email será enviado com mais informações sobre como criar uma nova senha."
 
-#: accounts/views.py:335
+#: accounts/views.py:348
 msgid "Your password was successfully updated."
 msgstr "Sua senha foi atualizada com sucesso."

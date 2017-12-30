@@ -536,7 +536,7 @@ class InsertStudentView(LoginRequiredMixin,
 
             messages.error(
                 self.request,
-                _("Crowded discipline.")
+                _("Crowded group.")
             )
 
         else:

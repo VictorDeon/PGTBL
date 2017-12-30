@@ -11,6 +11,16 @@
     </a>
   </li>
 
+  <!-- Student disciplines -->
+  {% if not user.is_teacher %}
+  <li>
+    <a href="?filter=student#filter"
+       class="filter">
+       {% trans 'Student of discipline' %}
+    </a>
+  </li>
+  {% endif %}
+
   <!-- Discipline monitor -->
   <li>
     <a href="?filter=monitor#filter"

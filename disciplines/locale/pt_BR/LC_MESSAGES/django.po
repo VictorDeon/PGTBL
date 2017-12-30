@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-29 18:21-0200\n"
+"POT-Creation-Date: 2017-12-30 19:35-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,145 +18,146 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: disciplines/forms.py:58
+#: disciplines/forms.py:60
 msgid "Access Password"
 msgstr "Senha de acesso"
 
-#: disciplines/models.py:55
+#: disciplines/models.py:59
 msgid "Title"
 msgstr "Título"
 
-#: disciplines/models.py:57
+#: disciplines/models.py:61
 msgid "Discipline title"
 msgstr "Título da disciplina"
 
-#: disciplines/models.py:61 disciplines/templates/disciplines/sidebar.html:12
+#: disciplines/models.py:65 disciplines/templates/disciplines/sidebar.html:12
 msgid "Description"
 msgstr "Ementa"
 
-#: disciplines/models.py:62
+#: disciplines/models.py:66
 msgid "Discipline description"
 msgstr "Ementa da disciplina"
 
-#: disciplines/models.py:66 disciplines/templates/disciplines/collapse.html:90
+#: disciplines/models.py:70 disciplines/templates/disciplines/collapse.html:100
 #: disciplines/templates/disciplines/list.html:48
 #: disciplines/templates/disciplines/list.html:144
 msgid "Course"
 msgstr "Curso"
 
-#: disciplines/models.py:69
+#: disciplines/models.py:73
 msgid "Discipline course"
 msgstr "Curso da disciplina"
 
-#: disciplines/models.py:73
+#: disciplines/models.py:77
 msgid "Shortcut"
 msgstr "URL atalho"
 
-#: disciplines/models.py:74
+#: disciplines/models.py:78
 msgid "URL string shortcut"
 msgstr "String de atalho da URL"
 
-#: disciplines/models.py:79
-msgid "Enter a valid classroom, the classroom need to be 'Class A-Z'"
-msgstr "Entre com uma turma valida, as turmas seguem o seguinte formato 'Turma A-Z'"
-
 #: disciplines/models.py:83
+msgid "Enter a valid classroom, the classroom need to be 'Class A-Z'"
+msgstr ""
+"Entre com uma turma valida, as turmas seguem o seguinte formato 'Turma A-Z'"
+
+#: disciplines/models.py:87
 msgid "Classroom"
 msgstr "Turma"
 
-#: disciplines/models.py:85
+#: disciplines/models.py:89
 msgid "Classroom title of discipline."
 msgstr "Turma da disciplina"
 
-#: disciplines/models.py:90
+#: disciplines/models.py:94
 msgid "Password"
 msgstr "Senha da turma"
 
-#: disciplines/models.py:92
+#: disciplines/models.py:96
 msgid "Password to get into the class."
 msgstr "Senha para entrar na turma."
 
-#: disciplines/models.py:97
+#: disciplines/models.py:101
 msgid "Students limit"
 msgstr "Limite de estudantes"
 
-#: disciplines/models.py:99
+#: disciplines/models.py:103
 msgid "Students limit to get in the class."
 msgstr "Limite de estudantes para entrar na turma."
 
-#: disciplines/models.py:103
+#: disciplines/models.py:107
 #, python-format
 msgid "There can be no more than %(limit_value)s students in the class."
 msgstr "Não pode haver mais que %(limit_value)s estudantes na turma."
 
-#: disciplines/models.py:107
+#: disciplines/models.py:111
 #, python-format
 msgid "Must have at least %(limit_value)s students in class."
 msgstr "Deve ter no mínimo %(limit_value)s estudantes na turma."
 
-#: disciplines/models.py:113
+#: disciplines/models.py:117
 msgid "Monitors limit"
 msgstr "Limite de monitores"
 
-#: disciplines/models.py:115
+#: disciplines/models.py:119
 msgid "Monitors limit to insert in the class."
 msgstr "Limite de monitores para entrar na turma."
 
-#: disciplines/models.py:119
+#: disciplines/models.py:123
 #, python-format
 msgid "There can be no more than %(limit_value)s monitors in the class."
 msgstr "Não deve ter mais que %(limit_value)s monitores na turma."
 
-#: disciplines/models.py:123
+#: disciplines/models.py:127
 #, python-format
 msgid "Ensure this value is greater than or equal to %(limit_value)s."
 msgstr "Tenha certeza que este valor é maior ou igual a %(limit_value)s."
 
-#: disciplines/models.py:129
+#: disciplines/models.py:133
 msgid "Is closed?"
 msgstr "Está fechada?"
 
-#: disciplines/models.py:131
+#: disciplines/models.py:135
 msgid "Close discipline."
 msgstr "Fechar turma."
 
-#: disciplines/models.py:135
+#: disciplines/models.py:139
 msgid "Was group provided?"
 msgstr "O grupo foi disponibilizado?"
 
-#: disciplines/models.py:137
+#: disciplines/models.py:141
 msgid "Provide groups to students see."
 msgstr "Disponibilizar grupos para os estudantes verem."
 
-#: disciplines/models.py:143 disciplines/templates/disciplines/collapse.html:81
-#: disciplines/templates/disciplines/details.html:66
+#: disciplines/models.py:147 disciplines/templates/disciplines/collapse.html:91
+#: disciplines/templates/disciplines/details.html:69
 #: disciplines/templates/disciplines/list.html:62
 #: disciplines/templates/disciplines/list.html:139
 #: disciplines/templates/disciplines/users.html:72
 msgid "Teacher"
 msgstr "Professor"
 
-#: disciplines/models.py:165
+#: disciplines/models.py:169
 msgid "Created at"
 msgstr "Criado em"
 
-#: disciplines/models.py:166
+#: disciplines/models.py:170
 msgid "Date that the discipline is created."
 msgstr "Data que a disciplina foi criada."
 
-#: disciplines/models.py:172
+#: disciplines/models.py:176
 msgid "Updated at"
 msgstr "Atualizado em"
 
-#: disciplines/models.py:173
+#: disciplines/models.py:177
 msgid "Date that the discipline is updated."
 msgstr "Data em que a disciplina foi atualizada"
 
-#: disciplines/models.py:197 disciplines/templates/disciplines/list.html:55
+#: disciplines/models.py:201 disciplines/templates/disciplines/list.html:55
 msgid "Discipline"
 msgstr "Disciplina"
 
-#: disciplines/models.py:198
+#: disciplines/models.py:202
 msgid "Disciplines"
 msgstr "Disciplinas"
 
@@ -164,40 +165,46 @@ msgstr "Disciplinas"
 msgid "All Disciplines"
 msgstr "Todas as Disciplinas"
 
-#: disciplines/templates/disciplines/collapse.html:18
+#: disciplines/templates/disciplines/collapse.html:19
+#, fuzzy
+#| msgid "Create discipline"
+msgid "Student of discipline"
+msgstr "Disciplinas que estuda"
+
+#: disciplines/templates/disciplines/collapse.html:28
 msgid "Discipline monitor"
 msgstr "Disciplinas monitoradas"
 
-#: disciplines/templates/disciplines/collapse.html:27
+#: disciplines/templates/disciplines/collapse.html:37
 msgid "Created Disciplines"
 msgstr "Disciplinas criadas"
 
-#: disciplines/templates/disciplines/collapse.html:147
+#: disciplines/templates/disciplines/collapse.html:157
 msgid "There is no disciplines."
 msgstr "Não há disciplina disponível"
 
-#: disciplines/templates/disciplines/delete.html:20
+#: disciplines/templates/disciplines/delete.html:21
 msgid "Delete Discipline"
 msgstr "Deletar disciplina"
 
-#: disciplines/templates/disciplines/delete.html:27
+#: disciplines/templates/disciplines/delete.html:28
 msgid "Are you sure you want to delete"
 msgstr "Tem certeza que deseja deletar"
 
-#: disciplines/templates/disciplines/delete.html:42
+#: disciplines/templates/disciplines/delete.html:43
 msgid "Delete"
 msgstr "Deletar"
 
-#: disciplines/templates/disciplines/delete.html:51
+#: disciplines/templates/disciplines/delete.html:52
 #: disciplines/templates/disciplines/remove_student.html:57
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: disciplines/templates/disciplines/details.html:42
+#: disciplines/templates/disciplines/details.html:44
 msgid "Closed"
 msgstr "Fechado"
 
-#: disciplines/templates/disciplines/details.html:44
+#: disciplines/templates/disciplines/details.html:46
 msgid "Open"
 msgstr "Aberto"
 
@@ -251,8 +258,12 @@ msgid "Are you sure you want to leave the discipline ?"
 msgstr "Tem certeza que deseja deletar a disciplina ?"
 
 #: disciplines/templates/disciplines/remove_student.html:30
-#, python-format
-msgid "Are you sure you want to remove %(student)s from discipline ?\n"
+#, fuzzy, python-format
+#| msgid "Are you sure you want to remove %(student)s from discipline ?\n"
+msgid ""
+"\n"
+"            Are you sure you want to remove %(student)s from discipline ?\n"
+"          "
 msgstr "Tem certeza que deseja remover %(student)s da disciplina ?\n"
 
 #: disciplines/templates/disciplines/remove_student.html:48
@@ -291,31 +302,31 @@ msgstr "Lista de estudantes"
 msgid "Student List"
 msgstr "Lista de estudantes"
 
-#: disciplines/templates/disciplines/students.html:41
+#: disciplines/templates/disciplines/students.html:42
 msgid "All"
 msgstr "Todos"
 
-#: disciplines/templates/disciplines/students.html:49
+#: disciplines/templates/disciplines/students.html:52
 #: disciplines/templates/disciplines/users.html:49
 msgid "Students"
 msgstr "Estudantes"
 
-#: disciplines/templates/disciplines/students.html:57
+#: disciplines/templates/disciplines/students.html:62
 #: disciplines/templates/disciplines/users.html:52
 msgid "Monitors"
 msgstr "Monitores"
 
-#: disciplines/templates/disciplines/students.html:97
-#: disciplines/templates/disciplines/students.html:107
+#: disciplines/templates/disciplines/students.html:101
+#: disciplines/templates/disciplines/students.html:111
 msgid "Monitor"
 msgstr "Monitor"
 
-#: disciplines/templates/disciplines/students.html:101
-#: disciplines/templates/disciplines/students.html:109
+#: disciplines/templates/disciplines/students.html:105
+#: disciplines/templates/disciplines/students.html:113
 msgid "Student"
 msgstr "Estudante"
 
-#: disciplines/templates/disciplines/students.html:145
+#: disciplines/templates/disciplines/students.html:149
 msgid "There is no students in this class."
 msgstr "Não há disciplina disponível nessa turma."
 
@@ -352,65 +363,75 @@ msgstr "Não pode haver mais de 5 monitores na turma."
 msgid "Must have at least 5 students in class."
 msgstr "Deve haver no mínimo 5 estudantes na turma."
 
-#: disciplines/views.py:73
+#: disciplines/views.py:74
 msgid "Discipline created successfully."
 msgstr "Disciplina criada com sucesso."
 
-#: disciplines/views.py:121
+#: disciplines/views.py:123
 msgid "Discipline updated successfully."
 msgstr "Disciplina atualizada com sucesso."
 
-#: disciplines/views.py:148
+#: disciplines/views.py:150
 msgid "Discipline deleted successfully."
 msgstr "Disciplina deletada com sucesso."
 
-#: disciplines/views.py:237
+#: disciplines/views.py:241
 msgid "Incorrect Password."
 msgstr "Senha incorreta."
 
-#: disciplines/views.py:245
+#: disciplines/views.py:249
 msgid "Discipline is closed."
 msgstr "Disciplina está fechada."
 
-#: disciplines/views.py:258
+#: disciplines/views.py:262
 #, python-brace-format
 msgid "You have been entered into the discipline: {0}"
 msgstr "Você acabou de entrar na disciplina: {0}"
 
-#: disciplines/views.py:275 disciplines/views.py:669
+#: disciplines/views.py:279 disciplines/views.py:686
 msgid "There are no more vacancies to monitor"
 msgstr "Não há mais vagas para monitor dessa disciplina."
 
-#: disciplines/views.py:283 disciplines/views.py:677
+#: disciplines/views.py:287 disciplines/views.py:694
 msgid "You can't get into your own discipline."
 msgstr "Você não pode entrar na sua própria disciplina."
 
-#: disciplines/views.py:305 disciplines/views.py:699
+#: disciplines/views.py:309 disciplines/views.py:716
 msgid "Crowded discipline."
 msgstr "Turma cheia."
 
-#: disciplines/views.py:477
+#: disciplines/views.py:488
 #, python-brace-format
 msgid "You can't remove {0} from {1}"
 msgstr "Você não pode remover {0} de {1}"
 
-#: disciplines/views.py:502
+#: disciplines/views.py:513
 #, python-brace-format
 msgid "You have removed {0} from {1}"
 msgstr "Você não pode remover {0} de {1}"
 
-#: disciplines/views.py:513
+#: disciplines/views.py:524
+#, python-brace-format
 msgid "You left the discipline {0}"
 msgstr "Você saiu da disciplina {0}"
 
-#: disciplines/views.py:654
+#: disciplines/views.py:671
+#, python-brace-format
 msgid "{0} was inserted in the discipline: {1}"
 msgstr "{0} foi inserido na disciplina: {1}"
 
-#: disciplines/views.py:763
+#: disciplines/views.py:780
 msgid "Successful modification"
 msgstr "Modificado com sucesso."
 
-#: disciplines/views.py:775
+#: disciplines/views.py:792
 msgid "You can't turn a teacher into a student."
 msgstr "Você não pode tornar professor em estudante."
+
+#: disciplines/views.py:825
+msgid "Student limit exceeded."
+msgstr "Limite de estudantes excedido"
+
+#: disciplines/views.py:841
+msgid "Monitor limit exceeded."
+msgstr "Limite de monitores excedido"

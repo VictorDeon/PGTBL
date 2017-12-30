@@ -86,15 +86,28 @@ class ProfileView(LoginRequiredMixin, ListView):
         Get the students disciplines that he is taking
         """
 
-        queryset = Discipline.objects.filter(
+        student_disciplines = Discipline.objects.filter(
             students=self.request.user
         )
+
+        monitor_disciplines = Discipline.objects.filter(
+            monitors=self.request.user
+        )
+
+        queryset = []
+        for discipline in student_disciplines:
+            queryset.append(discipline)
+
+        for discipline in monitor_disciplines:
+            queryset.append(discipline)
 
         # Get the filter by key argument from url
         filtered = self.request.GET.get('filter')
 
-        if filtered == 'monitor':
-            queryset = queryset.filter(monitors=self.request.user)
+        if filtered == 'student':
+            queryset = student_disciplines
+        elif filtered == 'monitor':
+            queryset = monitor_disciplines
 
         return queryset
 

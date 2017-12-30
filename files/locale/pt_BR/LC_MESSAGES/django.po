@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-29 18:21-0200\n"
+"POT-Creation-Date: 2017-12-30 19:35-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,52 +17,53 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-#: files/models.py:19
-msgid "Title"
-msgstr ""
 
 #: files/models.py:21
+msgid "Title"
+msgstr "Título"
+
+#: files/models.py:23
 msgid "Title of file."
 msgstr "Título do arquivo"
 
-#: files/models.py:25
+#: files/models.py:27
 msgid "Description"
 msgstr "Descrição"
 
-#: files/models.py:27
+#: files/models.py:29
 msgid "Description of file."
 msgstr "Descrição do arquivo"
 
-#: files/models.py:31 files/templates/files/add_file.html:27
+#: files/models.py:33 files/templates/files/add_file.html:27
 #: files/templates/files/session_add_file.html:27
 msgid "File extension"
 msgstr "Extensão do arquivo"
 
-#: files/models.py:33
+#: files/models.py:35
 msgid "File extension."
 msgstr "Extensão do arquivo"
 
-#: files/models.py:37 files/models.py:77
+#: files/models.py:39 files/models.py:79
 msgid "File"
 msgstr "Arquivo"
 
-#: files/models.py:42
+#: files/models.py:44
 msgid "Created at"
 msgstr "Criado em"
 
-#: files/models.py:43
+#: files/models.py:45
 msgid "Date that the file is created."
 msgstr "Data que o arquivo foi criado."
 
-#: files/models.py:48
+#: files/models.py:50
 msgid "Updated at"
 msgstr "Atualizado em"
 
-#: files/models.py:49
+#: files/models.py:51
 msgid "Date that the file is updated"
 msgstr "Data em que o arquivo foi modificado."
 
-#: files/models.py:78
+#: files/models.py:80
 msgid "Files"
 msgstr "Arquivos"
 
@@ -141,18 +142,18 @@ msgstr "Não há arquivos disponiveis"
 msgid "TBL Session files"
 msgstr "Arquivos da sessão do TBL"
 
-#: files/views_discipline.py:97 files/views_sessions.py:129
+#: files/views_discipline.py:99 files/views_sessions.py:131
 msgid "File created successfully."
 msgstr "Arquivos criado com sucesso."
 
-#: files/views_discipline.py:108 files/views_sessions.py:140
+#: files/views_discipline.py:110 files/views_sessions.py:142
 msgid "Invalid fields, please fill in the fields correctly."
 msgstr "Campo invalido, por favor preencha os campos corretamente."
 
-#: files/views_discipline.py:169 files/views_sessions.py:233
+#: files/views_discipline.py:171 files/views_sessions.py:235
 msgid "File updated successfully."
 msgstr "Arquivo atualizado com sucesso."
 
-#: files/views_discipline.py:224 files/views_sessions.py:323
+#: files/views_discipline.py:226 files/views_sessions.py:325
 msgid "File deleted successfully."
 msgstr "Arquivo deletado com sucesso."

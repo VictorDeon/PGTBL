@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-29 18:21-0200\n"
+"POT-Creation-Date: 2017-12-30 19:35-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
 #: TBLSessions/models.py:20
 msgid "Title"
 msgstr "Título"
@@ -41,27 +42,27 @@ msgstr "Está fechada?"
 msgid "Close TBL session."
 msgstr "Fechar Sessão de TBL"
 
-#: TBLSessions/models.py:38
+#: TBLSessions/models.py:37
 msgid "Created at"
 msgstr "Criado em"
 
-#: TBLSessions/models.py:39
+#: TBLSessions/models.py:38
 msgid "Date that the session is created."
 msgstr "Data na qual a sessão de TBL foi criada."
 
-#: TBLSessions/models.py:45
+#: TBLSessions/models.py:43
 msgid "Updated at"
 msgstr "Atualizado em"
 
-#: TBLSessions/models.py:46
+#: TBLSessions/models.py:44
 msgid "Date that the session is updated."
 msgstr "Data na qual a sessão de TBL foi atualizada"
 
-#: TBLSessions/models.py:67
+#: TBLSessions/models.py:65
 msgid "TBL Session"
 msgstr "Sessão TBL"
 
-#: TBLSessions/models.py:68
+#: TBLSessions/models.py:66
 msgid "TBL Sessions"
 msgstr "Sessões TBL"
 
@@ -172,18 +173,18 @@ msgstr "Avaliação em pares"
 msgid "Appeal"
 msgstr "Apelação"
 
-#: TBLSessions/views.py:100
+#: TBLSessions/views.py:101
 msgid "TBL session created successfully."
 msgstr "Sessão de TBL criado com sucesso."
 
-#: TBLSessions/views.py:111
+#: TBLSessions/views.py:112
 msgid "Invalid fields, please fill in the fields correctly."
 msgstr "Campos invalidos, por favor preencha os campos corretamente."
 
-#: TBLSessions/views.py:172
+#: TBLSessions/views.py:173
 msgid "TBL session updated successfully."
 msgstr "Sessão de TBL atualizada com sucesso."
 
-#: TBLSessions/views.py:227
+#: TBLSessions/views.py:228
 msgid "TBL session deleted successfully."
 msgstr "Sessão de TBL deletada com sucesso."
