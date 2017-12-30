@@ -26,18 +26,27 @@ class ChangeStudentTestCase(TestCase):
         self.monitor = user_factory(name="Maria")
         self.students = user_factory(qtd=4, is_teacher=False)
         self.monitors = user_factory(qtd=2)
-        self.discipline = mommy.make(
+        self.discipline = self.create_discipline(10, 3)
+
+    def create_discipline(self, students_limit, monitors_limit):
+        """
+        Create a discipline.
+        """
+
+        discipline = mommy.make(
             Discipline,
             teacher=self.teacher,
             title='Discipline04',
             course='Engineering',
             password='12345',
-            students_limit=10,
-            monitors_limit=3,
+            students_limit=students_limit,
+            monitors_limit=monitors_limit,
             students=self.students,
             monitors=self.monitors,
             make_m2m=True
         )
+
+        return discipline
 
     def tearDown(self):
         """
@@ -87,6 +96,70 @@ class ChangeStudentTestCase(TestCase):
         )
         self.assertEqual(self.discipline.students.count(), 4)
         self.assertEqual(self.discipline.monitors.count(), 2)
+
+    def test_monitor_limit_exceeded(self):
+        """
+        Test to exceeded the monitor limit.
+        """
+
+        self.client.login(username=self.teacher.username, password='test1234')
+        self.discipline = self.create_discipline(4, 2)
+        url = reverse_lazy(
+            'disciplines:change-student',
+            kwargs={
+                'slug': self.discipline.slug,
+                'pk': self.students[0].id
+            }
+        )
+        redirect_url = reverse_lazy(
+            'disciplines:students',
+            kwargs={'slug': self.discipline.slug}
+        )
+        self.verify_change(
+            url, redirect_url,
+            'alert-danger',
+            "Monitor limit exceeded."
+        )
+        self.assertEqual(self.discipline.students.count(), 4)
+        self.assertEqual(self.discipline.monitors.count(), 2)
+
+    def test_student_limit_exceeded(self):
+        """
+        Test to exceeded the monitor limit.
+        """
+
+        self.client.login(username=self.teacher.username, password='test1234')
+        self.discipline = self.create_discipline(4, 3)
+        url = reverse_lazy(
+            'disciplines:change-student',
+            kwargs={
+                'slug': self.discipline.slug,
+                'pk': self.students[0].id
+            }
+        )
+        redirect_url = reverse_lazy(
+            'disciplines:students',
+            kwargs={'slug': self.discipline.slug}
+        )
+        self.verify_change(
+            url, redirect_url,
+            'alert-success',
+            'Successful modification'
+        )
+        self.assertEqual(self.discipline.students.count(), 3)
+        self.assertEqual(self.discipline.monitors.count(), 3)
+
+        self.discipline.students.add(self.student)
+        self.assertEqual(self.discipline.students.count(), 4)
+        self.assertEqual(self.discipline.monitors.count(), 3)
+
+        self.verify_change(
+            url, redirect_url,
+            'alert-danger',
+            "Student limit exceeded."
+        )
+        self.assertEqual(self.discipline.students.count(), 4)
+        self.assertEqual(self.discipline.monitors.count(), 3)
 
     def test_can_not_change_monitor_if_is_teacher(self):
         """

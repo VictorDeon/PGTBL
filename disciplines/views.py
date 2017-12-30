@@ -384,13 +384,20 @@ class StudentListView(LoginRequiredMixin,
 
         self.discipline = self.get_discipline()
 
+        students = self.discipline.students.all()
+        monitors = self.discipline.monitors.all()
+
         # Insert monitors and students into one queryset
-        queryset = (self.discipline.students.all() |
-                    self.discipline.monitors.all())
+        queryset = []
+        for student in students:
+            queryset.append(student)
 
-        students = self.students_filter(queryset)
+        for monitor in monitors:
+            queryset.append(monitor)
 
-        return students
+        queryset = self.students_filter(queryset)
+
+        return queryset
 
     def get_discipline(self):
         """
@@ -570,7 +577,13 @@ class ListUsersView(LoginRequiredMixin,
         queryset = []
 
         users = User.objects.all()
-        students = discipline.students.all() | discipline.monitors.all()
+
+        students = []
+        for student in discipline.students.all():
+            students.append(student)
+
+        for monitor in discipline.monitors.all():
+            students.append(monitor)
 
         for user in users:
             if user not in students and user != discipline.teacher:
@@ -782,10 +795,52 @@ class ChangeStudentView(LoginRequiredMixin,
             return False
 
         if user in discipline.students.all():
-            discipline.students.remove(user)
-            discipline.monitors.add(user)
+            exceeded = self.monitor_limit_exceeded(discipline)
+
+            if not exceeded:
+                discipline.students.remove(user)
+                discipline.monitors.add(user)
+            else:
+                return False
         else:
-            discipline.monitors.remove(user)
-            discipline.students.add(user)
+            exceeded = self.student_limit_exceeded(discipline)
+
+            if not exceeded:
+                discipline.monitors.remove(user)
+                discipline.students.add(user)
+            else:
+                return False
 
         return True
+
+    def student_limit_exceeded(self, discipline):
+        """
+        Verify if student limit exceeded.
+        """
+
+        if discipline.students.count() >= discipline.students_limit:
+
+            messages.error(
+                self.request,
+                _("Student limit exceeded.")
+            )
+
+            return True
+
+        return False
+
+    def monitor_limit_exceeded(self, discipline):
+        """
+        Verify if monitor limit exceeded.
+        """
+
+        if discipline.monitors.count() >= discipline.monitors_limit:
+
+            messages.error(
+                self.request,
+                _("Monitor limit exceeded.")
+            )
+
+            return True
+
+        return False
