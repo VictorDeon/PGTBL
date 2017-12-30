@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-30 19:35-0200\n"
+"POT-Creation-Date: 2017-12-30 20:20-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -214,9 +214,17 @@ msgstr "contribuidores"
 msgid "Profile"
 msgstr "Perfil"
 
+#: core/templates/core/navbar.html:89
+msgid "Logout"
+msgstr "Sair"
+
 #: core/templates/core/navbar.html:101
 msgid "Register"
 msgstr "Cadastro"
+
+#: core/templates/core/navbar.html:110
+msgid "Login"
+msgstr "Entrar"
 
 #: core/templates/core/news.html:34
 msgid "Without image"

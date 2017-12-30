@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-30 19:35-0200\n"
+"POT-Creation-Date: 2017-12-30 20:20-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -179,7 +179,19 @@ msgstr "Disciplinas monitoradas"
 msgid "Created Disciplines"
 msgstr "Disciplinas criadas"
 
-#: disciplines/templates/disciplines/collapse.html:157
+#: disciplines/templates/disciplines/collapse.html:116
+msgid "Enter"
+msgstr ""
+
+#: disciplines/templates/disciplines/collapse.html:127
+msgid "Hall of Fame"
+msgstr ""
+
+#: disciplines/templates/disciplines/collapse.html:140
+msgid "Edit"
+msgstr ""
+
+#: disciplines/templates/disciplines/collapse.html:166
 msgid "There is no disciplines."
 msgstr "Não há disciplina disponível"
 
