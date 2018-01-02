@@ -93,7 +93,7 @@ msgstr "Não pode haver mais que %(limit_value)s estudantes na turma."
 #: disciplines/models.py:111
 #, python-format
 msgid "Must have at least %(limit_value)s students in class."
-msgstr "Deve ter no mínimo %(limit_value)s estudantes na turma."
+msgstr "Deve haver no mínimo %(limit_value)s estudantes na turma."
 
 #: disciplines/models.py:117
 msgid "Monitors limit"
@@ -106,7 +106,7 @@ msgstr "Limite de monitores para entrar na turma."
 #: disciplines/models.py:123
 #, python-format
 msgid "There can be no more than %(limit_value)s monitors in the class."
-msgstr "Não deve ter mais que %(limit_value)s monitores na turma."
+msgstr "Não pode haver mais de %(limit_value)s monitores na turma."
 
 #: disciplines/models.py:127
 #, python-format
