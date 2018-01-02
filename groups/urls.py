@@ -1,36 +1,61 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from . import views
 
 app_name = 'groups'
-urlpatterns = [
-    # /profile/discipline-name/groups/
+
+group_patterns = [
+    # /
     url(
-        r'^profile/(?P<slug>[\w_-]+)/groups/$',
+        r'^$',
         views.ListGroupView.as_view(),
         name='list'
     ),
-    # /profile/discipline-name/groups/add/
+    # add/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/groups/add/$',
+        r'^add/$',
         views.CreateGroupView.as_view(),
         name='create'
     ),
-    # /profile/discipline-name/groups/1/edit/
+    # <group.id>/edit/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/groups/(?P<pk>[0-9]+)/edit/$',
+        r'^(?P<pk>[0-9]+)/edit/$',
         views.UpdateGroupView.as_view(),
         name='update'
     ),
-    # /profile/discipline-name/
+    # <group.id>/delete/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/groups/(?P<pk>[0-9]+)/delete/$',
+        r'^(?P<pk>[0-9]+)/delete/$',
         views.DeleteGroupView.as_view(),
         name='delete'
     ),
-    # /profile/discipline-name/provide/
+    # provide/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/groups/provide/$',
+        r'^provide/$',
         views.ProvideGroupView.as_view(),
         name='provide'
     ),
+    # <group.id>/students/
+    url(
+        r'^(?P<pk>[0-9]+)/students/$',
+        views.ListAvailableStudentsView.as_view(),
+        name='students'
+    ),
+    # <group.id>/students/<student.id>/add/
+    url(
+        r'^(?P<group_id>[0-9]+)/students/(?P<student_id>[0-9]+)/add/$',
+        views.InsertStudentView.as_view(),
+        name='add-student'
+    ),
+    # <group.id>/students/<student.id>/remove/
+    url(
+        r'^(?P<group_id>[0-9]+)/students/(?P<student_id>[0-9]+)/remove/$',
+        views.RemoveStudentView.as_view(),
+        name='remove-student'
+    ),
+]
+
+
+urlpatterns = [
+    # /profile/<discipline.slug>/groups/...
+    url(r'^profile/(?P<slug>[\w_-]+)/groups/', include(group_patterns)),
 ]

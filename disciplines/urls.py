@@ -1,78 +1,84 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from . import views
 
 app_name = 'disciplines'
-urlpatterns = [
-    # /profile/create_discipline/
+
+discipline_patterns = [
+    # create-discipline/
     url(
-        r'^profile/create-discipline/$',
+        r'^create-discipline/$',
         views.CreateDisciplineView.as_view(),
         name='create'
     ),
-    # /profile/list-discipline/
+    # list-discipline/
     url(
-        r'^profile/list-discipline/$',
+        r'^list-discipline/$',
         views.ListDisciplineView.as_view(),
         name='search'
     ),
-    # /profile/update-discipline/discipline-name/
+    # update-discipline/<discipline.slug>/
     url(
-        r'^profile/update-discipline/(?P<slug>[\w_-]+)/$',
+        r'^update-discipline/(?P<slug>[\w_-]+)/$',
         views.UpdateDisciplineView.as_view(),
         name='update'
     ),
-    # /profile/delete-discipline/discipline-name/
+    # delete-discipline/<discipline.slug>/
     url(
-        r'^profile/delete-discipline/(?P<slug>[\w_-]+)/$',
+        r'^delete-discipline/(?P<slug>[\w_-]+)/$',
         views.DeleteDisciplineView.as_view(),
         name='delete'
     ),
-    # /profile/enter-discipline/discipline-name/
+    # enter-discipline/<discipline.slug>/
     url(
-        r'^profile/enter-discipline/(?P<slug>[\w_-]+)/$',
+        r'^enter-discipline/(?P<slug>[\w_-]+)/$',
         views.EnterDisciplineView.as_view(),
         name='enter'
     ),
-    # /profile/discipline-name/
+    # <discipline.slug>/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/$',
+        r'^(?P<slug>[\w_-]+)/$',
         views.ShowDisciplineView.as_view(),
         name='details'
     ),
-    # /profile/discipline-name/closed/
+    # <discipline.slug>/closed/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/close/$',
+        r'^(?P<slug>[\w_-]+)/close/$',
         views.CloseDisciplineView.as_view(),
         name='close'
     ),
-    # /profile/discipline-name/students/
+    # <discipline.slug>/students/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/students/$',
+        r'^(?P<slug>[\w_-]+)/students/$',
         views.StudentListView.as_view(),
         name='students'
     ),
-    # /profile/discipline-name/students/1/remove
+    # <discipline.slug>/students/<student.id>/remove
     url(
-        r'^profile/(?P<slug>[\w_-]+)/students/(?P<pk>[0-9]+)/remove/$',
+        r'^(?P<slug>[\w_-]+)/students/(?P<pk>[0-9]+)/remove/$',
         views.RemoveStudentView.as_view(),
         name='remove-student'
     ),
-    # /profile/discipline-name/students/add/
+    # <discipline.slug>/students/add/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/students/add/$',
+        r'^(?P<slug>[\w_-]+)/students/add/$',
         views.ListUsersView.as_view(),
         name='users'
     ),
-    # /profile/discipline-name/students/add/1/
+    # <discipline.slug>/students/add/<student.id>/
     url(
-        r'^profile/(?P<slug>[\w_-]+)/students/add/(?P<pk>[0-9]+)/$',
+        r'^(?P<slug>[\w_-]+)/students/add/(?P<pk>[0-9]+)/$',
         views.InsertStudentView.as_view(),
         name='insert-students'
     ),
-    # /profile/discipline-name/students/1/change
+    # <discipline.slug>/students/<student.id>/change
     url(
-        r'^profile/(?P<slug>[\w_-]+)/students/(?P<pk>[0-9]+)/change/$',
+        r'^(?P<slug>[\w_-]+)/students/(?P<pk>[0-9]+)/change/$',
         views.ChangeStudentView.as_view(),
         name='change-student'
     ),
+]
+
+urlpatterns = [
+    # /profile/...
+    url(r'^profile/', include(discipline_patterns)),
 ]

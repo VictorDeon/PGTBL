@@ -1,6 +1,8 @@
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import get_user_model
 from django import forms
+
+# App imports
 from pagedown.widgets import PagedownWidget
 from .models import Discipline
 

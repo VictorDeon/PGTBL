@@ -110,7 +110,7 @@ class ListDisciplineTestCase(TestCase):
         # Total number of pages.
         self.assertEqual(paginator.num_pages, 2)
         # Number of discipline students in one page
-        self.assertEqual(students.count(), 12)
+        self.assertEqual(len(students), 12)
 
     def test_page_not_found(self):
         """
@@ -132,7 +132,7 @@ class ListDisciplineTestCase(TestCase):
         # Only 12 students are rendered in context, so it has to decrease 1 of
         # the users since they are 13
         self.assertEqual(
-            context.count(),
+            len(context),
             users.count() - 1
         )
 

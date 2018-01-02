@@ -3,7 +3,7 @@
 {% load i18n %}
 
 {% block css %}
-  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
   <link rel="stylesheet" href="{% static 'disciplines/css/class.css' %}" />
 {% endblock %}
 
@@ -32,6 +32,8 @@
             <small>{{discipline.course}}</small>
           </h1>
         </div>
+
+        <!-- Close and  Open discipline -->
         <div class="col-sm-2">
           <h1 class="white">{{discipline.classroom}}</h1>
           {% if user.id == discipline.teacher.id %}
@@ -49,7 +51,7 @@
       </div>
     </div>
 
-    <!-- Teacher -->
+    <!-- Teacher information -->
     <div class="row">
       <div class="col-sm-12">
         <div class="media lighten-blue-grey">
@@ -62,6 +64,7 @@
               <img src="{% static 'disciplines/img/user.png' %}" class="media-object" style="width:60px">
             </div>
           {% endif %}
+
           <div class="media-body">
             <h4 class="media-heading"><b>{% trans 'Teacher' %}:</b> {{discipline.teacher.name}}</h4>
             <p>{{discipline.teacher.email}}</p>

@@ -1,24 +1,15 @@
-{% extends 'accounts/profile.html' %}
+{% extends 'groups/list.html' %}
 {% load static %}
 {% load widget_tweaks %}
 {% load i18n %}
 
 {% block css %}
-  {{ block.super }}
-  <link href="{% static 'disciplines/css/create.css' %}" rel="stylesheet" />
-{% endblock %}
-
-{% block sidebar %}
-  {% include 'disciplines/sidebar.html' %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'groups/css/edit.css' %}" />
 {% endblock %}
 
 {% block breadcrumb %}
   {{ block.super }}
-  <li>
-    <a href="{% url 'groups:list' discipline.slug %}">
-      {% trans 'Group list' %}
-    </a>
-  </li>
   <li>
     <a href="{% url 'groups:update' discipline.slug group.id %}">
       {% trans 'Edit' %} {{group}}
@@ -50,7 +41,7 @@
             </div>
           {% endfor %}
 
-          <!-- Discipline title field -->
+          <!-- Group title field -->
           <div class="{% if form.title.errors %}alert alert-warning{% endif %}">
             <!-- Input group -->
             <div class="input-group">
@@ -58,7 +49,7 @@
               <span class="input-group-addon gradient"
                     data-toggle="tooltip"
                     title="{{form.title.label}}">
-                    <i class="fa fa-book"></i>
+                    <i class="fa fa-group"></i>
               </span>
 
               <!-- Field -->
@@ -73,7 +64,7 @@
             {% endfor %}
           </div>
 
-          <!-- Discipline course field -->
+          <!-- Group students limit field -->
           <div class="{% if form.students_limit.errors %}alert alert-warning{% endif %}">
             <!-- Input group -->
             <div class="input-group">

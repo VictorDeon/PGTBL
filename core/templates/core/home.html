@@ -14,18 +14,16 @@
 {% endblock %}
 
 {% block body %}
-  <div data-spy="scroll" data-target=".navbar">
-    <header>
-      {% include 'core/navbar.html' %}
-    </header>
-    <main>
-      {% include 'core/parallax.html' %}
-      {% include 'core/features.html' %}
-      {% include 'core/news.html' %}
-      {% include 'core/contact.html' %}
-    </main>
-    <footer id="footer">
-      {% include 'core/footer.html' %}
-    </footer>
-  </div>
+  <header>
+    {% include 'core/navbar.html' %}
+  </header>
+  <main>
+    {% include 'core/parallax.html' %}
+    {% include 'core/features.html' %}
+    {% include 'core/news.html' %}
+    {% include 'core/contact.html' %}
+  </main>
+  <footer id="footer">
+    {% include 'core/footer.html' %}
+  </footer>
 {% endblock %}

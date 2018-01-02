@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-29 03:43-0200\n"
+"POT-Creation-Date: 2017-12-30 20:20-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,54 +48,58 @@ msgstr "Mensagem"
 msgid "Insert the message."
 msgstr "Insira sua mensagem."
 
-#: core/generics.py:82
+#: core/generics.py:101
 #, python-brace-format
 msgid "Empty list and {class_name}.allow_empty is False."
 msgstr "Lista vazia e {class_name}.allow_empty é Falso."
 
-#: core/models.py:12 core/models.py:29
+#: core/models.py:11 core/models.py:28
 msgid "Tag"
 msgstr "Tag"
 
-#: core/models.py:17 core/models.py:74
+#: core/models.py:16 core/models.py:73
 msgid "Identify"
 msgstr "Identificador"
 
-#: core/models.py:30
+#: core/models.py:29
 msgid "Tags"
 msgstr "Tags"
 
-#: core/models.py:39
+#: core/models.py:38
 msgid "Title"
 msgstr "Título"
 
-#: core/models.py:40
+#: core/models.py:39
 msgid "Title of information."
 msgstr "Título da informação."
 
-#: core/models.py:46
+#: core/models.py:45
 msgid "Image about information."
 msgstr "Imagem sobre a informação."
 
-#: core/models.py:47
+#: core/models.py:46
 msgid "Image"
 msgstr "Imagem"
 
-#: core/models.py:53
+#: core/models.py:52
 msgid "Created at"
 msgstr "Criado em"
 
-#: core/models.py:54
+#: core/models.py:53
 msgid "Date of creation of information"
 msgstr "Data de criação da informação"
 
-#: core/models.py:59
+#: core/models.py:58
 msgid "Link of information"
 msgstr "Link da informação"
 
-#: core/models.py:64
+#: core/models.py:63
 msgid "Description"
 msgstr "Descrição"
+
+#: core/permissions.py:51 core/permissions.py:103
+msgid "You are not authorized to do this action."
+msgstr "Você não tem autorização para fazer essa ação."
 
 #: core/templates/core/contact.html:10 core/templates/core/navbar.html:55
 msgid "Contact"
@@ -210,9 +214,17 @@ msgstr "contribuidores"
 msgid "Profile"
 msgstr "Perfil"
 
+#: core/templates/core/navbar.html:89
+msgid "Logout"
+msgstr "Sair"
+
 #: core/templates/core/navbar.html:101
 msgid "Register"
 msgstr "Cadastro"
+
+#: core/templates/core/navbar.html:110
+msgid "Login"
+msgstr "Entrar"
 
 #: core/templates/core/news.html:34
 msgid "Without image"

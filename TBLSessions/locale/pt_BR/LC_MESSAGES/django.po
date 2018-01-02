@@ -1,0 +1,190 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-30 20:20-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: TBLSessions/models.py:20
+msgid "Title"
+msgstr "Título"
+
+#: TBLSessions/models.py:22
+msgid "Session title."
+msgstr "Título da sessão"
+
+#: TBLSessions/models.py:26
+msgid "Description"
+msgstr "Descrição"
+
+#: TBLSessions/models.py:27
+msgid "TBL session description."
+msgstr "Descrição da sessão de TBL"
+
+#: TBLSessions/models.py:31
+msgid "Is closed?"
+msgstr "Está fechada?"
+
+#: TBLSessions/models.py:33
+msgid "Close TBL session."
+msgstr "Fechar Sessão de TBL"
+
+#: TBLSessions/models.py:37
+msgid "Created at"
+msgstr "Criado em"
+
+#: TBLSessions/models.py:38
+msgid "Date that the session is created."
+msgstr "Data na qual a sessão de TBL foi criada."
+
+#: TBLSessions/models.py:43
+msgid "Updated at"
+msgstr "Atualizado em"
+
+#: TBLSessions/models.py:44
+msgid "Date that the session is updated."
+msgstr "Data na qual a sessão de TBL foi atualizada"
+
+#: TBLSessions/models.py:65
+msgid "TBL Session"
+msgstr "Sessão TBL"
+
+#: TBLSessions/models.py:66
+msgid "TBL Sessions"
+msgstr "Sessões TBL"
+
+#: TBLSessions/templates/TBLSessions/add_sessions.html:14
+msgid "Add TBL session"
+msgstr "Adicionar sessões de TBL"
+
+#: TBLSessions/templates/TBLSessions/add_sessions.html:22
+msgid "Session title"
+msgstr "Título da sessão"
+
+#: TBLSessions/templates/TBLSessions/add_sessions.html:26
+msgid "Session description"
+msgstr "Descrição da sessão"
+
+#: TBLSessions/templates/TBLSessions/add_sessions.html:32
+#: TBLSessions/templates/TBLSessions/form.html:98
+msgid "Close session"
+msgstr "Fechar sessão"
+
+#: TBLSessions/templates/TBLSessions/add_sessions.html:37
+msgid "Add"
+msgstr "Adicionar"
+
+#: TBLSessions/templates/TBLSessions/delete.html:20
+#: TBLSessions/templates/TBLSessions/delete.html:42
+#: TBLSessions/templates/TBLSessions/list.html:84
+msgid "Delete"
+msgstr "Deletar"
+
+#: TBLSessions/templates/TBLSessions/delete.html:27
+msgid "Are you sure you want to delete"
+msgstr "Tem certeza que deseja deletar"
+
+#: TBLSessions/templates/TBLSessions/delete.html:51
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: TBLSessions/templates/TBLSessions/form.html:17
+#: TBLSessions/templates/TBLSessions/form.html:27
+#: TBLSessions/templates/TBLSessions/form.html:114
+#: TBLSessions/templates/TBLSessions/list.html:71
+msgid "Edit"
+msgstr "Editar"
+
+#: TBLSessions/templates/TBLSessions/form.html:86
+msgid "Preview"
+msgstr "Visualizar"
+
+#: TBLSessions/templates/TBLSessions/list.html:14
+msgid "TBL session list"
+msgstr "Lista de sessões de TBL"
+
+#: TBLSessions/templates/TBLSessions/list.html:24
+msgid "TBL sessions"
+msgstr "Sessões de TBL"
+
+#: TBLSessions/templates/TBLSessions/list.html:42
+msgid "Unavailable"
+msgstr "Indisponível"
+
+#: TBLSessions/templates/TBLSessions/list.html:46
+msgid "Available"
+msgstr "Disponível"
+
+#: TBLSessions/templates/TBLSessions/list.html:64
+#: TBLSessions/templates/TBLSessions/list.html:98
+msgid "Enter"
+msgstr "Entrar"
+
+#: TBLSessions/templates/TBLSessions/list.html:107
+msgid "There is no sessions available."
+msgstr "Não há sessões de TBL disponíveis"
+
+#: TBLSessions/templates/TBLSessions/sidebar.html:12
+msgid "Session"
+msgstr "Sessão"
+
+#: TBLSessions/templates/TBLSessions/sidebar.html:20
+msgid "Files"
+msgstr "Arquivos"
+
+#: TBLSessions/templates/TBLSessions/sidebar.html:28
+msgid "Exercise list"
+msgstr "Lista de exercícios"
+
+#: TBLSessions/templates/TBLSessions/sidebar.html:36
+msgid "Dashboard"
+msgstr "Relatório"
+
+#: TBLSessions/templates/TBLSessions/sidebar.html:44
+msgid "Test iRAT"
+msgstr "Avaliação iRAT"
+
+#: TBLSessions/templates/TBLSessions/sidebar.html:52
+msgid "Test gRAT"
+msgstr "Avaliação gRAT"
+
+#: TBLSessions/templates/TBLSessions/sidebar.html:60
+msgid "Test practical"
+msgstr "Avaliação prática"
+
+#: TBLSessions/templates/TBLSessions/sidebar.html:68
+msgid "Test Peer"
+msgstr "Avaliação em pares"
+
+#: TBLSessions/templates/TBLSessions/sidebar.html:76
+msgid "Appeal"
+msgstr "Apelação"
+
+#: TBLSessions/views.py:101
+msgid "TBL session created successfully."
+msgstr "Sessão de TBL criado com sucesso."
+
+#: TBLSessions/views.py:112
+msgid "Invalid fields, please fill in the fields correctly."
+msgstr "Campos invalidos, por favor preencha os campos corretamente."
+
+#: TBLSessions/views.py:173
+msgid "TBL session updated successfully."
+msgstr "Sessão de TBL atualizada com sucesso."
+
+#: TBLSessions/views.py:228
+msgid "TBL session deleted successfully."
+msgstr "Sessão de TBL deletada com sucesso."

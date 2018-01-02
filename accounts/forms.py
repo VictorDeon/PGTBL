@@ -1,6 +1,6 @@
 # Django app
-from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm as CreationForm
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import get_user_model
 from django import forms
 
@@ -13,7 +13,11 @@ class UserCreationForm(CreationForm):
     Create a form to add a new user that work with django admin.
     """
 
-    CHOICES = ((True, _('Teacher')), (False, _('Student')))
+    CHOICES = (
+        (True, _('Teacher')),
+        (False, _('Student'))
+    )
+
     is_teacher = forms.ChoiceField(choices=CHOICES)
 
     class Meta:
@@ -57,8 +61,10 @@ class PasswordResetForm(forms.Form):
         """
 
         email = self.cleaned_data['email']
+
         if User.objects.filter(email=email).exists():
             return email
+
         raise forms.ValidationError(
             _('There is no user found with this email')
         )

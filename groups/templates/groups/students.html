@@ -1,0 +1,69 @@
+{% extends 'groups/list.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'groups/css/students.css' %}" />
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'groups:students' discipline.slug group.pk %}">
+      {% trans 'Group' %} {{group.title}}
+    </a>
+  </li>
+{% endblock %}
+
+{% block content %}
+  <!-- student list header -->
+  <div class="page-header fix-row">
+    <h1 class="white">
+      <i class="fa fa-users"></i> {% trans 'Students List' %}<br />
+      <small>{{discipline.title}} - {{group.title}}</small>
+    </h1>
+  </div>
+
+  <div class="row fix-row">
+    <!-- Students count -->
+    <span class="label label-primary">
+      {{group.students.count}}/{{group.students_limit}} {% trans 'Students' %}
+    </span>
+
+    <!-- Student List -->
+    {% for student in students %}
+      <div class="media">
+        <!-- Student photo -->
+        <div class="media-left">
+          {% if student.photo %}
+            <img src="{{student.photo.url}}" class="media-object">
+          {% else %}
+            <img src="{% static 'groups/img/user.png' %}" class="media-object">
+          {% endif %}
+        </div>
+        <!-- Student information -->
+        <div class="media-body white">
+          <h4 class="media-heading">{{student.get_short_name}} <small>{{student.username}}</small></h4>
+          <p>{{student.email}}</p>
+        </div>
+
+        <!-- Add student button -->
+        <div class="media-right">
+          <form action="{% url 'groups:add-student' discipline.slug group.pk student.pk %}" method="POST">
+            {% csrf_token %}
+
+            <button class="btn btn-primary btn-border" type="submit">
+              <i class="fa fa-plus"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    {% empty %}
+      <p class="white">{% trans 'There is no students.' %}</p>
+    {% endfor %}
+  </div>
+
+  <!-- Students pagination -->
+  {% include 'core/pagination.html' %}
+{% endblock %}

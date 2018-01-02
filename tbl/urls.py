@@ -9,6 +9,8 @@ urlpatterns = [
     url(r'', include('accounts.urls')),
     url(r'', include('disciplines.urls')),
     url(r'', include('groups.urls')),
+    url(r'', include('files.urls')),
+    url(r'', include('TBLSessions.urls')),
 ]
 
 # While in development mode we will use relative URL for static and average

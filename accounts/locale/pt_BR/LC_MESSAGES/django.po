@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-29 03:43-0200\n"
+"POT-Creation-Date: 2017-12-30 20:20-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,145 +30,149 @@ msgstr "Permissões"
 msgid "Accounts"
 msgstr "Contas"
 
-#: accounts/forms.py:16 accounts/templates/accounts/profile.html:79
+#: accounts/forms.py:17 accounts/templates/accounts/profile.html:86
 msgid "Teacher"
 msgstr "Professor(a)"
 
-#: accounts/forms.py:16 accounts/templates/accounts/profile.html:84
+#: accounts/forms.py:18 accounts/templates/accounts/profile.html:91
 msgid "Student"
 msgstr "Aluno(a)"
 
-#: accounts/forms.py:62
+#: accounts/forms.py:69 accounts/tests/test_reset_password.py:77
 msgid "There is no user found with this email"
 msgstr "Não há usuários com esse email"
 
-#: accounts/models.py:20 accounts/models.py:158 accounts/models.py:171
-#: accounts/tests/test_login.py:92
-msgid "User"
-msgstr "Usuário"
-
-#: accounts/models.py:27
+#: accounts/models.py:20
 msgid "Enter a valid username"
 msgstr "Entre com um usuário válido"
 
-#: accounts/models.py:28
+#: accounts/models.py:21
 msgid ""
-"This value should only contain letters, numbers,                   and "
-"characters @/./+/-/_."
+"This value should only contain letters, numbers,         and characters ./@/"
+"+/-/_."
 msgstr ""
 "Este valor deve somente conter letras, números, e caracteres como @/./+/-/_."
 
-#: accounts/models.py:36
+#: accounts/models.py:28 accounts/models.py:163 accounts/models.py:176
+#: accounts/tests/test_login.py:98
+msgid "User"
+msgstr "Usuário"
+
+#: accounts/models.py:34
+msgid "A user with that username already exists."
+msgstr "Um usuário com esse username já existe."
+
+#: accounts/models.py:39
 msgid "E-mail"
 msgstr "E-mail"
 
-#: accounts/models.py:37
+#: accounts/models.py:40
 msgid "Email that will be used as username."
 msgstr "Email que será usado como usuário."
 
-#: accounts/models.py:42
+#: accounts/models.py:43
+msgid "A user with that email already exists."
+msgstr "Um usuário com esse email já existe."
+
+#: accounts/models.py:48
 msgid "Name"
 msgstr "Nome"
 
-#: accounts/models.py:43
+#: accounts/models.py:49
 msgid "Full user name."
 msgstr "Nome completo."
 
-#: accounts/models.py:49 accounts/templates/accounts/profile.html:114
+#: accounts/models.py:54 accounts/templates/accounts/profile.html:121
 msgid "Institution"
 msgstr "Instituição"
 
-#: accounts/models.py:50
+#: accounts/models.py:55
 msgid "University or School in which the user is inserted."
 msgstr "Universidade ou escola na qual o usuário está inserido."
 
-#: accounts/models.py:56 accounts/templates/accounts/profile.html:123
+#: accounts/models.py:61 accounts/templates/accounts/profile.html:130
 msgid "Course"
 msgstr "Curso"
 
-#: accounts/models.py:57
+#: accounts/models.py:62
 msgid "Course of university or Period of school."
 msgstr "Curso da universidade ou Série da escola."
 
-#: accounts/models.py:64
+#: accounts/models.py:69
 msgid "Photo of user."
 msgstr "Foto do usuário."
 
-#: accounts/models.py:65
+#: accounts/models.py:70
 msgid "Photo"
 msgstr "Foto"
 
-#: accounts/models.py:71
+#: accounts/models.py:76
 msgid "Is Teacher?"
 msgstr "É professor?"
 
-#: accounts/models.py:72
+#: accounts/models.py:77
 msgid "Verify if the user is teacher or student"
 msgstr "Verifica se o usuário é professor ou aluno"
 
-#: accounts/models.py:77
+#: accounts/models.py:82
 msgid "Last Login"
 msgstr "Último login"
 
-#: accounts/models.py:78
+#: accounts/models.py:83
 msgid "Last moment the user logged in."
 msgstr "Último momento em que o usuário estava logado."
 
-#: accounts/models.py:86
+#: accounts/models.py:91
 msgid "Is Active?"
 msgstr "Está ativo?"
 
-#: accounts/models.py:87
+#: accounts/models.py:92
 msgid "Verify if the user is active."
 msgstr "Verifica se o usuário ainda está ativo."
 
-#: accounts/models.py:93
+#: accounts/models.py:98
 msgid "Is Staff?"
 msgstr "É administrador?"
 
-#: accounts/models.py:94
+#: accounts/models.py:99
 msgid "Verify if the user is a staff."
 msgstr "Verifica se o usuário é um administrador."
 
-#: accounts/models.py:100 accounts/models.py:184
+#: accounts/models.py:105 accounts/models.py:189
 msgid "Created at"
 msgstr "Criado em"
 
-#: accounts/models.py:101
+#: accounts/models.py:106
 msgid "Date that the user is created."
 msgstr "Data que o usuário criou a conta."
 
-#: accounts/models.py:107
+#: accounts/models.py:112
 msgid "Updated at"
 msgstr "Atualizado em"
 
-#: accounts/models.py:108
+#: accounts/models.py:113
 msgid "Date that the user is updated."
 msgstr "Data que o usuário atualizou a conta."
 
-#: accounts/models.py:159
+#: accounts/models.py:164
 msgid "Users"
 msgstr "Usuários"
 
-#: accounts/models.py:177
+#: accounts/models.py:182
 msgid "Key"
 msgstr "Chave"
 
-#: accounts/models.py:190
+#: accounts/models.py:195
 msgid "Confirmed?"
 msgstr "Confirmado?"
 
-#: accounts/models.py:208
+#: accounts/models.py:213
 msgid "New password"
 msgstr "Nova senha"
 
-#: accounts/models.py:209
+#: accounts/models.py:214
 msgid "New passwords"
 msgstr "Novas senhas"
-
-#: accounts/models.py:221
-msgid "Monitor"
-msgstr ""
 
 #: accounts/templates/accounts/delete.html:20
 msgid "Delete user"
@@ -206,37 +210,37 @@ msgstr "Editar"
 msgid "Edit password"
 msgstr "Editar senha"
 
-#: accounts/templates/accounts/login.html:71
+#: accounts/templates/accounts/login.html:70
 msgid "Enter"
 msgstr "Entrar"
 
-#: accounts/templates/accounts/login.html:77
+#: accounts/templates/accounts/login.html:76
 msgid "Forget password"
 msgstr "Esqueceu a senha"
 
 #: accounts/templates/accounts/profile.html:23
-#: accounts/templates/accounts/profile.html:49
+#: accounts/templates/accounts/profile.html:56
 #: accounts/templates/accounts/sidebar.html:12
 msgid "Profile"
 msgstr "Perfil"
 
-#: accounts/templates/accounts/profile.html:98
+#: accounts/templates/accounts/profile.html:105
 msgid "Change your name!"
 msgstr "Insira seu nome!"
 
-#: accounts/templates/accounts/profile.html:105
+#: accounts/templates/accounts/profile.html:112
 msgid "Email"
 msgstr "Email"
 
-#: accounts/templates/accounts/profile.html:136
+#: accounts/templates/accounts/profile.html:143
 msgid "Last login"
 msgstr "Último login"
 
-#: accounts/templates/accounts/profile.html:140
+#: accounts/templates/accounts/profile.html:147
 msgid "Updated "
 msgstr "Atualizado "
 
-#: accounts/templates/accounts/profile.html:140
+#: accounts/templates/accounts/profile.html:147
 msgid " ago"
 msgstr " atrás"
 
@@ -244,11 +248,11 @@ msgstr " atrás"
 msgid "Register"
 msgstr "Cadastro"
 
-#: accounts/templates/accounts/register.html:70
+#: accounts/templates/accounts/register.html:87
 msgid "Select the type of user"
 msgstr "Selecione o tipo de usuário"
 
-#: accounts/templates/accounts/register.html:111
+#: accounts/templates/accounts/register.html:128
 msgid "Send"
 msgstr "Enviar"
 
@@ -281,11 +285,13 @@ msgstr "Procurar disciplinas e turmas"
 msgid "Create discipline and classroom"
 msgstr "Criar disciplinas e turmas"
 
-#: accounts/tests/test_edit_user.py:75 accounts/tests/test_edit_user.py:87
+#: accounts/tests/test_edit_user.py:84 accounts/tests/test_edit_user.py:96
+#: accounts/tests/test_edit_user.py:108
+#: accounts/tests/test_reset_password.py:61
 msgid "This field is required."
 msgstr "Este campo é obrigatório."
 
-#: accounts/tests/test_login.py:85
+#: accounts/tests/test_login.py:91
 #, python-format
 msgid ""
 "Please enter a correct %(username)s and password. Note that both fields may "
@@ -294,31 +300,35 @@ msgstr ""
 "Por favor entre com o %(username)s e senha correto. Note que ambos os campos "
 "devem ser case-sensitive."
 
-#: accounts/views.py:127
-msgid "User created successfully."
-msgstr "Usuário criado com sucesso."
-
-#: accounts/views.py:163
-msgid "User updated successfully."
-msgstr "Usuário atualizado com sucesso."
-
-#: accounts/views.py:193
-msgid "Accounts deleted successfully."
-msgstr "Conta deletada com sucesso."
-
-#: accounts/views.py:232
-msgid "Password updated successfully."
-msgstr "Sua senha foi atualizada com sucesso."
-
-#: accounts/views.py:265
+#: accounts/tests/test_reset_password.py:48 accounts/views.py:289
 msgid "Requesting new password"
 msgstr "Solicitando nova senha"
 
-#: accounts/views.py:273
+#: accounts/views.py:145
+msgid "Teacher created successfully."
+msgstr "Professor criado com sucesso."
+
+#: accounts/views.py:150
+msgid "Student created successfully."
+msgstr "Estudante criado com sucesso."
+
+#: accounts/views.py:186
+msgid "User updated successfully."
+msgstr "Usuário atualizado com sucesso."
+
+#: accounts/views.py:216
+msgid "Accounts deleted successfully."
+msgstr "Conta deletada com sucesso."
+
+#: accounts/views.py:256
+msgid "Password updated successfully."
+msgstr "Sua senha foi atualizada com sucesso."
+
+#: accounts/views.py:297
 msgid "An email was sent with more details on how to create a new password"
 msgstr ""
 "Um email será enviado com mais informações sobre como criar uma nova senha."
 
-#: accounts/views.py:320
-msgid "Your password was successfully created."
-msgstr "Sua senha foi criada com sucesso."
+#: accounts/views.py:348
+msgid "Your password was successfully updated."
+msgstr "Sua senha foi atualizada com sucesso."

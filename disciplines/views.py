@@ -4,18 +4,19 @@ Disciplines functionalities
 """
 
 # Django app
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse_lazy
-from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404, redirect
-from django.utils.text import slugify
-from django.contrib import messages
-from django.db.models import Q
 from django.views.generic import (
     CreateView, UpdateView, DeleteView, DetailView,
     ListView, FormView
 )
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404, redirect
+from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth import get_user_model
+from django.utils.text import slugify
+from django.contrib import messages
+from django.db.models import Q
 
 # Core app
 from core.permissions import ModelPermissionMixin, PermissionMixin
@@ -109,6 +110,7 @@ class UpdateDisciplineView(LoginRequiredMixin,
         )
 
         discipline = Discipline.objects.get(slug=self.kwargs.get('slug', ''))
+
         modify_student_limit = (
             discipline.students_limit < form.instance.students_limit
         )
@@ -180,6 +182,7 @@ class ListDisciplineView(LoginRequiredMixin, ListView):
         queryset = Discipline.objects.available(user)
 
         queryset = order(self, queryset)
+
         queryset = self.search_disciplines(queryset)
 
         return queryset
@@ -219,6 +222,7 @@ class EnterDisciplineView(LoginRequiredMixin, FormView):
 
         # Redirect to same page with error.
         redirect_url = reverse_lazy('disciplines:search')
+
         return redirect(redirect_url)
 
     def enter_discipline(self, form):
@@ -380,13 +384,20 @@ class StudentListView(LoginRequiredMixin,
 
         self.discipline = self.get_discipline()
 
+        students = self.discipline.students.all()
+        monitors = self.discipline.monitors.all()
+
         # Insert monitors and students into one queryset
-        queryset = (self.discipline.students.all() |
-                    self.discipline.monitors.all())
+        queryset = []
+        for student in students:
+            queryset.append(student)
 
-        students = self.students_filter(queryset)
+        for monitor in monitors:
+            queryset.append(monitor)
 
-        return students
+        queryset = self.students_filter(queryset)
+
+        return queryset
 
     def get_discipline(self):
         """
@@ -532,7 +543,7 @@ class ListUsersView(LoginRequiredMixin,
     ordering = 'name'
     paginate_by = 12
     permissions_required = [
-        'show_users_to_insert_in_discipline_permission'
+        'change_own_discipline'
     ]
 
     def get_context_data(self, **kwargs):
@@ -566,7 +577,13 @@ class ListUsersView(LoginRequiredMixin,
         queryset = []
 
         users = User.objects.all()
-        students = discipline.students.all() | discipline.monitors.all()
+
+        students = []
+        for student in discipline.students.all():
+            students.append(student)
+
+        for monitor in discipline.monitors.all():
+            students.append(monitor)
 
         for user in users:
             if user not in students and user != discipline.teacher:
@@ -778,10 +795,52 @@ class ChangeStudentView(LoginRequiredMixin,
             return False
 
         if user in discipline.students.all():
-            discipline.students.remove(user)
-            discipline.monitors.add(user)
+            exceeded = self.monitor_limit_exceeded(discipline)
+
+            if not exceeded:
+                discipline.students.remove(user)
+                discipline.monitors.add(user)
+            else:
+                return False
         else:
-            discipline.monitors.remove(user)
-            discipline.students.add(user)
+            exceeded = self.student_limit_exceeded(discipline)
+
+            if not exceeded:
+                discipline.monitors.remove(user)
+                discipline.students.add(user)
+            else:
+                return False
 
         return True
+
+    def student_limit_exceeded(self, discipline):
+        """
+        Verify if student limit exceeded.
+        """
+
+        if discipline.students.count() >= discipline.students_limit:
+
+            messages.error(
+                self.request,
+                _("Student limit exceeded.")
+            )
+
+            return True
+
+        return False
+
+    def monitor_limit_exceeded(self, discipline):
+        """
+        Verify if monitor limit exceeded.
+        """
+
+        if discipline.monitors.count() >= discipline.monitors_limit:
+
+            messages.error(
+                self.request,
+                _("Monitor limit exceeded.")
+            )
+
+            return True
+
+        return False

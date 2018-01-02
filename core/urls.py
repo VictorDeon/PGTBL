@@ -1,30 +1,36 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from . import views
 
 app_name = 'core'
-urlpatterns = [
+
+news_patterns = [
   # /
   url(
       r'^$',
-      views.HomePageView.as_view(),
-      name="home"
-  ),
-  # /news/
-  url(
-      r'^news/$',
       views.NewsListView.as_view(),
       name="news"
   ),
-  # /news/important/
+  # <tag>/
   url(
-      r'^news/tag/(?P<tag>[\w_-]+)/$',
+      r'^tag/(?P<tag>[\w_-]+)/$',
       views.NewsListView.as_view(),
       name="news-tag"
   ),
-  # /news/new01/
+  # <new.slug>/
   url(
-      r'^news/(?P<slug>[\w_-]+)/$',
+      r'^(?P<slug>[\w_-]+)/$',
       views.NewsDetailView.as_view(),
       name="news-details"
   ),
+]
+
+urlpatterns = [
+    # /
+    url(
+        r'^$',
+        views.HomePageView.as_view(),
+        name="home"
+    ),
+    # /news/...
+    url(r'^news/', include(news_patterns)),
 ]

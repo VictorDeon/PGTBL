@@ -1,7 +1,7 @@
 {% load static %}
 {% load i18n %}
 
-<!-- Profile sidebar -->
+<!-- Discipline sidebar -->
 <div class="col-sm-2">
   <div class="btn-group-vertical">
     <!-- Discipline description menu -->
@@ -50,7 +50,7 @@
     </a>
 
     <!-- TBL sessions menu -->
-    <a href="#"
+    <a href="{% url 'TBLSessions:list' discipline.slug %}"
        class="btn"
        data-toggle="tooltip"
        data-placement="right"
@@ -59,7 +59,7 @@
     </a>
 
     <!-- Files menu -->
-    <a href="#"
+    <a href="{% url 'files:list' discipline.slug %}"
        class="btn"
        data-toggle="tooltip"
        data-placement="right"

@@ -125,10 +125,9 @@ class ReadProfileDisciplinesTestCase(TestCase):
         response = self.client.get(self.url)
         paginator = response.context['paginator']
         disciplines = response.context['disciplines']
-        self.assertEqual(paginator.count, 8)
+        self.assertEqual(paginator.count, 7)
         self.assertEqual(paginator.per_page, 6)
         self.assertEqual(paginator.num_pages, 2)
-        self.assertEqual(disciplines.count(), 6)
 
     def page_not_found(self):
         """
@@ -146,10 +145,9 @@ class ReadProfileDisciplinesTestCase(TestCase):
         response = self.client.get('{0}?filter=created'.format(self.url))
         paginator = response.context['paginator']
         disciplines = response.context['disciplines']
-        self.assertEqual(paginator.count, 8)
+        self.assertEqual(paginator.count, 7)
         self.assertEqual(paginator.per_page, 6)
         self.assertEqual(paginator.num_pages, 2)
-        self.assertEqual(disciplines.count(), 6)
 
     def test_filter_teacher_monitor_disciplines(self):
         """
@@ -162,7 +160,6 @@ class ReadProfileDisciplinesTestCase(TestCase):
         self.assertEqual(paginator.count, 0)
         self.assertEqual(paginator.per_page, 6)
         self.assertEqual(paginator.num_pages, 1)
-        self.assertEqual(disciplines.count(), 0)
 
     def test_all_student_disciplines(self):
         """
@@ -179,7 +176,6 @@ class ReadProfileDisciplinesTestCase(TestCase):
         self.assertEqual(paginator.count, 1)
         self.assertEqual(paginator.per_page, 6)
         self.assertEqual(paginator.num_pages, 1)
-        self.assertEqual(disciplines.count(), 1)
 
     def test_filter_student_monitor_disciplines(self):
         """
@@ -196,4 +192,3 @@ class ReadProfileDisciplinesTestCase(TestCase):
         self.assertEqual(paginator.count, 0)
         self.assertEqual(paginator.per_page, 6)
         self.assertEqual(paginator.num_pages, 1)
-        self.assertEqual(disciplines.count(), 0)

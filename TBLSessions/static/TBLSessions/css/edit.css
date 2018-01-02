@@ -1,0 +1,33 @@
+fieldset {
+  padding: 5px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 30px;
+}
+
+fieldset > legend {
+  color: white;
+}
+
+textarea {
+  resize: none;
+}
+
+.input-group {
+  padding: 10px;
+}
+
+.form-group {
+  padding-bottom: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.submit-button {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.btn-default:hover {
+  color: white;
+}

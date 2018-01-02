@@ -1,0 +1,46 @@
+{% load widget_tweaks %}
+{% load i18n %}
+
+<div class="modal fade" id="add-modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button"
+                class="close"
+                data-dismiss="modal">
+                <i class="fa fa-close"></i>
+        </button>
+        <h4 class="modal-title">
+          {% trans 'Add file' %}
+        </h4>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'files:session-create' discipline.slug session.id %}"
+              method="post" enctype="multipart/form-data" novalidate>
+          {% csrf_token %}
+
+          <div class="form-group">
+            <label for="title">{% trans 'File title' %}:</label>
+            {% render_field form.title class="form-control" type="text" placeholder=form.title.help_text %}
+          </div>
+          <div class="form-group">
+            <label for="extension">{% trans 'File extension' %}:</label>
+            {% render_field form.extension class="form-control" type="text" %}
+          </div>
+          <div class="form-group">
+            <label for="description">{% trans 'File description' %}:</label>
+            {% render_field form.description class="form-control" type="text" %}
+          </div>
+          <div class="form-group">
+            {% render_field form.archive class="form-control" %}
+          </div>
+          <button type="submit" class="btn btn-primary submit-button center-block">
+            <i class="fa fa-plus"></i>
+            {% trans 'Add' %}
+          </button>
+        </form>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>

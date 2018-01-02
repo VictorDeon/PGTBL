@@ -23,17 +23,17 @@
   padding-top: 20px;
 }
 
-/* Message events block*/
-.message {
-  background-color: #343841;
-}
+/* /* Message events block */
+/* .message {*/
+/*   background-color: #343841;*/
+/* }*/
 
-.message > p {
-  padding-top: 10px;
-  padding-left: 15px;
-  padding-right: 15px;
-  color: #B3B3B3;
-}
+/* .message > p {*/
+/*   padding-top: 10px;*/
+/*   padding-left: 15px;*/
+/*   padding-right: 15px;*/
+/*   color: #B3B3B3;*/
+/* }*/
 
 .side-button {
   padding-bottom: 25px;

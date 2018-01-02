@@ -1,0 +1,13 @@
+.media {
+  margin-top: 15px !important;
+}
+
+.media-object {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+.btn:active:focus, .btn:focus {
+  outline: none;
+}

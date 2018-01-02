@@ -11,6 +11,16 @@
     </a>
   </li>
 
+  <!-- Student disciplines -->
+  {% if not user.is_teacher %}
+  <li>
+    <a href="?filter=student#filter"
+       class="filter">
+       {% trans 'Student of discipline' %}
+    </a>
+  </li>
+  {% endif %}
+
   <!-- Discipline monitor -->
   <li>
     <a href="?filter=monitor#filter"
@@ -100,7 +110,10 @@
                     <!-- View -->
                     <div class="btn-group">
                       <a href="{% url 'disciplines:details' discipline.slug %}"
-                         class="btn btn-primary btn-class">
+                         class="btn btn-primary btn-class"
+                         data-toggle="tooltip"
+                         data-placement="top"
+                         title="{% trans 'Enter' %}">
                          <i class="fa fa-eye"></i>
                       </a>
                     </div>
@@ -108,7 +121,10 @@
                     <!-- Hall of fame -->
                     <div class="btn-group">
                       <a href="#"
-                         class="btn btn-primary btn-class">
+                         class="btn btn-primary btn-class"
+                         data-toggle="tooltip"
+                         data-placement="top"
+                         title="{% trans 'Hall of Fame' %}">
                          <i class="fa fa-trophy"></i>
                       </a>
                     </div>
@@ -118,7 +134,10 @@
                       <!-- Edit discipline -->
                       <div class="btn-group">
                         <a href="{% url 'disciplines:update' discipline.slug %}"
-                           class="btn btn-primary btn-class">
+                           class="btn btn-primary btn-class"
+                           data-toggle="tooltip"
+                           data-placement="top"
+                           title="{% trans 'Edit' %}">
                            <i class="fa fa-edit"></i>
                         </a>
                       </div>

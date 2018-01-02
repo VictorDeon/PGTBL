@@ -1,0 +1,16 @@
+textarea {
+  resize: none;
+}
+
+.input-group {
+  padding: 10px;
+}
+
+.submit-button {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.btn-default:hover {
+  color: white;
+}
