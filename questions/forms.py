@@ -1,4 +1,4 @@
-from .models import Question, Alternative
+from .models import Question
 from django import forms
 
 
@@ -9,4 +9,4 @@ class QuestionForm(forms.ModelForm):
 
     class Meta:
         model = Question
-        fields = ['title', 'level', 'topic']
+        fields = ['title', 'level', 'topic', 'is_exercise']

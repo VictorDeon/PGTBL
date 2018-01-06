@@ -1,4 +1,4 @@
-<!-- widthration forloop.counter|add:"<add>" <divide> <multiply> -->
+<!-- widthration <number>|add:"<add>" <divide> <multiply> -->
 <div class="progress">
   <div
      class="progress-bar progress-bar-striped active"
@@ -6,7 +6,7 @@
      aria-valuenow="40"
      aria-valuemin="0"
      aria-valuemax="100"
-     style="width: {% widthratio forloop.counter 1 10 %}%">
-     {% widthratio forloop.counter 1 10 %}%
+     style="width: {% widthratio 100 paginator.count page_obj.number %}%">
+     {% widthratio 100 paginator.count page_obj.number %}%
   </div>
 </div>

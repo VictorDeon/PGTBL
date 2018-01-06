@@ -49,7 +49,7 @@
               </div>
               <div class="col-sm-6">
                 <h4 class="pull-right">
-                  {{date}}
+                  {{session.created_at.date}}
                   <i class="fa fa-calendar"></i>
                 </h4>
               </div>
@@ -77,39 +77,53 @@
           </div>
         </div>
         <div class="panel-body">
+          {% include 'questions/progress_bar.html' %}
           {% for question in questions %}
-            {% include 'questions/progress_bar.html' %}
             <div class="panel panel-default">
               <div class="panel-body">
                 <div class="row">
-                  <div class="col-sm-8">
-                    <h3>{{forloop.counter}}) {{question.title}}</h3>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="btn-group btn-group-justified">
-                      <div class="btn-group">
-                        <a href="#"
-                           class="btn btn-primary">
-                           <i class="fa fa-edit"></i>
-                           {% trans 'Edit' %}
-                        </a>
-                      </div>
-                      <div class="btn-group">
-                        <button type="button"
-                                class="btn btn-danger"
-                                data-toggle="modal"
-                                data-target="#delete-{{question.id}}-modal">
-                                <i class="fa fa-trash"></i>
-                                {% trans 'Delete' %}
-                        </button>
-                        {% include 'questions/delete.html' %}
+                  {% if user == discipline.teacher or user in discipline.monitors.all %}
+                    <div class="col-sm-8" id="question">
+                      <h3>
+                        {{page_obj.number}}) {{question.title}}<br />
+                        <small>{{question.topic}} - ({{question.level}})</small>
+                      </h3>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="btn-group btn-group-justified">
+                        <div class="btn-group">
+                          <a href="#"
+                             class="btn btn-primary">
+                             <i class="fa fa-edit"></i>
+                             {% trans 'Edit' %}
+                          </a>
+                        </div>
+                        <div class="btn-group">
+                          <button type="button"
+                                  class="btn btn-danger"
+                                  data-toggle="modal"
+                                  data-target="#delete-{{question.id}}-modal">
+                                  <i class="fa fa-trash"></i>
+                                  {% trans 'Delete' %}
+                          </button>
+                          {% include 'questions/delete.html' %}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  {% else %}
+                    <div class="col-sm-12" id="question">
+                      <h3>
+                        {{page_obj.number}}) {{question.title}}<br />
+                        <small>{{question.topic}} - ({{question.level}})</small>
+                      </h3>
+                    </div>
+                  {% endif %}
                 </div>
                 <hr />
                 <form method="post">
-                  {% for alternative in question.alternatives %}
+                  {% csrf_token %}
+
+                  {% for alternative in question.alternatives.all %}
                     <div class="row">
                       <div class="col-sm-1">
                         <div class="form-group">
@@ -123,12 +137,36 @@
                         </div>
                       </div>
                       <div class="col-sm-11">
-                        <h4>{{forloop.counter}}) {{alternative.title}}</h4>
+                        <h4>{{forloop.count}}) {{alternative.title}}
+                          {% if question.show_answer %}
+                            {% if alternative.is_correct %}
+                              <span class="label label-success pull-right">
+                                {% trans 'Correct.' %}
+                              </span>
+                            {% else %}
+                              <span class="label label-danger pull-right">
+                                {% trans 'Wrong.' %}
+                              </span>
+                            {% endif %}
+                          {% endif %}
+                        </h4>
                       </div>
                     </div>
                   {% empty %}
                     <p>{% trans 'There are not alternatives in this question, please create 4 of them.' %}</p>
                   {% endfor %}
+                  {% if not question.show_answer %}
+                    <button type="submit" class="btn btn-primary submit-button center-block gradient" disabled>
+                      <i class="fa fa-edit"></i>
+                      {% trans 'Answer' %}
+                    </button>
+                    <p>{% trans 'Score:' %} {{question.score}}</p>
+                  {% else %}
+                    <button type="submit" class="btn btn-primary submit-button center-block gradient">
+                      <i class="fa fa-edit"></i>
+                      {% trans 'Answer' %}
+                    </button>
+                  {% endif %}
                 </form>
               </div>
             </div>
@@ -138,16 +176,16 @@
           {% if questions.count > 0 %}
             {% include 'questions/pagination.html' %}
           {% endif %}
-          <div class="row">
-            <div class="col-sm-offset-10 col-sm-2">
-              <button type="button"
-                      class="btn btn-primary btn-lg add-button"
-                      data-toggle="modal"
-                      data-target="#add-modal">
-                      <i class="fa fa-plus"></i>
-              </button>
+          {% if user == discipline.teacher or user in discipline.monitors.all %}
+            <div class="row">
+              <div class="col-sm-offset-10 col-sm-2">
+                <a href="{% url 'questions:create-question' discipline.slug session.id %}"
+                   class="btn btn-primary btn-lg add-button">
+                   <i class="fa fa-plus"></i>
+                </a>
+              </div>
             </div>
-          </div>
+          {% endif %}
         </div>
       </div>
     </div>

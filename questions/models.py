@@ -10,7 +10,7 @@ class Question(models.Model):
 
     title = models.CharField(
         _('Title'),
-        max_length=100,
+        max_length=300,
         help_text=_('Question title.')
     )
 
@@ -30,6 +30,7 @@ class Question(models.Model):
         _('Level'),
         max_length=15,
         choices=LEVELS,
+        default='basic',
         help_text=_('Difficulty level')
     )
 
@@ -41,7 +42,20 @@ class Question(models.Model):
 
     score = models.PositiveIntegerField(
         _('Score'),
+        default=0,
         help_text=_('Question score.')
+    )
+
+    is_exercise = models.BooleanField(
+        _('Is it an exercise?'),
+        default=True,
+        help_text=_('Exercise are questions that appear in the exercise list.')
+    )
+
+    show_answer = models.BooleanField(
+        _('Show question answer.'),
+        default=False,
+        help_text=_('Show answer about the specific question')
     )
 
     created_at = models.DateTimeField(
@@ -82,6 +96,7 @@ class Alternative(models.Model):
 
     score = models.PositiveIntegerField(
         _('Score'),
+        default=0,
         help_text=_('Alternative score.')
     )
 

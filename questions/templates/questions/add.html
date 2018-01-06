@@ -1,0 +1,142 @@
+{% extends 'questions/list.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'questions/css/form.css' %}" />
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'questions:create-question' discipline.slug session.id %}">
+      {% trans 'Create Question' %}
+    </a>
+  </li>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    <!-- Header -->
+    <div class="page-header profile">
+      <h1 class="white">
+        {% trans 'Create Question' %}<br />
+        <small>{{discipline.title}} - {{session.title}}</small>
+      </h1>
+    </div>
+
+    <!-- Form -->
+    <div class="row">
+      <div class="col-sm-12">
+        <!-- Form without html5 validation -->
+        <form action="{% url 'questions:create-question' discipline.slug session.id %}" method="post" novalidate>
+          <!-- Form security -->
+          {% csrf_token %}
+
+          <!-- Get all erros from form -->
+          {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+              {{ error }}
+            </div>
+          {% endfor %}
+
+          <!-- Question title field -->
+          <div class="{% if form.title.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
+            <div class="input-group">
+              <!-- Field icon -->
+              <span class="input-group-addon gradient"
+                    data-toggle="tooltip"
+                    title="{{form.title.label}}">
+                    <i class="fa fa-leaf"></i>
+              </span>
+
+              <!-- Field -->
+              {% render_field form.title class="form-control" type="text" placeholder=form.title.help_text %}
+            </div>
+
+            <!-- Field errors -->
+            {% for error in form.title.errors %}
+              <span class="error">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+
+          <!-- Question topic field -->
+          <div class="{% if form.topic.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
+            <div class="input-group">
+              <!-- Field icon -->
+              <span class="input-group-addon gradient"
+                    data-toggle="tooltip"
+                    title="{{form.title.label}}">
+                    <i class="fa fa-book"></i>
+              </span>
+
+              <!-- Field -->
+              {% render_field form.topic class="form-control" type="text" placeholder=form.topic.help_text %}
+            </div>
+
+            <!-- Field errors -->
+            {% for error in form.topic.errors %}
+              <span class="error">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+
+          <!-- Question level field -->
+          <div class="{% if form.level.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
+            <div class="form-group">
+              {% render_field form.level class="form-control" %}
+            </div>
+
+            <!-- Field errors -->
+            {% for error in form.level.errors %}
+              <span class="error">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+
+          <!-- Is exercise field -->
+          <div class="{% if form.is_exercise.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
+            <div class="form-group white">
+              <label>
+                {% render_field form.is_exercise type="checkbox" %}
+                {% trans 'Is exercise?' %}
+              </label>
+            </div>
+
+            <!-- Field errors -->
+            {% for error in form.is_exercise.errors %}
+              <span class="error">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+
+          <!-- Session description preview -->
+          <fieldset>
+            <legend>{% trans 'Alternatives' %}</legend>
+            <div class="col-sm-12">
+              <i class="fa fa-pencil-square-o"></i>
+            </div>
+          </fieldset>
+
+          <!-- Submit button -->
+          <button type="submit"
+                  class="btn btn-default submit-button center-block gradient">
+                  <i class="fa fa-plus-circle"></i>
+                  {% trans 'Create' %}
+          </button>
+        </form>
+      </div> <!-- Close col -->
+    </div> <!-- Close row -->
+  </div> <!-- Close container -->
+{% endblock %}

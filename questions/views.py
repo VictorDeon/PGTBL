@@ -16,6 +16,9 @@ from TBLSessions.models import TBLSession
 from .models import Alternative, Question
 from .forms import QuestionForm
 
+# Python imports
+from random import sample
+
 
 class ExerciseListView(LoginRequiredMixin,
                        ListView):
@@ -58,7 +61,6 @@ class ExerciseListView(LoginRequiredMixin,
         context = super(ExerciseListView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
-        context['form'] = QuestionForm()
         return context
 
     def get_queryset(self):
@@ -70,6 +72,92 @@ class ExerciseListView(LoginRequiredMixin,
 
         questions = Question.objects.filter(
             session=session,
+            is_exercise=True
         )
 
         return questions
+
+
+class CreateQuestionView(LoginRequiredMixin,
+                         CreateView):
+    """
+    View to create a new question.
+    """
+
+    model = Question
+    template_name = 'questions/add.html'
+    form_class = QuestionForm
+
+    def get_discipline(self):
+        """
+        Take the discipline that the question belongs to.
+        """
+
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_session(self):
+        """
+        Take the TBL session that the question belongs to
+        """
+
+        session = TBLSession.objects.get(
+            pk=self.kwargs.get('pk', '')
+        )
+
+        return session
+
+    def get_context_data(self, **kwargs):
+        """
+        Insert discipline and session into add question template.
+        """
+
+        context = super(CreateQuestionView, self).get_context_data(**kwargs)
+        context['discipline'] = self.get_discipline()
+        context['session'] = self.get_session()
+        return context
+
+    def form_valid(self, form):
+        """
+        Receive the form already validated to create a new question.
+        """
+
+        form.instance.session = self.get_session()
+        form.save()
+
+        messages.success(self.request, _('Question created successfully.'))
+
+        return super(CreateQuestionView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        """
+        Redirect to form with form errors.
+        """
+
+        messages.error(
+            self.request,
+            _("Invalid fields, please fill in the fields correctly.")
+        )
+
+        return super(CreateQuestionView, self).form_invalid(form)
+
+    def get_success_url(self):
+        """
+        Get success url to redirect.
+        """
+
+        discipline = self.get_discipline()
+        session = self.get_session()
+
+        success_url = reverse_lazy(
+            'questions:list',
+            kwargs={
+                'slug': discipline.slug,
+                'pk': session.id
+            }
+        )
+
+        return success_url
