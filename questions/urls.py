@@ -10,11 +10,23 @@ questions_patterns = [
         views.ExerciseListView.as_view(),
         name='list'
     ),
-    # /add/
+    # /add-question/
     url(
         r'^add-question/$',
         views.CreateQuestionView.as_view(),
         name='create-question'
+    ),
+    # /question/question.id/edit/
+    url(
+        r'^question/(?P<question_id>[0-9]+)/edit/$',
+        views.UpdateQuestionView.as_view(),
+        name='update-question'
+    ),
+    # /question/question.id/delete/
+    url(
+        r'^question/(?P<question_id>[0-9]+)/delete/$',
+        views.DeleteQuestionView.as_view(),
+        name='delete-question'
     )
 ]
 

@@ -88,7 +88,7 @@ class Alternative(models.Model):
     Question alternatives.
     """
 
-    title = models.TextField(
+    alternative_title = models.CharField(
         _('Title'),
         max_length=500,
         help_text=_('Alternative title.')
@@ -134,4 +134,4 @@ class Alternative(models.Model):
     class Meta:
         verbose_name = _('Alternative')
         verbose_name_plural = _('Alternatives')
-        ordering = ['title', 'created_at']
+        ordering = ['alternative_title', 'created_at']

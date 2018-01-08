@@ -92,7 +92,7 @@
                     <div class="col-sm-4">
                       <div class="btn-group btn-group-justified">
                         <div class="btn-group">
-                          <a href="#"
+                          <a href="{% url 'questions:update-question' discipline.slug session.id question.id %}"
                              class="btn btn-primary">
                              <i class="fa fa-edit"></i>
                              {% trans 'Edit' %}
@@ -137,7 +137,7 @@
                         </div>
                       </div>
                       <div class="col-sm-11">
-                        <h4>{{forloop.count}}) {{alternative.title}}
+                        <h4>{{alternative.alternative_title}}
                           {% if question.show_answer %}
                             {% if alternative.is_correct %}
                               <span class="label label-success pull-right">

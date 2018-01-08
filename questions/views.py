@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib import messages
-from django.db.models import Q
+from django.db import transaction
 from django.views.generic import (
     ListView, CreateView, UpdateView, DeleteView,
     DetailView
@@ -13,11 +13,8 @@ from django.views.generic import (
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
-from .models import Alternative, Question
-from .forms import QuestionForm
-
-# Python imports
-from random import sample
+from .models import Question
+from .forms import AlternativeFormSet
 
 
 class ExerciseListView(LoginRequiredMixin,
@@ -81,12 +78,12 @@ class ExerciseListView(LoginRequiredMixin,
 class CreateQuestionView(LoginRequiredMixin,
                          CreateView):
     """
-    View to create a new question.
+    View to create a new question with alternatives.
     """
 
     model = Question
+    fields = ['title', 'level', 'topic', 'is_exercise']
     template_name = 'questions/add.html'
-    form_class = QuestionForm
 
     def get_discipline(self):
         """
@@ -112,21 +109,45 @@ class CreateQuestionView(LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         """
-        Insert discipline and session into add question template.
+        Insert discipline and session and alternatives formset into add
+        question template.
         """
 
         context = super(CreateQuestionView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
+
+        if self.request.POST:
+            context['alternatives'] = AlternativeFormSet(self.request.POST)
+        else:
+            context['alternatives'] = AlternativeFormSet()
+
         return context
 
     def form_valid(self, form):
         """
-        Receive the form already validated to create a new question.
+        Receive the form already validated to create a new question with
+        for alternatives to fill.
         """
 
         form.instance.session = self.get_session()
-        form.save()
+
+        context = self.get_context_data()
+        alternatives = context['alternatives']
+
+        # Before a view is called, django initializes a transaction. If the
+        # response return with success, django commits the transaction. If
+        # there are any exceptions, django roll back the database.
+        # Atomic allows us to create a block of code within atomicity in the
+        # database is guaranteed. If the code block runs successfully, the
+        # modification are inserted into the database, if give an exception
+        # the modifications are discarted
+        with transaction.atomic():
+            self.object = form.save()
+
+            if alternatives.is_valid():
+                alternatives.instance = self.object
+                alternatives.save()
 
         messages.success(self.request, _('Question created successfully.'))
 
@@ -161,3 +182,186 @@ class CreateQuestionView(LoginRequiredMixin,
         )
 
         return success_url
+
+
+class UpdateQuestionView(LoginRequiredMixin,
+                         UpdateView):
+    """
+    View to update a new question with alternatives.
+    """
+
+    model = Question
+    fields = ['title', 'level', 'topic', 'is_exercise']
+    template_name = 'questions/update.html'
+
+    def get_discipline(self):
+        """
+        Take the discipline that the question belongs to.
+        """
+
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_session(self):
+        """
+        Take the TBL session that the question belongs to
+        """
+
+        session = TBLSession.objects.get(
+            pk=self.kwargs.get('pk', '')
+        )
+
+        return session
+
+    def get_object(self):
+        """
+        Take the specific question to update.
+        """
+
+        question = Question.objects.get(
+            session=self.get_session(),
+            pk=self.kwargs.get('question_id', '')
+        )
+
+        return question
+
+    def get_context_data(self, **kwargs):
+        """
+        Insert discipline and session and alternatives formset into add
+        question template.
+        """
+
+        context = super(UpdateQuestionView, self).get_context_data(**kwargs)
+        context['discipline'] = self.get_discipline()
+        context['session'] = self.get_session()
+
+        if self.request.POST:
+            context['alternatives'] = AlternativeFormSet(
+                self.request.POST,
+                instance=self.object
+            )
+        else:
+            context['alternatives'] = AlternativeFormSet(
+                instance=self.object
+            )
+
+        return context
+
+    def form_valid(self, form):
+        """
+        Receive the form already validated to update the question with
+        for alternatives.
+        """
+
+        form.instance.session = self.get_session()
+
+        context = self.get_context_data()
+        alternatives = context['alternatives']
+
+        with transaction.atomic():
+            self.object = form.save()
+
+            if alternatives.is_valid():
+                alternatives.instance = self.object
+                alternatives.save()
+
+        messages.success(self.request, _('Question updated successfully.'))
+
+        return super(UpdateQuestionView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        """
+        Redirect to form with form errors.
+        """
+
+        messages.error(
+            self.request,
+            _("Invalid fields, please fill in the fields correctly.")
+        )
+
+        return super(UpdateQuestionView, self).form_invalid(form)
+
+    def get_success_url(self):
+        """
+        Get success url to redirect.
+        """
+
+        discipline = self.get_discipline()
+        session = self.get_session()
+
+        success_url = reverse_lazy(
+            'questions:list',
+            kwargs={
+                'slug': discipline.slug,
+                'pk': session.id
+            }
+        )
+
+        return success_url
+
+
+class DeleteQuestionView(LoginRequiredMixin,
+                        DeleteView):
+    """
+    View to delete a specific question.
+    """
+
+    model = Question
+
+    def get_discipline(self):
+        """
+        Take the discipline that the tbl session belongs to
+        """
+
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_session(self):
+        """
+        Take the TBL session that the question belongs to
+        """
+
+        session = TBLSession.objects.get(
+            pk=self.kwargs.get('pk', '')
+        )
+
+        return session
+
+    def get_object(self):
+        """
+        Take the specific question to delete.
+        """
+
+        question = Question.objects.get(
+            session=self.get_session(),
+            pk=self.kwargs.get('question_id', '')
+        )
+
+        return question
+
+    def get_success_url(self):
+        """
+        Get success url to redirect.
+        """
+
+        discipline = self.get_discipline()
+        session = self.get_session()
+
+        success_url = reverse_lazy(
+            'questions:list',
+            kwargs={
+                'slug': discipline.slug,
+                'pk': session.id
+            }
+        )
+
+        messages.success(self.request, _("Question deleted successfully."))
+
+        return success_url
+

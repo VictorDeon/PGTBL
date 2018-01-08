@@ -11,8 +11,8 @@
 {% block breadcrumb %}
   {{ block.super }}
   <li>
-    <a href="{% url 'questions:create-question' discipline.slug session.id %}">
-      {% trans 'Create Question' %}
+    <a href="{% url 'questions:update-question' discipline.slug session.id question.id %}">
+      {% trans 'Update Question' %}
     </a>
   </li>
 {% endblock %}
@@ -22,8 +22,8 @@
     <!-- Header -->
     <div class="page-header profile">
       <h1 class="white">
-        {% trans 'Create Question' %}<br />
-        <small>{{discipline.title}} - {{session.title}}</small>
+        {% trans 'Update Question' %}<br />
+        <small>{{discipline.title}} - {{session.title}}: {{question}}</small>
       </h1>
     </div>
 
@@ -31,7 +31,7 @@
     <div class="row">
       <div class="col-sm-12">
         <!-- Form without html5 validation -->
-        <form action="{% url 'questions:create-question' discipline.slug session.id %}" method="post" novalidate>
+        <form action="{% url 'questions:update-question' discipline.slug session.id question.id %}" method="post" novalidate>
           <!-- Form security -->
           {% csrf_token %}
 
@@ -147,7 +147,7 @@
           <button type="submit"
                   class="btn btn-default submit-button center-block gradient">
                   <i class="fa fa-plus-circle"></i>
-                  {% trans 'Create' %}
+                  {% trans 'Update' %}
           </button>
         </form>
       </div> <!-- Close col -->

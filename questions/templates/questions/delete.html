@@ -17,21 +17,21 @@
                 <i class="fa fa-close"></i>
         </button>
         <h4 class="modal-title">
-          {% trans 'Delete' %} {{question}}
+          {% trans 'Delete' %}
         </h4>
       </div>
 
       <!-- Body -->
       <div class="modal-body">
         <p>
-          {% trans 'Are you sure you want to delete' %} {{question}} ?
+          {% trans 'Are you sure you want to delete the question' %} "{{question}}" ?
         </p>
       </div>
 
       <!-- Footer -->
       <div class="modal-footer">
         <!-- Delete form -->
-        <form action="#" method="post">
+        <form action="{% url 'questions:delete-question' discipline.slug session.id question.id %}" method="post">
           <!-- Form security -->
           {% csrf_token %}
 
