@@ -18,6 +18,7 @@ from .forms import AlternativeFormSet
 
 
 class ExerciseListView(LoginRequiredMixin,
+                       PermissionMixin,
                        ListView):
     """
     View to see all the questions that the students will answer.
@@ -27,6 +28,10 @@ class ExerciseListView(LoginRequiredMixin,
     template_name = 'questions/list.html'
     paginate_by = 1
     context_object_name = 'questions'
+
+    permissions_required = [
+        'show_exercise_permission'
+    ]
 
     def get_discipline(self):
         """
@@ -76,6 +81,7 @@ class ExerciseListView(LoginRequiredMixin,
 
 
 class CreateQuestionView(LoginRequiredMixin,
+                         PermissionMixin,
                          CreateView):
     """
     View to create a new question with alternatives.
@@ -84,6 +90,10 @@ class CreateQuestionView(LoginRequiredMixin,
     model = Question
     fields = ['title', 'level', 'topic', 'is_exercise']
     template_name = 'questions/add.html'
+
+    permissions_required = [
+        'crud_exercise_permission'
+    ]
 
     def get_discipline(self):
         """
@@ -143,15 +153,60 @@ class CreateQuestionView(LoginRequiredMixin,
         # modification are inserted into the database, if give an exception
         # the modifications are discarted
         with transaction.atomic():
-            self.object = form.save()
+            self.object = form.save(commit=False)
 
             if alternatives.is_valid():
                 alternatives.instance = self.object
+
+                success = self.validate_alternatives(alternatives)
+
+                if not success:
+                    return super(CreateQuestionView, self).form_invalid(form)
+
+                form.save()
                 alternatives.save()
+            else:
+                return self.form_invalid(form)
 
         messages.success(self.request, _('Question created successfully.'))
 
         return super(CreateQuestionView, self).form_valid(form)
+
+    def validate_alternatives(self, alternatives):
+        """
+        Verify if only one alternative is correct and if it has 4 alternatives.
+        """
+
+        counter_true = 0
+        counter_false = 0
+
+        for alternative_form in alternatives:
+
+            if alternative_form.instance.alternative_title == '':
+
+                messages.error(
+                    self.request,
+                    _('All the alternatives need to be filled.')
+                )
+
+                return False
+
+            if alternative_form.instance.is_correct is True:
+                counter_true += 1
+            else:
+                counter_false += 1
+
+            if counter_true > 1 or counter_false == 4:
+
+                messages.error(
+                    self.request,
+                    _('The question only needs one correct alternative, \
+                      check if there is more than one or no longer insert one')
+                )
+
+                return False
+
+        return True
 
     def form_invalid(self, form):
         """
@@ -160,7 +215,8 @@ class CreateQuestionView(LoginRequiredMixin,
 
         messages.error(
             self.request,
-            _("Invalid fields, please fill in the fields correctly.")
+            _("Invalid fields, please fill in the questions fields and \
+              alternative fields correctly.")
         )
 
         return super(CreateQuestionView, self).form_invalid(form)
@@ -185,6 +241,7 @@ class CreateQuestionView(LoginRequiredMixin,
 
 
 class UpdateQuestionView(LoginRequiredMixin,
+                         PermissionMixin,
                          UpdateView):
     """
     View to update a new question with alternatives.
@@ -193,6 +250,10 @@ class UpdateQuestionView(LoginRequiredMixin,
     model = Question
     fields = ['title', 'level', 'topic', 'is_exercise']
     template_name = 'questions/update.html'
+
+    permissions_required = [
+        'crud_exercise_permission'
+    ]
 
     def get_discipline(self):
         """
@@ -262,15 +323,60 @@ class UpdateQuestionView(LoginRequiredMixin,
         alternatives = context['alternatives']
 
         with transaction.atomic():
-            self.object = form.save()
+            self.object = form.save(commit=False)
 
             if alternatives.is_valid():
                 alternatives.instance = self.object
+
+                success = self.validate_alternatives(alternatives)
+
+                if not success:
+                    return super(UpdateQuestionView, self).form_invalid(form)
+
+                form.save()
                 alternatives.save()
+            else:
+                return self.form_invalid(form)
 
         messages.success(self.request, _('Question updated successfully.'))
 
         return super(UpdateQuestionView, self).form_valid(form)
+
+    def validate_alternatives(self, alternatives):
+        """
+        Verify if only one alternative is correct and if it has 4 alternatives.
+        """
+
+        counter_true = 0
+        counter_false = 0
+
+        for alternative_form in alternatives:
+
+            if alternative_form.instance.alternative_title == '':
+
+                messages.error(
+                    self.request,
+                    _('All the alternatives need to be filled.')
+                )
+
+                return False
+
+            if alternative_form.instance.is_correct is True:
+                counter_true += 1
+            else:
+                counter_false += 1
+
+            if counter_true > 1 or counter_false == 4:
+
+                messages.error(
+                    self.request,
+                    _('The question only needs one correct alternative, \
+                      check if there is more than one or no longer insert one')
+                )
+
+                return False
+
+        return True
 
     def form_invalid(self, form):
         """
@@ -279,7 +385,8 @@ class UpdateQuestionView(LoginRequiredMixin,
 
         messages.error(
             self.request,
-            _("Invalid fields, please fill in the fields correctly.")
+            _("Invalid fields, please fill in the questions fields and \
+              alternative fields correctly.")
         )
 
         return super(UpdateQuestionView, self).form_invalid(form)
@@ -304,12 +411,17 @@ class UpdateQuestionView(LoginRequiredMixin,
 
 
 class DeleteQuestionView(LoginRequiredMixin,
-                        DeleteView):
+                         PermissionMixin,
+                         DeleteView):
     """
     View to delete a specific question.
     """
 
     model = Question
+
+    permissions_required = [
+        'crud_exercise_permission'
+    ]
 
     def get_discipline(self):
         """
