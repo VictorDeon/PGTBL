@@ -10,7 +10,7 @@ class Question(models.Model):
 
     title = models.CharField(
         _('Title'),
-        max_length=300,
+        max_length=1000,
         help_text=_('Question title.')
     )
 
@@ -90,7 +90,7 @@ class Alternative(models.Model):
 
     alternative_title = models.CharField(
         _('Title'),
-        max_length=500,
+        max_length=1000,
         help_text=_('Alternative title.')
     )
 
