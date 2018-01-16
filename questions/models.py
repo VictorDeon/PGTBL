@@ -70,6 +70,22 @@ class Question(models.Model):
         auto_now=True
     )
 
+    @classmethod
+    def set_current_page(cls, page):
+        """
+        Get the current page of exercise list.
+        """
+
+        cls.current_page = page
+
+    @classmethod
+    def get_current_page(cls):
+        """
+        Get the current page of exercise.
+        """
+
+        return cls.current_page
+
     def __str__(self):
         """
         Question string.
@@ -94,8 +110,17 @@ class Alternative(models.Model):
         help_text=_('Alternative title.')
     )
 
+    SCORES = (
+        (0, '0'),
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4')
+    )
+
     score = models.PositiveIntegerField(
         _('Score'),
+        choices=SCORES,
         default=0,
         help_text=_('Alternative score.')
     )
@@ -129,7 +154,7 @@ class Alternative(models.Model):
         Alternative of question string.
         """
 
-        return self.title
+        return self.alternative_title
 
     class Meta:
         verbose_name = _('Alternative')

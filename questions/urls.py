@@ -27,6 +27,12 @@ questions_patterns = [
         r'^question/(?P<question_id>[0-9]+)/delete/$',
         views.DeleteQuestionView.as_view(),
         name='delete-question'
+    ),
+    # /question/question.id/answer-page/<page_obj.number>/
+    url(
+        r'^question/(?P<question_id>[0-9]+)/answer-page/(?P<question_page>[0-9]+)/$',
+        views.AnswerQuestionView.as_view(),
+        name='answer-question'
     )
 ]
 

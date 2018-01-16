@@ -31,3 +31,20 @@ AlternativeFormSet = forms.inlineformset_factory(
     extra=4,
     max_num=4
 )
+
+
+class AnswerQuestionForm(forms.ModelForm):
+    """
+    Form to insert scores from each alternative.
+    """
+
+    class Meta:
+        model = Alternative
+        fields = ['score']
+
+
+# Insert a form to each alternative of question (4 forms)
+AnswerQuestionFormSet = forms.formset_factory(
+    AnswerQuestionForm,
+    extra=4
+)

@@ -1,12 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import redirect
 from django.contrib import messages
 from django.db import transaction
 from django.views.generic import (
-    ListView, CreateView, UpdateView, DeleteView,
-    DetailView
+    ListView, CreateView, UpdateView, DeleteView, FormView
 )
 
 # App imports
@@ -14,7 +13,7 @@ from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
 from .models import Question
-from .forms import AlternativeFormSet
+from .forms import AlternativeFormSet, AnswerQuestionForm
 
 
 class ExerciseListView(LoginRequiredMixin,
@@ -22,13 +21,13 @@ class ExerciseListView(LoginRequiredMixin,
                        ListView):
     """
     View to see all the questions that the students will answer.
-    Exercise list to answer.
     """
 
     template_name = 'questions/list.html'
     paginate_by = 1
     context_object_name = 'questions'
 
+    # Permissions
     permissions_required = [
         'show_exercise_permission'
     ]
@@ -63,6 +62,10 @@ class ExerciseListView(LoginRequiredMixin,
         context = super(ExerciseListView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
+        context['form1'] = AnswerQuestionForm(prefix="alternative01")
+        context['form2'] = AnswerQuestionForm(prefix="alternative02")
+        context['form3'] = AnswerQuestionForm(prefix="alternative03")
+        context['form4'] = AnswerQuestionForm(prefix="alternative04")
         return context
 
     def get_queryset(self):
@@ -477,3 +480,155 @@ class DeleteQuestionView(LoginRequiredMixin,
 
         return success_url
 
+
+class AnswerQuestionView(FormView):
+    """
+    Answer the respective question.
+    """
+
+    template_name = 'questions/list.html'
+    form_class = AnswerQuestionForm
+
+    # Permissions
+    permissions_required = [
+        'show_exercise_permission'
+    ]
+
+    def get_discipline(self):
+        """
+        Get the discipline from url kwargs.
+        """
+
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_session(self):
+        """
+        get the session from url kwargs.
+        """
+
+        session = TBLSession.objects.get(
+            pk=self.kwargs.get('pk', '')
+        )
+
+        return session
+
+    def get_object(self):
+        """
+        Get question by url kwargs.
+        """
+
+        question = get_object_or_404(
+            Question,
+            pk=self.kwargs.get('question_id', '')
+        )
+
+        return question
+
+    def get_page(self):
+        """
+        Get the page that the questions is inserted.
+        """
+
+        page = self.kwargs.get('question_page', '')
+
+        return page
+
+    def get_success_url(self):
+        """
+        After answer the question go to next page.
+        """
+
+        discipline = self.get_discipline()
+        session = self.get_session()
+
+        success_url = reverse_lazy(
+            'questions:list',
+            kwargs={
+                'slug': discipline.slug,
+                'pk': session.id
+            }
+        )
+
+        success_url += "?page={0}#question".format(self.get_page())
+
+        return success_url
+
+    def post(self, request, *args, **kwargs):
+        """
+        Form to insert scores and answer question.
+        """
+
+        # alternatives form
+        form1 = AnswerQuestionForm(request.POST, prefix="alternative01")
+        form2 = AnswerQuestionForm(request.POST, prefix="alternative02")
+        form3 = AnswerQuestionForm(request.POST, prefix="alternative03")
+        form4 = AnswerQuestionForm(request.POST, prefix="alternative04")
+
+        question = self.get_object()
+
+        # question alternatives
+        alternatives = []
+        alternative01 = question.alternatives.all()[0]
+        alternative02 = question.alternatives.all()[1]
+        alternative03 = question.alternatives.all()[2]
+        alternative04 = question.alternatives.all()[3]
+        alternatives.append(alternative01)
+        alternatives.append(alternative02)
+        alternatives.append(alternative03)
+        alternatives.append(alternative04)
+
+        if form1.is_valid() and \
+           form2.is_valid() and \
+           form3.is_valid() and \
+           form4.is_valid():
+
+            alternative01.score = form1.instance.score
+            alternative02.score = form2.instance.score
+            alternative03.score = form3.instance.score
+            alternative04.score = form4.instance.score
+
+            success = self.validate_answer(question, alternatives)
+
+        if success:
+            messages.success(
+                self.request,
+                _("Question answered successfully.")
+            )
+        else:
+            messages.error(
+                self.request,
+                _("You only have 4 points to distribute to the \
+                  4 alternatives.")
+            )
+
+        return redirect(self.get_success_url())
+
+    def validate_answer(self, question, alternatives):
+        """
+        Checks if the distribution of the points is fair and inserts
+        the punctuation.
+        """
+
+        total_score = 0
+
+        for alternative in alternatives:
+            total_score += alternative.score
+
+            if total_score > 4:
+                return False
+
+            alternative.save()
+
+            if alternative.is_correct:
+                question.score = alternative.score
+
+        if not question.show_answer:
+            question.show_answer = True
+
+        question.save()
+
+        return True
