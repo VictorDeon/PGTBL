@@ -10,6 +10,12 @@ questions_patterns = [
         views.ExerciseListView.as_view(),
         name='list'
     ),
+    # /
+    url(
+        r'^result/$',
+        views.ExerciseResultView.as_view(),
+        name='result'
+    ),
     # /add-question/
     url(
         r'^add-question/$',

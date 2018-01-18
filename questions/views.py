@@ -632,3 +632,91 @@ class AnswerQuestionView(FormView):
         question.save()
 
         return True
+
+
+class ExerciseResultView(LoginRequiredMixin,
+                         PermissionMixin,
+                         ListView):
+    """
+    Show the result of exercise list.
+    """
+
+    template_name = 'questions/result.html'
+    context_object_name = 'questions'
+
+    # Permissions
+    permissions_required = [
+        'show_exercise_permission'
+    ]
+
+    def get_discipline(self):
+        """
+        Get the discipline from url kwargs.
+        """
+
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_session(self):
+        """
+        get the session from url kwargs.
+        """
+
+        session = TBLSession.objects.get(
+            pk=self.kwargs.get('pk', '')
+        )
+
+        return session
+
+    def get_context_data(self, **kwargs):
+        """
+        Insert discipline, session into exercise result context data.
+        """
+
+        context = super(ExerciseResultView, self).get_context_data(**kwargs)
+        context['discipline'] = self.get_discipline()
+        context['session'] = self.get_session()
+        context['result'] = self.result()
+        return context
+
+    def get_queryset(self):
+        """
+        Get the questions queryset from model database.
+        """
+
+        session = self.get_session()
+
+        questions = Question.objects.filter(
+            session=session,
+            is_exercise=True
+        )
+
+        return questions
+
+    def result(self):
+        """
+        Get the total scores about exercise list.
+        """
+
+        questions = self.get_queryset()
+
+        score = 0
+        grade = 0
+
+        total = 4*questions.count()
+
+        for question in questions:
+            score += question.score
+
+        grade = (score/total) * 10
+
+        result = {
+            'score': score,
+            'total': total,
+            'grade': grade
+        }
+
+        return result
