@@ -19,7 +19,7 @@ class File(models.Model):
 
     title = models.CharField(
         _('Title'),
-        max_length=50,
+        max_length=200,
         help_text=_('Title of file.')
     )
 

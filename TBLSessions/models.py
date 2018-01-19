@@ -18,7 +18,7 @@ class TBLSession(models.Model):
 
     title = models.CharField(
         _('Title'),
-        max_length=100,
+        max_length=200,
         help_text=_('Session title.')
     )
 

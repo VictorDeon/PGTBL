@@ -91,17 +91,17 @@ class PermissionMixin(object):
         Get the failure redirect path.
         """
 
+        messages.error(
+            self.request,
+            _("You are not authorized to do this action.")
+        )
+
         return self.failure_redirect_path
 
     def check_failed(self, request, *args, **kwargs):
         """
         If user check fail, redirect the user to another place.
         """
-
-        messages.error(
-            self.request,
-            _("You are not authorized to do this action.")
-        )
 
         return redirect(self.get_failure_redirect_path())
 

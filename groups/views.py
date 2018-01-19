@@ -40,6 +40,11 @@ class ListGroupView(LoginRequiredMixin,
         Get the failure redirect path.
         """
 
+        messages.error(
+            self.request,
+            _("You are not authorized to do this action.")
+        )
+
         failure_redirect_path = reverse_lazy(
             'disciplines:details',
             kwargs={'slug': self.kwargs.get('slug', '')}
@@ -100,6 +105,11 @@ class CreateGroupView(LoginRequiredMixin,
         """
         Get the failure redirect path.
         """
+
+        messages.error(
+            self.request,
+            _("You are not authorized to do this action.")
+        )
 
         failure_redirect_path = reverse_lazy(
             'disciplines:details',
@@ -181,6 +191,11 @@ class UpdateGroupView(LoginRequiredMixin,
         Get the failure redirect path.
         """
 
+        messages.error(
+            self.request,
+            _("You are not authorized to do this action.")
+        )
+
         failure_redirect_path = reverse_lazy(
             'disciplines:details',
             kwargs={'slug': self.kwargs.get('slug', '')}
@@ -251,6 +266,11 @@ class DeleteGroupView(LoginRequiredMixin,
         Get the failure redirect path.
         """
 
+        messages.error(
+            self.request,
+            _("You are not authorized to do this action.")
+        )
+
         failure_redirect_path = reverse_lazy(
             'disciplines:details',
             kwargs={'slug': self.kwargs.get('slug', '')}
@@ -312,6 +332,11 @@ class ProvideGroupView(LoginRequiredMixin,
         """
         Get the failure redirect path.
         """
+
+        messages.error(
+            self.request,
+            _("You are not authorized to do this action.")
+        )
 
         failure_redirect_path = reverse_lazy(
             'disciplines:details',
@@ -396,6 +421,11 @@ class ListAvailableStudentsView(LoginRequiredMixin,
         """
         Get the failure redirect path.
         """
+
+        messages.error(
+            self.request,
+            _("You are not authorized to do this action.")
+        )
 
         failure_redirect_path = reverse_lazy(
             'groups:list',
@@ -488,6 +518,11 @@ class InsertStudentView(LoginRequiredMixin,
         """
         Get the failure redirect path.
         """
+
+        messages.error(
+            self.request,
+            _("You are not authorized to do this action.")
+        )
 
         failure_redirect_path = reverse_lazy(
             'groups:list',
@@ -588,6 +623,11 @@ class RemoveStudentView(LoginRequiredMixin,
         """
         Get the failure redirect path.
         """
+
+        messages.error(
+            self.request,
+            _("You are not authorized to do this action.")
+        )
 
         failure_redirect_path = reverse_lazy(
             'groups:list',
