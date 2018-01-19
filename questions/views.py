@@ -5,12 +5,11 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib import messages
 from django.db import transaction
 from django.views.generic import (
-    ListView, CreateView, UpdateView, DeleteView, FormView
+    ListView, CreateView, UpdateView, DeleteView, FormView, RedirectView
 )
 
 # CSV
 from django.http import HttpResponse
-from reportlab.pdfgen import canvas
 import csv
 
 
@@ -652,8 +651,29 @@ class ExerciseResultView(LoginRequiredMixin,
 
     # Permissions
     permissions_required = [
-        'show_exercise_permission'
+        'show_exercise_permission',
+        'show_result_permission'
     ]
+
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        failure_redirect_path = reverse_lazy(
+            'questions:list',
+            kwargs={
+                'slug': self.kwargs.get('slug', ''),
+                'pk': self.kwargs.get('pk', '')
+            }
+        )
+
+        messages.error(
+            self.request,
+            _("Answer all question before you see the results.")
+        )
+
+        return failure_redirect_path
 
     def get_discipline(self):
         """
@@ -726,6 +746,118 @@ class ExerciseResultView(LoginRequiredMixin,
         }
 
         return result
+
+
+class ResetExerciseView(LoginRequiredMixin,
+                        PermissionMixin,
+                        RedirectView):
+    """
+    Reset the exercise.
+    """
+
+    permissions_required = [
+        'show_exercise_permission',
+        'show_result_permission'
+    ]
+
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        failure_redirect_path = reverse_lazy(
+            'questions:list',
+            kwargs={
+                'slug': self.kwargs.get('slug', ''),
+                'pk': self.kwargs.get('pk', '')
+            }
+        )
+
+        messages.error(
+            self.request,
+            _("Answer all question before you see the results.")
+        )
+
+        return failure_redirect_path
+
+    def get_discipline(self):
+        """
+        Get discipline by url slug
+        """
+
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_session(self):
+        """
+        get the session from url kwargs.
+        """
+
+        session = TBLSession.objects.get(
+            pk=self.kwargs.get('pk', '')
+        )
+
+        return session
+
+    def get_queryset(self):
+        """
+        Get a question by url slug
+        """
+
+        session = self.get_session()
+
+        questions = Question.objects.filter(
+            session=session,
+            is_exercise=True
+        )
+
+        return questions
+
+    def get_success_url(self):
+        """
+        Get the success url to redirect to.
+        """
+
+        discipline = self.get_discipline()
+        session = self.get_session()
+
+        success_url = reverse_lazy(
+            'questions:list',
+            kwargs={
+                'slug': discipline.slug,
+                'pk': session.pk
+            }
+        )
+
+        return success_url
+
+    def get(self, request, *args, **kwargs):
+        """
+        Reset exercise list.
+        """
+
+        questions = self.get_queryset()
+
+        for question in questions:
+            question.score = 0
+
+            for alternative in question.alternatives.all():
+                alternative.score = 0
+                alternative.save()
+
+            question.show_answer = False
+
+            question.save()
+
+        messages.success(
+            self.request,
+            _("Exercise list reseted successfully.")
+        )
+
+        return redirect(self.get_success_url())
 
 
 def get_csv(request, *args, **kwargs):

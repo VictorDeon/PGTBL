@@ -70,22 +70,6 @@ class Question(models.Model):
         auto_now=True
     )
 
-    @classmethod
-    def set_current_page(cls, page):
-        """
-        Get the current page of exercise list.
-        """
-
-        cls.current_page = page
-
-    @classmethod
-    def get_current_page(cls):
-        """
-        Get the current page of exercise.
-        """
-
-        return cls.current_page
-
     def __str__(self):
         """
         Question string.

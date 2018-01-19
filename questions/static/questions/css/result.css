@@ -27,11 +27,6 @@
   background-color: #286090;
 }
 
-.badge {
-  font-size: 16px !important;
-}
-
-.total {
-  position: relative;
-  bottom: 1px;
+.reset {
+  margin-top: 24px;
 }

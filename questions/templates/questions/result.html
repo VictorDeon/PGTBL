@@ -48,10 +48,19 @@
                 </h4>
               </div>
               <div class="col-sm-6">
-                <h4 class="pull-right">
-                  {{session.created_at.date}}
-                  <i class="fa fa-calendar"></i>
-                </h4>
+                <div class="row">
+                  <h4 class="pull-right">
+                    {{session.created_at.date}}
+                    <i class="fa fa-calendar"></i>
+                  </h4>
+                </div>
+                <div class="row">
+                  <a href="{% url 'questions:reset-exercise' discipline.slug session.id %}"
+                     class="btn btn-primary reset pull-right">
+                     <i class="fa fa-mail-reply"></i>
+                     {% trans 'Reset' %}
+                  </a>
+                </div>
               </div>
             </div>
           </div>

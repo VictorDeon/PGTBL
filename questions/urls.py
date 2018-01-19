@@ -22,6 +22,12 @@ questions_patterns = [
         views.get_csv,
         name='result-csv'
     ),
+    # /result/reset/
+    url(
+        r'^result/reset/$',
+        views.ResetExerciseView.as_view(),
+        name='reset-exercise'
+    ),
     # /add-question/
     url(
         r'^add-question/$',
