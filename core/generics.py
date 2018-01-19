@@ -28,7 +28,7 @@ class FormListView(FormMixin, ListView):
             self.form = self.get_form()
 
         # Insert object_list and form into template
-        context = self.get_context_data(
+        self.get_context_data(
             object_list=self.object_list,
             form=self.form
         )
