@@ -10,11 +10,17 @@ questions_patterns = [
         views.ExerciseListView.as_view(),
         name='list'
     ),
-    # /
+    # /result/
     url(
         r'^result/$',
         views.ExerciseResultView.as_view(),
         name='result'
+    ),
+    # /result/csv/
+    url(
+        r'^result/csv/$',
+        views.get_csv,
+        name='result-csv'
     ),
     # /add-question/
     url(

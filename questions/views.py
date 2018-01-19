@@ -8,6 +8,12 @@ from django.views.generic import (
     ListView, CreateView, UpdateView, DeleteView, FormView
 )
 
+# CSV
+from django.http import HttpResponse
+from reportlab.pdfgen import canvas
+import csv
+
+
 # App imports
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
@@ -720,3 +726,65 @@ class ExerciseResultView(LoginRequiredMixin,
         }
 
         return result
+
+
+def get_csv(request, *args, **kwargs):
+    """
+    Create a CSV about exercise list result.
+    """
+
+    # Create the HttpResponse object with the approprieate CSV headers.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="exercise-result.csv"'
+
+    # Create the CSV writer
+    writer = csv.writer(response)
+
+    # Get important variables
+    discipline = Discipline.objects.get(
+        slug=kwargs.get('slug', '')
+    )
+
+    session = TBLSession.objects.get(
+        pk=kwargs.get('pk', '')
+    )
+
+    questions = Question.objects.filter(
+        session=session,
+        is_exercise=True
+    )
+
+    score = 0
+    total = 4*questions.count()
+
+    for question in questions:
+        score += question.score
+
+    grade = (score/total) * 10
+
+    # Create CSV file rows
+    writer.writerow([
+        'ID: {0}'.format(request.user.id),
+        'Nome: {0}'.format(request.user.get_short_name()),
+        'Disciplina: {0}'.format(discipline.title),
+        'Professor: {0}'.format(discipline.teacher),
+        'Sessão do TBL: {0}'.format(session.title),
+        'Nota no exercicio: {0}'.format(grade)
+    ])
+
+    counter = 0
+    for question in questions:
+        counter += 1
+        writer.writerow([
+            '[{0}]'.format(counter),
+            'Título: {0}'.format(question.title),
+            'Pontuação: {0}/{1}'.format(question.score, 4)
+        ])
+
+    writer.writerow([
+        '',
+        '',
+        'Pontuação total: {0}/{1}'.format(score, total)
+    ])
+
+    return response
