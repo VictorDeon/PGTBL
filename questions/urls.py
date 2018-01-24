@@ -54,8 +54,6 @@ questions_patterns = [
     )
 ]
 
-alternatives_patterns = []
-
 urlpatterns = [
     # /profile/<discipline.slug>/sessions/<session.id>/exercises/...
     url(

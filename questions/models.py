@@ -1,5 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 from TBLSessions.models import TBLSession
+from exam.models import iRAT
 from django.db import models
 
 
@@ -18,6 +19,12 @@ class Question(models.Model):
         TBLSession,
         on_delete=models.CASCADE,
         verbose_name='questions'
+    )
+
+    exam = models.ForeignKey(
+        iRAT,
+        verbose_name='questions',
+        null=True
     )
 
     LEVELS = {

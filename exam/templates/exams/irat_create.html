@@ -1,0 +1,91 @@
+{% extends 'TBLSessions/details.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block css %}
+  <link href="{% static 'accounts/css/sidebar.css' %}" rel="stylesheet" />
+  <link href="{% static 'disciplines/css/create.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'exams:irat-create' discipline.slug session.id %}">
+      {% trans 'Create iRAT' %}
+    </a>
+  </li>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    <!-- Header -->
+    <div class="page-header">
+      <h1 class="white">
+        {% trans 'Create iRAT test' %}
+      </h1>
+    </div>
+
+    <!-- Form -->
+    <div class="row">
+      <div class="col-sm-12">
+        <!-- Form without html5 validation -->
+        <form method="post" novalidate>
+          <!-- Form security -->
+          {% csrf_token %}
+
+          <!-- Get all erros from form -->
+          {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+              {{ error }}
+            </div>
+          {% endfor %}
+
+          <!-- iRAT test datetime field -->
+          <div class="form-group">
+            <label class="white" for="id_datetime">
+              {% trans 'Date and Time to provide the test.' %}
+            </label><br />
+
+            <input
+              type="datetime-local"
+              id="id_datetime"
+              name="datetime"
+              class="form-control"
+              value="{{ form.datetime.value }}"
+            />
+          </div>
+
+          <!-- iRAT test time field -->
+          <div class="form-group">
+            <label class="white" for="{{form.time.id_for_label}}">
+              {% trans 'Time to answer the test.' %}
+            </label><br />
+
+            <input
+              type="time"
+              id="id_time"
+              name="time"
+              class="form-control"
+              value="{{ form.time.value }}"
+            />
+          </div>
+
+          <!-- iRAT test is closed field -->
+          <div class="input-group white">
+              <label>
+                {% render_field form.is_closed %}
+                {{ form.is_closed.label }}
+              </label>
+          </div>
+
+          <!-- Submit button -->
+          <button type="submit"
+                  class="btn btn-primary submit-button center-block">
+                  <i class="fa fa-plus"></i> {% trans 'Send' %}
+          </button>
+        </form>
+      </div> <!-- Close col -->
+    </div> <!-- Close row -->
+  </div> <!-- Close container -->
+{% endblock %}
