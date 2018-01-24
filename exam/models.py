@@ -16,12 +16,6 @@ class Exam(models.Model):
     Team Based Learning tests
     """
 
-    session = models.ForeignKey(
-        TBLSession,
-        on_delete=models.CASCADE,
-        verbose_name='exams'
-    )
-
     score = models.PositiveIntegerField(
         _('Score'),
         default=0,
@@ -33,9 +27,10 @@ class Exam(models.Model):
         help_text=_('Date and time to provide the test to be answered.')
     )
 
-    time = models.TimeField(
-        _('Time to answer.'),
-        help_text=_("Time to answer the test."),
+    time = models.PositiveIntegerField(
+        _('Time to answer'),
+        default=40,
+        help_text=_('Time to answer the test in minutes.')
     )
 
     is_closed = models.BooleanField(
@@ -68,19 +63,36 @@ class iRAT(Exam):
     Individual Readiness assurance test.
     """
 
-    students = models.ManyToManyField(
-        settings.AUTH_USER_MODEL,
-        verbose_name='iRATs'
+    tbl_session = models.ForeignKey(
+        TBLSession,
+        on_delete=models.CASCADE,
+        related_name='iRATs'
     )
 
-    def get_questions(self):
+    student = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=True,
+        related_name='iRATs'
+    )
+
+    def clone(self, student):
         """
         Creates a copy of the iRAT evaluation questions for use in the gRAT
         """
 
-        for question in self.questions:
+        test = iRAT(
+            tbl_session=self.tbl_session,
+            score=0,
+            datetime=self.datetime,
+            time=self.time,
+            is_closed=self.is_closed
+        )
+
+        for question in test.questions:
             question.score = 0
             question.show_answer = False
+            question.save()
 
         return self.questions
 
@@ -89,7 +101,13 @@ class iRAT(Exam):
         Exam string.
         """
 
-        return "iRAT of session {0}".format(self.session.title)
+        if self.student:
+            return "{0}: iRAT of session {1}".format(
+                self.student.get_short_name(),
+                self.tbl_session.title
+            )
+
+        return "iRAT of session {0}".format(self.tbl_session.title)
 
     class Meta:
         verbose_name = _('iRAT')
@@ -102,9 +120,17 @@ class gRAT(Exam):
     Group Readiness assurance test.
     """
 
-    groups = models.ManyToManyField(
+    tbl_session = models.ForeignKey(
+        TBLSession,
+        on_delete=models.CASCADE,
+        related_name='gRATs'
+    )
+
+    group = models.ForeignKey(
         Group,
-        verbose_name='gRATs'
+        on_delete=models.CASCADE,
+        null=True,
+        related_name='gRATs'
     )
 
     def __str__(self):
@@ -112,7 +138,13 @@ class gRAT(Exam):
         Exam string.
         """
 
-        return "gRAT of session {0}".format(self.session.title)
+        if self.group:
+            return "{0}: gRAT of session {1}".format(
+                self.group.title,
+                self.tbl_session.title
+            )
+
+        return "gRAT of session {1}".format(self.tbl_session.title)
 
     class Meta:
         verbose_name = _('gRAT')

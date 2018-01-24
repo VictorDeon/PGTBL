@@ -79,7 +79,7 @@ class CreateIRATView(LoginRequiredMixin,
         Receive the form already validated to create a group.
         """
 
-        form.instance.session = self.get_session()
+        form.instance.tbl_session = self.get_session()
         form.save()
 
 
@@ -89,6 +89,9 @@ class CreateIRATView(LoginRequiredMixin,
         """
         Redirect to group list with error.
         """
+
+        print(form.instance.time)
+        print(form.instance.datetime)
 
         messages.error(
             self.request,

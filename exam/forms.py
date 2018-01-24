@@ -12,11 +12,6 @@ class iRATForm(forms.ModelForm):
         input_formats=['%Y-%m-%dT%H:%M'] # '2016-04-06T17:18
     )
 
-    time = forms.TimeField(
-        required=True,
-        input_formats=['%H:%M'] # '17:18'
-    )
-
     class Meta:
         model = iRAT
         fields = ['time', 'datetime', 'is_closed']

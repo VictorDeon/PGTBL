@@ -18,12 +18,12 @@ class Question(models.Model):
     session = models.ForeignKey(
         TBLSession,
         on_delete=models.CASCADE,
-        verbose_name='questions'
+        related_name='questions'
     )
 
     exam = models.ForeignKey(
         iRAT,
-        verbose_name='questions',
+        related_name='questions',
         null=True
     )
 
