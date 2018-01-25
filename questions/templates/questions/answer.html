@@ -122,7 +122,7 @@
                 </div>
                 <hr />
                 {% if not question.show_answer %}
-                  <form action="#" method="POST">
+                  <form action="{% url 'questions:answer-question' discipline.slug session.id question.id page_obj.number %}" method="POST">
                     {% csrf_token %}
 
                     <div class="row">
