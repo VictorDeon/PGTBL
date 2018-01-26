@@ -54,18 +54,6 @@ class ExerciseListView(LoginRequiredMixin,
 
         return session
 
-    def get_submissions(self):
-        """
-        Get all exercise submission from logged user.
-        """
-
-        submissions = Submission.objects.filter(
-            user=self.request.user,
-            exam='Exercise'
-        )
-
-        return submissions
-
     def get_context_data(self, **kwargs):
         """
         Insert discipline, session and form into exercise list context data.
@@ -74,7 +62,6 @@ class ExerciseListView(LoginRequiredMixin,
         context = super(ExerciseListView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
-        context['submissions'] = self.get_submissions()
         context['form1'] = AnswerQuestionForm(prefix="alternative01")
         context['form2'] = AnswerQuestionForm(prefix="alternative02")
         context['form3'] = AnswerQuestionForm(prefix="alternative03")

@@ -92,7 +92,7 @@ class AnswerQuestionView(FormView):
             }
         )
 
-        success_url += "?page={0}#question".format(self.get_page())
+        success_url += "?page={0}".format(self.get_page())
 
         return success_url
 
@@ -440,7 +440,7 @@ def get_csv(request, *args, **kwargs):
         'Disciplina: {0}'.format(discipline.title),
         'Professor: {0}'.format(discipline.teacher),
         'Sessão do TBL: {0}'.format(session.title),
-        'Nota no exercicio: {0}'.format(grade)
+        'Nota no exercicio: {0:.2f}'.format(grade)
     ])
 
     counter = 0
