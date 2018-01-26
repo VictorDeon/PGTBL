@@ -401,14 +401,25 @@ class UpdateQuestionView(LoginRequiredMixin,
 
         discipline = self.get_discipline()
         session = self.get_session()
+        question = self.get_object()
 
-        success_url = reverse_lazy(
-            'questions:list',
-            kwargs={
-                'slug': discipline.slug,
-                'pk': session.id
-            }
-        )
+        if question.is_exercise:
+            success_url = reverse_lazy(
+                'questions:list',
+                kwargs={
+                    'slug': discipline.slug,
+                    'pk': session.id
+                }
+            )
+        else:
+            success_url = reverse_lazy(
+                'questions:irat-list',
+                kwargs={
+                    'slug': discipline.slug,
+                    'pk': session.id
+                }
+            )
+
 
         return success_url
 
@@ -467,14 +478,25 @@ class DeleteQuestionView(LoginRequiredMixin,
 
         discipline = self.get_discipline()
         session = self.get_session()
+        question = self.get_object()
 
-        success_url = reverse_lazy(
-            'questions:list',
-            kwargs={
-                'slug': discipline.slug,
-                'pk': session.id
-            }
-        )
+        if question.is_exercise:
+            success_url = reverse_lazy(
+                'questions:list',
+                kwargs={
+                    'slug': discipline.slug,
+                    'pk': session.id
+                }
+            )
+        else:
+            success_url = reverse_lazy(
+                'questions:irat-list',
+                kwargs={
+                    'slug': discipline.slug,
+                    'pk': session.id
+                }
+            )
+
 
         messages.success(self.request, _("Question deleted successfully."))
 

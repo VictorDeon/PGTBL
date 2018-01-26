@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from . import views_question, views_exercise
+from . import views_question, views_exercise, views_irat
 
 app_name = 'questions'
 
@@ -49,12 +49,39 @@ exercise_patterns = [
         views_exercise.ResetExerciseView.as_view(),
         name='exercise-reset'
     ),
-    # /question/question.id/answer-page/<page_obj.number>/
+    # /question/<question.id>/answer-page/<page_obj.number>/
     url(
         r'^question/(?P<question_id>[0-9]+)/answer-page/(?P<question_page>[0-9]+)/$',
         views_exercise.AnswerQuestionView.as_view(),
         name='exercise-answer-question'
     )
+]
+
+irat_patterns = [
+    # /
+    url(
+        r'^$',
+        views_irat.IRATView.as_view(),
+        name='irat-list'
+    ),
+    # /result/
+    url(
+        r'^result/$',
+        views_irat.IRATResultView.as_view(),
+        name='irat-result'
+    ),
+    # /result/csv/
+    url(
+        r'^result/csv/$',
+        views_irat.get_csv,
+        name='irat-result-csv'
+    ),
+    # /question/<question.id>/answer-page/<page_obj.number>/
+    url(
+        r'^question/(?P<question_id>[0-9]+)/answer-page/(?P<question_page>[0-9]+)/$',
+        views_irat.AnswerIRATQuestionView.as_view(),
+        name='irat-answer-question'
+    ),
 ]
 
 urlpatterns = [
@@ -66,5 +93,9 @@ urlpatterns = [
     url(
         r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/exercises/',
         include(exercise_patterns)
+    ),
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/irat/',
+        include(irat_patterns)
     ),
 ]
