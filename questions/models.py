@@ -90,7 +90,7 @@ class Alternative(models.Model):
     Question alternatives.
     """
 
-    alternative_title = models.CharField(
+    title = models.CharField(
         _('Title'),
         max_length=1000,
         help_text=_('Alternative title.')
@@ -125,12 +125,12 @@ class Alternative(models.Model):
         Alternative of question string.
         """
 
-        return self.alternative_title
+        return self.title
 
     class Meta:
         verbose_name = _('Alternative')
         verbose_name_plural = _('Alternatives')
-        ordering = ['alternative_title', 'created_at']
+        ordering = ['title', 'created_at']
 
 
 class Submission(models.Model):
@@ -152,11 +152,10 @@ class Submission(models.Model):
         related_name="submissions"
     )
 
-    alternative = models.ForeignKey(
-        Alternative,
-        on_delete=models.CASCADE,
-        verbose_name=_("Alternatives"),
-        related_name="submissions"
+    correct_alternative = models.CharField(
+        _('Correct Alternative'),
+        max_length=1000,
+        help_text=_('Correct alternative title.')
     )
 
     EXAMS = (
@@ -189,7 +188,7 @@ class Submission(models.Model):
         """
 
         obj = "{0}: {1} - {2}".format(
-            self.user,
+            self.user.get_short_name(),
             self.exam,
             self.question
         )

@@ -33,18 +33,3 @@ def show_exercise_permission(permission, user, view):
         return True
 
     return False
-
-
-@register_object_checker()
-def show_result_permission(permission, user, view):
-    """
-    Permission that allows see the exercise results when all exercise is done.
-    """
-
-    questions = view.get_queryset()
-
-    for question in questions:
-        if question.show_answer is False:
-            return False
-
-    return True

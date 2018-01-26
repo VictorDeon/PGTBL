@@ -12,8 +12,8 @@ from django.views.generic import (
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
-from .models import Question
-from .forms import AlternativeFormSet
+from .models import Question, Submission
+from .forms import AlternativeFormSet, AnswerQuestionForm
 
 
 class ExerciseListView(LoginRequiredMixin,
@@ -54,6 +54,18 @@ class ExerciseListView(LoginRequiredMixin,
 
         return session
 
+    def get_submissions(self):
+        """
+        Get all exercise submission from logged user.
+        """
+
+        submissions = Submission.objects.filter(
+            user=self.request.user,
+            exam='Exercise'
+        )
+
+        return submissions
+
     def get_context_data(self, **kwargs):
         """
         Insert discipline, session and form into exercise list context data.
@@ -62,10 +74,11 @@ class ExerciseListView(LoginRequiredMixin,
         context = super(ExerciseListView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
-        # context['form1'] = AnswerQuestionForm(prefix="alternative01")
-        # context['form2'] = AnswerQuestionForm(prefix="alternative02")
-        # context['form3'] = AnswerQuestionForm(prefix="alternative03")
-        # context['form4'] = AnswerQuestionForm(prefix="alternative04")
+        context['submissions'] = self.get_submissions()
+        context['form1'] = AnswerQuestionForm(prefix="alternative01")
+        context['form2'] = AnswerQuestionForm(prefix="alternative02")
+        context['form3'] = AnswerQuestionForm(prefix="alternative03")
+        context['form4'] = AnswerQuestionForm(prefix="alternative04")
         return context
 
     def get_queryset(self):
@@ -185,7 +198,7 @@ class CreateQuestionView(LoginRequiredMixin,
 
         for alternative_form in alternatives:
 
-            if alternative_form.instance.alternative_title == '':
+            if alternative_form.instance.title == '':
 
                 messages.error(
                     self.request,
@@ -355,7 +368,7 @@ class UpdateQuestionView(LoginRequiredMixin,
 
         for alternative_form in alternatives:
 
-            if alternative_form.instance.alternative_title == '':
+            if alternative_form.instance.title == '':
 
                 messages.error(
                     self.request,
