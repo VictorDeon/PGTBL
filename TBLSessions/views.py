@@ -14,6 +14,7 @@ from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from .models import TBLSession
 from .forms import TBLSessionForm
+from django.utils import timezone
 
 
 class ListTBLSessionView(LoginRequiredMixin,
@@ -169,6 +170,14 @@ class EditSessionView(LoginRequiredMixin,
         """
         Return the form with fields valided.
         """
+
+        if timezone.now() > form.instance.irat_datetime:
+            messages.error(
+                self.request,
+                _("iRAT date must to be later than today's date.")
+            )
+
+            return super(EditSessionView, self).form_invalid(form)
 
         messages.success(self.request, _('TBL session updated successfully.'))
 

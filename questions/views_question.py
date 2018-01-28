@@ -29,7 +29,7 @@ class ExerciseListView(LoginRequiredMixin,
 
     # Permissions
     permissions_required = [
-        'show_exercise_permission'
+        'show_questions_permission'
     ]
 
     def get_discipline(self):
@@ -95,7 +95,7 @@ class CreateQuestionView(LoginRequiredMixin,
     template_name = 'questions/add.html'
 
     permissions_required = [
-        'crud_exercise_permission'
+        'crud_question_permission'
     ]
 
     def get_discipline(self):
@@ -255,7 +255,7 @@ class UpdateQuestionView(LoginRequiredMixin,
     template_name = 'questions/update.html'
 
     permissions_required = [
-        'crud_exercise_permission'
+        'crud_question_permission'
     ]
 
     def get_discipline(self):
@@ -434,7 +434,7 @@ class DeleteQuestionView(LoginRequiredMixin,
     model = Question
 
     permissions_required = [
-        'crud_exercise_permission'
+        'crud_question_permission'
     ]
 
     def get_discipline(self):

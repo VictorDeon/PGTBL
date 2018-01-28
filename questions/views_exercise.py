@@ -30,7 +30,7 @@ class AnswerQuestionView(FormView):
 
     # Permissions
     permissions_required = [
-        'show_exercise_permission'
+        'show_questions_permission'
     ]
 
     def get_discipline(self):
@@ -224,7 +224,7 @@ class ExerciseResultView(LoginRequiredMixin,
 
     # Permissions
     permissions_required = [
-        'show_exercise_permission',
+        'show_questions_permission',
     ]
 
     def get_discipline(self):
@@ -320,7 +320,7 @@ class ResetExerciseView(LoginRequiredMixin,
     """
 
     permissions_required = [
-        'show_exercise_permission'
+        'show_questions_permission'
     ]
 
     def get_discipline(self):

@@ -4,9 +4,9 @@
 {% load i18n %}
 
 {% block css %}
-  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
-  <link rel="stylesheet" href="{% static 'TBLSessions/css/edit.css' %}" />
-  <link href="{% static 'core/css/markdown.css' %}" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'TBLSessions/css/edit.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'core/css/markdown.css' %}" type="text/css" />
   {{form.media}}
 {% endblock %}
 
@@ -84,27 +84,83 @@
           <!-- Session description preview -->
           <fieldset>
             <legend>{% trans 'Preview' %}</legend>
-            <div class="col-sm-12">
-              <div class="markdown-preview white"></div>
+            <div class="col-sm-12 preview">
+              <div class="markdown-preview"></div>
+            </div>
+          </fieldset>
+
+          <!-- Exams configuration -->
+          <fieldset>
+            <legend>{% trans 'Exams' %}</legend>
+            <!-- iRAT -->
+            <div class="form-group">
+              <label class="white" for="id_irat_datetime">
+                {% trans 'Date and time to provide the iRAT test' %}
+              </label>
+
+              <input
+                type="datetime-local"
+                id="id_irat_datetime"
+                name="irat_datetime"
+                class="form-control"
+              />
+              <span class="white">{{ form.irat_datetime.value }}</span>
+            </div>
+
+            <div class="form-group">
+              <label class="white" for="id_irat_duration">
+                {% trans 'Time to answer the iRAT test.' %}
+              </label>
+
+              <input
+                type="number"
+                id="id_irat_duration"
+                min="0"
+                name="irat_duration"
+                class="form-control"
+                value="{{ form.irat_duration.value }}"
+              />
+            </div>
+
+            <!-- gRAT -->
+            <div class="form-group">
+              <label class="white" for="id_grat_duration">
+                {% trans 'Time to answer the gRAT test.' %}
+              </label>
+
+              <input
+                type="number"
+                id="id_grat_duration"
+                min="0"
+                name="grat_duration"
+                class="form-control"
+                value="{{ form.grat_duration.value }}"
+              />
+            </div>
+
+            <!-- Practical Test -->
+            <div class="form-group white">
+              <label>
+                {% render_field form.practical_available type="checkbox" %}
+                {% trans 'Make practical test available' %}
+              </label>
+            </div>
+
+            <!-- Peer Review test -->
+            <div class="form-group white">
+              <label>
+                {% render_field form.peer_review_available type="checkbox" %}
+                {% trans 'Make peer review test available' %}
+              </label>
             </div>
           </fieldset>
 
           <!-- Is closed field -->
-          <div class="{% if form.is_closed.errors %}alert alert-warning{% endif %}">
-            <!-- Input group -->
-            <div class="form-group white">
-              <label>
-                {% render_field form.is_closed type="checkbox" %}
-                {% trans 'Close session' %}
-              </label>
-            </div>
-
-            <!-- Field errors -->
-            {% for error in form.is_closed.errors %}
-              <span class="error">
-                {{ error }}
-              </span>
-            {% endfor %}
+          <div class="form-group white">
+            <label>
+              {% render_field form.is_closed type="checkbox" %}
+              {% trans 'Make session unavailable' %}
+            </label>
           </div>
 
           <!-- Submit button -->

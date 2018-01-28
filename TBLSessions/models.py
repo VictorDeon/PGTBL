@@ -33,6 +33,43 @@ class TBLSession(models.Model):
         help_text=_("Close TBL session.")
     )
 
+    irat_datetime = models.DateTimeField(
+        _("iRAT date"),
+        blank=True,
+        null=True,
+        help_text=_("Date and time to provide the iRAT test.")
+    )
+
+    irat_duration = models.PositiveIntegerField(
+        _("iRAT durantion in minutes"),
+        default=30,
+        help_text=_("iRAT duration in minutes to be answered.")
+    )
+
+    grat_available = models.BooleanField(
+        _("Release the gRAT test"),
+        default=False,
+        help_text=_("Release the gRAT test to be answered.")
+    )
+
+    grat_duration = models.PositiveIntegerField(
+        _("gRAT durantion in minutes"),
+        default=30,
+        help_text=_("gRAT duration in minutes to be answered.")
+    )
+
+    practical_available = models.BooleanField(
+        _("Release the practical test"),
+        default=False,
+        help_text=_("Release the practical test.")
+    )
+
+    peer_review_available = models.BooleanField(
+        _("Release the peer review test"),
+        default=False,
+        help_text=_("Release the peer review test to be answered.")
+    )
+
     created_at = models.DateTimeField(
         _('Created at'),
         help_text=_("Date that the session is created."),

@@ -31,7 +31,9 @@ class IRATView(LoginRequiredMixin,
     context_object_name = 'questions'
 
     # Permissions
-    permissions_required = []
+    permissions_required = [
+        'show_questions_permission',
+    ]
 
     def get_discipline(self):
         """
