@@ -312,6 +312,18 @@ class ShowSessionView(LoginRequiredMixin,
         Insert discipline into tbl session context.
         """
 
+        session = self.get_object()
+        irat_datetime = (
+            timezone.localtime(session.irat_datetime) -
+            timedelta(minutes=session.irat_duration)
+        )
+        grat_datetime = (
+            timezone.localtime(session.grat_datetime) -
+            timedelta(minutes=session.grat_duration)
+        )
+
         context = super(ShowSessionView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
+        context['irat_datetime'] = irat_datetime
+        context['grat_datetime'] = grat_datetime
         return context

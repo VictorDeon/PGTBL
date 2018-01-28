@@ -37,21 +37,42 @@
        <i class="fa fa-bar-chart icon-lg"></i>
     </a>
     <!-- Session iRAT menu -->
-    <a href="{% url 'questions:irat-list' discipline.slug session.id %}"
-       class="btn"
-       data-toggle="tooltip"
-       data-placement="right"
-       title="{% trans 'Test iRAT' %}">
-       <i class="fa fa-street-view icon-lg"></i>
-    </a>
+    {% if date > irat_datetime %}
+      <a href="{% url 'questions:irat-result' discipline.slug session.id %}"
+         class="btn"
+         data-toggle="tooltip"
+         data-placement="right"
+         title="{% trans 'Test iRAT Result' %}">
+         <i class="fa fa-street-view icon-lg"></i>
+      </a>
+    {% else %}
+      <a href="{% url 'questions:irat-list' discipline.slug session.id %}"
+         class="btn"
+         data-toggle="tooltip"
+         data-placement="right"
+         title="{% trans 'Test iRAT' %}">
+         <i class="fa fa-street-view icon-lg"></i>
+      </a>
+    {% endif %}
+
     <!-- Session gRAT menu -->
-    <a href="#"
-       class="btn"
-       data-toggle="tooltip"
-       data-placement="right"
-       title="{% trans 'Test gRAT' %}">
-       <i class="fa fa-group icon-lg"></i>
-    </a>
+    {% if date > grat_datetime %}
+      <a href="#"
+         class="btn"
+         data-toggle="tooltip"
+         data-placement="right"
+         title="{% trans 'Test gRAT Result' %}">
+         <i class="fa fa-group icon-lg"></i>
+      </a>
+    {% else %}
+      <a href="#"
+         class="btn"
+         data-toggle="tooltip"
+         data-placement="right"
+         title="{% trans 'Test gRAT' %}">
+         <i class="fa fa-group icon-lg"></i>
+      </a>
+    {% endif %}
     <!-- Session practical menu -->
     <a href="#"
        class="btn"

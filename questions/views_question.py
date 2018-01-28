@@ -12,6 +12,7 @@ from django.views.generic import (
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
+from TBLSessions.utils import get_datetimes
 from .models import Question, Submission
 from .forms import AlternativeFormSet, AnswerQuestionForm
 
@@ -59,7 +60,11 @@ class ExerciseListView(LoginRequiredMixin,
         Insert discipline, session and form into exercise list context data.
         """
 
+        irat_datetime, grat_datetime = get_datetimes(self.get_session())
+
         context = super(ExerciseListView, self).get_context_data(**kwargs)
+        context['irat_datetime'] = irat_datetime
+        context['grat_datetime'] = grat_datetime
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
         context['form1'] = AnswerQuestionForm(prefix="alternative01")
@@ -126,7 +131,11 @@ class CreateQuestionView(LoginRequiredMixin,
         question template.
         """
 
+        irat_datetime, grat_datetime = get_datetimes(self.get_session())
+
         context = super(CreateQuestionView, self).get_context_data(**kwargs)
+        context['irat_datetime'] = irat_datetime
+        context['grat_datetime'] = grat_datetime
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
 
@@ -298,7 +307,11 @@ class UpdateQuestionView(LoginRequiredMixin,
         question template.
         """
 
+        irat_datetime, grat_datetime = get_datetimes(self.get_session())
+
         context = super(UpdateQuestionView, self).get_context_data(**kwargs)
+        context['irat_datetime'] = irat_datetime
+        context['grat_datetime'] = grat_datetime
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
 

@@ -1,8 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
-from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.utils import timezone
 from django.views.generic import (
@@ -17,6 +16,7 @@ import csv
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
+from TBLSessions.utils import get_datetimes
 from .models import Question, Submission
 from .forms import AnswerQuestionForm
 
@@ -88,7 +88,11 @@ class IRATView(LoginRequiredMixin,
         Insert discipline, session and form into exercise list context data.
         """
 
+        irat_datetime, grat_datetime = get_datetimes(self.get_session())
+
         context = super(IRATView, self).get_context_data(**kwargs)
+        context['irat_datetime'] = irat_datetime
+        context['grat_datetime'] = grat_datetime
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
         context['form1'] = AnswerQuestionForm(prefix="alternative01")
@@ -96,36 +100,7 @@ class IRATView(LoginRequiredMixin,
         context['form3'] = AnswerQuestionForm(prefix="alternative03")
         context['form4'] = AnswerQuestionForm(prefix="alternative04")
 
-        finalized = self.finish_test(context)
-
-        if finalized:
-            return HttpResponseRedirect(result_url, context)
-
         return context
-
-    def finish_test(self, context):
-        """
-        Finish the test and redirect the user to the reults page.
-        """
-
-        session = self.get_session()
-        irat_duration = timedelta(minutes=session.irat_duration)
-        now = timezone.localtime(timezone.now())
-
-        result_url = reverse_lazy(
-            'questions:irat-result',
-            kwargs={
-                'slug': self.kwargs.get('slug', ''),
-                'pk': self.kwargs.get('pk', '')
-            }
-        )
-
-        if now > session.irat_datetime and \
-           (now - irat_duration) < session.irat_datetime:
-
-                return True
-
-        return False
 
     def get_queryset(self):
         """
@@ -406,7 +381,11 @@ class IRATResultView(LoginRequiredMixin,
         Insert discipline, session into exercise result context data.
         """
 
+        irat_datetime, grat_datetime = get_datetimes(self.get_session())
+
         context = super(IRATResultView, self).get_context_data(**kwargs)
+        context['irat_datetime'] = irat_datetime
+        context['grat_datetime'] = grat_datetime
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
         context['result'] = self.result()

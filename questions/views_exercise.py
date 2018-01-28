@@ -16,6 +16,7 @@ import csv
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
+from TBLSessions.utils import get_datetimes
 from .models import Question, Submission
 from .forms import AnswerQuestionForm
 
@@ -266,7 +267,11 @@ class ExerciseResultView(LoginRequiredMixin,
         Insert discipline, session into exercise result context data.
         """
 
+        irat_datetime, grat_datetime = get_datetimes(self.get_session())
+
         context = super(ExerciseResultView, self).get_context_data(**kwargs)
+        context['irat_datetime'] = irat_datetime
+        context['grat_datetime'] = grat_datetime
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
         context['result'] = self.result()
