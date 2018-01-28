@@ -46,10 +46,11 @@ class TBLSession(models.Model):
         help_text=_("iRAT duration in minutes to be answered.")
     )
 
-    grat_available = models.BooleanField(
-        _("Release the gRAT test"),
-        default=False,
-        help_text=_("Release the gRAT test to be answered.")
+    grat_datetime = models.DateTimeField(
+        _("gRAT date"),
+        blank=True,
+        null=True,
+        help_text=_("Date and time to provide the gRAT test.")
     )
 
     grat_duration = models.PositiveIntegerField(

@@ -2,7 +2,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
+from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.utils import timezone
 from django.views.generic import (
     ListView, FormView
 )
@@ -17,6 +19,9 @@ from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
 from .models import Question, Submission
 from .forms import AnswerQuestionForm
+
+# Python imports
+from datetime import timedelta
 
 
 class IRATView(LoginRequiredMixin,
@@ -33,7 +38,28 @@ class IRATView(LoginRequiredMixin,
     # Permissions
     permissions_required = [
         'show_questions_permission',
+        'irat_permissions'
     ]
+
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        messages.error(
+            self.request,
+            _("You are not authorized to do this action.")
+        )
+
+        failure_redirect_path = reverse_lazy(
+            'TBLSessions:details',
+            kwargs={
+                'slug': self.kwargs.get('slug', ''),
+                'pk': self.kwargs.get('pk', '')
+            }
+        )
+
+        return failure_redirect_path
 
     def get_discipline(self):
         """
@@ -69,7 +95,37 @@ class IRATView(LoginRequiredMixin,
         context['form2'] = AnswerQuestionForm(prefix="alternative02")
         context['form3'] = AnswerQuestionForm(prefix="alternative03")
         context['form4'] = AnswerQuestionForm(prefix="alternative04")
+
+        finalized = self.finish_test(context)
+
+        if finalized:
+            return HttpResponseRedirect(result_url, context)
+
         return context
+
+    def finish_test(self, context):
+        """
+        Finish the test and redirect the user to the reults page.
+        """
+
+        session = self.get_session()
+        irat_duration = timedelta(minutes=session.irat_duration)
+        now = timezone.localtime(timezone.now())
+
+        result_url = reverse_lazy(
+            'questions:irat-result',
+            kwargs={
+                'slug': self.kwargs.get('slug', ''),
+                'pk': self.kwargs.get('pk', '')
+            }
+        )
+
+        if now > session.irat_datetime and \
+           (now - irat_duration) < session.irat_datetime:
+
+                return True
+
+        return False
 
     def get_queryset(self):
         """
@@ -95,7 +151,30 @@ class AnswerIRATQuestionView(FormView):
     form_class = AnswerQuestionForm
 
     # Permissions
-    permissions_required = []
+    permissions_required = [
+        'show_questions_permission',
+        'irat_permissions'
+    ]
+
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        messages.error(
+            self.request,
+            _("You are not authorized to do this action.")
+        )
+
+        failure_redirect_path = reverse_lazy(
+            'TBLSessions:details',
+            kwargs={
+                'slug': self.kwargs.get('slug', ''),
+                'pk': self.kwargs.get('pk', '')
+            }
+        )
+
+        return failure_redirect_path
 
     def get_discipline(self):
         """
@@ -284,7 +363,9 @@ class IRATResultView(LoginRequiredMixin,
     context_object_name = 'submissions'
 
     # Permissions
-    permissions_required = []
+    permissions_required = [
+        'show_questions_permission'
+    ]
 
     def get_discipline(self):
         """

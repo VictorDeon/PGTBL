@@ -9,6 +9,12 @@ class TBLSessionForm(forms.ModelForm):
     """
 
     irat_datetime = forms.DateTimeField(
+        required=False,
+        input_formats=['%Y-%m-%dT%H:%M'] # '2016-04-06T17:18
+    )
+
+    grat_datetime = forms.DateTimeField(
+        required=False,
         input_formats=['%Y-%m-%dT%H:%M'] # '2016-04-06T17:18
     )
 
@@ -17,8 +23,8 @@ class TBLSessionForm(forms.ModelForm):
         fields = [
             'title', 'description', 'is_closed',
             'irat_datetime', 'irat_duration',
-            'grat_duration', 'practical_available',
-            'peer_review_available'
+            'grat_datetime', 'grat_duration',
+            'practical_available', 'peer_review_available'
         ]
 
         # Widgets about some fields

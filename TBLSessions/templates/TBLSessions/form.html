@@ -103,6 +103,7 @@
                 id="id_irat_datetime"
                 name="irat_datetime"
                 class="form-control"
+                value="{{form.irat_datetime.value|date:"Y-m-d\Th:i"}}"
               />
               <span class="white">{{ form.irat_datetime.value }}</span>
             </div>
@@ -123,6 +124,21 @@
             </div>
 
             <!-- gRAT -->
+            <div class="form-group">
+              <label class="white" for="id_grat_datetime">
+                {% trans 'Date and time to provide the gRAT test' %}
+              </label>
+
+              <input
+                type="datetime-local"
+                id="id_grat_datetime"
+                name="grat_datetime"
+                class="form-control"
+                value="{{form.grat_datetime.value|date:"Y-m-d\Th:i"}}"
+              />
+              <span class="white">{{ form.grat_datetime.value}}</span>
+            </div>
+
             <div class="form-group">
               <label class="white" for="id_grat_duration">
                 {% trans 'Time to answer the gRAT test.' %}

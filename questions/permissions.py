@@ -46,9 +46,28 @@ def irat_permissions(permission, user, view):
     session = view.get_session()
 
     irat_duration = timedelta(minutes=session.irat_duration)
+    now = timezone.localtime(timezone.now())
 
-    if timezone.now() > session.irat_datetime and \
-       (timezone.now() - irat_duration) < session.irat_datetime:
+    if now > session.irat_datetime and \
+       (now - irat_duration) < session.irat_datetime:
+           return True
+
+    return False
+
+
+@register_object_checker()
+def grat_permissions(permission, user, view):
+    """
+    gRAT exam permissions.
+    """
+
+    session = view.get_session()
+
+    grat_duration = timedelta(minutes=session.grat_duration)
+    now = timezone.localtime(timezone.now())
+
+    if now > session.grat_datetime and \
+       (now - grat_duration) < session.grat_datetime:
            return True
 
     return False

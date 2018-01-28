@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib import messages
+from django.utils import timezone
 from django.db.models import Q
 from django.views.generic import (
     ListView, CreateView, UpdateView, DeleteView,
@@ -14,7 +15,9 @@ from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from .models import TBLSession
 from .forms import TBLSessionForm
-from django.utils import timezone
+
+# Python imports
+from datetime import timedelta
 
 
 class ListTBLSessionView(LoginRequiredMixin,
@@ -171,10 +174,36 @@ class EditSessionView(LoginRequiredMixin,
         Return the form with fields valided.
         """
 
-        if timezone.now() > form.instance.irat_datetime:
+        now = timezone.localtime(timezone.now())
+
+        if form.instance.irat_datetime is None or \
+           form.instance.grat_datetime is None:
+
             messages.error(
                 self.request,
-                _("iRAT date must to be later than today's date.")
+                _("iRAT and gRAT date must to be filled in.")
+            )
+
+            return super(EditSessionView, self).form_invalid(form)
+
+
+        if now > form.instance.irat_datetime or \
+           now > form.instance.grat_datetime:
+
+            messages.error(
+                self.request,
+                _("iRAT and gRAT date must to be later than today's date.")
+            )
+
+            return super(EditSessionView, self).form_invalid(form)
+
+        if (form.instance.irat_datetime + \
+            timedelta(minutes=form.instance.irat_duration)) > \
+            form.instance.grat_datetime:
+
+            messages.error(
+                self.request,
+                _("gRAT date must to be later than iRAT date with its duration.")
             )
 
             return super(EditSessionView, self).form_invalid(form)
