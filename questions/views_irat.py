@@ -16,7 +16,9 @@ import csv
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
+from TBLSessions.models import Grade
 from TBLSessions.utils import get_datetimes
+from groups.models import Group
 from .models import Question, Submission
 from .forms import AnswerQuestionForm
 
@@ -376,6 +378,19 @@ class IRATResultView(LoginRequiredMixin,
 
         return questions
 
+    def get_student_group(self):
+        """
+        Get current student group.
+        """
+
+        groups = Group.objects.filter(
+            discipline=self.get_discipline(),
+        )
+
+        for group in groups:
+            if self.request.user in group.students.all():
+                return group
+
     def get_context_data(self, **kwargs):
         """
         Insert discipline, session into exercise result context data.
@@ -411,6 +426,7 @@ class IRATResultView(LoginRequiredMixin,
         questions = self.get_questions()
         submissions = self.get_queryset()
 
+        # Calcule the grade
         score = 0
         grade = 0
 
@@ -422,6 +438,23 @@ class IRATResultView(LoginRequiredMixin,
         if total > 0:
             grade = (score/total) * 10
 
+        # Create a grade for specific student
+        discipline = self.get_discipline()
+
+        grades = Grade.objects.filter(
+            session=self.get_session(),
+            user=self.request.user
+        )
+
+        if grades.count() == 0 and self.request.user in discipline.students.all():
+            Grade.objects.create(
+                session=self.get_session(),
+                user=self.request.user,
+                group=self.get_student_group(),
+                irat=grade
+            )
+
+        # Store the result and return it
         result = {
             'score': score,
             'total': total,

@@ -92,67 +92,91 @@
           <!-- Exams configuration -->
           <fieldset>
             <legend>{% trans 'Exams' %}</legend>
-            <!-- iRAT -->
+            <!-- iRAT datetime -->
             <div class="form-group">
-              <label class="white" for="id_irat_datetime">
-                {% trans 'Date and time to provide the iRAT test' %}
+              <label class="white" for="{{form.irat_datetime.id_for_label}}">
+                {{form.irat_datetime.label}}
               </label>
 
               <input
                 type="datetime-local"
-                id="id_irat_datetime"
-                name="irat_datetime"
+                id="{{form.irat_datetime.id_for_label}}"
+                name="{{form.irat_datetime.name}}"
                 class="form-control"
                 value="{{form.irat_datetime.value|date:"Y-m-d\Th:i"}}"
               />
               <span class="white">{{ form.irat_datetime.value }}</span>
             </div>
 
+            <!-- iRAT weight -->
             <div class="form-group">
-              <label class="white" for="id_irat_duration">
-                {% trans 'Time to answer the iRAT test.' %}
+              <label class="white" for="{{form.irat_weight.id_for_label}}">
+                {{form.irat_weight.label}}
+              </label>
+
+              {% render_field form.irat_weight class="form-control" %}
+            </div>
+
+            <!-- iRAT duration -->
+            <div class="form-group">
+              <label class="white" for="{{form.irat_duration.id_for_label}}">
+                {{form.irat_duration.label}}
               </label>
 
               <input
                 type="number"
-                id="id_irat_duration"
+                id="{{form.irat_duration.id_for_label}}"
                 min="0"
-                name="irat_duration"
+                name="{{form.irat_duration.name}}"
                 class="form-control"
                 value="{{ form.irat_duration.value }}"
               />
             </div>
 
-            <!-- gRAT -->
+            <hr />
+
+            <!-- gRAT datetime -->
             <div class="form-group">
-              <label class="white" for="id_grat_datetime">
-                {% trans 'Date and time to provide the gRAT test' %}
+              <label class="white" for="{{form.grat_datetime.id_for_label}}">
+                {{form.grat_datetime.label}}
               </label>
 
               <input
                 type="datetime-local"
-                id="id_grat_datetime"
-                name="grat_datetime"
+                id="{{form.grat_datetime.id_for_lable}}"
+                name="{{form.grat_datetime.name}}"
                 class="form-control"
                 value="{{form.grat_datetime.value|date:"Y-m-d\Th:i"}}"
               />
               <span class="white">{{ form.grat_datetime.value}}</span>
             </div>
 
+            <!-- gRAT weight -->
             <div class="form-group">
-              <label class="white" for="id_grat_duration">
-                {% trans 'Time to answer the gRAT test.' %}
+              <label class="white" for="{{form.grat_weight.id_for_label}}">
+                {{form.grat_weight.label}}
+              </label>
+
+              {% render_field form.grat_weight class="form-control" %}
+            </div>
+
+            <!-- gRAT duration -->
+            <div class="form-group">
+              <label class="white" for="{{form.grat_duration.id_for_label}}">
+                {{form.grat_duration.label}}
               </label>
 
               <input
                 type="number"
-                id="id_grat_duration"
+                id="{{form.grat_duration.id_for_label}}"
                 min="0"
-                name="grat_duration"
+                name="{{form.grat_duration.name}}"
                 class="form-control"
                 value="{{ form.grat_duration.value }}"
               />
             </div>
+
+            <hr />
 
             <!-- Practical Test -->
             <div class="form-group white">
@@ -162,12 +186,30 @@
               </label>
             </div>
 
+            <div class="form-group">
+              <label class="white" for="{{form.practical_weight.id_for_label}}">
+                {{form.practical_weight.label}}
+              </label>
+
+              {% render_field form.practical_weight class="form-control" %}
+            </div>
+
+            <hr />
+
             <!-- Peer Review test -->
             <div class="form-group white">
               <label>
                 {% render_field form.peer_review_available type="checkbox" %}
                 {% trans 'Make peer review test available' %}
               </label>
+            </div>
+
+            <div class="form-group">
+              <label class="white" for="{{form.peer_review_weight.id_for_label}}">
+                {{form.peer_review_weight.label}}
+              </label>
+
+              {% render_field form.peer_review_weight class="form-control" %}
             </div>
           </fieldset>
 

@@ -44,9 +44,13 @@ def irat_permissions(permission, user, view):
     """
 
     session = view.get_session()
+    discipline = view.get_discipline()
 
     irat_duration = timedelta(minutes=session.irat_duration)
     now = timezone.localtime(timezone.now())
+
+    if user == discipline.teacher:
+        return True
 
     if now > session.irat_datetime and \
        (now - irat_duration) < session.irat_datetime:

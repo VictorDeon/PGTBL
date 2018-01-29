@@ -14,6 +14,7 @@ from django.views.generic import (
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from .models import TBLSession
+from .utils import get_datetimes
 from .forms import TBLSessionForm
 
 # Python imports
@@ -313,14 +314,7 @@ class ShowSessionView(LoginRequiredMixin,
         """
 
         session = self.get_object()
-        irat_datetime = (
-            timezone.localtime(session.irat_datetime) -
-            timedelta(minutes=session.irat_duration)
-        )
-        grat_datetime = (
-            timezone.localtime(session.grat_datetime) -
-            timedelta(minutes=session.grat_duration)
-        )
+        irat_datetime, grat_datetime = get_datetimes(session)
 
         context = super(ShowSessionView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
