@@ -13,6 +13,7 @@ from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
 from accounts.models import User
 from .models import TBLSession, Grade
+from .utils import get_datetimes
 from .forms import GradeForm
 
 
@@ -24,9 +25,9 @@ class GradeListView(LoginRequiredMixin,
     """
 
     template_name = 'TBLSessions/grade_list.html'
-    context_object_name = 'sessions'
+    context_object_name = 'grades'
 
-    permissions_required = []
+    permissions_required = ['show_tbl_session']
 
     def get_discipline(self):
         """
@@ -39,30 +40,15 @@ class GradeListView(LoginRequiredMixin,
 
         return discipline
 
-    def get_sessions(self):
+    def get_session(self):
         """
-        Get the tbl sessions queryset from model database.
+        Get the session by url kwargs.
         """
 
         discipline = self.get_discipline()
 
-        sessions = TBLSession.objects.filter(discipline=discipline)
-
-        return sessions
-
-    def get_session(self):
-        """
-        Get session by url query.
-        """
-
-        session_id = self.request.GET.get("session")
-
-        if session_id == None or session_id == 'final-grade':
-            return
-
         session = TBLSession.objects.get(
-            discipline=self.get_discipline(),
-            pk=session_id
+            pk=self.kwargs.get('pk', '')
         )
 
         return session
@@ -72,11 +58,13 @@ class GradeListView(LoginRequiredMixin,
         Insert discipline and form into session context data.
         """
 
+        irat_datetime, grat_datetime = get_datetimes(self.get_session())
+
         context = super(GradeListView, self).get_context_data(**kwargs)
+        context['irat_datetime'] = irat_datetime
+        context['grat_datetime'] = grat_datetime
         context['discipline'] = self.get_discipline()
-        context['grades'] = self.get_queryset()
-        context['final_grade'] = self.calcule_final_grade()
-        context['sessions'] = self.get_sessions()
+        context['session'] = self.get_session()
         return context
 
     def get_queryset(self):
@@ -92,15 +80,6 @@ class GradeListView(LoginRequiredMixin,
 
         return grades
 
-    def calcule_final_grade(self):
-        """
-        Calcule the student final grade.
-        """
-
-        final_grade = None
-
-        return final_grade
-
 
 class GradeUpdateView(LoginRequiredMixin,
                       PermissionMixin,
@@ -114,7 +93,7 @@ class GradeUpdateView(LoginRequiredMixin,
     context_object_name = 'grade'
     form_class = GradeForm
 
-    permissions_required = []
+    permissions_required = ['only_teacher_can_change']
 
     def get_discipline(self):
         """
@@ -127,13 +106,26 @@ class GradeUpdateView(LoginRequiredMixin,
 
         return discipline
 
+    def get_session(self):
+        """
+        Get the session by url kwargs.
+        """
+
+        discipline = self.get_discipline()
+
+        session = TBLSession.objects.get(
+            pk=self.kwargs.get('pk', '')
+        )
+
+        return session
+
     def get_object(self):
         """
         Get student grade.
         """
 
         user = User.objects.get(
-            pk=self.kwargs.get('pk', '')
+            pk=self.kwargs.get('student_pk', '')
         )
 
         grade = Grade.objects.get(
@@ -147,8 +139,13 @@ class GradeUpdateView(LoginRequiredMixin,
         Insert a discipline inside grade edit template.
         """
 
+        irat_datetime, grat_datetime = get_datetimes(self.get_session())
+
         context = super(GradeUpdateView, self).get_context_data(**kwargs)
+        context['irat_datetime'] = irat_datetime
+        context['grat_datetime'] = grat_datetime
         context['discipline'] = self.get_discipline()
+        context['session'] = self.get_session()
         return context
 
     def form_valid(self, form):
@@ -168,7 +165,7 @@ class GradeUpdateView(LoginRequiredMixin,
         if form.instance.peer_review > 10 or form.instance.peer_review < 0:
             return self.form_invalid(form)
 
-        messages.error(
+        messages.success(
             self.request,
             _("Grades updated successfully.")
         )
@@ -193,10 +190,14 @@ class GradeUpdateView(LoginRequiredMixin,
         """
 
         discipline = self.get_discipline()
+        session = self.get_session()
 
         success_url = reverse_lazy(
             'TBLSessions:grade-list',
-            kwargs={'slug': discipline.slug}
+            kwargs={
+                'slug': discipline.slug,
+                'pk': session.pk
+            }
         )
 
         return success_url

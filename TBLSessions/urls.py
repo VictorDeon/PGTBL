@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from . import views, views_grade
+from . import views_session, views_grade
 
 app_name = 'TBLSessions'
 
@@ -7,31 +7,31 @@ session_patterns = [
     # /
     url(
         r'^$',
-        views.ListTBLSessionView.as_view(),
+        views_session.ListTBLSessionView.as_view(),
         name='list'
     ),
     # add/
     url(
         r'^add/$',
-        views.CreateSessionView.as_view(),
+        views_session.CreateSessionView.as_view(),
         name='create'
     ),
     # <session.id>/edit/
     url(
         r'^(?P<pk>[0-9]+)/edit/$',
-        views.EditSessionView.as_view(),
+        views_session.EditSessionView.as_view(),
         name='update'
     ),
     # <session.id>/delete/
     url(
         r'^(?P<pk>[0-9]+)/delete/$',
-        views.DeleteSessionView.as_view(),
+        views_session.DeleteSessionView.as_view(),
         name='delete'
     ),
     # <session.id>/details/
     url(
         r'^(?P<pk>[0-9]+)/details/$',
-        views.ShowSessionView.as_view(),
+        views_session.ShowSessionView.as_view(),
         name='details'
     ),
 ]
@@ -45,7 +45,7 @@ grade_patterns = [
     ),
     # /<student.id>/edit/
     url(
-        r'^(?P<pk>[0-9]+)/edit/$',
+        r'^(?P<student_pk>[0-9]+)/edit/$',
         views_grade.GradeUpdateView.as_view(),
         name='grade-update'
     ),
@@ -53,7 +53,13 @@ grade_patterns = [
 
 urlpatterns = [
     # /profile/<discipline.slug>/sessions/...
-    url(r'^profile/(?P<slug>[\w_-]+)/sessions/', include(session_patterns)),
-    # /profile/<discipline.slug>/grades/...
-    url(r'^profile/(?P<slug>[\w_-]+)/grades/', include(grade_patterns)),
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/sessions/',
+        include(session_patterns)
+    ),
+    # /profile/<discipline.slug>/sessions/<session.id>/grades/...
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/grades/',
+        include(grade_patterns)
+    ),
 ]

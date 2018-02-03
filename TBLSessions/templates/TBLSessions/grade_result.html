@@ -1,0 +1,47 @@
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="page-header fix-row">
+      <h1 class="white">
+        <i class="fa fa-graduation-cap"></i>
+        {% trans 'Grades' %}<br />
+        <small>{{discipline.title}}</small>
+      </h1>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <table class="table table-hover table-responsive">
+          <thead>
+            <tr class="gradient">
+              <th colspan="2">{% trans 'Students' %}</th>
+              <th colspan="2">{% trans 'Final grade' %}</th>
+            </tr>
+            <tr>
+              <th>{% trans 'Username' %}</th>
+              <th>{% trans 'Grade' %}</th>
+              <th>{% trans 'Status' %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for student in discipline.students.all %}
+              <tr>
+                <td>{{student.username}}</td>
+                {% if final_grade is None %}
+                  <td>0.0</td>
+                  <td class="text-primary">{% trans 'In progress' %}</td>
+                {% elif final_grade >= 5 %}
+                  <td>{{final_grade}}</td>
+                  <td class="text-success">{% trans 'Approved' %}</td>
+                {% else %}
+                  <td>{{final_grade}}</td>
+                  <td class="text-danger">{% trans 'Disapproved' %}</td>
+                {% endif %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <button type="button" class="btn btn-primary btn-block"><i class="fa fa-download"></i> Download CSV</button>
+      </div>
+    </div>
+  </div>
+{% endblock %}

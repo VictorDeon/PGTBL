@@ -12,6 +12,7 @@ class TBLSession(models.Model):
     Create TBL sessions.
     """
 
+    # TBL Session
     discipline = models.ForeignKey(
         Discipline,
         verbose_name='Discipline',
@@ -35,6 +36,7 @@ class TBLSession(models.Model):
         help_text=_("Close TBL session.")
     )
 
+    # iRAT test
     irat_datetime = models.DateTimeField(
         _("iRAT date"),
         blank=True,
@@ -54,6 +56,7 @@ class TBLSession(models.Model):
         help_text=_("iRAT duration in minutes to be answered.")
     )
 
+    # gRAT test
     grat_datetime = models.DateTimeField(
         _("gRAT date"),
         blank=True,
@@ -73,6 +76,7 @@ class TBLSession(models.Model):
         help_text=_("gRAT duration in minutes to be answered.")
     )
 
+    # Practical test
     practical_available = models.BooleanField(
         _("Release the practical test"),
         default=False,
@@ -85,6 +89,12 @@ class TBLSession(models.Model):
         help_text=_("Practical test weight.")
     )
 
+    practical_description = models.TextField(
+        _('Description'),
+        help_text=_('Practical test description.')
+    )
+
+    # Peer Review test
     peer_review_available = models.BooleanField(
         _("Release the peer review test"),
         default=False,
@@ -123,6 +133,15 @@ class TBLSession(models.Model):
         """
 
         content = self.description
+        return mark_safe(markdown(content))
+
+    def practical_markdown(self):
+        """
+        Transform practical test description in markdown and
+        render in html with safe
+        """
+
+        content = self.practical_description
         return mark_safe(markdown(content))
 
     class Meta:

@@ -1,4 +1,4 @@
-{% extends 'disciplines/details.html' %}
+{% extends 'TBLSessions/details.html' %}
 {% load static %}
 {% load i18n %}
 
@@ -10,7 +10,7 @@
 {% block breadcrumb %}
   {{ block.super }}
   <li>
-    <a href="{% url 'TBLSessions:grade-list' discipline.slug %}">
+    <a href="{% url 'TBLSessions:grade-list' discipline.slug session.id %}">
        {% trans 'Grades' %}
     </a>
   </li>
@@ -25,101 +25,57 @@
         <small>{{discipline.title}}</small>
       </h1>
     </div>
-    <ul class="nav nav-tabs fix-row">
-      {% for session in sessions %}
-        <li>
-          <a href="?session={{session.id}}">
-            {{session.title}}
-          </a>
-        </li>
-        {% if forloop.last %}
-          <li>
-            <a href="?session=final-grade">
-              {% trans 'Final Grade' %}
-            </a>
-          </li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-    {% if grades %}
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <table class="table table-hover table-responsive">
-            <thead>
-              <tr class="gradient">
-                <th colspan="2">{% trans 'Students' %}</th>
-                <th colspan="5">{% trans 'Sessions' %}</th>
-              </tr>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <table class="table table-hover table-responsive">
+          <thead>
+            <tr class="gradient">
+              <th colspan="2">{% trans 'Students' %}</th>
+              <th colspan="5">{% trans 'Sessions' %}</th>
+            </tr>
+            <tr>
+              <th>{% trans 'Group' %}</th>
+              <th>{% trans 'Username' %}</th>
+              <th>iRAT</th>
+              <th>gRAT</th>
+              <th>{% trans 'Practical Test' %}</th>
+              <th>{% trans 'Peer Review' %}</th>
+              <th>{% trans 'TBL grade' %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for grade in grades %}
               <tr>
-                <th>{% trans 'Group' %}</th>
-                <th>{% trans 'Username' %}</th>
-                <th>iRAT</th>
-                <th>gRAT</th>
-                <th>{% trans 'Practical Test' %}</th>
-                <th>{% trans 'Peer Review' %}</th>
-                <th>{% trans 'TBL grade' %}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for grade in grades %}
-                <tr>
-                  <td>{{grade.group.title}}</td>
+                <td>{{grade.group.title}}</td>
+                {% if user == discipline.teacher %}
                   <td>
-                    <a href="{% url 'TBLSessions:grade-update' discipline.slug grade.user.id %}">
+                    <a href="{% url 'TBLSessions:grade-update' discipline.slug session.id grade.user.id %}">
                       {{grade.user.username}}
                     </a>
                   </td>
-                  <td>{{grade.irat}}</td>
-                  <td>{{grade.grat}}</td>
-                  <td>{{grade.practical}}</td>
-                  <td>{{grade.peer_review}}</td>
-                  <td>{{grade.calcule_session_grade|floatformat}}</td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-          <a href="#" class="btn btn-primary btn-block">
-            <i class="fa fa-download"></i>
-            Download CSV
-          </a>
-        </div>
-      </div>
-    {% else %}
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <table class="table table-hover table-responsive">
-            <thead>
-              <tr class="gradient">
-                <th colspan="2">{% trans 'Students' %}</th>
-                <th colspan="2">{% trans 'Final grade' %}</th>
+                {% else %}
+                  <td>{{grade.user.username}}</td>
+                {% endif %}
+                <td>{{grade.irat}}</td>
+                <td>{{grade.grat}}</td>
+                <td>{{grade.practical}}</td>
+                <td>{{grade.peer_review}}</td>
+                {% if grade.calcule_session_grade > 5 %}
+                  <td class="text-success">{{grade.calcule_session_grade|floatformat}}</td>
+                {% else %}
+                  <td class="text-danger">{{grade.calcule_session_grade|floatformat}}</td>
+                {% endif %}
               </tr>
-              <tr>
-                <th>{% trans 'Username' %}</th>
-                <th>{% trans 'Grade' %}</th>
-                <th>{% trans 'Status' %}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for student in discipline.students.all %}
-                <tr>
-                  <td>{{student.username}}</td>
-                  {% if final_grade is None %}
-                    <td>0.0</td>
-                    <td class="text-primary">{% trans 'In progress' %}</td>
-                  {% elif final_grade >= 5 %}
-                    <td>{{final_grade}}</td>
-                    <td class="text-success">{% trans 'Approved' %}</td>
-                  {% else %}
-                    <td>{{final_grade}}</td>
-                    <td class="text-danger">{% trans 'Disapproved' %}</td>
-                  {% endif %}
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-          <button type="button" class="btn btn-primary btn-block"><i class="fa fa-download"></i> Download CSV</button>
-        </div>
+            {% empty %}
+              <p>{% trans 'There are no grades available.' %}</p>
+            {% endfor %}
+          </tbody>
+        </table>
+        <a href="#" class="btn btn-primary btn-block">
+          <i class="fa fa-download"></i>
+          Download CSV
+        </a>
       </div>
-    {% endif %}
+    </div>
   </div>
 {% endblock %}

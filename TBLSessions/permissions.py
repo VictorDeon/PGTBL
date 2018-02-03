@@ -19,7 +19,6 @@ def monitor_can_change_if_is_teacher(permission, user, view):
 
     return False
 
-
 @register_object_checker()
 def show_sessions_permission(permission, user, view):
     """
@@ -44,7 +43,7 @@ def show_tbl_session(permission, user, view):
     """
 
     discipline = view.get_discipline()
-    session = view.get_object()
+    session = view.get_session()
 
     if session.is_closed and \
        user not in discipline.monitors.all() and \
@@ -52,3 +51,17 @@ def show_tbl_session(permission, user, view):
         return False
 
     return True
+
+
+@register_object_checker()
+def only_teacher_can_change(permission, user, view):
+    """
+    Only the discipline teacher can change the student grades
+    """
+
+    discipline = view.get_discipline()
+
+    if user == discipline.teacher:
+        return True
+
+    return False
