@@ -283,7 +283,6 @@ class AnswerIRATQuestionView(FormView):
 
         return score
 
-
     def get_form_scores(self, forms):
         """
         Get the total scores from forms.

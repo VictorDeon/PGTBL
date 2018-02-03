@@ -43,6 +43,12 @@ grade_patterns = [
         views_grade.GradeListView.as_view(),
         name='grade-list'
     ),
+    # /<student.id>/edit/
+    url(
+        r'^(?P<pk>[0-9]+)/edit/$',
+        views_grade.GradeUpdateView.as_view(),
+        name='grade-update'
+    ),
 ]
 
 urlpatterns = [

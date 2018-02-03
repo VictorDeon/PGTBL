@@ -65,13 +65,15 @@
                 <tr>
                   <td>{{grade.group.title}}</td>
                   <td>
-                    <a href="#">{{grade.user.username}}</a>
+                    <a href="{% url 'TBLSessions:grade-update' discipline.slug grade.user.id %}">
+                      {{grade.user.username}}
+                    </a>
                   </td>
                   <td>{{grade.irat}}</td>
                   <td>{{grade.grat}}</td>
                   <td>{{grade.practical}}</td>
                   <td>{{grade.peer_review}}</td>
-                  <td>{{grade.calcule_session_grade}}</td>
+                  <td>{{grade.calcule_session_grade|floatformat}}</td>
                 </tr>
               {% endfor %}
             </tbody>
