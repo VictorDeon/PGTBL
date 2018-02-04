@@ -4,9 +4,9 @@
 {% load i18n %}
 
 {% block css %}
-  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
-  <link rel="stylesheet" href="{% static 'TBLSessions/css/edit.css' %}" />
-  <link href="{% static 'core/css/markdown.css' %}" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'TBLSessions/css/edit.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'core/css/markdown.css' %}" type="text/css" />
   {{form.media}}
 {% endblock %}
 
@@ -84,27 +84,141 @@
           <!-- Session description preview -->
           <fieldset>
             <legend>{% trans 'Preview' %}</legend>
-            <div class="col-sm-12">
-              <div class="markdown-preview white"></div>
+            <div class="col-sm-12 preview">
+              <div class="markdown-preview"></div>
+            </div>
+          </fieldset>
+
+          <!-- Exams configuration -->
+          <fieldset>
+            <legend>{% trans 'Exams' %}</legend>
+            <!-- iRAT datetime -->
+            <div class="form-group">
+              <label class="white" for="{{form.irat_datetime.id_for_label}}">
+                {{form.irat_datetime.label}}
+              </label>
+
+              <input
+                type="datetime-local"
+                id="{{form.irat_datetime.id_for_label}}"
+                name="{{form.irat_datetime.name}}"
+                class="form-control"
+                value="{{form.irat_datetime.value|date:"Y-m-d\TH:i"}}"
+              />
+              <span class="white">{{ form.irat_datetime.value }}</span>
+            </div>
+
+            <!-- iRAT weight -->
+            <div class="form-group">
+              <label class="white" for="{{form.irat_weight.id_for_label}}">
+                {{form.irat_weight.label}}
+              </label>
+
+              {% render_field form.irat_weight class="form-control" %}
+            </div>
+
+            <!-- iRAT duration -->
+            <div class="form-group">
+              <label class="white" for="{{form.irat_duration.id_for_label}}">
+                {{form.irat_duration.label}}
+              </label>
+
+              <input
+                type="number"
+                id="{{form.irat_duration.id_for_label}}"
+                min="0"
+                name="{{form.irat_duration.name}}"
+                class="form-control"
+                value="{{ form.irat_duration.value }}"
+              />
+            </div>
+
+            <hr />
+
+            <!-- gRAT datetime -->
+            <div class="form-group">
+              <label class="white" for="{{form.grat_datetime.id_for_label}}">
+                {{form.grat_datetime.label}}
+              </label>
+
+              <input
+                type="datetime-local"
+                id="{{form.grat_datetime.id_for_lable}}"
+                name="{{form.grat_datetime.name}}"
+                class="form-control"
+                value="{{form.grat_datetime.value|date:"Y-m-d\TH:i"}}"
+              />
+              <span class="white">{{ form.grat_datetime.value }}</span>
+            </div>
+
+            <!-- gRAT weight -->
+            <div class="form-group">
+              <label class="white" for="{{form.grat_weight.id_for_label}}">
+                {{form.grat_weight.label}}
+              </label>
+
+              {% render_field form.grat_weight class="form-control" %}
+            </div>
+
+            <!-- gRAT duration -->
+            <div class="form-group">
+              <label class="white" for="{{form.grat_duration.id_for_label}}">
+                {{form.grat_duration.label}}
+              </label>
+
+              <input
+                type="number"
+                id="{{form.grat_duration.id_for_label}}"
+                min="0"
+                name="{{form.grat_duration.name}}"
+                class="form-control"
+                value="{{ form.grat_duration.value }}"
+              />
+            </div>
+
+            <hr />
+
+            <!-- Practical Test -->
+            <div class="form-group white">
+              <label>
+                {% render_field form.practical_available type="checkbox" %}
+                {% trans 'Make practical test available' %}
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="white" for="{{form.practical_weight.id_for_label}}">
+                {{form.practical_weight.label}}
+              </label>
+
+              {% render_field form.practical_weight class="form-control" %}
+            </div>
+
+            <hr />
+
+            <!-- Peer Review test -->
+            <div class="form-group white">
+              <label>
+                {% render_field form.peer_review_available type="checkbox" %}
+                {% trans 'Make peer review test available' %}
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="white" for="{{form.peer_review_weight.id_for_label}}">
+                {{form.peer_review_weight.label}}
+              </label>
+
+              {% render_field form.peer_review_weight class="form-control" %}
             </div>
           </fieldset>
 
           <!-- Is closed field -->
-          <div class="{% if form.is_closed.errors %}alert alert-warning{% endif %}">
-            <!-- Input group -->
-            <div class="form-group white">
-              <label>
-                {% render_field form.is_closed type="checkbox" %}
-                {% trans 'Close session' %}
-              </label>
-            </div>
-
-            <!-- Field errors -->
-            {% for error in form.is_closed.errors %}
-              <span class="error">
-                {{ error }}
-              </span>
-            {% endfor %}
+          <div class="form-group white">
+            <label>
+              {% render_field form.is_closed type="checkbox" %}
+              {% trans 'Make session unavailable' %}
+            </label>
           </div>
 
           <!-- Submit button -->

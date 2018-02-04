@@ -10,7 +10,12 @@
 {% block breadcrumb %}
   {{ block.super }}
   <li>
-    <a href="{% url 'questions:result' discipline.slug session.id %}">
+    <a href="{% url 'questions:list' discipline.slug session.id %}">
+       {% trans 'Exercise list' %}
+    </a>
+  </li>
+  <li>
+    <a href="{% url 'questions:exercise-result' discipline.slug session.id %}">
        {% trans 'Exercise list result' %}
     </a>
   </li>
@@ -55,7 +60,7 @@
                   </h4>
                 </div>
                 <div class="row">
-                  <a href="{% url 'questions:reset-exercise' discipline.slug session.id %}"
+                  <a href="{% url 'questions:exercise-reset' discipline.slug session.id %}"
                      class="btn btn-primary reset pull-right">
                      <i class="fa fa-mail-reply"></i>
                      {% trans 'Reset' %}
@@ -76,32 +81,17 @@
             <thead>
               <tr>
                 <th>{% trans 'Question' %}</th>
-                <th>{% trans 'Marked options' %}</th>
-                <th>{% trans 'Correct Option' %}</th>
+                <th>{% trans 'Correct option' %}</th>
               </tr>
             </thead>
             <tbody class="text-justify">
-                {% for question in questions %}
+                {% for submission in submissions %}
                   <tr>
-                    <td>{{forloop.counter}}) {{question.title}}</td>
+                    <td>{{forloop.counter}}) {{submission.question.title}}</td>
                     <td>
-                      <ul>
-                        {% for alternative in question.alternatives.all %}
-                          <li>
-                            <span class="label label-primary">{{alternative.score}}</span>
-                            {{alternative.alternative_title}}
-                          </li>
-                        {% endfor %}
-                      </ul>
+                      <span class="label label-primary">{{submission.score}}</span>
+                      {{submission.correct_alternative}}
                     </td>
-                    {% for alternative in question.alternatives.all %}
-                      {% if alternative.is_correct %}
-                        <td>
-                          <span class="label label-primary">{{alternative.score}}</span>
-                          {{alternative.alternative_title}}
-                        </td>
-                      {% endif %}
-                    {% endfor %}
                   </tr>
                 {% endfor %}
             </tbody>
@@ -110,17 +100,17 @@
         <div class="panel-footer">
           <div class="row">
             <div class="col-sm-10">
-              <a href="{% url 'questions:result-csv' discipline.slug session.id %}"
+              <a href="{% url 'questions:exercise-result-csv' discipline.slug session.id %}"
                  class="btn btn-primary btn-block">
                  <i class="fa fa-download"></i>
-                 {% trans 'Download' %}
+                 {% trans 'Download CSV' %}
               </a>
             </div>
             <div class="col-sm-2">
               <p><b>{% trans 'Total' %}</b> = {{result.score}}/{{result.total}}</p>
               <p>
                 <b>{% trans 'Grade' %}</b> =
-                {% if result.grade >= 5 %}
+                {% if result.grade >= "5" %}
                   <span class="text-success">{{result.grade}}</span>
                 {% else %}
                   <span class="text-danger">{{result.grade}}</span>

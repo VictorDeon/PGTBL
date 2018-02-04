@@ -11,6 +11,7 @@ from django.views.generic import (
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
+from TBLSessions.utils import get_datetimes
 from .models import SessionFile
 from .forms import SessionFileForm
 
@@ -59,7 +60,11 @@ class ListSessionFileView(LoginRequiredMixin,
         Insert discipline, session and form into file context data.
         """
 
+        irat_datetime, grat_datetime = get_datetimes(self.get_session())
+
         context = super(ListSessionFileView, self).get_context_data(**kwargs)
+        context['irat_datetime'] = irat_datetime
+        context['grat_datetime'] = grat_datetime
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
         context['form'] = SessionFileForm()
@@ -222,7 +227,11 @@ class EditSessionFileView(LoginRequiredMixin,
         Insert a discipline and session inside file form template.
         """
 
+        irat_datetime, grat_datetime = get_datetimes(self.get_session())
+
         context = super(EditSessionFileView, self).get_context_data(**kwargs)
+        context['irat_datetime'] = irat_datetime
+        context['grat_datetime'] = grat_datetime
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
         return context

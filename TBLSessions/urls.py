@@ -38,5 +38,8 @@ session_patterns = [
 
 urlpatterns = [
     # /profile/<discipline.slug>/sessions/...
-    url(r'^profile/(?P<slug>[\w_-]+)/sessions/', include(session_patterns)),
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/sessions/',
+        include(session_patterns)
+    ),
 ]

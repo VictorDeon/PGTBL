@@ -1,0 +1,81 @@
+{% extends 'TBLSessions/details.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}">
+  <link rel="stylesheet" href="{% static 'grades/css/list.css' %}" />
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'grades:list' discipline.slug session.id %}">
+       {% trans 'Grades' %}
+    </a>
+  </li>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="page-header fix-row">
+      <h1 class="white">
+        <i class="fa fa-graduation-cap"></i>
+        {% trans 'Grades' %}<br />
+        <small>{{discipline.title}}</small>
+      </h1>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <table class="table table-hover table-responsive">
+          <thead>
+            <tr class="gradient">
+              <th colspan="2">{% trans 'Students' %}</th>
+              <th colspan="5">{% trans 'Sessions' %}</th>
+            </tr>
+            <tr>
+              <th>{% trans 'Group' %}</th>
+              <th>{% trans 'Username' %}</th>
+              <th>iRAT</th>
+              <th>gRAT</th>
+              <th>{% trans 'Practical Test' %}</th>
+              <th>{% trans 'Peer Review' %}</th>
+              <th>{% trans 'TBL grade' %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for grade in grades %}
+              <tr>
+                <td>{{grade.group.title}}</td>
+                {% if user == discipline.teacher %}
+                  <td>
+                    <a href="{% url 'grades:update' discipline.slug session.id grade.student.id %}">
+                      {{grade.student.username}}
+                    </a>
+                  </td>
+                {% else %}
+                  <td>{{grade.student.username}}</td>
+                {% endif %}
+                <td>{{grade.irat}}</td>
+                <td>{{grade.grat}}</td>
+                <td>{{grade.practical}}</td>
+                <td>{{grade.peer_review}}</td>
+                {% if grade.calcule_session_grade > 5 %}
+                  <td class="text-success">{{grade.calcule_session_grade|floatformat}}</td>
+                {% else %}
+                  <td class="text-danger">{{grade.calcule_session_grade|floatformat}}</td>
+                {% endif %}
+              </tr>
+            {% empty %}
+              <tr><td>{% trans 'There are no grades.' %}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <a href="{% url 'grades:session-csv' discipline.slug session.id %}" class="btn btn-primary btn-block">
+          <i class="fa fa-download"></i>
+          Download CSV
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

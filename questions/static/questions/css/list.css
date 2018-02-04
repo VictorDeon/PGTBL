@@ -69,3 +69,16 @@
   width: 100%;
   margin-bottom: 10px;
 }
+
+/* iRAT */
+.time {
+  position:relative;
+  bottom: 25px;
+  left: 25px;
+}
+
+.date {
+  position: relative;
+  top: 20px;
+  left: 50px;
+}

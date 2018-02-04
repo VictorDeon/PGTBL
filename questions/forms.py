@@ -19,7 +19,7 @@ class AlternativeForm(forms.ModelForm):
 
     class Meta:
         model = Alternative
-        fields = ['alternative_title', 'is_correct']
+        fields = ['title', 'is_correct']
 
 
 # Djanho allows edit a collection of form in the same page.
@@ -33,17 +33,18 @@ AlternativeFormSet = forms.inlineformset_factory(
 )
 
 
-class AnswerQuestionForm(forms.ModelForm):
+class AnswerQuestionForm(forms.Form):
     """
     Form to insert scores from each alternative.
     """
 
-    class Meta:
-        model = Alternative
-        fields = ['score']
+    score = forms.IntegerField(
+        initial=0,
+        max_value=4,
+        min_value=0
+    )
 
-
-# Insert a form to each alternative of question (4 forms)
+# # Insert a form to each alternative of question (4 forms)
 AnswerQuestionFormSet = forms.formset_factory(
     AnswerQuestionForm,
     extra=4

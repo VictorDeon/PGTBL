@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'', include('files.urls')),
     url(r'', include('TBLSessions.urls')),
     url(r'', include('questions.urls')),
+    url(r'', include('grades.urls')),
 ]
 
 # While in development mode we will use relative URL for static and average

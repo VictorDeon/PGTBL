@@ -1,0 +1,36 @@
+.panel {
+  margin-top: 10px;
+  height: 475px;
+  overflow-y: auto;
+}
+
+.approved {
+  color: green;
+}
+
+.disapproved {
+  color: red;
+}
+
+ul > li > a {
+  color: white;
+}
+
+tbody > tr > td > a:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+thead > tr {
+  border: 1px solid #DDDDDD;
+  background-color: #286090;
+  color: white;
+}
+
+th {
+  border: 2px solid #DDDDDD;
+}
+
+tr > th, tr > td {
+  text-align: center;
+}

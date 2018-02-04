@@ -1,4 +1,5 @@
 from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
 from TBLSessions.models import TBLSession
 from django.db import models
 
@@ -17,7 +18,7 @@ class Question(models.Model):
     session = models.ForeignKey(
         TBLSession,
         on_delete=models.CASCADE,
-        verbose_name='questions'
+        related_name='questions'
     )
 
     LEVELS = {
@@ -38,12 +39,6 @@ class Question(models.Model):
         _('Topic'),
         max_length=100,
         help_text=_('Question topic.')
-    )
-
-    score = models.PositiveIntegerField(
-        _('Score'),
-        default=0,
-        help_text=_('Question score.')
     )
 
     is_exercise = models.BooleanField(
@@ -88,25 +83,10 @@ class Alternative(models.Model):
     Question alternatives.
     """
 
-    alternative_title = models.CharField(
+    title = models.CharField(
         _('Title'),
         max_length=1000,
         help_text=_('Alternative title.')
-    )
-
-    SCORES = (
-        (0, '0'),
-        (1, '1'),
-        (2, '2'),
-        (3, '3'),
-        (4, '4')
-    )
-
-    score = models.PositiveIntegerField(
-        _('Score'),
-        choices=SCORES,
-        default=0,
-        help_text=_('Alternative score.')
     )
 
     is_correct = models.BooleanField(
@@ -138,9 +118,77 @@ class Alternative(models.Model):
         Alternative of question string.
         """
 
-        return self.alternative_title
+        return self.title
 
     class Meta:
         verbose_name = _('Alternative')
         verbose_name_plural = _('Alternatives')
-        ordering = ['alternative_title', 'created_at']
+        ordering = ['title', 'created_at']
+
+
+class Submission(models.Model):
+    """
+    Store all submissions for a given question.
+    """
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name=_('Users'),
+        related_name="submissions"
+    )
+
+    question = models.ForeignKey(
+        Question,
+        on_delete=models.CASCADE,
+        verbose_name=_("Questions"),
+        related_name="submissions"
+    )
+
+    correct_alternative = models.CharField(
+        _('Correct Alternative'),
+        max_length=1000,
+        help_text=_('Correct alternative title.')
+    )
+
+    EXAMS = (
+        ('iRAT', 'iRAT'),
+        ('gRAT', 'gRAT'),
+        ('Exercise', 'Exercise')
+    )
+
+    exam = models.CharField(
+        max_length=10,
+        choices=EXAMS,
+        default='Exercise'
+    )
+
+    score = models.PositiveIntegerField(
+        _("Score"),
+        default=0,
+        help_text=_("Question score answered."),
+    )
+
+    created_at = models.DateTimeField(
+        _('Created at'),
+        help_text=_("Date that the submission of question is created."),
+        auto_now_add=True
+    )
+
+    def __str__(self):
+        """
+        Alternative of question string.
+        """
+
+        obj = "{0}: {1} - {2}".format(
+            self.user.get_short_name(),
+            self.exam,
+            self.question
+        )
+
+        return obj
+
+    class Meta:
+        verbose_name = _('Submission')
+        verbose_name_plural = _('Submissions')
+        ordering = ['user', 'exam', 'question', 'created_at']

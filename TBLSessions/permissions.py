@@ -1,7 +1,4 @@
 from rolepermissions.permissions import register_object_checker
-from django.contrib.auth import get_user_model
-
-User = get_user_model()
 
 
 @register_object_checker()
@@ -18,7 +15,6 @@ def monitor_can_change_if_is_teacher(permission, user, view):
         return True
 
     return False
-
 
 @register_object_checker()
 def show_sessions_permission(permission, user, view):

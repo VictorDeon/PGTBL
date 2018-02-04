@@ -20,6 +20,14 @@
        title="{% trans 'Files' %}">
        <i class="fa fa-folder-open-o icon-lg"></i>
     </a>
+    <!-- Session grade menu -->
+    <a href="{% url 'grades:list' discipline.slug session.id %}"
+       class="btn"
+       data-toggle="tooltip"
+       data-placement="right"
+       title="{% trans 'Session Grades' %}">
+       <i class="fa fa-graduation-cap icon-lg"></i>
+    </a>
     <!-- Session exercise menu -->
     <a href="{% url 'questions:list' discipline.slug session.id %}"
        class="btn"
@@ -37,21 +45,43 @@
        <i class="fa fa-bar-chart icon-lg"></i>
     </a>
     <!-- Session iRAT menu -->
-    <a href="#"
-       class="btn"
-       data-toggle="tooltip"
-       data-placement="right"
-       title="{% trans 'Test iRAT' %}">
-       <i class="fa fa-street-view icon-lg"></i>
-    </a>
+    {% if date > irat_datetime and user in discipline.students.all %}
+      <a href="{% url 'questions:irat-result' discipline.slug session.id %}"
+         class="btn"
+         data-toggle="tooltip"
+         data-placement="right"
+         title="{% trans 'Test iRAT Result' %}">
+         <i class="fa fa-street-view icon-lg"></i>
+      </a>
+    {% else %}
+      <a href="{% url 'questions:irat-list' discipline.slug session.id %}"
+         class="btn"
+         data-toggle="tooltip"
+         data-placement="right"
+         title="{% trans 'Test iRAT' %}">
+         <i class="fa fa-street-view icon-lg"></i>
+      </a>
+    {% endif %}
+
     <!-- Session gRAT menu -->
-    <a href="#"
-       class="btn"
-       data-toggle="tooltip"
-       data-placement="right"
-       title="{% trans 'Test gRAT' %}">
-       <i class="fa fa-group icon-lg"></i>
-    </a>
+    {% if date > grat_datetime and user in discipline.students.all %}
+      <a href="#"
+         class="btn"
+         data-toggle="tooltip"
+         data-placement="right"
+         title="{% trans 'Test gRAT Result' %}">
+         <i class="fa fa-group icon-lg"></i>
+      </a>
+    {% else %}
+      <a href="#"
+         class="btn"
+         data-toggle="tooltip"
+         data-placement="right"
+         title="{% trans 'Test gRAT' %}">
+         <i class="fa fa-group icon-lg"></i>
+      </a>
+    {% endif %}
+
     <!-- Session practical menu -->
     <a href="#"
        class="btn"
@@ -60,6 +90,7 @@
        title="{% trans 'Test practical' %}">
        <i class="fa fa-crosshairs icon-lg"></i>
     </a>
+
     <!-- Session peer test menu -->
     <a href="#"
        class="btn"
@@ -68,7 +99,8 @@
        title="{% trans 'Test Peer' %}">
        <i class="fa fa-vcard-o icon-lg"></i>
     </a>
-    <!-- Session gRAT menu -->
+
+    <!-- Session appeal menu -->
     <a href="#"
        class="btn"
        data-toggle="tooltip"

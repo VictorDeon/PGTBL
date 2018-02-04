@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from . import views
+from . import views_question, views_exercise, views_irat
 
 app_name = 'questions'
 
@@ -7,59 +7,95 @@ questions_patterns = [
     # /
     url(
         r'^$',
-        views.ExerciseListView.as_view(),
+        views_question.ExerciseListView.as_view(),
         name='list'
-    ),
-    # /result/
-    url(
-        r'^result/$',
-        views.ExerciseResultView.as_view(),
-        name='result'
-    ),
-    # /result/csv/
-    url(
-        r'^result/csv/$',
-        views.get_csv,
-        name='result-csv'
-    ),
-    # /result/reset/
-    url(
-        r'^result/reset/$',
-        views.ResetExerciseView.as_view(),
-        name='reset-exercise'
     ),
     # /add-question/
     url(
         r'^add-question/$',
-        views.CreateQuestionView.as_view(),
+        views_question.CreateQuestionView.as_view(),
         name='create-question'
     ),
-    # /question/question.id/edit/
+    # /question.id/edit/
     url(
-        r'^question/(?P<question_id>[0-9]+)/edit/$',
-        views.UpdateQuestionView.as_view(),
+        r'^(?P<question_id>[0-9]+)/edit/$',
+        views_question.UpdateQuestionView.as_view(),
         name='update-question'
     ),
-    # /question/question.id/delete/
+    # /question.id/delete/
     url(
-        r'^question/(?P<question_id>[0-9]+)/delete/$',
-        views.DeleteQuestionView.as_view(),
+        r'^(?P<question_id>[0-9]+)/delete/$',
+        views_question.DeleteQuestionView.as_view(),
         name='delete-question'
     ),
-    # /question/question.id/answer-page/<page_obj.number>/
+]
+
+exercise_patterns = [
+    # /result/
+    url(
+        r'^result/$',
+        views_exercise.ExerciseResultView.as_view(),
+        name='exercise-result'
+    ),
+    # /result/csv/
+    url(
+        r'^result/csv/$',
+        views_exercise.get_csv,
+        name='exercise-result-csv'
+    ),
+    # /result/reset/
+    url(
+        r'^result/reset/$',
+        views_exercise.ResetExerciseView.as_view(),
+        name='exercise-reset'
+    ),
+    # /question/<question.id>/answer-page/<page_obj.number>/
     url(
         r'^question/(?P<question_id>[0-9]+)/answer-page/(?P<question_page>[0-9]+)/$',
-        views.AnswerQuestionView.as_view(),
-        name='answer-question'
+        views_exercise.AnswerQuestionView.as_view(),
+        name='exercise-answer-question'
     )
 ]
 
-alternatives_patterns = []
+irat_patterns = [
+    # /
+    url(
+        r'^$',
+        views_irat.IRATView.as_view(),
+        name='irat-list'
+    ),
+    # /result/
+    url(
+        r'^result/$',
+        views_irat.IRATResultView.as_view(),
+        name='irat-result'
+    ),
+    # /result/csv/
+    url(
+        r'^result/csv/$',
+        views_irat.get_csv,
+        name='irat-result-csv'
+    ),
+    # /question/<question.id>/answer-page/<page_obj.number>/
+    url(
+        r'^question/(?P<question_id>[0-9]+)/answer-page/(?P<question_page>[0-9]+)/$',
+        views_irat.AnswerIRATQuestionView.as_view(),
+        name='irat-answer-question'
+    ),
+]
 
 urlpatterns = [
     # /profile/<discipline.slug>/sessions/<session.id>/exercises/...
     url(
-        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/exercises/',
+        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/questions/',
         include(questions_patterns)
+    ),
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/exercises/',
+        include(exercise_patterns)
+    ),
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/irat/',
+        include(irat_patterns)
     ),
 ]

@@ -20,6 +20,7 @@ TBL_APPS = [
     'files',
     'TBLSessions',
     'questions',
+    'grades',
 ]
 
 EXTERNAL_APPS = [

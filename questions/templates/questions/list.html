@@ -121,142 +121,66 @@
                   {% endif %}
                 </div>
                 <hr />
-                {% if not question.show_answer %}
-                  <form action="{% url 'questions:answer-question' discipline.slug session.id question.id page_obj.number %}" method="POST">
-                    {% csrf_token %}
+                <form action="{% url 'questions:exercise-answer-question' discipline.slug session.id question.id page_obj.number %}" method="POST">
+                  {% csrf_token %}
 
-                    <div class="row">
-                      <div class="col-sm-1">
-                        <div class="form-group">
-                            <!-- Score field -->
-                            {% render_field form1.score class="form-control" %}
-                        </div>
-                      </div>
-                      <div class="col-sm-11">
-                        <h4 class="text-justify">
-                          {{question.alternatives.all.0.alternative_title}}
-                          {% if question.show_answer %}
-                            {% if question.alternatives.all.0.is_correct %}
-                              <span class="label label-success pull-right">
-                                {% trans 'Correct.' %}
-                              </span>
-                            {% else %}
-                              <span class="label label-danger pull-right">
-                                {% trans 'Wrong.' %}
-                              </span>
-                            {% endif %}
-                          {% endif %}
-                        </h4>
+                  <div class="row">
+                    <div class="col-sm-1">
+                      <div class="form-group">
+                          <!-- Score field -->
+                          {% render_field form1.score class="form-control" %}
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-sm-1">
-                        <div class="form-group">
-                            <!-- Score field -->
-                            {% render_field form2.score class="form-control" %}
-                        </div>
-                      </div>
-                      <div class="col-sm-11">
-                        <h4 class="text-justify">
-                          {{question.alternatives.all.1.alternative_title}}
-                          {% if question.show_answer %}
-                            {% if question.alternatives.all.1.is_correct %}
-                              <span class="label label-success pull-right">
-                                {% trans 'Correct.' %}
-                              </span>
-                            {% else %}
-                              <span class="label label-danger pull-right">
-                                {% trans 'Wrong.' %}
-                              </span>
-                            {% endif %}
-                          {% endif %}
-                        </h4>
+                    <div class="col-sm-11">
+                      <h4 class="text-justify">
+                        {{question.alternatives.all.0.title}}
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-1">
+                      <div class="form-group">
+                          <!-- Score field -->
+                          {% render_field form2.score class="form-control" %}
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-sm-1">
-                        <div class="form-group">
-                            <!-- Score field -->
-                            {% render_field form3.score class="form-control" %}
-                        </div>
-                      </div>
-                      <div class="col-sm-11">
-                        <h4 class="text-justify">
-                          {{question.alternatives.all.2.alternative_title}}
-                          {% if question.show_answer %}
-                            {% if question.alternatives.all.2.is_correct %}
-                              <span class="label label-success pull-right">
-                                {% trans 'Correct.' %}
-                              </span>
-                            {% else %}
-                              <span class="label label-danger pull-right">
-                                {% trans 'Wrong.' %}
-                              </span>
-                            {% endif %}
-                          {% endif %}
-                        </h4>
+                    <div class="col-sm-11">
+                      <h4 class="text-justify">
+                        {{question.alternatives.all.1.title}}
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-1">
+                      <div class="form-group">
+                          <!-- Score field -->
+                          {% render_field form3.score class="form-control" %}
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-sm-1">
-                        <div class="form-group">
-                            <!-- Score field -->
-                            {% render_field form4.score class="form-control" %}
-                        </div>
-                      </div>
-                      <div class="col-sm-11">
-                        <h4 class="text-justify">
-                          {{question.alternatives.all.3.alternative_title}}
-                          {% if question.show_answer %}
-                            {% if question.alternatives.all.3.is_correct %}
-                              <span class="label label-success pull-right">
-                                {% trans 'Correct.' %}
-                              </span>
-                            {% else %}
-                              <span class="label label-danger pull-right">
-                                {% trans 'Wrong.' %}
-                              </span>
-                            {% endif %}
-                          {% endif %}
-                        </h4>
+                    <div class="col-sm-11">
+                      <h4 class="text-justify">
+                        {{question.alternatives.all.2.title}}
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-1">
+                      <div class="form-group">
+                          <!-- Score field -->
+                          {% render_field form4.score class="form-control" %}
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary submit-button center-block gradient">
-                      <i class="fa fa-edit"></i>
-                      {% trans 'Answer' %}
-                    </button>
+                    <div class="col-sm-11">
+                      <h4 class="text-justify">
+                        {{question.alternatives.all.3.title}}
+                      </h4>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary submit-button center-block gradient">
+                    <i class="fa fa-edit"></i>
+                    {% trans 'Answer' %}
+                  </button>
                 </form>
-                {% else %}
-                  {% for alternative in question.alternatives.all %}
-                    <div class="row">
-                      <div class="col-sm-11">
-                        <div class="media">
-                          <div class="media-left">
-                            <h4><b class="label label-primary">{{alternative.score}}</b></h4>
-                          </div>
-                          <div class="media-body">
-                            <h4 class="text-justify">
-                              {{alternative.alternative_title}}
-                            </h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-1">
-                        {% if alternative.is_correct %}
-                          <h4 class="label label-success pull-right">
-                            {% trans 'Correct.' %}
-                          </h4>
-                        {% else %}
-                          <h4 class="label label-danger pull-right">
-                            {% trans 'Wrong.' %}
-                          </h4>
-                        {% endif %}
-                      </div>
-                    </div>
-                  {% endfor %}
-                  <hr />
-                  <p><b>{% trans 'Score:' %}</b> {{question.score}}</p>
-                {% endif %}
               </div>
             </div>
           {% empty %}
