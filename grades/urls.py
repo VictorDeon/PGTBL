@@ -16,9 +16,21 @@ grade_patterns = [
         views.GradeUpdateView.as_view(),
         name='update'
     ),
+    # /session-csv/
+    url(
+        r'^session-csv/$',
+        views.get_session_grade_csv,
+        name='session-csv'
+    ),
 ]
 
 urlpatterns = [
+    # /final-csv/
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/grades/final-csv/',
+        views.get_final_grade_csv,
+        name='final-csv'
+    ),
     # /profile/<discipline.slug>/grades/
     url(
         r'^profile/(?P<slug>[\w_-]+)/grades/',

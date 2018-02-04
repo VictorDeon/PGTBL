@@ -54,7 +54,10 @@
             {% endfor %}
           </tbody>
         </table>
-        <button type="button" class="btn btn-primary btn-block"><i class="fa fa-download"></i> Download CSV</button>
+        <a href="{% url 'grades:final-csv' discipline.slug %}" class="btn btn-primary btn-block">
+          <i class="fa fa-download"></i>
+          Download CSV
+        </a>
       </div>
     </div>
   </div>

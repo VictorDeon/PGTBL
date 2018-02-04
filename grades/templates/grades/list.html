@@ -71,7 +71,7 @@
             {% endfor %}
           </tbody>
         </table>
-        <a href="#" class="btn btn-primary btn-block">
+        <a href="{% url 'grades:session-csv' discipline.slug session.id %}" class="btn btn-primary btn-block">
           <i class="fa fa-download"></i>
           Download CSV
         </a>
