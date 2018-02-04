@@ -47,12 +47,14 @@ class TBLSession(models.Model):
     irat_weight = models.PositiveIntegerField(
         _("iRAT weight"),
         default=3,
+        blank=True,
         help_text=_("iRAT test weight.")
     )
 
     irat_duration = models.PositiveIntegerField(
         _("iRAT durantion in minutes"),
         default=30,
+        blank=True,
         help_text=_("iRAT duration in minutes to be answered.")
     )
 
@@ -67,12 +69,14 @@ class TBLSession(models.Model):
     grat_weight = models.PositiveIntegerField(
         _("gRAT test weight"),
         default=2,
+        blank=True,
         help_text=_("gRAT test weight.")
     )
 
     grat_duration = models.PositiveIntegerField(
         _("gRAT durantion in minutes"),
         default=30,
+        blank=True,
         help_text=_("gRAT duration in minutes to be answered.")
     )
 
@@ -86,6 +90,7 @@ class TBLSession(models.Model):
     practical_weight = models.PositiveIntegerField(
         _("Practical test weight"),
         default=4,
+        blank=True,
         help_text=_("Practical test weight.")
     )
 
@@ -104,6 +109,7 @@ class TBLSession(models.Model):
     peer_review_weight = models.PositiveIntegerField(
         _("Peer review weight"),
         default=1,
+        blank=True,
         help_text=_("Peer review weight.")
     )
 
