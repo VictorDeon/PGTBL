@@ -11,9 +11,9 @@ from django.views.generic import (
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
+from TBLSessions.utils import get_datetimes
 from accounts.models import User
-from .models import TBLSession, Grade
-from .utils import get_datetimes
+from .models import Grade, FinalGrade
 from .forms import GradeForm
 
 
@@ -24,10 +24,10 @@ class GradeListView(LoginRequiredMixin,
     View to see all student grades of TBL sessions.
     """
 
-    template_name = 'TBLSessions/grade_list.html'
+    template_name = 'grades/list.html'
     context_object_name = 'grades'
 
-    permissions_required = ['show_tbl_session']
+    permissions_required = ['show_session_grades']
 
     def get_discipline(self):
         """
@@ -89,7 +89,7 @@ class GradeUpdateView(LoginRequiredMixin,
     """
 
     model = Grade
-    template_name = 'TBLSessions/grade_form.html'
+    template_name = 'grades/form.html'
     context_object_name = 'grade'
     form_class = GradeForm
 
@@ -129,7 +129,7 @@ class GradeUpdateView(LoginRequiredMixin,
         )
 
         grade = Grade.objects.get(
-            user=user
+            student=user
         )
 
         return grade
@@ -193,7 +193,7 @@ class GradeUpdateView(LoginRequiredMixin,
         session = self.get_session()
 
         success_url = reverse_lazy(
-            'TBLSessions:grade-list',
+            'grades:list',
             kwargs={
                 'slug': discipline.slug,
                 'pk': session.pk
@@ -201,3 +201,53 @@ class GradeUpdateView(LoginRequiredMixin,
         )
 
         return success_url
+
+
+class GradeResultView(LoginRequiredMixin,
+                      PermissionMixin,
+                      ListView):
+    """
+    Show the list of students with their final grade.
+    """
+
+    template_name = 'grades/result.html'
+    context_object_name = 'grades'
+
+    permissions_required = []
+
+    def get_discipline(self):
+        """
+        Take the discipline that the session belongs to
+        """
+
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_context_data(self, **kwargs):
+        """
+        Insert discipline and form into session context data.
+        """
+
+        context = super(GradeResultView, self).get_context_data(**kwargs)
+        context['discipline'] = self.get_discipline()
+        return context
+
+    def get_queryset(self):
+        """
+        Get the tbl sessions queryset from model database.
+        """
+
+        grades = []
+        discipline = self.get_discipline()
+
+        for student in discipline.students.all():
+            grade, created = FinalGrade.objects.get_or_create(
+                discipline=discipline,
+                student=student
+            )
+            grades.append(grade)
+
+        return grades

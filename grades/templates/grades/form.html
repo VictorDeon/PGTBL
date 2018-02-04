@@ -1,17 +1,17 @@
-{% extends 'TBLSessions/grade_list.html' %}
+{% extends 'grades/list.html' %}
 {% load widget_tweaks %}
 {% load static %}
 {% load i18n %}
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" type="text/css" />
-  <link rel="stylesheet" href="{% static 'TBLSessions/css/edit.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'grades/css/edit.css' %}" type="text/css" />
 {% endblock %}
 
 {% block breadcrumb %}
   {{ block.super }}
   <li>
-    <a href="{% url 'TBLSessions:grade-update' discipline.slug session.id grade.user.id %}">
+    <a href="{% url 'grades:update' discipline.slug session.id grade.student.id %}">
       {% trans 'Edit grade' %}
     </a>
   </li>
@@ -22,7 +22,7 @@
     <!-- Header -->
     <div class="page-header profile">
       <h1 class="white">
-        {% trans 'Edit' %} {{grade.user.get_short_name}} {% trans 'grade' %}
+        {% trans 'Edit' %} {{grade.student.get_short_name}} {% trans 'grade' %}
       </h1>
     </div>
 
@@ -30,7 +30,7 @@
     <div class="row">
       <div class="col-sm-12">
         <!-- Form without html5 validation -->
-        <form action="{% url 'TBLSessions:grade-update' discipline.slug session.id grade.user.id %}" method="post" novalidate>
+        <form action="{% url 'grades:update' discipline.slug session.id grade.student.id %}" method="post" novalidate>
           <!-- Form security -->
           {% csrf_token %}
 

@@ -1,7 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
-from pagedown.widgets import PagedownWidget
-from .models import TBLSession, Grade
 from django import forms
+from pagedown.widgets import PagedownWidget
+from .models import TBLSession
 
 
 class TBLSessionForm(forms.ModelForm):
@@ -38,13 +38,3 @@ class TBLSessionForm(forms.ModelForm):
                 show_preview=False
             )
         }
-
-
-class GradeForm(forms.ModelForm):
-    """
-    Form to update the students grade.
-    """
-
-    class Meta:
-        model = Grade
-        fields = ['irat', 'grat', 'practical', 'peer_review']

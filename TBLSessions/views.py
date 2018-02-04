@@ -294,7 +294,7 @@ class ShowSessionView(LoginRequiredMixin,
 
         return discipline
 
-    def get_session(self):
+    def get_object(self):
         """
         Get the session discipline.
         """
@@ -313,7 +313,7 @@ class ShowSessionView(LoginRequiredMixin,
         Insert discipline into tbl session context.
         """
 
-        session = self.get_session()
+        session = self.get_object()
         irat_datetime, grat_datetime = get_datetimes(session)
 
         context = super(ShowSessionView, self).get_context_data(**kwargs)

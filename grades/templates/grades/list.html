@@ -4,13 +4,13 @@
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}">
-  <link rel="stylesheet" href="{% static 'TBLSessions/css/grade_list.css' %}" />
+  <link rel="stylesheet" href="{% static 'grades/css/list.css' %}" />
 {% endblock %}
 
 {% block breadcrumb %}
   {{ block.super }}
   <li>
-    <a href="{% url 'TBLSessions:grade-list' discipline.slug session.id %}">
+    <a href="{% url 'grades:list' discipline.slug session.id %}">
        {% trans 'Grades' %}
     </a>
   </li>
@@ -49,12 +49,12 @@
                 <td>{{grade.group.title}}</td>
                 {% if user == discipline.teacher %}
                   <td>
-                    <a href="{% url 'TBLSessions:grade-update' discipline.slug session.id grade.user.id %}">
-                      {{grade.user.username}}
+                    <a href="{% url 'grades:update' discipline.slug session.id grade.student.id %}">
+                      {{grade.student.username}}
                     </a>
                   </td>
                 {% else %}
-                  <td>{{grade.user.username}}</td>
+                  <td>{{grade.student.username}}</td>
                 {% endif %}
                 <td>{{grade.irat}}</td>
                 <td>{{grade.grat}}</td>
@@ -67,7 +67,7 @@
                 {% endif %}
               </tr>
             {% empty %}
-              <p>{% trans 'There are no grades available.' %}</p>
+              <tr><td>{% trans 'There are no grades.' %}</td></tr>
             {% endfor %}
           </tbody>
         </table>

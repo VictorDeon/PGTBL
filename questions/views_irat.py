@@ -16,8 +16,8 @@ import csv
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
-from TBLSessions.models import Grade
 from TBLSessions.utils import get_datetimes
+from grades.models import Grade
 from groups.models import Group
 from .models import Question, Submission
 from .forms import AnswerQuestionForm
@@ -442,13 +442,13 @@ class IRATResultView(LoginRequiredMixin,
 
         grades = Grade.objects.filter(
             session=self.get_session(),
-            user=self.request.user
+            student=self.request.user
         )
 
         if grades.count() == 0 and self.request.user in discipline.students.all():
             Grade.objects.create(
                 session=self.get_session(),
-                user=self.request.user,
+                student=self.request.user,
                 group=self.get_student_group(),
                 irat=grade
             )

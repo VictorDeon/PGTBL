@@ -1,3 +1,20 @@
+{% extends 'disciplines/details.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}">
+  <link rel="stylesheet" href="{% static 'grades/css/list.css' %}" />
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'grades:result' discipline.slug %}">
+       {% trans 'Grades' %}
+    </a>
+  </li>
+{% endblock %}
 
 {% block content %}
   <div class="container-fluid">
@@ -23,17 +40,14 @@
             </tr>
           </thead>
           <tbody>
-            {% for student in discipline.students.all %}
+            {% for grade in grades %}
               <tr>
-                <td>{{student.username}}</td>
-                {% if final_grade is None %}
-                  <td>0.0</td>
-                  <td class="text-primary">{% trans 'In progress' %}</td>
-                {% elif final_grade >= 5 %}
-                  <td>{{final_grade}}</td>
+                <td>{{grade.student.username}}</td>
+                {% if grade.calcule_final_grade >= 5 %}
+                  <td>{{grade.calcule_final_grade|floatformat}}</td>
                   <td class="text-success">{% trans 'Approved' %}</td>
                 {% else %}
-                  <td>{{final_grade}}</td>
+                  <td>{{grade.calcule_final_grade|floatformat}}</td>
                   <td class="text-danger">{% trans 'Disapproved' %}</td>
                 {% endif %}
               </tr>
