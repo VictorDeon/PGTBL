@@ -118,21 +118,21 @@ grat_patterns = [
     # # /result/
     # url(
     #     r'^result/$',
-    #     views_irat.IRATResultView.as_view(),
-    #     name='irat-result'
+    #     views_grat.GRATResultView.as_view(),
+    #     name='grat-result'
     # ),
     # # /result/csv/
     # url(
     #     r'^result/csv/$',
-    #     views_irat.get_csv,
-    #     name='irat-result-csv'
+    #     views_grat.get_csv,
+    #     name='grat-result-csv'
     # ),
-    # # /question/<question.id>/answer-page/<page_obj.number>/
-    # url(
-    #     r'^question/(?P<question_id>[0-9]+)/answer-page/(?P<question_page>[0-9]+)/$',
-    #     views_irat.AnswerIRATQuestionView.as_view(),
-    #     name='irat-answer-question'
-    # ),
+    # /question/<question.id>/answer-page/<page_obj.number>/
+    url(
+        r'^question/(?P<question_id>[0-9]+)/answer-page/(?P<question_page>[0-9]+)/$',
+        views_grat.AnswerGRATQuestionView.as_view(),
+        name='grat-answer-question'
+    ),
 ]
 
 urlpatterns = [

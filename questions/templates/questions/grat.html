@@ -151,7 +151,7 @@
                   {% endif %}
                 </div>
                 <hr />
-                <form action="#" method="POST">
+                <form action="{% url 'questions:grat-answer-question' discipline.slug session.id question.id page_obj.number %}" method="POST">
                   {% csrf_token %}
 
                   <div class="row">

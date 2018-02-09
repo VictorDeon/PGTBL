@@ -93,11 +93,6 @@ class AnswerGRATQuestionForm(forms.Form):
 
     score = forms.ChoiceField(choices=SCORES)
 
-# # Insert a form to each alternative of question (4 forms)
-AnswerGRATQuestionFormSet = forms.formset_factory(
-    AnswerGRATQuestionForm,
-    extra=4
-)
 
 class GRATForm(forms.ModelForm):
     """

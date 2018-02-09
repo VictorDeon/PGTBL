@@ -216,213 +216,203 @@ class GRATDateUpdateView(LoginRequiredMixin, UpdateView):
 
         return success_url
 
-# class AnswerIRATQuestionView(FormView):
-#     """
-#     Answer the respective iRAT question.
-#     """
+class AnswerGRATQuestionView(FormView):
+    """
+    Answer the respective gRAT question.
+    """
 
-#     template_name = 'questions/irat-list.html'
-#     form_class = AnswerQuestionForm
+    template_name = 'questions/grat.html'
+    form_class = AnswerGRATQuestionForm
 
-#     # Permissions
-#     permissions_required = [
-#         'show_questions_permission',
-#         'irat_permissions'
-#     ]
+    # Permissions
+    permissions_required = [ ]
 
-#     def get_failure_redirect_path(self):
-#         """
-#         Get the failure redirect path.
-#         """
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
 
-#         messages.error(
-#             self.request,
-#             _("You are not authorized to do this action.")
-#         )
+        messages.error(
+            self.request,
+            _("You are not authorized to do this action.")
+        )
 
-#         failure_redirect_path = reverse_lazy(
-#             'TBLSessions:details',
-#             kwargs={
-#                 'slug': self.kwargs.get('slug', ''),
-#                 'pk': self.kwargs.get('pk', '')
-#             }
-#         )
+        failure_redirect_path = reverse_lazy(
+            'TBLSessions:details',
+            kwargs={
+                'slug': self.kwargs.get('slug', ''),
+                'pk': self.kwargs.get('pk', '')
+            }
+        )
 
-#         return failure_redirect_path
+        return failure_redirect_path
 
-#     def get_discipline(self):
-#         """
-#         Get the discipline from url kwargs.
-#         """
+    def get_discipline(self):
+        """
+        Get the discipline from url kwargs.
+        """
 
-#         discipline = Discipline.objects.get(
-#             slug=self.kwargs.get('slug', '')
-#         )
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
 
-#         return discipline
+        return discipline
 
-#     def get_session(self):
-#         """
-#         get the session from url kwargs.
-#         """
+    def get_session(self):
+        """
+        get the session from url kwargs.
+        """
 
-#         session = TBLSession.objects.get(
-#             pk=self.kwargs.get('pk', '')
-#         )
+        session = TBLSession.objects.get(
+            pk=self.kwargs.get('pk', '')
+        )
 
-#         return session
+        return session
 
-#     def get_object(self):
-#         """
-#         Get question by url kwargs.
-#         """
+    def get_object(self):
+        """
+        Get question by url kwargs.
+        """
 
-#         question = get_object_or_404(
-#             Question,
-#             pk=self.kwargs.get('question_id', '')
-#         )
+        question = get_object_or_404(
+            Question,
+            pk=self.kwargs.get('question_id', '')
+        )
 
-#         return question
+        return question
 
-#     def get_page(self):
-#         """
-#         Get the page that the questions is inserted.
-#         """
+    def get_page(self):
+        """
+        Get the page that the questions is inserted.
+        """
 
-#         page = self.kwargs.get('question_page', '')
+        page = self.kwargs.get('question_page', '')
 
-#         return page
+        return page
 
-#     def get_success_url(self):
-#         """
-#         After answer the question the same page.
-#         """
+    def get_success_url(self):
+        """
+        After answer the question the same page.
+        """
 
-#         success_url = reverse_lazy(
-#             'questions:irat-list',
-#             kwargs={
-#                 'slug': self.kwargs.get('slug', ''),
-#                 'pk': self.kwargs.get('pk', '')
-#             }
-#         )
+        success_url = reverse_lazy(
+            'questions:grat-list',
+            kwargs={
+                'slug': self.kwargs.get('slug', ''),
+                'pk': self.kwargs.get('pk', '')
+            }
+        )
 
-#         success_url += "?page={0}".format(self.get_page())
+        success_url += "?page={0}".format(self.get_page())
 
-#         return success_url
+        return success_url
 
-#     def post(self, request, *args, **kwargs):
-#         """
-#         Form to insert scores and answer question.
-#         """
+    def post(self, request, *args, **kwargs):
+        """
+        Form to insert scores and answer question.
+        """
 
-#         question = self.get_object()
+        question = self.get_object()
 
-#         form1 = AnswerQuestionForm(request.POST, prefix="alternative01")
-#         form2 = AnswerQuestionForm(request.POST, prefix="alternative02")
-#         form3 = AnswerQuestionForm(request.POST, prefix="alternative03")
-#         form4 = AnswerQuestionForm(request.POST, prefix="alternative04")
+        form1 = AnswerGRATQuestionForm(request.POST, prefix="alternative01")
+        form2 = AnswerGRATQuestionForm(request.POST, prefix="alternative02")
+        form3 = AnswerGRATQuestionForm(request.POST, prefix="alternative03")
+        form4 = AnswerGRATQuestionForm(request.POST, prefix="alternative04")
 
-#         success = False
+        success = False
 
-#         if form1.is_valid() and \
-#            form2.is_valid() and \
-#            form3.is_valid() and \
-#            form4.is_valid():
+        if form1.is_valid() and \
+           form2.is_valid() and \
+           form3.is_valid() and \
+           form4.is_valid():
 
-#             score = self.get_question_score(
-#                 question=question,
-#                 forms=[form1, form2, form3, form4]
-#             )
+            score = self.get_question_score(
+                question=question,
+                forms=[form1, form2, form3, form4]
+            )
 
-#             scores = self.get_form_scores(
-#                 forms=[form1, form2, form3, form4]
-#             )
+            success = self.validate_answer(
+                question=question,
+                forms=[form1, form2, form3, form4]
+            )
 
-#             success = self.validate_answer(scores, question)
+            correct_alternative = None
+            for alternative in question.alternatives.all():
+                if alternative.is_correct:
+                    correct_alternative = alternative
 
-#             correct_alternative = None
-#             for alternative in question.alternatives.all():
-#                 if alternative.is_correct:
-#                     correct_alternative = alternative
+            if success:
+                messages.success(
+                    self.request,
+                    _("Question answered successfully.")
+                )
 
-#             if success:
-#                 messages.success(
-#                     self.request,
-#                     _("Question answered successfully.")
-#                 )
+                submission = Submission.objects.create(
+                    user=self.request.user,
+                    question=question,
+                    correct_alternative=correct_alternative.title,
+                    exam='gRAT',
+                    score=score
+                )
 
-#                 submission = Submission.objects.create(
-#                     user=self.request.user,
-#                     question=question,
-#                     correct_alternative=correct_alternative.title,
-#                     exam='iRAT',
-#                     score=score
-#                 )
+        return redirect(self.get_success_url())
 
-#         return redirect(self.get_success_url())
+    def get_question_score(self, question, forms):
+        """
+        Get the score from correct alternative.
+        """
 
-#     def get_question_score(self, question, forms):
-#         """
-#         Get the score from correct alternative.
-#         """
+        form1, form2, form3, form4 = forms
+        score = 0
 
-#         form1, form2, form3, form4 = forms
-#         score = 0
+        if question.alternatives.all()[0].is_correct:
+            score = int(form1['score'].value())
+        elif question.alternatives.all()[1].is_correct:
+            score = int(form2['score'].value())
+        elif question.alternatives.all()[2].is_correct:
+            score = int(form3['score'].value())
+        else:
+            score = int(form4['score'].value())
 
-#         if question.alternatives.all()[0].is_correct:
-#             score = int(form1['score'].value())
-#         elif question.alternatives.all()[1].is_correct:
-#             score = int(form2['score'].value())
-#         elif question.alternatives.all()[2].is_correct:
-#             score = int(form3['score'].value())
-#         else:
-#             score = int(form4['score'].value())
-
-#         return score
-
-#     def get_form_scores(self, forms):
-#         """
-#         Get the total scores from forms.
-#         """
-
-#         scores = 0
-
-#         for form in forms:
-#             scores += int(form['score'].value())
-
-#         return scores
+        return score
 
 
-#     def validate_answer(self, scores, question):
-#         """
-#         Validate the submission.
-#         """
+    def validate_answer(self, question, forms):
+        """
+        Validate the submission.
+        """
 
-#         if 0 <= scores <= 4:
+        answers = [0, 1, 2, 4]
 
-#             submissions = Submission.objects.filter(
-#                 question=question,
-#                 user=self.request.user,
-#                 exam='iRAT'
-#             )
+        for form in forms:
+            if int(form['score'].value()) in answers:
+                answers.remove(int(form['score'].value()))
 
-#             if submissions.count() == 0:
-#                 return True
+        if len(answers) != 0:
 
-#             messages.error(
-#                 self.request,
-#                 _("You can only submit the question once.")
-#             )
+            messages.error(
+                self.request,
+                _("You can't repeat the options.")
+            )
 
-#             return False
+            return False
 
-#         messages.error(
-#             self.request,
-#             _("You only have 4 points to distribute to the \
-#               4 alternatives.")
-#         )
+        submissions = Submission.objects.filter(
+            question=question,
+            user=self.request.user,
+            exam='gRAT'
+        )
 
-#         return False
+        if submissions.count() != 0:
+
+            messages.error(
+                self.request,
+                _("You can only submit the question once.")
+            )
+
+            return False
+
+        return True
 
 
 # class IRATResultView(LoginRequiredMixin,
