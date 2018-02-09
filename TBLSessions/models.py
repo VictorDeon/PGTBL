@@ -141,7 +141,7 @@ class TBLSession(models.Model):
         content = self.description
         return mark_safe(markdown(content))
 
-    def practical_markdown(self):
+    def practical_test_markdown(self):
         """
         Transform practical test description in markdown and
         render in html with safe

@@ -38,3 +38,20 @@ class TBLSessionForm(forms.ModelForm):
                 show_preview=False
             )
         }
+
+class PracticalTestForm(forms.ModelForm):
+    """
+    Form to update the practical test.
+    """
+
+    class Meta:
+        model = TBLSession
+        fields = ['practical_description']
+
+        # Widgets about some fields
+        widgets = {
+            'practical_description': PagedownWidget(
+                css=("core/css/markdown.css"),
+                show_preview=False
+            )
+        }
