@@ -43,6 +43,22 @@
             </div>
           {% endfor %}
 
+          <!-- Practical Test -->
+          <div class="form-group white">
+            <label>
+              {% render_field form.practical_available type="checkbox" %}
+              {% trans 'Make practical test available' %}
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label class="white" for="{{form.practical_weight.id_for_label}}">
+              {{form.practical_weight.label}}
+            </label>
+
+            {% render_field form.practical_weight class="form-control" %}
+          </div>
+
           <!-- Practical test description field -->
           <div class="form-group">
             {% render_field form.practical_description class="form-control" rows="10" type="text" %}

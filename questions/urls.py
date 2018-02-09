@@ -64,6 +64,18 @@ irat_patterns = [
         views_irat.IRATView.as_view(),
         name='irat-list'
     ),
+    # /edit-date/
+    url(
+        r'^edit-date/$',
+        views_irat.IRATDateUpdateView.as_view(),
+        name='irat-date'
+    ),
+    # /edit-irat/
+    url(
+        r'^edit-irat/$',
+        views_irat.IRATUpdateView.as_view(),
+        name='irat-update'
+    ),
     # /result/
     url(
         r'^result/$',

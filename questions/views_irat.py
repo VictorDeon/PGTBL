@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib import messages
 from django.utils import timezone
 from django.views.generic import (
-    ListView, FormView
+    ListView, FormView, UpdateView
 )
 
 # CSV
@@ -20,10 +20,7 @@ from TBLSessions.utils import get_datetimes
 from grades.models import Grade
 from groups.models import Group
 from .models import Question, Submission
-from .forms import AnswerQuestionForm
-
-# Python imports
-from datetime import timedelta
+from .forms import AnswerQuestionForm, IRATDateForm, IRATForm
 
 
 class IRATView(LoginRequiredMixin,
@@ -97,6 +94,8 @@ class IRATView(LoginRequiredMixin,
         context['grat_datetime'] = grat_datetime
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
+        context['date_form'] = IRATDateForm()
+        context['irat_form'] = IRATForm()
         context['form1'] = AnswerQuestionForm(prefix="alternative01")
         context['form2'] = AnswerQuestionForm(prefix="alternative02")
         context['form3'] = AnswerQuestionForm(prefix="alternative03")
@@ -118,6 +117,93 @@ class IRATView(LoginRequiredMixin,
 
         return questions
 
+
+class IRATUpdateView(LoginRequiredMixin, UpdateView):
+    """
+    Update the iRAT duration and weight
+    """
+
+    model = TBLSession
+    template_name = 'questions/irat.html'
+    form_class = IRATForm
+
+    def form_valid(self, form):
+        """
+        Return the form with fields valided.
+        """
+
+        messages.success(self.request, _('iRAT updated successfully.'))
+
+        return super(IRATUpdateView, self).form_valid(form)
+
+    def get_success_url(self):
+        """
+        Get success url to redirect.
+        """
+
+        success_url = reverse_lazy(
+            'questions:irat-list',
+            kwargs={
+                'slug': self.kwargs.get('slug', ''),
+                'pk': self.kwargs.get('pk', '')
+            }
+        )
+
+        return success_url
+
+
+class IRATDateUpdateView(LoginRequiredMixin, UpdateView):
+    """
+    Update the iRAT date.
+    """
+
+    model = TBLSession
+    template_name = 'questions/irat.html'
+    form_class = IRATDateForm
+
+    def form_valid(self, form):
+        """
+        Return the form with fields valided.
+        """
+
+        now = timezone.localtime(timezone.now())
+
+        if form.instance.irat_datetime is None:
+
+            messages.error(
+                self.request,
+                _("iRAT date must to be filled in.")
+            )
+
+            return redirect(self.get_success_url())
+
+        if now > form.instance.irat_datetime:
+
+            messages.error(
+                self.request,
+                _("iRAT date must to be later than today's date.")
+            )
+
+            return redirect(self.get_success_url())
+
+        messages.success(self.request, _('iRAT date updated successfully.'))
+
+        return super(IRATDateUpdateView, self).form_valid(form)
+
+    def get_success_url(self):
+        """
+        Get success url to redirect.
+        """
+
+        success_url = reverse_lazy(
+            'questions:irat-list',
+            kwargs={
+                'slug': self.kwargs.get('slug', ''),
+                'pk': self.kwargs.get('pk', '')
+            }
+        )
+
+        return success_url
 
 class AnswerIRATQuestionView(FormView):
     """
@@ -335,7 +421,7 @@ class IRATResultView(LoginRequiredMixin,
     Show the result of iRAT test.
     """
 
-    template_name = 'questions/irat-result.html'
+    template_name = 'questions/irat_result.html'
     context_object_name = 'submissions'
 
     # Permissions

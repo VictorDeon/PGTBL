@@ -77,8 +77,24 @@
   left: 25px;
 }
 
+.time > a {
+  color: white;
+}
+
+.time > a:hover {
+  text-decoration: none;
+}
+
 .date {
   position: relative;
   top: 20px;
-  left: 50px;
+  left: 25px;
+}
+
+.date > a {
+  color: white;
+}
+
+.date > a:hover {
+  text-decoration: none;
 }
