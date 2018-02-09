@@ -77,3 +77,49 @@ class IRATDateForm(forms.ModelForm):
     class Meta:
         model = TBLSession
         fields = ['irat_datetime']
+
+# gRAT
+class AnswerGRATQuestionForm(forms.Form):
+    """
+    Form to insert scores from each alternative.
+    """
+
+    SCORES = (
+        (4, _('Option 01')),
+        (2, _('Option 02')),
+        (1, _('Option 03 ')),
+        (0, _('Option 04'))
+    )
+
+    score = forms.ChoiceField(choices=SCORES)
+
+# # Insert a form to each alternative of question (4 forms)
+AnswerGRATQuestionFormSet = forms.formset_factory(
+    AnswerGRATQuestionForm,
+    extra=4
+)
+
+class GRATForm(forms.ModelForm):
+    """
+    Form to update gRAT duration and weight.
+    """
+
+    class Meta:
+        model = TBLSession
+        fields = ['grat_duration', 'grat_weight']
+
+
+class GRATDateForm(forms.ModelForm):
+    """
+    Form to update datetime of gRAT test.
+    """
+
+    grat_datetime = forms.DateTimeField(
+        label=_("Date and time to provide the gRAT test"),
+        required=False,
+        input_formats=['%Y-%m-%dT%H:%M'] # '2016-04-06T17:18
+    )
+
+    class Meta:
+        model = TBLSession
+        fields = ['grat_datetime']

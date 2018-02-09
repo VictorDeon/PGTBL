@@ -73,7 +73,7 @@
          <i class="fa fa-group icon-lg"></i>
       </a>
     {% else %}
-      <a href="#"
+      <a href="{% url 'questions:grat-list' discipline.slug session.id %}"
          class="btn"
          data-toggle="tooltip"
          data-placement="right"
