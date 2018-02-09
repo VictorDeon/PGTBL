@@ -22,7 +22,8 @@
   <div class="container-fluid">
     <div class="page-header profile">
       <h1 class="white">
-        <i class="fa fa-leanpub"></i> {% trans 'Individual Readiness Assurance Test (iRAT)' %}<br />
+        <i class="fa fa-leanpub"></i>
+        {% trans 'Individual Readiness Assurance Test (iRAT)' %}<br />
         <small>{{discipline.title}} - {{session.title}}</small>
       </h1>
     </div>
@@ -49,25 +50,39 @@
                 </h4>
               </div>
               <div class="col-sm-5">
-                <h1 class="time text-right">
-                  <i class="fa fa-clock-o"></i>
-                  <a href="#"
-                     data-toggle="modal"
-                     data-target="#irat-update">
-                     {{session.irat_duration}}:00
-                  </a>
-                </h1>
-                {% include 'questions/irat_update.html' %}
+                {% if user == discipline.teacher %}
+                  <h1 class="time text-right">
+                    <i class="fa fa-clock-o"></i>
+                    <a href="#"
+                       data-toggle="modal"
+                       data-target="#irat-update">
+                       {{session.irat_duration}}:00
+                    </a>
+                  </h1>
+                  {% include 'questions/irat_update.html' %}
+                {% else %}
+                  <h1 class="time text-right">
+                    <i class="fa fa-clock-o"></i>
+                    {{session.irat_duration}}:00
+                  </h1>
+                {% endif %}
                 <br />
-                <h4 class="date text-right">
-                  <a href="#"
-                     data-toggle="modal"
-                     data-target="#irat-date">
-                     {{session.irat_datetime|date:"d/m/Y H:i"}}
-                  </a>
-                  <i class="fa fa-calendar"></i>
-                </h4>
-                {% include 'questions/irat_date.html' %}
+                {% if user == discipline.teacher %}
+                  <h4 class="date text-right">
+                    <a href="#"
+                       data-toggle="modal"
+                       data-target="#irat-date">
+                       {{session.irat_datetime|date:"d/m/Y H:i"}}
+                    </a>
+                    <i class="fa fa-calendar"></i>
+                  </h4>
+                  {% include 'questions/irat_date.html' %}
+                {% else %}
+                  <h4 class="date text-right">
+                    {{session.irat_datetime|date:"d/m/Y H:i"}}
+                    <i class="fa fa-calendar"></i>
+                  </h4>
+                {% endif %}
               </div>
             </div>
           </div>
