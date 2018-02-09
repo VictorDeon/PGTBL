@@ -24,10 +24,31 @@ class PracticalTestDetailView(LoginRequiredMixin,
 
     template_name = 'TBLSessions/practical_test.html'
     context_object_name = 'session'
+
     permissions_required = [
         'show_tbl_session',
         'show_practical_test',
     ]
+
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        messages.error(
+            self.request,
+            _("You are not authorized to do this action.")
+        )
+
+        failure_redirect_path = reverse_lazy(
+            'TBLSessions:details',
+            kwargs={
+                'slug': self.kwargs.get('slug', ''),
+                'pk': self.kwargs.get('pk', '')
+            }
+        )
+
+        return failure_redirect_path
 
     def get_discipline(self):
         """
