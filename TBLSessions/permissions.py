@@ -48,3 +48,19 @@ def show_tbl_session(permission, user, view):
         return False
 
     return True
+
+
+@register_object_checker()
+def show_practical_test(permission, user, view):
+    """
+    Permission that allows only enter in practical test is it's available.
+    """
+
+    discipline = view.get_discipline()
+    session = view.get_object()
+
+    if session.practical_available or \
+       user == discipline.teacher:
+        return True
+
+    return False

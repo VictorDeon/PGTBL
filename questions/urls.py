@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from . import views_question, views_exercise, views_irat
+from . import views_question, views_exercise, views_irat, views_grat
 
 app_name = 'questions'
 
@@ -64,23 +64,62 @@ irat_patterns = [
         views_irat.IRATView.as_view(),
         name='irat-list'
     ),
+    # /edit-date/
+    url(
+        r'^edit-date/$',
+        views_irat.IRATDateUpdateView.as_view(),
+        name='irat-date'
+    ),
+    # /edit-irat/
+    url(
+        r'^edit-irat/$',
+        views_irat.IRATUpdateView.as_view(),
+        name='irat-update'
+    ),
     # /result/
     url(
         r'^result/$',
         views_irat.IRATResultView.as_view(),
         name='irat-result'
     ),
-    # /result/csv/
-    url(
-        r'^result/csv/$',
-        views_irat.get_csv,
-        name='irat-result-csv'
-    ),
     # /question/<question.id>/answer-page/<page_obj.number>/
     url(
         r'^question/(?P<question_id>[0-9]+)/answer-page/(?P<question_page>[0-9]+)/$',
         views_irat.AnswerIRATQuestionView.as_view(),
         name='irat-answer-question'
+    ),
+]
+
+grat_patterns = [
+    # /
+    url(
+        r'^$',
+        views_grat.GRATView.as_view(),
+        name='grat-list'
+    ),
+    # /edit-date/
+    url(
+        r'^edit-date/$',
+        views_grat.GRATDateUpdateView.as_view(),
+        name='grat-date'
+    ),
+    # /edit-irat/
+    url(
+        r'^edit-irat/$',
+        views_grat.GRATUpdateView.as_view(),
+        name='grat-update'
+    ),
+    # /result/
+    url(
+        r'^result/$',
+        views_grat.GRATResultView.as_view(),
+        name='grat-result'
+    ),
+    # /question/<question.id>/answer-page/<page_obj.number>/
+    url(
+        r'^question/(?P<question_id>[0-9]+)/answer-page/(?P<question_page>[0-9]+)/$',
+        views_grat.AnswerGRATQuestionView.as_view(),
+        name='grat-answer-question'
     ),
 ]
 
@@ -97,5 +136,9 @@ urlpatterns = [
     url(
         r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/irat/',
         include(irat_patterns)
+    ),
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/grat/',
+        include(grat_patterns)
     ),
 ]

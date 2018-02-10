@@ -6,7 +6,6 @@ from django.db import models
 from disciplines.models import Discipline
 from markdown_deux import markdown
 
-
 class TBLSession(models.Model):
     """
     Create TBL sessions.
@@ -141,7 +140,7 @@ class TBLSession(models.Model):
         content = self.description
         return mark_safe(markdown(content))
 
-    def practical_markdown(self):
+    def practical_test_markdown(self):
         """
         Transform practical test description in markdown and
         render in html with safe

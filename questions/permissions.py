@@ -66,9 +66,13 @@ def grat_permissions(permission, user, view):
     """
 
     session = view.get_session()
+    discipline = view.get_discipline()
 
     grat_duration = timedelta(minutes=session.grat_duration)
     now = timezone.localtime(timezone.now())
+
+    if user == discipline.teacher:
+        return True
 
     if now > session.grat_datetime and \
        (now - grat_duration) < session.grat_datetime:

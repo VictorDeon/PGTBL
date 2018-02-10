@@ -19,25 +19,28 @@ from TBLSessions.models import TBLSession
 from TBLSessions.utils import get_datetimes
 from grades.models import Grade
 from groups.models import Group
-from .models import Question, IRATSubmission
-from .forms import AnswerQuestionForm, IRATDateForm, IRATForm
+from .models import Question, GRATSubmission
+from .forms import AnswerGRATQuestionForm, GRATDateForm, GRATForm
+
+# Python imports
+from datetime import timedelta
 
 
-class IRATView(LoginRequiredMixin,
+class GRATView(LoginRequiredMixin,
                PermissionMixin,
                ListView):
     """
-    iRAT (Individual Readiness Assurance Test)
+    gRAT (Group Readiness Assurance Test)
     """
 
-    template_name = 'questions/irat.html'
+    template_name = 'questions/grat.html'
     paginate_by = 1
     context_object_name = 'questions'
 
     # Permissions
     permissions_required = [
         'show_questions_permission',
-        'irat_permissions'
+        'grat_permissions'
     ]
 
     def get_failure_redirect_path(self):
@@ -84,22 +87,22 @@ class IRATView(LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         """
-        Insert discipline, session and form into exercise list context data.
+        Insert discipline, session and form into gRAT context data.
         """
 
         irat_datetime, grat_datetime = get_datetimes(self.get_session())
 
-        context = super(IRATView, self).get_context_data(**kwargs)
+        context = super(GRATView, self).get_context_data(**kwargs)
         context['irat_datetime'] = irat_datetime
         context['grat_datetime'] = grat_datetime
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
-        context['date_form'] = IRATDateForm()
-        context['irat_form'] = IRATForm()
-        context['form1'] = AnswerQuestionForm(prefix="alternative01")
-        context['form2'] = AnswerQuestionForm(prefix="alternative02")
-        context['form3'] = AnswerQuestionForm(prefix="alternative03")
-        context['form4'] = AnswerQuestionForm(prefix="alternative04")
+        context['date_form'] = GRATDateForm()
+        context['grat_form'] = GRATForm()
+        context['form1'] = AnswerGRATQuestionForm(prefix="alternative01")
+        context['form2'] = AnswerGRATQuestionForm(prefix="alternative02")
+        context['form3'] = AnswerGRATQuestionForm(prefix="alternative03")
+        context['form4'] = AnswerGRATQuestionForm(prefix="alternative04")
 
         return context
 
@@ -118,23 +121,23 @@ class IRATView(LoginRequiredMixin,
         return questions
 
 
-class IRATUpdateView(LoginRequiredMixin, UpdateView):
+class GRATUpdateView(LoginRequiredMixin, UpdateView):
     """
-    Update the iRAT duration and weight
+    Update the gRAT duration and weight
     """
 
     model = TBLSession
-    template_name = 'questions/irat.html'
-    form_class = IRATForm
+    template_name = 'questions/grat.html'
+    form_class = GRATForm
 
     def form_valid(self, form):
         """
         Return the form with fields valided.
         """
 
-        messages.success(self.request, _('iRAT updated successfully.'))
+        messages.success(self.request, _('gRAT updated successfully.'))
 
-        return super(IRATUpdateView, self).form_valid(form)
+        return super(GRATUpdateView, self).form_valid(form)
 
     def get_success_url(self):
         """
@@ -142,7 +145,7 @@ class IRATUpdateView(LoginRequiredMixin, UpdateView):
         """
 
         success_url = reverse_lazy(
-            'questions:irat-list',
+            'questions:grat-list',
             kwargs={
                 'slug': self.kwargs.get('slug', ''),
                 'pk': self.kwargs.get('pk', '')
@@ -152,14 +155,14 @@ class IRATUpdateView(LoginRequiredMixin, UpdateView):
         return success_url
 
 
-class IRATDateUpdateView(LoginRequiredMixin, UpdateView):
+class GRATDateUpdateView(LoginRequiredMixin, UpdateView):
     """
-    Update the iRAT date.
+    Update the gRAT date.
     """
 
     model = TBLSession
-    template_name = 'questions/irat.html'
-    form_class = IRATDateForm
+    template_name = 'questions/grat.html'
+    form_class = GRATDateForm
 
     def form_valid(self, form):
         """
@@ -168,27 +171,38 @@ class IRATDateUpdateView(LoginRequiredMixin, UpdateView):
 
         now = timezone.localtime(timezone.now())
 
-        if form.instance.irat_datetime is None:
+        if form.instance.grat_datetime is None:
 
             messages.error(
                 self.request,
-                _("iRAT date must to be filled in.")
+                _("gRAT date must to be filled in.")
             )
 
             return redirect(self.get_success_url())
 
-        if now > form.instance.irat_datetime:
+        if now > form.instance.grat_datetime:
 
             messages.error(
                 self.request,
-                _("iRAT date must to be later than today's date.")
+                _("gRAT date must to be later than today's date.")
             )
 
             return redirect(self.get_success_url())
 
-        messages.success(self.request, _('iRAT date updated successfully.'))
+        if (form.instance.irat_datetime + \
+            timedelta(minutes=form.instance.irat_duration)) > \
+            form.instance.grat_datetime:
 
-        return super(IRATDateUpdateView, self).form_valid(form)
+            messages.error(
+                self.request,
+                _("gRAT date must to be later than iRAT date with its duration.")
+            )
+
+            return redirect(self.get_success_url())
+
+        messages.success(self.request, _('gRAT date updated successfully.'))
+
+        return super(GRATDateUpdateView, self).form_valid(form)
 
     def get_success_url(self):
         """
@@ -196,7 +210,7 @@ class IRATDateUpdateView(LoginRequiredMixin, UpdateView):
         """
 
         success_url = reverse_lazy(
-            'questions:irat-list',
+            'questions:grat-list',
             kwargs={
                 'slug': self.kwargs.get('slug', ''),
                 'pk': self.kwargs.get('pk', '')
@@ -205,18 +219,18 @@ class IRATDateUpdateView(LoginRequiredMixin, UpdateView):
 
         return success_url
 
-class AnswerIRATQuestionView(FormView):
+class AnswerGRATQuestionView(FormView):
     """
-    Answer the respective iRAT question.
+    Answer the respective gRAT question.
     """
 
-    template_name = 'questions/irat-list.html'
-    form_class = AnswerQuestionForm
+    template_name = 'questions/grat.html'
+    form_class = AnswerGRATQuestionForm
 
     # Permissions
     permissions_required = [
         'show_questions_permission',
-        'irat_permissions'
+        'grat_permissions'
     ]
 
     def get_failure_redirect_path(self):
@@ -261,6 +275,19 @@ class AnswerIRATQuestionView(FormView):
 
         return session
 
+    def get_student_group(self):
+        """
+        Get current student group.
+        """
+
+        groups = Group.objects.filter(
+            discipline=self.get_discipline()
+        )
+
+        for group in groups:
+            if self.request.user in group.students.all():
+                return group
+
     def get_object(self):
         """
         Get question by url kwargs.
@@ -288,7 +315,7 @@ class AnswerIRATQuestionView(FormView):
         """
 
         success_url = reverse_lazy(
-            'questions:irat-list',
+            'questions:grat-list',
             kwargs={
                 'slug': self.kwargs.get('slug', ''),
                 'pk': self.kwargs.get('pk', '')
@@ -306,10 +333,10 @@ class AnswerIRATQuestionView(FormView):
 
         question = self.get_object()
 
-        form1 = AnswerQuestionForm(request.POST, prefix="alternative01")
-        form2 = AnswerQuestionForm(request.POST, prefix="alternative02")
-        form3 = AnswerQuestionForm(request.POST, prefix="alternative03")
-        form4 = AnswerQuestionForm(request.POST, prefix="alternative04")
+        form1 = AnswerGRATQuestionForm(request.POST, prefix="alternative01")
+        form2 = AnswerGRATQuestionForm(request.POST, prefix="alternative02")
+        form3 = AnswerGRATQuestionForm(request.POST, prefix="alternative03")
+        form4 = AnswerGRATQuestionForm(request.POST, prefix="alternative04")
 
         success = False
 
@@ -323,11 +350,10 @@ class AnswerIRATQuestionView(FormView):
                 forms=[form1, form2, form3, form4]
             )
 
-            scores = self.get_form_scores(
+            success = self.validate_answer(
+                question=question,
                 forms=[form1, form2, form3, form4]
             )
-
-            success = self.validate_answer(scores, question)
 
             correct_alternative = None
             for alternative in question.alternatives.all():
@@ -340,8 +366,9 @@ class AnswerIRATQuestionView(FormView):
                     _("Question answered successfully.")
                 )
 
-                submission = IRATSubmission.objects.create(
+                submission = GRATSubmission.objects.create(
                     session=self.get_session(),
+                    group=self.get_student_group(),
                     user=self.request.user,
                     question=question,
                     correct_alternative=correct_alternative.title,
@@ -369,59 +396,64 @@ class AnswerIRATQuestionView(FormView):
 
         return score
 
-    def get_form_scores(self, forms):
-        """
-        Get the total scores from forms.
-        """
 
-        scores = 0
-
-        for form in forms:
-            scores += int(form['score'].value())
-
-        return scores
-
-
-    def validate_answer(self, scores, question):
+    def validate_answer(self, question, forms):
         """
         Validate the submission.
         """
 
-        if 0 <= scores <= 4:
-
-            submissions = IRATSubmission.objects.filter(
-                session=self.get_session(),
-                question=question,
-                user=self.request.user
-            )
-
-            if submissions.count() == 0:
-                return True
-
+        # Verify is student is in some group
+        if not self.get_student_group():
             messages.error(
                 self.request,
-                _("You can only submit the question once.")
+                _("Student must be in a group to answer the test.")
             )
 
             return False
 
-        messages.error(
-            self.request,
-            _("You only have 4 points to distribute to the \
-              4 alternatives.")
+        # Verify repeated options
+        answers = [0, 1, 2, 4]
+
+        for form in forms:
+            if int(form['score'].value()) in answers:
+                answers.remove(int(form['score'].value()))
+
+        if len(answers) != 0:
+
+            messages.error(
+                self.request,
+                _("You can't repeat the options.")
+            )
+
+            return False
+
+        # Verify if has only one submission from the user group
+        submissions = GRATSubmission.objects.filter(
+            session=self.get_session(),
+            question=question,
+            group=self.get_student_group()
         )
 
-        return False
+        if submissions.count() != 0:
+
+            messages.error(
+                self.request,
+                _("Your group has already answered this question.")
+            )
+
+            return False
+
+        return True
 
 
-class IRATResultView(LoginRequiredMixin,
+class GRATResultView(LoginRequiredMixin,
                      PermissionMixin,
                      ListView):
     """
-    Show the result of iRAT test.
+    Show the result of gRAT test.
     """
 
-    template_name = 'questions/irat_result.html'
+    template_name = 'questions/grat_result.html'
     context_object_name = 'submissions'
 
     # Permissions
@@ -478,12 +510,12 @@ class IRATResultView(LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         """
-        Insert discipline, session into iRAT result context data.
+        Insert discipline, session into gRAT result context data.
         """
 
         irat_datetime, grat_datetime = get_datetimes(self.get_session())
 
-        context = super(IRATResultView, self).get_context_data(**kwargs)
+        context = super(GRATResultView, self).get_context_data(**kwargs)
         context['irat_datetime'] = irat_datetime
         context['grat_datetime'] = grat_datetime
         context['discipline'] = self.get_discipline()
@@ -496,16 +528,17 @@ class IRATResultView(LoginRequiredMixin,
         Get the questions queryset from model database.
         """
 
-        submissions = IRATSubmission.objects.filter(
+        submissions = GRATSubmission.objects.filter(
             session=self.get_session(),
-            user=self.request.user
+            group=self.get_student_group()
         )
 
         return submissions
 
     def result(self):
         """
-        Get the total scores about iRAT.
+        Get the total scores about gRAT test and distribute for all students
+        from group.
         """
 
         questions = self.get_questions()
@@ -523,21 +556,17 @@ class IRATResultView(LoginRequiredMixin,
         if total > 0:
             grade = (score/total) * 10
 
-        # Create a grade for specific student
+        # Create a grade for students that did the iRAT from specific group
         discipline = self.get_discipline()
 
         grades = Grade.objects.filter(
             session=self.get_session(),
-            student=self.request.user
+            group=self.get_student_group()
         )
 
-        if grades.count() == 0 and self.request.user in discipline.students.all():
-            Grade.objects.create(
-                session=self.get_session(),
-                student=self.request.user,
-                group=self.get_student_group(),
-                irat=grade
-            )
+        for student_grade in grades:
+            student_grade.grat = grade
+            student_grade.save()
 
         # Store the result and return it
         result = {
