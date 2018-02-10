@@ -82,12 +82,6 @@ irat_patterns = [
         views_irat.IRATResultView.as_view(),
         name='irat-result'
     ),
-    # /result/csv/
-    url(
-        r'^result/csv/$',
-        views_irat.get_csv,
-        name='irat-result-csv'
-    ),
     # /question/<question.id>/answer-page/<page_obj.number>/
     url(
         r'^question/(?P<question_id>[0-9]+)/answer-page/(?P<question_page>[0-9]+)/$',
@@ -115,18 +109,12 @@ grat_patterns = [
         views_grat.GRATUpdateView.as_view(),
         name='grat-update'
     ),
-    # # /result/
-    # url(
-    #     r'^result/$',
-    #     views_grat.GRATResultView.as_view(),
-    #     name='grat-result'
-    # ),
-    # # /result/csv/
-    # url(
-    #     r'^result/csv/$',
-    #     views_grat.get_csv,
-    #     name='grat-result-csv'
-    # ),
+    # /result/
+    url(
+        r'^result/$',
+        views_grat.GRATResultView.as_view(),
+        name='grat-result'
+    ),
     # /question/<question.id>/answer-page/<page_obj.number>/
     url(
         r'^question/(?P<question_id>[0-9]+)/answer-page/(?P<question_page>[0-9]+)/$',

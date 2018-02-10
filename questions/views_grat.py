@@ -19,7 +19,7 @@ from TBLSessions.models import TBLSession
 from TBLSessions.utils import get_datetimes
 from grades.models import Grade
 from groups.models import Group
-from .models import Question, Submission
+from .models import Question, GRATSubmission
 from .forms import AnswerGRATQuestionForm, GRATDateForm, GRATForm
 
 # Python imports
@@ -38,7 +38,10 @@ class GRATView(LoginRequiredMixin,
     context_object_name = 'questions'
 
     # Permissions
-    permissions_required = [ ]
+    permissions_required = [
+        'show_questions_permission',
+        'grat_permissions'
+    ]
 
     def get_failure_redirect_path(self):
         """
@@ -225,7 +228,10 @@ class AnswerGRATQuestionView(FormView):
     form_class = AnswerGRATQuestionForm
 
     # Permissions
-    permissions_required = [ ]
+    permissions_required = [
+        'show_questions_permission',
+        'grat_permissions'
+    ]
 
     def get_failure_redirect_path(self):
         """
@@ -268,6 +274,19 @@ class AnswerGRATQuestionView(FormView):
         )
 
         return session
+
+    def get_student_group(self):
+        """
+        Get current student group.
+        """
+
+        groups = Group.objects.filter(
+            discipline=self.get_discipline()
+        )
+
+        for group in groups:
+            if self.request.user in group.students.all():
+                return group
 
     def get_object(self):
         """
@@ -347,11 +366,12 @@ class AnswerGRATQuestionView(FormView):
                     _("Question answered successfully.")
                 )
 
-                submission = Submission.objects.create(
+                submission = GRATSubmission.objects.create(
+                    session=self.get_session(),
+                    group=self.get_student_group(),
                     user=self.request.user,
                     question=question,
                     correct_alternative=correct_alternative.title,
-                    exam='gRAT',
                     score=score
                 )
 
@@ -382,6 +402,16 @@ class AnswerGRATQuestionView(FormView):
         Validate the submission.
         """
 
+        # Verify is student is in some group
+        if not self.get_student_group():
+            messages.error(
+                self.request,
+                _("Student must be in a group to answer the test.")
+            )
+
+            return False
+
+        # Verify repeated options
         answers = [0, 1, 2, 4]
 
         for form in forms:
@@ -397,17 +427,18 @@ class AnswerGRATQuestionView(FormView):
 
             return False
 
-        submissions = Submission.objects.filter(
+        # Verify if has only one submission from the user group
+        submissions = GRATSubmission.objects.filter(
+            session=self.get_session(),
             question=question,
-            user=self.request.user,
-            exam='gRAT'
+            group=self.get_student_group()
         )
 
         if submissions.count() != 0:
 
             messages.error(
                 self.request,
-                _("You can only submit the question once.")
+                _("Your group has already answered this question.")
             )
 
             return False
@@ -415,207 +446,133 @@ class AnswerGRATQuestionView(FormView):
         return True
 
 
-# class IRATResultView(LoginRequiredMixin,
-#                      PermissionMixin,
-#                      ListView):
-#     """
-#     Show the result of iRAT test.
-#     """
+class GRATResultView(LoginRequiredMixin,
+                     PermissionMixin,
+                     ListView):
+    """
+    Show the result of gRAT test.
+    """
 
-#     template_name = 'questions/irat_result.html'
-#     context_object_name = 'submissions'
+    template_name = 'questions/grat_result.html'
+    context_object_name = 'submissions'
 
-#     # Permissions
-#     permissions_required = [
-#         'show_questions_permission'
-#     ]
+    # Permissions
+    permissions_required = [
+        'show_questions_permission'
+    ]
 
-#     def get_discipline(self):
-#         """
-#         Get the discipline from url kwargs.
-#         """
+    def get_discipline(self):
+        """
+        Get the discipline from url kwargs.
+        """
 
-#         discipline = Discipline.objects.get(
-#             slug=self.kwargs.get('slug', '')
-#         )
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
 
-#         return discipline
+        return discipline
 
-#     def get_session(self):
-#         """
-#         get the session from url kwargs.
-#         """
+    def get_session(self):
+        """
+        get the session from url kwargs.
+        """
 
-#         session = TBLSession.objects.get(
-#             pk=self.kwargs.get('pk', '')
-#         )
+        session = TBLSession.objects.get(
+            pk=self.kwargs.get('pk', '')
+        )
 
-#         return session
+        return session
 
-#     def get_questions(self):
-#         """
-#         Get all exercise list questions.
-#         """
+    def get_questions(self):
+        """
+        Get all exercise list questions.
+        """
 
-#         questions = Question.objects.filter(
-#             session=self.get_session(),
-#             is_exercise=False
-#         )
+        questions = Question.objects.filter(
+            session=self.get_session(),
+            is_exercise=False
+        )
 
-#         return questions
+        return questions
 
-#     def get_student_group(self):
-#         """
-#         Get current student group.
-#         """
+    def get_student_group(self):
+        """
+        Get current student group.
+        """
 
-#         groups = Group.objects.filter(
-#             discipline=self.get_discipline(),
-#         )
+        groups = Group.objects.filter(
+            discipline=self.get_discipline()
+        )
 
-#         for group in groups:
-#             if self.request.user in group.students.all():
-#                 return group
+        for group in groups:
+            if self.request.user in group.students.all():
+                return group
 
-#     def get_context_data(self, **kwargs):
-#         """
-#         Insert discipline, session into exercise result context data.
-#         """
+    def get_context_data(self, **kwargs):
+        """
+        Insert discipline, session into gRAT result context data.
+        """
 
-#         irat_datetime, grat_datetime = get_datetimes(self.get_session())
+        irat_datetime, grat_datetime = get_datetimes(self.get_session())
 
-#         context = super(IRATResultView, self).get_context_data(**kwargs)
-#         context['irat_datetime'] = irat_datetime
-#         context['grat_datetime'] = grat_datetime
-#         context['discipline'] = self.get_discipline()
-#         context['session'] = self.get_session()
-#         context['result'] = self.result()
-#         return context
+        context = super(GRATResultView, self).get_context_data(**kwargs)
+        context['irat_datetime'] = irat_datetime
+        context['grat_datetime'] = grat_datetime
+        context['discipline'] = self.get_discipline()
+        context['session'] = self.get_session()
+        context['result'] = self.result()
+        return context
 
-#     def get_queryset(self):
-#         """
-#         Get the questions queryset from model database.
-#         """
+    def get_queryset(self):
+        """
+        Get the questions queryset from model database.
+        """
 
-#         submissions = Submission.objects.filter(
-#             user=self.request.user,
-#             exam='iRAT'
-#         )
+        submissions = GRATSubmission.objects.filter(
+            session=self.get_session(),
+            group=self.get_student_group()
+        )
 
-#         return submissions
+        return submissions
 
-#     def result(self):
-#         """
-#         Get the total scores about exercise list.
-#         """
+    def result(self):
+        """
+        Get the total scores about gRAT test and distribute for all students
+        from group.
+        """
 
-#         questions = self.get_questions()
-#         submissions = self.get_queryset()
+        questions = self.get_questions()
+        submissions = self.get_queryset()
 
-#         # Calcule the grade
-#         score = 0
-#         grade = 0
+        # Calcule the grade
+        score = 0
+        grade = 0
 
-#         total = 4*questions.count()
+        total = 4*questions.count()
 
-#         for submission in submissions:
-#             score += submission.score
+        for submission in submissions:
+            score += submission.score
 
-#         if total > 0:
-#             grade = (score/total) * 10
+        if total > 0:
+            grade = (score/total) * 10
 
-#         # Create a grade for specific student
-#         discipline = self.get_discipline()
+        # Create a grade for students that did the iRAT from specific group
+        discipline = self.get_discipline()
 
-#         grades = Grade.objects.filter(
-#             session=self.get_session(),
-#             student=self.request.user
-#         )
+        grades = Grade.objects.filter(
+            session=self.get_session(),
+            group=self.get_student_group()
+        )
 
-#         if grades.count() == 0 and self.request.user in discipline.students.all():
-#             Grade.objects.create(
-#                 session=self.get_session(),
-#                 student=self.request.user,
-#                 group=self.get_student_group(),
-#                 irat=grade
-#             )
+        for student_grade in grades:
+            student_grade.grat = grade
+            student_grade.save()
 
-#         # Store the result and return it
-#         result = {
-#             'score': score,
-#             'total': total,
-#             'grade': "{0:.2f}".format(grade)
-#         }
+        # Store the result and return it
+        result = {
+            'score': score,
+            'total': total,
+            'grade': "{0:.2f}".format(grade)
+        }
 
-#         return result
-
-
-# def get_csv(request, *args, **kwargs):
-#     """
-#     Create a CSV about exercise list result.
-#     """
-
-#     # Create the HttpResponse object with the approprieate CSV headers.
-#     response = HttpResponse(content_type='text/csv')
-#     response['Content-Disposition'] = 'attachment; filename="exercise-result.csv"'
-
-#     # Create the CSV writer
-#     writer = csv.writer(response)
-
-#     # Get important variables
-#     discipline = Discipline.objects.get(
-#         slug=kwargs.get('slug', '')
-#     )
-
-#     session = TBLSession.objects.get(
-#         pk=kwargs.get('pk', '')
-#     )
-
-#     questions = Question.objects.filter(
-#         session=session,
-#         is_exercise=False
-#     )
-
-#     submissions = Submission.objects.filter(
-#         user=request.user,
-#         exam='iRAT'
-#     )
-
-#     score = 0
-#     total = 4*questions.count()
-
-#     for submission in submissions:
-#         score += submission.score
-
-#     grade = (score/total) * 10
-
-#     # Create CSV file rows
-#     writer.writerow([
-#         'ID: {0}'.format(request.user.id),
-#         'Nome: {0}'.format(request.user.get_short_name()),
-#         'Username: {0}'.format(request.user.username),
-#         'Tipo de avaliação: iRAT',
-#     ])
-#     writer.writerow([
-#         'Disciplina: {0}'.format(discipline.title),
-#         'Professor: {0}'.format(discipline.teacher),
-#         'Sessão do TBL: {0}'.format(session.title),
-#         'Nota no exercicio: {0:.2f}'.format(grade)
-#     ])
-
-#     counter = 0
-#     for submission in submissions:
-#         counter += 1
-#         writer.writerow([
-#             '[{0}]'.format(counter),
-#             'Título: {0}'.format(submission.question.title),
-#             'Pontuação: {0}/{1}'.format(submission.score, 4)
-#         ])
-
-#     writer.writerow([
-#         '',
-#         '',
-#         'Pontuação total: {0}/{1}'.format(score, total)
-#     ])
-
-#     return response
+        return result

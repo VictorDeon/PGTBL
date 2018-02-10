@@ -17,7 +17,7 @@ from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
 from TBLSessions.utils import get_datetimes
-from .models import Question, Submission
+from .models import Question, ExerciseSubmission
 from .forms import AnswerQuestionForm
 
 
@@ -138,11 +138,11 @@ class AnswerQuestionView(FormView):
                     _("Question answered successfully.")
                 )
 
-                submission = Submission.objects.create(
+                submission = ExerciseSubmission.objects.create(
+                    session=self.get_session(),
                     user=self.request.user,
                     question=question,
                     correct_alternative=correct_alternative.title,
-                    exam='Exercise',
                     score=score
                 )
 
@@ -188,10 +188,10 @@ class AnswerQuestionView(FormView):
 
         if 0 <= scores <= 4:
 
-            submissions = Submission.objects.filter(
+            submissions = ExerciseSubmission.objects.filter(
+                session=self.get_session(),
                 question=question,
-                user=self.request.user,
-                exam='Exercise'
+                user=self.request.user
             )
 
             if submissions.count() == 0:
@@ -282,9 +282,9 @@ class ExerciseResultView(LoginRequiredMixin,
         Get the questions queryset from model database.
         """
 
-        submissions = Submission.objects.filter(
-            user=self.request.user,
-            exam='Exercise'
+        submissions = ExerciseSubmission.objects.filter(
+            session=self.get_session(),
+            user=self.request.user
         )
 
         return submissions
@@ -355,9 +355,9 @@ class ResetExerciseView(LoginRequiredMixin,
         Get the questions queryset from model database.
         """
 
-        submissions = Submission.objects.filter(
-            user=self.request.user,
-            exam='Exercise'
+        submissions = ExerciseSubmission.objects.filter(
+            session=self.get_session(),
+            user=self.request.user
         )
 
         return submissions
@@ -421,9 +421,9 @@ def get_csv(request, *args, **kwargs):
         is_exercise=True
     )
 
-    submissions = Submission.objects.filter(
-        user=request.user,
-        exam='Exercise'
+    submissions = ExerciseSubmission.objects.filter(
+        session=self.get_session(),
+        user=request.user
     )
 
     score = 0

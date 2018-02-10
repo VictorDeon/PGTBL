@@ -19,7 +19,7 @@ from TBLSessions.models import TBLSession
 from TBLSessions.utils import get_datetimes
 from grades.models import Grade
 from groups.models import Group
-from .models import Question, Submission
+from .models import Question, IRATSubmission
 from .forms import AnswerQuestionForm, IRATDateForm, IRATForm
 
 
@@ -340,11 +340,11 @@ class AnswerIRATQuestionView(FormView):
                     _("Question answered successfully.")
                 )
 
-                submission = Submission.objects.create(
+                submission = IRATSubmission.objects.create(
+                    session=self.get_session(),
                     user=self.request.user,
                     question=question,
                     correct_alternative=correct_alternative.title,
-                    exam='iRAT',
                     score=score
                 )
 
@@ -389,10 +389,10 @@ class AnswerIRATQuestionView(FormView):
 
         if 0 <= scores <= 4:
 
-            submissions = Submission.objects.filter(
+            submissions = IRATSubmission.objects.filter(
+                session=self.get_session(),
                 question=question,
-                user=self.request.user,
-                exam='iRAT'
+                user=self.request.user
             )
 
             if submissions.count() == 0:
@@ -469,7 +469,7 @@ class IRATResultView(LoginRequiredMixin,
         """
 
         groups = Group.objects.filter(
-            discipline=self.get_discipline(),
+            discipline=self.get_discipline()
         )
 
         for group in groups:
@@ -478,7 +478,7 @@ class IRATResultView(LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         """
-        Insert discipline, session into exercise result context data.
+        Insert discipline, session into iRAT result context data.
         """
 
         irat_datetime, grat_datetime = get_datetimes(self.get_session())
@@ -496,16 +496,16 @@ class IRATResultView(LoginRequiredMixin,
         Get the questions queryset from model database.
         """
 
-        submissions = Submission.objects.filter(
-            user=self.request.user,
-            exam='iRAT'
+        submissions = IRATSubmission.objects.filter(
+            session=self.get_session(),
+            user=self.request.user
         )
 
         return submissions
 
     def result(self):
         """
-        Get the total scores about exercise list.
+        Get the total scores about iRAT.
         """
 
         questions = self.get_questions()
@@ -547,74 +547,3 @@ class IRATResultView(LoginRequiredMixin,
         }
 
         return result
-
-
-def get_csv(request, *args, **kwargs):
-    """
-    Create a CSV about exercise list result.
-    """
-
-    # Create the HttpResponse object with the approprieate CSV headers.
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="exercise-result.csv"'
-
-    # Create the CSV writer
-    writer = csv.writer(response)
-
-    # Get important variables
-    discipline = Discipline.objects.get(
-        slug=kwargs.get('slug', '')
-    )
-
-    session = TBLSession.objects.get(
-        pk=kwargs.get('pk', '')
-    )
-
-    questions = Question.objects.filter(
-        session=session,
-        is_exercise=False
-    )
-
-    submissions = Submission.objects.filter(
-        user=request.user,
-        exam='iRAT'
-    )
-
-    score = 0
-    total = 4*questions.count()
-
-    for submission in submissions:
-        score += submission.score
-
-    grade = (score/total) * 10
-
-    # Create CSV file rows
-    writer.writerow([
-        'ID: {0}'.format(request.user.id),
-        'Nome: {0}'.format(request.user.get_short_name()),
-        'Username: {0}'.format(request.user.username),
-        'Tipo de avaliação: iRAT',
-    ])
-    writer.writerow([
-        'Disciplina: {0}'.format(discipline.title),
-        'Professor: {0}'.format(discipline.teacher),
-        'Sessão do TBL: {0}'.format(session.title),
-        'Nota no exercicio: {0:.2f}'.format(grade)
-    ])
-
-    counter = 0
-    for submission in submissions:
-        counter += 1
-        writer.writerow([
-            '[{0}]'.format(counter),
-            'Título: {0}'.format(submission.question.title),
-            'Pontuação: {0}/{1}'.format(submission.score, 4)
-        ])
-
-    writer.writerow([
-        '',
-        '',
-        'Pontuação total: {0}/{1}'.format(score, total)
-    ])
-
-    return response
