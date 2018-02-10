@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from . import views
+from . import views_session, views_practical
 
 app_name = 'TBLSessions'
 
@@ -7,32 +7,47 @@ session_patterns = [
     # /
     url(
         r'^$',
-        views.ListTBLSessionView.as_view(),
+        views_session.ListTBLSessionView.as_view(),
         name='list'
     ),
     # add/
     url(
         r'^add/$',
-        views.CreateSessionView.as_view(),
+        views_session.CreateSessionView.as_view(),
         name='create'
     ),
     # <session.id>/edit/
     url(
         r'^(?P<pk>[0-9]+)/edit/$',
-        views.EditSessionView.as_view(),
+        views_session.EditSessionView.as_view(),
         name='update'
     ),
     # <session.id>/delete/
     url(
         r'^(?P<pk>[0-9]+)/delete/$',
-        views.DeleteSessionView.as_view(),
+        views_session.DeleteSessionView.as_view(),
         name='delete'
     ),
     # <session.id>/details/
     url(
         r'^(?P<pk>[0-9]+)/details/$',
-        views.ShowSessionView.as_view(),
+        views_session.ShowSessionView.as_view(),
         name='details'
+    ),
+]
+
+practical_patterns = [
+    # practical-test/
+    url(
+        r'^practical-test/$',
+        views_practical.PracticalTestDetailView.as_view(),
+        name='practical-details'
+    ),
+    # practical-test/edit/
+    url(
+        r'^practical-test/edit/$',
+        views_practical.PracticalTestUpdateView.as_view(),
+        name='practical-update'
     ),
 ]
 
@@ -41,5 +56,10 @@ urlpatterns = [
     url(
         r'^profile/(?P<slug>[\w_-]+)/sessions/',
         include(session_patterns)
+    ),
+    # /profile/<discipline.slug>/sessions/<session.id>/
+    url(
+        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/',
+        include(practical_patterns)
     ),
 ]

@@ -1,7 +1,9 @@
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
-from TBLSessions.models import TBLSession
 from django.db import models
+
+from TBLSessions.models import TBLSession
+from groups.models import Group
 
 
 class Question(models.Model):
@@ -131,36 +133,10 @@ class Submission(models.Model):
     Store all submissions for a given question.
     """
 
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        verbose_name=_('Users'),
-        related_name="submissions"
-    )
-
-    question = models.ForeignKey(
-        Question,
-        on_delete=models.CASCADE,
-        verbose_name=_("Questions"),
-        related_name="submissions"
-    )
-
     correct_alternative = models.CharField(
         _('Correct Alternative'),
         max_length=1000,
         help_text=_('Correct alternative title.')
-    )
-
-    EXAMS = (
-        ('iRAT', 'iRAT'),
-        ('gRAT', 'gRAT'),
-        ('Exercise', 'Exercise')
-    )
-
-    exam = models.CharField(
-        max_length=10,
-        choices=EXAMS,
-        default='Exercise'
     )
 
     score = models.PositiveIntegerField(
@@ -175,6 +151,33 @@ class Submission(models.Model):
         auto_now_add=True
     )
 
+
+class ExerciseSubmission(Submission):
+    """
+    Store all submissions for a given exercise question.
+    """
+
+    session = models.ForeignKey(
+        TBLSession,
+        on_delete=models.CASCADE,
+        verbose_name=_("TBL sessions"),
+        related_name="exercise_submissions"
+    )
+
+    question = models.ForeignKey(
+        Question,
+        on_delete=models.CASCADE,
+        verbose_name=_("Questions"),
+        related_name="exercise_submissions"
+    )
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name=_('Users'),
+        related_name="exercise_submissions"
+    )
+
     def __str__(self):
         """
         Alternative of question string.
@@ -182,13 +185,108 @@ class Submission(models.Model):
 
         obj = "{0}: {1} - {2}".format(
             self.user.get_short_name(),
-            self.exam,
-            self.question
+            self.question,
+            self.score
         )
 
         return obj
 
     class Meta:
-        verbose_name = _('Submission')
-        verbose_name_plural = _('Submissions')
-        ordering = ['user', 'exam', 'question', 'created_at']
+        verbose_name = _('Exercise Submission')
+        verbose_name_plural = _('Exercise Submissions')
+        ordering = ['user', 'question', 'created_at']
+
+class IRATSubmission(Submission):
+    """
+    Store all submissions for a given iRAT question.
+    """
+
+    session = models.ForeignKey(
+        TBLSession,
+        on_delete=models.CASCADE,
+        verbose_name=_("TBL sessions"),
+        related_name="irat_submissions"
+    )
+
+    question = models.ForeignKey(
+        Question,
+        on_delete=models.CASCADE,
+        verbose_name=_("Questions"),
+        related_name="irat_submissions"
+    )
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name=_('Users'),
+        related_name="irat_submissions"
+    )
+
+    def __str__(self):
+        """
+        Alternative of question string.
+        """
+
+        obj = "{0}: {1} - {2}".format(
+            self.user.get_short_name(),
+            self.question,
+            self.score
+        )
+
+        return obj
+
+    class Meta:
+        verbose_name = _('iRAT Submission')
+        verbose_name_plural = _('iRAT Submissions')
+        ordering = ['user', 'question', 'created_at']
+
+
+class GRATSubmission(Submission):
+    """
+    Store all submissions for a given gRAT question.
+    """
+
+    session = models.ForeignKey(
+        TBLSession,
+        on_delete=models.CASCADE,
+        verbose_name=_("TBL sessions"),
+        related_name="grat_submissions"
+    )
+
+    question = models.ForeignKey(
+        Question,
+        on_delete=models.CASCADE,
+        verbose_name=_("Questions"),
+        related_name="grat_submissions"
+    )
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        verbose_name=_('Users'),
+        related_name="grat_submissions"
+    )
+
+    group = models.ForeignKey(
+        Group,
+        on_delete=models.CASCADE,
+        verbose_name=_('Groups'),
+        related_name="submissions"
+    )
+
+    def __str__(self):
+        """
+        Alternative of question string.
+        """
+
+        obj = "{0}: {1} - {2}".format(
+            self.group.title,
+            self.question,
+            self.score
+        )
+
+        return obj
+
+    class Meta:
+        verbose_name = _('gRAT Submission')
+        verbose_name_plural = _('gRAT Submissions')
+        ordering = ['group', 'question', 'created_at']

@@ -65,7 +65,7 @@
 
     <!-- Session gRAT menu -->
     {% if date > grat_datetime and user in discipline.students.all %}
-      <a href="#"
+      <a href="{% url 'questions:grat-result' discipline.slug session.id %}"
          class="btn"
          data-toggle="tooltip"
          data-placement="right"
@@ -73,7 +73,7 @@
          <i class="fa fa-group icon-lg"></i>
       </a>
     {% else %}
-      <a href="#"
+      <a href="{% url 'questions:grat-list' discipline.slug session.id %}"
          class="btn"
          data-toggle="tooltip"
          data-placement="right"
@@ -83,7 +83,7 @@
     {% endif %}
 
     <!-- Session practical menu -->
-    <a href="#"
+    <a href="{% url 'TBLSessions:practical-details' discipline.slug session.id %}"
        class="btn"
        data-toggle="tooltip"
        data-placement="right"

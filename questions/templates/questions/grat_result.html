@@ -1,4 +1,4 @@
-{% extends 'TBLSessions/details.html' %}
+{% extends 'questions/grat.html' %}
 {% load static %}
 {% load i18n %}
 
@@ -10,8 +10,8 @@
 {% block breadcrumb %}
   {{ block.super }}
   <li>
-    <a href="{% url 'questions:irat-result' discipline.slug session.id %}">
-       {% trans 'iRAT result' %}
+    <a href="{% url 'questions:grat-result' discipline.slug session.id %}">
+       {% trans 'gRAT result' %}
     </a>
   </li>
 {% endblock %}
@@ -21,7 +21,8 @@
   <div class="container-fluid">
     <div class="page-header profile">
       <h1 class="white">
-        <i class="fa fa-leanpub"></i> {% trans 'iRAT result' %}<br />
+        <i class="fa fa-leanpub"></i>
+        {% trans 'gRAT result' %}<br />
         <small>{{discipline.title}} - {{session.title}}</small>
       </h1>
     </div>
@@ -48,7 +49,10 @@
                 </h4>
               </div>
               <div class="col-sm-2">
-                <h4 class="date"><i class="fa fa-calendar"></i> 01/06/2017</h4>
+                <h4 class="date text-right">
+                  {{session.grat_datetime|date:"d/m/Y"}}
+                  <i class="fa fa-calendar"></i>
+                </h4>
               </div>
             </div>
           </div>
@@ -81,26 +85,15 @@
           </table>
         </div>
         <div class="panel-footer">
-          <div class="row">
-            <div class="col-sm-10">
-              <a href="{% url 'questions:irat-result-csv' discipline.slug session.id %}"
-                 class="btn btn-primary btn-block">
-                 <i class="fa fa-download"></i>
-                 {% trans 'Download CSV' %}
-              </a>
-            </div>
-            <div class="col-sm-2">
-              <p><b>{% trans 'Total' %}</b> = {{result.score}}/{{result.total}}</p>
-              <p>
-                <b>{% trans 'Grade' %}</b> =
-                {% if result.grade >= "5" %}
-                  <span class="text-success">{{result.grade}}</span>
-                {% else %}
-                  <span class="text-danger">{{result.grade}}</span>
-                {% endif %}
-              </p>
-            </div>
-          </div>
+          <p><b>{% trans 'Total' %}</b> = {{result.score}}/{{result.total}}</p>
+          <p>
+            <b>{% trans 'Grade' %}</b> =
+            {% if result.grade >= "5" %}
+              <span class="text-success">{{result.grade}}</span>
+            {% else %}
+              <span class="text-danger">{{result.grade}}</span>
+            {% endif %}
+          </p>
         </div>
       </div>
     </div>
