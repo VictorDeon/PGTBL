@@ -1,16 +1,21 @@
+# Django
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import admin
-from .models import User
+
+# Application
 from .forms import UserCreationForm, UserForm
+from .models import User
 
 
 class UserAdmin(BaseUserAdmin):
     """
     New admin user form configuration.
     """
+
     # object edit form from user
     form = UserForm
+
     # How the admin form will be structured (Legenda, {atributos})
     fieldsets = (
         (None, {
@@ -42,6 +47,7 @@ class UserAdmin(BaseUserAdmin):
 
     # Class that represent the admin form only when adding a new user
     add_form = UserCreationForm
+
     # How the admin form will be structured only when adding a new user
     add_fieldsets = (
         (None, {

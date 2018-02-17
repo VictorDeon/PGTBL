@@ -1,4 +1,4 @@
-# Django app
+# Django imports
 from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import ugettext_lazy as _
@@ -12,16 +12,12 @@ from django.views.generic import (
     CreateView, ListView, UpdateView, FormView, DeleteView
 )
 
-# Disciplines app
+# Application imoports
 from disciplines.models import Discipline
-
-# Accounts app
-from .forms import UserCreationForm, PasswordResetForm
-from .models import PasswordReset
-
-# Core app
 from core.email import send_email_template
 from core.utils import generate_hash_key
+from .forms import UserCreationForm, PasswordResetForm
+from .models import PasswordReset
 
 # Get the custom user from settings
 User = get_user_model()
