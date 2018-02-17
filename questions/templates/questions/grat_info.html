@@ -10,10 +10,15 @@
       <div class="modal-body">
         <p>{% trans 'The rules are very simple' %}:</p>
         <ul>
-          <li>{% trans 'We have 4 options per question: A, B, C, D' %}</li>
-          <li>{% trans 'Only be enabled the next option when the sum of the points is exactly 4 points' %}</li>
-          <li><b>{% trans 'Example' %} 01</b>: {% trans 'Insert 4 points in option A.' %}</li>
-          <li><b>{% trans 'Example' %} 02</b>: {% trans 'Insert 2 points in option B and 2 points in option C.' %}</li>
+          <li>{% trans 'We have 4 options per alternative: Option 01, Option 02, Option 03, Option 04' %}</li>
+          <li>{% trans 'If alternative with option 1 is correct, it earns 4 points, otherwise decreases in half' %}</li>
+          <li>{% trans 'You can only choose one option per alternative and can not be repeated' %}</li>
+          <li>{% trans 'After answering the question you can scratch the scratch card and see the correct answer' %}</li>
+          <li><b>{% trans 'Example' %} 01</b>: {% trans 'Alternative A insert option 01' %}</li>
+          <li><b>{% trans 'Example' %} 01</b>: {% trans 'Alternative B insert option 03' %}</li>
+          <li><b>{% trans 'Example' %} 01</b>: {% trans 'Alternative C insert option 02' %}</li>
+          <li><b>{% trans 'Example' %} 01</b>: {% trans 'Alternative D insert option 04' %}</li>
+          <li><b>{% trans 'Example' %} 01</b>: {% trans 'Alternative C is correct, so you have earned 2 points' %}</li>
         </ul>
       </div>
       <div class="modal-footer"></div>

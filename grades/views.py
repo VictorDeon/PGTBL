@@ -1,7 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import redirect
 from django.contrib import messages
 from django.views.generic import (
     ListView, UpdateView
@@ -48,8 +47,6 @@ class GradeListView(LoginRequiredMixin,
         """
         Get the session by url kwargs.
         """
-
-        discipline = self.get_discipline()
 
         session = TBLSession.objects.get(
             pk=self.kwargs.get('pk', '')
@@ -284,6 +281,7 @@ def get_session_grade_csv(request, *args, **kwargs):
 
     # Create CSV file rows
     writer.writerow([
+        'Disciplina'
         'Grupos',
         'Usuários',
         'iRAT',
@@ -295,6 +293,7 @@ def get_session_grade_csv(request, *args, **kwargs):
 
     for grade in grades:
         writer.writerow([
+            '{0}'.format(discipline.title),
             '{0}'.format(grade.group.title),
             '{0}'.format(grade.student.username),
             '{0}'.format(grade.irat),
@@ -311,7 +310,6 @@ def get_final_grade_csv(request, *args, **kwargs):
     """
     Create a CSV from students final grade.
     """
-    print("ENTREIII")
 
     # Create the HttpResponse object with the approprieate CSV headers.
     response = HttpResponse(content_type='text/csv')
@@ -331,6 +329,7 @@ def get_final_grade_csv(request, *args, **kwargs):
 
     # Create CSV file rows
     writer.writerow([
+        'Disciplina',
         'Usuários',
         'Nota final',
         'Status'
@@ -343,6 +342,7 @@ def get_final_grade_csv(request, *args, **kwargs):
             status = 'Reprovado'
 
         writer.writerow([
+            '{0}'.format(discipline.title),
             '{0}'.format(grade.student.username),
             '{0:.1f}'.format(grade.calcule_final_grade()),
             '{0}'.format(status)

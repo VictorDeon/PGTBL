@@ -66,19 +66,14 @@ staticfiles:
 # TESTS ---------------------------------------
 
 test:
-	# Stop execution of tests when the second test fail
-	# Run make clean before it
-	pytest --maxfail=1
+	# Execute all tests
+	coverage run --source="." manage.py test **/tests/
 
-coverage:
-	# Run coverage on terminal
-	pytest --maxfail=1 --cov=.
+report:
+	coverage report -m
 
-sendcoverage:
-	# Run coverage to XML file
-	# export CODACY_PROJECT_TOKEN=<PROJECT API TOKEN>
-	pytest --cov-report xml --cov=.
-	python-codacy-coverage -r coverage.xml
+html:
+	coverage html
 
 # DOCKER DEPLOY ---------------------------------
 

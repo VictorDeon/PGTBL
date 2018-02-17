@@ -13,7 +13,7 @@ from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
 from TBLSessions.utils import get_datetimes
-from .models import Question, Submission
+from .models import Question
 from .forms import AlternativeFormSet, AnswerQuestionForm
 
 

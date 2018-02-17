@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-30 20:20-0200\n"
+"POT-Creation-Date: 2018-02-17 18:11-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,8 +38,7 @@ msgstr "Ementa"
 msgid "Discipline description"
 msgstr "Ementa da disciplina"
 
-#: disciplines/models.py:70 disciplines/templates/disciplines/collapse.html:100
-#: disciplines/templates/disciplines/list.html:48
+#: disciplines/models.py:70 disciplines/templates/disciplines/list.html:48
 #: disciplines/templates/disciplines/list.html:144
 msgid "Course"
 msgstr "Curso"
@@ -129,8 +128,7 @@ msgstr "O grupo foi disponibilizado?"
 msgid "Provide groups to students see."
 msgstr "Disponibilizar grupos para os estudantes verem."
 
-#: disciplines/models.py:147 disciplines/templates/disciplines/collapse.html:91
-#: disciplines/templates/disciplines/details.html:69
+#: disciplines/models.py:147 disciplines/templates/disciplines/details.html:69
 #: disciplines/templates/disciplines/list.html:62
 #: disciplines/templates/disciplines/list.html:139
 #: disciplines/templates/disciplines/users.html:72
@@ -160,40 +158,6 @@ msgstr "Disciplina"
 #: disciplines/models.py:202
 msgid "Disciplines"
 msgstr "Disciplinas"
-
-#: disciplines/templates/disciplines/collapse.html:10
-msgid "All Disciplines"
-msgstr "Todas as Disciplinas"
-
-#: disciplines/templates/disciplines/collapse.html:19
-#, fuzzy
-#| msgid "Create discipline"
-msgid "Student of discipline"
-msgstr "Disciplinas que estuda"
-
-#: disciplines/templates/disciplines/collapse.html:28
-msgid "Discipline monitor"
-msgstr "Disciplinas monitoradas"
-
-#: disciplines/templates/disciplines/collapse.html:37
-msgid "Created Disciplines"
-msgstr "Disciplinas criadas"
-
-#: disciplines/templates/disciplines/collapse.html:116
-msgid "Enter"
-msgstr ""
-
-#: disciplines/templates/disciplines/collapse.html:127
-msgid "Hall of Fame"
-msgstr ""
-
-#: disciplines/templates/disciplines/collapse.html:140
-msgid "Edit"
-msgstr ""
-
-#: disciplines/templates/disciplines/collapse.html:166
-msgid "There is no disciplines."
-msgstr "Não há disciplina disponível"
 
 #: disciplines/templates/disciplines/delete.html:21
 msgid "Delete Discipline"

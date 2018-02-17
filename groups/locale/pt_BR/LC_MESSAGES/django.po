@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-30 20:20-0200\n"
+"POT-Creation-Date: 2018-02-17 18:11-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -157,40 +157,46 @@ msgstr "Estudantes"
 msgid "There is no students."
 msgstr "Não há estudantes"
 
-#: groups/views.py:131
+#: groups/views.py:45 groups/views.py:111 groups/views.py:196
+#: groups/views.py:271 groups/views.py:338 groups/views.py:427
+#: groups/views.py:524 groups/views.py:629
+msgid "You are not authorized to do this action."
+msgstr "Você não tem autorização para realizar essa ação."
+
+#: groups/views.py:141
 msgid "Group created successfully."
 msgstr "Grupo criado com sucesso."
 
-#: groups/views.py:142
+#: groups/views.py:152
 msgid "Invalid fields, please fill in the fields correctly."
 msgstr "Campo invalido, por favor preencha os campos corretamente."
 
-#: groups/views.py:216
+#: groups/views.py:231
 msgid "Group updated successfully."
 msgstr "Grupo atualizado com sucesso."
 
-#: groups/views.py:284
+#: groups/views.py:304
 msgid "Group deleted successfully."
 msgstr "Grupo deletado com sucesso."
 
-#: groups/views.py:336
+#: groups/views.py:361
 msgid "Groups available."
 msgstr "Grupos disponíveis"
 
-#: groups/views.py:338
+#: groups/views.py:363
 msgid "Groups unavailable."
 msgstr "Grupos indisponíveis"
 
-#: groups/views.py:539
+#: groups/views.py:574
 msgid "Crowded group."
 msgstr "Grupo lotado."
 
-#: groups/views.py:548
+#: groups/views.py:583
 #, python-brace-format
 msgid "{0} was inserted in the group: {1}"
 msgstr "{0} foi inserido no grupo: {1}"
 
-#: groups/views.py:639
+#: groups/views.py:679
 #, python-brace-format
 msgid "The student {0} is removed from {1}"
 msgstr "O estudante {0} foi removido de {1}"

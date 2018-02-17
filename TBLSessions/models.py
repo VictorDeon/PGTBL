@@ -6,6 +6,7 @@ from django.db import models
 from disciplines.models import Discipline
 from markdown_deux import markdown
 
+
 class TBLSession(models.Model):
     """
     Create TBL sessions.

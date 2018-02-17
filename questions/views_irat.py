@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
 from django.contrib import messages
@@ -7,10 +7,6 @@ from django.utils import timezone
 from django.views.generic import (
     ListView, FormView, UpdateView
 )
-
-# CSV
-from django.http import HttpResponse
-import csv
 
 # App imports
 from core.permissions import PermissionMixin
@@ -340,7 +336,7 @@ class AnswerIRATQuestionView(FormView):
                     _("Question answered successfully.")
                 )
 
-                submission = IRATSubmission.objects.create(
+                IRATSubmission.objects.create(
                     session=self.get_session(),
                     user=self.request.user,
                     question=question,
@@ -380,7 +376,6 @@ class AnswerIRATQuestionView(FormView):
             scores += int(form['score'].value())
 
         return scores
-
 
     def validate_answer(self, scores, question):
         """

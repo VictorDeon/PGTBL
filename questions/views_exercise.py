@@ -138,7 +138,7 @@ class AnswerQuestionView(FormView):
                     _("Question answered successfully.")
                 )
 
-                submission = ExerciseSubmission.objects.create(
+                ExerciseSubmission.objects.create(
                     session=self.get_session(),
                     user=self.request.user,
                     question=question,

@@ -1,4 +1,3 @@
-from django.utils.translation import ugettext_lazy as _
 from django import forms
 from pagedown.widgets import PagedownWidget
 from .models import TBLSession

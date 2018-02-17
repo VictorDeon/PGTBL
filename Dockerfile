@@ -27,6 +27,7 @@ RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
 # Execute django commands
+RUN python3 manage.py makemigrations
 RUN python3 manage.py migrate
 RUN python3 manage.py compilemessages
 

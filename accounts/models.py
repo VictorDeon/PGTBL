@@ -1,11 +1,16 @@
+# Django imports
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import (
     AbstractBaseUser, PermissionsMixin, UserManager
 )
-from django.utils.translation import ugettext_lazy as _
-from rolepermissions.roles import assign_role
 from django.core import validators
 from django.conf import settings
 from django.db import models
+
+# External imports
+from rolepermissions.roles import assign_role
+
+# Python imports
 import re
 
 
@@ -217,7 +222,7 @@ class PasswordReset(models.Model):
 
 def set_roles_to_the_new_user(instance, created, **kwargs):
     """
-    Insert the created user into a group.
+    Insert the created user into a specific group.
     """
 
     if created:

@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
 from django.contrib import messages
@@ -7,10 +7,6 @@ from django.utils import timezone
 from django.views.generic import (
     ListView, FormView, UpdateView
 )
-
-# CSV
-from django.http import HttpResponse
-import csv
 
 # App imports
 from core.permissions import PermissionMixin
@@ -366,7 +362,7 @@ class AnswerGRATQuestionView(FormView):
                     _("Question answered successfully.")
                 )
 
-                submission = GRATSubmission.objects.create(
+                GRATSubmission.objects.create(
                     session=self.get_session(),
                     group=self.get_student_group(),
                     user=self.request.user,
@@ -555,9 +551,6 @@ class GRATResultView(LoginRequiredMixin,
 
         if total > 0:
             grade = (score/total) * 10
-
-        # Create a grade for students that did the iRAT from specific group
-        discipline = self.get_discipline()
 
         grades = Grade.objects.filter(
             session=self.get_session(),
