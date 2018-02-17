@@ -36,7 +36,7 @@ class SimpleReadProfileDisciplinesTestCase(TestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'accounts/profile.html')
-        self.assertTemplateUsed(response, 'disciplines/collapse.html')
+        self.assertTemplateUsed(response, 'accounts/collapse.html')
 
     def test_redirect_to_login(self):
         """
