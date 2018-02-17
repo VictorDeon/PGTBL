@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-30 20:20-0200\n"
+"POT-Creation-Date: 2018-02-17 18:11-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,7 +97,7 @@ msgstr "Link da informação"
 msgid "Description"
 msgstr "Descrição"
 
-#: core/permissions.py:51 core/permissions.py:103
+#: core/permissions.py:51 core/permissions.py:96
 msgid "You are not authorized to do this action."
 msgstr "Você não tem autorização para fazer essa ação."
 

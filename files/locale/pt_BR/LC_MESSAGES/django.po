@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-30 20:20-0200\n"
+"POT-Creation-Date: 2018-02-17 18:11-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -142,18 +142,18 @@ msgstr "Não há arquivos disponiveis"
 msgid "TBL Session files"
 msgstr "Arquivos da sessão do TBL"
 
-#: files/views_discipline.py:99 files/views_sessions.py:131
+#: files/views_discipline.py:99 files/views_sessions.py:136
 msgid "File created successfully."
 msgstr "Arquivos criado com sucesso."
 
-#: files/views_discipline.py:110 files/views_sessions.py:142
+#: files/views_discipline.py:110 files/views_sessions.py:147
 msgid "Invalid fields, please fill in the fields correctly."
 msgstr "Campo invalido, por favor preencha os campos corretamente."
 
-#: files/views_discipline.py:171 files/views_sessions.py:235
+#: files/views_discipline.py:171 files/views_sessions.py:244
 msgid "File updated successfully."
 msgstr "Arquivo atualizado com sucesso."
 
-#: files/views_discipline.py:226 files/views_sessions.py:325
+#: files/views_discipline.py:226 files/views_sessions.py:334
 msgid "File deleted successfully."
 msgstr "Arquivo deletado com sucesso."

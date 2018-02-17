@@ -1,0 +1,619 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-17 18:11-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: questions/forms.py:72
+msgid "Date and time to provide the iRAT test"
+msgstr "Data e hora que será disponibilizado a avaliação iRAT"
+
+#: questions/forms.py:88
+msgid "Option 01"
+msgstr "Opção 01"
+
+#: questions/forms.py:89
+msgid "Option 02"
+msgstr "Opção 02"
+
+#: questions/forms.py:90
+msgid "Option 03 "
+msgstr "Opção 03"
+
+#: questions/forms.py:91
+msgid "Option 04"
+msgstr "Opção 04"
+
+#: questions/forms.py:113
+msgid "Date and time to provide the gRAT test"
+msgstr "Data e hora que será disponibilizado a avaliação gRAT"
+
+#: questions/models.py:15 questions/models.py:89
+msgid "Title"
+msgstr "Título"
+
+#: questions/models.py:17
+msgid "Question title."
+msgstr "Título da questão"
+
+#: questions/models.py:27
+msgid "Basic"
+msgstr "Básico"
+
+#: questions/models.py:28
+msgid "Intermediary"
+msgstr "Intermediario"
+
+#: questions/models.py:29
+msgid "Advanced"
+msgstr "Avançado"
+
+#: questions/models.py:33
+msgid "Level"
+msgstr "Nível"
+
+#: questions/models.py:37
+msgid "Difficulty level"
+msgstr "Nível de dificuldade"
+
+#: questions/models.py:41
+msgid "Topic"
+msgstr "Tópico"
+
+#: questions/models.py:43
+msgid "Question topic."
+msgstr "Tópico da questão"
+
+#: questions/models.py:47
+msgid "Is it an exercise?"
+msgstr "É um exercício?"
+
+#: questions/models.py:49
+msgid "Exercise are questions that appear in the exercise list."
+msgstr "Exercício são questões que aparecem somente na lista de exercícios."
+
+#: questions/models.py:53
+msgid "Show question answer."
+msgstr "Mostrar resposta da questão."
+
+#: questions/models.py:55
+msgid "Show answer about the specific question"
+msgstr "Mostrar resposta da questão especifica."
+
+#: questions/models.py:59 questions/models.py:107 questions/models.py:149
+msgid "Created at"
+msgstr "Criado em"
+
+#: questions/models.py:60
+msgid "Date that the question is created."
+msgstr "Data que a questão foi criada."
+
+#: questions/models.py:65 questions/models.py:113
+msgid "Updated at"
+msgstr "Atualizado em"
+
+#: questions/models.py:66
+msgid "Date that the question is updated."
+msgstr "Data que a questão foi atualizada."
+
+#: questions/models.py:78 questions/templates/questions/grat_result.html:70
+#: questions/templates/questions/irat_result.html:69
+#: questions/templates/questions/result.html:83
+msgid "Question"
+msgstr "Questão"
+
+#: questions/models.py:79 questions/models.py:170 questions/models.py:214
+#: questions/models.py:259
+msgid "Questions"
+msgstr "Questões"
+
+#: questions/models.py:91
+msgid "Alternative title."
+msgstr "Título da alternativa."
+
+#: questions/models.py:95
+msgid "Is correct?"
+msgstr "É a resposta certa?"
+
+#: questions/models.py:97
+msgid "Is correct alternative to answer the question."
+msgstr "É a alternativa correta para responder a questão."
+
+#: questions/models.py:108
+msgid "Date that the alternative of question is created."
+msgstr "Data que a alternativa da questão foi criada."
+
+#: questions/models.py:114
+msgid "Date that the alternative of question is updated."
+msgstr "Data que a alternativa da questão foi atualizada."
+
+#: questions/models.py:126
+msgid "Alternative"
+msgstr "Alternativa"
+
+#: questions/models.py:127 questions/templates/questions/add.html:126
+#: questions/templates/questions/update.html:126
+msgid "Alternatives"
+msgstr "Alternativas"
+
+#: questions/models.py:137
+msgid "Correct Alternative"
+msgstr "Alternativa correta"
+
+#: questions/models.py:139
+msgid "Correct alternative title."
+msgstr "Título da alternativa correta."
+
+#: questions/models.py:143
+msgid "Score"
+msgstr "Pontuação"
+
+#: questions/models.py:145
+msgid "Question score answered."
+msgstr "Pontuação da questão respondida."
+
+#: questions/models.py:150
+msgid "Date that the submission of question is created."
+msgstr "Data que a submissão da questão foi criada."
+
+#: questions/models.py:163 questions/models.py:207 questions/models.py:252
+msgid "TBL sessions"
+msgstr "Sessões TBL"
+
+#: questions/models.py:177 questions/models.py:221 questions/models.py:265
+msgid "Users"
+msgstr "Usuários"
+
+#: questions/models.py:195
+msgid "Exercise Submission"
+msgstr "Submissão do exercício"
+
+#: questions/models.py:196
+msgid "Exercise Submissions"
+msgstr "Submissões dos exercícios"
+
+#: questions/models.py:239
+msgid "iRAT Submission"
+msgstr "Submissão do iRAT"
+
+#: questions/models.py:240
+msgid "iRAT Submissions"
+msgstr "Submissões do iRAT"
+
+#: questions/models.py:272
+msgid "Groups"
+msgstr "Grupos"
+
+#: questions/models.py:290
+msgid "gRAT Submission"
+msgstr "Submissão do gRAT"
+
+#: questions/models.py:291
+msgid "gRAT Submissions"
+msgstr "Submissões do gRAT"
+
+#: questions/templates/questions/add.html:15
+#: questions/templates/questions/add.html:25
+msgid "Create Question"
+msgstr "Criar questão"
+
+#: questions/templates/questions/add.html:112
+#: questions/templates/questions/update.html:112
+msgid "Is exercise?"
+msgstr "É exercício?"
+
+#: questions/templates/questions/add.html:150
+msgid "Create"
+msgstr "Criar"
+
+#: questions/templates/questions/delete.html:20
+#: questions/templates/questions/delete.html:42
+#: questions/templates/questions/grat.html:138
+#: questions/templates/questions/irat.html:138
+#: questions/templates/questions/list.html:100
+msgid "Delete"
+msgstr "Deletar"
+
+#: questions/templates/questions/delete.html:27
+msgid "Are you sure you want to delete the question"
+msgstr "Tem certeza que deseja deletar a questão"
+
+#: questions/templates/questions/delete.html:51
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: questions/templates/questions/grat.html:15
+#: questions/templates/questions/grat.html:97
+msgid "gRAT"
+msgstr "gRAT"
+
+#: questions/templates/questions/grat.html:26
+msgid "Group Readiness Assurance Test (gRAT)"
+msgstr "Teste de garantia de prontidão em grupo (gRAT)"
+
+#: questions/templates/questions/grat.html:38
+#: questions/templates/questions/grat_result.html:37
+#: questions/templates/questions/irat.html:38
+#: questions/templates/questions/irat_result.html:36
+#: questions/templates/questions/list.html:36
+#: questions/templates/questions/result.html:41
+msgid "Course"
+msgstr "Curso"
+
+#: questions/templates/questions/grat.html:43
+#: questions/templates/questions/grat_result.html:42
+#: questions/templates/questions/irat.html:43
+#: questions/templates/questions/irat_result.html:41
+#: questions/templates/questions/list.html:41
+#: questions/templates/questions/result.html:46
+msgid "Discipline"
+msgstr "Disciplina"
+
+#: questions/templates/questions/grat.html:48
+#: questions/templates/questions/grat_result.html:47
+#: questions/templates/questions/irat.html:48
+#: questions/templates/questions/irat_result.html:46
+#: questions/templates/questions/list.html:46
+#: questions/templates/questions/result.html:51
+msgid "Teacher"
+msgstr "Professor"
+
+#: questions/templates/questions/grat.html:129
+#: questions/templates/questions/grat_date.html:37
+#: questions/templates/questions/grat_update.html:47
+#: questions/templates/questions/irat.html:129
+#: questions/templates/questions/irat_date.html:37
+#: questions/templates/questions/irat_update.html:47
+#: questions/templates/questions/list.html:91
+msgid "Edit"
+msgstr "Editar"
+
+#: questions/templates/questions/grat.html:211
+#: questions/templates/questions/irat.html:211
+#: questions/templates/questions/list.html:173
+msgid "Answer"
+msgstr "Responder"
+
+#: questions/templates/questions/grat.html:217
+#: questions/templates/questions/irat.html:217
+#: questions/templates/questions/list.html:179
+msgid "There is no questions in this session."
+msgstr "Não há questões nessa sessão."
+
+#: questions/templates/questions/grat_date.html:9
+msgid "Edit gRAT date"
+msgstr "Editar a data da avaliação gRAT"
+
+#: questions/templates/questions/grat_info.html:8
+#: questions/templates/questions/irat_info.html:8
+msgid "Rules"
+msgstr "Regras"
+
+#: questions/templates/questions/grat_info.html:11
+#: questions/templates/questions/irat_info.html:11
+msgid "The rules are very simple"
+msgstr "As regras são bem simples"
+
+#: questions/templates/questions/grat_info.html:13
+#, fuzzy
+#| msgid "We have 4 options per question: A, B, C, D"
+msgid ""
+"We have 4 options per alternative: Option 01, Option 02, Option 03, Option 04"
+msgstr ""
+"Nós temos 4 opções por alternativa: Opção 01, Opção 02, Opção 03, Opção 04"
+
+#: questions/templates/questions/grat_info.html:14
+msgid ""
+"If alternative with option 1 is correct, it earns 4 points, otherwise "
+"decreases in half"
+msgstr ""
+"Se a alternativa com a opção 01 for a correta, você ganha 4 pontos, caso "
+"contrario, vai caindo os pontos pela metade"
+
+#: questions/templates/questions/grat_info.html:15
+msgid "You can only choose one option per alternative and can not be repeated"
+msgstr ""
+"Você somente pode escolher uma única opção por alternativa e não pode ser "
+"repetida"
+
+#: questions/templates/questions/grat_info.html:16
+msgid ""
+"After answering the question you can scratch the scratch card and see the "
+"correct answer"
+msgstr "Após responder a questão você pode raspar a raspadinha e ver o resultado"
+
+#: questions/templates/questions/grat_info.html:17
+#: questions/templates/questions/grat_info.html:18
+#: questions/templates/questions/grat_info.html:19
+#: questions/templates/questions/grat_info.html:20
+#: questions/templates/questions/grat_info.html:21
+#: questions/templates/questions/irat_info.html:18
+#: questions/templates/questions/irat_info.html:19
+#: questions/templates/questions/irat_info.html:20
+#: questions/templates/questions/irat_info.html:21
+msgid "Example"
+msgstr "Exemplo"
+
+#: questions/templates/questions/grat_info.html:17
+msgid "Alternative A insert option 01"
+msgstr "Alternativa A insere opção 01"
+
+#: questions/templates/questions/grat_info.html:18
+msgid "Alternative B insert option 03"
+msgstr "Alternativa B insere opção 03"
+
+#: questions/templates/questions/grat_info.html:19
+msgid "Alternative C insert option 02"
+msgstr "Alternativa C insere opção 02"
+
+#: questions/templates/questions/grat_info.html:20
+msgid "Alternative D insert option 04"
+msgstr "Alternativa D insere opção 04"
+
+#: questions/templates/questions/grat_info.html:21
+msgid "Alternative C is correct, so you have earned 2 points"
+msgstr "Alternativa C foi a correta, logo você recebe 2 pontos na questão"
+
+#: questions/templates/questions/grat_pagination.html:8
+#: questions/templates/questions/grat_pagination.html:15
+#: questions/templates/questions/irat_pagination.html:8
+#: questions/templates/questions/irat_pagination.html:15
+#: questions/templates/questions/pagination.html:8
+#: questions/templates/questions/pagination.html:15
+msgid "Back"
+msgstr "Voltar"
+
+#: questions/templates/questions/grat_pagination.html:22
+#: questions/templates/questions/irat_pagination.html:22
+#: questions/templates/questions/pagination.html:22
+msgid "Next"
+msgstr "Próximo"
+
+#: questions/templates/questions/grat_pagination.html:28
+#: questions/templates/questions/irat_pagination.html:28
+#: questions/templates/questions/pagination.html:28
+msgid "Conclude"
+msgstr "Concluir"
+
+#: questions/templates/questions/grat_result.html:14
+#: questions/templates/questions/grat_result.html:25
+msgid "gRAT result"
+msgstr "Resultado da avaliação gRAT"
+
+#: questions/templates/questions/grat_result.html:65
+#: questions/templates/questions/irat_result.html:64
+#: questions/templates/questions/result.html:78
+msgid "Result"
+msgstr "Resultado"
+
+#: questions/templates/questions/grat_result.html:71
+#: questions/templates/questions/irat_result.html:70
+#: questions/templates/questions/result.html:84
+msgid "Correct option"
+msgstr "Opção correta"
+
+#: questions/templates/questions/grat_result.html:88
+#: questions/templates/questions/irat_result.html:87
+#: questions/templates/questions/result.html:110
+msgid "Total"
+msgstr "Total"
+
+#: questions/templates/questions/grat_result.html:90
+#: questions/templates/questions/irat_result.html:89
+#: questions/templates/questions/result.html:112
+msgid "Grade"
+msgstr "Nota"
+
+#: questions/templates/questions/grat_update.html:10
+msgid "Edit gRAT"
+msgstr "Editar gRAT"
+
+#: questions/templates/questions/irat.html:15
+#: questions/templates/questions/irat.html:97
+msgid "iRAT"
+msgstr "iRAT"
+
+#: questions/templates/questions/irat.html:26
+msgid "Individual Readiness Assurance Test (iRAT)"
+msgstr "Teste de garantia de prontidão individual (iRAT)"
+
+#: questions/templates/questions/irat_date.html:9
+msgid "Edit iRAT date"
+msgstr "Editar a data da avaliação iRAT"
+
+#: questions/templates/questions/irat_info.html:13
+msgid "We have 4 options per question: A, B, C, D"
+msgstr "Nós temos 4 alternativas por questão: A, B, C, D"
+
+#: questions/templates/questions/irat_info.html:14
+msgid "You will have 4 points to distribute in each question."
+msgstr "Você terá 4 pontos para distribuir em cada questão."
+
+#: questions/templates/questions/irat_info.html:15
+msgid "You can not enter more than 4 points in an option."
+msgstr "Você não pode entrar com mais de 4 pontos por opção."
+
+#: questions/templates/questions/irat_info.html:16
+msgid "The sum of the options has to give 4 points, can not go beyond that."
+msgstr "A soma das opções tem que dar 4 pontos, não pode ir além disso."
+
+#: questions/templates/questions/irat_info.html:17
+msgid ""
+"The question will only be considered if the sum of the points of the "
+"alternatives is between 0 and 4"
+msgstr "A questão vai somente ser considerada se a soma dos pontos de cada alternativa estiver entre 0 e 4"
+
+#: questions/templates/questions/irat_info.html:18
+msgid "Insert 4 points in option A."
+msgstr "Insira 4 pontos na alternativa A."
+
+#: questions/templates/questions/irat_info.html:19
+msgid "Insert 2 points in option B and 2 points in option C."
+msgstr "Insira 2 pontos na alternativa B e 2 na alternativa C."
+
+#: questions/templates/questions/irat_info.html:20
+msgid "Insert 3 points in option A and 1 points in option D."
+msgstr "Insira 3 pontos na alternativa A e 1 na alternativa D."
+
+#: questions/templates/questions/irat_info.html:21
+msgid "Insert 1 points in each option."
+msgstr "Insira 1 ponto em cada alternativa."
+
+#: questions/templates/questions/irat_result.html:14
+#: questions/templates/questions/irat_result.html:24
+msgid "iRAT result"
+msgstr "Resultado da avaliação iRAT"
+
+#: questions/templates/questions/irat_update.html:10
+msgid "Edit iRAT"
+msgstr "Editar iRAT"
+
+#: questions/templates/questions/list.html:15
+#: questions/templates/questions/list.html:25
+#: questions/templates/questions/result.html:14
+msgid "Exercise list"
+msgstr "Lista de exercícios"
+
+#: questions/templates/questions/list.html:59
+msgid "EXERCISE LIST"
+msgstr "LISTA DE EXERCÍCIOS"
+
+#: questions/templates/questions/result.html:19
+#: questions/templates/questions/result.html:29
+msgid "Exercise list result"
+msgstr "Resultado da lista de exercício"
+
+#: questions/templates/questions/result.html:66
+msgid "Reset"
+msgstr "Resetar"
+
+#: questions/templates/questions/result.html:106
+msgid "Download CSV"
+msgstr "Baixar CSV"
+
+#: questions/templates/questions/update.html:15
+#: questions/templates/questions/update.html:25
+msgid "Update Question"
+msgstr "Atualizar questão"
+
+#: questions/templates/questions/update.html:150
+msgid "Update"
+msgstr "Atualizar"
+
+#: questions/views_exercise.py:138 questions/views_grat.py:362
+#: questions/views_irat.py:336
+msgid "Question answered successfully."
+msgstr "Questão respondida com sucesso."
+
+#: questions/views_exercise.py:202 questions/views_irat.py:398
+msgid "You can only submit the question once."
+msgstr "Você somente pode submeter a questão uma única vez."
+
+#: questions/views_exercise.py:209 questions/views_irat.py:405
+msgid ""
+"You only have 4 points to distribute to the               4 alternatives."
+msgstr "Você tem somente 4 pontos para distribuir entre as 4 alternativas."
+
+#: questions/views_exercise.py:392
+msgid "Exercise list reseted successfully."
+msgstr "Lista de exercícios resetada com sucesso."
+
+#: questions/views_grat.py:49 questions/views_grat.py:239
+#: questions/views_irat.py:46 questions/views_irat.py:225
+msgid "You are not authorized to do this action."
+msgstr "Você não está autorizado a fazer está ação."
+
+#: questions/views_grat.py:134
+msgid "gRAT updated successfully."
+msgstr "gRAT atualizada com sucesso."
+
+#: questions/views_grat.py:174
+msgid "gRAT date must to be filled in."
+msgstr "A data da avaliação gRAT deve ser preenchida."
+
+#: questions/views_grat.py:183
+msgid "gRAT date must to be later than today's date."
+msgstr "A data da avaliação gRAT deve ser maior que a data de hoje."
+
+#: questions/views_grat.py:194
+msgid "gRAT date must to be later than iRAT date with its duration."
+msgstr ""
+"A data da avaliação gRAT deve ser maior que a data da avaliação iRAT com sua "
+"duração."
+
+#: questions/views_grat.py:199
+msgid "gRAT date updated successfully."
+msgstr "A data da avaliação gRAT foi atualizada com sucesso."
+
+#: questions/views_grat.py:405
+msgid "Student must be in a group to answer the test."
+msgstr "Estudante precisam estar em um grupo para responder a prova."
+
+#: questions/views_grat.py:421
+msgid "You can't repeat the options."
+msgstr "Você não pode repetir está opção."
+
+#: questions/views_grat.py:437
+msgid "Your group has already answered this question."
+msgstr "Seu grupo já respondeu essa questão."
+
+#: questions/views_irat.py:131
+msgid "iRAT updated successfully."
+msgstr "iRAT atualizado com sucesso."
+
+#: questions/views_irat.py:171
+msgid "iRAT date must to be filled in."
+msgstr "A data da avaliaçào iRAT deve ser preenchida"
+
+#: questions/views_irat.py:180
+msgid "iRAT date must to be later than today's date."
+msgstr "A data da avaliação iRAT deve ser maior que a data de hoje."
+
+#: questions/views_irat.py:185
+msgid "iRAT date updated successfully."
+msgstr "iRAT atualizado com sucesso."
+
+#: questions/views_question.py:183
+msgid "Question created successfully."
+msgstr "Questão criada com sucesso."
+
+#: questions/views_question.py:201 questions/views_question.py:375
+msgid "All the alternatives need to be filled."
+msgstr "Todas as alternativas precisam ser preenchidas"
+
+#: questions/views_question.py:215 questions/views_question.py:389
+msgid ""
+"The question only needs one correct alternative,                       check "
+"if there is more than one or no longer insert one"
+msgstr ""
+"A questão somente precisa de uma única alternativa correta, verifique se há "
+"uma e somente uma alternativa correta"
+
+#: questions/views_question.py:230 questions/views_question.py:404
+msgid ""
+"Invalid fields, please fill in the questions fields and               "
+"alternative fields correctly."
+msgstr ""
+"Campos invalidos, por favor preencha os campos e alternativas corretamente."
+
+#: questions/views_question.py:357
+msgid "Question updated successfully."
+msgstr "Questão atualizada com sucesso."
+
+#: questions/views_question.py:514
+msgid "Question deleted successfully."
+msgstr "Questão deletada com sucesso."
