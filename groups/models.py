@@ -15,6 +15,7 @@ class Group(models.Model):
 
     discipline = models.ForeignKey(
         Discipline,
+        on_delete=models.CASCADE,
         verbose_name='Discipline',
         related_name='groups',
     )

@@ -144,6 +144,7 @@ class Discipline(models.Model):
     # Teacher that create disciplines.
     teacher = models.ForeignKey(
         settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
         verbose_name=_('Teacher'),
         related_name="disciplines"
     )

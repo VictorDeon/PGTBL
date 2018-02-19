@@ -49,12 +49,6 @@ class Question(models.Model):
         help_text=_('Exercise are questions that appear in the exercise list.')
     )
 
-    show_answer = models.BooleanField(
-        _('Show question answer.'),
-        default=False,
-        help_text=_('Show answer about the specific question')
-    )
-
     created_at = models.DateTimeField(
         _('Created at'),
         help_text=_("Date that the question is created."),
@@ -133,6 +127,27 @@ class Submission(models.Model):
     Store all submissions for a given question.
     """
 
+    session = models.ForeignKey(
+        TBLSession,
+        on_delete=models.CASCADE,
+        verbose_name=_("TBL sessions"),
+        related_name="exercise_submissions"
+    )
+
+    question = models.ForeignKey(
+        Question,
+        on_delete=models.CASCADE,
+        verbose_name=_("Questions"),
+        related_name="exercise_submissions"
+    )
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name=_('Users'),
+        related_name="exercise_submissions"
+    )
+
     correct_alternative = models.CharField(
         _('Correct Alternative'),
         max_length=1000,
@@ -157,27 +172,6 @@ class ExerciseSubmission(Submission):
     Store all submissions for a given exercise question.
     """
 
-    session = models.ForeignKey(
-        TBLSession,
-        on_delete=models.CASCADE,
-        verbose_name=_("TBL sessions"),
-        related_name="exercise_submissions"
-    )
-
-    question = models.ForeignKey(
-        Question,
-        on_delete=models.CASCADE,
-        verbose_name=_("Questions"),
-        related_name="exercise_submissions"
-    )
-
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        verbose_name=_('Users'),
-        related_name="exercise_submissions"
-    )
-
     def __str__(self):
         """
         Alternative of question string.
@@ -196,31 +190,11 @@ class ExerciseSubmission(Submission):
         verbose_name_plural = _('Exercise Submissions')
         ordering = ['user', 'question', 'created_at']
 
+
 class IRATSubmission(Submission):
     """
     Store all submissions for a given iRAT question.
     """
-
-    session = models.ForeignKey(
-        TBLSession,
-        on_delete=models.CASCADE,
-        verbose_name=_("TBL sessions"),
-        related_name="irat_submissions"
-    )
-
-    question = models.ForeignKey(
-        Question,
-        on_delete=models.CASCADE,
-        verbose_name=_("Questions"),
-        related_name="irat_submissions"
-    )
-
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        verbose_name=_('Users'),
-        related_name="irat_submissions"
-    )
 
     def __str__(self):
         """
@@ -245,26 +219,6 @@ class GRATSubmission(Submission):
     """
     Store all submissions for a given gRAT question.
     """
-
-    session = models.ForeignKey(
-        TBLSession,
-        on_delete=models.CASCADE,
-        verbose_name=_("TBL sessions"),
-        related_name="grat_submissions"
-    )
-
-    question = models.ForeignKey(
-        Question,
-        on_delete=models.CASCADE,
-        verbose_name=_("Questions"),
-        related_name="grat_submissions"
-    )
-
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        verbose_name=_('Users'),
-        related_name="grat_submissions"
-    )
 
     group = models.ForeignKey(
         Group,

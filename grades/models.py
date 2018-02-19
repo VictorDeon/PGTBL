@@ -15,6 +15,7 @@ class Grade(models.Model):
 
     session = models.ForeignKey(
         TBLSession,
+        on_delete=models.CASCADE,
         verbose_name='TBL Session',
         related_name='grades'
     )
@@ -128,12 +129,14 @@ class FinalGrade(models.Model):
 
     discipline = models.ForeignKey(
         Discipline,
+        on_delete=models.CASCADE,
         verbose_name='Disciplines',
         related_name='grades'
     )
 
     student = models.ForeignKey(
         settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
         verbose_name='Students',
         related_name='discipline_grades'
     )

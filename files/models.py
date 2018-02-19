@@ -11,12 +11,6 @@ class File(models.Model):
     Insert files to discipline.
     """
 
-    discipline = models.ForeignKey(
-        Discipline,
-        verbose_name='Discipline',
-        related_name='files'
-    )
-
     title = models.CharField(
         _('Title'),
         max_length=200,
@@ -76,6 +70,10 @@ class File(models.Model):
         return self.title
 
     class Meta:
+        """
+        Class metadata.
+        """
+
         verbose_name = _("File")
         verbose_name_plural = _("Files")
         ordering = ['title', 'created_at']
@@ -86,7 +84,12 @@ class DisciplineFile(File):
     Insert files into discipline.
     """
 
-    pass
+    discipline = models.ForeignKey(
+        Discipline,
+        on_delete=models.CASCADE,
+        verbose_name='Discipline',
+        related_name='files'
+    )
 
 
 class SessionFile(File):
@@ -96,6 +99,7 @@ class SessionFile(File):
 
     session = models.ForeignKey(
         TBLSession,
+        on_delete=models.CASCADE,
         verbose_name='Session',
         related_name='files'
     )
