@@ -23,11 +23,11 @@ class Question(models.Model):
         related_name='questions'
     )
 
-    LEVELS = {
+    LEVELS = [
         (_('Basic'), _('Basic')),
         (_('Intermediary'), _('Intermediary')),
         (_('Advanced'), _('Advanced')),
-    }
+    ]
 
     level = models.CharField(
         _('Level'),
