@@ -20,6 +20,9 @@ include test.mk
 # DOCKER
 include docker.mk
 
+# INSTALL
+include install.mk
+
 # SHELL
 # make <target>: Execute the commands inside the target
 # make -f <filename> <target>: Execute Makefile with another name
