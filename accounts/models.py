@@ -178,6 +178,7 @@ class PasswordReset(models.Model):
     # User who requested the new password.
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
         verbose_name=_('User'),
         related_name="password_resets"
     )

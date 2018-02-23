@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-17 18:11-0200\n"
+"POT-Creation-Date: 2018-02-23 18:30-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,141 +18,135 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: TBLSessions/models.py:23
+#: TBLSessions/models.py:24
 msgid "Title"
 msgstr "Título"
 
-#: TBLSessions/models.py:25
+#: TBLSessions/models.py:26
 msgid "Session title."
 msgstr "Título da sessão"
 
-#: TBLSessions/models.py:29 TBLSessions/models.py:98
+#: TBLSessions/models.py:30 TBLSessions/models.py:99
 msgid "Description"
 msgstr "Descrição"
 
-#: TBLSessions/models.py:30
+#: TBLSessions/models.py:31
 msgid "TBL session description."
 msgstr "Descrição da sessão de TBL"
 
-#: TBLSessions/models.py:34
+#: TBLSessions/models.py:35
 msgid "Is closed?"
 msgstr "Está fechada?"
 
-#: TBLSessions/models.py:36
+#: TBLSessions/models.py:37
 msgid "Close TBL session."
 msgstr "Fechar Sessão de TBL"
 
-#: TBLSessions/models.py:41
+#: TBLSessions/models.py:42
 msgid "iRAT date"
 msgstr "Data da avaliação iRAT"
 
-#: TBLSessions/models.py:44
+#: TBLSessions/models.py:45
 msgid "Date and time to provide the iRAT test."
 msgstr "Data e hora que será disponibilizado a avaliação iRAT."
 
-#: TBLSessions/models.py:48
+#: TBLSessions/models.py:49
 msgid "iRAT weight"
 msgstr "Peso da avaliação iRAT"
 
-#: TBLSessions/models.py:51
+#: TBLSessions/models.py:52
 msgid "iRAT test weight."
 msgstr "Peso da avaliação iRAT"
 
-#: TBLSessions/models.py:55
+#: TBLSessions/models.py:56
 msgid "iRAT durantion in minutes"
 msgstr "Duração da avaliação iRAT em minutos"
 
-#: TBLSessions/models.py:58
+#: TBLSessions/models.py:59
 msgid "iRAT duration in minutes to be answered."
 msgstr "Duração da avaliação iRAT em minutos para ser respondida."
 
-#: TBLSessions/models.py:63
+#: TBLSessions/models.py:64
 msgid "gRAT date"
 msgstr "Data da avaliação gRAT"
 
-#: TBLSessions/models.py:66
+#: TBLSessions/models.py:67
 msgid "Date and time to provide the gRAT test."
 msgstr "Data e hora que será disponibilizado a avaliação gRAT"
 
-#: TBLSessions/models.py:70
+#: TBLSessions/models.py:71
 msgid "gRAT test weight"
 msgstr "Peso da avaliação gRAT"
 
-#: TBLSessions/models.py:73
+#: TBLSessions/models.py:74
 msgid "gRAT test weight."
 msgstr "Peso da avaliação gRAT."
 
-#: TBLSessions/models.py:77
+#: TBLSessions/models.py:78
 msgid "gRAT durantion in minutes"
 msgstr "Duração da avaliação gRAT em minutos"
 
-#: TBLSessions/models.py:80
+#: TBLSessions/models.py:81
 msgid "gRAT duration in minutes to be answered."
 msgstr "Duração da avaliação gRAT em minutos para ser respondida."
 
-#: TBLSessions/models.py:85
-#, fuzzy
-#| msgid "Test practical"
+#: TBLSessions/models.py:86
 msgid "Release the practical test"
 msgstr "Disponibilizar a avaliação prática"
 
-#: TBLSessions/models.py:87
-#, fuzzy
-#| msgid "Test practical"
+#: TBLSessions/models.py:88
 msgid "Release the practical test."
 msgstr "Disponibilizar a avaliação prática"
 
-#: TBLSessions/models.py:91
+#: TBLSessions/models.py:92
 msgid "Practical test weight"
 msgstr "Peso da avaliação prática"
 
-#: TBLSessions/models.py:94
+#: TBLSessions/models.py:95
 msgid "Practical test weight."
 msgstr "Peso da avaliação prática"
 
-#: TBLSessions/models.py:99
-#, fuzzy
-#| msgid "TBL session description."
+#: TBLSessions/models.py:100
 msgid "Practical test description."
 msgstr "Descrição da avaliação prática."
 
-#: TBLSessions/models.py:104
+#: TBLSessions/models.py:105
 msgid "Release the peer review test"
 msgstr "Disponibilizar a avaliação em pares"
 
-#: TBLSessions/models.py:106
+#: TBLSessions/models.py:107
 msgid "Release the peer review test to be answered."
 msgstr "Disponibilizar a avaliação em pares para ser respondida."
 
-#: TBLSessions/models.py:110
+#: TBLSessions/models.py:111
 msgid "Peer review weight"
 msgstr "Peso da avaliação em pares"
 
-#: TBLSessions/models.py:113
+#: TBLSessions/models.py:114
 msgid "Peer review weight."
 msgstr "Peso da avaliação em pares."
 
-#: TBLSessions/models.py:117
+#: TBLSessions/models.py:118
 msgid "Created at"
 msgstr "Criado em"
 
-#: TBLSessions/models.py:118
+#: TBLSessions/models.py:119
 msgid "Date that the session is created."
 msgstr "Data na qual a sessão de TBL foi criada."
 
-#: TBLSessions/models.py:123
+#: TBLSessions/models.py:124
 msgid "Updated at"
 msgstr "Atualizado em"
 
-#: TBLSessions/models.py:124
+#: TBLSessions/models.py:125
 msgid "Date that the session is updated."
 msgstr "Data na qual a sessão de TBL foi atualizada"
 
-#: TBLSessions/models.py:154
+#: TBLSessions/models.py:155
 msgid "TBL Session"
 msgstr "Sessão TBL"
 
-#: TBLSessions/models.py:155
+#: TBLSessions/models.py:156
 msgid "TBL Sessions"
 msgstr "Sessões TBL"
 
@@ -204,8 +198,6 @@ msgid "Preview"
 msgstr "Visualizar"
 
 #: TBLSessions/templates/TBLSessions/form.html:96
-#, fuzzy
-#| msgid "There is no sessions available."
 msgid "Make session unavailable"
 msgstr "Fazer a sessão ficar indisponível"
 
@@ -239,8 +231,6 @@ msgid "Rules"
 msgstr "Regras"
 
 #: TBLSessions/templates/TBLSessions/practical_info.html:11
-#, fuzzy
-#| msgid "Test practical"
 msgid "The rules of practical test"
 msgstr "Regras para a avaliação prática"
 
@@ -282,8 +272,6 @@ msgstr "AVALIAÇÃO PRÁTICA"
 
 #: TBLSessions/templates/TBLSessions/practical_update.html:17
 #: TBLSessions/templates/TBLSessions/practical_update.html:27
-#, fuzzy
-#| msgid "Test practical"
 msgid "Edit practical test"
 msgstr "Editar avaliação prática"
 
@@ -300,8 +288,6 @@ msgid "Files"
 msgstr "Arquivos"
 
 #: TBLSessions/templates/TBLSessions/sidebar.html:28
-#, fuzzy
-#| msgid "Session title"
 msgid "Session Grades"
 msgstr "Notas da sessão"
 
@@ -314,8 +300,6 @@ msgid "Dashboard"
 msgstr "Relatório"
 
 #: TBLSessions/templates/TBLSessions/sidebar.html:53
-#, fuzzy
-#| msgid "Test iRAT"
 msgid "Test iRAT Result"
 msgstr "Resultado da avaliação iRAT"
 
@@ -324,8 +308,6 @@ msgid "Test iRAT"
 msgstr "Avaliação iRAT"
 
 #: TBLSessions/templates/TBLSessions/sidebar.html:72
-#, fuzzy
-#| msgid "Test gRAT"
 msgid "Test gRAT Result"
 msgstr "Resultado da avaliação gRAT"
 
@@ -350,8 +332,6 @@ msgid "You are not authorized to do this action."
 msgstr "Você não está autorizado a fazer está ação."
 
 #: TBLSessions/views_practical.py:154
-#, fuzzy
-#| msgid "TBL session updated successfully."
 msgid "Practical test updated successfully."
 msgstr "Avaliação prática atualizada com sucesso."
 

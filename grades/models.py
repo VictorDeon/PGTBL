@@ -15,6 +15,7 @@ class Grade(models.Model):
 
     session = models.ForeignKey(
         TBLSession,
+        on_delete=models.CASCADE,
         verbose_name='TBL Session',
         related_name='grades'
     )
@@ -128,12 +129,14 @@ class FinalGrade(models.Model):
 
     discipline = models.ForeignKey(
         Discipline,
+        on_delete=models.CASCADE,
         verbose_name='Disciplines',
         related_name='grades'
     )
 
     student = models.ForeignKey(
         settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
         verbose_name='Students',
         related_name='discipline_grades'
     )
@@ -163,7 +166,9 @@ class FinalGrade(models.Model):
             for grade in session.grades.filter(student=self.student):
                 session_grades += grade.calcule_session_grade()
 
-        grade = (session_grades/number_of_sessions)
+        grade = 0.0
+        if number_of_sessions > 0:
+            grade = (session_grades/number_of_sessions)
 
         return grade
 

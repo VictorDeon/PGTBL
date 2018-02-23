@@ -75,9 +75,7 @@
         <div id="tbl" class="tab-pane fade in active">
           <h3>Team Based Learning</h3>
           <p>
-            Aprendizagem baseada em equipe ou TBL é uma estratégia de ensino aprendizagem colaborativa
-            que se concentra em um ciclo de três passos: <b>Preparação</b>, <b>Avaliação em classe ou RAT</b>
-            e <b>Pequeno projeto centrado na aplicação</b>
+            {% blocktrans %} Team-based learning or TBL is a collaborative learning teaching strategy that focuses on a three-step cycle: Preparation, Class or RAT Assessment, and Small Application-Focused Project {% endblocktrans %}
           </p>
         </div>
 
@@ -85,36 +83,23 @@
         <div id="preparation" class="tab-pane fade">
           <h3>{% trans 'Preparation' %}</h3>
           <p>
-            Basicamente a(o) professor(a) irá disponibilizar de artigos e livros para estudo, na qual os alunos
-            irão poder baixar, esse material será a preparação para a avaliação, além de ter uma área para resolução
-            de lista de exercícios;
+            {% blocktrans %}Basically, the teacher will provide articles and books for study, in which the students will be able to download, this material will be the preparation for the evaluation, in addition to having an area for resolution of the list of exercises.{% endblocktrans %}
           </p>
         </div>
 
         <!-- iRAT tab -->
         <div id="irat" class="tab-pane fade">
           <h3>{% trans 'Individual test: iRAT' %}</h3>
-          <p>
-            <b>iRAT</b> Individual radiness assurance test, essa avaliação é respondido individualmente
-            sem consulta a qualquer material, consiste de 10 a 20 questões de múltipla escolha contemplando os conceitos
-            mais relevantes das leituras ou das atividades indicadas previamente, cada questão vai ter um número x de
-            alternativas e o aluno poderá distribuir pontos entre as alternativas, por exemplo se a questão tem 4
-            alternativas e ele ta em duvida entre a alternativa A e C ele pode distribuir seus 4 pontos em 2 na A e
-            2 na C, se a resposta correta for a C ele ganha 2 pontos dos 4 e a somatória de todos os pontos dividido
-            pelo total de pontos da prova é calculado a nota do aluno nessa avaliação.
+          <p><b>iRAT</b>
+            {% blocktrans %} Answered individually without consultation or any material, it consists of 10 to 20 questions of multiple choice contemplating the most relevant concepts of the readings or activities indicated previously, each question will have 4 alternatives and the student will be able to distribute points among the alternatives, for example if in doubt between alternative A and C, you can distribute your 4 points in 2 in A and 2 in C, if the correct answer is to C you get 2 points out of 4 and the sum of all points divided by the total points of the test is calculated the student's grade {% endblocktrans %}
           </p>
         </div>
 
         <!-- gRAT tab -->
         <div id="grat" class="tab-pane fade">
           <h3>{% trans 'Team test: gRAT' %}</h3>
-          <p>
-            <b>gRAT</b> Group radiness assurance test, é a segunda avaliação do RAT, respondido em grupo sem consulta a
-            qualquer material, consiste das mesmas questões do iRAT, terá feedbacks imediatos da resposta certa, porém
-            ele pode ir raspando até acertar, se acertar de primeira recebe pontuação total, 4 se for o número de
-            alternativas existentes, porém a cada erro a pontuação da questão cai um ponto se ele raspar
-            todas as alternativa terá nota zero na questão, o somatório de todos os pontos dividido pelo total é calculado
-            a nota do grupo nessa avaliação.
+          <p><b>gRAT</b>:
+            {% blocktrans %} Answered in a group without consultation or any material, consists of the same questions of the iRAT, each alternative of the question the student will have to specify the order of choice, for example, among the 4 alternatives of the question he places 4 points in the first alternative, if it is correct the student receives a total score that is 4, if the correct one is the alternative with 2 points the student receives 2 points, 1 point equals 1 point and 0 points equals no point in the question, after the student will have immediate feedbacks of the correct answer through scratch card, the sum of all points divided by the total is calculated by the group note in that evaluation.  {% endblocktrans %}
           </p>
         </div>
 
@@ -122,9 +107,7 @@
         <div id="appeal" class="tab-pane fade">
           <h3>{% trans 'Appels' %}</h3>
           <p>
-            As equipes podem recorrer no caso de não concordar com a resposta indicado como correta, todo apelo deve ser feito
-            acompanhado de argumentação, sugestão de melhoria e com consulta a fontes bibliográficas pertinentes. A equipe deve
-            também propor o novo formato e a resposta correta da questão.
+            {% blocktrans %} Teams may appeal if they do not agree with the correct answer, all appeals must be accompanied by arguments, suggestions for improvement and consultation with relevant bibliographic sources. The team should also propose the new format and the correct answer to the question.  {% endblocktrans %}
           </p>
         </div>
 
@@ -132,7 +115,7 @@
         <div id="feedback" class="tab-pane fade">
           <h3>{% trans 'Instructor feedback' %}</h3>
           <p>
-            Após a avaliação e as apelações o instrutor irá pegar as questões que mais erraram e dar feedbacks sobre elas.
+            {% blocktrans %} After the assessments and the appeals the instructor will pick up the questions that the students missed the most and give feedback about them.  {% endblocktrans %}
           </p>
         </div>
 
@@ -140,7 +123,7 @@
         <div id="app" class="tab-pane fade">
           <h3>{% trans 'Application oriented activities' %}</h3>
           <p>
-            O projeto centrado na aplicação executa todo o conhecimento adquirido em um contexto real do tópico proposto.
+            {% blocktrans %} The application-centric project executes all the knowledge acquired in a real context of the proposed topic. {% endblocktrans %}
           </p>
         </div>
 
@@ -148,11 +131,7 @@
         <div id="pair" class="tab-pane fade">
           <h3>{% trans 'Pair test' %}</h3>
           <p>
-            Durante o semestre pode ocorrer avaliações em pares na qual cada integrante da equipe irá avaliar os outros
-            integrantes da equipe, será disponibilizado uma pontuação máxima para cada membro distribuir entre os outros
-            membros da equipe e um campo para dizer o porque da pontuação podendo inserir feedback para o colega de equipe,
-            essa avaliação não precisa se identificar ela será anônima e a pontuação fará parte da nota individual de cada
-            membro da equipe.
+            {% blocktrans %} During the semester peer evaluations may take place in which each member of the team will evaluate the other team members, a maximum score will be provided for each member to distribute among the other members of the team and a field to say why the score may enter feedback for the teammate, this evaluation does not need to identify if it will be anonymous and the score will be part of the individual note of each team member.  {% endblocktrans %}
           </p>
         </div>
       </div> <!-- Close tab content -->
@@ -168,29 +147,27 @@
 
     <!-- Body -->
     <div class="panel-body text-justify">
-      <p>A utilização do TBL tem algumas vantagens:</p>
+      <p>{% trans 'The use of TBL has some advantages' %}:</p>
       <ol>
         <li>
-          <b>Colaboração</b>:
-          O principal objetivo é o aprendizado em equipes, um ajudando o outro.
+          <b>{% trans 'Collaboration' %}</b>:
+          {% trans 'The main objective is the learning in teams, one helping the other' %}
         </li>
         <li>
-          <b>Entreterimento</b>:
-          O software tem uma ideia de gameficação, tendo competição entre equipes para que as equipes possam
-          treinar a colaboração entre si.
+          <b>{% trans 'Entertainment' %}</b>:
+          {% blocktrans %} The software has an idea of gamefication, having competition between teams so that the teams can train the collaboration between them.  {% endblocktrans %}
         </li>
         <li>
-          <b>Capacitação</b>:
-          Profissionais mais capacitados para o mercado de trabalho, pois a métodologia faz o estudante estudar
-          constantemente e trabalhar em equipe.
+          <b>{% trans 'Training' %}</b>:
+          {% blocktrans %} Professionals more qualified for the job market, because the methodology makes the student to study constantly and work as a team.  {% endblocktrans %}
         </li>
         <li>
-          <b>Inovação</b>:
-          Sair do comodismo e experimentar o novo.
+          <b>{% trans 'Innovation' %}</b>:
+          {% trans 'Get out of the cold and try something new' %}
         </li>
         <li>
-          <b>Ensino aprendizado</b>:
-          O aluno se torna mais participativo e motivado a aprender e o professor torna a aula mais ativa e interessante.
+          <b>{% trans 'Teaching learning' %}</b>:
+          {% blocktrans %} The student becomes more participative and motivated to learn and the teacher makes the class more active and interesting {% endblocktrans %}
         </li>
       </ol>
     </div>
@@ -204,9 +181,9 @@
     </div>
 
     <!-- Body -->
-    <div class="panel-body">A documentação se encontra na
-      <a href="https://github.com/TeamBasedLearning/TBL/wiki" target="_blank">wiki do projeto</a>.
-      <p>Repositorio do <a href="https://github.com/TeamBasedLearning" target="_blank">projeto</a>.
+    <div class="panel-body">{% trans 'The documentation is found in the' %}
+      <a href="https://github.com/VictorArnaud/TBL/wiki" target="_blank">{% trans 'wiki of project' %}</a>.
+      <p><a href="https://github.com/VictorArnaud/TBL" target="_blank">{% trans 'Project repository' %}</a>.
     </div>
   </div>
 
@@ -229,7 +206,7 @@
                     allowfullscreen>
             </iframe>
           </div>
-          <p>Vídeo de como usar o TBL.</p>
+          <p>{% trans 'Video about TBL methodology' %}.</p>
         </div>
 
         <!-- Software video -->
@@ -241,7 +218,7 @@
                     allowfullscreen>
             </iframe>
           </div>
-          <p>Vídeo de como usar o software.</p>
+          <p>{% trans 'Video of how to use the software' %}.</p>
         </div>
       </div>
     </div>
@@ -262,10 +239,6 @@
     {% trans 'Designed and built by' %}
     <a href="https://github.com/orgs/TeamBasedLearning/people" target="_blank">
       {% trans 'Team members' %}
-    </a>
-    {%trans 'with the help of our' %}
-    <a href="https://github.com/TeamBasedLearning/TBL/graphs/contributors" target="_blank">
-      {% trans 'contributors' %}.
     </a>
   </div>
 </div>

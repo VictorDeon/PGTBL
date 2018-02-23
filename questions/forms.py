@@ -85,10 +85,10 @@ class AnswerGRATQuestionForm(forms.Form):
     """
 
     SCORES = (
-        (4, _('Option 01')),
-        (2, _('Option 02')),
-        (1, _('Option 03 ')),
-        (0, _('Option 04'))
+        (4, _('4 Points')),
+        (2, _('2 Points')),
+        (1, _('1 Point ')),
+        (0, _('0 Points'))
     )
 
     score = forms.ChoiceField(choices=SCORES)

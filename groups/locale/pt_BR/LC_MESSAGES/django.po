@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-17 18:11-0200\n"
+"POT-Creation-Date: 2018-02-23 18:30-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,43 +18,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: groups/models.py:23
+#: groups/models.py:24
 msgid "Title"
 msgstr "Título"
 
-#: groups/models.py:25
+#: groups/models.py:26
 msgid "Title of group"
 msgstr "Título do grupo"
 
-#: groups/models.py:29
+#: groups/models.py:30
 msgid "Students limit"
 msgstr "Limite de estudantes"
 
-#: groups/models.py:31
+#: groups/models.py:32
 msgid "Students limit to get into the group."
 msgstr "Limite de estudantes que pode ser inserido no grupo"
 
-#: groups/models.py:42
+#: groups/models.py:43
 msgid "Created at"
 msgstr "Criado em"
 
-#: groups/models.py:43
+#: groups/models.py:44
 msgid "Date that the group is created."
 msgstr "Data que o grupo foi criado."
 
-#: groups/models.py:48
+#: groups/models.py:49
 msgid "Updated at"
 msgstr "Atualizado em"
 
-#: groups/models.py:49
+#: groups/models.py:50
 msgid "Date that the group is updated"
 msgstr "Data em que o grupo foi atualizado"
 
-#: groups/models.py:62 groups/templates/groups/students.html:14
+#: groups/models.py:63 groups/templates/groups/students.html:14
 msgid "Group"
 msgstr "Grupo"
 
-#: groups/models.py:63
+#: groups/models.py:64
 msgid "Groups"
 msgstr "Grupos"
 

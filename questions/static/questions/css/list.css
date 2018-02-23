@@ -98,3 +98,7 @@
 .date > a:hover {
   text-decoration: none;
 }
+
+.form-group {
+  padding-top: 12px;
+}

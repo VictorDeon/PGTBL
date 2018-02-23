@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-17 18:11-0200\n"
+"POT-Creation-Date: 2018-02-23 18:30-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,7 +54,7 @@ msgid ""
 msgstr ""
 "Este valor deve somente conter letras, números, e caracteres como @/./+/-/_."
 
-#: accounts/models.py:33 accounts/models.py:168 accounts/models.py:181
+#: accounts/models.py:33 accounts/models.py:168 accounts/models.py:182
 #: accounts/tests/test_login.py:98
 msgid "User"
 msgstr "Usuário"
@@ -140,7 +140,7 @@ msgstr "É administrador?"
 msgid "Verify if the user is a staff."
 msgstr "Verifica se o usuário é um administrador."
 
-#: accounts/models.py:110 accounts/models.py:194
+#: accounts/models.py:110 accounts/models.py:195
 msgid "Created at"
 msgstr "Criado em"
 
@@ -160,19 +160,19 @@ msgstr "Data que o usuário atualizou a conta."
 msgid "Users"
 msgstr "Usuários"
 
-#: accounts/models.py:187
+#: accounts/models.py:188
 msgid "Key"
 msgstr "Chave"
 
-#: accounts/models.py:200
+#: accounts/models.py:201
 msgid "Confirmed?"
 msgstr "Confirmado?"
 
-#: accounts/models.py:218
+#: accounts/models.py:219
 msgid "New password"
 msgstr "Nova senha"
 
-#: accounts/models.py:219
+#: accounts/models.py:220
 msgid "New passwords"
 msgstr "Novas senhas"
 
@@ -189,10 +189,8 @@ msgid "Discipline monitor"
 msgstr "Monitor das disciplinas"
 
 #: accounts/templates/accounts/collapse.html:37
-#, fuzzy
-#| msgid "Create discipline and classroom"
 msgid "Created Disciplines"
-msgstr "Criar disciplinas"
+msgstr "Disciplinas criadas"
 
 #: accounts/templates/accounts/collapse.html:116
 #: accounts/templates/accounts/login.html:70

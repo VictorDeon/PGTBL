@@ -422,7 +422,7 @@ def get_csv(request, *args, **kwargs):
     )
 
     submissions = ExerciseSubmission.objects.filter(
-        session=self.get_session(),
+        session=session,
         user=request.user
     )
 

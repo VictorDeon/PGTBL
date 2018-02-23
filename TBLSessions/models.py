@@ -15,6 +15,7 @@ class TBLSession(models.Model):
     # TBL Session
     discipline = models.ForeignKey(
         Discipline,
+        on_delete=models.CASCADE,
         verbose_name='Discipline',
         related_name='tbl_sessions'
     )
