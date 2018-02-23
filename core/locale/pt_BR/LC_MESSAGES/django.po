@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-23 16:25-0300\n"
+"POT-Creation-Date: 2018-02-23 18:30-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,36 +117,81 @@ msgstr "Funcionalidades"
 msgid "Manage disciplines and students"
 msgstr "Gerenciar disciplinas e estudantes"
 
-#: core/templates/core/features.html:44
+#: core/templates/core/features.html:27
+msgid ""
+" The teacher can add, remove, create and edit courses and classes and "
+"provide the password for them to enter. in addition to being able to remove "
+"students from the discipline and add it to other disciplines of their own "
+"and to manage their grades. "
+msgstr ""
+"O professor pode adicionar, remover, criar e editar disciplinas e turmas e "
+"disponibilizar a senha de acesso a elas para os alunos entrarem. além de "
+"poder remover estudantes da disciplina e adicioná-lo em outras disciplinas "
+"de sua autoria e gerenciar suas notas."
+
+#: core/templates/core/features.html:41
 msgid "TBL features"
 msgstr "Funcionalidades do TBL"
 
-#: core/templates/core/features.html:65
+#: core/templates/core/features.html:46
+msgid ""
+" Functions related to the phases of preparation, guarantee of preparation or "
+"RAT, iRAT, gRAT and appeals, Application of concepts and evaluation in pairs "
+msgstr ""
+"Funcionalidades relacionadas às fases de preparação, garantia de preparo ou "
+"RAT, iRAT, gRAT e apelações, Aplicação de conceitos e avaliação em pares"
+
+#: core/templates/core/features.html:60
 msgid "Report"
 msgstr "Relatório"
 
-#: core/templates/core/features.html:86
+#: core/templates/core/features.html:66
+msgid ""
+" The teacher will have a dashboard with reports of student performance on "
+"each assessment question, feedback to what he or she should focus on most in "
+"class, and generate a csv of student proofs with their answers. "
+msgstr ""
+"O professor terá um dashboard com relatórios do desempenho dos alunos em "
+"cada questão da avaliação, tendo um feedback para o que ele deve focar mais "
+"nas aulas, além de poder gerar um csv das provas dos alunos com suas "
+"respectivas respostas."
+
+#: core/templates/core/features.html:80
 msgid "Rank and Gamification"
 msgstr "Rank e Gameficação"
+
+#: core/templates/core/features.html:85
+msgid ""
+" There will also be a group rank in which the first place will be displayed "
+"in the Hall of Fame that will be seen by new students of the next semesters, "
+"there is no individual rank because the objective is not the competition but "
+"the collaboration. In addition to having a gamefication in the list of "
+"exercises among other places of the software. "
+msgstr ""
+"Terá também um rank de grupos, na qual o primeiro colocado ficará exposto no "
+"Hall da Fama que será visto por novos alunos dos próximos semestres, não há "
+"rank individual porque o objetivo não é a competição e sim a colaboração. "
+"Além de ter uma gameficação na lista de exercícios entre outros locais do "
+"software."
 
 #: core/templates/core/footer.html:13 core/templates/core/footer.html:55
 #: core/templates/core/navbar.html:64
 msgid "About"
 msgstr "Sobre"
 
-#: core/templates/core/footer.html:23 core/templates/core/footer.html:166
+#: core/templates/core/footer.html:23 core/templates/core/footer.html:145
 msgid "Advantages"
 msgstr "Vantagens"
 
-#: core/templates/core/footer.html:33 core/templates/core/footer.html:203
+#: core/templates/core/footer.html:33 core/templates/core/footer.html:180
 msgid "Documentation"
 msgstr "Documentação"
 
-#: core/templates/core/footer.html:43 core/templates/core/footer.html:217
+#: core/templates/core/footer.html:43 core/templates/core/footer.html:194
 msgid "How to use"
 msgstr "Como usar"
 
-#: core/templates/core/footer.html:63 core/templates/core/footer.html:86
+#: core/templates/core/footer.html:63 core/templates/core/footer.html:84
 msgid "Preparation"
 msgstr "Preparação"
 
@@ -166,49 +211,227 @@ msgstr "Apelação"
 msgid "Feedback"
 msgstr "Feedback"
 
-#: core/templates/core/footer.html:68 core/templates/core/footer.html:141
+#: core/templates/core/footer.html:68 core/templates/core/footer.html:124
 msgid "Application oriented activities"
 msgstr "Aplicação orientada a atividades"
 
-#: core/templates/core/footer.html:69 core/templates/core/footer.html:149
+#: core/templates/core/footer.html:69 core/templates/core/footer.html:132
 msgid "Pair test"
 msgstr "Avaliação em pares"
 
-#: core/templates/core/footer.html:96
+#: core/templates/core/footer.html:78
+msgid ""
+" Team-based learning or TBL is a collaborative learning teaching strategy "
+"that focuses on a three-step cycle: Preparation, Class or RAT Assessment, "
+"and Small Application-Focused Project "
+msgstr ""
+"Aprendizagem baseada em equipe ou TBL é uma estratégia de ensino "
+"aprendizagem colaborativa que se concentra em um ciclo de três passos: "
+"Preparação, Avaliação em classe ou RAT e Pequeno projeto centrado na "
+"aplicação"
+
+#: core/templates/core/footer.html:86
+msgid ""
+"Basically, the teacher will provide articles and books for study, in which "
+"the students will be able to download, this material will be the preparation "
+"for the evaluation, in addition to having an area for resolution of the list "
+"of exercises."
+msgstr ""
+"Basicamente a(o) professor(a) irá disponibilizar de artigos e livros para "
+"estudo, na qual os alunos irão poder baixar, esse material será a preparação "
+"para a avaliação, além de ter uma área para resolução de lista de exercícios."
+
+#: core/templates/core/footer.html:92
 msgid "Individual test: iRAT"
 msgstr "Prova individual: iRAT"
 
-#: core/templates/core/footer.html:110
+#: core/templates/core/footer.html:94
+msgid ""
+" Answered individually without consultation or any material, it consists of "
+"10 to 20 questions of multiple choice contemplating the most relevant "
+"concepts of the readings or activities indicated previously, each question "
+"will have 4 alternatives and the student will be able to distribute points "
+"among the alternatives, for example if in doubt between alternative A and C, "
+"you can distribute your 4 points in 2 in A and 2 in C, if the correct answer "
+"is to C you get 2 points out of 4 and the sum of all points divided by the "
+"total points of the test is calculated the student's grade "
+msgstr ""
+"Respondido individualmente sem consulta ou qualquer material, consiste de 10 "
+"a 20 questões de múltipla escolha contemplando os conceitos mais relevantes "
+"das leituras ou das atividades indicadas previamente, cada questão vai ter 4 "
+"alternativas e o aluno poderá distribuir pontos entre as alternativas, por "
+"exemplo se estiver em duvida entre a alternativa A e C, você pode distribuir "
+"seus 4 pontos em 2 na A e 2 na C, se a resposta correta for a C você ganha 2 "
+"pontos dos 4 e a somatória de todos os pontos dividido pelo total de pontos "
+"da prova é calculado a nota do aluno nessa avaliação."
+
+#: core/templates/core/footer.html:100
 msgid "Team test: gRAT"
 msgstr "Prova em grupo: gRAT"
 
-#: core/templates/core/footer.html:123
+#: core/templates/core/footer.html:102
+msgid ""
+" Answered in a group without consultation or any material, consists of the "
+"same questions of the iRAT, each alternative of the question the student "
+"will have to specify the order of choice, for example, among the 4 "
+"alternatives of the question he places 4 points in the first alternative, if "
+"it is correct the student receives a total score that is 4, if the correct "
+"one is the alternative with 2 points the student receives 2 points, 1 point "
+"equals 1 point and 0 points equals no point in the question, after the "
+"student will have immediate feedbacks of the correct answer through scratch "
+"card, the sum of all points divided by the total is calculated by the group "
+"note in that evaluation.  "
+msgstr ""
+"Respondido em grupo sem consulta ou qualquer material, consiste das mesmas "
+"questões do iRAT, a cada alternativa da questão o aluno terá que especificar "
+"a ordem de escolha, por exemplo, entre as 4 alternativas da questão ele "
+"coloca 4 pontos na primeira alternativa, se ela for a correta o aluno recebe "
+"pontuação total que é 4, se a correta for a alternativa com 2 pontos o aluno "
+"recebe 2 pontos, 1 ponto equivale a 1 ponto e 0 pontos equivale a nenhum "
+"ponto na questão, após respondido o aluno terá feedbacks imediatos da "
+"resposta certa através de raspadinha, o somatório de todos os pontos "
+"dividido pelo total é calculado a nota do grupo nessa avaliação."
+
+#: core/templates/core/footer.html:108
 msgid "Appels"
 msgstr "Apelações"
 
-#: core/templates/core/footer.html:133
+#: core/templates/core/footer.html:110
+msgid ""
+" Teams may appeal if they do not agree with the correct answer, all appeals "
+"must be accompanied by arguments, suggestions for improvement and "
+"consultation with relevant bibliographic sources. The team should also "
+"propose the new format and the correct answer to the question.  "
+msgstr ""
+"As equipes podem recorrer no caso de não concordar com a resposta indicado "
+"como correta, todo apelo deve ser feito acompanhado de argumentação, "
+"sugestão de melhoria e com consulta a fontes bibliográficas pertinentes. A "
+"equipe deve também propor o novo formato e a resposta correta da questão."
+
+#: core/templates/core/footer.html:116
 msgid "Instructor feedback"
 msgstr "Feedback do professor"
 
-#: core/templates/core/footer.html:257
+#: core/templates/core/footer.html:118
+msgid ""
+" After the assessments and the appeals the instructor will pick up the "
+"questions that the students missed the most and give feedback about them.  "
+msgstr ""
+"Após as avaliações e as apelações o instrutor irá pegar as questões que os "
+"alunos mais erraram e dar feedbacks sobre elas."
+
+#: core/templates/core/footer.html:126
+msgid ""
+" The application-centric project executes all the knowledge acquired in a "
+"real context of the proposed topic. "
+msgstr ""
+"O projeto centrado na aplicação executa todo o conhecimento adquirido em um "
+"contexto real do tópico proposto."
+
+#: core/templates/core/footer.html:134
+msgid ""
+" During the semester peer evaluations may take place in which each member of "
+"the team will evaluate the other team members, a maximum score will be "
+"provided for each member to distribute among the other members of the team "
+"and a field to say why the score may enter feedback for the teammate, this "
+"evaluation does not need to identify if it will be anonymous and the score "
+"will be part of the individual note of each team member.  "
+msgstr ""
+"Durante o semestre pode ocorrer avaliações em pares na qual cada integrante "
+"da equipe irá avaliar os outros integrantes da equipe, será disponibilizado "
+"uma pontuação máxima para cada membro distribuir entre os outros membros da "
+"equipe e um campo para dizer o porque da pontuação podendo inserir feedback "
+"para o colega de equipe, essa avaliação não precisa se identificar ela será "
+"anônima e a pontuação fará parte da nota individual de cada membro da equipe."
+
+#: core/templates/core/footer.html:150
+msgid "The use of TBL has some advantages"
+msgstr "O uso do TBL tem algumas vantagens:"
+
+#: core/templates/core/footer.html:153
+msgid "Collaboration"
+msgstr "Colaboração"
+
+#: core/templates/core/footer.html:154
+msgid "The main objective is the learning in teams, one helping the other"
+msgstr "O objetivo principal é o aprendizado em times, um ajudando o outro."
+
+#: core/templates/core/footer.html:157
+msgid "Entertainment"
+msgstr "Entretenimento"
+
+#: core/templates/core/footer.html:158
+msgid ""
+" The software has an idea of gamefication, having competition between teams "
+"so that the teams can train the collaboration between them.  "
+msgstr ""
+"O software tem a ideia de gameficação, tem uma competição entre os times, "
+"com isso o time pode melhorar sua colaboração entre si, o que torna uma "
+"competição saudavel."
+
+#: core/templates/core/footer.html:161
+msgid "Training"
+msgstr "Capacitação"
+
+#: core/templates/core/footer.html:162
+msgid ""
+" Professionals more qualified for the job market, because the methodology "
+"makes the student to study constantly and work as a team.  "
+msgstr ""
+"Profissionais mais qualificados para o mercado de trabalho, porque a "
+"metodologia faz com que o aluno estude constantemente e trabalhe em equipe."
+
+#: core/templates/core/footer.html:165
+msgid "Innovation"
+msgstr "Inovação"
+
+#: core/templates/core/footer.html:166
+msgid "Get out of the cold and try something new"
+msgstr "Sair do comodismo e experimentar algo novo"
+
+#: core/templates/core/footer.html:169
+msgid "Teaching learning"
+msgstr "Ensino aprendizado"
+
+#: core/templates/core/footer.html:170
+msgid ""
+" The student becomes more participative and motivated to learn and the "
+"teacher makes the class more active and interesting "
+msgstr ""
+"O estudante se torna mais participativo e motivado a aprender e os "
+"professores fazem com que as aulas fiquem mais ativas e interessantes"
+
+#: core/templates/core/footer.html:184
+msgid "The documentation is found in the"
+msgstr "A documentação se encontra na"
+
+#: core/templates/core/footer.html:185
+msgid "wiki of project"
+msgstr "wiki do projeto"
+
+#: core/templates/core/footer.html:186
+msgid "Project repository"
+msgstr "Repositorio do projeto"
+
+#: core/templates/core/footer.html:209
+msgid "Video about TBL methodology"
+msgstr "Vídeo sobre a métodologia TBL."
+
+#: core/templates/core/footer.html:221
+msgid "Video of how to use the software"
+msgstr "Vídeo sobre o uso do software."
+
+#: core/templates/core/footer.html:234
 msgid "Team Based Learning. Code licensed GPL-3.0"
 msgstr "Team Based Learning. Licença GPL-3.0"
 
-#: core/templates/core/footer.html:262
+#: core/templates/core/footer.html:239
 msgid "Designed and built by"
 msgstr "Projetado por"
 
-#: core/templates/core/footer.html:264
+#: core/templates/core/footer.html:241
 msgid "Team members"
 msgstr "Membros do time"
-
-#: core/templates/core/footer.html:266
-msgid "with the help of our"
-msgstr "com a ajuda dos nossos"
-
-#: core/templates/core/footer.html:268
-msgid "contributors"
-msgstr "contribuidores"
 
 #: core/templates/core/navbar.html:79
 msgid "Profile"

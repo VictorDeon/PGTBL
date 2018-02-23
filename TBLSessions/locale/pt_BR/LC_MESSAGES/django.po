@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-23 16:25-0300\n"
+"POT-Creation-Date: 2018-02-23 18:30-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -91,14 +91,10 @@ msgid "gRAT duration in minutes to be answered."
 msgstr "Duração da avaliação gRAT em minutos para ser respondida."
 
 #: TBLSessions/models.py:86
-#, fuzzy
-#| msgid "Test practical"
 msgid "Release the practical test"
 msgstr "Disponibilizar a avaliação prática"
 
 #: TBLSessions/models.py:88
-#, fuzzy
-#| msgid "Test practical"
 msgid "Release the practical test."
 msgstr "Disponibilizar a avaliação prática"
 
@@ -111,8 +107,6 @@ msgid "Practical test weight."
 msgstr "Peso da avaliação prática"
 
 #: TBLSessions/models.py:100
-#, fuzzy
-#| msgid "TBL session description."
 msgid "Practical test description."
 msgstr "Descrição da avaliação prática."
 
@@ -204,8 +198,6 @@ msgid "Preview"
 msgstr "Visualizar"
 
 #: TBLSessions/templates/TBLSessions/form.html:96
-#, fuzzy
-#| msgid "There is no sessions available."
 msgid "Make session unavailable"
 msgstr "Fazer a sessão ficar indisponível"
 
@@ -239,8 +231,6 @@ msgid "Rules"
 msgstr "Regras"
 
 #: TBLSessions/templates/TBLSessions/practical_info.html:11
-#, fuzzy
-#| msgid "Test practical"
 msgid "The rules of practical test"
 msgstr "Regras para a avaliação prática"
 
@@ -282,8 +272,6 @@ msgstr "AVALIAÇÃO PRÁTICA"
 
 #: TBLSessions/templates/TBLSessions/practical_update.html:17
 #: TBLSessions/templates/TBLSessions/practical_update.html:27
-#, fuzzy
-#| msgid "Test practical"
 msgid "Edit practical test"
 msgstr "Editar avaliação prática"
 
@@ -300,8 +288,6 @@ msgid "Files"
 msgstr "Arquivos"
 
 #: TBLSessions/templates/TBLSessions/sidebar.html:28
-#, fuzzy
-#| msgid "Session title"
 msgid "Session Grades"
 msgstr "Notas da sessão"
 
@@ -314,8 +300,6 @@ msgid "Dashboard"
 msgstr "Relatório"
 
 #: TBLSessions/templates/TBLSessions/sidebar.html:53
-#, fuzzy
-#| msgid "Test iRAT"
 msgid "Test iRAT Result"
 msgstr "Resultado da avaliação iRAT"
 
@@ -324,8 +308,6 @@ msgid "Test iRAT"
 msgstr "Avaliação iRAT"
 
 #: TBLSessions/templates/TBLSessions/sidebar.html:72
-#, fuzzy
-#| msgid "Test gRAT"
 msgid "Test gRAT Result"
 msgstr "Resultado da avaliação gRAT"
 
@@ -350,8 +332,6 @@ msgid "You are not authorized to do this action."
 msgstr "Você não está autorizado a fazer está ação."
 
 #: TBLSessions/views_practical.py:154
-#, fuzzy
-#| msgid "TBL session updated successfully."
 msgid "Practical test updated successfully."
 msgstr "Avaliação prática atualizada com sucesso."
 

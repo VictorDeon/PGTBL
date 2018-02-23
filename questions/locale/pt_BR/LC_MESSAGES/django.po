@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-23 16:25-0300\n"
+"POT-Creation-Date: 2018-02-23 18:30-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -338,26 +338,18 @@ msgid "Example"
 msgstr "Exemplo"
 
 #: questions/templates/questions/grat_info.html:17
-#, fuzzy
-#| msgid "Alternative A insert option 01"
 msgid "Alternative A insert 4 Points"
 msgstr "Alternativa A insere 4 Pontos"
 
 #: questions/templates/questions/grat_info.html:18
-#, fuzzy
-#| msgid "Alternative B insert option 03"
 msgid "Alternative B insert 1 Point"
 msgstr "Alternativa B insere 1 Ponto"
 
 #: questions/templates/questions/grat_info.html:19
-#, fuzzy
-#| msgid "Alternative C insert option 02"
 msgid "Alternative C insert 2 Points"
 msgstr "Alternativa C insere 2 Pontos"
 
 #: questions/templates/questions/grat_info.html:20
-#, fuzzy
-#| msgid "Alternative D insert option 04"
 msgid "Alternative D insert 0 Point"
 msgstr "Alternativa D insere 0 Pontos"
 
