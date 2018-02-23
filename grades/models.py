@@ -166,7 +166,9 @@ class FinalGrade(models.Model):
             for grade in session.grades.filter(student=self.student):
                 session_grades += grade.calcule_session_grade()
 
-        grade = (session_grades/number_of_sessions)
+        grade = 0.0
+        if number_of_sessions > 0:
+            grade = (session_grades/number_of_sessions)
 
         return grade
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-17 18:11-0200\n"
+"POT-Creation-Date: 2018-02-23 16:25-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,34 +128,34 @@ msgstr "O grupo foi disponibilizado?"
 msgid "Provide groups to students see."
 msgstr "Disponibilizar grupos para os estudantes verem."
 
-#: disciplines/models.py:147 disciplines/templates/disciplines/details.html:69
+#: disciplines/models.py:148 disciplines/templates/disciplines/details.html:69
 #: disciplines/templates/disciplines/list.html:62
 #: disciplines/templates/disciplines/list.html:139
 #: disciplines/templates/disciplines/users.html:72
 msgid "Teacher"
 msgstr "Professor"
 
-#: disciplines/models.py:169
+#: disciplines/models.py:170
 msgid "Created at"
 msgstr "Criado em"
 
-#: disciplines/models.py:170
+#: disciplines/models.py:171
 msgid "Date that the discipline is created."
 msgstr "Data que a disciplina foi criada."
 
-#: disciplines/models.py:176
+#: disciplines/models.py:177
 msgid "Updated at"
 msgstr "Atualizado em"
 
-#: disciplines/models.py:177
+#: disciplines/models.py:178
 msgid "Date that the discipline is updated."
 msgstr "Data em que a disciplina foi atualizada"
 
-#: disciplines/models.py:201 disciplines/templates/disciplines/list.html:55
+#: disciplines/models.py:202 disciplines/templates/disciplines/list.html:55
 msgid "Discipline"
 msgstr "Disciplina"
 
-#: disciplines/models.py:202
+#: disciplines/models.py:203
 msgid "Disciplines"
 msgstr "Disciplinas"
 

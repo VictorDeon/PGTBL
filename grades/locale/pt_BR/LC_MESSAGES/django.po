@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-17 18:11-0200\n"
+"POT-Creation-Date: 2018-02-23 16:25-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,63 +18,63 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: grades/models.py:35
+#: grades/models.py:36
 msgid "iRAT grade"
 msgstr "Nota iRAT"
 
-#: grades/models.py:37
+#: grades/models.py:38
 msgid "iRAT test grade."
 msgstr "Nota da prova iRAT"
 
-#: grades/models.py:41
+#: grades/models.py:42
 msgid "gRAT grade"
 msgstr "Nota gRAT"
 
-#: grades/models.py:43
+#: grades/models.py:44
 msgid "gRAT test grade."
 msgstr "Nota da prova gRAT"
 
-#: grades/models.py:47
+#: grades/models.py:48
 msgid "Practical test grade"
 msgstr "Nota do projeto prático"
 
-#: grades/models.py:49
+#: grades/models.py:50
 msgid "Practical test grade."
 msgstr "Nota do projeto prático."
 
-#: grades/models.py:53
+#: grades/models.py:54
 msgid "Peer review grade"
 msgstr "Nota da avaliação em pares"
 
-#: grades/models.py:55
+#: grades/models.py:56
 msgid "Peer review grade."
 msgstr "Nota da avaliação em pares"
 
-#: grades/models.py:59 grades/models.py:142
+#: grades/models.py:60 grades/models.py:145
 msgid "Created at"
 msgstr "Criado em"
 
-#: grades/models.py:60 grades/models.py:143
+#: grades/models.py:61 grades/models.py:146
 msgid "Date that the session is created."
 msgstr "Data que a sessão foi criada."
 
-#: grades/models.py:65 grades/models.py:148
+#: grades/models.py:66 grades/models.py:151
 msgid "Updated at"
 msgstr "Atualizado em"
 
-#: grades/models.py:66 grades/models.py:149
+#: grades/models.py:67 grades/models.py:152
 msgid "Date that the session is updated."
 msgstr "Data que a sessão foi atualizada."
 
-#: grades/models.py:119
+#: grades/models.py:120
 msgid "TBL Session grades"
 msgstr "Notas da sessão de TBL"
 
-#: grades/models.py:120
+#: grades/models.py:121
 msgid "TBL Sessions grades"
 msgstr "Notas da sessão de TBL"
 
-#: grades/models.py:183 grades/models.py:184
+#: grades/models.py:188 grades/models.py:189
 msgid "Discipline grades"
 msgstr "Notas da disciplina"
 

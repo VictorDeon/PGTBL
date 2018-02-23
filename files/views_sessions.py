@@ -75,12 +75,10 @@ class ListSessionFileView(LoginRequiredMixin,
         Get the files queryset from model database.
         """
 
-        discipline = self.get_discipline()
         session = self.get_session()
 
         # Modificar
         files = SessionFile.objects.filter(
-            discipline=discipline,
             session=session
         )
 
@@ -211,11 +209,9 @@ class EditSessionFileView(LoginRequiredMixin,
         Get the specific file from tbl session of discipline.
         """
 
-        discipline = self.get_discipline()
         session = self.get_session()
 
         archive = SessionFile.objects.get(
-            discipline=discipline,
             session=session,
             pk=self.kwargs.get('file_id', '')
         )
@@ -304,11 +300,9 @@ class DeleteSessionFileView(LoginRequiredMixin,
         Get the specific file from tbl session of discipline.
         """
 
-        discipline = self.get_discipline()
         session = self.get_session()
 
         archive = SessionFile.objects.get(
-            discipline=discipline,
             session=session,
             pk=self.kwargs.get('file_id', '')
         )

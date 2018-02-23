@@ -52,6 +52,10 @@ def irat_permissions(permission, user, view):
     if user == discipline.teacher:
         return True
 
+    # If irat date and time is null only the teacher can change
+    if not session.irat_datetime:
+        return False
+
     if now > session.irat_datetime and \
        (now - irat_duration) < session.irat_datetime:
            return True
@@ -73,6 +77,10 @@ def grat_permissions(permission, user, view):
 
     if user == discipline.teacher:
         return True
+
+    # If grat date and time is null only the teacher can change
+    if not session.grat_datetime:
+        return False
 
     if now > session.grat_datetime and \
        (now - grat_duration) < session.grat_datetime:
