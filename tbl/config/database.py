@@ -33,13 +33,13 @@ DB_PRODUCTION = {
         # Add postgresql database on production
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # Name of database file
-        'NAME': 'tbl',
+        'NAME': 'postgres',
         # Name of user on postgresql
-        'USER': 'victor',
+        'USER': 'postgres',
         # Password of user on postgresql
-        'PASSWORD': os.getenv('POSTGRESQL_PASSWORD', 'victorhad'),
+        'PASSWORD': '',
         # Host and port of postgresql server
-        'HOST': '127.0.0.1',
+        'HOST': 'db',
         'PORT': '5432'
     }
 }

@@ -24,4 +24,5 @@ install:
 
 # Run the tests and create coverage.xml
 script:
+  - docker exec tbl ./init.sh
   - docker exec tbl python3 manage.py test **/tests/

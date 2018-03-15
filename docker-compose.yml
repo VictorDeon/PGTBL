@@ -1,33 +1,39 @@
 version: '2'
 services:
+  # Nginx to static file
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - .:/software
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./tbl/staticfiles/:/static
+    ports:
+      - "8000:8000"
+    depends_on:
+      - tbl
   # Postgresql database
   db:
     image: postgres
-    ports:
-      - "5433:5432"
-    environment:
-      - DEBUG=false
-      - POSTGRES_USER=victor
-      - POSTGRES_PASSWORD=victorhad
-      - POSTGRES_DB=tbl
+    container_name: tbl_db
 
+  # TBL app
   tbl:
     # Uses an image that's built from the Dockerfile in the dockers directory
     build: .
+    # Command to run postgresql and migrations
+    command: bash -c "chmod +x init.sh & ./init.sh & gunicorn --bind 0.0.0.0:8000 tbl.wsgi"
+    # Share files
+    volumes:
+      - .:/software
+      - ./tbl/staticfiles/:/static
     # Name the image and insert a version
-    image: tbl_image:2.0
+    image: tbl:2.0
     # Specify a custom container name.
     container_name: tbl
     # Set the secret_key to enviroment
     environment:
-      - SECRET_KEY
-      - CODACY_PROJECT_TOKEN
-      - EMAIL_PASSWORD
-    # Forwards the exposed port 8000 on the host machine to port 8000 on the container.
-    ports:
-      - '8000:8000'
+      - MODE_ENVIROMENT=production
     # Container dependencies
     depends_on:
       - db
-
-  # Service
