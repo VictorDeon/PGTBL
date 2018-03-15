@@ -31,6 +31,3 @@ python3 manage.py migrate
 
 echo "Coletar arquivos estáticos"
 python3 manage.py collectstatic --noinput
-
-echo "Rodar o servidor"
-gunicorn --bind 0.0.0.0:8000 tbl.wsgi

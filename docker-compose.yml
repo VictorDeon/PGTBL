@@ -22,7 +22,7 @@ services:
     # Uses an image that's built from the Dockerfile in the dockers directory
     build: .
     # Command to run postgresql and migrations
-    command: bash -c "chmod +x init.sh & ./init.sh"
+    command: bash -c "chmod +x init.sh & ./init.sh & gunicorn --bind 0.0.0.0:8000 tbl.wsgi"
     # Share files
     volumes:
       - .:/software
