@@ -7,6 +7,19 @@ User = get_user_model()
 
 
 @register_object_checker()
+def crud_tests(permission, user, view):
+    """
+    Create and Update irat and grat tests.
+    """
+
+    discipline = view.get_discipline()
+
+    if user == discipline.teacher:
+        return True
+
+    return False
+
+@register_object_checker()
 def crud_question_permission(permission, user, view):
     """
     Function to allows only teacher monitors to modify questions.

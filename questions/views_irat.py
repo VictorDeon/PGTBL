@@ -114,7 +114,9 @@ class IRATView(LoginRequiredMixin,
         return questions
 
 
-class IRATUpdateView(LoginRequiredMixin, UpdateView):
+class IRATUpdateView(LoginRequiredMixin,
+                     PermissionMixin,
+                     UpdateView):
     """
     Update the iRAT duration and weight
     """
@@ -122,6 +124,20 @@ class IRATUpdateView(LoginRequiredMixin, UpdateView):
     model = TBLSession
     template_name = 'questions/irat.html'
     form_class = IRATForm
+
+    # Permissions
+    permissions_required = ['crud_tests']
+
+    def get_discipline(self):
+        """
+        Get the discipline from url kwargs.
+        """
+
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
 
     def form_valid(self, form):
         """
@@ -148,7 +164,9 @@ class IRATUpdateView(LoginRequiredMixin, UpdateView):
         return success_url
 
 
-class IRATDateUpdateView(LoginRequiredMixin, UpdateView):
+class IRATDateUpdateView(LoginRequiredMixin,
+                         PermissionMixin,
+                         UpdateView):
     """
     Update the iRAT date.
     """
@@ -156,6 +174,20 @@ class IRATDateUpdateView(LoginRequiredMixin, UpdateView):
     model = TBLSession
     template_name = 'questions/irat.html'
     form_class = IRATDateForm
+
+    # Permissions
+    permissions_required = ['crud_tests']
+
+    def get_discipline(self):
+        """
+        Get the discipline from url kwargs.
+        """
+
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
 
     def form_valid(self, form):
         """

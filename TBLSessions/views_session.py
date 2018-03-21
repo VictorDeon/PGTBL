@@ -112,7 +112,6 @@ class CreateSessionView(LoginRequiredMixin,
             self.request,
             _("Invalid fields, please fill in the fields correctly.")
         )
-        print(form)
 
         return redirect(self.get_success_url())
 
