@@ -62,6 +62,7 @@ class CreateFileTestCase(TestCase):
 
         pass
 
+
 class CreateSessionFileTestCase(TestCase):
     """
     Test to create a new session file.

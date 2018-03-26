@@ -12,16 +12,16 @@ all: migrations migrate compilemessages superuser run
 .PHONE: all
 
 # DJANGO
-include django.mk
+include makefiles/django.mk
 
 # TEST
-include test.mk
+include makefiles/test.mk
 
 # DOCKER
-include docker.mk
+include makefiles/docker.mk
 
 # INSTALL
-include install.mk
+include makefiles/install.mk
 
 # SHELL
 # make <target>: Execute the commands inside the target
