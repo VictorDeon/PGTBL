@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from core.test_utils import check_messages
 from model_mommy import mommy
-from disciplines.models import File
+from TBLSessions.models import TBLSession
 
 User = get_user_model()
 
