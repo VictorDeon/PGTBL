@@ -453,8 +453,29 @@ class IRATResultView(LoginRequiredMixin,
 
     # Permissions
     permissions_required = [
-        'show_questions_permission'
+        'show_questions_permission',
+        'show_test_result'
     ]
+
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        messages.error(
+            self.request,
+            _("The results only be available when gRAT is done.")
+        )
+
+        failure_redirect_path = reverse_lazy(
+            'TBLSessions:details',
+            kwargs={
+                'slug': self.kwargs.get('slug', ''),
+                'pk': self.kwargs.get('pk', '')
+            }
+        )
+
+        return failure_redirect_path
 
     def get_discipline(self):
         """
