@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Cenarios - pgtbl</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Cenarios";
+    var mkdocs_page_input_path = "cenarios.md";
+    var mkdocs_page_url = "/cenarios/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> pgtbl</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+      
+
+
+  
+    
+
+
+<ul class="" href="/">
+  
+    
+    
+      <li class=" toctree-l1">
+        <a class="" href="/">PGTBL</a>
+      </li>
+</ul>
+
+<!--
+ | This is a hacky way to pass setting from the template generator to the
+ | javascript that drives the dropdown functionality
+-->
+<div style="width: 1px; height: 1px; visibility: none;">
+
+</div>
+
+
+
+  
+    
+
+
+<ul class="" href="/tap/">
+  
+    
+    
+      <li class=" toctree-l1">
+        <a class="" href="/tap/">Termo de abertura</a>
+      </li>
+</ul>
+
+<!--
+ | This is a hacky way to pass setting from the template generator to the
+ | javascript that drives the dropdown functionality
+-->
+<div style="width: 1px; height: 1px; visibility: none;">
+
+</div>
+
+
+
+  
+    
+
+
+<ul class="" href="/visao/">
+  
+    
+    
+      <li class=" toctree-l1">
+        <a class="" href="/visao/">Visão do produto</a>
+      </li>
+</ul>
+
+<!--
+ | This is a hacky way to pass setting from the template generator to the
+ | javascript that drives the dropdown functionality
+-->
+<div style="width: 1px; height: 1px; visibility: none;">
+
+</div>
+
+
+
+  
+    
+
+
+<ul class="" href="/canvas/">
+  
+    
+    
+      <li class=" toctree-l1">
+        <a class="" href="/canvas/">Canvas</a>
+      </li>
+</ul>
+
+<!--
+ | This is a hacky way to pass setting from the template generator to the
+ | javascript that drives the dropdown functionality
+-->
+<div style="width: 1px; height: 1px; visibility: none;">
+
+</div>
+
+
+
+  
+    
+
+
+<ul class="" href="/lexicos/">
+  
+    
+    
+      <li class=" toctree-l1">
+        <a class="" href="/lexicos/">Lexicos</a>
+      </li>
+</ul>
+
+<!--
+ | This is a hacky way to pass setting from the template generator to the
+ | javascript that drives the dropdown functionality
+-->
+<div style="width: 1px; height: 1px; visibility: none;">
+
+</div>
+
+
+
+  
+    
+
+
+<ul class="current" href="/cenarios/">
+  
+    
+    
+      <li class="current toctree-l1">
+        <a class="current" href="/cenarios/">Cenarios</a>
+        
+  
+  
+  <ul class="current subnav">
+    
+      
+
+  
+  
+  
+
+
+  <li class="current toctree-l2">
+    
+    <ul class="current subnav">
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#cenario-01-registro" title="Cenarios">Cenário 01: Registro</a>
+  </li>
+
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#cenario-02-disciplina" title="Cenarios">Cenário 02: Disciplina</a>
+  </li>
+
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#cenario-03-alunos" title="Cenarios">Cenário 03: Alunos</a>
+  </li>
+
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#cenario-04-grupos" title="Cenarios">Cenário 04: Grupos</a>
+  </li>
+
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#cenario-05-sessoes-de-tbl" title="Cenarios">Cenário 05: Sessões de TBL</a>
+  </li>
+
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#cenario-06-preparacao" title="Cenarios">Cenário 06: Preparação</a>
+  </li>
+
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#cenario-07-lista-de-exercicios" title="Cenarios">Cenário 07: Lista de exercicios</a>
+  </li>
+
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#cenario-08-avaliacao-rat" title="Cenarios">Cenário 08: Avaliação RAT</a>
+  </li>
+
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#cenario-09-avaliacao-irat-e-grat" title="Cenarios">Cenário 09: Avaliação iRAT e gRAT</a>
+  </li>
+
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#cenario-10-relatorio" title="Cenarios">Cenário 10: Relatorio</a>
+  </li>
+
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#cenario-11-recurso" title="Cenarios">Cenário 11: Recurso</a>
+  </li>
+
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#cenario-12-avaliacao-pratica" title="Cenarios">Cenário 12: Avaliação prática</a>
+  </li>
+
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#cenario-13-avaliacao-em-pares" title="Cenarios">Cenário 13: Avaliação em pares</a>
+  </li>
+
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#cenario-14-notas-e-rank" title="Cenarios">Cenário 14: Notas e Rank</a>
+  </li>
+
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#cenario-15-final-do-semestre" title="Cenarios">Cenário 15: Final do semestre</a>
+  </li>
+
+      
+    </ul>
+  </li>
+
+    
+  </ul>
+
+      </li>
+</ul>
+
+<!--
+ | This is a hacky way to pass setting from the template generator to the
+ | javascript that drives the dropdown functionality
+-->
+<div style="width: 1px; height: 1px; visibility: none;">
+
+</div>
+
+
+
+  
+    
+
+
+<ul class="" href="/sitemap/">
+  
+    
+    
+      <li class=" toctree-l1">
+        <a class="" href="/sitemap/">Sitemap</a>
+      </li>
+</ul>
+
+<!--
+ | This is a hacky way to pass setting from the template generator to the
+ | javascript that drives the dropdown functionality
+-->
+<div style="width: 1px; height: 1px; visibility: none;">
+
+</div>
+
+
+
+  
+    
+
+
+<ul class="" href="/storyboards/">
+  
+    
+    
+      <li class=" toctree-l1">
+        <a class="" href="/storyboards/">StoryBoards</a>
+      </li>
+</ul>
+
+<!--
+ | This is a hacky way to pass setting from the template generator to the
+ | javascript that drives the dropdown functionality
+-->
+<div style="width: 1px; height: 1px; visibility: none;">
+
+</div>
+
+
+
+  
+    
+    
+    
+    
+    
+    
+
+  <p class="caption">Contribuição</p>
+
+
+<ul class="" href="contribuicao/install">
+  
+    
+      
+<li class=" toctree-l1">
+  <a href="../contribuicao/install/" title="Instalação"
+      class="">
+    Instalação
+  </a>
+
+  
+  
+</li>
+    
+      
+<li class=" toctree-l1">
+  <a href="../contribuicao/arquitetura/" title="Arquitetura"
+      class="">
+    Arquitetura
+  </a>
+
+  
+  
+</li>
+    
+      
+<li class=" toctree-l1">
+  <a href="../contribuicao/boas_praticas/" title="Boas Práticas"
+      class="">
+    Boas Práticas
+  </a>
+
+  
+  
+</li>
+    
+      
+<li class=" toctree-l1">
+  <a href="../contribuicao/medicao/" title="Medição e análise"
+      class="">
+    Medição e análise
+  </a>
+
+  
+  
+</li>
+    
+      
+<li class=" toctree-l1">
+  <a href="../contribuicao/vev/" title="Verificação e Validação"
+      class="">
+    Verificação e Validação
+  </a>
+
+  
+  
+</li>
+    
+      
+<li class=" toctree-l1">
+  <a href="../contribuicao/config/" title="Configuração de software"
+      class="">
+    Configuração de software
+  </a>
+
+  
+  
+</li>
+    
+</ul>
+
+<!--
+ | This is a hacky way to pass setting from the template generator to the
+ | javascript that drives the dropdown functionality
+-->
+<div style="width: 1px; height: 1px; visibility: none;">
+
+</div>
+
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">pgtbl</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Cenarios</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/VictorArnaud/TBL/edit/master/docs/cenarios.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="cenarios">Cenários</h1>
+<hr />
+<p>Trata-se de uma estratégia reconhecida para compreender as interações entre ambientes e sistemas, assim como elicitar a parte comportamental do software, sua dinâmica e/ou seu fluxo.</p>
+<h3 id="cenario-01-registro">Cenário 01: Registro</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Título</strong></td>
+<td>Registro</td>
+</tr>
+<tr>
+<td><strong>Contexto</strong></td>
+<td>Registro do professor e do aluno no sistema</td>
+</tr>
+<tr>
+<td><strong>Objetivo</strong></td>
+<td>Descrever como funciona o registro do professor e do aluno no software</td>
+</tr>
+<tr>
+<td><strong>Atores</strong></td>
+<td>Professor e Aluno</td>
+</tr>
+<tr>
+<td><strong>Recursos</strong></td>
+<td>Software</td>
+</tr>
+<tr>
+<td><strong>Episódios</strong></td>
+<td>O professor ou o aluno entra na url do software, cadastra sua conta, com seus dados pessoais como nome, email (identificador único), senha e se ele é aluno ou professor, com isso o sistema irá devolver a conta para que o professor ou o aluno passa logar no sistema, podendo atualizar seus dados pessoais ou mudar a senha.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cenario-02-disciplina">Cenário 02: Disciplina</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Título</strong></td>
+<td>Disciplina</td>
+</tr>
+<tr>
+<td><strong>Contexto</strong></td>
+<td>Criação da disciplina</td>
+</tr>
+<tr>
+<td><strong>Objetivo</strong></td>
+<td>Descrever como funciona a criação da disciplina pelo professor no software</td>
+</tr>
+<tr>
+<td><strong>Atores</strong></td>
+<td>Professor</td>
+</tr>
+<tr>
+<td><strong>Recursos</strong></td>
+<td>Software</td>
+</tr>
+<tr>
+<td><strong>Episódios</strong></td>
+<td>O professor autenticado no sistema irá criar a disciplina especificando a turma que irá ministrar aula e disponibilizar para que os alunos se cadastre para usufruir do TBL, cada turma terá um número máximo de alunos e pode ser fechada mesmo se esse número de alunos não seja completado.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cenario-03-alunos">Cenário 03: Alunos</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Título</strong></td>
+<td>Aluno entrando na turma</td>
+</tr>
+<tr>
+<td><strong>Contexto</strong></td>
+<td>Alunos entrando em disciplina/turma</td>
+</tr>
+<tr>
+<td><strong>Objetivo</strong></td>
+<td>Descrever como funciona desde a pesquisa até a inserção do aluno na turma de um disciplina</td>
+</tr>
+<tr>
+<td><strong>Atores</strong></td>
+<td>Aluno</td>
+</tr>
+<tr>
+<td><strong>Recursos</strong></td>
+<td>Software</td>
+</tr>
+<tr>
+<td><strong>Episódios</strong></td>
+<td>O aluno irá pesquisar as disciplinas que foram criadas pelos professores, a pesquisa pode ser filtrada por professor, disciplina ou turma, ao clicar na disciplina irá mostrar as informações da disciplina e a sua respectiva turma, com isso ele poderá ter acesso a turma através de uma senha que será disponibilizado pelo professor que a criou</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cenario-04-grupos">Cenário 04: Grupos</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Título</strong></td>
+<td>Grupos</td>
+</tr>
+<tr>
+<td><strong>Contexto</strong></td>
+<td>Montagem dos grupos de alunos de cada turma</td>
+</tr>
+<tr>
+<td><strong>Objetivo</strong></td>
+<td>Descrever como funciona a montagem dos grupos de alunos no software</td>
+</tr>
+<tr>
+<td><strong>Atores</strong></td>
+<td>Professor e Aluno</td>
+</tr>
+<tr>
+<td><strong>Recursos</strong></td>
+<td>Software</td>
+</tr>
+<tr>
+<td><strong>Episódios</strong></td>
+<td>O professor irá fechar a turma caso não tenha batido o limite de alunos, ou se bater fechará automaticamente, com isso o professor irá montar os grupos inserindo alunos de forma fácil e organizada, podendo editar os grupos antes da lista ser disponibilizada para os alunos olharem quem são os membros do seu grupo.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cenario-05-sessoes-de-tbl">Cenário 05: Sessões de TBL</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Título</strong></td>
+<td>Criar sessões do TBL</td>
+</tr>
+<tr>
+<td><strong>Contexto</strong></td>
+<td>Professor criará as sessões do TBL</td>
+</tr>
+<tr>
+<td><strong>Objetivo</strong></td>
+<td>Descrever como funciona a criação das sessões do TBL.</td>
+</tr>
+<tr>
+<td><strong>Atores</strong></td>
+<td>Professor</td>
+</tr>
+<tr>
+<td><strong>Recursos</strong></td>
+<td>Software</td>
+</tr>
+<tr>
+<td><strong>Episódios</strong></td>
+<td>O professor irá criar as sessões de TBL na qual poderá ter uma quantidade n de sessões no semestre, uma sessão terá as 3 atividades básicas do TBL que é Preparação, RAT e Avaliação prática, e opcionalmente terá a avaliação em pares que o professor pode disponibilizar em uma sessão ou não, ao criar a sessão o professor poderá edita-la como quiser até disponibilizar ao alunos entrarem e começarem a utilizar os recursos da sessão, ao final de cada sessão o software cria uma tabela com as notas dos alunos e atualiza o rank de grupos</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cenario-06-preparacao">Cenário 06: Preparação</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Título</strong></td>
+<td>Preparação - material</td>
+</tr>
+<tr>
+<td><strong>Contexto</strong></td>
+<td>Preparação dos alunos para as avaliações da sessão</td>
+</tr>
+<tr>
+<td><strong>Objetivo</strong></td>
+<td>Descrever como funciona a etapa de preparação no software através dos materiais disponibilizados</td>
+</tr>
+<tr>
+<td><strong>Atores</strong></td>
+<td>Professor e Aluno</td>
+</tr>
+<tr>
+<td><strong>Recursos</strong></td>
+<td>Software</td>
+</tr>
+<tr>
+<td><strong>Episódios</strong></td>
+<td>O professor irá disponibilizar o material de estudo para que os alunos passam baixar e se preparar para a avaliação iRAT e gRAT, esse material pode ser um artigo, livro, etc... além de ter um local para a leitura dinâmica de alguma material preparado pelo professor.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cenario-07-lista-de-exercicios">Cenário 07: Lista de exercicios</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Título</strong></td>
+<td>Preparação - Lista de exercicios</td>
+</tr>
+<tr>
+<td><strong>Contexto</strong></td>
+<td>Lista de exercícios para o aluno estudar</td>
+</tr>
+<tr>
+<td><strong>Objetivo</strong></td>
+<td>Descrever como funciona a etapa de criação e disponibilização da lista de exercícios na etapa de preparação</td>
+</tr>
+<tr>
+<td><strong>Atores</strong></td>
+<td>Professor e aluno</td>
+</tr>
+<tr>
+<td><strong>Recursos</strong></td>
+<td>Software</td>
+</tr>
+<tr>
+<td><strong>Episódios</strong></td>
+<td>Quando o professor disponibilizar o material para os alunos estudarem ele fará uma lista com uma quantidade grande de exercícios, essa lista pode ser armazenada e utilizada em outros semestres, as questões criadas na lista será de múltipla escolha e quando a lista for respondida dará o feedback ao aluno da resposta correta, no final terá o resultado final com sua nota, essa nota é só para o aluno ter uma ideia se ta ou não preparado para as avaliações seguintes, essa lista de questões criadas servirá de base para criar as avaliações, a lista pode ser editada quando quiser pelo professor.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cenario-08-avaliacao-rat">Cenário 08: Avaliação RAT</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Título</strong></td>
+<td>Criar avaliação RAT</td>
+</tr>
+<tr>
+<td><strong>Contexto</strong></td>
+<td>Professor irá criar a avaliação iRAT e gRAT</td>
+</tr>
+<tr>
+<td><strong>Objetivo</strong></td>
+<td>Descrever como funciona a criação das avaliação individuais iRAT e em grupo gRAT</td>
+</tr>
+<tr>
+<td><strong>Atores</strong></td>
+<td>Professor</td>
+</tr>
+<tr>
+<td><strong>Recursos</strong></td>
+<td>Software</td>
+</tr>
+<tr>
+<td><strong>Episódios</strong></td>
+<td>Assim que a lista de exercício for criada, o professor irá separar algumas questões para ser inseridas nas avaliações, as questões das avaliações não estarão presentes na lista de exercícios, dentro da avaliação o professor poderá editar as questões, a data da avaliação e seu peso na nota do aluno e o tempo para responde-la, com isso assim que chegar na data especificada o aluno terá acesso a avaliação.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cenario-09-avaliacao-irat-e-grat">Cenário 09: Avaliação iRAT e gRAT</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Título</strong></td>
+<td>Avaliação iRAT e gRAT</td>
+</tr>
+<tr>
+<td><strong>Contexto</strong></td>
+<td>Avaliação individual iRAT e em grupo gRAT</td>
+</tr>
+<tr>
+<td><strong>Objetivo</strong></td>
+<td>Descrever como funciona a etapa de avaliação no software</td>
+</tr>
+<tr>
+<td><strong>Atores</strong></td>
+<td>Professor e Aluno</td>
+</tr>
+<tr>
+<td><strong>Recursos</strong></td>
+<td>Software</td>
+</tr>
+<tr>
+<td><strong>Episódios</strong></td>
+<td>No dia da avaliação o sistema irá disponibilizar a avaliação individual <em>iRAT</em> para os alunos responderem, a avaliação é de múltipla escolha na qual o aluno poderá distribuir pontos entre as 4 opções tendo 4 pontos para isso e terá um tempo limite para responder, esgotando esse tempo a avaliação será fechada, e em seguida na data estipulada pelo professor irá ser disponibilizado a avaliação em grupo <em>gRAT</em> na qual os alunos dos grupos irão se reunir e responder a avaliação, também terá um tempo e somente um aluno do grupo irá submeter à avaliação, ela será de múltipla escolha e terá o layout de raspadinha como feedback, os alunos vão ter 4 opções para distribuir entre as 4 alternativas, a primeira opção vale 4 pontos, segunda 2 pontos, terceira 1 ponto e quarta nenhum ponto, com isso se a alternativa correta for a que o aluno marcou como opção 01 o grupo ganha 4 pontos na questão e será mostrado o layout de raspadinha para o aluno verificar sua resposta, não é obrigatorio, no final de ambas as avaliações terá uma tabela com o resultado de cada questão e a nota final da avaliação.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cenario-10-relatorio">Cenário 10: Relatorio</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Título</strong></td>
+<td>Relatorio</td>
+</tr>
+<tr>
+<td><strong>Contexto</strong></td>
+<td>Professor irá receber um relatório no seu dashboard</td>
+</tr>
+<tr>
+<td><strong>Objetivo</strong></td>
+<td>Descrever como o software gera o relatorio e disponibiliza para o professor</td>
+</tr>
+<tr>
+<td><strong>Atores</strong></td>
+<td>Professor</td>
+</tr>
+<tr>
+<td><strong>Recursos</strong></td>
+<td>Software</td>
+</tr>
+<tr>
+<td><strong>Episódios</strong></td>
+<td>Assim que o iRAT e o gRAT forem submetidos o professor irá receber um relatório em forma de gráfico com a quantidade de acertos e erros em cada questão da prova, tendo um feedback para verificar o que os alunos estão tendo dificuldades e tirar suas dúvidas em aula para que eles possam realizar a avaliação prática e aprender o conteúdo.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cenario-11-recurso">Cenário 11: Recurso</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Título</strong></td>
+<td>Recurso</td>
+</tr>
+<tr>
+<td><strong>Contexto</strong></td>
+<td>Alunos entraram com recurso em algum questão</td>
+</tr>
+<tr>
+<td><strong>Objetivo</strong></td>
+<td>Descreve como é o processo para entrar em recurso</td>
+</tr>
+<tr>
+<td><strong>Atores</strong></td>
+<td>Professor e Aluno</td>
+</tr>
+<tr>
+<td><strong>Recursos</strong></td>
+<td>Software</td>
+</tr>
+<tr>
+<td><strong>Episódios</strong></td>
+<td>Assim que terminar as avaliações iRAT e gRAT, os alunos já receberam um feedback das respostas da avaliação, caso algum aluno discorde da resposta ele deve enviar ao professor um recurso com o número da questão, e a justificativa do porque a questão deve ser anulada, o professor irá receber esse recurso e avaliar, se for viável ele poderá mudar a nota dos alunos se não for nada acontece.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cenario-12-avaliacao-pratica">Cenário 12: Avaliação prática</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Título</strong></td>
+<td>Avaliação prática</td>
+</tr>
+<tr>
+<td><strong>Contexto</strong></td>
+<td>Professor irá criar e disponibilizar a avaliação prática</td>
+</tr>
+<tr>
+<td><strong>Objetivo</strong></td>
+<td>Descrever como funciona a criação e disponibilização da avaliação prática em grupo</td>
+</tr>
+<tr>
+<td><strong>Atores</strong></td>
+<td>Professor</td>
+</tr>
+<tr>
+<td><strong>Recursos</strong></td>
+<td>Software</td>
+</tr>
+<tr>
+<td><strong>Episódios</strong></td>
+<td>O professor irá criar um pequeno contexto real de aplicação dos conhecimentos adquiridos com a preparação e avaliações para que o grupo possa resolver, o contexto será disponibilizado pelo professor no software durante a aula para os grupos de alunos aplicarem seus conhecimentos.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cenario-13-avaliacao-em-pares">Cenário 13: Avaliação em pares</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Título</strong></td>
+<td>Avaliação em pares</td>
+</tr>
+<tr>
+<td><strong>Contexto</strong></td>
+<td>Professor irá criar e disponibilizar a avaliação em pares</td>
+</tr>
+<tr>
+<td><strong>Objetivo</strong></td>
+<td>Descrever como funciona a criação e disponibilização da avaliação em pares aos alunos</td>
+</tr>
+<tr>
+<td><strong>Atores</strong></td>
+<td>Professor e Aluno</td>
+</tr>
+<tr>
+<td><strong>Recursos</strong></td>
+<td>Software</td>
+</tr>
+<tr>
+<td><strong>Episódios</strong></td>
+<td>Durante o semestre nas sessões do TBL o professor poderá disponibilizar uma avaliação em pares para que os alunos do grupo se avaliem, cada aluno irá distribuir 100 entre cada um dos membros do grupo e o porque dos pontos inseridos e falando o que devem melhorar, esses pontos vai somar a nota final de cada um dos alunos, esse feedback será disponibilizado para cada aluno em seu perfil, obviamente sem aparece quem mandou, o professor irá definir na criação da sessão se ele irá fazer essa avaliação e qual a porcentagem da nota ela terá.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cenario-14-notas-e-rank">Cenário 14: Notas e Rank</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Título</strong></td>
+<td>Notas, rank</td>
+</tr>
+<tr>
+<td><strong>Contexto</strong></td>
+<td>O software irá disponibilizar as notas de cada aluno e o rank de grupos</td>
+</tr>
+<tr>
+<td><strong>Objetivo</strong></td>
+<td>Descrever como o software irá disponibilizar as notas de cada aluno e o rank de grupos</td>
+</tr>
+<tr>
+<td><strong>Atores</strong></td>
+<td>Professor e Aluno</td>
+</tr>
+<tr>
+<td><strong>Recursos</strong></td>
+<td>Software</td>
+</tr>
+<tr>
+<td><strong>Episódios</strong></td>
+<td>A cada sessão o software irá atualizar a planilha de notas de cada aluno com as notas (iRAT, gRAT, avaliação prática) e as notas do aluno avaliado pelos colegas se tiver, com isso ele irá calcular a média da turma e a nota da sessão do TBL de cada aluno pela matrícula dele, com isso o software irá disponibilizar o rank de grupos na qual o primeiro lugar ao final do semestre ficará no <strong>hall da fama</strong> para servir de exemplo nos próximos semestres para os próximos alunos, o rank de grupo será calculado pela média de notas das sessões de TBL de cada aluno do grupo, o grupo que tiver a maior média é o ganhador.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cenario-15-final-do-semestre">Cenário 15: Final do semestre</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Título</strong></td>
+<td>Final do semestre</td>
+</tr>
+<tr>
+<td><strong>Contexto</strong></td>
+<td>As atividades finais do professor no final do semestre</td>
+</tr>
+<tr>
+<td><strong>Objetivo</strong></td>
+<td>Como realizar as atividades ao finalizar o semestre</td>
+</tr>
+<tr>
+<td><strong>Atores</strong></td>
+<td>Professor</td>
+</tr>
+<tr>
+<td><strong>Recursos</strong></td>
+<td>Software</td>
+</tr>
+<tr>
+<td><strong>Episódios</strong></td>
+<td>No final do semestre o professor irá retirar os alunos da turma para deixar vago novos alunos no próximo semestre e fechar a turma até que o semestre se inicie novamente, os alunos poderá entrar novamente na turma no próximo semestre se for o caso.</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../sitemap/" class="btn btn-neutral float-right" title="Sitemap">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../lexicos/" class="btn btn-neutral" title="Lexicos"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/VictorArnaud/TBL/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../lexicos/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../sitemap/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>
