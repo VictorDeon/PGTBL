@@ -1,8 +1,7 @@
-## Definição
+# Storyboards
+***
 
 Ele se assemelha a uma história em quadrinho, que demonstra como seria a experiência do usuário ao usar o aplicativo.
-
-## Storyboards
 
 ![storyboard1](https://user-images.githubusercontent.com/14116020/27982160-e2a6496a-6371-11e7-86d1-293dc4bfc8a2.png)
 

@@ -1,3 +1,6 @@
+# Cenários
+***
+
 Trata-se de uma estratégia reconhecida para compreender as interações entre ambientes e sistemas, assim como elicitar a parte comportamental do software, sua dinâmica e/ou seu fluxo.
 
 ### Cenário 01: Registro

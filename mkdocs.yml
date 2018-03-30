@@ -5,6 +5,7 @@ theme: 'rtd-dropdown'
 
 pages:
   - PGTBL: index.md
+  - Termo de abertura: tap.md
   - Visão do produto: visao.md
   - Canvas: canvas.md
   - Lexicos: lexicos.md
@@ -14,8 +15,7 @@ pages:
   - Contribuição:
     - Instalação: contribuicao/install.md
     - Arquitetura: contribuicao/arquitetura.md
-    - UML: contribuicao/uml.md
-    - i*: contribuicao/i*.md
-    - NRF: contribuicao/nfr.md
-    - MER: contribuicao/mer.md
     - Boas Práticas: contribuicao/boas_praticas.md
+    - Medição e análise: contribuicao/medicao.md
+    - Verificação e Validação: contribuicao/vev.md
+    - Configuração de software: contribuicao/config.md

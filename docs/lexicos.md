@@ -1,4 +1,5 @@
-## Definição
+# Léxicos
+***
 
 O principal objetivo dos léxicos é a identificação de palavras ou frases peculiares ao meio social da aplicação sob estudo.
  

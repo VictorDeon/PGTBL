@@ -1,9 +1,9 @@
-## Instalações
+# Instalações
 ***
-#### Linux
+### Linux
 ***
 
-Pega o repositorio do github: ```git clone <repository_url>```
+Pega o repositorio do github: ```git clone https://github.com/VictorArnaud/TBL.git```
 
 Instalar dependencias para rodar o python3 e pip3
 
@@ -56,7 +56,7 @@ make run
 ```
 
 ***
-#### Vagrant
+### Vagrant
 ***
 
 Neste tópico serão abordadas as etapas para configuração do ambiente de desenvolvimento do projeto. Este será desenvolvido em Python/Django. Utilizamos para o desenvolvimento uma Máquina Virtual configurada com o Vagrant e com o Virtual Box atuando como provider.
@@ -80,6 +80,6 @@ Os passos para configuração do ambiente estão definidos abaixo.
 Com isso você já pode começar a desenvolver o sistema, tem vários comandos/atalhos dentro do arquivo **Makefile** que pode facilitar sua vida no desenvolvimento.
 
 ***
-#### Docker
+### Docker
 ***
 

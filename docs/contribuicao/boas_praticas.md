@@ -1,3 +1,5 @@
+# Boas práticas de programação
+***
 ## 1. Técnicas de programação
 ***
 
@@ -238,13 +240,7 @@ Uma interface não deve obrigar quem a implementar a implementar métodos que n�
 Uma classe deve depender de classes abstratas/interface e não de suas classes concretas que ta a implementação, é basicamente igual ao Liskov substitution, porém voltado a dependencia uma frabrica de carros deve depender da classe abstrata Carro e não das concretas Gol ou Palio.
 
 ***
-## 5. Refatoração
-***
-
-Em construção
-
-***
-## 6. Testes
+## 5. Testes
 ***
 
 **Teste**: processo de detectar o erro inicial
