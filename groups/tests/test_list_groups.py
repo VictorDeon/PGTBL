@@ -9,9 +9,9 @@ from groups.models import Group
 User = get_user_model()
 
 
-class UpdateGroupTestCase(TestCase):
+class ListGroupTestCase(TestCase):
     """
-    Test to update a new group by teacher.
+    Test to list all groups.
     """
 
     def setUp(self):
@@ -70,7 +70,7 @@ class UpdateGroupTestCase(TestCase):
 
     def test_redirect_to_login(self):
         """
-        Try to acess group list without logged in.
+        Try to access group list without logged in.
         """
 
         response = self.client.get(self.url)

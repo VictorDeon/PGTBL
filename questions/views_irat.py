@@ -114,7 +114,9 @@ class IRATView(LoginRequiredMixin,
         return questions
 
 
-class IRATUpdateView(LoginRequiredMixin, UpdateView):
+class IRATUpdateView(LoginRequiredMixin,
+                     PermissionMixin,
+                     UpdateView):
     """
     Update the iRAT duration and weight
     """
@@ -122,6 +124,20 @@ class IRATUpdateView(LoginRequiredMixin, UpdateView):
     model = TBLSession
     template_name = 'questions/irat.html'
     form_class = IRATForm
+
+    # Permissions
+    permissions_required = ['crud_tests']
+
+    def get_discipline(self):
+        """
+        Get the discipline from url kwargs.
+        """
+
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
 
     def form_valid(self, form):
         """
@@ -148,7 +164,9 @@ class IRATUpdateView(LoginRequiredMixin, UpdateView):
         return success_url
 
 
-class IRATDateUpdateView(LoginRequiredMixin, UpdateView):
+class IRATDateUpdateView(LoginRequiredMixin,
+                         PermissionMixin,
+                         UpdateView):
     """
     Update the iRAT date.
     """
@@ -156,6 +174,20 @@ class IRATDateUpdateView(LoginRequiredMixin, UpdateView):
     model = TBLSession
     template_name = 'questions/irat.html'
     form_class = IRATDateForm
+
+    # Permissions
+    permissions_required = ['crud_tests']
+
+    def get_discipline(self):
+        """
+        Get the discipline from url kwargs.
+        """
+
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
 
     def form_valid(self, form):
         """
@@ -421,8 +453,29 @@ class IRATResultView(LoginRequiredMixin,
 
     # Permissions
     permissions_required = [
-        'show_questions_permission'
+        'show_questions_permission',
+        'show_test_result'
     ]
+
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        messages.error(
+            self.request,
+            _("The results only be available when gRAT is done.")
+        )
+
+        failure_redirect_path = reverse_lazy(
+            'TBLSessions:details',
+            kwargs={
+                'slug': self.kwargs.get('slug', ''),
+                'pk': self.kwargs.get('pk', '')
+            }
+        )
+
+        return failure_redirect_path
 
     def get_discipline(self):
         """

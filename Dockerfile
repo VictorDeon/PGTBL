@@ -1,11 +1,8 @@
 # Build an debian image
-FROM debian:8.7
+FROM python:3.6
 
 # Melhora a acessibilidade ao container
 ENV PYTHONUNBUFFERED 1
-
-# Export 8000 port
-EXPOSE 8000
 
 # Set the working directory to /software
 RUN mkdir /software

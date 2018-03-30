@@ -117,7 +117,9 @@ class GRATView(LoginRequiredMixin,
         return questions
 
 
-class GRATUpdateView(LoginRequiredMixin, UpdateView):
+class GRATUpdateView(LoginRequiredMixin,
+                     PermissionMixin,
+                     UpdateView):
     """
     Update the gRAT duration and weight
     """
@@ -125,6 +127,20 @@ class GRATUpdateView(LoginRequiredMixin, UpdateView):
     model = TBLSession
     template_name = 'questions/grat.html'
     form_class = GRATForm
+
+    # Permissions
+    permissions_required = ['crud_tests']
+
+    def get_discipline(self):
+        """
+        Get the discipline from url kwargs.
+        """
+
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
 
     def form_valid(self, form):
         """
@@ -151,7 +167,9 @@ class GRATUpdateView(LoginRequiredMixin, UpdateView):
         return success_url
 
 
-class GRATDateUpdateView(LoginRequiredMixin, UpdateView):
+class GRATDateUpdateView(LoginRequiredMixin,
+                         PermissionMixin,
+                         UpdateView):
     """
     Update the gRAT date.
     """
@@ -159,6 +177,20 @@ class GRATDateUpdateView(LoginRequiredMixin, UpdateView):
     model = TBLSession
     template_name = 'questions/grat.html'
     form_class = GRATDateForm
+
+    # Permissions
+    permissions_required = ['crud_tests']
+
+    def get_discipline(self):
+        """
+        Get the discipline from url kwargs.
+        """
+
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
 
     def form_valid(self, form):
         """

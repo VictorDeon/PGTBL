@@ -20,7 +20,8 @@ class File(models.Model):
     description = models.TextField(
         _('Description'),
         max_length=500,
-        help_text=_('Description of file.')
+        help_text=_('Description of file.'),
+        blank=True
     )
 
     extension = models.CharField(

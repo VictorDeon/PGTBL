@@ -7,6 +7,19 @@ User = get_user_model()
 
 
 @register_object_checker()
+def crud_tests(permission, user, view):
+    """
+    Create and Update irat and grat tests.
+    """
+
+    discipline = view.get_discipline()
+
+    if user == discipline.teacher:
+        return True
+
+    return False
+
+@register_object_checker()
 def crud_question_permission(permission, user, view):
     """
     Function to allows only teacher monitors to modify questions.
@@ -32,6 +45,30 @@ def show_questions_permission(permission, user, view):
     if user in discipline.students.all() or \
        user in discipline.monitors.all() or \
        user == discipline.teacher:
+        return True
+
+    return False
+
+@register_object_checker()
+def show_test_result(permission, user, view):
+    """
+    Student only can see the result after the gRAT is finished.
+    """
+
+    session = view.get_session()
+    discipline = view.get_discipline()
+
+    grat_duration = timedelta(minutes=session.grat_duration)
+    now = timezone.localtime(timezone.now())
+
+    if user == discipline.teacher:
+        return True
+
+    # If grat date and time is null only the teacher can change
+    if not session.grat_datetime:
+        return False
+
+    if now > (session.grat_datetime + grat_duration):
         return True
 
     return False
