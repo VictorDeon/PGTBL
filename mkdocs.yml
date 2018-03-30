@@ -1,0 +1,7 @@
+site_name: pgtbl
+site_description: 'Plataforma gerenciadora de Team Based Learning'
+repo_url: https://github.com/VictorArnaud/TBL
+theme: readthedocs
+
+pages:
+  - Home: index.md
