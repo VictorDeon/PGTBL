@@ -4,14 +4,15 @@ repo_url: https://github.com/VictorArnaud/TBL/
 theme: 'rtd-dropdown'
 
 pages:
-  - Home: index.md
-  - Termo de abertura: tap.md
-  - Visão do produto: visao.md
-  - Canvas: canvas.md
-  - Lexicos: lexicos.md
-  - Cenarios: cenarios.md
-  - Sitemap: sitemap.md
-  - StoryBoards: storyboards.md
+  - Sobre o projeto:
+    - PGTBL: index.md
+    - Termo de abertura: tap.md
+    - Visão do produto: visao.md
+    - Canvas: canvas.md
+    - Lexicos: lexicos.md
+    - Cenarios: cenarios.md
+    - Sitemap: sitemap.md
+    - StoryBoards: storyboards.md
   - Contribuição:
     - Instalação: contribuicao/install.md
     - Arquitetura: contribuicao/arquitetura.md
