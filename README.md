@@ -1,5 +1,4 @@
 # Documentação do PGTBL: Plataforma gerenciadora de Team Based Learning.
-***
 
 ![TBL](https://user-images.githubusercontent.com/14116020/27844653-b26ac236-60fa-11e7-9e87-b105b4878180.png)
 
@@ -11,9 +10,7 @@ Aprendizagem baseada em equipe ou TBL é uma estratégia de ensino aprendizagem 
  
 * **Pequeno projeto centrado na aplicação**: Aplicar todo o conhecimento adquirido em um contexto real do tópico proposto.
 
-***
 ## Como funciona?
-***
 
 ### 3.1 Atividades:
  
@@ -49,9 +46,7 @@ Por exemplo tem 5 membros na equipe, então cada membro terá 100 pontos para di
 
 Os documentos abaixos são de leitura obrigatória para quem irá contribuir com o software.
 
-***
 ## Documentation and Badges
-***
 
 Documentação: https://victorarnaud.github.io/TBL/ ou https://github.com/VictorArnaud/TBL/wiki
 
