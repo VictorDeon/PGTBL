@@ -11,6 +11,16 @@ all: migrations migrate compilemessages superuser run
 # command will run the same way.
 .PHONE: all
 
+# Documentation
+doc-serve:
+	# Run the mkdocs server
+	mkdocs serve
+
+doc:
+	# Build the documentation
+	mkdocs gh-deploy
+
+
 # DJANGO
 include makefiles/django.mk
 
