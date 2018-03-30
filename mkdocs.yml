@@ -1,7 +1,21 @@
 site_name: pgtbl
 site_description: 'Plataforma gerenciadora de Team Based Learning'
 repo_url: https://github.com/VictorArnaud/TBL
-theme: readthedocs
+theme: 'rtd-dropdown'
 
 pages:
-  - Home: index.md
+  - PGTBL: index.md
+  - Termo de abertura: tap.md
+  - Visão do produto: visao.md
+  - Canvas: canvas.md
+  - Lexicos: lexicos.md
+  - Cenarios: cenarios.md
+  - Sitemap: sitemap.md
+  - StoryBoards: storyboards.md
+  - Contribuição:
+    - Instalação: contribuicao/install.md
+    - Arquitetura: contribuicao/arquitetura.md
+    - Boas Práticas: contribuicao/boas_praticas.md
+    - Medição e análise: contribuicao/medicao.md
+    - Verificação e Validação: contribuicao/vev.md
+    - Configuração de software: contribuicao/config.md
