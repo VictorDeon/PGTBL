@@ -24,6 +24,7 @@ Markdown==2.6.11
 markdown2==2.3.5
 MarkupSafe==1.0
 mkdocs==0.17.3
+mkdocs-rtd-dropdown==0.0.11
 model-mommy==1.4.0
 olefile==0.44
 parso==0.1.0
