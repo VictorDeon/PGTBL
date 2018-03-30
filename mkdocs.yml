@@ -1,10 +1,10 @@
 site_name: pgtbl
 site_description: 'Plataforma gerenciadora de Team Based Learning'
-repo_url: https://github.com/VictorArnaud/TBL
+repo_url: https://github.com/VictorArnaud/TBL/
 theme: 'rtd-dropdown'
 
 pages:
-  - PGTBL: index.md
+  - Home: index.md
   - Termo de abertura: tap.md
   - Visão do produto: visao.md
   - Canvas: canvas.md
