@@ -146,19 +146,19 @@ Foram postos na base do cálculo todos os insumos dos processos necessários par
 
 |Item a ser adquirido|Finalidade|Valor (R$)|Quantidade|Total (R$)|Fornecedor|
 |--------------------|----------|----------|----------|----------|----------|
-|Notebook|Desenvolvimento e planejamento|Média R$ 2.199,00|10|R$ 21.990,99|Vários fornecedores|
-|Energia|Desenvolvimento e planejamento|0,482 R$/KWh|624 kw/h|R$ 300,77|CEB|
-|Internet|Desenvolvimento e planejamento|R$ 120,00|10 x 4 meses|R$ 4.800,00|NET|
+|Notebook|Desenvolvimento e planejamento|Média R$ 2.199,00|1|R$ 21.990,99|HP|
+|Energia|Desenvolvimento e planejamento|0,48 R$/KWh|156 kw/h|R$ 74,88|CEB|
+|Internet|Desenvolvimento e planejamento|R$ 120,00|10 meses|R$ 1.200,00|NET|
 
 ### 10.2 Pessoal
 
-||Gerentes de projeto|Desenvolvedores|Total|
-|---|-------------------|---------------|-----|
-|**Quantidade de membros**|4|6|10|
-|**Custo por hora de trabalho**|R$ 96.44|R$ 144.66|R$ 241.10|
-|**Horas trabalhadas na semana**|40|60|100|
-|**Custo total na semana**|R$ 964,40|R$ 1.446,60|R$ 2.411,00|
-|**Custo total no projeto**|R$ 16.394,80|R$ 24.592,20|R$ 40.987,00|
+| |Desenvolvedor e Gerente|Total|
+|-|-----------------------|-----|
+|**Quantidade de membros**|1|1|
+|**Custo por hora de trabalho**|R$ 24,11|R$ 24,11|
+|**Horas trabalhadas na semana**|20|20|
+|**Custo total na semana**|R$ 482,20|R$ 482,20|
+|**Custo total no projeto**|R$ 20.252,40|R$ 20.252,40|
 
 ### 10.3 Ferramentas
 
@@ -180,8 +180,8 @@ Foram postos na base do cálculo todos os insumos dos processos necessários par
 ### 10.4 Total
 
 |Tipo de recurso|Custo|
-|---------------|-----|
-|Recursos humanos|R$ 40.987,00|
-|Equipamentos e serviços|R$ 27.091,76|
+|:-------------:|:----|
+|Recursos humanos|R$ 20.252,40|
+|Equipamentos e serviços|R$ 3.473,88|
 |Ferramentas|R$ 0,00|
-|Total|R$ 68.078,76|
+|Total|R$ 23.726,28|
