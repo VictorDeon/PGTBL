@@ -40,11 +40,11 @@ A maioria das definições relacionadas ao software se encontra na página: [[L�
 
 ### 2.1 Oportunidade de negócio
  
-Inicialmente o software vai ser voltado para fins educacionais, sendo implantado em universidades e colégios públicos, pois o TBL cria uma barreira que deve ser quebrada, que é sair do comodismo da avaliação e ensino tradicional, ou seja, provas e slides, na qual o aluno tende a estudar na véspera da prova e consegue passar na matéria sem aprender o conteúdo, e substituir pelo modelo de ensino baseado em equipes ou Team Based Learning que irá fazer o aluno estudar de maneira constante durante todo o semestre.
+Inicialmente o software vai ser voltado para fins educacionais, sendo implantado em universidades e colégios públicos, pois o TBL cria uma barreira que deve ser quebrada, que é sair do comodismo da avaliação e ensino tradicional, ou seja, provas e slides, e substituir pelo modelo de ensino baseado em equipes ou Team Based Learning que irá fazer o aluno estudar de maneira constante durante todo o semestre.
  
 ### 2.2 Descrição do problema
  
-![fishbone](https://user-images.githubusercontent.com/14116020/27890240-c7f4bd50-61c7-11e7-8595-db1095e27490.png)
+![fishbone](https://user-images.githubusercontent.com/14116020/38155591-fc6ed9f8-344e-11e8-894c-8a95c51974a9.png)
  
 <table>
   <tr>
@@ -52,7 +52,7 @@ Inicialmente o software vai ser voltado para fins educacionais, sendo implantado
   </tr>
   <tr>
     <td>O problema seria</td>
-    <td>forma ineficiente de ensino e avaliação do conhecimento do aluno.</td>
+    <td>forma tradicional de ensino e avaliação do conhecimento do aluno.</td>
   </tr>
   <tr>
     <td>que afeta</td>
@@ -225,7 +225,7 @@ A proposta do serviço ofertado que é abrangida nesse documento, envolve a util
 O sistema deve ter cobertura de testes - mínimo de 50%;
  
 ***
-## [6. Requisitos de Qualidade](contribuicao/nfr)
+## 6. Requisitos de Qualidade
 ***
 
 **Sistema**: O sistema deve seguir a arquitetura MVC definida no documento de [[Arquitetura]] e as ferramentas de desenvolvimento será o Python (versão 3.5) e o framework Django (versão 1.11).
@@ -234,7 +234,7 @@ O sistema deve ter cobertura de testes - mínimo de 50%;
  
 **Qualidade**: O sistema deve seguir uma folha de estilo a ponto de o código ser legivel e de fácil manutenção, tendo como base boas práticas de programação, o sistema deve ter baixo acoplamento e alta coesão além de ser modularizado focando na flexibilidade e manutenção do mesmo.
 
-**Usabilidade**: O sistema deve ser responsivo, adaptando-se à plataforma que o usuário estiver utilizando e o design deve ser fácil de usar e aprender e seguir todos as heurísticas de usabilidade e principios definidos nos documentos de [[UX]].
+**Usabilidade**: O sistema deve ser responsivo, adaptando-se à plataforma que o usuário estiver utilizando e o design deve ser fácil de usar e aprender e seguir todos as heurísticas de usabilidade.
 
 **Desempenho**:  Por ser um sistema web o software necessita de uma conexão estável com a internet para seu funcionamento. A velocidade da internet tem impacto direto no desempenho da aplicação, sendo necessário uma velocidade suficiente para processar as informações e executar as funcionalidades do sistema.
  

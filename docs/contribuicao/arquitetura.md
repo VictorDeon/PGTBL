@@ -11,11 +11,21 @@ Este tópico visa estabelecer de forma clara as especificidades sobre as decisõ
 ## 2 Representação Arquitetural
 ***
 
-![arquitetura](https://user-images.githubusercontent.com/14116020/36355764-e085d73e-14c6-11e8-8802-ac83e8799db7.png)
+![arquitetura](https://user-images.githubusercontent.com/14116020/38155355-b1b6269c-344d-11e8-82a2-dcb89ed534f4.png)
 
-A arquitetura utilizada no projeto será o estilo arquitetural **MVC**.
+1 - O **web client (navegador)** manda uma requisição para o **web server (Nginx)** com o protocolo HTTP.
 
-O projeto será implementado utilizando o framework [Django](https://www.djangoproject.com/) na versão 1.11. O django utiliza-se do MVT (Model-View-Template) como uma adaptação do MVC (Model-View-Controller), o que muda é que a view do MVC virou template do MVT e a controller do MVC virou view do MVT, nas views utilizaremos as [Classe Based Views](http://ccbv.co.uk/).
+2 - Os arquivos estáticos armazenados no sistema de arquivos, como CSS, JavaScript, Imagens e documentos PDF, podem ser processados diretamente pelo **web server (Nginx)**.
+
+3 - A parte dinâmica é delegada ao servidor de aplicativos WSGI (Web Server Gateway Interface) do django, no caso o gunicorn que é um servidor WSGI para Unix feito em python puro, ele irá converter solicitações HTTP recebidas do servidor em chamadas python em colaboração com o framework django que irá ter um arquivo chamado urls.py que diz ao nginx qual código deverá ser executado de acordo com o path e código HTTP recebido, através de proxy reverso será feito o redirecionamento inicial do Nginx com o servidor da aplicação, ou seja, o proxy reverso irá funcionar como uma ponte de ligação entre o nginx e o django através do gunicorn.
+
+4 - Dentro do django a requisição recebida pelo **web server** é mapeado para uma view especifica através das urls, a view pede dados a modelo, a model pega os dados do banco de dados postgresql e retorna a view, a view seleciona o template e fornece os dados, com isso o template é preenchido e devolvido a view, a view devolve o template como resposta ao web server.
+
+5 - O web server (nginx) retorna a resposta para o web client (navegador)
+
+A arquitetura utilizada no projeto será o arquitetura de microserviços.
+
+O projeto será implementado utilizando o framework [Django](https://www.djangoproject.com/) na versão 1.11. O django utiliza-se do MVT (Model-View-Template) como uma adaptação do MVC (Model-View-Controller), o que muda é que a view do MVC virou template do MVT e a controller do MVC virou view do MVT, nas views utilizaremos as [Classe Based Views](http://ccbv.co.uk/). Esse framework fará comunicação com o banco de dados Postgresql e o servidor nginx.
 
 #### 2.1 Pacotes Significativos do Ponto de Vista da Arquitetura
 
@@ -62,7 +72,7 @@ Um diagrama de classe UML descreve o objeto e informações de estruturas usadas
 
 **Observação**: Os diagramas abaixo vão ser criados ao longo do projeto.
 
-![diagramadeclasse](https://user-images.githubusercontent.com/14116020/36361389-3031c656-150a-11e8-8f08-57b06f2deb6d.png)
+![diagramadeclasse](https://user-images.githubusercontent.com/14116020/38151245-db5e0c7c-3438-11e8-8d41-638a176889bf.png)
 
 ***
 ## 4. Framework i*
@@ -100,7 +110,7 @@ Assim como o SD, o modelo SR também é composto por ligações de dependência:
 
    - **OR e OR**: uma das duas irá acontecer.
 
-![i__sr](https://user-images.githubusercontent.com/14116020/36355761-e01fc084-14c6-11e8-84bb-438e3b96a197.png)
+![i__sr](https://user-images.githubusercontent.com/14116020/38155590-fc4b12ca-344e-11e8-82fc-45183b9712f5.png)
 
 ***
 ## 5. Framework NFR
@@ -108,7 +118,7 @@ Assim como o SD, o modelo SR também é composto por ligações de dependência:
 
 O NFR Framework é uma abordagem orientada a processos, onde os requisitos não-funcionais são explicitamente representados como metas a serem obtidas e como serão obtidas
 
-![nfr](https://user-images.githubusercontent.com/14116020/27992014-bdc8d52e-645f-11e7-8c58-850f7a35ae87.png)
+![nfr](https://user-images.githubusercontent.com/14116020/38151244-db3c13ba-3438-11e8-9574-530599729541.png)
 
 ***
 ## 6. MER

@@ -130,11 +130,11 @@ O projeto tem como base dois principais marcos, que representam entregas do prod
 
 ### 9.1 EAP
 
-Em construção
+![eap](https://user-images.githubusercontent.com/14116020/38158455-0ce9b48a-346b-11e8-8df0-7d04d929c7fd.png)
 
 ### 9.2 Roadmap
 
-Em construção
+![roadmap](https://user-images.githubusercontent.com/14116020/38158456-0d0a2710-346b-11e8-8155-ce93e107446f.png)
 
 ***
 ## 10. Custo Estimado
