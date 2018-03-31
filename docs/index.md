@@ -38,9 +38,11 @@ Os estudantes devem ser responsáveis por se prepararem individualmente para o t
 ### Aplicação de conceitos:
  
 Aplicação do conhecimento (conceitos) adquiridos por meio da resolução de situações problemas ou cenários relevantes e presentes na prática profissional diária do estudante, ou seja problemas reais que ele pode enfrentar, preparando eles para o que o mercado cobra, deve ocupar a maior parte da carga horária.
- 
-Conclui-se, assim, um módulo ou sessão TBL.
+
+### Avaliação em pares
  
 Tem-se também no durante o semestre **avaliação em pares**, cada integrante da equipe irá avaliar os outros integrantes da equipe, será disponibilizado uma pontuação máxima de 100 pontos para cada membro distribuir entre os outros membros da equipe e um campo para dizer o porque da pontuação podendo inserir feedback para o colega de equipe, essa avaliação não precisa se identificar ela será anônima e a pontuação fará parte da nota individual de cada membro da equipe.
  
 Por exemplo tem 5 membros na equipe, então cada membro terá 100 pontos para distribuir entre os 5 membros, logo pode dar 20 pontos para cada se todos trabalharam de forma igual ou se um membro trabalhou menos de 10 pontos a ele e 30 para o que trabalhou mais, no final soma-se os pontos de cada membro e se der 100 ponto o membro ganha nota máxima, se passar de 100 ele ganha nota máxima mas um bônus, e se tiver menos de 100 ganha a nota proporcional à pontuação.
+
+Conclui-se, assim, um módulo ou sessão TBL.

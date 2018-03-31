@@ -3,4 +3,4 @@
 
 É o mapa visual do site, basicamente, trata-se de um diagrama hierárquico.
 
-![sitemaps](https://user-images.githubusercontent.com/14116020/36355760-dffc1d14-14c6-11e8-9ed3-393475a4711e.png)
+![sitemaps](https://user-images.githubusercontent.com/14116020/38151246-db826c20-3438-11e8-9373-7006ef73fe21.png)
