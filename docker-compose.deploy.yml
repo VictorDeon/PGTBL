@@ -1,0 +1,27 @@
+version: '3'
+services:
+  # Nginx to static file
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: unless-stopped
+    volumes:
+      - ./compose/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./tbl/staticfiles/:/usr/share/nginx/html
+    ports:
+      - "8000:8000"
+    depends_on:
+      - tbl
+
+  # Postgresql database
+  db:
+    image: postgres:latest
+    container_name: tbl_db
+    restart: unless-stopped
+
+  # TBL app
+  tbl:
+    image: victorhad/tbl:latest
+    container_name: tbl
+    depends_on:
+      - db

@@ -9,6 +9,7 @@ python:
 branches:
   only:
     - master
+    - devel
 
 # Use docker to deploy
 service:
@@ -16,13 +17,21 @@ service:
 
 # Specify the docker-compose version to deploy
 env:
-  - DOCKER_COMPOSE_VERSION=1.4.2
+  - DOCKER_COMPOSE_VERSION=1.17.1
 
-# Install project dependencies
-install:
-  - docker-compose up -d
-
-# Run the tests and create coverage.xml
+# Script project dependencies
 script:
-  - docker exec tbl ./init.sh
-  - docker exec tbl python3 manage.py test **/tests/
+  - docker-compose -f docker-compose.test.yml up
+
+deploy:
+  # deploy to staging enviroment
+  - provider: script
+    script: bash staging-deploy.sh
+    on:
+      branch: develop
+
+  # deploy to production enviroment
+  - provider: script
+    script: bash production-deploy.sh
+    on:
+      branch: master

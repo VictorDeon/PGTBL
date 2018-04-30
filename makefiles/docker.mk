@@ -3,10 +3,10 @@ file := "docker-compose.yml"
 
 up:
 # Create and start containers
-ifeq (${file}, "docker-compose.yml")
-	sudo docker-compose -f ${file} up -d
-else
+ifeq (${file}, "docker-compose.test.yml")
 	sudo docker-compose -f ${file} up
+else
+	sudo docker-compose -f ${file} up -d
 endif
 
 build:
