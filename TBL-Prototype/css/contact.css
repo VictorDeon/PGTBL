@@ -1,0 +1,29 @@
+.contact-header {
+  text-align: center;
+  margin-bottom: 30px;
+  color: white;
+  text-shadow: 1px 1px 2px black, 0 0 25px grey;
+}
+
+.contact-icon-size {
+  font-size: 20px
+}
+
+.input-group {
+  padding: 10px;
+}
+
+.form-group {
+  padding-bottom: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.send-button {
+  margin-left: 10px;
+  width: 150px;
+}
+
+textarea {
+  resize: none;
+}

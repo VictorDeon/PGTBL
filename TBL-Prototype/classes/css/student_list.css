@@ -1,0 +1,25 @@
+.media {
+  margin-top: 15px !important;
+}
+
+.add-button {
+  border-radius: 50%;
+  position: absolute;
+  top: 134px;
+  right: 40px;
+}
+
+.btn:active:focus, .btn:focus {
+  outline: none;
+}
+
+.submit-button {
+  background-color: #263238 !important;
+  width: 100%;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.pagination {
+  margin: 0;
+}

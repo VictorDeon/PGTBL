@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TBL</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="css/grade.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse-navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand navbar-link" href="#vai-para-a-home-logado"><i class="fa fa-home"></i> Team Based Learning</a>
+          </div>
+          <div class="collapse navbar-collapse" id="collapse-navbar">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="../home.html#home" class="navbar-link"><i class="fa fa-sign-out"></i> Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="row">
+        <div class="col-sm-12 navegation">
+          <ul class="breadcrumb pull-left">
+            <li><a href="../home.html#home">Home</a></li>
+            <li><a href="../profile/profile.html">Perfil</a></li>
+            <li><a href="class.html">Medição e Análise</a></li>
+            <li><a href="grade.html">Notas</a></li>
+          </ul>
+          <p class="pull-right">Quinta, 10 de Janeiro de 2017 <i class="fa fa-calendar"></i></p>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="col-sm-2">
+          <div class="btn-group-vertical">
+            <a href="class.html" class="btn" data-toggle="tooltip" data-placement="right" title="Ementa">
+              <i class="fa fa-book icon-lg"></i>
+            </a>
+            <a href="student_list.html" class="btn" data-toggle="tooltip" data-placement="right" title="Lista de alunos">
+              <i class="fa fa-slideshare icon-lg"></i>
+            </a>
+            <a href="attendence_new.html" class="btn" data-toggle="tooltip" data-placement="right" title="Lista de Chamada">
+              <i class="fa fa-list-ol icon-lg"></i>
+            </a>
+            <a href="grade.html" class="btn" data-toggle="tooltip" data-placement="right" title="Notas">
+              <i class="fa fa-graduation-cap icon-lg"></i>
+            </a>
+            <a href="groups.html" class="btn" data-toggle="tooltip" data-placement="right" title="Grupos">
+              <i class="fa fa-group icon-lg"></i>
+            </a>
+            <a href="rank.html" class="btn" data-toggle="tooltip" data-placement="right" title="Rank de grupos">
+              <i class="fa fa-trophy icon-lg"></i>
+            </a>
+            <a href="sessions.html" class="btn" data-toggle="tooltip" data-placement="right" title="Sessões do TBL">
+              <i class="fa fa-puzzle-piece icon-lg"></i>
+            </a>
+            <a href="files.html" class="btn" data-toggle="tooltip" data-placement="right" title="Materiais">
+              <i class="fa fa-folder-open-o icon-lg"></i>
+            </a>
+          </div>
+        </div>
+        <!-- grade -->
+        <div class="col-sm-10">
+          <div class="page-header fix-row">
+            <h1 class="white">
+              <i class="fa fa-graduation-cap"></i> Menções<br />
+              <small>Medição e Análise</small>
+            </h1>
+          </div>
+          <ul class="nav nav-tabs fix-row">
+            <li class="active"><a data-toggle="tab" href="#sessao1">Sessão 1</a></li>
+            <li><a data-toggle="tab" href="#sessao2">Sessão 2</a></li>
+            <li><a data-toggle="tab" href="#mensao">Mensão Final</a></li>
+          </ul>
+          <div class="tab-content fix-row">
+            <div id="sessao1" class="tab-pane fade in active">
+              <br />
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <table class="table table-hover table-responsive">
+                    <thead>
+                      <tr class="gradient">
+                        <th colspan="2">Alunos</th>
+                        <th colspan="5">Sessão</th>
+                      </tr>
+                      <tr>
+                        <th>Grupo</th>
+                        <th>Matrícula</th>
+                        <th>iRAT</th>
+                        <th>gRAT</th>
+                        <th>APP</th>
+                        <th>Avaliação em pares</th>
+                        <th>Notas TBL</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td><a data-toggle="modal" data-target="#edit-modal">110394858</a></td>
+                        <td>5,75</td>
+                        <td>9,3</td>
+                        <td>8,0</td>
+                        <td>10,0</td>
+                        <td>8,26</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>110339222</td>
+                        <td>1,0</td>
+                        <td>9,0</td>
+                        <td>8,0</td>
+                        <td>1,1</td>
+                        <td>4,7</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>120394858</td>
+                        <td>5,0</td>
+                        <td>6,0</td>
+                        <td>8,0</td>
+                        <td>10,0</td>
+                        <td>7,25</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>130948383</td>
+                        <td>5,0</td>
+                        <td>9,0</td>
+                        <td>8,7</td>
+                        <td>2,0</td>
+                        <td>6,17</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>114332122</td>
+                        <td>5,0</td>
+                        <td>9,3</td>
+                        <td>8,0</td>
+                        <td>6,0</td>
+                        <td>7,0</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>114332122</td>
+                        <td>5,0</td>
+                        <td>9,3</td>
+                        <td>8,0</td>
+                        <td>6,0</td>
+                        <td>7,0</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>114332122</td>
+                        <td>5,0</td>
+                        <td>9,3</td>
+                        <td>8,0</td>
+                        <td>6,0</td>
+                        <td>7,0</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>114332122</td>
+                        <td>5,0</td>
+                        <td>9,3</td>
+                        <td>8,0</td>
+                        <td>6,0</td>
+                        <td>7,0</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>114332122</td>
+                        <td>5,0</td>
+                        <td>9,3</td>
+                        <td>8,0</td>
+                        <td>6,0</td>
+                        <td>7,0</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>114332122</td>
+                        <td>5,0</td>
+                        <td>9,3</td>
+                        <td>8,0</td>
+                        <td>6,0</td>
+                        <td>7,0</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>114332122</td>
+                        <td>5,0</td>
+                        <td>9,3</td>
+                        <td>8,0</td>
+                        <td>6,0</td>
+                        <td>7,0</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>114332122</td>
+                        <td>5,0</td>
+                        <td>9,3</td>
+                        <td>8,0</td>
+                        <td>6,0</td>
+                        <td>7,0</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>114332122</td>
+                        <td>5,0</td>
+                        <td>9,3</td>
+                        <td>8,0</td>
+                        <td>6,0</td>
+                        <td>7,0</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="button" class="btn btn-primary btn-block"><i class="fa fa-download"></i> Download CSV</button>
+                </div>
+              </div>
+            </div>
+            <div id="sessao2" class="tab-pane fade">
+              <p class="white">Sessão 2</p>
+            </div>
+            <div id="mensao" class="tab-pane fade">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <table class="table table-hover table-responsive">
+                    <thead>
+                      <tr class="gradient">
+                        <th colspan="2">Alunos</th>
+                        <th colspan="2">Menção Final</th>
+                      </tr>
+                      <tr>
+                        <th>Grupo</th>
+                        <th>Matrícula</th>
+                        <th>Menção</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>110394858</td>
+                        <td>5,75</td>
+                        <td class="approved">Aprovado</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>110394858</td>
+                        <td>3,0</td>
+                        <td class="disapproved">Reprovado</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="button" class="btn btn-primary btn-block"><i class="fa fa-download"></i> Download CSV</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Edit Group modal -->
+        <div class="modal fade" id="edit-modal" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
+                <h4 class="modal-title"><span class="msg-title">Editar notas do aluno 110394858</span></h4>
+              </div>
+              <div class="modal-body">
+                <form method="post">
+                  <div class="form-group">
+                    <label for="irat">iRAT:</label>
+                    <input type="text" class="form-control" name="irat" placeholder="iRAT" value="5,75" id="irat">
+                  </div>
+                  <div class="form-group">
+                    <label for="grat">gRAT:</label>
+                    <input type="text" class="form-control" name="grat" placeholder="gRAT" value="9,3" id="grat">
+                  </div>
+                  <div class="form-group">
+                    <label for="app">APP:</label>
+                    <input type="text" class="form-control" name="app" placeholder="APP" value="8,0" id="app">
+                  </div>
+                  <div class="form-group">
+                    <label for="pares">Avaliação em Pares:</label>
+                    <input type="text" class="form-control" name="pares" placeholder="Avaliação em pares" value="10,0" id="pares">
+                  </div>
+                  <button type="submit" class="btn btn-default submit-button center-block">
+                    <i class="fa fa-edit"></i> Editar
+                  </button>
+                </form>
+              </div>
+              <div class="modal-footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

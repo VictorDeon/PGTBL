@@ -1,0 +1,12 @@
+.programation {
+  margin-left: 20px;
+}
+
+.programation > dt {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.media-body {
+  padding-top: 10px;
+}

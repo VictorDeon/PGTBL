@@ -1,0 +1,51 @@
+.btn-group-vertical {
+  width: 100%;
+}
+
+.btn-group-vertical > .btn {
+  width: 100%;
+  height: 100px;
+  background-color: transparent;
+  border: 1px solid #343841;
+  color: #B3B3B3;
+  border-radius: 0;
+}
+
+.btn-group-vertical > .btn:hover,
+.btn-group-vertical > .btn:focus {
+  color: white;
+  border: 1px solid #343841;
+  border-left: 5px solid blue;
+}
+
+.icon-lg {
+  font-size: 48px;
+  padding-top: 20px;
+}
+
+/* Message events block*/
+.message {
+  background-color: #343841;
+}
+
+.message > p {
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #B3B3B3;
+}
+
+.side-button {
+  padding-bottom: 25px;
+}
+
+.message-button {
+  padding-left: 35px;
+}
+
+.badge {
+  right: 28px;
+  color: #b71c1c;
+  font-size: 15px;
+  background-color: transparent;
+}
