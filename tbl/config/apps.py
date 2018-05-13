@@ -21,6 +21,7 @@ TBL_APPS = [
     'TBLSessions',
     'questions',
     'grades',
+    'rankingGroup'
 ]
 
 EXTERNAL_APPS = [

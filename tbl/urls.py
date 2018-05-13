@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'', include('TBLSessions.urls')),
     url(r'', include('questions.urls')),
     url(r'', include('grades.urls')),
+    url(r'', include('rankingGroup.urls'))
 ]
 
 # While in development mode we will use relative URL for static and average
