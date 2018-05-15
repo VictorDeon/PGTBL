@@ -4,12 +4,14 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Core app
+from core.permissions import PermissionMixin
 
 # Ranking app
 from groups.models import Group
 from disciplines.models import Discipline
 
 class ShowRankingGroupView(LoginRequiredMixin,
+                            PermissionMixin,
                            generic.ListView):
 
     """
@@ -18,6 +20,10 @@ class ShowRankingGroupView(LoginRequiredMixin,
     model = Group
     template_name = 'rankingGroup/detail.html'
     context_object_name = 'groups'
+    # Permissions
+    permissions_required = [
+        'show_discipline_groups_permission'
+    ]
 
     def get_discipline(self):
         """
