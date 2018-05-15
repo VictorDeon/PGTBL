@@ -1,5 +1,98 @@
-<ul>
-  {% for g in groups %}
-    <li>{{ g.title }}</li>
-  {% endfor %}
-</ul>
+{% extends 'disciplines/details.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+<link rel="stylesheet" href="{% static 'groups/css/list.css' %}" />
+{% endblock %}
+
+{% block breadcrumb %}
+{{ block.super }}
+<li>
+  <a href="{% url 'groups:list' discipline.slug %}">
+    {% trans 'Group list' %}
+  </a>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="col-sm-10">
+  <div class="page-header">
+    <div class="row">
+      <div class="col-sm-8">
+        <h1 class="white">
+          <i class="fa fa-trophy"></i> Rank de grupos<br />
+          <small>Medição e Análise</small>
+        </h1>
+      </div>
+      <div class="col-sm-4 text-center">
+        <h1>
+          <i class="fa fa-star star1"></i>
+          <i class="fa fa-star star2"></i>
+          <i class="fa fa-star star3"></i>
+          <i class="fa fa-star star4"></i>
+          <i class="fa fa-star star5"></i>
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="row fix-row">
+    <div class="col-sm-12">
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Rank de grupos <span><i class="fa fa-flag-checkered"></i></span>
+          </div>
+          {%for group in groups%}
+            <div class="panel-body">
+              <div class="media">
+                <div class="media-body">
+                  <h2 class="media-heading">{{group.title|capfirst}}</h2>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <figure>
+                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <figcaption>Fulano 01</figcaption>
+                      </figure>
+                    </div>
+                    <div class="col-sm-2">
+                      <figure>
+                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <figcaption>Fulano 02</figcaption>
+                      </figure>
+                    </div>
+                    <div class="col-sm-2">
+                      <figure>
+                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <figcaption>Fulano 03</figcaption>
+                      </figure>
+                    </div>
+                    <div class="col-sm-2">
+                      <figure>
+                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <figcaption>Fulano 04</figcaption>
+                      </figure>
+                    </div>
+                    <div class="col-sm-2">
+                      <figure>
+                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <figcaption>Fulano 05</figcaption>
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+                <div class="media-right">
+                  <span class="position">1°</span>
+                  <span class="first"><i class="fa fa-trophy"></i></span>
+                </div>
+              </div>
+              <hr />
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
