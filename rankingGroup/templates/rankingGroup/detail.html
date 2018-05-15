@@ -4,7 +4,8 @@
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
-<link rel="stylesheet" href="{% static 'groups/css/list.css' %}" />
+<link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+<link rel="stylesheet" href="{% static 'rankingGroup/css/rank.css' %}" />
 {% endblock %}
 
 {% block breadcrumb %}
@@ -23,7 +24,7 @@
       <div class="col-sm-8">
         <h1 class="white">
           <i class="fa fa-trophy"></i> Rank de grupos<br />
-          <small>Medição e Análise</small>
+          <small>{{discipline.title}}</small>
         </h1>
       </div>
       <div class="col-sm-4 text-center">
@@ -54,8 +55,8 @@
                     {% for student in group.students.all%}
                       <div class="col-sm-2">
                         <figure>
-                          <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
-                          <figcaption>{{student.name}}</figcaption>
+                          <img src="{% static 'rankingGroup/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
+                          <figcaption>{{student.name|capfirst}}</figcaption>
                         </figure>
                       </div>
                     {% endfor %}

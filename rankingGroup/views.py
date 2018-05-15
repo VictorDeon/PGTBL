@@ -18,6 +18,7 @@ class ShowRankingGroupView(LoginRequiredMixin,
     View to ranking_group .
     """
     model = Group
+    discipline = ""
     template_name = 'rankingGroup/detail.html'
     context_object_name = 'groups'
     # Permissions
@@ -51,6 +52,7 @@ class ShowRankingGroupView(LoginRequiredMixin,
             slug=self.kwargs.get('slug', '')
         )
 
+        self.discipline = discipline
         return discipline
 
     def get_context_data(self, **kwargs):
