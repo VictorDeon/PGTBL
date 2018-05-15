@@ -326,7 +326,7 @@ class ShowDisciplineView(LoginRequiredMixin,
     model = Discipline
     template_name = 'disciplines/details.html'
     permissions_required = [
-        'show_discipline_permission'
+        'show_ranking_permission'
     ]
 
 

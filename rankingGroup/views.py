@@ -1,43 +1,27 @@
 # Django app
-from django.views.generic import (
-    CreateView, UpdateView, DeleteView, DetailView,
-    ListView, FormView
-)
+from django.views import generic
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404, redirect
-from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse_lazy
-from django.contrib.auth import get_user_model
-from django.utils.text import slugify
-from django.contrib import messages
-from django.db.models import Q
 
 # Core app
-from core.permissions import ModelPermissionMixin, PermissionMixin
-from core.generics import ObjectRedirectView
-from core.utils import order
 
 # Ranking app
-from .models import RankingGroup
+from groups.models import Group
+from disciplines.models import Discipline
 
 class ShowRankingGroupView(LoginRequiredMixin,
-                           PermissionMixin,
-                           DetailView):
+                           generic.ListView):
 
     """
     View to ranking_group .
     """
-    template_name = 'rankingGroup/list.html'
-    context_object_name = 'ranking'
-    permissions_required = [
-        'show_ranking_permission'
-    ]
-
+    model = Group
+    template_name = 'rankingGroup/detail.html'
+    context_object_name = 'groups'
 
     def get_discipline(self):
         """
-        Take the discipline that the session belongs to
+        Take the discipline that the group belongs to
         """
 
         discipline = Discipline.objects.get(
@@ -46,16 +30,26 @@ class ShowRankingGroupView(LoginRequiredMixin,
 
         return discipline
 
-    def get_session(self):
+    def get_context_data(self, **kwargs):
         """
-        Get the session discipline.
+        Insert a form inside group list.
+        """
+
+        context = super(ShowRankingGroupView, self).get_context_data(**kwargs)
+        context['discipline'] = self.get_discipline()
+        return context
+
+    def get_queryset(self):
+        """
+        Get the group queryset from model database.
         """
 
         discipline = self.get_discipline()
 
-        session = TBLSession.objects.get(
-            Q(discipline=discipline),
-            Q(pk=self.kwargs.get('pk', ''))
-        )
+        groups = Group.objects.filter(discipline=discipline)
 
-        return session
+        return groups
+
+    #
+    # def get_queryset(self):
+    #     return Group.objects.filter(discipline__slug=self.kwargs['slug'])
