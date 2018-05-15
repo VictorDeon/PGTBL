@@ -45,41 +45,20 @@
             Rank de grupos <span><i class="fa fa-flag-checkered"></i></span>
           </div>
           {%for group in groups%}
+
             <div class="panel-body">
               <div class="media">
                 <div class="media-body">
                   <h2 class="media-heading">{{group.title|capfirst}}</h2>
                   <div class="row">
-                    <div class="col-sm-2">
-                      <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
-                        <figcaption>Fulano 01</figcaption>
-                      </figure>
-                    </div>
-                    <div class="col-sm-2">
-                      <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
-                        <figcaption>Fulano 02</figcaption>
-                      </figure>
-                    </div>
-                    <div class="col-sm-2">
-                      <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
-                        <figcaption>Fulano 03</figcaption>
-                      </figure>
-                    </div>
-                    <div class="col-sm-2">
-                      <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
-                        <figcaption>Fulano 04</figcaption>
-                      </figure>
-                    </div>
-                    <div class="col-sm-2">
-                      <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
-                        <figcaption>Fulano 05</figcaption>
-                      </figure>
-                    </div>
+                    {% for student in group.students.all%}
+                      <div class="col-sm-2">
+                        <figure>
+                          <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                          <figcaption>{{student.name}}</figcaption>
+                        </figure>
+                      </div>
+                    {% endfor %}
                   </div>
                 </div>
                 <div class="media-right">
@@ -89,6 +68,7 @@
               </div>
               <hr />
             </div>
+
           {% endfor %}
         </div>
       </div>

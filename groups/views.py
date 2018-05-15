@@ -260,7 +260,7 @@ class DeleteGroupView(LoginRequiredMixin,
     permissions_required = [
         'change_own_group'
     ]
-    # 
+    #
     # def get_failure_redirect_path(self):
     #     """
     #     Get the failure redirect path.

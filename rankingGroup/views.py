@@ -25,6 +25,23 @@ class ShowRankingGroupView(LoginRequiredMixin,
         'show_discipline_groups_permission'
     ]
 
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        messages.error(
+            self.request,
+            _("You are not authorized to do this action.")
+        )
+
+        failure_redirect_path = reverse_lazy(
+            'disciplines:details',
+            kwargs={'slug': self.kwargs.get('slug', '')}
+        )
+
+        return failure_redirect_path
+
     def get_discipline(self):
         """
         Take the discipline that the group belongs to
@@ -55,6 +72,7 @@ class ShowRankingGroupView(LoginRequiredMixin,
         groups = Group.objects.filter(discipline=discipline)
 
         return groups
+
 
     #
     # def get_queryset(self):
