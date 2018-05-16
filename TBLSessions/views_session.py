@@ -170,7 +170,6 @@ class EditSessionView(LoginRequiredMixin,
         """
         Return the form with fields valided.
         """
-
         messages.success(self.request, _('TBL session updated successfully.'))
 
         return super(EditSessionView, self).form_valid(form)
@@ -240,7 +239,7 @@ class CloseSessionView(LoginRequiredMixin,
     model = TBLSession
     template_name = 'TBLSessions/form.html'
     context_object_name = 'session'
-    form_class = TBLSessionForm
+    fields = ['is_closed']
 
     permissions_required = [
         'monitor_can_change_if_is_teacher'
@@ -262,18 +261,26 @@ class CloseSessionView(LoginRequiredMixin,
         Insert a discipline inside tbl session form template.
         """
 
-        context = super(EditSessionView, self).get_context_data(**kwargs)
+        context = super(CloseSessionView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
+        context['is_closed'] = True
         return context
+    #
+    # def form_valid(self, form):
+    #     """
+    #     Return the form with fields valided.
+    #     """
+    #     form.is_closed = True
+    #
+    #     form.save()
+    #
+    #     messages.success(self.request, _('TBL session updated successfully.'))
+    #
+    #     return super(CloseSessionView, self).form_valid(form)
 
     def form_valid(self, form):
-        """
-        Return the form with fields valided.
-        """
-
-        messages.success(self.request, _('TBL session updated successfully.'))
-
-        return super(EditSessionView, self).form_valid(form)
+            self.object.is_closed = True
+            return super(CloseSessionView, self).form_valid(form)
 
     def get_success_url(self):
         """
