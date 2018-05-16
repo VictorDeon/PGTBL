@@ -34,6 +34,13 @@ session_patterns = [
         views_session.ShowSessionView.as_view(),
         name='details'
     ),
+    # <session.id>/close/
+    url(
+        r'^(?P<pk>[0-9]+)/close/$',
+        views_session.CloseSessionView.as_view(),
+        name='close'
+    ),
+
 ]
 
 practical_patterns = [

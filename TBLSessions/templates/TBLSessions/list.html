@@ -71,6 +71,20 @@
                            {% trans 'Edit' %}
                         </a>
                       </div>
+                      {% if user == discipline.teacher %}
+                        <div class="btn-group btn-group-justified">
+                          <div class="btn-group">
+                            <button class="btn btn-danger"
+                                    type="button"
+                                    data-toggle="modal"
+                                    data-target="#close-{{session.id}}-modal">
+                                    <!-- <i class="fa fa-trash"></i> -->
+                                    {% trans 'Close' %}
+                            </button>
+                            {% include 'TBLSessions/end_session.html' %}
+                          </div>
+                        </div>
+                      {% endif %}      
                     </div>
                   </div>
                   <div class="col-md-4">
@@ -83,25 +97,6 @@
                                 <i class="fa fa-trash"></i>
                                 {% trans 'Delete' %}
                         </button>
-<style>
-.block {
-    display: block;
-    width: 100%;
-    border: none;
-    background-color: #000000;
-    color: white;
-    padding: 6px 28px;
-    font-size: 17px;
-    cursor: pointer;
-    text-align: center;
-    margin-top: 50px;
-    margin-left: -180px;
-
-}
-</style>
-
-<button class="block">End Session</button>
-                        
                         {% include 'TBLSessions/delete.html' %}
                       </div>
                     </div>
