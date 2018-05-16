@@ -280,6 +280,7 @@ class CloseSessionView(LoginRequiredMixin,
 
     def form_valid(self, form):
             self.object.is_closed = True
+            messages.success(self.request, _('TBL session closed successfully.'))
             return super(CloseSessionView, self).form_valid(form)
 
     def get_success_url(self):
