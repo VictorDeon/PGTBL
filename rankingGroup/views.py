@@ -1,5 +1,6 @@
 # Django app
 from django.views import generic
+from django.db.models import Q
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -9,6 +10,7 @@ from core.permissions import PermissionMixin
 # Ranking app
 from groups.models import Group
 from disciplines.models import Discipline
+from TBLSessions.models import TBLSession
 
 class ShowRankingGroupView(LoginRequiredMixin,
                             PermissionMixin,
@@ -18,9 +20,9 @@ class ShowRankingGroupView(LoginRequiredMixin,
     View to ranking_group .
     """
     model = Group
-    discipline = ""
     template_name = 'rankingGroup/detail.html'
     context_object_name = 'groups'
+
     # Permissions
     permissions_required = [
         'show_discipline_groups_permission'
@@ -52,8 +54,38 @@ class ShowRankingGroupView(LoginRequiredMixin,
             slug=self.kwargs.get('slug', '')
         )
 
-        self.discipline = discipline
         return discipline
+
+    def get_sessions(self):
+        """
+        Get the tbl sessions queryset from model database.
+        """
+
+        discipline = self.get_discipline()
+
+        sessions = TBLSession.objects.filter(discipline=discipline)
+
+        return sessions
+
+
+    # def verify_status_sessions(self):
+    #
+    #     sessions = self.get_sessions()
+    #
+    #     grades = []
+    #
+    #     for session in sessions:
+    #         if session.is_closed:
+    #             grades = session.grades.all()
+    #
+    #     return grades
+    #
+    # def get_groups_grade(self):
+    #
+    #     grades = verify_status_session()
+
+
+
 
     def get_context_data(self, **kwargs):
         """
@@ -62,6 +94,9 @@ class ShowRankingGroupView(LoginRequiredMixin,
 
         context = super(ShowRankingGroupView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
+        context['sessions'] = self.get_sessions()
+        # context['grades'] = self.verify_status_session()
+
         return context
 
     def get_queryset(self):
@@ -74,6 +109,7 @@ class ShowRankingGroupView(LoginRequiredMixin,
         groups = Group.objects.filter(discipline=discipline)
 
         return groups
+
 
 
     #
