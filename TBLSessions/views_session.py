@@ -170,7 +170,6 @@ class EditSessionView(LoginRequiredMixin,
         """
         Return the form with fields valided.
         """
-
         messages.success(self.request, _('TBL session updated successfully.'))
 
         return super(EditSessionView, self).form_valid(form)
@@ -229,6 +228,75 @@ class DeleteSessionView(LoginRequiredMixin,
         messages.success(self.request, _("TBL session deleted successfully."))
 
         return success_url
+
+class CloseSessionView(LoginRequiredMixin,
+                      PermissionMixin,
+                      UpdateView):
+    """
+    View to update a specific tbl session.
+    """
+
+    model = TBLSession
+    template_name = 'TBLSessions/form.html'
+    context_object_name = 'session'
+    fields = ['is_closed']
+
+    permissions_required = [
+        'monitor_can_change_if_is_teacher'
+    ]
+
+    def get_discipline(self):
+        """
+        Take the discipline that the tbl session belongs to
+        """
+
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_context_data(self, **kwargs):
+        """
+        Insert a discipline inside tbl session form template.
+        """
+
+        context = super(CloseSessionView, self).get_context_data(**kwargs)
+        context['discipline'] = self.get_discipline()
+        context['is_closed'] = True
+        return context
+    #
+    # def form_valid(self, form):
+    #     """
+    #     Return the form with fields valided.
+    #     """
+    #     form.is_closed = True
+    #
+    #     form.save()
+    #
+    #     messages.success(self.request, _('TBL session updated successfully.'))
+    #
+    #     return super(CloseSessionView, self).form_valid(form)
+
+    def form_valid(self, form):
+            self.object.is_closed = True
+            return super(CloseSessionView, self).form_valid(form)
+
+    def get_success_url(self):
+        """
+        Get success url to redirect.
+        """
+
+        discipline = self.get_discipline()
+
+        success_url = reverse_lazy(
+            'TBLSessions:list',
+            kwargs={'slug': discipline.slug}
+        )
+
+        return success_url
+
+
 
 
 class ShowSessionView(LoginRequiredMixin,
