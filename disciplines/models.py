@@ -5,6 +5,8 @@ from django.utils.safestring import mark_safe
 from django.core import validators
 from django.conf import settings
 from django.db import models
+from decimal import Decimal
+
 
 # App imports
 from markdown_deux import markdown
@@ -241,3 +243,40 @@ class Attendance(models.Model):
         verbose_name = _('Attendance')
         verbose_name_plural = _('Attendancies')
         ordering = ['date']
+
+class AttendanceRate(models.Model):
+
+    """
+    Create a Attendance rate model
+    """
+
+    discipline = models.ForeignKey(
+        Discipline,
+        on_delete=models.CASCADE,
+        verbose_name='Discipline',
+        related_name='discipline_attendance',
+    )
+
+    student = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name='Student',
+        related_name='students_attendance_rate',
+    )
+
+    attendance_rate = models.DecimalField(
+        max_digits=4,
+        decimal_places=2,
+        default=Decimal(0.0),
+        verbose_name='Attendance rate',
+    )
+
+    times_attended = models.IntegerField(
+        default=0,
+        verbose_name='Number of times student attended',
+    )
+
+    times_missed = models.IntegerField(
+        default=0,
+        verbose_name='Number of times student missed',
+    )

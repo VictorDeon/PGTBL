@@ -25,7 +25,9 @@ from core.utils import order
 
 # Discipline app
 from .forms import DisciplineForm, DisciplineEditForm, EnterDisciplineForm, AttendanceForm
-from .models import Discipline, Attendance
+from .models import Discipline, Attendance, AttendanceRate
+
+from decimal import Decimal
 
 # Get the custom user from settings
 User = get_user_model()
@@ -439,7 +441,7 @@ class AttendanceOptionsListView(LoginRequiredMixin,
     Opens options for attendance lists
     """
     model = Discipline
-    template_name = 'disciplines/attendence.html'
+    template_name = 'disciplines/attendance.html'
     permissions_required = [
         'show_discipline_permission',
     ]
@@ -451,7 +453,7 @@ class createAttendanceView(LoginRequiredMixin,
     Handling form to create an attendance list
     """
 
-    template_name = 'disciplines/create_new_attendence_list.html'
+    template_name = 'disciplines/create_new_attendance_list.html'
     success_url = reverse_lazy('accounts:profile')
     form_class = AttendanceForm
     permissions_required = [
@@ -506,7 +508,8 @@ class createAttendanceView(LoginRequiredMixin,
             for missing_student in attendance.missing_students.all():
                 print(missing_student)
 
-        #Attendance.objects.all().delete()
+        Attendance.objects.all().delete()
+        AttendanceRate.objects.all().delete()
 
         return super(createAttendanceView, self).form_valid(form)
 
@@ -575,18 +578,100 @@ class createAttendanceView(LoginRequiredMixin,
             attended_student = self.get_student(student_pk)
             attended_students.append(attended_student)
             attendance.attended_students.add(attended_student)
+            rate = self.get_student_rate(attended_student)
+            rate.times_attended = self.set_number_of_attendancies(attendance.discipline, attended_student)
+            rate.save()
 
             if attended_student in attendance.missing_students.all():
                 attendance.missing_students.remove(attended_student)
+                rate.times_missed -= 1
+                rate.save()
 
     def add_missing_students(self, discipline, attendance):
 
         for student in self.get_all_students(discipline):
             if student not in attendance.attended_students.all():
                 attendance.missing_students.add(student)
+                rate = self.get_student_rate(student)
+                rate.times_missed = Attendance.objects.filter(discipline=attendance.discipline).count() - rate.times_attended
+                rate.save()
 
+    def set_number_of_attendancies(self, discipline, student):
+        count = 0
+        attendancies = Attendance.objects.filter(discipline=discipline)
+        for attendance in attendancies:
+            if student in attendance.attended_students.all():
+                count +=1
+        return count
 
+    def get_student_rate(self, student):
+        discipline = self.get_discipline()
+        try:
+            rate = AttendanceRate.objects.get(student=student, discipline=discipline)
+        except AttendanceRate.DoesNotExist:
+            rate = AttendanceRate()
+            rate.student = student
+            rate.discipline = discipline
+            rate.save()
+        return rate
 
+class AttendanceRateView(LoginRequiredMixin,
+                        PermissionMixin,
+                        ListView):
+
+    """
+    List students attandance rate
+    """
+    context_object_name = 'rates'
+    template_name = 'disciplines/attendance_rates.html'
+    permissions_required = [
+        'show_discipline_permission',
+    ]
+
+    def get_queryset(self):
+        """
+        List all students and monitors from discipline.
+        """
+        discipline = self.get_discipline()
+        attendance_rates = AttendanceRate.objects.filter(
+            discipline=discipline
+        )
+
+        queryset = attendance_rates
+
+        return queryset
+
+    def get_discipline(self):
+        """
+        Get the specific discipline.
+        """
+        discipline = get_object_or_404(
+            Discipline,
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_object(self):
+        """
+        Get the specific discipline.
+        """
+        discipline = get_object_or_404(
+            Discipline,
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_context_data(self, **kwargs):
+        """
+        Insert discipline instance
+        """
+
+        context = super(AttendanceRateView, self).get_context_data(**kwargs)
+        context['discipline'] = self.get_discipline()
+        return context
+        
 class RemoveStudentView(LoginRequiredMixin,
                         PermissionMixin,
                         DeleteView):
