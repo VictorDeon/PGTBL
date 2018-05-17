@@ -44,7 +44,11 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             Rank de grupos <span><i class="fa fa-flag-checkered"></i></span>
-
+          {% for a in groups_add_grades %}
+            <ul>
+              <li>{{a}}</li>
+            </ul>
+          {% endfor %}
           </div>
           {%for group in groups%}
 
