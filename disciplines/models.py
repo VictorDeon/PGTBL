@@ -50,6 +50,7 @@ class DisciplineManager(models.Manager):
         )
 
 
+
 class Discipline(models.Model):
     """
     Create a discipline model.
@@ -202,3 +203,41 @@ class Discipline(models.Model):
         verbose_name = _('Discipline')
         verbose_name_plural = _('Disciplines')
         ordering = ['title', 'created_at']
+
+
+class Attendance(models.Model):
+
+    """
+    Create a Attendance model
+    """
+
+    date = models.DateField(
+        _('Date'),
+        help_text=_("Date of the class"),
+    )
+
+    discipline = models.ForeignKey(
+        Discipline,
+        on_delete=models.CASCADE,
+        verbose_name='Discipline',
+        related_name='discipline_attendence',
+    )
+
+    attended_students = models.ManyToManyField(
+        User,
+        verbose_name='Attended Students',
+        related_name='student_attendance_attended',
+        blank=True,
+    )
+
+    missing_students = models.ManyToManyField(
+        User,
+        verbose_name='Missing Students',
+        related_name='student_attendance_missing',
+        blank=True,
+    )
+
+    class Meta:
+        verbose_name = _('Attendance')
+        verbose_name_plural = _('Attendancies')
+        ordering = ['date']

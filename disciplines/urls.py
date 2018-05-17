@@ -46,6 +46,16 @@ discipline_patterns = [
         views.CloseDisciplineView.as_view(),
         name='close'
     ),
+    url(
+        r'^(?P<slug>[\w_-]+)/attendence/$',
+        views.AttendanceOptionsListView.as_view(),
+        name='attendance'
+    ),
+    url(
+        r'^(?P<slug>[\w_-]+)/attendence/createNewAttendence/$',
+        views.createAttendanceView.as_view(),
+        name='createNewAttendance'
+    ),
     # <discipline.slug>/students/
     url(
         r'^(?P<slug>[\w_-]+)/students/$',

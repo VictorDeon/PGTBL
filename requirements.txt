@@ -15,7 +15,7 @@ django-widget-tweaks==1.4.1
 easy-thumbnails==2.4.2
 gunicorn==19.7.1
 idna==2.6
-ipython==6.2.0
+ipython
 ipython-genutils==0.2.0
 jedi==0.11.0
 Jinja2==2.10

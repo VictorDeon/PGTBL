@@ -4,7 +4,7 @@ from django import forms
 
 # App imports
 from pagedown.widgets import PagedownWidget
-from .models import Discipline
+from .models import Discipline, Attendance
 
 # # Get the custom user from settings
 User = get_user_model()
@@ -61,3 +61,31 @@ class EnterDisciplineForm(forms.Form):
         max_length=30,
         widget=forms.PasswordInput
     )
+
+class DynamicMultipleChoiceField(forms.MultipleChoiceField):
+    '''
+    rewriting MultipleChoiceField class
+    '''
+    
+    def validate(self, value):
+        if self.required and not value:
+            raise ValidationError(self.error_messages['required'])
+
+class AttendanceForm(forms.Form):
+    """
+    Form to mark if a student was in the class
+    """
+
+    date = forms.DateField(
+        label=_('Attendence Date'),
+        widget=forms.SelectDateWidget,
+    )
+
+    students = DynamicMultipleChoiceField(
+        widget = forms.CheckboxSelectMultiple(),
+        choices = [],
+        required=False,
+    )
+
+    def filter_features(self, students):
+        self.fields['students'].choices = [ (student.pk, student.name) for student in students ]

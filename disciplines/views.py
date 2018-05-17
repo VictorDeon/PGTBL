@@ -6,7 +6,7 @@ Disciplines functionalities
 # Django app
 from django.views.generic import (
     CreateView, UpdateView, DeleteView, DetailView,
-    ListView, FormView
+    ListView, FormView, TemplateView
 )
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -24,12 +24,11 @@ from core.generics import ObjectRedirectView
 from core.utils import order
 
 # Discipline app
-from .forms import DisciplineForm, DisciplineEditForm, EnterDisciplineForm
-from .models import Discipline
+from .forms import DisciplineForm, DisciplineEditForm, EnterDisciplineForm, AttendanceForm
+from .models import Discipline, Attendance
 
 # Get the custom user from settings
 User = get_user_model()
-
 
 class CreateDisciplineView(LoginRequiredMixin,
                            ModelPermissionMixin,
@@ -432,6 +431,160 @@ class StudentListView(LoginRequiredMixin,
             queryset = self.discipline.monitors.all()
 
         return queryset
+
+class AttendanceOptionsListView(LoginRequiredMixin,
+                               PermissionMixin,
+                               DetailView):
+    """ 
+    Opens options for attendance lists
+    """
+    model = Discipline
+    template_name = 'disciplines/attendence.html'
+    permissions_required = [
+        'show_discipline_permission',
+    ]
+
+class createAttendanceView(LoginRequiredMixin,
+                            PermissionMixin,
+                            FormView):
+    """ 
+    Handling form to create an attendance list
+    """
+
+    template_name = 'disciplines/create_new_attendence_list.html'
+    success_url = reverse_lazy('accounts:profile')
+    form_class = AttendanceForm
+    permissions_required = [
+        'change_own_discipline'
+    ]
+
+    def get(self, request, *args, **kwargs):
+
+        """
+        Adding disciplines students to available choices in form
+        """
+
+        discipline = self.get_discipline()
+        students = self.get_all_students(discipline)
+
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        form.filter_features(students)
+
+        return self.render_to_response(self.get_context_data(form=form))
+
+    def form_valid(self, form):
+
+        """
+        Receive the form already validated to create an Attendence.
+        """
+
+        discipline = self.get_discipline()
+        classDate = form.cleaned_data.get('date')
+        students_pk = form.cleaned_data.get('students')
+
+        attendance = self.return_existent_attendance(discipline, classDate)
+
+        attendance.date = classDate
+        attendance.discipline = discipline
+        attendance.save()
+
+        self.add_attended_students(students_pk, attendance)
+        self.add_missing_students(discipline, attendance)
+
+        attendance.save()
+
+        for attendance in Attendance.objects.all():
+            print('-----------------')
+            print()
+            print(attendance.date)
+            print(attendance.discipline)
+            print('--------- Attended Students: --------')
+            for attended_student in attendance.attended_students.all():
+                print(attended_student)
+            print('--------- Missing Students: --------')
+            for missing_student in attendance.missing_students.all():
+                print(missing_student)
+
+        #Attendance.objects.all().delete()
+
+        return super(createAttendanceView, self).form_valid(form)
+
+
+    def get_context_data(self, **kwargs):
+        """
+        Insert discipline instance
+        """
+
+        context = super(createAttendanceView, self).get_context_data(**kwargs)
+        context['discipline'] = self.get_discipline()
+        return context
+
+    def return_existent_attendance(self, discipline, date):
+
+        """
+        Check if attendence already exists
+        """
+
+        try:
+            query = Attendance.objects.get(discipline=discipline, date=date)
+            attendance = query
+        except Attendance.DoesNotExist:
+            attendance = Attendance()
+
+        return attendance
+
+    def get_discipline(self):
+        """
+        Get the specific discipline.
+        """
+
+        discipline = get_object_or_404(
+            Discipline,
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_student(self, student_pk):
+        """
+        Get the specific student.
+        """
+
+        student = get_object_or_404(
+            User,
+            pk=student_pk
+        )
+
+        return student
+
+    def get_all_students(self, discipline):
+        """
+        Get students from dicipline
+        """
+        students = discipline.students.all()
+
+        return students
+
+    def add_attended_students(self, students_pk, attendance):
+
+        attended_students = []
+
+        for student_pk in students_pk:
+
+            attended_student = self.get_student(student_pk)
+            attended_students.append(attended_student)
+            attendance.attended_students.add(attended_student)
+
+            if attended_student in attendance.missing_students.all():
+                attendance.missing_students.remove(attended_student)
+
+    def add_missing_students(self, discipline, attendance):
+
+        for student in self.get_all_students(discipline):
+            if student not in attendance.attended_students.all():
+                attendance.missing_students.add(student)
+
 
 
 class RemoveStudentView(LoginRequiredMixin,
