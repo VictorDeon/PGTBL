@@ -233,7 +233,7 @@ class CloseSessionView(LoginRequiredMixin,
                       PermissionMixin,
                       UpdateView):
     """
-    View to update a specific tbl session.
+    View to close a specific tbl session.
     """
 
     model = TBLSession
@@ -263,23 +263,12 @@ class CloseSessionView(LoginRequiredMixin,
 
         context = super(CloseSessionView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
-        context['is_closed'] = True
         return context
-    #
-    # def form_valid(self, form):
-    #     """
-    #     Return the form with fields valided.
-    #     """
-    #     form.is_closed = True
-    #
-    #     form.save()
-    #
-    #     messages.success(self.request, _('TBL session updated successfully.'))
-    #
-    #     return super(CloseSessionView, self).form_valid(form)
+
 
     def form_valid(self, form):
             self.object.is_closed = True
+            messages.success(self.request, _('TBL session closed successfully.'))
             return super(CloseSessionView, self).form_valid(form)
 
     def get_success_url(self):
