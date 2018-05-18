@@ -77,6 +77,7 @@ class ShowRankingGroupView(LoginRequiredMixin,
         groups = self.get_all_groups_by_discipline()
         groups_with_grades_results = []
         list_update = []
+        new_list = []
 
         for s in sessions:
             for group in groups:
@@ -105,8 +106,16 @@ class ShowRankingGroupView(LoginRequiredMixin,
                 })
 
         list_update = sorted(groups_with_grades_results,key=lambda K: K.get('sum_results_sessions'), reverse=True)
-
-        return list_update
+        
+        i = 1
+        for update in list_update:
+            new_list.append({
+                'position': i,
+                'obj':update,
+            })
+            i = i + 1
+        
+        return new_list
 
 
     def get_session_grades(self, session):
