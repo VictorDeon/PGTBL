@@ -11,9 +11,6 @@ from groups.models import Group
 from grades.models import Grade
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
-from .models import Ranking
-
-from operator import attrgetter
 
 
 class ShowRankingGroupView(LoginRequiredMixin,
