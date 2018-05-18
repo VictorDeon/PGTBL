@@ -12,6 +12,10 @@ from groups.models import Group
 from grades.models import Grade
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
+from .models import Ranking
+
+from operator import attrgetter
+
 
 class ShowRankingGroupView(LoginRequiredMixin,
                             PermissionMixin,
@@ -20,8 +24,11 @@ class ShowRankingGroupView(LoginRequiredMixin,
     """
     View to ranking_group .
     """
+    model = Ranking
     template_name = 'rankingGroup/detail.html'
-    context_object_name = 'groups'
+    context_object_name = 'info_query'
+    ordering = ['sum_results_sessions']
+
 
     # Permissions
     permissions_required = [
@@ -73,6 +80,7 @@ class ShowRankingGroupView(LoginRequiredMixin,
         sessions = self.get_sessions_closed()
         groups = self.get_all_groups_by_discipline()
         groups_add_grades = []
+        list_update = []
 
         for s in sessions:
             for group in groups:
@@ -86,51 +94,21 @@ class ShowRankingGroupView(LoginRequiredMixin,
 
                 sum_grades_irat += grat
 
-                # sum_of_grades = sum(grade.irat for grade in grades)
                 groups_add_grades.append({
                     'group':group,
-                    'iratSet':sum_grades_irat,
+                    'sum_results_sessions':sum_grades_irat,
                 })
 
-        return groups_add_grades
+        list_update = sorted(groups_add_grades,key=lambda K: K.get('sum_results_sessions'), reverse=True)
+
+        return list_update
 
 
     def get_session_grades(self, session):
 
         grades = Grade.objects.filter(session=session)
 
-
-        # groups = self.get_queryset()
-        # for g in groups:
-        #     grade = Grade.objects.filter(session=session,group=g).get('grat')
-        #     grades.append(grade)
-
         return grades
-
-
-    # def get_groups(self):
-    #
-    #     groups = []
-    #
-    #     grades = self.get_session_grades()
-    #
-    #     for g in grade:
-    #         groups.append(g.group)
-    #
-    #     return groups
-
-
-
-
-
-    # def get_groups_grades(self, grades):
-    #
-    #     grupos = []
-    #
-    #     for grade in grades:
-    #         grupos.append([grade.group],[grade.grat])
-    #
-    #     return grupos
 
 
     def get_context_data(self, **kwargs):
@@ -140,8 +118,6 @@ class ShowRankingGroupView(LoginRequiredMixin,
 
         context = super(ShowRankingGroupView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
-        # context['sessions'] = self.get_sessions_closed()
-        #context['grades'] = self.get_session_grades(self.get_sessions_closed()[0])
         context['groups_add_grades']=self.get_alog()
 
         return context
@@ -154,13 +130,12 @@ class ShowRankingGroupView(LoginRequiredMixin,
 
         return groups
 
+
     def get_queryset(self):
         """
-        Get the group queryset from model database.
+        Get the info_group queryset from model database.
         """
 
-        discipline = self.get_discipline()
+        info_query = self.get_alog()
 
-        groups = Group.objects.filter(discipline=discipline)
-
-        return groups
+        return info_query
