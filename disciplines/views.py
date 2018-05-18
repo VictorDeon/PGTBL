@@ -518,7 +518,10 @@ class createAttendanceView(LoginRequiredMixin,
         """
 
         try:
-            query = Attendance.objects.get(discipline=discipline, date=date)
+            query = Attendance.objects.get(
+                discipline=discipline,
+                date=date
+            )
             attendance = query
         except Attendance.DoesNotExist:
             attendance = Attendance()
@@ -642,7 +645,9 @@ class AttendanceRateView(LoginRequiredMixin,
             rate.times_attended = self.set_number_of_attendancies(discipline, student)
             rate.times_missed = total - rate.times_attended
             rate.save()
-            rate.attendance_rate = round(100*(rate.times_attended/total))
+            rate.attendance_rate = round(
+                100*(rate.times_attended/total)
+            )
             rate.save()
 
     def get_total_attendancies(self, discipline):
@@ -662,7 +667,10 @@ class AttendanceRateView(LoginRequiredMixin,
     def get_rate(self, discipline, student):
 
         try:
-            rate = AttendanceRate.objects.get(student=student, discipline=discipline)
+            rate = AttendanceRate.objects.get(
+                student=student,
+                discipline=discipline
+            )
         except AttendanceRate.DoesNotExist:
             rate = AttendanceRate()
             rate.student = student
