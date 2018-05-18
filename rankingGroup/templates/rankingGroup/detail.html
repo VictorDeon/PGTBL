@@ -51,9 +51,9 @@
             <div class="panel-body">
               <div class="media">
                 <div class="media-body">
-                  <h2 class="media-heading">{{gr.obj.group.title|capfirst}}</h2>
+                  <h2 class="media-heading">{{gr.group_info.group.title|capfirst}}</h2>
                   <div class="row">
-                    {% for student in gr.obj.group.students.all%}
+                    {% for student in gr.group_info.group.students.all%}
                       <div class="col-sm-2">
                         <figure>
                           <img src="{% static 'rankingGroup/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
@@ -64,20 +64,20 @@
                   </div>
                 </div>
                 <div class="media-right">
-                  {% if gr.position == 1 %}
-                    <span class="position">{{gr.position}}º</span>
+                  {% if gr.group_position == 1 %}
+                    <span class="position">{{gr.group_position}}º</span>
                     <span class="first"><i class="fa fa-trophy"></i></span>
                   {% endif %}
-                  {% if gr.position == 2 %}
-                    <span class="position">{{gr.position}}º</span>
+                  {% if gr.group_position == 2 %}
+                    <span class="position">{{gr.group_position}}º</span>
                     <span class="second"><i class="fa fa-trophy"></i></span>
                   {% endif %}
-                  {% if gr.position == 3 %}
-                    <span class="position">{{gr.position}}º</span>
+                  {% if gr.group_position == 3 %}
+                    <span class="position">{{gr.group_position}}º</span>
                     <span class="third"><i class="fa fa-trophy"></i></span>
                   {% endif %}
-                  {% if gr.position != 3 and gr.position != 2 and gr.position != 1 %}
-                    <span class="position">{{gr.position}}º</span>
+                  {% if gr.group_position != 3 and gr.group_position != 2 and gr.group_position != 1 %}
+                    <span class="position">{{gr.group_position}}º</span>
                     <span class=""><i class="fa fa-trophy"></i></span>
                   {% endif %}
                 </div>

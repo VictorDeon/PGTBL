@@ -110,8 +110,8 @@ class ShowRankingGroupView(LoginRequiredMixin,
         i = 1
         for update in list_update:
             new_list.append({
-                'position': i,
-                'obj':update,
+                'group_position': i,
+                'group_info':update,
             })
             i = i + 1
         
