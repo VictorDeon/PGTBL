@@ -496,20 +496,8 @@ class createAttendanceView(LoginRequiredMixin,
 
         attendance.save()
 
-        for attendance in Attendance.objects.all():
-            print('-----------------')
-            print()
-            print(attendance.date)
-            print(attendance.discipline)
-            print('--------- Attended Students: --------')
-            for attended_student in attendance.attended_students.all():
-                print(attended_student)
-            print('--------- Missing Students: --------')
-            for missing_student in attendance.missing_students.all():
-                print(missing_student)
-
-        Attendance.objects.all().delete()
-        AttendanceRate.objects.all().delete()
+        #Attendance.objects.all().delete()
+        #AttendanceRate.objects.all().delete()
 
         return super(createAttendanceView, self).form_valid(form)
 
@@ -578,7 +566,7 @@ class createAttendanceView(LoginRequiredMixin,
             attended_student = self.get_student(student_pk)
             attended_students.append(attended_student)
             attendance.attended_students.add(attended_student)
-            rate = self.get_student_rate(attended_student)
+            rate = self.get_student_rate(attendance.discipline, attended_student)
             rate.times_attended = self.set_number_of_attendancies(attendance.discipline, attended_student)
             rate.save()
 
@@ -592,7 +580,7 @@ class createAttendanceView(LoginRequiredMixin,
         for student in self.get_all_students(discipline):
             if student not in attendance.attended_students.all():
                 attendance.missing_students.add(student)
-                rate = self.get_student_rate(student)
+                rate = self.get_student_rate(discipline, student)
                 rate.times_missed = Attendance.objects.filter(discipline=attendance.discipline).count() - rate.times_attended
                 rate.save()
 
@@ -604,8 +592,7 @@ class createAttendanceView(LoginRequiredMixin,
                 count +=1
         return count
 
-    def get_student_rate(self, student):
-        discipline = self.get_discipline()
+    def get_student_rate(self, discipline, student):
         try:
             rate = AttendanceRate.objects.get(student=student, discipline=discipline)
         except AttendanceRate.DoesNotExist:
@@ -625,7 +612,7 @@ class AttendanceRateView(LoginRequiredMixin,
     context_object_name = 'rates'
     template_name = 'disciplines/attendance_rates.html'
     permissions_required = [
-        'show_discipline_permission',
+        'change_own_discipline',
     ]
 
     def get_queryset(self):
@@ -642,17 +629,6 @@ class AttendanceRateView(LoginRequiredMixin,
         return queryset
 
     def get_discipline(self):
-        """
-        Get the specific discipline.
-        """
-        discipline = get_object_or_404(
-            Discipline,
-            slug=self.kwargs.get('slug', '')
-        )
-
-        return discipline
-
-    def get_object(self):
         """
         Get the specific discipline.
         """
