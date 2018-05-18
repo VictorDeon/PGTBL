@@ -62,10 +62,12 @@
             {% endfor %}
           </tbody>
         </table>
-        <!--<a href="{% url 'grades:final-csv' discipline.slug %}" class="btn btn-primary btn-block">
-          <i class="fa fa-download"></i>
-          Download CSV
-        </a>-->
+        {% if user.id == discipline.teacher.id %}
+          <a href="{% url 'disciplines:download' discipline.slug %}" class="btn btn-primary btn-block">
+            <i class="fa fa-download"></i>
+            Download CSV
+          </a>
+        {% endif %}
       </div>
     </div>
   </div>

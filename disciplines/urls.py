@@ -46,20 +46,29 @@ discipline_patterns = [
         views.CloseDisciplineView.as_view(),
         name='close'
     ),
+    # <discipline.slug>/attendance/
     url(
         r'^(?P<slug>[\w_-]+)/attendance/$',
         views.AttendanceOptionsListView.as_view(),
         name='attendance'
     ),
+    # <discipline.slug>/attendance/createNewAttendace
     url(
         r'^(?P<slug>[\w_-]+)/attendance/createNewAttendance/$',
         views.createAttendanceView.as_view(),
         name='createNewAttendance'
     ),
+    # <discipline.slug>/attendance/rates
     url(
         r'^(?P<slug>[\w_-]+)/attendance/rates/$',
         views.AttendanceRateView.as_view(),
         name='rates'
+    ),
+    # <discipline.slug>/attendance/download
+    url(
+        r'^(?P<slug>[\w_-]+)/attendance/download/$',
+        views.get_attendancies_csv,
+        name='download'
     ),
     # <discipline.slug>/students/
     url(
