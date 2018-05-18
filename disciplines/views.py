@@ -559,48 +559,20 @@ class createAttendanceView(LoginRequiredMixin,
 
     def add_attended_students(self, students_pk, attendance):
 
-        attended_students = []
-
         for student_pk in students_pk:
 
             attended_student = self.get_student(student_pk)
-            attended_students.append(attended_student)
             attendance.attended_students.add(attended_student)
-            rate = self.get_student_rate(attendance.discipline, attended_student)
-            rate.times_attended = self.set_number_of_attendancies(attendance.discipline, attended_student)
-            rate.save()
-
+            
             if attended_student in attendance.missing_students.all():
                 attendance.missing_students.remove(attended_student)
-                rate.times_missed -= 1
-                rate.save()
 
     def add_missing_students(self, discipline, attendance):
 
         for student in self.get_all_students(discipline):
             if student not in attendance.attended_students.all():
                 attendance.missing_students.add(student)
-                rate = self.get_student_rate(discipline, student)
-                rate.times_missed = Attendance.objects.filter(discipline=attendance.discipline).count() - rate.times_attended
-                rate.save()
-
-    def set_number_of_attendancies(self, discipline, student):
-        count = 0
-        attendancies = Attendance.objects.filter(discipline=discipline)
-        for attendance in attendancies:
-            if student in attendance.attended_students.all():
-                count +=1
-        return count
-
-    def get_student_rate(self, discipline, student):
-        try:
-            rate = AttendanceRate.objects.get(student=student, discipline=discipline)
-        except AttendanceRate.DoesNotExist:
-            rate = AttendanceRate()
-            rate.student = student
-            rate.discipline = discipline
-            rate.save()
-        return rate
+                
 
 class AttendanceRateView(LoginRequiredMixin,
                         PermissionMixin,
@@ -617,9 +589,10 @@ class AttendanceRateView(LoginRequiredMixin,
 
     def get_queryset(self):
         """
-        List all students and monitors from discipline.
+        Update and list all attendance rates
         """
         discipline = self.get_discipline()
+        self.update_rates(discipline)
         attendance_rates = AttendanceRate.objects.filter(
             discipline=discipline
         )
@@ -647,6 +620,36 @@ class AttendanceRateView(LoginRequiredMixin,
         context = super(AttendanceRateView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
         return context
+
+    def update_rates(self, discipline):
+
+        for student in discipline.students.all():
+
+            rate = self.get_rate(discipline, student)
+            rate.times_attended = self.set_number_of_attendancies(discipline, student)
+            rate.save()
+            rate.times_missed = Attendance.objects.filter(discipline=discipline).count() - rate.times_attended
+            rate.save()
+
+    def set_number_of_attendancies(self, discipline, student):
+
+        times_attended = 0
+        attendancies = Attendance.objects.filter(discipline=discipline)
+        for attendance in attendancies:
+            if student in attendance.attended_students.all():
+                times_attended +=1
+        return times_attended
+
+    def get_rate(self, discipline, student):
+
+        try:
+            rate = AttendanceRate.objects.get(student=student, discipline=discipline)
+        except AttendanceRate.DoesNotExist:
+            rate = AttendanceRate()
+            rate.student = student
+            rate.discipline = discipline
+            rate.save()
+        return rate
         
 class RemoveStudentView(LoginRequiredMixin,
                         PermissionMixin,
