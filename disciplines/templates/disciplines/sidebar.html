@@ -21,7 +21,6 @@
        title="{% trans 'Student list' %}">
        <i class="fa fa-slideshare icon-lg"></i>
     </a>
-    {% if user.id == discipline.teacher.id %}
       <!-- Attendence list menu -->
       <a href="{% url 'disciplines:attendance' discipline.slug %}"
          class="btn"
@@ -30,7 +29,6 @@
          title="{% trans 'Attendance list' %}">
          <i class="fa fa-list-ol icon-lg"></i>
       </a>
-    {% endif %}
     <!-- Grade menu -->
     <a href="{% url 'grades:result' discipline.slug %}"
        class="btn"

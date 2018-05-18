@@ -584,24 +584,35 @@ class AttendanceRateView(LoginRequiredMixin,
     context_object_name = 'rates'
     template_name = 'disciplines/attendance_rates.html'
     permissions_required = [
-        'change_own_discipline',
+        'show_discipline_permission',
     ]
 
     def get_queryset(self):
         """
         Update and list all attendance rates
         """
-        discipline = self.get_discipline()
-        self.update_rates(discipline)
-        attendance_rates = AttendanceRate.objects.filter(
-            discipline=discipline
-        )
 
-        queryset = attendance_rates
+        discipline = self.get_object()
+        user = self.request.user
+        self.update_rates(discipline)
+
+        if user.id == discipline.teacher.id:
+
+            attendance_rates = AttendanceRate.objects.filter(
+                discipline=discipline
+            )
+            queryset = attendance_rates
+
+        else:
+            attendance_rates = AttendanceRate.objects.filter(
+                discipline=discipline,
+                student=user,
+            )
+            queryset = attendance_rates
 
         return queryset
 
-    def get_discipline(self):
+    def get_object(self):
         """
         Get the specific discipline.
         """
@@ -618,7 +629,7 @@ class AttendanceRateView(LoginRequiredMixin,
         """
 
         context = super(AttendanceRateView, self).get_context_data(**kwargs)
-        context['discipline'] = self.get_discipline()
+        context['discipline'] = self.get_object()
         return context
 
     def update_rates(self, discipline):
@@ -629,7 +640,6 @@ class AttendanceRateView(LoginRequiredMixin,
 
             rate = self.get_rate(discipline, student)
             rate.times_attended = self.set_number_of_attendancies(discipline, student)
-            rate.save()
             rate.times_missed = total - rate.times_attended
             rate.save()
             rate.attendance_rate = round(100*(rate.times_attended/total))
