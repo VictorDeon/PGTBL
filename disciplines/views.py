@@ -623,13 +623,22 @@ class AttendanceRateView(LoginRequiredMixin,
 
     def update_rates(self, discipline):
 
+        total = self.get_total_attendancies(discipline)
+
         for student in discipline.students.all():
 
             rate = self.get_rate(discipline, student)
             rate.times_attended = self.set_number_of_attendancies(discipline, student)
             rate.save()
-            rate.times_missed = Attendance.objects.filter(discipline=discipline).count() - rate.times_attended
+            rate.times_missed = total - rate.times_attended
             rate.save()
+            rate.attendance_rate = round(100*(rate.times_attended/total))
+            rate.save()
+
+    def get_total_attendancies(self, discipline):
+
+        total = Attendance.objects.filter(discipline=discipline).count()
+        return total
 
     def set_number_of_attendancies(self, discipline, student):
 

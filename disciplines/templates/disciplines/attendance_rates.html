@@ -44,7 +44,7 @@
               <th>{% trans 'Student' %}</th>
               <th>{% trans 'Total attendancies' %}</th>
               <th>{% trans 'Total of absences' %}</th>
-              <th>{% trans 'Attendance Rate' %}</th>
+              <th>{% trans 'Attendance Rate' %} %</th>
             </tr>
           </thead>
           <tbody>
@@ -53,7 +53,7 @@
                 <td>{{rate.student.name}}</td>
                 <td>{{rate.times_attended}}</td>
                 <td>{{rate.times_missed}}</td>
-                <td>{{rate.attendance_rate}}</td>
+                <td>{{rate.attendance_rate}} %</td>
               </tr>
               {% empty %}
               <div class="alert alert-info">

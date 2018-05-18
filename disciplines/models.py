@@ -264,10 +264,8 @@ class AttendanceRate(models.Model):
         related_name='students_attendance_rate',
     )
 
-    attendance_rate = models.DecimalField(
-        max_digits=4,
-        decimal_places=2,
-        default=Decimal(0),
+    attendance_rate = models.FloatField(
+        default=0,
         verbose_name='Attendance rate',
     )
 
