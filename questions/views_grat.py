@@ -43,7 +43,6 @@ class GRATView(LoginRequiredMixin,
         """
         Get the failure redirect path.
         """
-
         messages.error(
             self.request,
             _("You are not authorized to do this action.")
