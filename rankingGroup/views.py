@@ -85,18 +85,25 @@ class ShowRankingGroupView(LoginRequiredMixin,
         for s in sessions:
             for group in groups:
                 sum_grades_irat = 0.0
+                sum_grades_pratical = 0.0
                 grat = 0.0
+                sum_results = 0.0
                 grades = Grade.objects.filter(session=s, group=group)
 
                 for grade in grades:
+                    sum_grades_pratical += grade.practical
                     sum_grades_irat += grade.irat
                     grat = grade.grat
 
-                sum_grades_irat += grat
+
+                sum_grades_irat = sum_grades_irat/len(grades)
+                sum_grades_pratical = sum_grades_pratical/len(grades)
+
+                sum_results = sum_grades_irat + grat + sum_grades_pratical
 
                 groups_add_grades.append({
                     'group':group,
-                    'sum_results_sessions':sum_grades_irat,
+                    'sum_results_sessions':sum_results,
                 })
 
         list_update = sorted(groups_add_grades,key=lambda K: K.get('sum_results_sessions'), reverse=True)
