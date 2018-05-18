@@ -1,6 +1,5 @@
 # Django app
 from django.views import generic
-from django.db.models import Q
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -24,11 +23,8 @@ class ShowRankingGroupView(LoginRequiredMixin,
     """
     View to ranking_group .
     """
-    model = Ranking
     template_name = 'rankingGroup/detail.html'
-    context_object_name = 'info_query'
-    ordering = ['sum_results_sessions']
-
+    context_object_name = 'groups_with_grades_results'
 
     # Permissions
     permissions_required = [
@@ -54,7 +50,7 @@ class ShowRankingGroupView(LoginRequiredMixin,
 
     def get_discipline(self):
         """
-        Take the discipline that the group belongs to
+        Take the discipline from slug
         """
 
         discipline = Discipline.objects.get(
@@ -65,7 +61,7 @@ class ShowRankingGroupView(LoginRequiredMixin,
 
     def get_sessions_closed(self):
         """
-        Get the tbl sessions queryset from model database.
+        Get the closeds tbl sessions from model database.
         """
 
         discipline = self.get_discipline()
@@ -75,38 +71,43 @@ class ShowRankingGroupView(LoginRequiredMixin,
         return sessions
 
 
-    def get_alog(self):
+    def set_ranking(self):
+        """
+        set the list of ranking group
+        """
 
         sessions = self.get_sessions_closed()
         groups = self.get_all_groups_by_discipline()
-        groups_add_grades = []
+        groups_with_grades_results = []
         list_update = []
 
         for s in sessions:
             for group in groups:
+
+                grades = Grade.objects.filter(session=s, group=group)
                 sum_grades_irat = 0.0
                 sum_grades_pratical = 0.0
                 grat = 0.0
-                sum_results = 0.0
-                grades = Grade.objects.filter(session=s, group=group)
+                sum_all_results = 0.0
 
                 for grade in grades:
                     sum_grades_pratical += grade.practical
                     sum_grades_irat += grade.irat
-                    grat = grade.grat
 
+                    if not grade.grat == 0:
+                        grat = grade.grat
 
                 sum_grades_irat = sum_grades_irat/len(grades)
                 sum_grades_pratical = sum_grades_pratical/len(grades)
 
-                sum_results = sum_grades_irat + grat + sum_grades_pratical
+                sum_all_results = sum_grades_irat + grat + sum_grades_pratical
 
-                groups_add_grades.append({
+                groups_with_grades_results.append({
                     'group':group,
-                    'sum_results_sessions':sum_results,
+                    'sum_results_sessions':sum_all_results,
                 })
 
-        list_update = sorted(groups_add_grades,key=lambda K: K.get('sum_results_sessions'), reverse=True)
+        list_update = sorted(groups_with_grades_results,key=lambda K: K.get('sum_results_sessions'), reverse=True)
 
         return list_update
 
@@ -125,7 +126,7 @@ class ShowRankingGroupView(LoginRequiredMixin,
 
         context = super(ShowRankingGroupView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
-        context['groups_add_grades']=self.get_alog()
+        context['groups_add_grades']=self.set_ranking()
 
         return context
 
@@ -143,6 +144,6 @@ class ShowRankingGroupView(LoginRequiredMixin,
         Get the info_group queryset from model database.
         """
 
-        info_query = self.get_alog()
+        groups_with_grades_results = self.set_ranking()
 
-        return info_query
+        return groups_with_grades_results

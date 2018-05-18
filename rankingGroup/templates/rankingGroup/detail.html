@@ -45,14 +45,14 @@
           <div class="panel-heading">
             Rank de grupos <span><i class="fa fa-flag-checkered"></i></span>
           </div>
-          {% for query in info_query %}
+          {% for gr in groups_with_grades_results %}
 
             <div class="panel-body">
               <div class="media">
                 <div class="media-body">
-                  <h2 class="media-heading">{{query.group.title|capfirst}}</h2>
+                  <h2 class="media-heading">{{gr.group.title|capfirst}}</h2>
                   <div class="row">
-                    {% for student in query.group.students.all%}
+                    {% for student in gr.group.students.all%}
                       <div class="col-sm-2">
                         <figure>
                           <img src="{% static 'rankingGroup/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
@@ -63,7 +63,7 @@
                   </div>
                 </div>
                 <div class="media-right">
-                  <span class="position">1º</span>
+                  <span class="position"></span>
                   <span class="first"><i class="fa fa-trophy"></i></span>
                 </div>
               </div>
