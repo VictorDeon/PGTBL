@@ -87,7 +87,10 @@ class DeleteQuestionTestCase(TestCase):
         User can not delete a question without logged in.
         """
 
-        pass
+        response = self.client.post(self.url)
+
+        self.assertEqual(response.status_code, 302)
+        self.assertIn('/login', response.url)
 
     def test_delete_question_by_teacher(self):
         """
@@ -106,7 +109,7 @@ class DeleteQuestionTestCase(TestCase):
         # self.assertEqual(self.session.questions.count(),1)
         # self.client.login(username=self.monitor.username, password='test1234')
         # response = self.client.post(self.url)
-        # self.assertEqual(self.session.questions.count(), 0)
+        # self.assertEqual(self.session.question.count(), 0)
 
     def test_delete_question_by_student_fail(self):
         """
