@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'', include('TBLSessions.urls')),
     url(r'', include('questions.urls')),
     url(r'', include('grades.urls')),
-    url(r'^peer', views.peer),
+    url(r'', include('peer_review.urls')),
 ]
 
 # While in development mode we will use relative URL for static and average
