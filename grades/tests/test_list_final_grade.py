@@ -17,8 +17,16 @@ class ListFinalGradeTestCase(TestCase):
         """
         This method will run before any test case.
         """
+        self.client = Client()
+        self.discipline = mommy.make('Discipline')
+        self.student = User.objects.create_user(
+            username='student',
+            email='stu@gmail.com',
+            password='senha123',
+        )
+        self.url = reverse_lazy('grades:result', kwargs={'slug': self.discipline.slug})
+        self.login_redirect = '/login/?next=/profile/' + self.discipline.slug + '/grades/'
 
-        pass
 
     def tearDown(self):
         """
@@ -31,8 +39,8 @@ class ListFinalGradeTestCase(TestCase):
         """
         User can not see the final grade list without logged in.
         """
-
-        pass
+        response = self.client.get(self.url)
+        self.assertRedirects(response, self.login_redirect, status_code=302, target_status_code=200)
 
     def test_users_can_see_the_grades(self):
         """
