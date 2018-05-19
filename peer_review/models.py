@@ -15,12 +15,22 @@ class PeerReview(models.Model):
         related_name='peer_review'
     )
 
-    feedback = models.TextField()
-
     title = models.CharField(
         _('Title'),
         max_length=200,
         help_text=_('Session title.')
+    )
+
+    feedback = models.TextField(
+        _('Feedback'),
+        help_text = _('Feedback about your teammate ')
+    )
+
+    score = models.PositiveSmallIntegerField(
+        _("Score"),
+        default = 0,
+        blank = True,
+        help_text = _("Score your teammate")
     )
 
     def __str__(self):
