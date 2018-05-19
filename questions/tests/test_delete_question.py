@@ -33,7 +33,13 @@ class DeleteQuestionTestCase(TestCase):
             topic= 'testtopic',
             )
 
+
+        self.alternatives = mommy.make('Alternative', _quantity=4)
+        self.alternatives[0].is_correct = True
+        self.alternatives[0].save()
+        self.question.alternatives.set(self.alternatives)
         self.session.questions.add(self.question)
+
 
         self.student = User.objects.create_user(
             username='Test3',
@@ -70,16 +76,20 @@ class DeleteQuestionTestCase(TestCase):
                     'question_id':self.question.id}
         )
 
-
     def tearDown(self):
         """
         This method will run after any test.
         """
 
-        self.teacher.delete()
-        self.monitor.delete()
-        self.student.delete()
-        self.question.delete()
+        # self.teacher.delete()
+        # self.monitor.delete()
+        # self.student.delete()
+        # self.question.delete()
+
+        User.objects.all().delete()
+        Question.objects.all().delete()
+        TBLSession.objects.all().delete()
+        Alternative.objects.all().delete()
 
 
     def test_redirect_to_login(self):
@@ -126,4 +136,10 @@ class DeleteQuestionTestCase(TestCase):
         Test to delete all alternatives when delete a specific question.
         """
 
-        pass
+        self.assertEqual(self.session.questions.count(),1)
+        self.assertEqual(Alternative.objects.all().count(), 4)
+        self.client.login(username=self.teacher.username, password='test1234')
+        response = self.client.post(self.url)
+        self.assertEqual(self.session.questions.count(), 0)
+        self.assertEqual(Alternative.objects.all().count(), 0)
+
