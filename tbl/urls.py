@@ -3,6 +3,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 
+from peer_review import views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('core.urls')),
@@ -13,6 +15,7 @@ urlpatterns = [
     url(r'', include('TBLSessions.urls')),
     url(r'', include('questions.urls')),
     url(r'', include('grades.urls')),
+    url(r'^peer', views.peer),
 ]
 
 # While in development mode we will use relative URL for static and average
