@@ -27,8 +27,6 @@ class UpdateGradeTestCase(TestCase):
         self.url = reverse_lazy('grades:result', kwargs={'slug': self.discipline.slug})
         self.login_redirect = '/login/?next=/profile/' + self.discipline.slug + '/grades/'
 
-        pass
-
     def tearDown(self):
         """
         This method will run after any test.
@@ -42,8 +40,6 @@ class UpdateGradeTestCase(TestCase):
         """
         response = self.client.get(self.url)
         self.assertRedirects(response, self.login_redirect, status_code=302, target_status_code=200)
-
-        pass
 
     def test_update_grade_by_teacher(self):
         """
