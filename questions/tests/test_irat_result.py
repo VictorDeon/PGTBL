@@ -2,6 +2,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from core.test_utils import check_messages
+from core.roles import Teacher
 from model_mommy import mommy
 from questions.views_irat import (
     IRATDateUpdateView
@@ -29,7 +30,7 @@ class IRATResultTestCase(TestCase):
         self.teacher = User.objects.create()
 
         self.discipline = Discipline.objects.create(
-                title = 'Software Test',
+                title = 'Test',
                 teacher_id = self.teacher.id
         )
 
@@ -51,9 +52,12 @@ class IRATResultTestCase(TestCase):
         """
         This method will run after any test.
         """
-        self.irat.objects.drop()
+        self.irat.objects.delete()
+        self.question.objects.delete()
+        self.discipline.objects.delete()
+        self.teacher.objects.delete()
+        self.session.objects.delete()
         
-
     def test_user_can_see_irat_result(self):
 
         """
