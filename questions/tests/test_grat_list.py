@@ -27,11 +27,12 @@ class ListGRATTestCase(TestCase):
             password='botaoquevcquisertbm'
         )
 
-        self.teacher = User.objects.create_user(
-            username='hunter from mars',
-            email='ajaxtheavenger@mail.com',
+        self.teacher1 = User.objects.create_user(
+            username='Test1',
+            email='test1@gmail.com',
             is_teacher=True,
-            password='passwordofgods'
+            password='test1234'
+
         )
 
         self.tbl_session = mommy.make('TBLSession')
@@ -42,6 +43,7 @@ class ListGRATTestCase(TestCase):
         """
         This method will run after any test.
         """
+        self.teacher1.delete()
         self.student.delete()
         self.tbl_session.delete()
 
@@ -146,8 +148,6 @@ class ListGRATTestCase(TestCase):
 
         response = self.client.put(url, {"grat_datetime": '2019-05-06T11:59'})
         self.assertNotEqual(response.status_code, 301)
-
-        pass
 
     def test_date_and_time_not_can_be_blank(self):
         """
