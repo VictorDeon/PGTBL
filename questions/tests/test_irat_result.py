@@ -3,11 +3,15 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from core.test_utils import check_messages
 from model_mommy import mommy
+from questions.views_irat import (
+    IRATDateUpdateView
+)
 from questions.models import (
     Question, Alternative, ExerciseSubmission,
     IRATSubmission, GRATSubmission
 )
-from .views_irat import IRATResultView
+from disciplines.models import Discipline
+from TBLSessions.models import TBLSession
 
 User = get_user_model()
 
@@ -22,14 +26,33 @@ class IRATResultTestCase(TestCase):
         This method will run before any test case.
         """
 
-        pass
+        self.teacher = User.objects.create()
+
+        self.discipline = Discipline.objects.create(
+                title = 'Software Test',
+                teacher_id = self.teacher.id
+        )
+
+        self.session = TBLSession.objects.create(
+                discipline_id = self.discipline.id
+        )
+
+        self.question = Question.objects.create(
+                session_id = self.session.id
+        )
+
+        self.irat = IRATSubmission.objects.create(
+                user_id = self.teacher.id,
+                session_id = self.session.id,
+                question_id = self.question.id
+        )
 
     def tearDown(self):
         """
         This method will run after any test.
         """
-
-        pass
+        self.irat.objects.drop()
+        
 
     def test_user_can_see_irat_result(self):
 
@@ -55,6 +78,7 @@ class IRATResultTestCase(TestCase):
         score that the user made, total of scores and grade of user.
         Only students have grade created.
         """
-        
+
         score_value = IRATResultView.get_result()
-        assert score_value != None and score_value['score']
+        assert (score_value != None)
+        assert (score_value['score'])
