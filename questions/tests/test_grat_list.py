@@ -134,8 +134,8 @@ class ListGRATTestCase(TestCase):
         )
 
         self.client.login(
-            username='hunter from mars',
-            password='passwordofgods'
+            username=self.teacher1.username,
+            password=self.teacher1.password
         )
 
         response = self.client.put(url, {"grat_datetime": '2019-05-06T11:59'})
@@ -146,7 +146,7 @@ class ListGRATTestCase(TestCase):
             password=self.student.password
         )
 
-        response = self.client.put(url, {"grat_datetime": '2019-05-06T11:59'})
+        response = self.client.put(url, {"grat_datetime": '2019-05-06T10:59'})
         self.assertNotEqual(response.status_code, 301)
 
     def test_date_and_time_not_can_be_blank(self):
