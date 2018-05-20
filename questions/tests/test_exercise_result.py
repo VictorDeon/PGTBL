@@ -10,6 +10,7 @@ from questions.models import (
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
 from questions.models import Question
+from questions.models import Submission
 
 
 User = get_user_model()
@@ -68,7 +69,6 @@ class ExerciseResultTestCase(TestCase):
             topic="What is the result between the sum of 1 + 1?",
             is_exercise=True
         )
-
         # self.question2 = mommy.make(
         #     Question,
         #     title="Question 2",
@@ -77,7 +77,6 @@ class ExerciseResultTestCase(TestCase):
         #     topic="What is the result between the sum of 1 + 1?",
         #     is_exercise=True
         # )
-
         self.alternative1 = mommy.make(
             Alternative,
             title="3",
@@ -103,10 +102,13 @@ class ExerciseResultTestCase(TestCase):
             question=self.question1
         )
 
-
-
-
-
+        self.submission = mommy.make(
+            Submission,
+            session=self.session,
+            question=self.question1,
+            user=self.user,
+            correct_alternative=self.alternative1
+        )
         self.url = reverse_lazy(
             'questions:list',
             kwargs={
@@ -131,20 +133,20 @@ class ExerciseResultTestCase(TestCase):
         """
 
         self.client.login(username="test", password="password")
-        url = '/profile/{}/sessions/1/questions/exercises/result/'.format(self.session.discipline.slug)
+        url = '/profile/{}/sessions/1/exercises/result/'.format(self.session.discipline.slug)
 
-        # response = self.client.get(url, follow=True)
-        # redirect_url, status_code = response.redirect_chain[-1]
-        #
-        # self.assertEqual(status_code, 302)
-        # self.assertEqual(redirect_url, '/profile/')
-        #
-        # if '<h1>Login</h1>' in str(response.content):
-        #     is_logged = False
-        # else:
-        #     is_logged = True
-        #
-        # self.assertIs(is_logged, True)
+        response = self.client.get(url, follow=True)
+        redirect_url, status_code = response.redirect_chain[-1]
+
+        self.assertEqual(status_code, 302)
+        self.assertEqual(redirect_url, '/profile/')
+
+        if '<h1>Login</h1>' in str(response.content):
+            is_logged = False
+        else:
+            is_logged = True
+
+        self.assertIs(is_logged, True)
 
         pass
 
