@@ -4,6 +4,7 @@ from django.test import TestCase, Client
 from core.test_utils import check_messages
 from model_mommy import mommy
 from grades.models import Grade, FinalGrade
+from TBLSessions.models import TBLSession
 
 User = get_user_model()
 
@@ -17,8 +18,6 @@ class ListGradeTestCase(TestCase):
         """
         This method will run before any test case.
         """
-
-        pass
 
     def tearDown(self):
         """
@@ -46,4 +45,29 @@ class ListGradeTestCase(TestCase):
         Unit test about calculate_session_grade() method from Grade model.
         """
 
-        pass
+        session = TBLSession()
+        grade = Grade(
+            session=session,
+            irat=2.0,
+            grat=2.0,
+            practical=2.0)
+
+        session_grade = grade.calcule_session_grade()
+        self.assertEqual(session_grade, 2.0)
+
+    def test_calculate_session_grade_with_peer_review(self):
+        """
+        Unit test about calculate_session_grade()
+        when peer review is available.
+        """
+
+        session = TBLSession(peer_review_available=True)
+        grade = Grade(
+            session=session,
+            irat=2.0,
+            grat=2.0,
+            practical=2.0,
+            peer_review=4.0)
+
+        session_grade = grade.calcule_session_grade()
+        self.assertEqual(session_grade, 2.2)
