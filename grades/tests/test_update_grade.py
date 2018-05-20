@@ -17,6 +17,15 @@ class UpdateGradeTestCase(TestCase):
         """
         This method will run before any test case.
         """
+        self.client = Client()
+        self.discipline = mommy.make('Discipline')
+        self.teacher = User.objects.create_user(
+            username='teacher',
+            email='tea@gmail.com',
+            password='senha123',
+        )
+        self.url = reverse_lazy('grades:result', kwargs={'slug': self.discipline.slug})
+        self.login_redirect = '/login/?next=/profile/' + self.discipline.slug + '/grades/'
 
         pass
 
@@ -31,6 +40,8 @@ class UpdateGradeTestCase(TestCase):
         """
         Teacher can not update a grade without logged in.
         """
+        response = self.client.get(self.url)
+        self.assertRedirects(response, self.login_redirect, status_code=302, target_status_code=200)
 
         pass
 
