@@ -107,7 +107,15 @@ class ListIRATTestCase(TestCase):
         The date and time of irat test not can be blank.
         """
 
-        pass
+        response = self.client.post(
+                reverse_lazy(
+                        'questions:irat-date',
+                        kwargs = {'slug': self.teacher.id, 'pk': self.session.id }),
+                        {'irat_datetime': ''}
+                )
+
+        self.assertEquals(response.status_code, 302)
+
 
     def test_date_and_time_need_to_be_bigger_than_today(self):
         """
