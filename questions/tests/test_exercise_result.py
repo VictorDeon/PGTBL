@@ -60,7 +60,7 @@ class ExerciseResultTestCase(TestCase):
             is_closed=False,
             make_m2m=True
         )
-        self.question = mommy.make(
+        self.question1 = mommy.make(
             Question,
             title="Question 1",
             session=self.session,
@@ -68,6 +68,45 @@ class ExerciseResultTestCase(TestCase):
             topic="What is the result between the sum of 1 + 1?",
             is_exercise=True
         )
+
+        # self.question2 = mommy.make(
+        #     Question,
+        #     title="Question 2",
+        #     session=self.session,
+        #     level="Basic",
+        #     topic="What is the result between the sum of 1 + 1?",
+        #     is_exercise=True
+        # )
+
+        self.alternative1 = mommy.make(
+            Alternative,
+            title="3",
+            is_correct=False,
+            question=self.question1
+        )
+        self.alternative2 = mommy.make(
+            Alternative,
+            title="2",
+            is_correct=True,
+            question=self.question1
+        )
+        self.alternative3 = mommy.make(
+            Alternative,
+            title="1",
+            is_correct=False,
+            question=self.question1
+        )
+        self.alternative4 = mommy.make(
+            Alternative,
+            title="0",
+            is_correct=False,
+            question=self.question1
+        )
+
+
+
+
+
         self.url = reverse_lazy(
             'questions:list',
             kwargs={
@@ -75,8 +114,6 @@ class ExerciseResultTestCase(TestCase):
                 'pk': self.session.id,
             }
         )
-
-        pass
 
     def tearDown(self):
         """
@@ -87,7 +124,6 @@ class ExerciseResultTestCase(TestCase):
         Discipline.objects.all().delete()
         TBLSession.objects.all().delete()
 
-        pass
 
     def test_user_can_see_exercise_result(self):
         """
