@@ -24,6 +24,12 @@ class ListExerciseTestCase(TestCase):
         This method will run before any test case.
         """
 
+        self.user = User.objects.create_user(
+            username='test',
+            email='test@test.com',
+            password='password'
+        )
+
         self.client = Client()
         self.teacher = user_factory(name='Pedro')
         self.teachers = user_factory(qtd=2)
@@ -94,4 +100,18 @@ class ListExerciseTestCase(TestCase):
         with exercise questions.
         """
 
-        pass
+        self.client.login(username="test", password="password")
+        url = '/profile/{}/sessions/1/questions/'.format(self.session.discipline.slug)
+    
+        response = self.client.get(url, follow=True)
+        redirect_url, status_code = response.redirect_chain[-1]
+    
+        self.assertEqual(status_code, 302)
+        self.assertEqual(redirect_url, '/profile/')
+
+        if '<h1>Login</h1>' in str(response.content):
+            is_logged = False
+        else:
+            is_logged = True
+        
+        self.assertIs(is_logged, True)
