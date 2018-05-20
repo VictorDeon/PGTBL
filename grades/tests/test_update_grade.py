@@ -19,13 +19,24 @@ class UpdateGradeTestCase(TestCase):
         """
         self.client = Client()
         self.discipline = mommy.make('Discipline')
+        self.session = mommy.make('TBLSession')        
         self.teacher = User.objects.create_user(
             username='teacher',
             email='tea@gmail.com',
             password='senha123',
+            is_teacher=True,
         )
-        self.url = reverse_lazy('grades:result', kwargs={'slug': self.discipline.slug})
-        self.login_redirect = '/login/?next=/profile/' + self.discipline.slug + '/grades/'
+        self.student = User.objects.create_user(
+            username='student',
+            email='stu@gmail.com',
+            password='senha123',
+        )
+        self.url = reverse_lazy('grades:update', kwargs={
+            'slug': self.discipline.slug, 
+            'pk': self.session.pk,
+            'student_pk': self.student.pk
+        })
+        self.login_redirect = '/login/?next=' + str(self.url)
 
     def tearDown(self):
         """
