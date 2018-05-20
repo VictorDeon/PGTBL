@@ -29,7 +29,7 @@ class ListIRATTestCase(TestCase):
         """
 
         self.teacher = User.objects.create()
-
+        self.student = User.objects,create()
         self.discipline = Discipline.objects.create(
                 title = 'Software Test',
                 teacher_id = self.teacher.id
