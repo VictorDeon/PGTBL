@@ -124,7 +124,8 @@ class ExerciseResultTestCase(TestCase):
 
         User.objects.all().delete()
         Discipline.objects.all().delete()
-        TBLSession.objects.all().delete()
+        Question.objects.all().delete()
+        Submission.objects.all().delete()
 
 
     def test_user_can_see_exercise_result(self):
@@ -148,7 +149,6 @@ class ExerciseResultTestCase(TestCase):
 
         self.assertIs(is_logged, True)
 
-        pass
 
     def test_show_only_exercise_question(self):
         """
