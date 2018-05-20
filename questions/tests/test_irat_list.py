@@ -87,5 +87,4 @@ class ListIRATTestCase(TestCase):
         The date and time from irat test need to be bigger than the
         date and time from today.
         """
-
         pass

@@ -7,6 +7,7 @@ from questions.models import (
     Question, Alternative, ExerciseSubmission,
     IRATSubmission, GRATSubmission
 )
+from .views_irat import IRATResultView
 
 User = get_user_model()
 
@@ -31,6 +32,7 @@ class IRATResultTestCase(TestCase):
         pass
 
     def test_user_can_see_irat_result(self):
+
         """
         User like student, teacher and monitors can see the result of irat
         after the test is over or if student finish the test.
@@ -47,10 +49,12 @@ class IRATResultTestCase(TestCase):
         pass
 
     def test_calcule_the_irat_result(self):
+
         """
         Calcule the irat test result from irat test.
         score that the user made, total of scores and grade of user.
         Only students have grade created.
         """
-
-        pass
+        
+        score_value = IRATResultView.get_result()
+        assert score_value != None and score_value['score']
