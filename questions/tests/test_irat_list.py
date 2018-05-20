@@ -1,12 +1,19 @@
 from django.core.urlresolvers import reverse_lazy
+from core.roles import Teacher
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from core.test_utils import check_messages
 from model_mommy import mommy
+from disciplines.models import Discipline
+from TBLSessions.models import TBLSession
 from questions.models import (
     Question, Alternative, ExerciseSubmission,
     IRATSubmission, GRATSubmission
 )
+from questions.views_irat import (
+    IRATDateUpdateView
+)
+
 
 User = get_user_model()
 
@@ -21,7 +28,27 @@ class ListIRATTestCase(TestCase):
         This method will run before any test case.
         """
 
-        pass
+        self.teacher = User.objects.create()
+
+        self.discipline = Discipline.objects.create(
+                title = 'Software Test',
+                teacher_id = self.teacher.id
+        )
+
+        self.session = TBLSession.objects.create(
+                discipline_id = self.discipline.id
+        )
+
+        self.question = Question.objects.create(
+                session_id = self.session.id
+        )
+
+        self.irat = IRATSubmission.objects.create(
+                user_id = self.teacher.id,
+                session_id = self.session.id,
+                question_id = self.question.id
+        )
+
 
     def tearDown(self):
         """
