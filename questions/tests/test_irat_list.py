@@ -18,7 +18,7 @@ from questions.models import (
 from questions.views_irat import (
     IRATDateUpdateView
 )
-
+from django.template.defaultfilters import slugify
 
 User = get_user_model()
 
@@ -44,6 +44,7 @@ class ListIRATTestCase(TestCase):
             title='Software Test',
             course='Engineering',
             password='12345',
+            classroom='Class A',
             students=self.students
         )
 
@@ -83,7 +84,18 @@ class ListIRATTestCase(TestCase):
         User can not see the irat test without logged in.
         """
 
-        pass
+        url = '/profile/{}-{}-{}/sessions/{}/irat/'.format(
+                    self.discipline.id,
+                    slugify(self.discipline.title),
+                    slugify(self.discipline.classroom),
+                    self.session.id
+                )
+
+
+        response = self.client.get(url, follow=True)
+
+        self.assertRedirects(response, '/login/?next=' + url,
+                             status_code=302)
 
     def test_irat_test_pagination(self):
         """
