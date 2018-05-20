@@ -102,7 +102,7 @@ class CreateQuestionTestCase(TestCase):
 
         }
 
-        response = self.client.post(self.url, data=data)
+        self.client.post(self.url, data=data)
         self.assertEqual(Question.objects.all().count(), 1)
 
     def test_create_question_by_monitors(self):
@@ -136,7 +136,7 @@ class CreateQuestionTestCase(TestCase):
 
         }
 
-        response = self.client.post(self.url, data=data)
+        self.client.post(self.url, data=data)
         self.assertEqual(Question.objects.all().count(), 1)
 
     def test_alternative_question_fail(self):
@@ -282,6 +282,7 @@ class CreateQuestionTestCase(TestCase):
 
         response = self.client.post(self.url, data=data)
         self.assertEqual(Question.objects.all().count(), 1)
+        self.assertEqual(Alternative.objects.all().count(), 4)
 
     def test_monitor_create_only_one_alternative_correct(self):
         """
@@ -317,6 +318,7 @@ class CreateQuestionTestCase(TestCase):
 
         response = self.client.post(self.url, data=data)
         self.assertEqual(Question.objects.all().count(), 1)
+        self.assertEqual(Alternative.objects.all().count(), 4)
 
     def test_create_question_with_more_than_one_alternative_correct(self):
         """
@@ -352,6 +354,7 @@ class CreateQuestionTestCase(TestCase):
         response = self.client.post(self.url, data=data)
         self.assertIsNotNone(response.context_data['form'].errors)
         self.assertEqual(Question.objects.all().count(), 0)
+        self.assertEqual(Alternative.objects.all().count(), 0)
 
     def test_create_four_alternatives_in_a_question(self):
         """
@@ -410,7 +413,7 @@ class CreateQuestionTestCase(TestCase):
 
         response = self.client.post(self.url, data=data)
         self.assertIsNotNone(response.context_data['form'].errors)
-        self.assertEqual(Question.objects.all().count(), 0)
+        self.assertEqual(Alternative.objects.all().count(), 0)
 
     def test_create_5_alternatives_in_a_question(self):
         """
@@ -445,6 +448,5 @@ class CreateQuestionTestCase(TestCase):
                 'alternatives-4-is_correct': False,
         }
 
-        response = self.client.post(self.url, data=data)
-        self.assertIsNotNone(response.context_data['form'].errors)
-        self.assertEqual(Question.objects.all().count(), 0)
+        self.client.post(self.url, data=data)
+        self.assertEqual(Alternative.objects.all().count(), 4)

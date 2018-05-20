@@ -96,47 +96,50 @@ class UpdateQuestionTestCase(TestCase):
         Test to update a question and alternatives by teacher.
         """
 
-        url = '/profile/{}/sessions/{}/questions/{}/edit/'.format(
+        url_question = '/profile/{}/sessions/{}/questions/{}/edit/'.format(
             self.question.session.discipline.slug,
             self.question.session.discipline.pk,
             self.question.id
         )
 
-        self.client.login(username=self.teacher.username, password=self.teacher.password)
+        self.client.login(username=self.teacher.username, password='test1234')
 
 
         data = {
-                'alternatives-TOTAL_FORMS': '4',
-                'alternatives-INITIAL_FORMS': '0',
-                'alternatives-MAX_NUM_FORMS': '4',
-
-                'title': "Questao 01",
-                'topic': "Testes de Software",
+                'title': 'Questao 01',
+                'topic': 'Testes de Software',
                 'level': 'Basic',
                 'is_exercise': True,
-
-                'alternatives-0-title': "Alternativa 0",
-                'alternatives-0-is_correct': True,
-
-                'alternatives-1-title': "Alternativa 1",
-                'alternatives-1-is_correct': False,
-
-                'alternatives-2-title': "Alternativa 2",
-                'alternatives-2-is_correct': False,
-
-                'alternatives-3-title': "Alternativa 3",
-                'alternatives-3-is_correct': False,
-
         }
 
-        response = self.client.get(url, follow=True)
-        self.assertRedirects(response, '/login/?next='+url, status_code=302,
-            target_status_code=200,fetch_redirect_response=True)
+        response = self.client.put(url_question, data=data)
+        #print(response.redirect_chain)
+        self.assertEqual(self.question.title, "Questao 01")
+
 
     def test_update_question_by_monitors(self):
         """
         Test to update a question and alternatives by monitors.
         """
+        url_question = '/profile/{}/sessions/{}/questions/{}/edit/'.format(
+            self.question.session.discipline.slug,
+            self.question.session.discipline.pk,
+            self.question.id
+        )
+
+        self.client.login(username=self.monitor.username, password='test1234')
+
+
+        data = {
+                'title': 'Questao 01',
+                'topic': 'Testes de Software',
+                'level': 'Basic',
+                'is_exercise': True,
+        }
+
+        response = self.client.put(url_question, data=data)
+        #print(response.redirect_chain)
+        self.assertEqual(self.question.title, "Questao 01")
 
         pass
 
