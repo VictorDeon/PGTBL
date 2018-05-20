@@ -6,6 +6,8 @@ from core.test_utils import (
     check_messages, user_factory
 )
 import datetime
+from django.utils import timezone
+import pytz
 from model_mommy import mommy
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
@@ -49,7 +51,7 @@ class ListIRATTestCase(TestCase):
             TBLSession,
             discipline=self.discipline,
             title='TBL1',
-            irat_datetime=datetime.datetime(2018, 5, 16, 14), # year, month, day, hour
+            irat_datetime=timezone.localtime(timezone.now()),
             irat_weight=3,
             irat_duration=30 # 30 minutes
         )
@@ -141,4 +143,14 @@ class ListIRATTestCase(TestCase):
         The date and time from irat test need to be bigger than the
         date and time from today.
         """
-        pass
+
+        yesterday = timezone.localtime(timezone.now()) - timezone.timedelta(1)
+
+        response = self.client.post(
+            reverse_lazy(
+            'questions:irat-date',
+            kwargs = {'slug': self.teacher.id, 'pk': self.session.id }),
+            {'irat_datetime': yesterday}
+        )
+
+        self.assertEquals(response.status_code, 302)
