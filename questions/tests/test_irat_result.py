@@ -11,6 +11,8 @@ from questions.models import (
     Question, Alternative, ExerciseSubmission,
     IRATSubmission, GRATSubmission
 )
+from django.utils import timezone
+import pytz
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
 
@@ -26,7 +28,7 @@ class IRATResultTestCase(TestCase):
         """
         This method will run before any test case.
         """
-
+        self.client = Client()
         self.teacher = User.objects.create()
 
         self.discipline = Discipline.objects.create(
@@ -35,18 +37,14 @@ class IRATResultTestCase(TestCase):
         )
 
         self.session = TBLSession.objects.create(
-                discipline_id = self.discipline.id
+                discipline_id = self.discipline.id,
         )
 
         self.question = Question.objects.create(
                 session_id = self.session.id
         )
 
-        self.irat = IRATSubmission.objects.create(
-                user_id = self.teacher.id,
-                session_id = self.session.id,
-                question_id = self.question.id
-        )
+        self.irat = IRATResultView()
 
     def tearDown(self):
         """
@@ -81,8 +79,12 @@ class IRATResultTestCase(TestCase):
         score that the user made, total of scores and grade of user.
         Only students have grade created.
         """
-        #irat = IRATResultView()
 
-        #score_value = irat.result()
-        #assert (score_value['score'])
+    #    response = self.client.post(
+    #         reverse_lazy(
+    #             'questions:irat-result',
+    #             kwargs = {'slug': self.teacher.id, 'pk': self.irat.get_session() }),
+    #             {'result': result}
+    #        )
+    #    assert(response)
         pass
