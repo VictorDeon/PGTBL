@@ -2,7 +2,10 @@ from django.core.urlresolvers import reverse_lazy
 from core.roles import Teacher
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
-from core.test_utils import check_messages
+from core.test_utils import (
+    check_messages, user_factory
+)
+import datetime
 from model_mommy import mommy
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
@@ -27,20 +30,33 @@ class ListIRATTestCase(TestCase):
         """
         This method will run before any test case.
         """
+        self.client = Client()
+        self.teacher = user_factory(name='Ricardo')
+        self.student = user_factory(name='Ana', is_teacher=False)
+        self.students = user_factory(qtd=2, is_teacher=False)
+        self.students.append(self.student)
 
-        self.teacher = User.objects.create()
-        self.student = User.objects,create()
-        self.discipline = Discipline.objects.create(
-                title = 'Software Test',
-                teacher_id = self.teacher.id
+        self.discipline = mommy.make(
+            Discipline,
+            teacher=self.teacher,
+            title='Software Test',
+            course='Engineering',
+            password='12345',
+            students=self.students
         )
 
-        self.session = TBLSession.objects.create(
-                discipline_id = self.discipline.id
+        self.session = mommy.make(
+            TBLSession,
+            discipline=self.discipline,
+            title='TBL1',
+            irat_datetime=datetime.datetime(2018, 5, 16, 14), # year, month, day, hour
+            irat_weight=3,
+            irat_duration=30 # 30 minutes
         )
 
-        self.question = Question.objects.create(
-                session_id = self.session.id
+        self.question = mommy.make(
+            Question,
+            session=self.session
         )
 
         self.irat = IRATSubmission.objects.create(
@@ -54,8 +70,11 @@ class ListIRATTestCase(TestCase):
         """
         This method will run after any test.
         """
+        TBLSession.objects.all().delete()
+        Discipline.objects.all().delete()
+        User.objects.all().delete()
 
-        pass
+
 
     def test_redirect_to_login(self):
         """
