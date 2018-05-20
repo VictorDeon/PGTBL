@@ -26,6 +26,14 @@ class ListGRATTestCase(TestCase):
             email='oquevcquisertbm@email.com',
             password='botaoquevcquisertbm'
         )
+
+        self.teacher = User.objects.create_user(
+            username='hunter from mars',
+            email='ajaxtheavenger@mail.com',
+            is_teacher=True,
+            password='passwordofgods'
+        )
+
         self.tbl_session = mommy.make('TBLSession')
         self.tbl_session.discipline.students.add(self.student)
 
@@ -112,6 +120,32 @@ class ListGRATTestCase(TestCase):
         """
         Only teacher can change date and time from grat test.
         """
+        url = '/profile/{}/sessions/{}/grat/edit-date'.format(
+            self.tbl_session.discipline.slug,
+            self.tbl_session.pk
+        )
+
+        self.question = Question.objects.create(
+            title='test',
+            session=self.tbl_session,
+            topic='how many times do you drink beer'
+        )
+
+        self.client.login(
+            username='hunter from mars',
+            password='passwordofgods'
+        )
+
+        response = self.client.put(url, {"grat_datetime": '2019-05-06T11:59'})
+        self.assertEqual(response.status_code, 301)
+
+        self.client.login(
+            username=self.student.username,
+            password=self.student.password
+        )
+
+        response = self.client.put(url, {"grat_datetime": '2019-05-06T11:59'})
+        self.assertNotEqual(response.status_code, 301)
 
         pass
 
