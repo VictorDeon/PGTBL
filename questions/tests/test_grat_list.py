@@ -87,6 +87,7 @@ class ListGRATTestCase(TestCase):
             group = self.groups
         )
 
+
         self.url = reverse_lazy(
             'questions:grat',
             kwargs={
@@ -99,6 +100,7 @@ class ListGRATTestCase(TestCase):
         """
         This method will run after any test.
         """
+        self.teacher1.delete()
         self.student.delete()
         self.session.delete()
 
@@ -249,8 +251,32 @@ class ListGRATTestCase(TestCase):
         """
         Only teacher can change date and time from grat test.
         """
+        url = '/profile/{}/sessions/{}/grat/edit-date'.format(
+            self.tbl_session.discipline.slug,
+            self.tbl_session.pk
+        )
 
-        pass
+        self.question = Question.objects.create(
+            title='test',
+            session=self.tbl_session,
+            topic='how many times do you drink beer'
+        )
+
+        self.client.login(
+            username=self.teacher1.username,
+            password=self.teacher1.password
+        )
+
+        response = self.client.put(url, {"grat_datetime": '2019-05-06T11:59'})
+        self.assertEqual(response.status_code, 301)
+
+        self.client.login(
+            username=self.student.username,
+            password=self.student.password
+        )
+
+        response = self.client.put(url, {"grat_datetime": '2019-05-06T10:59'})
+        self.assertNotEqual(response.status_code, 301)
 
     def test_date_and_time_not_can_be_blank(self):
         """
