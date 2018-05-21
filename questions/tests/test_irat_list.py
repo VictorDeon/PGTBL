@@ -155,9 +155,12 @@ class ListIRATTestCase(TestCase):
         #         kwargs = {'slug': self.discipline.slug, 'pk': self.session.id }
         # )
 
-        # self.assertRedirects(response, failure_redirect_path)
-        self.session.refresh_from_db()
+        # self.assertRedirects(response, failure_redirect_path, status_code=302, target_status_code=200)
         
+        self.session.refresh_from_db()
+        self.assertEqual(self.session.irat_weight, 3)
+        self.assertEqual(self.session.irat_duration, 30)
+
         check_messages(
             self, response,
             tag='alert-danger',
@@ -175,8 +178,12 @@ class ListIRATTestCase(TestCase):
             kwargs = {'slug': self.discipline.slug, 'pk': self.session.id }
         )
 
-        self.assertRedirects(response, success_url)
+        self.assertRedirects(response, success_url, status_code=302, target_status_code=200)
         self.session.refresh_from_db()
+
+        self.assertEqual(self.session.irat_weight, 5)
+        self.assertEqual(self.session.irat_duration, 50)
+
         check_messages(
             self, response,
             tag='alert-success',
@@ -207,9 +214,9 @@ class ListIRATTestCase(TestCase):
         #         kwargs = {'slug': self.discipline.slug, 'pk': self.session.id }
         # )
 
-        # self.assertRedirects(response, failure_redirect_path)
+        # self.assertRedirects(response, failure_redirect_path, status_code=302, target_status_code=200)
         self.session.refresh_from_db()
-        
+
         check_messages(
             self, response,
             tag='alert-danger',
@@ -229,11 +236,11 @@ class ListIRATTestCase(TestCase):
 
         self.assertRedirects(response, success_url)
         self.session.refresh_from_db()
-        self.assertEquals(response, 'oi')
+        
         check_messages(
             self, response,
             tag='alert-success',
-            content="iRAT updated successfully."
+            content="iRAT date updated successfully."
         )
 
     def test_date_and_time_not_can_be_blank(self):
