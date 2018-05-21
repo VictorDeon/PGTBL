@@ -30,15 +30,20 @@ class ListExerciseTestCase(TestCase):
             password='password'
         )
 
-        self.client = Client()
-        self.teacher = user_factory(name='Pedro')
-        self.teachers = user_factory(qtd=2)
-        self.student = user_factory(name='Maria', is_teacher=False)
-        self.monitor = user_factory(name='João')
-        self.students = user_factory(
-            qtd=9,
-            is_teacher=False
+        self.teacher = User.objects.create_user(
+            username='teacher',
+            email='teacher@teacher.com',
+            password='password'
         )
+
+        self.monitor = User.objects.create_user(
+            username='monitor',
+            email='monitor@monitor.com',
+            password='password'
+        )
+
+        self.client = Client()
+
         self.discipline = mommy.make(
             Discipline,
             teacher=self.teacher,
@@ -48,17 +53,52 @@ class ListExerciseTestCase(TestCase):
             is_closed=False,
             students_limit=10,
             monitors_limit=3,
-            students=self.students,
-            monitors=self.teachers,
+            students=[self.user],
+            monitors=[self.monitor],
             make_m2m=True
         )
         self.session = mommy.make(
             TBLSession,
+            discipline=self.discipline,
             title="TBL1",
             description="First TBL Session",
             is_closed=False,
             make_m2m=True
         )
+
+        self.question1 = mommy.make(
+            Question,
+            title="Question 1",
+            session=self.session,
+            level="Basic",
+            topic="What is the result between the sum of 1 + 1?",
+            is_exercise=True
+        )
+        self.alternative1 = mommy.make(
+            Alternative,
+            title="3",
+            is_correct=False,
+            question=self.question1
+        )
+        self.alternative2 = mommy.make(
+            Alternative,
+            title="2",
+            is_correct=True,
+            question=self.question1
+        )
+        self.alternative3 = mommy.make(
+            Alternative,
+            title="1",
+            is_correct=False,
+            question=self.question1
+        )
+        self.alternative4 = mommy.make(
+            Alternative,
+            title="0",
+            is_correct=False,
+            question=self.question1
+        )
+
         self.url = reverse_lazy(
             'questions:list',
             kwargs={
@@ -100,18 +140,35 @@ class ListExerciseTestCase(TestCase):
         with exercise questions.
         """
 
+        # Realize the login as student
         self.client.login(username="test", password="password")
         url = '/profile/{}/sessions/1/questions/'.format(self.session.discipline.slug)
-    
-        response = self.client.get(url, follow=True)
-        redirect_url, status_code = response.redirect_chain[-1]
-    
-        self.assertEqual(status_code, 302)
-        self.assertEqual(redirect_url, '/profile/')
 
-        if '<h1>Login</h1>' in str(response.content):
-            is_logged = False
-        else:
-            is_logged = True
-        
-        self.assertIs(is_logged, True)
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+        # Get the question has been showed in the screen
+        questions = response.context['view'].get_questions()
+        self.assertEqual(questions.count(), 1)
+
+        # Realize the login as monitor
+        self.client.login(username="monitor", password="password")
+        url = '/profile/{}/sessions/1/questions/'.format(self.session.discipline.slug)
+
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+        # Get the question has been showed in the screen
+        questions = response.context['view'].get_questions()
+        self.assertEqual(questions.count(), 1)
+
+        # Realize the login as teacher
+        self.client.login(username="teacher", password="password")
+        url = '/profile/{}/sessions/1/questions/'.format(self.session.discipline.slug)
+
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+        # Get the question has been showed in the screen
+        questions = response.context['view'].get_questions()
+        self.assertEqual(questions.count(), 1)
