@@ -6,6 +6,8 @@ from core.test_utils import (
     check_messages, user_factory
 )
 import datetime
+from django.utils import timezone
+import pytz
 from model_mommy import mommy
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
@@ -16,7 +18,7 @@ from questions.models import (
 from questions.views_irat import (
     IRATDateUpdateView
 )
-
+from django.template.defaultfilters import slugify
 
 User = get_user_model()
 
@@ -42,15 +44,16 @@ class ListIRATTestCase(TestCase):
             title='Software Test',
             course='Engineering',
             password='12345',
-            students=self.students,
-            slug='test'
+            slug='test',
+            classroom='Class A',
+            students=self.students
         )
 
         self.session = mommy.make(
             TBLSession,
             discipline=self.discipline,
             title='TBL1',
-            irat_datetime=datetime.datetime(2018, 5, 16, 14), # year, month, day, hour
+            irat_datetime=timezone.localtime(timezone.now()),
             irat_weight=3,
             irat_duration=30 # 30 minutes
         )
@@ -82,7 +85,18 @@ class ListIRATTestCase(TestCase):
         User can not see the irat test without logged in.
         """
 
-        pass
+        url = '/profile/{}-{}-{}/sessions/{}/irat/'.format(
+                    self.discipline.id,
+                    slugify(self.discipline.title),
+                    slugify(self.discipline.classroom),
+                    self.session.id
+                )
+
+
+        response = self.client.get(url, follow=True)
+
+        self.assertRedirects(response, '/login/?next=' + url,
+                             status_code=302)
 
     def test_irat_test_pagination(self):
         """
@@ -179,10 +193,10 @@ class ListIRATTestCase(TestCase):
         )
 
         response = self.client.post(url, data, follow=True)
-        failure_redirect_path = reverse_lazy(
-                'TBLSessions:details',
-                kwargs = {'slug': self.discipline.slug, 'pk': self.session.id }
-        )
+        # failure_redirect_path = reverse_lazy(
+        #         'TBLSessions:details',
+        #         kwargs = {'slug': self.discipline.slug, 'pk': self.session.id }
+        # )
 
         # self.assertRedirects(response, failure_redirect_path)
         self.session.refresh_from_db()
@@ -195,22 +209,23 @@ class ListIRATTestCase(TestCase):
 
         # Simulates teacher triyng to modify iRAT's date
 
-        # self.client.logout()
-        # self.client.login(username=self.teacher.username, password='test1234')
-        # response = self.client.post(url, data, follow=True)
+        self.client.logout()
+        self.client.login(username=self.teacher.username, password='test1234')
+        response = self.client.post(url, data, follow=True)
         
-        # success_url = reverse_lazy(
-        #     'questions:irat-list',
-        #     kwargs = {'slug': self.discipline.slug, 'pk': self.session.id }
-        # )
+        success_url = reverse_lazy(
+            'questions:irat-list',
+            kwargs = {'slug': self.discipline.slug, 'pk': self.session.id }
+        )
 
-        # self.assertRedirects(response, success_url)
-        # self.session.refresh_from_db()
-        # check_messages(
-        #     self, response,
-        #     tag='alert-success',
-        #     content="iRAT updated successfully."
-        # )
+        self.assertRedirects(response, success_url)
+        self.session.refresh_from_db()
+        self.assertEquals(response, 'oi')
+        check_messages(
+            self, response,
+            tag='alert-success',
+            content="iRAT updated successfully."
+        )
 
     def test_date_and_time_not_can_be_blank(self):
         """
@@ -232,4 +247,14 @@ class ListIRATTestCase(TestCase):
         The date and time from irat test need to be bigger than the
         date and time from today.
         """
-        pass
+
+        yesterday = timezone.localtime(timezone.now()) - timezone.timedelta(1)
+
+        response = self.client.post(
+            reverse_lazy(
+            'questions:irat-date',
+            kwargs = {'slug': self.teacher.id, 'pk': self.session.id }),
+            {'irat_datetime': yesterday}
+        )
+
+        self.assertEquals(response.status_code, 302)
