@@ -7,6 +7,7 @@ from questions.models import (
     Question, Alternative, ExerciseSubmission,
     IRATSubmission, GRATSubmission
 )
+HTTP_REDIRECT = 301
 
 User = get_user_model()
 
@@ -52,8 +53,12 @@ class ListGRATTestCase(TestCase):
         """
         User can not see the irat test without logged in.
         """
-
-        pass
+        url = '/profile/{}/sessions/{}/grat'.format(
+            self.tbl_session.discipline.slug,
+            self.tbl_session.pk
+        )
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 301)
 
     def test_grat_test_pagination(self):
         """
@@ -138,23 +143,50 @@ class ListGRATTestCase(TestCase):
             password=self.teacher1.password
         )
 
-        response = self.client.put(url, {"grat_datetime": '2019-05-06T11:59'})
-        self.assertEqual(response.status_code, 301)
+        data = {
+            "grat_datetime": '2019-05-06T11:59'
+        }
+
+        response = self.client.put(url, data)
+
+        to_url = url+"/"
+
+        self.assertRedirects(response, to_url, status_code=301, target_status_code=302)
 
         self.client.login(
             username=self.student.username,
             password=self.student.password
         )
 
-        response = self.client.put(url, {"grat_datetime": '2019-05-06T10:59'})
-        self.assertNotEqual(response.status_code, 301)
+        response = self.client.put(url, data)
+        self.assertEqual(response.status_code, 301)
 
     def test_date_and_time_not_can_be_blank(self):
         """
         The date and time of grat test not can be blank.
         """
+        url = '/profile/{}/sessions/{}/grat/edit-date'.format(
+            self.tbl_session.discipline.slug,
+            self.tbl_session.pk
+        )
 
-        pass
+        self.question = Question.objects.create(
+            title='test',
+            session=self.tbl_session,
+            topic='how many times do you drink beer'
+        )
+
+        self.client.login(
+            username=self.teacher1.username,
+            password=self.teacher1.password
+        )
+
+        data = {
+            "grat_datetime": ''
+        }
+        response = self.client.post(url, data)
+        # self.assertContains(response, "gRAT date must", status_code=301)
+        self.assertEquals(response.status_code, 301)
 
     def test_date_and_time_need_to_be_bigger_than_today(self):
         """
