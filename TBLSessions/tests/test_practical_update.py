@@ -1,4 +1,5 @@
 from django.core.urlresolvers import reverse_lazy
+from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from core.test_utils import check_messages
@@ -18,22 +19,19 @@ class UpdatePracticalTestCase(TestCase):
         This method will run before any test case.
         """
         self.client = Client()
+        self.session = mommy.make('TBLSession')
         self.teacher = User.objects.create_user(
             username='someTeacher',
-            email='teacherEmail@email.com',
-            password='somepass'
-            is_teacher=True
+            email='someTeacher@email.com',
+            password='somepass',
+            is_teacher=True,
         )
+        self.session.discipline.teacher = self.teacher
+        self.session.discipline.save()
 
-        self.discipline = mommy.make('Discipline')
-        self.discipline.teacher.add(self.teacher)
-
-        self.tbl_sessions = mommy.make(
-            TBLSession,
-            discipline=self.discipline,
-            _quantity=30
-        )
-        self.tbl_session = self.tbl_sessions[0]
+        self.url = reverse('TBLSessions:practical-update',
+                           kwargs={'slug': self.session.discipline.slug,
+                                   'pk': self.session.pk})
 
     def tearDown(self):
         """
@@ -45,13 +43,11 @@ class UpdatePracticalTestCase(TestCase):
         """
         Teacher and monitors that is a teacher can update the practical test.
         """
-        self.teacher.login(
+        self.client.login(
             username=self.teacher.username,
             password='somepass'
         )
 
-        url = '/practical-test/edit/'
+        response = self.client.get(self.url)
 
-        successful_response = self.teacher.get(url, follow=True)
-
-        self.assertEqual(successful_response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
