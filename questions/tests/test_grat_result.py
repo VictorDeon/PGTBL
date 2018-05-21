@@ -7,8 +7,24 @@ from questions.models import (
     Question, Alternative, ExerciseSubmission,
     IRATSubmission, GRATSubmission
 )
+from disciplines.models import Discipline
+from TBLSessions.models import TBLSession
+# from django.utils.timezone import timezone
+
+from questions.views_grat import GRATResultView
 
 User = get_user_model()
+
+
+def setup_view(view, request, *args, **kwargs):
+        """Mimic ``as_view()``, but returns view instance.
+        Use this function to get view instances on which you can run unit tests,
+        by testing specific methods."""
+
+        view.request = request
+        view.args = args
+        view.kwargs = kwargs
+        return view
 
 
 class GRATResultTestCase(TestCase):
@@ -25,11 +41,30 @@ class GRATResultTestCase(TestCase):
         self.student = User.objects.create_user(
             username='estudante',
             email='estudante@email.com',
-            password='estudate123'
+            password='estudante123'
         )
+
         self.tbl_session = mommy.make('TBLSession')
         self.tbl_session.discipline.students.add(self.student)
 
+
+        self.question1 = mommy.make(
+            Question,
+            title = "Questão sobre a vida1",
+            session = self.tbl_session,
+            level = 'Basic',
+            topic = "Whatever",
+            is_exercise = True
+        )
+
+        self.question2 = mommy.make(
+            Question,
+            title = "Questão sobre a vida2",
+            session = self.tbl_session,
+            level = 'Basic',
+            topic = "Whatever",
+            is_exercise = False
+        )
 
 
     def tearDown(self):
@@ -38,8 +73,6 @@ class GRATResultTestCase(TestCase):
         """
         self.student.delete()
         self.tbl_session.delete()
-
-
 
 
 
@@ -69,14 +102,29 @@ class GRATResultTestCase(TestCase):
         Show only not exercise question that are into grat test, and show the
         answers.
         """
-        pass
 
+        # /profile/materia/sessions/pk/grat/result
+        url = reverse_lazy(
+            'questions:grat-result',
+            kwargs = {
+                'slug': self.tbl_session.discipline.slug,
+                'pk': self.tbl_session.pk
+            }
+        )
 
+        self.client.login(
+            username=self.student.username,
+            password='estudante123'
+        )
 
+        kawrgs = {'pk': self.tbl_session.pk }
+        response = self.client.get(url, follow=True)
 
+        view = setup_view(GRATResultView(), response, **kawrgs)
+        questions = view.get_questions()
+
+        self.assertEqual(questions[0], self.question2)
         
-        
-
 
 
     def test_calcule_the_grat_result(self):
