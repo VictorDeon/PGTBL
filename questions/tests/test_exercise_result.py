@@ -224,4 +224,24 @@ class ExerciseResultTestCase(TestCase):
         Remove all submissions from exercise list.
         """
 
-        pass
+        self.client.login(username="teacher", password="password")
+        
+        self.client.post('/profile/{}/sessions/{}/questions/{}/delete/'.format(self.session.discipline.slug, self.session.id, self.question1.id), params=None)
+
+        self.client.post('/profile/{}/sessions/{}/questions/{}/delete/'.format(self.session.discipline.slug, self.session.id, self.question2.id), params=None)
+
+        url = '/profile/{}/sessions/{}/questions/'.format(self.session.discipline.slug, self.session.id)
+
+        response = self.client.get(url, follow=True)
+
+        self.assertEqual(response.status_code, 200)
+
+        if '<p>There is no questions in this session.</p>' in str(response.content):
+            all_removed = True
+        else:
+            all_removed = False
+
+        self.assertIs(all_removed, True)
+
+        self.assertEqual(Submission.objects.all().count(), 0)
+        self.assertEqual(Question.objects.all().count(), 0)
