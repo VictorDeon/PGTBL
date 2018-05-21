@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from core.test_utils import check_messages
 from model_mommy import mommy
+from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
 from django import template
 
@@ -27,35 +28,42 @@ class DeleteTBLSessionTestCase(TestCase):
             is_teacher=True
         )
 
-        self.monitor = User.objects.create_user(
+        self.student_monitor = User.objects.create_user(
             username='someMonitor',
             email='monitorEmail@email.com',
             password='someMonitorpass',
-            is_teacher=True
+            is_teacher=False
         )
 
         self.monitor_and_teacher = User.objects.create_user(
             username='someMonitor2',
             email='monitor2Email@email.com',
             password='someMonitor2pass',
-            is_teacher=True
+            is_teacher=False
         )
 
         self.student = User.objects.create_user(
             username='someStudent',
             email='studentEmail@email.com',
-            password='someStudentpass'
+            password='someStudentpass',
+            is_teacher=False            
         )
 
-        self.discipline = mommy.make('Discipline')
-        self.discipline.teacher = self.teacher
-        self.discipline.students.add(self.student)
-        self.discipline.monitors.add(self.monitor, self.monitor_and_teacher)
+        self.discipline = mommy.make(
+            Discipline,
+            teacher=self.monitor_and_teacher,
+            students= [ self.student, self.student_monitor ],
+            monitors=[
+                self.student_monitor, 
+                self.monitor_and_teacher, 
+                self.teacher
+            ]
+        )
 
         self.tbl_sessions = mommy.make(
             TBLSession,
             discipline=self.discipline,
-            _quantity=30
+            _quantity=1
         )
         self.tbl_session = self.tbl_sessions[0]
 
@@ -72,8 +80,9 @@ class DeleteTBLSessionTestCase(TestCase):
         This method will run after any test.
         """
         self.teacher.delete()
-        self.monitor.delete()
+        self.student_monitor.delete()
         self.student.delete()
+        self.monitor_and_teacher.delete()
 
     def test_redirect_to_login(self):
         """
@@ -92,44 +101,80 @@ class DeleteTBLSessionTestCase(TestCase):
         """
         Test to delete a tbl session by teacher.
         """
-        self.client.login(username=self.teacher.username, password='someTeacherpass')
+        self.assertEqual(TBLSession.objects.count(), 1)
 
-        successful_response = self.client.get(self.url, follow=True)
+        self.client.login(
+            username=self.teacher.username, 
+            password='someTeacherpass'
+        )
+        successful_response = self.client.post(self.url, follow=True)
+        success_url = reverse_lazy(
+            'TBLSessions:list',
+            kwargs={'slug': self.discipline.slug}
+        )
 
-        self.assertEqual(successful_response.status_code, 200)
+        self.assertRedirects(successful_response, success_url)
+        self.assertEqual(TBLSession.objects.count(), 0)
+        check_messages(
+            self, successful_response,
+            tag='alert-success',
+            content="TBL session deleted successfully."
+        )
 
     def test_delete_tbl_session_by_monitors(self):
         """
         Test to delete a tbl session by monitors if they are a teacher.
         """
+        self.assertEqual(TBLSession.objects.count(), 1)
+        
         self.client.login(username=self.monitor_and_teacher.username, password='someMonitor2pass')
+        successful_response = self.client.post(self.url, follow=True)
+        success_url = reverse_lazy(
+            'TBLSessions:list',
+            kwargs={'slug': self.discipline.slug}
+        )
 
-        register = template.Library()
-        try:
-            successful_response = self.client.get(self.url, follow=True)
-            self.assertEqual(successful_response.status_code, 200)
-        except template.TemplateDoesNotExist:
-            pass
+        #self.assertRedirects(successful_response, success_url)
+        self.assertEqual(TBLSession.objects.count(), 0)
+        check_messages(
+            self, successful_response,
+            tag='alert-success',
+            content="TBL session deleted successfully."
+        )
+
 
     def test_delete_tbl_session_by_student_fail(self):
         """
         Student can not delete a tbl session.
         """
+        self.assertEqual(TBLSession.objects.count(), 1)
         self.client.login(username=self.student.username, password='someStudentpass')
 
-        successful_response = self.client.get(self.url, follow=True)
+        unsuccessful_response = self.client.post(self.url, follow=True)
+        profile_url = reverse_lazy('accounts:profile')
 
-        self.assertEqual(successful_response.status_code, 200)
+        self.assertRedirects(unsuccessful_response, profile_url)
+        self.assertEqual(TBLSession.objects.count(), 1)
+        check_messages(
+            self, unsuccessful_response,
+            tag='alert-danger',
+            content="You are not authorized to do this action."
+        )
 
     def test_delete_tbl_session_by_monitors_fail(self):
         """
         Student monitors can not delete a tbl session.
         """
-        self.client.login(username=self.monitor.username, password='someMonitorpass')
+        self.assertEqual(TBLSession.objects.count(), 1)
+        self.client.login(username=self.student_monitor.username, password='someMonitorpass')
+        
+        unsuccessful_response = self.client.post(self.url, follow=True)
+        profile_url = reverse_lazy('accounts:profile')
 
-        register = template.Library()
-        try:
-            successful_response = self.client.get(self.url, follow=True)
-            self.assertEqual(successful_response.status_code, 200)
-        except template.TemplateDoesNotExist:
-            pass
+        self.assertRedirects(unsuccessful_response, profile_url)
+        self.assertEqual(TBLSession.objects.count(), 1)
+        check_messages(
+            self, unsuccessful_response,
+            tag='alert-danger',
+            content="You are not authorized to do this action."
+        )
