@@ -88,20 +88,16 @@ class ShowRankingGroupView(LoginRequiredMixin,
                 sum_grades_pratical = 0.0
                 grat = 0.0
                 sum_all_results = 0.0
-
-                for grade in grades:
-                    sum_grades_pratical += grade.practical
-                    sum_grades_irat += grade.irat
-
-                    if not grade.grat == 0:
-                        grat = grade.grat
-
-                sum_grades_irat = sum_grades_irat/len(grades)
-                sum_grades_pratical = sum_grades_pratical/len(grades)
-
                 try:
-                    sum_grades_irat = sum_grades_irat/len(grades)
-                    sum_grades_pratical = sum_grades_pratical/len(grades)
+                    for grade in grades:
+                        sum_grades_pratical += grade.practical
+                        sum_grades_irat += grade.irat
+
+                        if not grade.grat == 0:
+                            grat = grade.grat
+                        sum_grades_irat = sum_grades_irat/len(grades)
+                        sum_grades_pratical = sum_grades_pratical/len(grades)
+                        
                 except ZeroDivisionError:
                     print("Error: There is no grades to assing")
                     messages.error(

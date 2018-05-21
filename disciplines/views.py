@@ -354,6 +354,8 @@ class CloseDisciplineView(LoginRequiredMixin,
         )
 
         if discipline.is_closed:
+            #salva em lista os primeiros colocados - estatico
+            #retira alunos e monitores
             discipline.is_closed = False
         else:
             discipline.is_closed = True

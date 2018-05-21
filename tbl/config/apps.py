@@ -21,7 +21,8 @@ TBL_APPS = [
     'TBLSessions',
     'questions',
     'grades',
-    'rankingGroup'
+    'rankingGroup',
+    'hallOfFame'
 ]
 
 EXTERNAL_APPS = [
