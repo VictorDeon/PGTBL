@@ -175,21 +175,21 @@ class ExerciseResultTestCase(TestCase):
 
         # Tests with the user being a student
         self.client.login(username="test", password="password")
-        url = '/profile/{}/sessions/1/exercises/result/'.format(self.session.discipline.slug)
+        url = '/profile/{}/sessions/{}/exercises/result/'.format(self.session.discipline.slug, self.session.id)
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.client.logout()
 
         # Tests with the user being a teacher
         self.client.login(username="teacher", password="password")
-        url = '/profile/{}/sessions/1/exercises/result/'.format(self.session.discipline.slug)
+        url = '/profile/{}/sessions/{}/exercises/result/'.format(self.session.discipline.slug, self.session.id)
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.client.logout()
 
         # Tests with the user being a monitor
         self.client.login(username="monitor", password="password")
-        url = '/profile/{}/sessions/1/exercises/result/'.format(self.session.discipline.slug)
+        url = '/profile/{}/sessions/{}/exercises/result/'.format(self.session.discipline.slug, self.session.id)
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.client.logout()
@@ -201,7 +201,7 @@ class ExerciseResultTestCase(TestCase):
         """
 
         self.client.login(username="test", password="password")
-        url = '/profile/{}/sessions/1/exercises/result/'.format(self.session.discipline.slug)
+        url = '/profile/{}/sessions/{}/exercises/result/'.format(self.session.discipline.slug, self.session.id)
 
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
