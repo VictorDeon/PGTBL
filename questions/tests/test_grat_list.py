@@ -183,12 +183,13 @@ class ListGRATTestCase(TestCase):
             password=self.teacher.password
         )
 
+        print(self.session.discipline.slug)
         url = '/profile/{}/sessions/{}/grat/'.format(
             self.session.discipline.slug,
             self.session.id
         )
 
-        response = self.session.grat_datetime = "2018-05-06T11:59"
+        self.session.grat_datetime = datetime.datetime(2020, 12, 25, 4, 20)
 
         self.client.logout()
 
@@ -205,7 +206,7 @@ class ListGRATTestCase(TestCase):
         )
 
         self.assertRedirects(response, '/login/?next=' + url_redirect, status_code=302)
-        
+
 
     def test_only_teacher_can_change_weight_and_time(self):
         """
@@ -233,7 +234,6 @@ class ListGRATTestCase(TestCase):
                 'pk': self.session.id
             }
         )
-        self.assertEqual(success_redirect_path, "teste")
         self.assertRedirects(response, success_redirect_path)
         self.session.refresh_from_db()
         self.client.logout()
@@ -253,7 +253,7 @@ class ListGRATTestCase(TestCase):
         """
         url = '/profile/{}/sessions/{}/grat/edit-date'.format(
             self.session.discipline.slug,
-            self.session.pk
+            self.session.id
         )
 
         self.question = Question.objects.create(
