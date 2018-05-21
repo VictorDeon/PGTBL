@@ -42,7 +42,8 @@ class ListIRATTestCase(TestCase):
             title='Software Test',
             course='Engineering',
             password='12345',
-            students=self.students
+            students=self.students,
+            slug='test'
         )
 
         self.session = mommy.make(
@@ -60,9 +61,9 @@ class ListIRATTestCase(TestCase):
         )
 
         self.irat = IRATSubmission.objects.create(
-                user_id = self.teacher.id,
-                session_id = self.session.id,
-                question_id = self.question.id
+            user_id = self.teacher.id,
+            session_id = self.session.id,
+            question_id = self.question.id
         )
 
 
@@ -112,14 +113,104 @@ class ListIRATTestCase(TestCase):
         Only teacher can change the irat test weight and duration.
         """
 
-        pass
+        # Simulates student trying to modify iRAT's weight and time
+        self.client.login(username=self.student.username, password='test1234')
+        
+        data = {
+            'irat_weight': 5,
+            'irat_duration': 50,
+        }
+
+        url = reverse_lazy(
+                'questions:irat-update',
+                kwargs = {'slug': self.discipline.slug, 'pk': self.session.id}
+        )
+
+        response = self.client.post(url, data, follow=True)
+        # failure_redirect_path = reverse_lazy(
+        #         'TBLSessions:details',
+        #         kwargs = {'slug': self.discipline.slug, 'pk': self.session.id }
+        # )
+
+        # self.assertRedirects(response, failure_redirect_path)
+        self.session.refresh_from_db()
+        
+        check_messages(
+            self, response,
+            tag='alert-danger',
+            content="You are not authorized to do this action."
+        )
+
+        # Simulates teacher triyng to modify iRAT's weight and time
+
+        self.client.logout()
+        self.client.login(username=self.teacher.username, password='test1234')
+        response = self.client.post(url, data, follow=True)
+        
+        success_url = reverse_lazy(
+            'questions:irat-list',
+            kwargs = {'slug': self.discipline.slug, 'pk': self.session.id }
+        )
+
+        self.assertRedirects(response, success_url)
+        self.session.refresh_from_db()
+        check_messages(
+            self, response,
+            tag='alert-success',
+            content="iRAT updated successfully."
+        )
+
 
     def test_only_teacher_can_change_date_and_time(self):
         """
         Only teacher can change date and time from irat test.
         """
 
-        pass
+        # Simulates student trying to modify iRAT's date
+        self.client.login(username=self.student.username, password='test1234')
+        
+        data = {
+            'irat_datetime':datetime.datetime(2019, 8, 7, 14),
+        }
+
+        url = reverse_lazy(
+                'questions:irat-date',
+                kwargs = {'slug': self.discipline.slug, 'pk': self.session.id}
+        )
+
+        response = self.client.post(url, data, follow=True)
+        failure_redirect_path = reverse_lazy(
+                'TBLSessions:details',
+                kwargs = {'slug': self.discipline.slug, 'pk': self.session.id }
+        )
+
+        # self.assertRedirects(response, failure_redirect_path)
+        self.session.refresh_from_db()
+        
+        check_messages(
+            self, response,
+            tag='alert-danger',
+            content="You are not authorized to do this action."
+        )
+
+        # Simulates teacher triyng to modify iRAT's date
+
+        # self.client.logout()
+        # self.client.login(username=self.teacher.username, password='test1234')
+        # response = self.client.post(url, data, follow=True)
+        
+        # success_url = reverse_lazy(
+        #     'questions:irat-list',
+        #     kwargs = {'slug': self.discipline.slug, 'pk': self.session.id }
+        # )
+
+        # self.assertRedirects(response, success_url)
+        # self.session.refresh_from_db()
+        # check_messages(
+        #     self, response,
+        #     tag='alert-success',
+        #     content="iRAT updated successfully."
+        # )
 
     def test_date_and_time_not_can_be_blank(self):
         """
