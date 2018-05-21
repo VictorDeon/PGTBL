@@ -236,12 +236,8 @@ class ExerciseResultTestCase(TestCase):
         url = '/profile/{}/sessions/{}/exercises/result/'.format(self.session.discipline.slug, self.session.id)
         response = self.client.get(url)
 
-        if '<span class="text-danger">10.00</span>' in str(response.content):
-            has_grade = True
-        else:
-            has_grade = False
-
-        self.assertIs(has_grade, True)
+        content = '<span class=\"text-danger\">10.00</span>'
+        self.assertTrue(content in str(response.content))
 
     def test_reset_exercise_list(self):
         """
@@ -265,15 +261,11 @@ class ExerciseResultTestCase(TestCase):
 
         # Testing if the page is returning status code 200
         self.assertEqual(response.status_code, 200)
-
-        # Testing if there no question on the page
-        if '<p>There is no questions in this session.</p>' in str(response.content):
-            all_removed = True
-        else:
-            all_removed = False
-
-        self.assertIs(all_removed, True)
+        
+        # Testing if there isn't questions in the page
+        content = '<p>There is no questions in this session.</p>'
+        self.assertTrue(content in str(response.content))
 
         # Testing if there is no Submissions and Question in the database
-        self.assertEqual(Submission.objects.all().count(), 0)
-        self.assertEqual(Question.objects.all().count(), 0)
+        self.assertEqual(Submission.objects.count(), 0)
+        self.assertEqual(Question.objects.count(), 0)
