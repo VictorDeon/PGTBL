@@ -31,7 +31,7 @@ class DeleteQuestionTestCase(TestCase):
             session= self.session,
             level= 'basic',
             topic= 'testtopic',
-            )
+        )
 
 
         self.alternatives = mommy.make('Alternative', _quantity=4)
@@ -54,6 +54,7 @@ class DeleteQuestionTestCase(TestCase):
             username='Test1',
             email='test1@gmail.com',
             password='test1234',
+            is_teacher=True
         )
 
         self.session.discipline.teacher = self.teacher
@@ -65,7 +66,7 @@ class DeleteQuestionTestCase(TestCase):
             is_teacher=True
         )
 
-        self.session.discipline.monitor = self.monitor
+        self.session.discipline.monitors.add(self.monitor)
         self.session.discipline.save()
 
         self.url = reverse_lazy(
@@ -106,7 +107,7 @@ class DeleteQuestionTestCase(TestCase):
         """
         Test to delete a question by teacher.
         """
-        self.assertEqual(self.session.questions.count(),1)
+        self.assertEqual(self.session.questions.count(), 1)
         self.client.login(username=self.teacher.username, password='test1234')
         response = self.client.post(self.url)
         self.assertEqual(self.session.questions.count(), 0)
@@ -115,11 +116,10 @@ class DeleteQuestionTestCase(TestCase):
         """
         Test to delete a question by monitors.
         """
-
-        # self.assertEqual(self.session.questions.count(),1)
-        # self.client.login(username=self.monitor.username, password='test1234')
-        # response = self.client.post(self.url)
-        # self.assertEqual(self.session.question.count(), 0)
+        self.assertEqual(self.session.questions.count(), 1)
+        self.client.login(username=self.monitor.username, password='test1234')
+        response = self.client.post(self.url)
+        self.assertEqual(self.session.questions.count(), 0)
 
     def test_delete_question_by_student_fail(self):
         """
