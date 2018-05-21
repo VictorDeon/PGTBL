@@ -20,15 +20,23 @@ class ListGRATTestCase(TestCase):
         """
         This method will run before any test case.
         """
+        self.client = Client()
+        self.student = User.objects.create_user(
+            username='oquevcquiser',
+            email='oquevcquisertbm@email.com',
+            password='botaoquevcquisertbm'
+        )
+        self.tbl_session = mommy.make('TBLSession')
+        self.tbl_session.discipline.students.add(self.student)
 
-        pass
 
     def tearDown(self):
         """
         This method will run after any test.
         """
+        self.student.delete()
+        self.tbl_session.delete()
 
-        pass
 
     def test_redirect_to_login(self):
         """
@@ -44,13 +52,25 @@ class ListGRATTestCase(TestCase):
 
         pass
 
+
     def test_users_can_see_the_grat_list(self):
         """
         User like students, monitors and teacher can see the grat test
         with not exercise questions and when the date of grat arrive.
         """
+        # /profile/materia/sessions/pk/grat
+        url = '/profile/{}/sessions/{}/grat'.format(
+            self.tbl_session.discipline.slug,
+            self.tbl_session.pk
+        )
+        self.client.login(
+            username=self.student.username,
+            password='botaoquevcquisertbm'
+        )
+        response = self.client.get(url)
+        # import ipdb; ipdb.set_trace()
+        self.assertEqual(response.status_code, 301)
 
-        pass
 
     def test_users_can_not_see_the_grat_test(self):
         """
@@ -58,15 +78,35 @@ class ListGRATTestCase(TestCase):
         time is behind date/time of grat teste or time is after date/time
         of grat test with its duration.
         """
-
         pass
+
 
     def test_only_teacher_can_change_weight_and_time(self):
         """
         Only teacher can change the grat test weight and duration.
         """
+        url = '/profile/{}/sessions/{}/grat/edit-date'.format(
+            self.tbl_session.discipline.slug,
+            self.tbl_session.pk
+        )
+        self.teacher = User.objects.create_user(
+            username='hunter from mars',
+            email='ajaxtheavenger@mail.com',
+            is_teacher=True,
+            password='passwordofgods'
+        )
+        self.question = Question.objects.create(
+            title='test',
+            session=self.tbl_session,
+            topic='how many times do you drink beer'
+        )
+        self.client.login(
+            username='hunter from mars',
+            password='passwordofgods'
+        )
+        response = self.client.put(url, {"grat_datetime": '2019-05-06T11:59'})
+        self.assertEqual(response.status_code, 301)
 
-        pass
 
     def test_only_teacher_can_change_date_and_time(self):
         """
