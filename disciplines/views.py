@@ -910,10 +910,6 @@ class createAttendanceView(LoginRequiredMixin,
         self.add_missing_students(discipline, attendance)
 
         attendance.save()
-
-        #Attendance.objects.all().delete()
-        #AttendanceRate.objects.all().delete()
-
         return super(createAttendanceView, self).form_valid(form)
 
 
