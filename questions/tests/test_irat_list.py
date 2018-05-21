@@ -228,7 +228,7 @@ class ListIRATTestCase(TestCase):
         self.client.logout()
         self.client.login(username=self.teacher.username, password='test1234')
         response = self.client.post(url, data, follow=True)
-        
+
         success_url = reverse_lazy(
             'questions:irat-list',
             kwargs = {'slug': self.discipline.slug, 'pk': self.session.id }
@@ -236,7 +236,7 @@ class ListIRATTestCase(TestCase):
 
         self.assertRedirects(response, success_url)
         self.session.refresh_from_db()
-        
+
         check_messages(
             self, response,
             tag='alert-success',
@@ -248,6 +248,8 @@ class ListIRATTestCase(TestCase):
         The date and time of irat test not can be blank.
         """
 
+        initial_date = self.session.irat_datetime
+
         response = self.client.post(
                 reverse_lazy(
                         'questions:irat-date',
@@ -255,6 +257,9 @@ class ListIRATTestCase(TestCase):
                         {'irat_datetime': ''}
                 )
 
+        self.session.refresh_from_db()
+
+        self.assertEquals(initial_date, self.session.irat_datetime)
         self.assertEquals(response.status_code, 302)
 
 
