@@ -22,7 +22,7 @@ class ShowRankingGroupView(LoginRequiredMixin,
     View to ranking_group .
     """
     template_name = 'rankingGroup/detail.html'
-    context_object_name = 'groups_with_grades_results'
+    context_object_name = 'ranking_of_groups'
 
     # Permissions
     permissions_required = [
@@ -97,7 +97,7 @@ class ShowRankingGroupView(LoginRequiredMixin,
                             grat = grade.grat
                         sum_grades_irat = sum_grades_irat/len(grades)
                         sum_grades_pratical = sum_grades_pratical/len(grades)
-                        
+
                 except ZeroDivisionError:
                     print("Error: There is no grades to assing")
                     messages.error(
@@ -137,7 +137,6 @@ class ShowRankingGroupView(LoginRequiredMixin,
 
         context = super(ShowRankingGroupView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
-        context['groups_add_grades']=self.set_ranking()
 
         return context
 
@@ -155,6 +154,6 @@ class ShowRankingGroupView(LoginRequiredMixin,
         Get the info_group queryset from model database.
         """
 
-        ranking = self.set_ranking()
+        ranking_of_groups = self.set_ranking()
 
-        return ranking
+        return ranking_of_groups
