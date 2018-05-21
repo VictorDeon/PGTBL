@@ -175,12 +175,12 @@ class UpdateQuestionTestCase(TestCase):
             'is_exercise': True,
             'alternatives-0-title': 'Alternativa 1',
             'alternatives-0-is_correct': False,
-            'alternatives-0-title': 'Alternativa 2',
-            'alternatives-0-is_correct': False,
-            'alternatives-0-title': 'Alternativa 2',
-            'alternatives-0-is_correct': False,
-            'alternatives-0-title': 'Alternativa 2',
-            'alternatives-0-is_correct': True,
+            'alternatives-1-title': 'Alternativa 2',
+            'alternatives-1-is_correct': False,
+            'alternatives-2-title': 'Alternativa 2',
+            'alternatives-2-is_correct': False,
+            'alternatives-3-title': 'Alternativa 2',
+            'alternatives-3-is_correct': True,
         }
 
         response = self.client.put(url_question, data=data)
@@ -192,8 +192,34 @@ class UpdateQuestionTestCase(TestCase):
         Teacher or Monitor can update only one alternative in the question
         with correct answer, can not be 4, 3, or 2 correct answer.
         """
+        url_question = '/profile/{}/sessions/{}/questions/{}/edit/'.format(
+            self.question.session.discipline.slug,
+            self.question.session.discipline.pk,
+            self.question.id
+        )
 
-        pass
+        self.client.login(username=self.teacher.username, password='test1234')
+
+        data = {
+            'title': 'Questao 01',
+            'topic': 'Testes de Software',
+            'level': 'Basic',
+            'is_exercise': True,
+            'alternatives-0-title': 'Alternativa 1',
+            'alternatives-0-is_correct': True,
+            'alternatives-1-title': 'Alternativa 2',
+            'alternatives-1-is_correct': True,
+            'alternatives-2-title': 'Alternativa 3',
+            'alternatives-2-is_correct': False,
+            'alternatives-3-title': 'Alternativa 4',
+            'alternatives-3-is_correct': True,
+        }
+
+        response = self.client.put(url_question, data=data)
+
+        self.assertNotEqual(self.question.title, "Questao 01")
+
+
 
     def test_update_four_alternatives_in_a_question(self):
         """
