@@ -27,9 +27,9 @@ class ListFinalGradeTestCase(TestCase):
         self.teacher = user_factory(name='Pedro')
         self.monitors = user_factory(qtd=3)
         self.student = User.objects.create_user(
-        username='student',
-        email='stu@gmail.com',
-        password='senha123',
+            username='student',
+            email='stu@gmail.com',
+            password='senha123',
         )
         self.discipline = mommy.make(
             Discipline,
@@ -87,7 +87,15 @@ class ListFinalGradeTestCase(TestCase):
         grades.
         """
 
-        pass
+        self.client.login(username=self.student.username,
+                          password='senha123')
+
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
+
+        grades_seen = FinalGrade.objects.filter(discipline = self.discipline,
+        student = self.student).count()
+        self.assertTrue(grades_seen > 0)
 
     def test_calcule_final_grade(self):
         """
