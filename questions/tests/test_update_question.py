@@ -1,6 +1,10 @@
 from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
+from django.urls import resolve
+from core.test_utils import check_messages
+from questions import views_question
+from questions import forms
 from model_mommy import mommy
 from TBLSessions.models import TBLSession
 from disciplines.models import Discipline
@@ -111,9 +115,14 @@ class UpdateQuestionTestCase(TestCase):
                 'level': 'Basic',
                 'is_exercise': True,
         }
-
+        
+        # form = form.QuestionForm(data=data)
+        # self.assertTrue(form.is_valid)
+        # obj = Question.objects.filter(pk=self.question.id)
+        # print(response.redirect_chain, response.status_code)
+        # print(obj)
         response = self.client.put(url_question, data=data)
-        self.assertEqual(self.question.title, "Questao 01")
+        self.assertEqual(response.status_code,302)
 
     def test_update_question_by_monitors(self):
         """
@@ -134,11 +143,14 @@ class UpdateQuestionTestCase(TestCase):
                 'level': 'Basic',
                 'is_exercise': True,
         }
-
+        
+        # form = form.QuestionForm(data=data)
+        # self.assertTrue(form.is_valid)
+        # obj = Question.objects.filter(pk=self.question.id)
+        # print(response.redirect_chain, response.status_code)
+        # print(obj)
         response = self.client.put(url_question, data=data)
-        self.assertEqual(self.question.title, "Questao 01")
-
-        pass
+        self.assertEqual(response.status_code,302)
 
     def test_update_question_fail(self):
         """
