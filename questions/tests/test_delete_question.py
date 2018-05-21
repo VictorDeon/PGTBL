@@ -1,12 +1,8 @@
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
-from core.test_utils import check_messages
 from model_mommy import mommy
-from questions.models import (
-    Question, Alternative, ExerciseSubmission,
-    IRATSubmission, GRATSubmission
-)
+from questions.models import (Question, Alternative)
 
 from TBLSessions.models import TBLSession
 
@@ -28,18 +24,16 @@ class DeleteQuestionTestCase(TestCase):
         self.question = mommy.make(
             Question,
             title='testtitle',
-            session= self.session,
-            level= 'basic',
-            topic= 'testtopic',
+            session=self.session,
+            level='basic',
+            topic='testtopic',
         )
-
 
         self.alternatives = mommy.make('Alternative', _quantity=4)
         self.alternatives[0].is_correct = True
         self.alternatives[0].save()
         self.question.alternatives.set(self.alternatives)
         self.session.questions.add(self.question)
-
 
         self.student = User.objects.create_user(
             username='Test3',
@@ -74,7 +68,7 @@ class DeleteQuestionTestCase(TestCase):
             kwargs={'slug': self.session.
                     discipline.slug,
                     'pk': self.session.pk,
-                    'question_id':self.question.id}
+                    'question_id': self.question.id}
         )
 
     def tearDown(self):
@@ -91,7 +85,6 @@ class DeleteQuestionTestCase(TestCase):
         Question.objects.all().delete()
         TBLSession.objects.all().delete()
         Alternative.objects.all().delete()
-
 
     def test_redirect_to_login(self):
         """
@@ -126,7 +119,7 @@ class DeleteQuestionTestCase(TestCase):
         Student can not delete a question.
         """
 
-        self.assertEqual(self.session.questions.count(),1)
+        self.assertEqual(self.session.questions.count(), 1)
         self.client.login(username=self.student.username, password='test1234')
         response = self.client.post(self.url)
         self.assertEqual(self.session.questions.count(), 1)
@@ -136,10 +129,9 @@ class DeleteQuestionTestCase(TestCase):
         Test to delete all alternatives when delete a specific question.
         """
 
-        self.assertEqual(self.session.questions.count(),1)
+        self.assertEqual(self.session.questions.count(), 1)
         self.assertEqual(Alternative.objects.all().count(), 4)
         self.client.login(username=self.teacher.username, password='test1234')
         response = self.client.post(self.url)
         self.assertEqual(self.session.questions.count(), 0)
         self.assertEqual(Alternative.objects.all().count(), 0)
-

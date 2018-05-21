@@ -1,14 +1,8 @@
 from django.shortcuts import reverse
-from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
-from core.test_utils import check_messages
 from model_mommy import mommy
-from questions.models import (
-    Question, Alternative, ExerciseSubmission,
-    IRATSubmission, GRATSubmission
-)
-
+from questions.models import (Question, Alternative, ExerciseSubmission)
 from TBLSessions.models import TBLSession
 from disciplines.models import Discipline
 
