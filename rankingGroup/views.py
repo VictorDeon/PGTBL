@@ -159,6 +159,6 @@ class ShowRankingGroupView(LoginRequiredMixin,
         Get the info_group queryset from model database.
         """
 
-        groups_with_grades_results = self.set_ranking()
+        ranking = self.set_ranking()
 
-        return groups_with_grades_results
+        return ranking
