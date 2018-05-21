@@ -210,7 +210,6 @@ class ExerciseResultTestCase(TestCase):
         questions = response.context['view'].get_questions()
         self.assertEqual(questions.count(), 1)
 
-
     def test_calcule_the_exercise_result(self):
         """
         Calcule the exercise result from exercise list.
@@ -224,18 +223,25 @@ class ExerciseResultTestCase(TestCase):
         Remove all submissions from exercise list.
         """
 
+        # Login of teacher user
         self.client.login(username="teacher", password="password")
         
+        # Remove the question 1
         self.client.post('/profile/{}/sessions/{}/questions/{}/delete/'.format(self.session.discipline.slug, self.session.id, self.question1.id), params=None)
 
+        # Remove the question 2
         self.client.post('/profile/{}/sessions/{}/questions/{}/delete/'.format(self.session.discipline.slug, self.session.id, self.question2.id), params=None)
 
+        # Exercise list url
         url = '/profile/{}/sessions/{}/questions/'.format(self.session.discipline.slug, self.session.id)
 
+        # Acess the url
         response = self.client.get(url, follow=True)
 
+        # Testing if the page is returning status code 200
         self.assertEqual(response.status_code, 200)
 
+        # Testing if there no question on the page
         if '<p>There is no questions in this session.</p>' in str(response.content):
             all_removed = True
         else:
@@ -243,5 +249,6 @@ class ExerciseResultTestCase(TestCase):
 
         self.assertIs(all_removed, True)
 
+        # Testing if there is no Submissions and Question in the database
         self.assertEqual(Submission.objects.all().count(), 0)
         self.assertEqual(Question.objects.all().count(), 0)
