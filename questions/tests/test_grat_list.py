@@ -6,6 +6,7 @@ from model_mommy import mommy
 from django.utils import timezone
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
+import datetime
 from django.template.defaultfilters import slugify
 from groups.models import Group
 from questions.models import (
@@ -54,6 +55,7 @@ class ListGRATTestCase(TestCase):
             course='Engenharia de Software',
             password='12345',
             classroom='Class A',
+            slug='test',
             students=[self.student],
             monitors=[self.monitor]
         )
@@ -103,7 +105,7 @@ class ListGRATTestCase(TestCase):
 
     def test_redirect_to_login(self):
         """
-        User can not see the irat test without logged in.
+        User can not see the grat test without logged in.
         """
         url = '/profile/{}/sessions/{}/grat/'.format(
             self.session.discipline.slug,
@@ -173,7 +175,35 @@ class ListGRATTestCase(TestCase):
         time is behind date/time of grat teste or time is after date/time
         of grat test with its duration.
         """
+        # Test with the user being student
+        self.client.login(
+            username=self.teacher.username,
+            password=self.teacher.password
+        )
 
+        url = '/profile/{}/sessions/{}/grat/'.format(
+            self.session.discipline.slug,
+            self.session.id
+        )
+
+        response = self.session.grat_datetime = "2018-05-06T11:59"
+
+        self.client.logout()
+
+        self.client.login(
+            username=self.student.username,
+            password=self.student.password
+        )
+
+        response = self.client.get(url, follow=True)
+
+        url_redirect = '/profile/{}/sessions/{}/details/'.format(
+            self.session.discipline.slug,
+            self.session.id
+        )
+
+        self.assertRedirects(response, '/login/?next=' + url_redirect, status_code=302)
+        
 
     def test_only_teacher_can_change_weight_and_time(self):
         """
@@ -187,9 +217,33 @@ class ListGRATTestCase(TestCase):
             username=self.teacher.username,
             password=self.teacher.password
         )
-        response = self.client.put(url, {"grat_datetime": '2019-05-06T11:59'})
-        self.assertEqual(response.status_code, 301)
 
+        data = {
+            'grat_datetime': datetime.datetime(2020, 12, 25, 4, 20),
+        }
+
+        response = self.client.post(self.url, data, follow=True)
+
+        success_redirect_path = reverse_lazy (
+            'TBLSession:details',
+            kwargs = {
+                'slug': self.discipline.slug,
+                'pk': self.session.id
+            }
+        )
+        self.assertEqual(success_redirect_path, "teste")
+        self.assertRedirects(response, success_redirect_path)
+        self.session.refresh_from_db()
+        self.client.logout()
+
+        self.assertEqual(self.session.datatime, datetime.datetime(2020, 12, 25, 4, 20))
+
+        check_messages(
+            self,
+            response,
+            tag='alert-success',
+            content='gRAT date updated successfully.'
+        )
 
     def test_only_teacher_can_change_date_and_time(self):
         """
