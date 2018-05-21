@@ -99,15 +99,7 @@ class ListExerciseTestCase(TestCase):
             question=self.question1
         )
 
-        self.url = reverse_lazy(
-            'questions:list',
-            kwargs={
-                'slug': self.discipline.slug,
-                'pk': self.session.id,
-            }
-        )
-
-        # Question 2
+       # Question 2
         self.question2 = mommy.make(
             Question,
             title="Question 1",
@@ -141,6 +133,13 @@ class ListExerciseTestCase(TestCase):
             question=self.question2
         )        
 
+        self.url = reverse_lazy(
+            'questions:list',
+            kwargs={
+                'slug': self.discipline.slug,
+                'pk': self.session.id,
+            }
+        )
 
     def tearDown(self):
         """
@@ -197,8 +196,8 @@ class ListExerciseTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
         # Get the question has been showed in the screen
-        questions = response.context['view'].get_questions()
-        self.assertEqual(questions.count(), 1)
+        questions = Question.objects.filter(session= self.session).count()
+        self.assertEqual(questions, 2)
 
         # Realize the login as monitor
         self.client.login(username="monitor", password="password")
@@ -208,8 +207,8 @@ class ListExerciseTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
         # Get the question has been showed in the screen
-        questions = response.context['view'].get_questions()
-        self.assertEqual(questions.count(), 1)
+        questions = Question.objects.filter(session= self.session).count()
+        self.assertEqual(questions, 2)
 
         # Realize the login as teacher
         self.client.login(username="teacher", password="password")
@@ -219,5 +218,5 @@ class ListExerciseTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
         # Get the question has been showed in the screen
-        questions = response.context['view'].get_questions()
-        self.assertEqual(questions.count(), 1)
+        questions = Question.objects.filter(session= self.session).count()
+        self.assertEqual(questions, 2)
