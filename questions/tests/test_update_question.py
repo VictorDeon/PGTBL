@@ -160,7 +160,32 @@ class UpdateQuestionTestCase(TestCase):
         Student can not update a question with alternatives.
         """
 
-        pass
+        url_question = '/profile/{}/sessions/{}/questions/{}/edit/'.format(
+            self.question.session.discipline.slug,
+            self.question.session.discipline.pk,
+            self.question.id
+        )
+
+        self.client.login(username=self.student.username, password='test1234')
+
+        data = {
+            'title': 'Questao 01',
+            'topic': 'Testes de Software',
+            'level': 'Basic',
+            'is_exercise': True,
+            'alternatives-0-title': 'Alternativa 1',
+            'alternatives-0-is_correct': False,
+            'alternatives-0-title': 'Alternativa 2',
+            'alternatives-0-is_correct': False,
+            'alternatives-0-title': 'Alternativa 2',
+            'alternatives-0-is_correct': False,
+            'alternatives-0-title': 'Alternativa 2',
+            'alternatives-0-is_correct': True,
+        }
+
+        response = self.client.put(url_question, data=data)
+
+        self.assertNotEqual(self.question.title, "Questao 01")
 
     def test_update_only_one_alternative_correct(self):
         """
