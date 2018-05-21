@@ -79,13 +79,13 @@ class ExerciseResultTestCase(TestCase):
         self.alternative1 = mommy.make(
             Alternative,
             title="3",
-            is_correct=False,
+            is_correct=True,
             question=self.question1
         )
         self.alternative2 = mommy.make(
             Alternative,
             title="2",
-            is_correct=True,
+            is_correct=False,
             question=self.question1
         )
         self.alternative3 = mommy.make(
@@ -166,6 +166,7 @@ class ExerciseResultTestCase(TestCase):
         Discipline.objects.all().delete()
         Question.objects.all().delete()
         Submission.objects.all().delete()
+        Alternative.objects.all().delete()
 
 
     def test_user_can_see_exercise_result(self):
@@ -216,7 +217,31 @@ class ExerciseResultTestCase(TestCase):
         score that the user made, total of scores and grade of user.
         """
 
-        pass
+        self.client.login(username="test", password="password")
+
+        response = self.client.get(self.url)
+
+        page_obj = response.context['page_obj']
+
+        url_answer = '/profile/{}/sessions/{}/exercises/question/{}/answer-page/{}/'.format(self.session.discipline.slug, self.session.id, self.question1.id, page_obj.number)
+
+        data = {'alternative01-score':0,
+                'alternative02-score':0,
+                'alternative03-score':0,
+                'alternative04-score':4
+                }
+
+        response = self.client.post(url_answer, data)
+
+        url = '/profile/{}/sessions/{}/exercises/result/'.format(self.session.discipline.slug, self.session.id)
+        response = self.client.get(url)
+
+        if '<span class="text-danger">10.00</span>' in str(response.content):
+            has_grade = True
+        else:
+            has_grade = False
+
+        self.assertIs(has_grade, True)
 
     def test_reset_exercise_list(self):
         """
@@ -225,7 +250,7 @@ class ExerciseResultTestCase(TestCase):
 
         # Login of teacher user
         self.client.login(username="teacher", password="password")
-        
+
         # Remove the question 1
         self.client.post('/profile/{}/sessions/{}/questions/{}/delete/'.format(self.session.discipline.slug, self.session.id, self.question1.id), params=None)
 
