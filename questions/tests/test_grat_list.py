@@ -129,17 +129,40 @@ class ListGRATTestCase(TestCase):
         User like students, monitors and teacher can see the grat test
         with not exercise questions and when the date of grat arrive.
         """
-        # /profile/materia/sessions/pk/grat
+        # Test with the user being student
         url = '/profile/{}/sessions/{}/grat'.format(
             self.session.discipline.slug,
-            self.session.pk
+            self.session.id
         )
         self.client.login(
             username=self.student.username,
-            password='botaoquevcquisertbm'
+            password=self.student.password
         )
         response = self.client.get(url)
-        # import ipdb; ipdb.set_trace()
+        self.assertEqual(response.status_code, 301)
+
+        # Test with the user being monitor
+        url = '/profile/{}/sessions/{}/grat'.format(
+            self.session.discipline.slug,
+            self.session.id
+        )
+        self.client.login(
+            username=self.monitor.username,
+            password=self.monitor.password
+        )
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 301)
+
+        # Test with the user being teacher
+        url = '/profile/{}/sessions/{}/grat'.format(
+            self.session.discipline.slug,
+            self.session.id
+        )
+        self.client.login(
+            username=self.teacher.username,
+            password=self.teacher.password
+        )
+        response = self.client.get(url)
         self.assertEqual(response.status_code, 301)
 
 
@@ -150,7 +173,6 @@ class ListGRATTestCase(TestCase):
         time is behind date/time of grat teste or time is after date/time
         of grat test with its duration.
         """
-        pass
 
 
     def test_only_teacher_can_change_weight_and_time(self):
