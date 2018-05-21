@@ -119,7 +119,16 @@ class ListIRATTestCase(TestCase):
         of irat test with its duration.
         """
 
-        pass
+        after_irat = timezone.localtime(timezone.now()) + timezone.timedelta(1)
+
+        response = self.client.get(
+                reverse_lazy(
+                        'questions:irat-list',
+                        kwargs = {'slug': self.student.id, 'pk': self.session.id }),
+                        {'irat_datetime': after_irat}
+                )
+
+        self.assertEquals(response.status_code, 302)
 
     def test_only_teacher_can_change_weight_and_time(self):
         """
