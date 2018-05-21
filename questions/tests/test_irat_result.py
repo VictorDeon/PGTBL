@@ -80,11 +80,4 @@ class IRATResultTestCase(TestCase):
         Only students have grade created.
         """
 
-    #    response = self.client.post(
-    #         reverse_lazy(
-    #             'questions:irat-result',
-    #             kwargs = {'slug': self.teacher.id, 'pk': self.irat.get_session() }),
-    #             {'result': result}
-    #        )
-    #    assert(response)
         pass
