@@ -48,6 +48,21 @@ class UpdatePracticalTestCase(TestCase):
             password='somepass'
         )
 
-        response = self.client.get(self.url)
-
+        data = {
+            'practical_avaiable': True,
+            'practical_weight': 4,
+            'practical_description': 'Some description updated',
+        }
+        response = self.client.post(self.url, data, follow=True)
+        self.session.save()
+        url = reverse('TBLSessions:practical-details',
+                           kwargs={'slug': self.session.discipline.slug,
+                                   'pk': self.session.pk})
         self.assertEqual(response.status_code, 200)
+        self.assertRedirects(response, url)
+        self.assertEqual(self.session.practical_weight , 4)
+        check_messages(
+            self, response,
+            tag='alert-success',
+            content='Practical test updated successfully.'
+        )

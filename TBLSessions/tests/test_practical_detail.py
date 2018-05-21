@@ -52,6 +52,8 @@ class ShowPracticalTestCase(TestCase):
         This method will run after any test.
         """
         self.teacher.delete()
+        self.student.delete()
+        self.monitor.delete()
 
     def test_show_practical_test_to_student(self):
         """
