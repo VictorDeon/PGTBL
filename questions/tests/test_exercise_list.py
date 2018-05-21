@@ -107,6 +107,41 @@ class ListExerciseTestCase(TestCase):
             }
         )
 
+        # Question 2
+        self.question2 = mommy.make(
+            Question,
+            title="Question 1",
+            session=self.session,
+            level="Basic",
+            topic="What is the result between the sum of 2 + 1?",
+            is_exercise=True
+        )
+        self.alternative5 = mommy.make(
+            Alternative,
+            title="3",
+            is_correct=True,
+            question=self.question2
+        )
+        self.alternative6 = mommy.make(
+            Alternative,
+            title="2",
+            is_correct=False,
+            question=self.question2
+        )
+        self.alternative7 = mommy.make(
+            Alternative,
+            title="1",
+            is_correct=False,
+            question=self.question2
+        )
+        self.alternative8 = mommy.make(
+            Alternative,
+            title="0",
+            is_correct=False,
+            question=self.question2
+        )        
+
+
     def tearDown(self):
         """
         This method will run after any test.
@@ -132,7 +167,21 @@ class ListExerciseTestCase(TestCase):
         Test to show question by pagination.
         """
 
-        pass
+        self.client.login(username="test", password="password")
+
+        url = '/profile/{}/sessions/{}/questions/'.format(self.session.discipline.slug,self.session.id)
+        response = self.client.get(url)
+
+        paginator = response.context['paginator']
+
+        # Total number of questions
+        self.assertEqual(Question.objects.filter(session= self.session).count(),2)
+        # Total number of questions, across all pages.
+        self.assertEqual(paginator.count, 2)
+        # The maximum number of quations to include on a page.
+        self.assertEqual(paginator.per_page, 1)
+        # Total number of pages.
+        self.assertEqual(paginator.num_pages, 2)
 
     def test_users_can_see_the_exercise_list(self):
         """
