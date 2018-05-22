@@ -488,7 +488,7 @@ class IRATResultView(LoginRequiredMixin,
 
         return discipline
 
-    def get_session(self):
+    def get_session(self, **kwargs):
         """
         get the session from url kwargs.
         """
