@@ -1,4 +1,5 @@
 from django.core.urlresolvers import reverse_lazy
+from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from core.test_utils import check_messages
@@ -17,27 +18,81 @@ class ShowPracticalTestCase(TestCase):
         """
         This method will run before any test case.
         """
+        self.client = Client()
+        self.session = mommy.make('TBLSession')
+        self.teacher = User.objects.create_user(
+            username='someTeacher',
+            email='someTeacher@email.com',
+            password='teacherpass123',
+            is_teacher=True,
+        )
+        self.session.discipline.teacher = self.teacher
+        self.session.discipline.save()
 
-        pass
+        self.student = User.objects.create_user(
+            username='someStudent',
+            email='someStudent@email.com',
+            password='studentpass123',
+        )
+        self.session.discipline.students.add(self.student)
+
+        self.monitor = User.objects.create_user(
+            username='someMonitor',
+            email='someMonitor@email.com',
+            password='monitorpass123',
+        )
+        self.session.discipline.monitors.add(self.monitor)
+
+        self.url = reverse('TBLSessions:practical-details',
+                           kwargs={'slug': self.session.discipline.slug,
+                                   'pk': self.session.pk})
 
     def tearDown(self):
         """
         This method will run after any test.
         """
-
-        pass
+        self.teacher.delete()
+        self.student.delete()
+        self.monitor.delete()
 
     def test_show_practical_test_to_student(self):
         """
         The practical test need to be opened by teacher for student to see
         """
 
-        pass
+        self.client.login(
+            username=self.student.username,
+            password='studentpass123'
+        )
 
-    def test_teacher_and_monitor_can_see_practical_test(self):
+        successful_response = self.client.get(self.url)
+        self.assertEqual(successful_response.status_code, 302)        
+        
+    def test_teacher_can_see_practical_test(self):
         """
-        Teacher and monitors that is a teacher can see the practical test,
+        Teacher can see the practical test,
         before it being opened.
         """
-
-        pass
+        
+        self.client.login(
+            username=self.teacher.username,
+            password='teacherpass123'
+        )
+        
+        successful_response = self.client.get(self.url)
+        self.assertEqual(successful_response.status_code, 200)
+    
+    def test_monitor_can_see_practical_test(self):
+        """
+        Monitor can see the practical test,
+        before it being opened.
+        """
+        
+        self.client.login(
+            username=self.monitor.username,
+            password='monitorpass123'
+        )
+        
+        successful_response = self.client.get(self.url)
+        self.assertEqual(successful_response.status_code, 302)
+    
