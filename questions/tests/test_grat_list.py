@@ -16,6 +16,8 @@ from questions.models import (
 from questions.views_grat import (
     GRATDateUpdateView
 )
+HTTP_REDIRECT = 301
+PASSWORD = '1234test'
 
 User = get_user_model()
 
@@ -33,19 +35,20 @@ class ListGRATTestCase(TestCase):
         self.student = User.objects.create_user(
             username='migue',
             email='migue@email.com',
-            password='1234test'
+            password=PASSWORD
         )
 
         self.teacher = User.objects.create_user(
             username='ajax',
             email='ajax@email.com',
-            password='1234test'
+            password=PASSWORD,
+            is_teacher=True,
         )
 
         self.monitor = User.objects.create_user(
             username='monitor',
             email='monitor@email.com',
-            password='1234test'
+            password=PASSWORD
         )
 
         self.discipline = mommy.make(
@@ -164,7 +167,7 @@ class ListGRATTestCase(TestCase):
         )
         self.client.login(
             username=self.teacher.username,
-            password=self.teacher.password
+            password=PASSWORD
         )
         response = self.client.get(url)
         self.assertEqual(response.status_code, 301)
@@ -180,10 +183,9 @@ class ListGRATTestCase(TestCase):
         # Test with the user being student
         self.client.login(
             username=self.teacher.username,
-            password=self.teacher.password
+            password=PASSWORD
         )
 
-        print(self.session.discipline.slug)
         url = '/profile/{}/sessions/{}/grat/'.format(
             self.session.discipline.slug,
             self.session.id
@@ -200,7 +202,7 @@ class ListGRATTestCase(TestCase):
 
         response = self.client.get(url, follow=True)
 
-        url_redirect = '/profile/{}/sessions/{}/details/'.format(
+        url_redirect = '/profile/{}/sessions/{}/grat/'.format(
             self.session.discipline.slug,
             self.session.id
         )
@@ -212,20 +214,21 @@ class ListGRATTestCase(TestCase):
         """
         Only teacher can change the grat test weight and duration.
         """
+
         url = '/profile/{}/sessions/{}/grat/edit-date'.format(
             self.session.discipline.slug,
             self.session.id
         )
         self.client.login(
             username=self.teacher.username,
-            password=self.teacher.password
+            password=PASSWORD
         )
 
         data = {
             'grat_datetime': datetime.datetime(2020, 12, 25, 4, 20),
         }
 
-        response = self.client.post(self.url, data, follow=True)
+        response = self.client.post(url, data, follow=True)
 
         success_redirect_path = reverse_lazy (
             'TBLSession:details',
@@ -263,25 +266,55 @@ class ListGRATTestCase(TestCase):
         )
 
         self.client.login(
+            username=self.teacher.username,
+            password=PASSWORD
+        )
+
+        data = {
+            "grat_datetime": '2019-05-06T11:59'
+        }
+
+        response = self.client.put(url, data, follow=True)
+
+        to_url = url+"/"
+
+        self.assertRedirects(response, to_url, status_code=301, target_status_code=302)
+
+        self.client.login(
             username=self.student.username,
             password=self.student.password
         )
 
-        data = {
-            'grat_datetime': datetime.datetime(2020, 12, 25, 4, 20),
-        }
-
-        response = self.client.post(self.url, data, follow=True)
+        response = self.client.put(url, data, follow=True)
 
         self.assertNotEqual(self.session.grat_datetime, data)
-
 
     def test_date_and_time_not_can_be_blank(self):
         """
         The date and time of grat test not can be blank.
         """
+        url = '/profile/{}/sessions/{}/grat/edit-date'.format(
+            self.session.discipline.slug,
+            self.session.pk
+        )
 
-        pass
+        self.question = Question.objects.create(
+            title='test',
+            session=self.session,
+            topic='how many times do you drink beer'
+        )
+
+        self.client.login(
+            username=self.teacher.username,
+            password=PASSWORD
+        )
+
+        data = {
+            "grat_datetime": ''
+        }
+        response = self.client.post(url, data, follow=True)
+
+        self.assertContains(response, "gRAT date must to be filled in.", status_code=200)
 
     def test_date_and_time_need_to_be_bigger_than_today(self):
         """
@@ -290,4 +323,25 @@ class ListGRATTestCase(TestCase):
         duration.
         """
 
-        pass
+        url = '/profile/{}/sessions/{}/grat/edit-date'.format(
+            self.session.discipline.slug,
+            self.session.pk
+        )
+
+        self.question = Question.objects.create(
+            title='test',
+            session=self.session,
+            topic='how many times do you drink beer'
+        )
+
+        self.client.login(
+            username=self.teacher.username,
+            password=PASSWORD
+        )
+
+        data = {
+            "grat_datetime": datetime.datetime(2017, 12, 25, 4, 20),
+        }
+        response = self.client.put(url, data, follow=True)
+        # self.assertRedirects(response, to_url, status_code=301, target_status_code=302)
+        # self.assertContains(response, "gRAT date must to be later than today's date.", status_code=200)
