@@ -11,7 +11,7 @@ from questions.views_irat import (
 )
 from questions.models import (
     Question, Alternative, ExerciseSubmission,
-    IRATSubmission, GRATSubmission
+    IRATSubmission, GRATSubmission, Submission
 )
 from django.utils import timezone
 import pytz
@@ -32,6 +32,8 @@ class IRATResultTestCase(TestCase):
         """
         self.client = Client()
         self.teacher = User.objects.create()
+        # self.student = User.objects.create()
+        self.student = user_factory(name='Student',password='passwordtest',is_teacher=False)
 
         self.discipline = Discipline.objects.create(
                 title = 'Test',
@@ -44,6 +46,12 @@ class IRATResultTestCase(TestCase):
 
         self.question = Question.objects.create(
                 session_id = self.session.id
+        )
+
+        self.submission = Submission.objects.create(
+                question_id = self.question.id,
+                session_id = self.session.id,
+                user_id = self.student.id
         )
 
         self.irat = IRATResultView()
@@ -64,7 +72,52 @@ class IRATResultTestCase(TestCase):
         after the test is over or if student finish the test.
         """
 
-        pass
+        teacher_test = user_factory(name='Wallacy',password='passwordtest',is_teacher=True)
+        aluno_test = user_factory(name='Aluno',password='passwordtest',is_teacher=False)
+
+        discipline_test = mommy.make(
+                Discipline,
+                teacher = teacher_test,
+                title='Calculus 2',
+                course='Math',
+                password='1234',
+                classroom='Class C'
+        )
+
+
+        session_test = mommy.make(
+                TBLSession,
+                discipline=discipline_test,
+                title='TBL4',
+                irat_datetime=timezone.localtime(timezone.now()),
+                irat_weight=3,
+                irat_duration=30
+        )
+
+        question_test = mommy.make(
+                Question,
+                title='Question title',
+                session=session_test,
+                level='basic',
+                topic='Topico',
+                is_exercise=True,
+                created_at=timezone.now(),
+                updated_at=timezone.now()
+        )
+
+        submission_test = mommy.make(
+                Submission,
+                session = session_test,
+                question = question_test,
+                user = aluno_test,
+                correct_alternative='Question title',
+                score=4,
+                created_at=timezone.localtime(timezone.now()),
+
+        )
+
+
+
 
     def test_show_only_not_exercise_question(self):
         """
