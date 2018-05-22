@@ -1,8 +1,8 @@
 .panel {
   box-shadow: 1px 1px 10px white;
 }
- 
-.panel-body { 
+
+.panel-body {
   background-image: url('../img/wood.jpg');
 }
 

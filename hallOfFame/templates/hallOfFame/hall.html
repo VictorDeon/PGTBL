@@ -1,5 +1,6 @@
-{% load staticfiles %}
-<!DOCTYPE html>
+{% load i18n %}
+{% load static %}
+
 <html>
   <head>
     <title>TBL</title>
@@ -7,11 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/home.css">
-    <link rel="stylesheet" href="{% static 'hallofFame/css/hall.css' %}">
+    <link rel="stylesheet" href="{% static 'hallOfFame/css/home.css'  %}">
+    <link rel="stylesheet" href="{% static 'hallOfFame/css/hall.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
+  
   <body>
     <header>
       <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -38,18 +40,19 @@
             <ul class="breadcrumb pull-left">
               <li><a href="../home.html#home">Home</a></li>
               <li><a href="../profile/profile.html">Perfil</a></li>
-              <li><a href="halloffame.html">Hall da fama</a></li>
+              <li><a href="halloffame.html">Hall da Fama</a></li>
             </ul>
             <p class="pull-right">Quinta, 10 de Janeiro de 2017 <i class="fa fa-calendar"></i></p>
         </div>
       </div>
+      
       <div class="container">
         <div class="page-header">
           <div class="row">
             <div class="col-sm-8">
               <h1 class="white">
                 <i class="fa fa-trophy"></i> Medição e Análise<br />
-                <small>Hall da fama</small>
+                <small><br />Hall da Fama</small>
               </h1>
             </div>
             <div class="col-sm-4 text-center">
@@ -63,6 +66,10 @@
             </div>
           </div>
         </div>
+      
+
+
+
         <div class="row">
           <div class="col-sm-8 white">
             <p class="pull-left"><i class="fa fa-users"></i> Grupos vencedores de cada semestre</p>
@@ -91,6 +98,7 @@
             </form>
           </div>
         </div>
+
         <br />
         <div class="row">
           <div class="col-sm-12">
@@ -103,37 +111,37 @@
                   <div class="row">
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 01</figcaption>
                       </figure>
                     </div>
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 02</figcaption>
                       </figure>
                     </div>
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 03</figcaption>
                       </figure>
                     </div>
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 04</figcaption>
                       </figure>
                     </div>
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 05</figcaption>
                       </figure>
                     </div>
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 06</figcaption>
                       </figure>
                     </div>
@@ -141,13 +149,13 @@
                   <div class="row">
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 07</figcaption>
                       </figure>
                     </div>
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 08</figcaption>
                       </figure>
                     </div>
@@ -164,37 +172,37 @@
                   <div class="row">
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 01</figcaption>
                       </figure>
                     </div>
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 02</figcaption>
                       </figure>
                     </div>
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 03</figcaption>
                       </figure>
                     </div>
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 04</figcaption>
                       </figure>
                     </div>
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 05</figcaption>
                       </figure>
                     </div>
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 06</figcaption>
                       </figure>
                     </div>
@@ -211,31 +219,31 @@
                   <div class="row">
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 01</figcaption>
                       </figure>
                     </div>
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 02</figcaption>
                       </figure>
                     </div>
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 03</figcaption>
                       </figure>
                     </div>
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 04</figcaption>
                       </figure>
                     </div>
                     <div class="col-sm-2">
                       <figure>
-                        <img src="img/user.png" class="img-thumbnail img-responsive" alt="Alunos">
+                        <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
                         <figcaption>Fulano 05</figcaption>
                       </figure>
                     </div>
