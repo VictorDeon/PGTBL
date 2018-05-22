@@ -1,6 +1,7 @@
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
+from django.core.exceptions import ValidationError
 from core.test_utils import check_messages
 from model_mommy import mommy
 from grades.models import Grade, FinalGrade
@@ -117,3 +118,64 @@ class ListGradeTestCase(TestCase):
 
         session_grade = grade.calcule_session_grade()
         self.assertEqual(session_grade, 2.2)
+
+    def test_calculate_session_grade_with_irat_string_value(self):
+        """
+        Unit test about calculate_session_grade() method from Grade model with iRAT receiving a string value.
+        """
+
+        session = TBLSession()
+        grade = Grade(
+            session=session,
+            irat='abc',
+            grat=2.0,
+            practical=2.0)
+
+        with self.assertRaises(TypeError):
+            grade.calcule_session_grade()
+
+    def test_calculate_session_grade_with_grat_string_value(self):
+        """
+        Unit test about calculate_session_grade() method from Grade model with gRAT receiving a string value.
+        """
+
+        session = TBLSession()
+        grade = Grade(
+            session=session,
+            irat=2.0,
+            grat='def',
+            practical=2.0)
+
+        with self.assertRaises(TypeError):
+            grade.calcule_session_grade()
+
+    def test_calculate_session_grade_with_pratical_string_value(self):
+        """
+        Unit test about calculate_session_grade() method from Grade model with pratical receiving a string value.
+        """
+
+        session = TBLSession()
+        grade = Grade(
+            session=session,
+            irat=2.0,
+            grat=2.0,
+            practical='fgh')
+
+        with self.assertRaises(TypeError):
+            grade.calcule_session_grade()
+
+    def test_calculate_session_grade_with_peer_review_string_value(self):
+        """
+        Unit test about calculate_session_grade() method from Grade model with peer review receiving a string value.
+        """
+
+        session = TBLSession(peer_review_available=True)
+        grade = Grade(
+            session=session,
+            irat=2.0,
+            grat=2.0,
+            practical=2.0,
+            peer_review='ijk')
+
+        with self.assertRaises(TypeError):
+            grade.calcule_session_grade()
