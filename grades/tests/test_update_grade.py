@@ -17,8 +17,26 @@ class UpdateGradeTestCase(TestCase):
         """
         This method will run before any test case.
         """
-
-        pass
+        self.client = Client()
+        self.discipline = mommy.make('Discipline')
+        self.session = mommy.make('TBLSession')        
+        self.teacher = User.objects.create_user(
+            username='teacher',
+            email='tea@gmail.com',
+            password='senha123',
+            is_teacher=True,
+        )
+        self.student = User.objects.create_user(
+            username='student',
+            email='stu@gmail.com',
+            password='senha123',
+        )
+        self.url = reverse_lazy('grades:update', kwargs={
+            'slug': self.discipline.slug, 
+            'pk': self.session.pk,
+            'student_pk': self.student.pk
+        })
+        self.login_redirect = '/login/?next=' + str(self.url)
 
     def tearDown(self):
         """
@@ -31,8 +49,8 @@ class UpdateGradeTestCase(TestCase):
         """
         Teacher can not update a grade without logged in.
         """
-
-        pass
+        response = self.client.get(self.url)
+        self.assertRedirects(response, self.login_redirect, status_code=302, target_status_code=200)
 
     def test_update_grade_by_teacher(self):
         """

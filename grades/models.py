@@ -1,6 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.db import models
+from django.core.validators import MinValueValidator
 
 # App imports
 from TBLSessions.models import TBLSession
@@ -34,6 +35,9 @@ class Grade(models.Model):
 
     irat = models.FloatField(
         _("iRAT grade"),
+        validators=[
+            MinValueValidator(0.0)
+        ],
         default=0.0,
         help_text=_("iRAT test grade.")
     )
@@ -41,18 +45,27 @@ class Grade(models.Model):
     grat = models.FloatField(
         _("gRAT grade"),
         default=0.0,
+        validators=[
+            MinValueValidator(0.0)
+        ],
         help_text=_("gRAT test grade.")
     )
 
     practical = models.FloatField(
         _("Practical test grade"),
         default=0.0,
+        validators=[
+            MinValueValidator(0.0)
+        ],
         help_text=_("Practical test grade.")
     )
 
     peer_review = models.FloatField(
         _("Peer review grade"),
         default=0.0,
+        validators=[
+            MinValueValidator(0.0)
+        ],
         help_text=_("Peer review grade.")
     )
 
