@@ -179,3 +179,64 @@ class ListGradeTestCase(TestCase):
 
         with self.assertRaises(TypeError):
             grade.calcule_session_grade()
+
+    def test_calculate_session_grade_with_irat_negative_value(self):
+        """
+        Unit test about calculate_session_grade() method from Grade model with a nagative irat.
+        """
+
+        session = TBLSession()
+        grade = Grade(
+            session=session,
+            irat=-10,
+            grat=2.0,
+            practical=2.0)
+
+        with self.assertRaises(ValidationError):
+            session_grade = grade.session.full_clean()
+
+    def test_calculate_session_grade_with_grat_negative_value(self):
+        """
+        Unit test about calculate_session_grade() method from Grade model with a nagative grat.
+        """
+
+        session = TBLSession()
+        grade = Grade(
+            session=session,
+            irat=1.0,
+            grat=-2.0,
+            practical=2.0)
+
+        with self.assertRaises(ValidationError):
+            session_grade = grade.session.full_clean()
+
+    def test_calculate_session_grade_with_pratical_negative_value(self):
+        """
+        Unit test about calculate_session_grade() method from Grade model with a nagative pratical.
+        """
+
+        session = TBLSession()
+        grade = Grade(
+            session=session,
+            irat=1.0,
+            grat=2.0,
+            practical=-2.0)
+
+        with self.assertRaises(ValidationError):
+            session_grade = grade.session.full_clean()
+
+    def test_calculate_session_grade_with_peer_review_negative_value(self):
+        """
+        Unit test about calculate_session_grade() method from Grade model with peer review receiving a negative value.
+        """
+
+        session = TBLSession(peer_review_available=True)
+        grade = Grade(
+            session=session,
+            irat=2.0,
+            grat=2.0,
+            practical=2.0,
+            peer_review=-1.3)
+
+        with self.assertRaises(ValidationError):
+            session_grade = grade.session.full_clean()
