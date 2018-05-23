@@ -1,0 +1,112 @@
+{% load static %}
+{% load i18n %}
+
+<!-- Session sidebar -->
+<div class="col-sm-2">
+  <div class="btn-group-vertical">
+    <!-- Session description menu -->
+    <a href="{% url 'TBLSessions:details' discipline.slug session.id %}"
+       class="btn"
+       data-toggle="tooltip"
+       data-placement="right"
+       title="{% trans 'Session' %}">
+       <i class="fa fa-puzzle-piece icon-lg"></i>
+    </a>
+    <!-- Session files menu -->
+    <a href="{% url 'files:session-list' discipline.slug session.id %}"
+       class="btn"
+       data-toggle="tooltip"
+       data-placement="right"
+       title="{% trans 'Files' %}">
+       <i class="fa fa-folder-open-o icon-lg"></i>
+    </a>
+    <!-- Session grade menu -->
+    <a href="{% url 'grades:list' discipline.slug session.id %}"
+       class="btn"
+       data-toggle="tooltip"
+       data-placement="right"
+       title="{% trans 'Session Grades' %}">
+       <i class="fa fa-graduation-cap icon-lg"></i>
+    </a>
+    <!-- Session exercise menu -->
+    <a href="{% url 'questions:list' discipline.slug session.id %}"
+       class="btn"
+       data-toggle="tooltip"
+       data-placement="right"
+       title="{% trans 'Exercise list' %}">
+       <i class="fa fa-leanpub icon-lg"></i>
+    </a>
+    <!-- Session dashboard menu -->
+    <a href="#"
+       class="btn"
+       data-toggle="tooltip"
+       data-placement="right"
+       title="{% trans 'Dashboard' %}">
+       <i class="fa fa-bar-chart icon-lg"></i>
+    </a>
+    <!-- Session iRAT menu -->
+    {% if date > irat_datetime and user in discipline.students.all %}
+      <a href="{% url 'questions:irat-result' discipline.slug session.id %}"
+         class="btn"
+         data-toggle="tooltip"
+         data-placement="right"
+         title="{% trans 'Test iRAT Result' %}">
+         <i class="fa fa-street-view icon-lg"></i>
+      </a>
+    {% else %}
+      <a href="{% url 'questions:irat-list' discipline.slug session.id %}"
+         class="btn"
+         data-toggle="tooltip"
+         data-placement="right"
+         title="{% trans 'Test iRAT' %}">
+         <i class="fa fa-street-view icon-lg"></i>
+      </a>
+    {% endif %}
+
+    <!-- Session gRAT menu -->
+    {% if date > grat_datetime and user in discipline.students.all %}
+      <a href="{% url 'questions:grat-result' discipline.slug session.id %}"
+         class="btn"
+         data-toggle="tooltip"
+         data-placement="right"
+         title="{% trans 'Test gRAT Result' %}">
+         <i class="fa fa-group icon-lg"></i>
+      </a>
+    {% else %}
+      <a href="{% url 'questions:grat-list' discipline.slug session.id %}"
+         class="btn"
+         data-toggle="tooltip"
+         data-placement="right"
+         title="{% trans 'Test gRAT' %}">
+         <i class="fa fa-group icon-lg"></i>
+      </a>
+    {% endif %}
+
+    <!-- Session practical menu -->
+    <a href="{% url 'TBLSessions:practical-details' discipline.slug session.id %}"
+       class="btn"
+       data-toggle="tooltip"
+       data-placement="right"
+       title="{% trans 'Test practical' %}">
+       <i class="fa fa-crosshairs icon-lg"></i>
+    </a>
+
+    <!-- Session peer test menu -->
+    <a href="{% url 'peer_review:review' discipline.slug session.id %}"
+       class="btn"
+       data-toggle="tooltip"
+       data-placement="right"
+       title="{% trans 'Test Peer' %}">
+       <i class="fa fa-vcard-o icon-lg"></i>
+    </a>
+
+    <!-- Session appeal menu -->
+    <a href="#"
+       class="btn"
+       data-toggle="tooltip"
+       data-placement="right"
+       title="{% trans 'Appeal' %}">
+       <i class="fa fa-gavel icon-lg"></i>
+    </a>
+  </div>
+</div>
