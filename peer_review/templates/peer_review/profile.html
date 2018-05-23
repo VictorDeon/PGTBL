@@ -1,0 +1,28 @@
+<div class="col-sm-10">
+  <div class="container-fluid">
+    <div class="page-header">
+      <h1 class="white">
+        <i class="fa fa-vcard-o"></i> Avaliação em Pares<br />
+        <small>{{discipline.title}}</small>
+      </h1>
+    </div>
+    <div class="row fix-row">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="panel panel-default gradient header-up">
+            <div class="panel-body">
+              <div class="col-sm-10">
+                <h4><i class="fa fa-graduation-cap"></i> <span class="course">Curso:</span> {{discipline.course}}</h4>
+                <h4><i class="fa fa-book"></i> <span class="classes">Disciplina:</span> {{discipline.title}}</h4>
+                <h4><i class="fa fa-user"></i> <span class="teacher">Professor:</span> {{discipline.teacher.get_full_name}}</h4>
+                <h4><i class="fa fa-user"></i> <span class="student">Aluno:</span> {{user.get_full_name}}</h4>
+              </div>
+              <div class="col-sm-2">
+                <h1 class="time"><i class="fa fa-clock-o"></i> 40:00</h1>
+                <h4 class="date"><i class="fa fa-calendar"></i> 01/06/2017</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
