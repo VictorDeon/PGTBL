@@ -12,6 +12,8 @@ from groups.models import Group
 from grades.models import Grade
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
+from rankingGroup.models import Ranking
+from rankingGroup.models import GroupInfo
 
 
 class ShowRankingGroupView(LoginRequiredMixin,
@@ -80,6 +82,8 @@ class ShowRankingGroupView(LoginRequiredMixin,
         list_update = []
         new_list = []
 
+        ranking = self.get_ranking()
+
         for s in sessions:
             for group in groups:
 
@@ -107,18 +111,24 @@ class ShowRankingGroupView(LoginRequiredMixin,
 
                 groups_with_grades_results.append({
                     'group':group,
-                    'sum_results_sessions':sum_all_results,
+                    'results':sum_all_results,
                 })
 
-        list_update = sorted(groups_with_grades_results,key=lambda K: K.get('sum_results_sessions'), reverse=True)
+        list_update = sorted(groups_with_grades_results,key=lambda K: K.get('results'), reverse=True)
 
         i = 1
         for update in list_update:
             new_list.append({
-                'group_position': i,
+                'position': i,
                 'group_info':update,
             })
+
             i = i + 1
+
+        # GroupInfo.objects.update_or_create(ranking=ranking, position=position, group=group, results=results)
+
+
+
 
         return new_list
 
@@ -137,6 +147,7 @@ class ShowRankingGroupView(LoginRequiredMixin,
 
         context = super(ShowRankingGroupView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
+        context['r'] = self.get_ranking()
 
         return context
 
@@ -147,6 +158,17 @@ class ShowRankingGroupView(LoginRequiredMixin,
         groups = Group.objects.filter(discipline=discipline)
 
         return groups
+
+
+    def get_ranking(self):
+
+        discipline = self.get_discipline()
+
+        ranking, created = Ranking.objects.update_or_create(
+            discipline=discipline,
+        )
+
+        return ranking
 
 
     def get_queryset(self):
