@@ -16,30 +16,31 @@
     <main>
       <div class="row">
         <div class="col-sm-12 navegation">
+            <!-- Pages path -->
             <ul class="breadcrumb pull-left">
-              <li><a href="../home.html#home">Home</a></li>
-              <li><a href="../profile/profile.html">Perfil</a></li>
-              <li><a href="../classes/class.html">Medição e Análise</a></li>
-              <li><a href="../classes/sessions.html">Sessões do TBL</a></li>
-              <li><a href="session.html">Sessão 01</a></li>
-              <li><a href="peer_review.html">Avaliação em Pares</a></li>
+              <li><a href="{% url 'core:home' %}">Home</a></li>
+              <li><a href="{% url 'accounts:profile' %}">Perfil</a></li>
+              <li><a href="{% url 'disciplines:details' discipline.slug %}">{{discipline.course}}</a></li>
+              <li><a href="../../">Sessões do TBL</a></li>
+              <li><a href="../details">Sessão {{session.id}}</a></li>
+              <li><a href="">Avaliação em Pares</a></li>
             </ul>
             <p class="pull-right">{{ date }}<i class="fa fa-calendar"></i></p>
         </div>
       </div>
       <div class="row">
 
-        <!-- Sidebar page
-      {#% block sidebar %}
-        {#% include 'peer_review/sidebar.html' %}
-      {#% endblock %}
-        -->
+        <!-- Sidebar page -->
+      {% block sidebar %}
+        {% include 'peer_review/sidebar.html' %}
+      {% endblock %}
+
         <!-- profile -->
         <div class="col-sm-10">
           <div class="container-fluid">
             <div class="page-header">
               <h1 class="white">
-                <i class="fa fa-vcard-o"></i> Avaliação em pares<br />
+                <i class="fa fa-vcard-o"></i> Avaliação em Pares<br />
                 <small>{{discipline.title}}</small>
               </h1>
             </div>

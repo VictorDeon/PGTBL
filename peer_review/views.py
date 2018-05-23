@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render
 # Django imports
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -27,25 +28,29 @@ class PeerReviewView(LoginRequiredMixin, ListView):
     Class to read a profile user and his disciplines.
     """
 
-    paginate_by = 6
     template_name = 'peer_review/peer.html'
-    context_object_name = 'disciplines'
 
     def get_context_data(self, **kwargs):
         context = super(PeerReviewView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
+        context['session'] = self.get_session()
         return context
 
     def get_queryset(self):
         """
-        Get the tbl sessions queryset from model database.
+        List all students from discipline.
         """
 
-        discipline = self.get_discipline()
+        self.discipline = self.get_discipline()
 
-        sessions = TBLSession.objects.filter(discipline=discipline)
+        students = self.discipline.students.all()
 
-        return sessions
+        # Insert students into queryset
+        queryset = []
+        for student in students:
+            queryset.append(student)
+
+        return queryset
 
     def get_discipline(self):
         """
@@ -57,3 +62,17 @@ class PeerReviewView(LoginRequiredMixin, ListView):
         )
 
         return discipline
+
+    def get_session(self):
+        """
+        Take the session that the group belongs to
+        """
+
+        discipline = self.get_discipline()
+
+        session = TBLSession.objects.get(
+            Q(discipline=discipline),
+            Q(pk=self.kwargs.get('pk', ''))
+        )
+
+        return session
