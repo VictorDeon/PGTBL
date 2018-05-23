@@ -15,25 +15,19 @@ from disciplines.models import Discipline
 User = get_user_model()
 
 
-def peer(request):
-    return render(request, 'peer_review/peer.html', {})
-
-
-def home(request):
-    return render(request, 'peer_review/teste.html', {})
-
-
 class PeerReviewView(LoginRequiredMixin, ListView):
     """
     Class to read a profile user and his disciplines.
     """
 
     template_name = 'peer_review/peer.html'
+    context_object_name = 'students'
 
     def get_context_data(self, **kwargs):
         context = super(PeerReviewView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
+
         return context
 
     def get_queryset(self):
