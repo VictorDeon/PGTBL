@@ -7,6 +7,7 @@ from django.views.generic import (
 )
 
 # Application imoports
+from TBLSessions.models import TBLSession
 from disciplines.models import Discipline
 
 # Get the custom user from settings
@@ -34,6 +35,17 @@ class PeerReviewView(LoginRequiredMixin, ListView):
         context = super(PeerReviewView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
         return context
+
+    def get_queryset(self):
+        """
+        Get the tbl sessions queryset from model database.
+        """
+
+        discipline = self.get_discipline()
+
+        sessions = TBLSession.objects.filter(discipline=discipline)
+
+        return sessions
 
     def get_discipline(self):
         """
