@@ -51,9 +51,9 @@
             <div class="panel-body">
               <div class="media">
                 <div class="media-body">
-                  <h2 class="media-heading">{{item.group_info.group.title|capfirst}}</h2>
+                  <h2 class="media-heading">{{item.group.title|capfirst}}</h2>
                   <div class="row">
-                    {% for student in item.group_info.group.students.all%}
+                    {% for student in item.group.students.all%}
                       <div class="col-sm-2">
                         <figure>
                           <img src="{% static 'rankingGroup/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">

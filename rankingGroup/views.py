@@ -23,8 +23,10 @@ class ShowRankingGroupView(LoginRequiredMixin,
     """
     View to ranking_group .
     """
+    model = GroupInfo
     template_name = 'rankingGroup/detail.html'
     context_object_name = 'ranking_of_groups'
+
 
     # Permissions
     permissions_required = [
@@ -78,10 +80,6 @@ class ShowRankingGroupView(LoginRequiredMixin,
 
         sessions = self.get_sessions_closed()
         groups = self.get_all_groups_by_discipline()
-        groups_with_grades_results = []
-        list_update = []
-        new_list = []
-
         ranking = self.get_ranking()
 
         for s in sessions:
@@ -91,7 +89,7 @@ class ShowRankingGroupView(LoginRequiredMixin,
                 sum_grades_irat = 0.0
                 sum_grades_pratical = 0.0
                 grat = 0.0
-                sum_all_results = 0.0
+                results = 0.0
                 try:
                     for grade in grades:
                         sum_grades_pratical += grade.practical
@@ -107,30 +105,18 @@ class ShowRankingGroupView(LoginRequiredMixin,
                     messages.error(
                         self.request,"Your TBL session closed without any assingned grades")
 
-                sum_all_results = sum_grades_irat + grat + sum_grades_pratical
-
-                groups_with_grades_results.append({
-                    'group':group,
-                    'results':sum_all_results,
-                })
-
-        list_update = sorted(groups_with_grades_results,key=lambda K: K.get('results'), reverse=True)
-
-        i = 1
-        for update in list_update:
-            new_list.append({
-                'position': i,
-                'group_info':update,
-            })
-
-            i = i + 1
-
-        # GroupInfo.objects.update_or_create(ranking=ranking, position=position, group=group, results=results)
+                results = sum_grades_irat + grat + sum_grades_pratical
+                print(results)
 
 
 
+                GroupInfo.objects.update_or_create(ranking=ranking, group=group, results=results)
 
-        return new_list
+        list_of_groupsInfo = GroupInfo.objects.filter(ranking=ranking)
+
+        # ordered_list = list_of_groupsInfo.order_by('-results')
+
+        return list_of_groupsInfo
 
 
     def get_session_grades(self, session):
@@ -147,7 +133,6 @@ class ShowRankingGroupView(LoginRequiredMixin,
 
         context = super(ShowRankingGroupView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
-        context['r'] = self.get_ranking()
 
         return context
 
@@ -156,6 +141,7 @@ class ShowRankingGroupView(LoginRequiredMixin,
         discipline = self.get_discipline()
 
         groups = Group.objects.filter(discipline=discipline)
+
 
         return groups
 

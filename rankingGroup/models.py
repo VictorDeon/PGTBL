@@ -24,10 +24,10 @@ class GroupInfo(models.Model):
     ranking = models.ForeignKey(
         Ranking
     )
-
-    position = models.PositiveIntegerField(
-        validators=[MinValueValidator(1)],
-    )
+    #
+    # position = models.PositiveIntegerField(
+    #     validators=[MinValueValidator(1)],
+    # )
 
     group = models.OneToOneField(
         Group,
