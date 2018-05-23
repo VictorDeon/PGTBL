@@ -9,6 +9,11 @@ hall_patterns = [
         views.ShowHallView.as_view(),
         name='list'
     ),
+    url(
+        r'^hall-of-fame/create$',
+        views.CreateHallView.as_view(),
+        name='create'
+    ),
 
 ]
 

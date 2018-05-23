@@ -120,6 +120,8 @@ class RegisterView(CreateView):
     # Redirect to profile
     success_url = reverse_lazy('accounts:profile')
 
+
+
     def form_valid(self, form):
         """
         Receive the form already validated.
