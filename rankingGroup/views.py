@@ -114,9 +114,9 @@ class ShowRankingGroupView(LoginRequiredMixin,
 
         list_of_groupsInfo = GroupInfo.objects.filter(ranking=ranking)
 
-        # ordered_list = list_of_groupsInfo.order_by('-results')
+        ordered_list = list_of_groupsInfo.order_by('-results')
 
-        return list_of_groupsInfo
+        return ordered_list
 
 
     def get_session_grades(self, session):
