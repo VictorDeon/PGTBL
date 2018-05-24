@@ -106,9 +106,6 @@ class ShowRankingGroupView(LoginRequiredMixin,
                         self.request,"Your TBL session closed without any assingned grades")
 
                 results = sum_grades_irat + grat + sum_grades_pratical
-                print(results)
-
-
 
                 GroupInfo.objects.update_or_create(ranking=ranking, group=group, results=results)
 
@@ -117,6 +114,20 @@ class ShowRankingGroupView(LoginRequiredMixin,
         ordered_list = list_of_groupsInfo.order_by('-results')
 
         return ordered_list
+
+    # def set_position_in_ranking(self):
+
+    #     ranking = self.get_ranking()
+
+    #     i = 1 
+    #     for group in ranking: 
+    #         final_list.append({ 
+    #             'position': i, 
+    #             'obj':group, 
+    #         }) 
+    #         i = i + 1 
+         
+    #     return final_list 
 
 
     def get_session_grades(self, session):
@@ -133,6 +144,7 @@ class ShowRankingGroupView(LoginRequiredMixin,
 
         context = super(ShowRankingGroupView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
+        # context['groups_with_positions'] = self.set_position_in_ranking()
 
         return context
 
@@ -161,7 +173,8 @@ class ShowRankingGroupView(LoginRequiredMixin,
         """
         Get the info_group queryset from model database.
         """
-
         ranking_of_groups = self.set_ranking()
 
-        return ranking_of_groups
+        counter_list = list(enumerate(ranking_of_groups, 1))
+
+        return counter_list

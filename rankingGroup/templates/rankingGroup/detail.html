@@ -23,7 +23,7 @@
     <div class="row">
       <div class="col-sm-8">
         <h1 class="white">
-          <i class="fa fa-trophy"></i> Rank de grupos<br />
+          <i class="fa fa-trophy"></i> Ranking Group<br />
           <small>{{discipline.title}}</small>
         </h1>
       </div>
@@ -43,7 +43,7 @@
       <div class="panel-group">
         <div class="panel panel-default">
           <div class="panel-heading">
-            Rank de grupos
+            Ranking Group
             <span><i class="fa fa-flag-checkered"></i></span>
           </div>
           {% for item in ranking_of_groups %}
@@ -51,9 +51,9 @@
             <div class="panel-body">
               <div class="media">
                 <div class="media-body">
-                  <h2 class="media-heading">{{item.group.title|capfirst}}</h2>
+                  <h2 class="media-heading">{{item.1.group.group_info.group.title|capfirst}}</h2>
                   <div class="row">
-                    {% for student in item.group.students.all%}
+                    {% for student in item.1.group.group_info.group.students.all%}
                       <div class="col-sm-2">
                         <figure>
                           <img src="{% static 'rankingGroup/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
@@ -64,20 +64,20 @@
                   </div>
                 </div>
                 <div class="media-right">
-                  {% if item.group_position == 1 %}
-                    <span class="position">{{item.group_position}}º</span>
+                  {% if item.0 == 1 %}
+                    <span class="position">{{item.0}}º</span>
                     <span class="first"><i class="fa fa-trophy"></i></span>
                   {% endif %}
-                  {% if item.group_position == 2 %}
-                    <span class="position">{{item.group_position}}º</span>
+                  {% if item.0 == 2 %}
+                    <span class="position">{{item.0}}º</span>
                     <span class="second"><i class="fa fa-trophy"></i></span>
                   {% endif %}
-                  {% if item.group_position == 3 %}
-                    <span class="position">{{item.group_position}}º</span>
+                  {% if item.0 == 3 %}
+                    <span class="position">{{item.0}}º</span>
                     <span class="third"><i class="fa fa-trophy"></i></span>
                   {% endif %}
-                  {% if item.group_position != 3 and item.group_position != 2 and item.group_position != 1 %}
-                    <span class="position">{{item.group_position}}º</span>
+                  {% if item.0 != 3 and item.0 != 2 and item.0 != 1 %}
+                    <span class="position">{{item.0}}º</span>
                     <span class=""><i class="fa fa-trophy"></i></span>
                   {% endif %}
                 </div>
