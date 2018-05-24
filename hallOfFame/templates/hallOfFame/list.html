@@ -82,27 +82,27 @@
         <br />
         <div class="row">
           <div class="col-sm-12">
-            {# {% for h in halls %} #}
+            {% for h in halls %}
               <div class="panel-group">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                    {{halls.group_info.group.title}} <span class="pull-right">02/2017 <i class="fa fa-calendar"></i></span>
+                    {{h.group_info.group.title}}<span class="pull-right">0{{h.semester}}/{{h.year}} <i class="fa fa-calendar"></i></span>
                   </div>
                   <div class="panel-body">
                     <div class="row">
-                      {% for s in halls.group_info.group.students%}
-                      <div class="col-sm-2">
-                        <figure>
-                          <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
-                          <figcaption>{{s.name}}</figcaption>
-                        </figure>
-                      </div>
+                      {% for s in h.group_info.group.students.all%}
+                        <div class="col-sm-2">
+                          <figure>
+                            <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
+                            <figcaption>{{s.name}}</figcaption>
+                          </figure>
+                        </div>
                       {% endfor %}
                     </div>
                   </div>
                 </div>
               </div>
-              {# {% endfor %} #}
+              {% endfor %}
           </div>
         </div>
         <ul class="pagination">

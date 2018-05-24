@@ -43,7 +43,7 @@ class CreateHallView(generic.CreateView):
 
         ranking = Ranking.objects.get(discipline=discipline)
 
-        group_info = GroupInfo.objects.filter(ranking=ranking)[:1].get()
+        group_info = GroupInfo.objects.filter(ranking=ranking)[:0].get()
 
         print(group_info)
 
@@ -150,23 +150,10 @@ class ShowHallView(generic.ListView):
 
         context = super(ShowHallView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
-        context['halls'] = self.get_halls()
+        context['halls'] = self.get_queryset()
 
         return context
 
-    def get_halls(self):
-        """
-        Get the info_group queryset from model database.
-        """
-
-        discipline = self.get_discipline()
-
-        halls = HallOfFame.objects.filter(discipline=discipline)
-
-        print(halls)
-
-
-        return halls
 
 
     def get_queryset(self):
