@@ -25,6 +25,19 @@ class CreateHallView(generic.CreateView):
         'monitor_can_change_if_is_teacher'
     ]
 
+    def get_ranking(self):
+
+        discipline = self.get_discipline()
+        ranking = Ranking()
+        try:
+            ranking = Ranking.objects.get(discipline=discipline)
+        except Ranking.DoesNotExist:
+            obj = Ranking(discipline=discipline)
+            obj.save()
+
+        return ranking
+
+
 
     def get_discipline(self):
         """
@@ -41,7 +54,7 @@ class CreateHallView(generic.CreateView):
 
         discipline = self.get_discipline()
 
-        ranking = Ranking.objects.get(discipline=discipline)
+        ranking = self.get_ranking()
 
         groups_info = []
         first_groupInfo = GroupInfo()
@@ -58,9 +71,6 @@ class CreateHallView(generic.CreateView):
             )
 
 
-        print(all_groupsInfo)
-        print(list)
-        print(first_groupInfo)
 
         return first_groupInfo
 
@@ -127,7 +137,6 @@ class ShowHallView(generic.ListView):
     # Permissions
     permissions_required = [
         'show_discipline_groups_permission',
-        'discipline_is_closed_permission'
     ]
 
     def get_failure_redirect_path(self):
@@ -157,6 +166,18 @@ class ShowHallView(generic.ListView):
         )
 
         return discipline
+
+    def get_ranking(self):
+
+        discipline = self.get_discipline()
+        ranking = Ranking()
+        try:
+            ranking = Ranking.objects.get(discipline=discipline)
+        except Ranking.DoesNotExist:
+            obj = Ranking(discipline=discipline)
+            obj.save()
+
+        return ranking
 
 
     def get_context_data(self, **kwargs):

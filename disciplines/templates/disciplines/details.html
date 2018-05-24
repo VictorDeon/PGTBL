@@ -39,18 +39,23 @@
           <h1 class="white">{{discipline.classroom}}</h1>
           {% if user.id == discipline.teacher.id %}
 
-            {% if not discipline.is_closed %}
-              <form action="{% url 'hallOfFame:create' slug=discipline.slug %}" method="post">
+            {% if not discipline.is_closed and ranking %}
+
+                <form action="{% url 'hallOfFame:create' slug=discipline.slug %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-success pull-right">{% trans 'Open' %}</button>
+                </form> #}
+            {% elif not discipline.is_closed and not ranking%}
+              <form action="{% url 'disciplines:close' slug=discipline.slug %}" method="post">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-success pull-right">{% trans 'Open' %}</button>
               </form> #}
-            {% else %}
+            {% elif discipline.is_closed %}
               <form action="{% url 'disciplines:close' slug=discipline.slug %}" method="post">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-success pull-right">{% trans 'Closed' %}</button>
+                <button type="submit" class="btn btn-danger pull-right">{% trans 'Closed' %}</button>
               </form> #}
             {% endif %}
-
           {% endif %}
         </div>
 

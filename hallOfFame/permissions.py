@@ -17,14 +17,16 @@ def monitor_can_change_if_is_teacher(permission, user, view):
     return False
 
 @register_object_checker()
-def discipline_is_closed_permission(permission, user, view):
+def discipline_is_closed_and_has_ranking_permission(permission, user, view):
     """
     Function to allows only teacher monitors to modify something.
     """
 
     discipline = view.get_discipline()
+    ranking = view.get_ranking()
 
-    if discipline.is_closed:
+    if discipline.is_closed and \
+        ranking != Null:
         return True
 
     return False

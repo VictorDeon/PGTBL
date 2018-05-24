@@ -15,19 +15,12 @@ class Ranking(models.Model):
         related_name='ranking'
     )
 
-    # group_info = models.ManyToManyField(
-    #     GroupInfo
-    # )
 
 class GroupInfo(models.Model):
 
     ranking = models.ForeignKey(
         Ranking
     )
-    #
-    # position = models.PositiveIntegerField(
-    #     validators=[MinValueValidator(1)],
-    # )
 
     group = models.OneToOneField(
         Group,

@@ -26,6 +26,7 @@ from core.utils import order
 # Discipline app
 from .forms import DisciplineForm, DisciplineEditForm, EnterDisciplineForm
 from .models import Discipline
+from rankingGroup.models import Ranking
 
 # Get the custom user from settings
 User = get_user_model()
@@ -329,6 +330,33 @@ class ShowDisciplineView(LoginRequiredMixin,
         'show_ranking_permission'
     ]
 
+    def get_context_data(self, **kwargs):
+        """
+        """
+        discipline = self.get_object()
+
+        context = super(ShowDisciplineView, self).get_context_data(**kwargs)
+        context['ranking'] = self.get_ranking()
+
+        print(discipline.is_closed)
+
+        return context
+
+
+    def get_ranking(self):
+
+        discipline = self.get_object()
+
+        ranking = Ranking()
+        try:
+            ranking = Ranking.objects.get(discipline=discipline)
+        except Ranking.DoesNotExist:
+            ranking = None
+
+        print(ranking)
+
+        return ranking
+
 
 class CloseDisciplineView(LoginRequiredMixin,
                           PermissionMixin,
@@ -340,6 +368,7 @@ class CloseDisciplineView(LoginRequiredMixin,
         'show_discipline_permission',
         'change_own_discipline'
     ]
+
 
     def delete(self, request, *args, **kwargs):
         """
