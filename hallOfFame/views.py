@@ -37,17 +37,30 @@ class CreateHallView(generic.CreateView):
 
         return discipline
 
-    def get_groupInfo(self):
+    def get_groupsInfo(self):
 
         discipline = self.get_discipline()
 
         ranking = Ranking.objects.get(discipline=discipline)
 
-        group_info = GroupInfo.objects.filter(ranking=ranking)[:0].get()
+        groups_info = []
+        first_groupInfo = GroupInfo()
 
-        print(group_info)
+        try:
+            all_groupsInfo = GroupInfo.objects.filter(ranking=ranking)
+            first_groupInfo = all_groupsInfo[0]
 
-        return group_info
+        except GroupInfo.DoesNotExist:
+            messages.error(
+                self.request,
+                ("Não houve a instancia de um group_info para o hall.")
+            )
+
+
+        print(all_groupsInfo)
+        print(first_groupInfo)
+
+        return first_groupInfo
 
 
 
@@ -55,7 +68,7 @@ class CreateHallView(generic.CreateView):
         """If the form is valid, save the associated model."""
 
         form.instance.discipline = self.get_discipline()
-        form.instance.group_info = self.get_groupInfo()
+        form.instance.group_info = self.get_groupsInfo()
         self.object = form.save()
 
         discipline = self.get_discipline()
@@ -99,7 +112,7 @@ class CreateHallView(generic.CreateView):
         context = super(CreateHallView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
 
-        context['group_info'] = self.get_groupInfo()
+        context['group_info'] = self.get_groupsInfo()
 
         return context
 
@@ -111,7 +124,8 @@ class ShowHallView(generic.ListView):
 
     # Permissions
     permissions_required = [
-        'show_discipline_groups_permission'
+        'show_discipline_groups_permission',
+        'discipline_is_closed_permission'
     ]
 
     def get_failure_redirect_path(self):
