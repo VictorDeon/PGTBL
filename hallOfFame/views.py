@@ -19,8 +19,10 @@ class CreateHallView(generic.CreateView):
     template_name = 'hallOfFame/close.html'
     form_class = HallOfFameForm
     context_object_name = "hall"
-    success_url = reverse_lazy('discipline:details')
 
+    permissions_required = [
+        'monitor_can_change_if_is_teacher'
+    ]
 
 
     def get_discipline(self):
@@ -38,25 +40,20 @@ class CreateHallView(generic.CreateView):
 
     def form_valid(self, form):
         """If the form is valid, save the associated model."""
+
         form.instance.discipline = self.get_discipline()
         self.object = form.save()
 
+        discipline = self.get_discipline()
+
+        discipline.is_closed = True
+        discipline.save()
+        
         print(self.object)
 
-        messages.success(self.request, _('TBL session created successfully.'))
+        messages.success(self.request,  ('Discipline session created successfully.'))
 
         return super(CreateHallView,self).form_valid(form)
-
-
-    def form_invalid(self, form):
-        """
-        Redirect to form with form errors.
-        """
-
-        messages.error(
-            self.request,
-            ("Invalid fields, please fill in the fields correctly.")
-        )
 
 
     def get_success_url(self):
@@ -67,7 +64,7 @@ class CreateHallView(generic.CreateView):
         discipline = self.get_discipline()
 
         success_url = reverse_lazy(
-            'discipline:deta',
+            'discipline:details',
             kwargs={'slug': discipline.slug}
         )
 

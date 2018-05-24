@@ -103,6 +103,8 @@ class CreateSessionView(LoginRequiredMixin,
 
         return super(CreateSessionView, self).form_valid(form)
 
+
+
     def form_invalid(self, form):
         """
         Redirect to form with form errors.

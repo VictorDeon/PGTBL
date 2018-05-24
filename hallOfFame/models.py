@@ -11,11 +11,11 @@ def current_year():
 
 class HallOfFame(models.Model):
 
-        discipline = models.OneToOneField(
+        discipline = models.ForeignKey(
             Discipline,
             on_delete=models.CASCADE,
             verbose_name='Discipline',
-            related_name='hall'
+            related_name='hall',
         )
 
         year = models.IntegerField(

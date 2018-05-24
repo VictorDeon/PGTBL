@@ -13,12 +13,12 @@
 {% endblock %}
 
 {% block breadcrumb %}
-  {{ block.super }}
+  {# {{ block.super }}
   <li>
     <a href="{% url 'disciplines:details' discipline.slug %}">
       {{discipline.title}}
     </a>
-  </li>
+  </li> #}
 {% endblock %}
 
 {% block content %}
@@ -28,64 +28,20 @@
       <h3>Close Discipline</h3>
     </div>
     <div class="panel-body">
+    <form action="{% url 'hallOfFame:create' discipline.slug %}" method="post">
+        {% csrf_token %}
         {% for field in form %}
-          <div class="form-group">
-            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-              {{ field|add_class:'form-control' }}
+        <div class="form-group">
+          <label for="{{ field.id_for_label }}">{{ field.label|capfirst }}</label>
+          {{ field|add_class:'form-control' }}
           {% for error in field.errors %}
-              <span class="help-block">{{ error }}</span>
+          <span class="help-block">{{ error }}</span>
           {% endfor %}
-          </div>
+        </div>
         {% endfor %}
-        <button type="submit" class="btn btn-success pull-right">{% trans 'Closed' %}</button>
+        <button type="submit" class="btn btn-success pull-right">{% trans 'Close' %}</button>
+      </form>
     </div>
   </div>
 
 {% endblock %}
-
-
-{#
-<!-- Open modal -->
-<div id="close-{{discipline.id}}-modal" class="modal fade">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <!-- Header -->
-      <div class="modal-header">
-        <button type="button"
-                class="close"
-                data-dismiss="modal">
-                <i class="fa fa-close"></i>
-        </button>
-        <h4 class="modal-title">
-          {% trans 'Open' %} {{discipline}}
-        </h4>
-      </div>
-
-      <form action="{% url 'hallOfFame:create' discipline.slug%}"  method="get">
-        <!-- Form security -->
-        {% csrf_token %}
-        <!-- Body -->
-        <div class="modal-body">
-          <p>
-            {% trans "Confirm the close discipline  " %}:
-            {{form}}
-        </div>
-
-        <!-- Footer -->
-        <div class="modal-footer">
-          <button type="submit"
-            class="btn btn-success pull-right">
-            <i class="fa fa-lock"></i>
-            {% trans 'Close' %}
-          </button>
-          <button class="btn btn-primary pull-left"
-            data-dismiss="modal"
-            type="button">
-            <i class="fa fa-close"></i>
-            {% trans 'Cancel' %}
-          </button>
-        </div> <!-- Open model footer -->
-      </form>
-    </div> <!-- Open model content -->
-  </div> <!-- Open model dialog -->
-</div> <!-- Open model --> #}
