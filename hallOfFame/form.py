@@ -9,12 +9,6 @@ import datetime
 from pagedown.widgets import PagedownWidget
 from .models import HallOfFame
 
-# # Get the custom user from settings
-User = get_user_model()
-
-
-
-
 def year_choices():
     list = [(r,r) for r in range(current_year() - 1, datetime.date.today().year+1)]
 
@@ -38,10 +32,10 @@ class HallOfFameForm(forms.ModelForm):
     class Meta:
         model = HallOfFame
         fields = [
-            'year','semester'
+            'year','semester',
         ]
 
 
-    year = forms.DateField(label='year', widget=forms.SelectDateWidget(years=YEARS))
+    year = forms.ChoiceField(label='year', choices=YEARS)
 
-    semester = forms.ChoiceField(label='semester', choices=(('0','0'),('1','1'),('2','2')))
+    semester = forms.ChoiceField(label='semester', choices=((0,0),(1,1),(2,2)))

@@ -1,12 +1,50 @@
-{% load i18n %}
+{% extends 'accounts/profile.html' %}
 {% load static %}
 {% load widget_tweaks %}
-
+{% load i18n %}
 
 {% block css %}
-  <link rel="stylesheet" href="{% static 'TBLSessions/css/delete.css' %}" />
+  {# <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'disciplines/css/class.css' %}" /> #}
 {% endblock %}
 
+{% block sidebar %}
+  {% include 'disciplines/sidebar.html' %}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'disciplines:details' discipline.slug %}">
+      {{discipline.title}}
+    </a>
+  </li>
+{% endblock %}
+
+{% block content %}
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Close Discipline</h3>
+    </div>
+    <div class="panel-body">
+        {% for field in form %}
+          <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field|add_class:'form-control' }}
+          {% for error in field.errors %}
+              <span class="help-block">{{ error }}</span>
+          {% endfor %}
+          </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-success pull-right">{% trans 'Closed' %}</button>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+{#
 <!-- Open modal -->
 <div id="close-{{discipline.id}}-modal" class="modal fade">
   <div class="modal-dialog modal-sm">
@@ -23,17 +61,14 @@
         </h4>
       </div>
 
-      <form  method="post">
+      <form action="{% url 'hallOfFame:create' discipline.slug%}"  method="get">
         <!-- Form security -->
         {% csrf_token %}
         <!-- Body -->
         <div class="modal-body">
           <p>
-            {% trans "Confirm the discipline's year and semester  " %}:
-          </p>
-
-          {{form}}
-
+            {% trans "Confirm the close discipline  " %}:
+            {{form}}
         </div>
 
         <!-- Footer -->
@@ -53,4 +88,4 @@
       </form>
     </div> <!-- Open model content -->
   </div> <!-- Open model dialog -->
-</div> <!-- Open model -->
+</div> <!-- Open model --> #}

@@ -2,24 +2,26 @@
 from django.shortcuts import render
 from django.views import generic
 from django.contrib import messages
+from django.core.urlresolvers import reverse_lazy
+
 
 # App
 from hallOfFame.models import HallOfFame
 from disciplines.models import Discipline
 from .form import HallOfFameForm
 
+import datetime
+
+
 class CreateHallView(generic.CreateView):
 
     model = HallOfFame
-    template_name = 'disciplines/close.html'
+    template_name = 'hallOfFame/close.html'
     form_class = HallOfFameForm
-    # success_url = reverse_lazy('accounts:profile')
+    context_object_name = "hall"
+    success_url = reverse_lazy('discipline:details')
 
-    # Permissions
-    # failure_redirect_path = reverse_lazy('accounts:profile')
-    # permissions_required = [
-    #     'create_discipline'
-    # ]
+
 
     def get_discipline(self):
         """
@@ -34,35 +36,56 @@ class CreateHallView(generic.CreateView):
 
 
 
-
     def form_valid(self, form):
-        """
-        Receive the form already validated to create a discipline.
-        """
-
-        # Specifies who is the creator of the discipline
-        form.instance.teacher = self.request.user
+        """If the form is valid, save the associated model."""
         form.instance.discipline = self.get_discipline()
+        self.object = form.save()
 
-        # Save the instance to slugify
-        form.save()
+        print(self.object)
 
-        # Autocomplete slug url with id-title-classroom
-        # form.instance.slug = slugify(
-        #     str(form.instance.id) +
-        #     "-" +
-        #     form.instance.title +
-        #     "-" +
-        #     form.instance.classroom
-        # )
+        messages.success(self.request, _('TBL session created successfully.'))
 
-        # Save slug
-        # form.save()
+        return super(CreateHallView,self).form_valid(form)
 
-        # messages.success(self.request, _('Hall created successfully.'))
 
-        # Redirect to success url
-        return super(CreateHallView, self).form_valid(form)
+    def form_invalid(self, form):
+        """
+        Redirect to form with form errors.
+        """
+
+        messages.error(
+            self.request,
+            ("Invalid fields, please fill in the fields correctly.")
+        )
+
+
+    def get_success_url(self):
+        """
+        Get success url to redirect.
+        """
+
+        discipline = self.get_discipline()
+
+        success_url = reverse_lazy(
+            'discipline:deta',
+            kwargs={'slug': discipline.slug}
+        )
+
+        return success_url
+
+
+    def get_context_data(self, **kwargs):
+        """
+        Insert a form inside group list.
+        """
+        current = datetime.date.today().year
+
+        last = current -1
+
+        context = super(CreateHallView, self).get_context_data(**kwargs)
+        context['discipline'] = self.get_discipline()
+
+        return context
 
 
 class ShowHallView(generic.ListView):

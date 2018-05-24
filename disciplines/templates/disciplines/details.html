@@ -40,60 +40,15 @@
           {% if user.id == discipline.teacher.id %}
 
             {% if  discipline.is_closed %}
-
-              <div class="btn-group btn-group-justified">
-                <div class="btn-group">
-                  <button class="btn btn-success"
-                          type="button"
-                          data-toggle="modal"
-                          data-target="#close-{{discipline.id}}-modal">
-                          <i class="fa fa-lock"></i>
-                          {% trans 'Open' %}
-                  </button>
-                  {% include 'hallOfFame/close.html' %}
-                </div>
-              </div>
-              {# <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Set  Hall</h4>
-                      </div>
-                      <div class="modal-body">
-                        <form  method="post" novalidate>
-                          {% csrf_token %}
-                            {% for error in form.non_field_errors %}
-                              <div class="alert alert-danger">
-                                {{ error }}
-                              </div>
-                            {% endfor %}
-                            <!-- Teachser or Student field -->
-                            <div class="group">
-                              <div class="form-group">
-                                <label for="{{form.year.auto_id}}"
-                                       class="white">
-                                       {% trans 'Select the type of user' %}:
-                                </label>
-                                {% render_field form.year type="select" class="form-control" id=form.year_auto_id %}
-                              </div>
-                            </div>
-
-                        </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      </div>
-                  </div>
-                </div>
-              </div> #}
+              <form action="{% url 'hallOfFame:create' slug=discipline.slug %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success pull-right">{% trans 'Open' %}</button>
+              </form> #}
             {% else %}
-
-            <form action="{% url 'disciplines:close' slug=discipline.slug %}" method="post">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-success pull-right">{% trans 'Closed' %}</button>
-            </form> #}
+              <form action="{% url 'disciplines:close' slug=discipline.slug %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success pull-right">{% trans 'Closed' %}</button>
+              </form> #}
             {% endif %}
 
           {% endif %}
