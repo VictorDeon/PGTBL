@@ -119,8 +119,9 @@
                     </div>
 
                     <!-- Hall of fame -->
+                        <!--  url 'hallOfFame:' discipline.slug  -->
                     <div class="btn-group">
-                      <a href="#"
+                      <a href="{% url 'hallOfFame:list' discipline.slug %}"
                          class="btn btn-primary btn-class"
                          data-toggle="tooltip"
                          data-placement="top"

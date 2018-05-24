@@ -40,6 +40,12 @@ session_patterns = [
         views_session.CloseSessionView.as_view(),
         name='close'
     ),
+    # <session.id>/open/
+    url(
+        r'^(?P<pk>[0-9]+)/open/$',
+        views_session.OpenSessionView.as_view(),
+        name='open'
+    ),
 
 ]
 
