@@ -48,8 +48,8 @@ class CreateHallView(generic.CreateView):
 
         discipline.is_closed = True
         discipline.save()
-        
-        print(self.object)
+
+        print(self.object.year)
 
         messages.success(self.request,  ('Discipline session created successfully.'))
 
@@ -64,7 +64,7 @@ class CreateHallView(generic.CreateView):
         discipline = self.get_discipline()
 
         success_url = reverse_lazy(
-            'discipline:details',
+            'disciplines:details',
             kwargs={'slug': discipline.slug}
         )
 

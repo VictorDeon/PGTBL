@@ -39,7 +39,7 @@
           <h1 class="white">{{discipline.classroom}}</h1>
           {% if user.id == discipline.teacher.id %}
 
-            {% if  discipline.is_closed %}
+            {% if not discipline.is_closed %}
               <form action="{% url 'hallOfFame:create' slug=discipline.slug %}" method="post">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-success pull-right">{% trans 'Open' %}</button>
