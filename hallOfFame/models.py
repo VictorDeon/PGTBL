@@ -1,7 +1,8 @@
 from django.db import models
 from django.core.validators import MinValueValidator
-
 from disciplines.models import Discipline
+
+from rankingGroup.models import GroupInfo
 
 import datetime
 
@@ -11,9 +12,15 @@ def current_year():
 
 class HallOfFame(models.Model):
 
+        group_info = models.ForeignKey(
+            GroupInfo,
+            related_name="hall",
+            default=False
+        )
+
         discipline = models.ForeignKey(
             Discipline,
-            
+
         )
 
         year = models.IntegerField(

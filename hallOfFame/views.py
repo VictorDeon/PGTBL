@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse_lazy
 # App
 from hallOfFame.models import HallOfFame
 from disciplines.models import Discipline
+from rankingGroup.models import Ranking, GroupInfo
 from .form import HallOfFameForm
 
 import datetime
@@ -18,7 +19,7 @@ class CreateHallView(generic.CreateView):
     model = HallOfFame
     template_name = 'hallOfFame/close.html'
     form_class = HallOfFameForm
-    context_object_name = "hall"
+    context_object_name = "halls"
 
     permissions_required = [
         'monitor_can_change_if_is_teacher'
@@ -36,12 +37,25 @@ class CreateHallView(generic.CreateView):
 
         return discipline
 
+    def get_groupInfo(self):
+
+        discipline = self.get_discipline()
+
+        ranking = Ranking.objects.get(discipline=discipline)
+
+        group_info = GroupInfo.objects.filter(ranking=ranking)[:1].get()
+
+        print(group_info)
+
+        return group_info
+
 
 
     def form_valid(self, form):
         """If the form is valid, save the associated model."""
 
         form.instance.discipline = self.get_discipline()
+        form.instance.group_info = self.get_groupInfo()
         self.object = form.save()
 
         discipline = self.get_discipline()
@@ -50,6 +64,9 @@ class CreateHallView(generic.CreateView):
         discipline.save()
 
         print(self.object.year)
+        print(self.object.semester)
+        print(self.object.group_info)
+        print(self.object.discipline)
 
         messages.success(self.request,  ('Discipline session created successfully.'))
 
@@ -82,11 +99,13 @@ class CreateHallView(generic.CreateView):
         context = super(CreateHallView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
 
+        context['group_info'] = self.get_groupInfo()
+
         return context
 
 
 class ShowHallView(generic.ListView):
-    template_name = 'hallOfFame/hall.html'
+    template_name = 'hallOfFame/list.html'
     model = HallOfFame
     context_object_name = 'hall_of_fame'
 
@@ -129,7 +148,37 @@ class ShowHallView(generic.ListView):
         Insert a form inside group list.
         """
 
-        context = super(ShowRankingGroupView, self).get_context_data(**kwargs)
+        context = super(ShowHallView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
+        context['halls'] = self.get_halls()
 
         return context
+
+    def get_halls(self):
+        """
+        Get the info_group queryset from model database.
+        """
+
+        discipline = self.get_discipline()
+
+        halls = HallOfFame.objects.filter(discipline=discipline)
+
+        print(halls)
+
+
+        return halls
+
+
+    def get_queryset(self):
+        """
+        Get the info_group queryset from model database.
+        """
+
+        discipline = self.get_discipline()
+
+        halls = HallOfFame.objects.filter(discipline=discipline)
+
+        print(halls)
+
+
+        return halls
