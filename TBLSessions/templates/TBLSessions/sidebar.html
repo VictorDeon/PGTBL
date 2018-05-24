@@ -92,13 +92,16 @@
     </a>
 
     <!-- Session peer test menu -->
-    <a href="{% url 'peer_review:review' discipline.slug session.id %}"
+    {% if user.get_full_name != discipline.teacher.get_full_name %}
+       <a href="{% url 'peer_review:review' discipline.slug session.id %}"
+
        class="btn"
        data-toggle="tooltip"
        data-placement="right"
        title="{% trans 'Test Peer' %}">
        <i class="fa fa-vcard-o icon-lg"></i>
     </a>
+    {% endif %}
 
     <!-- Session appeal menu -->
     <a href="#"
