@@ -48,7 +48,8 @@ class CreateHallView(generic.CreateView):
 
         try:
             all_groupsInfo = GroupInfo.objects.filter(ranking=ranking)
-            first_groupInfo = all_groupsInfo[0]
+            list = all_groupsInfo.order_by('-results')
+            first_groupInfo = list[0]
 
         except GroupInfo.DoesNotExist:
             messages.error(
@@ -58,6 +59,7 @@ class CreateHallView(generic.CreateView):
 
 
         print(all_groupsInfo)
+        print(list)
         print(first_groupInfo)
 
         return first_groupInfo
