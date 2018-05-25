@@ -211,7 +211,7 @@ class DeleteProfileView(LoginRequiredMixin, DeleteView):
         Redirect to success_url and show a message.
         """
 
-        messages.success(self.request, _("Accounts deleted successfully."))
+        messages.success(self.request, _("Account deleted successfully."))
 
         # Redirect to success_url
         return super(DeleteProfileView, self).get_success_url()
@@ -343,7 +343,7 @@ class ResetPasswordConfirmView(FormView):
 
         messages.success(
             self.request,
-            _("Your password was successfully updated.")
+            _("Your password was updated successfully.")
         )
 
         # Redirect to success_url

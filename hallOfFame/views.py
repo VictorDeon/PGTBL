@@ -67,7 +67,7 @@ class CreateHallView(generic.CreateView):
         except GroupInfo.DoesNotExist:
             messages.error(
                 self.request,
-                ("Não houve a instancia de um group_info para o hall.")
+                ("There are no groups available to create a rank")
             )
 
 
@@ -87,11 +87,6 @@ class CreateHallView(generic.CreateView):
 
         discipline.is_closed = True
         discipline.save()
-
-        print(self.object.year)
-        print(self.object.semester)
-        print(self.object.group_info)
-        print(self.object.discipline)
 
         messages.success(self.request,  ('Discipline session created successfully.'))
 
@@ -123,7 +118,6 @@ class CreateHallView(generic.CreateView):
 
         context = super(CreateHallView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
-
         context['group_info'] = self.get_groupsInfo()
 
         return context
@@ -199,10 +193,8 @@ class ShowHallView(generic.ListView):
         """
 
         discipline = self.get_discipline()
-
         halls = HallOfFame.objects.filter(discipline=discipline)
 
-        print(halls)
 
 
         return halls

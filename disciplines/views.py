@@ -260,7 +260,7 @@ class EnterDisciplineView(LoginRequiredMixin, FormView):
         if success:
             messages.success(
                 self.request,
-                _("You have been entered into the discipline: {0}"
+                _("You have entered the discipline: {0}"
                   .format(discipline.title))
             )
 
@@ -277,7 +277,7 @@ class EnterDisciplineView(LoginRequiredMixin, FormView):
         if discipline.monitors.count() >= discipline.monitors_limit:
             messages.error(
                 self.request,
-                _("There are no more vacancies to monitor")
+                _("There are no more monitor vacancies")
             )
 
             return False
@@ -710,7 +710,7 @@ class InsertStudentView(LoginRequiredMixin,
         if discipline.monitors.count() >= discipline.monitors_limit:
             messages.error(
                 self.request,
-                _("There are no more vacancies to monitor")
+                _("There are no more monitor vacancies")
             )
 
             return False
