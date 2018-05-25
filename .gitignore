@@ -114,7 +114,3 @@ db.sqlite3
 \.vscode/
 
 *.pyc
-
-hallOfFame/migrations/
-
-rankingGroup/migrations/
