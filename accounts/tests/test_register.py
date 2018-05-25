@@ -200,6 +200,10 @@ class RegisterTestCase(TestCase):
         )
 
     def register_error(self, data, field, error):
+        """
+        Method to execute a register validation with errors
+        """
+
         self.assertEquals(User.objects.count(), 1)
         response = self.client.post(self.register_url, data)
         self.assertFormError(

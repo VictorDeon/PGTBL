@@ -110,7 +110,7 @@ Assim como o SD, o modelo SR também é composto por ligações de dependência:
 
    - **OR e OR**: uma das duas irá acontecer.
 
-![i__sr](https://user-images.githubusercontent.com/14116020/38155590-fc4b12ca-344e-11e8-82fc-45183b9712f5.png)
+![i__sr](https://user-images.githubusercontent.com/14116020/40564986-3174de68-6041-11e8-9b78-2b853ddc4ded.png)
 
 ***
 ## 5. Framework NFR
