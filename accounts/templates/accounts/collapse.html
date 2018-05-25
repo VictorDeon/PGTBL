@@ -129,6 +129,7 @@
                           title="{% trans 'Hall of Fame' %}">
                           <i class="fa fa-trophy"></i>
                         </a>
+                    </div>
                       {% else %}
                         <a
                           class="btn btn-primary btn-class"
@@ -140,7 +141,6 @@
                         </a>
                         {% include "accounts/info_hall.html" %}
                       {% endif %}
-                    </div>
 
                     <!-- Discipline owner features -->
                     {% if discipline.teacher == user %}

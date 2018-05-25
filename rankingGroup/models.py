@@ -19,7 +19,8 @@ class Ranking(models.Model):
 class GroupInfo(models.Model):
 
     ranking = models.ForeignKey(
-        Ranking
+        Ranking,
+        related_name="groups_info"
     )
 
     group = models.OneToOneField(
