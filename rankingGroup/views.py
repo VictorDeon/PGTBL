@@ -1,6 +1,7 @@
 # Django app
 from django.views import generic
 from django.contrib import messages
+from django.core.urlresolvers import reverse_lazy
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -40,7 +41,7 @@ class ShowRankingGroupView(LoginRequiredMixin,
 
         messages.error(
             self.request,
-            _("You are not authorized to do this action.")
+            ("You are not authorized to do this action.")
         )
 
         failure_redirect_path = reverse_lazy(
@@ -67,8 +68,12 @@ class ShowRankingGroupView(LoginRequiredMixin,
         """
 
         discipline = self.get_discipline()
+        sessions = []
+        try:
+            sessions = TBLSession.objects.filter(discipline=discipline,is_closed=True)
+        except Exception as e:
+            sessions = []
 
-        sessions = TBLSession.objects.filter(discipline=discipline,is_closed=True)
 
         return sessions
 
@@ -115,20 +120,6 @@ class ShowRankingGroupView(LoginRequiredMixin,
 
         return ordered_list
 
-    # def set_position_in_ranking(self):
-
-    #     ranking = self.get_ranking()
-
-    #     i = 1 
-    #     for group in ranking: 
-    #         final_list.append({ 
-    #             'position': i, 
-    #             'obj':group, 
-    #         }) 
-    #         i = i + 1 
-         
-    #     return final_list 
-
 
     def get_session_grades(self, session):
 
@@ -144,7 +135,6 @@ class ShowRankingGroupView(LoginRequiredMixin,
 
         context = super(ShowRankingGroupView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
-        # context['groups_with_positions'] = self.set_position_in_ranking()
 
         return context
 
