@@ -20,6 +20,7 @@ class HallOfFame(models.Model):
 
         discipline = models.ForeignKey(
             Discipline,
+            related_name="halls"
 
         )
 

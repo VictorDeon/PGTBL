@@ -13,8 +13,12 @@
 {% endblock %}
 
 {% block breadcrumb %}
-  {{ block.super }}
-
+  {# {{ block.super }}
+  <li>
+    <a href="{% url 'disciplines:details' discipline.slug %}">
+      {{discipline.title}}
+    </a>
+  </li> #}
 {% endblock %}
 
 {% block content %}
