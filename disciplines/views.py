@@ -371,11 +371,14 @@ class CloseDisciplineView(LoginRequiredMixin,
         Close or open discipline.
         """
 
+
+
         discipline = self.get_object()
 
         redirect_url = reverse_lazy(
             'disciplines:details',
-            kwargs={'slug': discipline.slug}
+            kwargs={'slug': discipline.slug},
+
         )
 
         if discipline.is_closed:
@@ -386,6 +389,14 @@ class CloseDisciplineView(LoginRequiredMixin,
             discipline.is_closed = True
 
         discipline.save()
+
+        # Show message for discipline status
+        if discipline.is_closed:
+            success_message = "Discipline was closed successfully."
+            messages.success(self.request, success_message)
+        else:
+            success_message = "Discipline was open successfully."
+            messages.success(self.request, success_message)
 
         return redirect(redirect_url)
 
