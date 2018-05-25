@@ -338,8 +338,6 @@ class ShowDisciplineView(LoginRequiredMixin,
         context = super(ShowDisciplineView, self).get_context_data(**kwargs)
         context['ranking'] = self.get_ranking()
 
-        print(discipline.is_closed)
-
         return context
 
 
@@ -352,8 +350,6 @@ class ShowDisciplineView(LoginRequiredMixin,
             ranking = Ranking.objects.get(discipline=discipline)
         except Ranking.DoesNotExist:
             ranking = None
-
-        print(ranking)
 
         return ranking
 

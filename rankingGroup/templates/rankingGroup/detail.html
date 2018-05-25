@@ -41,52 +41,58 @@
   <div class="row fix-row">
     <div class="col-sm-12">
       <div class="panel-group">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            Ranking Group
-            <span><i class="fa fa-flag-checkered"></i></span>
-          </div>
-          {% for item in ranking_of_groups %}
+        {% if ranking_of_groups %}
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              Ranking Group
+              <span><i class="fa fa-flag-checkered"></i></span>
+            </div>
+            {% for item in ranking_of_groups %}
 
-            <div class="panel-body">
-              <div class="media">
-                <div class="media-body">
-                  <h2 class="media-heading">{{item.1.group.group_info.group.title|capfirst}}</h2>
-                  <div class="row">
-                    {% for student in item.1.group.group_info.group.students.all%}
-                      <div class="col-sm-2">
-                        <figure>
-                          <img src="{% static 'rankingGroup/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
-                          <figcaption>{{student.name|capfirst}}</figcaption>
-                        </figure>
-                      </div>
-                    {% endfor %}
+              <div class="panel-body">
+                <div class="media">
+                  <div class="media-body">
+                    <h2 class="media-heading">{{item.1.group.group_info.group.title|capfirst}}</h2>
+                    <div class="row">
+                      {% for student in item.1.group.group_info.group.students.all%}
+                        <div class="col-sm-2">
+                          <figure>
+                            <img src="{% static 'rankingGroup/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
+                            <figcaption>{{student.name|capfirst}}</figcaption>
+                          </figure>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="media-right">
+                    {% if item.0 == 1 %}
+                      <span class="position">{{item.0}}º</span>
+                      <span class="first"><i class="fa fa-trophy"></i></span>
+                    {% endif %}
+                    {% if item.0 == 2 %}
+                      <span class="position">{{item.0}}º</span>
+                      <span class="second"><i class="fa fa-trophy"></i></span>
+                    {% endif %}
+                    {% if item.0 == 3 %}
+                      <span class="position">{{item.0}}º</span>
+                      <span class="third"><i class="fa fa-trophy"></i></span>
+                    {% endif %}
+                    {% if item.0 != 3 and item.0 != 2 and item.0 != 1 %}
+                      <span class="position">{{item.0}}º</span>
+                      <span class=""><i class="fa fa-trophy"></i></span>
+                    {% endif %}
                   </div>
                 </div>
-                <div class="media-right">
-                  {% if item.0 == 1 %}
-                    <span class="position">{{item.0}}º</span>
-                    <span class="first"><i class="fa fa-trophy"></i></span>
-                  {% endif %}
-                  {% if item.0 == 2 %}
-                    <span class="position">{{item.0}}º</span>
-                    <span class="second"><i class="fa fa-trophy"></i></span>
-                  {% endif %}
-                  {% if item.0 == 3 %}
-                    <span class="position">{{item.0}}º</span>
-                    <span class="third"><i class="fa fa-trophy"></i></span>
-                  {% endif %}
-                  {% if item.0 != 3 and item.0 != 2 and item.0 != 1 %}
-                    <span class="position">{{item.0}}º</span>
-                    <span class=""><i class="fa fa-trophy"></i></span>
-                  {% endif %}
-                </div>
+                <hr />
               </div>
-              <hr />
-            </div>
 
-          {% endfor %}
-        </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="alert alert-warning">
+          <strong>The ranking can not be shown!</strong>.There aren't grades of all groups.
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
