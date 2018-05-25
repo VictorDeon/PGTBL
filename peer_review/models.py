@@ -1,36 +1,29 @@
-from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
-from django.utils.safestring import mark_safe
 from django.db import models
-
-# App imports
-from groups.models import Group
 
 
 class PeerReview(models.Model):
 
-    group = models.ForeignKey(
-        Group,
-        on_delete=models.CASCADE,
-        related_name='peer_review'
+    username_received = models.CharField(
+        _('User'),
+        max_length=30,
     )
 
-    title = models.CharField(
-        _('Title'),
-        max_length=200,
-        help_text=_('Session title.')
+    username_gave = models.CharField(
+        _('User'),
+        max_length=30,
     )
 
     feedback = models.TextField(
         _('Feedback'),
-        help_text = _('Feedback about your teammate ')
+        help_text=_('Feedback about your teammate ')
     )
 
     score = models.PositiveSmallIntegerField(
         _("Score"),
-        default = 0,
-        blank = True,
-        help_text = _("Score your teammate")
+        default=0,
+        blank=True,
+        help_text=_("Score your teammate")
     )
 
     def __str__(self):
@@ -39,4 +32,9 @@ class PeerReview(models.Model):
         the object.
         """
 
-        return '{0}'.format(self.title)
+        return '{0}'.format(self.username_received)
+
+    class Meta:
+        verbose_name = _('PeerReview')
+        verbose_name_plural = _('PeerReviews')
+        ordering = ['username_received', 'username_gave']
