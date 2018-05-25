@@ -1,6 +1,7 @@
 {% extends "core/base.html" %}
 {% load static %}
 {% load i18n %}
+{% load widget_tweaks %}
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'peer_review/css/home.css' %}">
@@ -42,24 +43,27 @@
                   <div class="panel panel-default">
                     <div class="panel-body">
                       <form method="post" action="irat_result.html">
+                        {% csrf_token %}
                         {% for student in students %}
                             <div class="row">
                               <div class="col-sm-2">
                               <!-- Student photo -->
                               {% if student.photo %}
-                                  <img src="{{student.photo.url}}" class="media-object" style="width:80px">
+                                  <img src="{{student.photo.url}}" class="img-thumbnail img-responsive" alt="Aluno">
                               {% else %}
-                                  <img src="{% static 'peer_review/img/user.png' %}" class="media-object" style="width:100px">
+                                  <img src="{% static 'peer_review/img/user.png' %}" class="img-thumbnail img-responsive" alt="Aluno">
                               {% endif %}
                                 <div class="form-group">
-                                  <input type="number" class="form-control number" name="point" min="0" max="100" placeholder="Pontuação">
+                                  {% render_field form.score class="form-control number" max="100.0" placeholder="Score" %}
                                 </div>
                               </div>
                               <div class="col-sm-10">
                                 <h3>{{student.get_full_name}}</h3>
                                 <div class="form-group">
-                                  <label for="comment">Comentário:</label>
-                                  <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
+                                  <form >
+                                  <label for="comment">Feedback:</label>
+                                  {% render_field form.feedback class="form-control" placeholder="Feedback" %}
+                                </form>
                                 </div>
                               </div>
                             </div>

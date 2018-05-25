@@ -10,6 +10,7 @@ from django.views.generic import (
 # Application imoports
 from TBLSessions.models import TBLSession
 from disciplines.models import Discipline
+from .forms import PeerReviewForm
 
 # Get the custom user from settings
 User = get_user_model()
@@ -27,6 +28,7 @@ class PeerReviewView(LoginRequiredMixin, ListView):
         context = super(PeerReviewView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
+        context['form'] = PeerReviewForm()
 
         return context
 
@@ -70,3 +72,16 @@ class PeerReviewView(LoginRequiredMixin, ListView):
         )
 
         return session
+
+    def get_peer_review(request):
+        if request.method == "POST":
+            form = PeerReviewForm(request.POST)
+            if form.is_valid():
+                peer = form.save(commit=False)
+                #peer.username_received = ??
+                #peer.username_gave = User
+                peer.save()
+                #return redirect('post_detail', pk=post.pk)
+            else:
+                form = PostForm()
+    #return render(request, '#', {'form': form})
