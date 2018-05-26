@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from django.views.generic import (
     CreateView, ListView, UpdateView, FormView, DeleteView
 )
+from django.http import HttpResponseRedirect
 
 # Application imoports
 from TBLSessions.models import TBLSession
@@ -74,7 +75,7 @@ class PeerReviewView(LoginRequiredMixin, ListView):
         return session
 
     def get_peer_review(request):
-        if request.method == "POST":
+        if request.POST:
             form = PeerReviewForm(request.POST)
             if form.is_valid():
                 peer = form.save(commit=False)
