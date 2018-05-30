@@ -30,7 +30,7 @@
                 <div class="panel-heading">
                   <div class="row">
                     <div class="col-sm-11 text-center">
-                      <b>Peer Evaluation</b>
+                      <b>Peer Review</b>
                     </div>
                     <div class="col-sm-1">
                       <a href="#" class="roles pull-right" data-toggle="modal" data-target="#myModal">
@@ -42,40 +42,38 @@
                 <div class="panel-body">
                   <div class="panel panel-default">
                     <div class="panel-body">
-                      <form method="post" action="irat_result.html">
-                        {% csrf_token %}
+
+                        <form method="post" action="" class="post-form">{% csrf_token %}
                         {% for student in students %}
                             <div class="row">
                               <div class="col-sm-2">
+                              <input type="hidden" name="username_gave" value="{{user.get_full_name}}">
                               <!-- Student photo -->
                               {% if student.photo %}
-                                  <img src="{{student.photo.url}}" class="img-thumbnail img-responsive" alt="Aluno">
+                                  <img src="{{student.photo.url}}" class="img-thumbnail img-responsive" alt="Student">
                               {% else %}
-                                  <img src="{% static 'peer_review/img/user.png' %}" class="img-thumbnail img-responsive" alt="Aluno">
+                                  <img src="{% static 'peer_review/img/user.png' %}" class="img-thumbnail img-responsive" alt="Student">
                               {% endif %}
-                              <div class="col-sm-10">
-                                <b>Grade:</b>
-                              </div>
                                 <div class="form-group">
-                                  {% render_field form.score class="form-control number" max="100.0" placeholder="Score" %}
+                                  <input type="number" class="form-control number" name="score" min="0" max="100" placeholder="Score">
                                 </div>
                               </div>
                               <div class="col-sm-10">
                                 <h3>{{student.get_full_name}}</h3>
+                                <input type="hidden" name="username_received" value="{{student.get_full_name}}">
                                 <div class="form-group">
-                                  <form >
                                   <label for="comment">Feedback:</label>
-                                  {% render_field form.feedback class="form-control" placeholder="Feedback" %}
-                                </form>
+                                  <textarea class="form-control" rows="5" id="comment" name="feedback"></textarea>
                                 </div>
                               </div>
                             </div>
                             <hr />
                         {% endfor %}
                         <button type="submit" class="btn btn-primary btn-block">
-                          Submit <i class="fa fa-send"></i>
+                          Submit Peer Review<i class="fa fa-send"></i>
                         </button>
                       </form>
+
                     </div>
                   </div>
                 </div>
