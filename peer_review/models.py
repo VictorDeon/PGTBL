@@ -4,6 +4,11 @@ from django.db import models
 
 class PeerReview(models.Model):
 
+    session = models.PositiveSmallIntegerField(
+        _('Session'),
+        default=0,
+    )
+
     username_received = models.CharField(
         _('User'),
         max_length=30,
@@ -20,11 +25,12 @@ class PeerReview(models.Model):
     )
 
     score = models.PositiveSmallIntegerField(
-        _("Score"),
+        _('Score'),
         default=0,
         blank=True,
         help_text=_("Score your teammate")
     )
+
 
     def __str__(self):
         """
