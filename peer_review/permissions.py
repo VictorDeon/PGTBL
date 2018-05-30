@@ -11,7 +11,7 @@ def only_student_can_change(permission, user, view):
 
     discipline = view.get_discipline()
 
-    if user in discipline.student.all():
+    if user in discipline.students.all():
         return True
 
     return False
