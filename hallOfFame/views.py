@@ -172,6 +172,16 @@ class ShowHallView(generic.ListView):
             obj.save()
 
         return ranking
+    
+    def search_disciplines(self):
+        """
+        Search from disciplines a specific discipline.
+        """
+        query = self.request.GET.get("q_info")
+
+        return query
+
+
 
 
     def get_context_data(self, **kwargs):
@@ -192,9 +202,12 @@ class ShowHallView(generic.ListView):
         Get the info_group queryset from model database.
         """
 
+        year = self.search_disciplines()
         discipline = self.get_discipline()
-        halls = HallOfFame.objects.filter(discipline=discipline).order_by('-year', '-semester')
-
+        if(year):
+            halls = HallOfFame.objects.filter(discipline=discipline, year=year).order_by('-year', '-semester')
+        else:
+            halls = HallOfFame.objects.filter(discipline=discipline).order_by('-year', '-semester')
 
 
         return halls

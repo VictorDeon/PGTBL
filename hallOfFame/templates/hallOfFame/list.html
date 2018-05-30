@@ -54,7 +54,22 @@
           <div class="col-sm-8 white">
             <p class="pull-left"><i class="fa fa-users"></i> Grupos vencedores de cada semestre</p>
           </div>
-          
+          <div class="col-sm-4">
+            <form method="get">
+              <input
+              type="search"
+              class="form-control"
+              name="q_info"
+              value="{{ request.GET.q_info }}"
+              placeholder="{% trans 'Search' %}"
+              />
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </form> 
+          </div>     
         </div>
 
         <br />
