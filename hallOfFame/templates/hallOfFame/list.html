@@ -51,27 +51,25 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-8 white">
+          <div class="col-sm-10 white">
             <p class="pull-left"><i class="fa fa-users"></i> Grupos vencedores de cada semestre</p>
           </div>
-          <div class="col-sm-4">
-            <form method="get">
-              <input
-              type="search"
-              class="form-control"
-              name="q_info"
-              value="{{ request.GET.q_info }}"
-              placeholder="{% trans 'Search' %}"
-              />
-              <div class="input-group-append">
-                <button class="btn btn-primary" style="position: absolute; top: 0px; right: 10px;" type="submit">
-                  <i class="fa fa-search"></i>
-                </button>
-              </div>
-            </form> 
-          </div>     
+          <div class="row">
+              <form method="get">
+                  <div class="col-lg-2">
+                      <div class="input-group">
+                      <input type="search" class="form-control" name="q_info" value="{{ request.GET.q_info }}" placeholder="{% trans 'Search by year' %}"/>
+                      <span class="input-group-btn">
+                          <button class="btn btn-primary" type="submit">
+                              <i class="fa fa-search"></i>
+                          </button>
+                      </span>
+                      </div>
+                  </div>
+              </form>
+          </div>      
         </div>
-
+        <br>
         <br />
         <div class="row">
           <div class="col-sm-12">
