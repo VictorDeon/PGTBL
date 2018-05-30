@@ -193,7 +193,7 @@ class ShowHallView(generic.ListView):
         """
 
         discipline = self.get_discipline()
-        halls = HallOfFame.objects.filter(discipline=discipline)
+        halls = HallOfFame.objects.filter(discipline=discipline).order_by('-year', '-semester')
 
 
 
