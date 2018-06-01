@@ -26,7 +26,6 @@ class PeerReview(models.Model):
 
     score = models.PositiveSmallIntegerField(
         _('Score'),
-        default=0,
         blank=True,
         help_text=_("Score your teammate")
     )
@@ -44,3 +43,16 @@ class PeerReview(models.Model):
         verbose_name = _('PeerReview')
         verbose_name_plural = _('PeerReviews')
         ordering = ['username_received', 'username_gave']
+
+class PeerReviewFormModel(models.Model):
+
+    feedback = models.TextField(
+        _('Feedback'),
+        help_text=_('Feedback about your teammate ')
+    )
+
+    score = models.PositiveSmallIntegerField(
+        _('Score'),
+        blank=True,
+        help_text=_("Score your teammate")
+    )
