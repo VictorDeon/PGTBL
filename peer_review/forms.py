@@ -1,11 +1,42 @@
 from django import forms
-from .models import PeerReview
+from .models import PeerReview, PeerReviewFormModel
 
-class PeerReviewForm(forms.ModelForm):
+
+class Student1Form(forms.ModelForm):
 
     class Meta:
-        model = PeerReview
-        fields = ['username_received',
-                  'username_gave',
-                  'feedback',
+        model = PeerReviewFormModel
+        fields = ['feedback',
+                  'score']
+
+
+class Student2Form(forms.ModelForm):
+
+    class Meta:
+        model = PeerReviewFormModel
+        fields = ['feedback',
+                  'score']
+
+
+class Student3Form(forms.ModelForm):
+
+    class Meta:
+        model = PeerReviewFormModel
+        fields = ['feedback',
+                  'score']
+
+
+class Student4Form(forms.ModelForm):
+
+    class Meta:
+        model = PeerReviewFormModel
+        fields = ['feedback',
+                  'score']
+
+
+class Student5Form(forms.ModelForm):
+
+    class Meta:
+        model = PeerReviewFormModel
+        fields = ['feedback',
                   'score']
