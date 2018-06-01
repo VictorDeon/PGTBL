@@ -16,7 +16,7 @@ from TBLSessions.models import TBLSession
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from peer_review.models import PeerReview
-from .forms import PeerReviewForm
+from .forms import Student1Form, Student2Form, Student3Form, Student4Form, Student5Form
 
 # Get the custom user from settings
 User = get_user_model()
@@ -31,36 +31,94 @@ class PeerReviewView(LoginRequiredMixin,
 
     template_name = 'peer_review/peer.html'
     success_url = reverse_lazy('accounts:profile')
-    form_class = PeerReviewForm
+    form_class = Student1Form
     permissions_required = [
         'only_student_can_change'
     ]
 
-    def form_valid(self, form):
+    def post(self, request, *args, **kwargs):
+        """
+        Handle POST requests: instantiate a form instance with the passed
+        POST variables and then check if it's valid.
+        """
+        discipline = self.get_discipline()
+        students = self.get_all_students(discipline)
+
+        form1 = Student1Form(request.POST, prefix='student1')
+        form2 = Student2Form(request.POST, prefix='student2')
+        form3 = Student3Form(request.POST, prefix='student3')
+        form4 = Student4Form(request.POST, prefix='student4')
+        form5 = Student5Form(request.POST, prefix='student5')
+
+        if students.count() > 0:
+            if form1.is_valid():
+                self.form_valid(form1, 1)
+            else:
+                messages.info(request, 'Your first form is invalid!')
+                return self.form_invalid(form1)
+
+        if students.count() > 1:
+            if form2.is_valid():
+                self.form_valid(form2, 2)
+            else:
+                messages.info(request, 'Your second form is invalid!')
+                return self.form_invalid(form2)
+
+        if students.count() > 2:
+            if form3.is_valid():
+                self.form_valid(form3, 3)
+            else:
+                messages.info(request, 'Your third form is invalid!')
+                return self.form_invalid(form3)
+
+        if students.count() > 3:
+            if form4.is_valid():
+                self.form_valid(form4, 4)
+            else:
+                messages.info(request, 'Your fourth form is invalid!')
+                return self.form_invalid(form4)
+
+        if students.count() > 4:
+            if form5.is_valid():
+                self.form_valid(form5, 5)
+            else:
+                messages.info(request, 'Your fifth form is invalid!')
+                return self.form_invalid(form5)
+
+        return HttpResponseRedirect(self.get_success_url())
+
+    def form_valid(self, form, student_index):
 
         """
         Receive the form already validated to create an Peer Review
         """
-
+        discipline = self.get_discipline()
+        students = self.get_all_students(discipline)
         session = self.get_session().id
-        username_gave = form.cleaned_data.get('username_gave')
-        username_received = form.cleaned_data.get('username_received')
-        feedback = form.cleaned_data.get('feedback')
-        score = form.cleaned_data.get('score')
 
-        peer_review = self.return_existent_review(username_gave, username_received, session)
+        i = 1
+        for student in students:
+            if i == student_index:
+                username_gave = User.name
+                username_received = student.get_full_name()
 
-        peer_review.username_gave = username_gave
-        peer_review.username_received = username_received
-        peer_review.feedback = feedback
-        if score is None:
-            peer_review.score = 0
-        else:
-            peer_review.score = score
-        peer_review.session = session
-        peer_review.save()
+                print(username_gave)
+                print(username_received)
 
-        return super(PeerReviewView, self).form_valid(peer_review)
+                peer_review = self.return_existent_review(username_gave, username_received, session)
+
+                peer_review.username_gave = username_gave
+                peer_review.username_received = username_received
+                peer_review.session = session
+                peer_review.feedback = form.cleaned_data.get('feedback')
+
+                if form.cleaned_data.get('score') is None:
+                    peer_review.score = 0
+                else:
+                    peer_review.score = form.cleaned_data.get('score')
+                peer_review.save()
+            i += 1
+        # return super(PeerReviewView, self).form_valid(peer_review)
 
     def return_existent_review(self, username_gave, username_received, session):
 
@@ -84,8 +142,33 @@ class PeerReviewView(LoginRequiredMixin,
         context = super(PeerReviewView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
-        context['students'] = self.get_all_students(self.get_discipline())
-        context['form'] = PeerReviewForm()
+        context['student1'] = None
+        context['student2'] = None
+        context['student3'] = None
+        context['student4'] = None
+        context['student5'] = None
+
+        discipline = self.get_discipline()
+        students = self.get_all_students(discipline)
+
+        i = 1
+        for student in students:
+            if i == 1:
+                context['student1'] = student
+                context['form1'] = Student1Form(prefix='student1')
+            elif i == 2:
+                context['student2'] = student
+                context['form2'] = Student2Form(prefix='student2')
+            elif i == 3:
+                context['student3'] = student
+                context['form3'] = Student3Form(prefix='student3')
+            elif i == 4:
+                context['student4'] = student
+                context['form4'] = Student4Form(prefix='student4')
+            elif i == 5:
+                context['student5'] = student
+                context['form5'] = Student5Form(prefix='student5')
+            i += 1
 
         return context
 
@@ -99,6 +182,12 @@ class PeerReviewView(LoginRequiredMixin,
         )
 
         return discipline
+
+    def get_User_full_name(self):
+
+        name = User.get_full_name
+
+        return name
 
     def get_session(self):
         """
