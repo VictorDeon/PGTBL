@@ -47,7 +47,7 @@
 
                         <!--First Student-->
 
-                        {% if student1 is not None %}
+                        {% if student1 is not None and user.get_full_name != student1.get_full_name %}
                         <div class="row">
                           <div class="col-sm-2">
                           <!-- Student photo -->
@@ -73,7 +73,7 @@
 
                         <!--Second student-->
 
-                        {% if student2 is not None %}
+                        {% if student2 is not None and user.get_full_name != student2.get_full_name %}
                         <div class="row">
                           <div class="col-sm-2">
                           <!-- Student photo -->
@@ -98,7 +98,7 @@
                         {% endif %}
 
                             <!--Third Student-->
-                        {% if student3 is not None %}
+                        {% if student3 is not None and user.get_full_name != student3.get_full_name %}
                         <div class="row">
                           <div class="col-sm-2">
                           <!-- Student photo -->
@@ -123,7 +123,7 @@
                         {% endif %}
 
                             <!--Fourth Student-->
-                        {% if student4 is not None %}
+                        {% if student4 is not None and user.get_full_name != student4.get_full_name %}
                         <div class="row">
                           <div class="col-sm-2">
                           <!-- Student photo -->
@@ -148,7 +148,7 @@
                         {% endif %}
 
                             <!--Fifth Student-->
-                        {% if student5 is not None %}
+                        {% if student5 is not None and user.get_full_name != student5.get_full_name %}
                         <div class="row">
                           <div class="col-sm-2">
                           <!-- Student photo -->
