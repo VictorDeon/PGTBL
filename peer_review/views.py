@@ -1,14 +1,13 @@
 from django.contrib import messages
 from django.db.models import Q
-from django.http import HttpResponseRedirect, request
-from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 
 # Django imports
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.views.generic import (
-    ListView, FormView
+    FormView
 )
 
 # Application imports
@@ -99,11 +98,8 @@ class PeerReviewView(LoginRequiredMixin,
         i = 1
         for student in students:
             if i == student_index:
-                username_gave = User.name
+                username_gave = self.request.user.get_full_name()
                 username_received = student.get_full_name()
-
-                print(username_gave)
-                print(username_received)
 
                 peer_review = self.return_existent_review(username_gave, username_received, session)
 
@@ -118,7 +114,6 @@ class PeerReviewView(LoginRequiredMixin,
                     peer_review.score = form.cleaned_data.get('score')
                 peer_review.save()
             i += 1
-        # return super(PeerReviewView, self).form_valid(peer_review)
 
     def return_existent_review(self, username_gave, username_received, session):
 
@@ -183,12 +178,6 @@ class PeerReviewView(LoginRequiredMixin,
 
         return discipline
 
-    def get_User_full_name(self):
-
-        name = User.get_full_name
-
-        return name
-
     def get_session(self):
         """
         Take the session that the group belongs to
@@ -205,8 +194,16 @@ class PeerReviewView(LoginRequiredMixin,
 
     def get_all_students(self, discipline):
         """
-        Get students from dicipline
+        Get students from dicipline except the current user
         """
-        students = discipline.students.all()
+        user_logged_in = self.get_user_logged_in()
+        students = discipline.students.exclude(email=user_logged_in.email)
 
         return students
+
+    def get_user_logged_in(self):
+        user_logged_in = None
+        if self.request.user.is_authenticated():
+            user_logged_in = self.request.user
+
+        return user_logged_in
