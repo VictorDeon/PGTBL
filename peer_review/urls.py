@@ -9,6 +9,16 @@ review_patterns = [
         views.PeerReviewView.as_view(),
         name='review'
     ),
+    url(
+        r'^review-result/$',
+        views.PeerReviewResultView.as_view(),
+        name='result'
+    ),
+    url(
+        r'^update-peer-review/$',
+        views.PeerReviewUpdateView.as_view(),
+        name='review-update'
+    ),
 ]
 
 urlpatterns = [

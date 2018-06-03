@@ -4,17 +4,17 @@ from .models import PeerReview
 
 class PeerReviewAdmin(admin.ModelAdmin):
     list_display = ('session',
-                    'username_received',
-                    'username_gave',
+                    'student',
+                    'reviewed_by',
                     'feedback',
                     'score')
     search_fields = ['session',
-                     'username_received',
-                     'username_gave',
+                     'student',
+                     'reviewed_by',
                      'score']
     list_filter = ['session',
-                   'username_received',
-                   'username_gave',
+                   'student',
+                   'reviewed_by',
                    'score']
 
 
