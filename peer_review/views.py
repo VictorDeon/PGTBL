@@ -1,12 +1,10 @@
-from django.contrib import messages
-from django.db.models import Q
-from django.http import HttpResponseRedirect
-
 # Django imports
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404
+from django.contrib import messages
 from django.urls import reverse_lazy
+from django.db.models import Q
+from django.http import HttpResponseRedirect
 from django.views.generic import (
     FormView
 )
@@ -36,32 +34,6 @@ class PeerReviewView(LoginRequiredMixin,
         'only_student_can_change'
     ]
 
-    def sum_of_scores(self, form1, form2, form3, form4, form5):
-        scores = int(self.return_score(form1)) + \
-                 int(self.return_score(form2)) + \
-                 int(self.return_score(form3)) + \
-                 int(self.return_score(form4)) + \
-                 int(self.return_score(form5))
-
-        if scores == 100:
-            return False
-
-        return True
-
-    def return_score(self, form):
-        if form.is_valid():
-            return form.cleaned_data['score']
-        else:
-            return 0
-
-    def form_validation(self, form, count, index):
-        if count > index:
-            if form.is_valid():
-                self.form_valid(form, index+1)
-            else:
-                return self.form_invalid(form)
-
-
     def post(self, request, *args, **kwargs):
         """
         Handle POST requests: instantiate a form instance with the passed
@@ -78,8 +50,8 @@ class PeerReviewView(LoginRequiredMixin,
         form5 = Student5Form(request.POST, prefix='student5')
 
         if self.sum_of_scores(form1, form2, form3, form4, form5):
-            messages.error(request, 'Make sure the sum of scores is 100')
-
+            messages.error(request, 'ERROR: Your review was not saved! Make sure the sum of scores is 100')
+            return HttpResponseRedirect(reverse_lazy('TBLSessions:details', kwargs={'slug': discipline.slug, 'pk': session.id}))
         else:
 
             self.form_validation(form1, students.count(), 0)
@@ -87,6 +59,8 @@ class PeerReviewView(LoginRequiredMixin,
             self.form_validation(form3, students.count(), 2)
             self.form_validation(form4, students.count(), 3)
             self.form_validation(form5, students.count(), 4)
+
+            messages.success(request, 'Your review was saved successfully!')
 
             return HttpResponseRedirect(self.get_success_url())
 
@@ -119,6 +93,31 @@ class PeerReviewView(LoginRequiredMixin,
                 peer_review.save()
             i += 1
 
+    def sum_of_scores(self, form1, form2, form3, form4, form5):
+        scores = int(self.return_score(form1)) + \
+                 int(self.return_score(form2)) + \
+                 int(self.return_score(form3)) + \
+                 int(self.return_score(form4)) + \
+                 int(self.return_score(form5))
+
+        if scores == 100:
+            return False
+
+        return True
+
+    def return_score(self, form):
+        if form.is_valid():
+            return form.cleaned_data['score']
+        else:
+            return 0
+
+    def form_validation(self, form, count, index):
+        if count > index:
+            if form.is_valid():
+                self.form_valid(form, index+1)
+            else:
+                return self.form_invalid(form)
+
     def return_existent_review(self, username_gave, username_received, session):
 
         """
@@ -136,34 +135,6 @@ class PeerReviewView(LoginRequiredMixin,
             peer_review = PeerReview()
 
         return peer_review
-
-    def return_existent_form_data(self, username_gave, username_received, session):
-
-        """
-        Check if review already exists
-        """
-        try:
-            # peer_review = get_object_or_404(PeerReview,
-            #                                 username_gave=username_gave,
-            #                                 username_received=username_received,
-            #                                 session=session)
-
-            query = PeerReview.objects.get(
-                username_gave=username_gave,
-                username_received=username_received,
-                session=session,
-            )
-            peer_review = query
-
-            if peer_review.score is not None:
-                data = {'score': peer_review.score,
-                        'feedback': peer_review.feedback}
-            else:
-                data = None
-        except PeerReview.DoesNotExist:
-            data = None
-
-        return data
 
     def get_form_data(self, peer_review):
         if peer_review.score is not None:
