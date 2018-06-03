@@ -92,15 +92,22 @@
     </a>
 
     <!-- Session peer test menu -->
-    {% if user.get_full_name != discipline.teacher.get_full_name %}
+    {% if user in discipline.students.all and session.peer_review_available %}
        <a href="{% url 'peer_review:review' discipline.slug session.id %}"
-
        class="btn"
        data-toggle="tooltip"
        data-placement="right"
        title="{% trans 'Peer Review' %}">
        <i class="fa fa-vcard-o icon-lg"></i>
     </a>
+    {% elif user == discipline.teacher%}
+      <a href="{% url 'peer_review:result' discipline.slug session.id %}"
+         class="btn"
+         data-toggle="tooltip"
+         data-placement="right"
+         title="{% trans 'Peer Review Result' %}">
+         <i class="fa fa-vcard-o icon-lg"></i>
+      </a>
     {% endif %}
 
     <!-- Session appeal menu -->
