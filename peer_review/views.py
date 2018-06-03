@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 # Django imports
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import (
     FormView
@@ -35,6 +36,32 @@ class PeerReviewView(LoginRequiredMixin,
         'only_student_can_change'
     ]
 
+    def sum_of_scores(self, form1, form2, form3, form4, form5):
+        scores = int(self.return_score(form1)) + \
+                 int(self.return_score(form2)) + \
+                 int(self.return_score(form3)) + \
+                 int(self.return_score(form4)) + \
+                 int(self.return_score(form5))
+
+        if scores == 100:
+            return False
+
+        return True
+
+    def return_score(self, form):
+        if form.is_valid():
+            return form.cleaned_data['score']
+        else:
+            return 0
+
+    def form_validation(self, form, count, index):
+        if count > index:
+            if form.is_valid():
+                self.form_valid(form, index+1)
+            else:
+                return self.form_invalid(form)
+
+
     def post(self, request, *args, **kwargs):
         """
         Handle POST requests: instantiate a form instance with the passed
@@ -42,6 +69,7 @@ class PeerReviewView(LoginRequiredMixin,
         """
         discipline = self.get_discipline()
         students = self.get_all_students(discipline)
+        session = self.get_session()
 
         form1 = Student1Form(request.POST, prefix='student1')
         form2 = Student2Form(request.POST, prefix='student2')
@@ -49,42 +77,18 @@ class PeerReviewView(LoginRequiredMixin,
         form4 = Student4Form(request.POST, prefix='student4')
         form5 = Student5Form(request.POST, prefix='student5')
 
-        if students.count() > 0:
-            if form1.is_valid():
-                self.form_valid(form1, 1)
-            else:
-                messages.info(request, 'Your first form is invalid!')
-                return self.form_invalid(form1)
+        if self.sum_of_scores(form1, form2, form3, form4, form5):
+            messages.error(request, 'Make sure the sum of scores is 100')
 
-        if students.count() > 1:
-            if form2.is_valid():
-                self.form_valid(form2, 2)
-            else:
-                messages.info(request, 'Your second form is invalid!')
-                return self.form_invalid(form2)
+        else:
 
-        if students.count() > 2:
-            if form3.is_valid():
-                self.form_valid(form3, 3)
-            else:
-                messages.info(request, 'Your third form is invalid!')
-                return self.form_invalid(form3)
+            self.form_validation(form1, students.count(), 0)
+            self.form_validation(form2, students.count(), 1)
+            self.form_validation(form3, students.count(), 2)
+            self.form_validation(form4, students.count(), 3)
+            self.form_validation(form5, students.count(), 4)
 
-        if students.count() > 3:
-            if form4.is_valid():
-                self.form_valid(form4, 4)
-            else:
-                messages.info(request, 'Your fourth form is invalid!')
-                return self.form_invalid(form4)
-
-        if students.count() > 4:
-            if form5.is_valid():
-                self.form_valid(form5, 5)
-            else:
-                messages.info(request, 'Your fifth form is invalid!')
-                return self.form_invalid(form5)
-
-        return HttpResponseRedirect(self.get_success_url())
+            return HttpResponseRedirect(self.get_success_url())
 
     def form_valid(self, form, student_index):
 
@@ -133,6 +137,43 @@ class PeerReviewView(LoginRequiredMixin,
 
         return peer_review
 
+    def return_existent_form_data(self, username_gave, username_received, session):
+
+        """
+        Check if review already exists
+        """
+        try:
+            # peer_review = get_object_or_404(PeerReview,
+            #                                 username_gave=username_gave,
+            #                                 username_received=username_received,
+            #                                 session=session)
+
+            query = PeerReview.objects.get(
+                username_gave=username_gave,
+                username_received=username_received,
+                session=session,
+            )
+            peer_review = query
+
+            if peer_review.score is not None:
+                data = {'score': peer_review.score,
+                        'feedback': peer_review.feedback}
+            else:
+                data = None
+        except PeerReview.DoesNotExist:
+            data = None
+
+        return data
+
+    def get_form_data(self, peer_review):
+        if peer_review.score is not None:
+            data = {'score': peer_review.score,
+                    'feedback': peer_review.feedback}
+        else:
+            data = None
+
+        return data
+
     def get_context_data(self, **kwargs):
         context = super(PeerReviewView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
@@ -144,25 +185,41 @@ class PeerReviewView(LoginRequiredMixin,
         context['student5'] = None
 
         discipline = self.get_discipline()
+        session = self.get_session()
         students = self.get_all_students(discipline)
 
         i = 1
         for student in students:
             if i == 1:
                 context['student1'] = student
-                context['form1'] = Student1Form(prefix='student1')
+                peer_review = self.return_existent_review(self.request.user.get_full_name(),
+                                                          student.get_full_name(),
+                                                          session.id)
+                context['form1'] = Student1Form(initial=self.get_form_data(peer_review), prefix='student1')
             elif i == 2:
                 context['student2'] = student
-                context['form2'] = Student2Form(prefix='student2')
+                peer_review = self.return_existent_review(self.request.user.get_full_name(),
+                                                          student.get_full_name(),
+                                                          session.id)
+                context['form2'] = Student2Form(initial=self.get_form_data(peer_review), prefix='student2')
             elif i == 3:
                 context['student3'] = student
-                context['form3'] = Student3Form(prefix='student3')
+                peer_review = self.return_existent_review(self.request.user.get_full_name(),
+                                                          student.get_full_name(),
+                                                          session.id)
+                context['form3'] = Student3Form(initial=self.get_form_data(peer_review), prefix='student3')
             elif i == 4:
                 context['student4'] = student
-                context['form4'] = Student4Form(prefix='student4')
+                peer_review = self.return_existent_review(self.request.user.get_full_name(),
+                                                          student.get_full_name(),
+                                                          session.id)
+                context['form4'] = Student4Form(initial=self.get_form_data(peer_review), prefix='student4')
             elif i == 5:
                 context['student5'] = student
-                context['form5'] = Student5Form(prefix='student5')
+                peer_review = self.return_existent_review(self.request.user.get_full_name(),
+                                                          student.get_full_name(),
+                                                          session.id)
+                context['form5'] = Student5Form(initial=self.get_form_data(peer_review), prefix='student5')
             i += 1
 
         return context
