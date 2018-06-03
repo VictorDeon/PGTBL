@@ -1,0 +1,63 @@
+{% extends 'peer_review/result.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'TBLSessions/css/edit.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'core/css/markdown.css' %}" type="text/css" />
+  {{form.media}}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'peer_review:review-update' discipline.slug session.id %}">
+      {% trans 'Update Peer Review' %}
+    </a>
+  </li>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    <!-- Header -->
+    <div class="page-header profile">
+      <h1 class="white">
+        {% trans 'Update Peer Review' %}
+      </h1>
+    </div>
+
+    <!-- Form -->
+    <div class="row">
+      <div class="col-sm-12">
+
+        <form method="post" action="" class="post-form">
+          <!-- Form security -->
+          {% csrf_token %}
+
+          <!-- Weight field -->
+          <div class="form-group white">
+            <label>Peer review weight:</label>
+            {% render_field form.peer_review_weight class="form-control" min="0"%}
+          </div>
+
+          <!-- Available field -->
+          <div class="form-group white">
+            <label>
+              {% render_field form.peer_review_available type="checkbox" %}
+              {% trans 'Make peer review available' %}
+            </label>
+          </div>
+
+          <!-- Submit button -->
+          <button type="submit"
+                  class="btn btn-default submit-button center-block gradient">
+                  <i class="fa fa-edit"></i>
+                  {% trans 'Edit' %}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

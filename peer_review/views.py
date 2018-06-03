@@ -2,19 +2,25 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from django.contrib import messages
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.db.models import Q
 from django.http import HttpResponseRedirect
+from django.utils import timezone
 from django.views.generic import (
-    FormView
-)
+    FormView,
+    ListView, UpdateView)
 
 # Application imports
+from TBLSessions.forms import TBLSessionForm
 from TBLSessions.models import TBLSession
+from TBLSessions.utils import get_datetimes
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
+from groups.models import Group
 from peer_review.models import PeerReview
-from .forms import Student1Form, Student2Form, Student3Form, Student4Form, Student5Form
+from questions.forms import IRATForm, IRATDateForm
+from .forms import StudentForm, PeerReviewUpdateForm
 
 # Get the custom user from settings
 User = get_user_model()
@@ -27,9 +33,9 @@ class PeerReviewView(LoginRequiredMixin,
     Working with form to create a peer review
     """
 
-    template_name = 'peer_review/peer.html'
+    template_name = 'peer_review/form.html'
     success_url = reverse_lazy('accounts:profile')
-    form_class = Student1Form
+    form_class = StudentForm
     permissions_required = [
         'only_student_can_change'
     ]
@@ -43,11 +49,11 @@ class PeerReviewView(LoginRequiredMixin,
         students = self.get_all_students(discipline)
         session = self.get_session()
 
-        form1 = Student1Form(request.POST, prefix='student1')
-        form2 = Student2Form(request.POST, prefix='student2')
-        form3 = Student3Form(request.POST, prefix='student3')
-        form4 = Student4Form(request.POST, prefix='student4')
-        form5 = Student5Form(request.POST, prefix='student5')
+        form1 = StudentForm(request.POST, prefix='student1')
+        form2 = StudentForm(request.POST, prefix='student2')
+        form3 = StudentForm(request.POST, prefix='student3')
+        form4 = StudentForm(request.POST, prefix='student4')
+        form5 = StudentForm(request.POST, prefix='student5')
 
         if self.sum_of_scores(form1, form2, form3, form4, form5):
             messages.error(request, 'ERROR: Your review was not saved! Make sure the sum of scores is 100')
@@ -76,13 +82,13 @@ class PeerReviewView(LoginRequiredMixin,
         i = 1
         for student in students:
             if i == student_index:
-                username_gave = self.request.user.get_full_name()
-                username_received = student.get_full_name()
+                reviewed_by = self.request.user.get_full_name()
+                student = student.get_full_name()
 
-                peer_review = self.return_existent_review(username_gave, username_received, session)
+                peer_review = self.return_existent_review(reviewed_by, student, session)
 
-                peer_review.username_gave = username_gave
-                peer_review.username_received = username_received
+                peer_review.reviewed_by = reviewed_by
+                peer_review.student = student
                 peer_review.session = session
                 peer_review.feedback = form.cleaned_data.get('feedback')
 
@@ -118,7 +124,7 @@ class PeerReviewView(LoginRequiredMixin,
             else:
                 return self.form_invalid(form)
 
-    def return_existent_review(self, username_gave, username_received, session):
+    def return_existent_review(self, reviewed_by, student, session):
 
         """
         Check if peer review already exists
@@ -126,8 +132,8 @@ class PeerReviewView(LoginRequiredMixin,
 
         try:
             query = PeerReview.objects.get(
-                username_gave=username_gave,
-                username_received=username_received,
+                reviewed_by=reviewed_by,
+                student=student,
                 session=session,
             )
             peer_review = query
@@ -166,31 +172,31 @@ class PeerReviewView(LoginRequiredMixin,
                 peer_review = self.return_existent_review(self.request.user.get_full_name(),
                                                           student.get_full_name(),
                                                           session.id)
-                context['form1'] = Student1Form(initial=self.get_form_data(peer_review), prefix='student1')
+                context['form1'] = StudentForm(initial=self.get_form_data(peer_review), prefix='student1')
             elif i == 2:
                 context['student2'] = student
                 peer_review = self.return_existent_review(self.request.user.get_full_name(),
                                                           student.get_full_name(),
                                                           session.id)
-                context['form2'] = Student2Form(initial=self.get_form_data(peer_review), prefix='student2')
+                context['form2'] = StudentForm(initial=self.get_form_data(peer_review), prefix='student2')
             elif i == 3:
                 context['student3'] = student
                 peer_review = self.return_existent_review(self.request.user.get_full_name(),
                                                           student.get_full_name(),
                                                           session.id)
-                context['form3'] = Student3Form(initial=self.get_form_data(peer_review), prefix='student3')
+                context['form3'] = StudentForm(initial=self.get_form_data(peer_review), prefix='student3')
             elif i == 4:
                 context['student4'] = student
                 peer_review = self.return_existent_review(self.request.user.get_full_name(),
                                                           student.get_full_name(),
                                                           session.id)
-                context['form4'] = Student4Form(initial=self.get_form_data(peer_review), prefix='student4')
+                context['form4'] = StudentForm(initial=self.get_form_data(peer_review), prefix='student4')
             elif i == 5:
                 context['student5'] = student
                 peer_review = self.return_existent_review(self.request.user.get_full_name(),
                                                           student.get_full_name(),
                                                           session.id)
-                context['form5'] = Student5Form(initial=self.get_form_data(peer_review), prefix='student5')
+                context['form5'] = StudentForm(initial=self.get_form_data(peer_review), prefix='student5')
             i += 1
 
         return context
@@ -225,7 +231,7 @@ class PeerReviewView(LoginRequiredMixin,
         Get students from dicipline except the current user
         """
         user_logged_in = self.get_user_logged_in()
-        students = discipline.students.exclude(email=user_logged_in.email)
+        students = discipline.students.exclude(username=user_logged_in.username)
 
         return students
 
@@ -235,3 +241,149 @@ class PeerReviewView(LoginRequiredMixin,
             user_logged_in = self.request.user
 
         return user_logged_in
+
+
+class PeerReviewResultView(LoginRequiredMixin,
+                           PermissionMixin,
+                           ListView):
+    """
+    Show the result of Peer Review.
+    """
+
+    template_name = 'peer_review/result.html'
+    context_object_name = 'submissions'
+
+    # Permissions
+    permissions_required = [
+        'only_teacher_can_change'
+    ]
+
+    def get_discipline(self):
+        """
+        Get the discipline from url kwargs.
+        """
+
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_session(self):
+        """
+        get the session from url kwargs.
+        """
+
+        session = TBLSession.objects.get(
+            pk=self.kwargs.get('pk', '')
+        )
+
+        return session
+
+    def get_all_students(self, student):
+        """
+        Get students from dicipline except the current user
+        """
+        discipline = self.get_discipline()
+
+        if student is None:
+            students = discipline.students.all()
+        else:
+            students = discipline.students.exclude(username=student.username)
+
+        return students
+
+    def get_context_data(self, **kwargs):
+        """
+        Insert discipline, session into iRAT result context data.
+        """
+        # irat_datetime, grat_datetime = get_datetimes(self.get_session())
+        #
+        context = super(PeerReviewResultView, self).get_context_data(**kwargs)
+        # context['datetime'] = peer_review_datetime
+        context['discipline'] = self.get_discipline()
+        context['session'] = self.get_session()
+        context['submissions'] = self.get_queryset()
+        return context
+
+    def get_queryset(self):
+        """
+        Get the questions queryset from model database.
+        """
+        session = self.get_session()
+        submissions = PeerReview.objects.filter(session=session.id)
+
+        return submissions
+
+
+class PeerReviewUpdateView(LoginRequiredMixin,
+                           PermissionMixin,
+                           UpdateView):
+    """
+    Update the Peer Review availability and weight
+    """
+    model = TBLSession
+    template_name = 'peer_review/update.html'
+    form_class = PeerReviewUpdateForm
+
+    permissions_required = [
+        'monitor_can_change_if_is_teacher'
+    ]
+
+    def get_discipline(self):
+        """
+        Take the discipline that the tbl session belongs to
+        """
+
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_session(self):
+        """
+        Take the session that the group belongs to
+        """
+
+        discipline = self.get_discipline()
+
+        session = TBLSession.objects.get(
+            Q(discipline=discipline),
+            Q(pk=self.kwargs.get('pk', ''))
+        )
+
+        return session
+
+    def get_context_data(self, **kwargs):
+        """
+        Insert a discipline inside template.
+        """
+        context = super(PeerReviewUpdateView, self).get_context_data(**kwargs)
+        context['discipline'] = self.get_discipline()
+        context['session'] = self.get_session()
+        return context
+
+    def form_valid(self, form):
+        """
+        Return the form with fields valid
+        """
+
+        messages.success(self.request, 'Peer Review updated successfully.')
+
+        return super(PeerReviewUpdateView, self).form_valid(form)
+
+    def get_success_url(self):
+        """
+        Get success url to redirect.
+        """
+
+        discipline = self.get_discipline()
+        session = self.get_session()
+
+        success_url = reverse_lazy(
+            'peer_review:result',
+            kwargs={'slug': discipline.slug, 'pk': session.id}
+        )
+
+        return success_url

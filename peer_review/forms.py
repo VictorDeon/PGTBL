@@ -1,42 +1,24 @@
 from django import forms
-from .models import PeerReview, PeerReviewFormModel
+
+from TBLSessions.models import TBLSession
+from .models import PeerReview
 
 
-class Student1Form(forms.ModelForm):
-
-    class Meta:
-        model = PeerReviewFormModel
-        fields = ['feedback',
-                  'score']
-
-
-class Student2Form(forms.ModelForm):
+class PeerReviewUpdateForm(forms.ModelForm):
+    """
+    Form to update Peer Review duration and weight.
+    """
 
     class Meta:
-        model = PeerReviewFormModel
-        fields = ['feedback',
-                  'score']
+        model = TBLSession
+        fields = ['peer_review_available', 'peer_review_weight']
 
 
-class Student3Form(forms.ModelForm):
-
+class StudentForm(forms.ModelForm):
+    """
+    Form for student to make Peer Review.
+    """
     class Meta:
-        model = PeerReviewFormModel
-        fields = ['feedback',
-                  'score']
-
-
-class Student4Form(forms.ModelForm):
-
-    class Meta:
-        model = PeerReviewFormModel
-        fields = ['feedback',
-                  'score']
-
-
-class Student5Form(forms.ModelForm):
-
-    class Meta:
-        model = PeerReviewFormModel
+        model = PeerReview
         fields = ['feedback',
                   'score']
