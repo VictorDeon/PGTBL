@@ -53,7 +53,7 @@ class TBLSession(models.Model):
     )
 
     irat_duration = models.PositiveIntegerField(
-        _("iRAT durantion in minutes"),
+        _("iRAT duration in minutes"),
         default=30,
         blank=True,
         help_text=_("iRAT duration in minutes to be answered.")
@@ -75,7 +75,7 @@ class TBLSession(models.Model):
     )
 
     grat_duration = models.PositiveIntegerField(
-        _("gRAT durantion in minutes"),
+        _("gRAT duration in minutes"),
         default=30,
         blank=True,
         help_text=_("gRAT duration in minutes to be answered.")
