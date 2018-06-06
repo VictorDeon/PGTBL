@@ -1,5 +1,5 @@
 from django import forms
-
+from django.utils.translation import ugettext_lazy as _
 from TBLSessions.models import TBLSession
 from .models import PeerReview
 
@@ -23,9 +23,9 @@ class PeerReviewDateForm(forms.ModelForm):
     """
 
     peer_review_datetime = forms.DateTimeField(
-        label="Date and time to provide the peer review",
+        label=_('Date and time to provide the peer review'),
         required=False,
-        input_formats=['%Y-%m-%dT%H:%M'] # '2016-04-06T17:18
+        input_formats=['%Y-%m-%dT%H:%M']
     )
 
     class Meta:
