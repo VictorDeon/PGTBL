@@ -849,18 +849,6 @@ class ChangeStudentView(LoginRequiredMixin,
 
         return False
 
-class AttendanceOptionsListView(LoginRequiredMixin,
-                               PermissionMixin,
-                               DetailView):
-    """ 
-    Opens options for attendance lists
-    """
-    model = Discipline
-    template_name = 'disciplines/attendance.html'
-    permissions_required = [
-        'show_discipline_permission',
-    ]
-
 class createAttendanceView(LoginRequiredMixin,
                             PermissionMixin,
                             FormView):
@@ -910,6 +898,7 @@ class createAttendanceView(LoginRequiredMixin,
         self.add_missing_students(discipline, attendance)
 
         attendance.save()
+
         return super(createAttendanceView, self).form_valid(form)
 
 

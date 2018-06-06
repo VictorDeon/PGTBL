@@ -35,7 +35,20 @@
         </div>
       </div>
     </div>
-    
+    {% if not discipline.is_closed %}
+      {% if user.is_teacher %}
+        <div class="tab-content fix-row">
+          <div id="sessao1" class="tab-pane fade in active">
+            <br />
+                <a href="{% url 'disciplines:createNewAttendance' discipline.slug %}">
+                  <button class="btn btn-primary">Create/Edit Attendance List</button>
+                </a>
+              
+          </div>
+        </div>
+        <br>
+      {% endif %}
+    {% endif %}
     <div class="panel panel-default">
       <div class="panel-body">
         <table class="table table-hover table-responsive">
