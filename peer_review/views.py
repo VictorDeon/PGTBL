@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.utils.translation import ugettext_lazy as _
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.views.generic import (FormView, ListView, UpdateView)
@@ -48,7 +49,7 @@ class PeerReviewView(LoginRequiredMixin,
         form5 = StudentForm(request.POST, prefix='student5')
 
         if self.sum_of_scores(form1, form2, form3, form4, form5):
-            messages.error(request, 'ERROR: Your review was not saved! Make sure the sum of scores is 100')
+            messages.error(request, _('ERROR: Your review was not saved! Make sure the sum of scores is 100'))
             return HttpResponseRedirect(reverse_lazy('peer_review:review', kwargs={'slug': discipline.slug, 'pk': session.id}))
         else:
 
@@ -58,7 +59,7 @@ class PeerReviewView(LoginRequiredMixin,
             self.form_validation(form4, students.count(), 3)
             self.form_validation(form5, students.count(), 4)
 
-            messages.success(request, 'Your review was saved successfully!')
+            messages.success(request, _('Your review was saved successfully!'))
 
             return HttpResponseRedirect(self.get_success_url())
 
