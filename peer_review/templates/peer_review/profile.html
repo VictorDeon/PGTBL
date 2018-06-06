@@ -1,0 +1,24 @@
+<div class="col-sm-10">
+  <div class="container-fluid">
+    <div class="page-header">
+      <h1 class="white">
+        <i class="fa fa-vcard-o"></i> Peer Review <br />
+        <small>{{discipline.title}}</small>
+      </h1>
+    </div>
+    <div class="row fix-row">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="panel panel-default gradient header-up">
+            <div class="panel-body">
+              <div class="col-sm-10">
+                <h4><i class="fa fa-graduation-cap"> </i><span class="course"> Course: </span>{{discipline.course}}</h4>
+                <h4><i class="fa fa-book"></i> <span class="classes"> Discipline: </span>{{discipline.title}}</h4>
+                <h4><i class="fa fa-user"></i> <span class="teacher"> Teacher: </span>{{discipline.teacher.get_full_name}}</h4>
+                <h4><i class="fa fa-user"></i> <span class="student"> Student: </span>{{user.get_full_name}}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
