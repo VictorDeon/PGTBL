@@ -103,6 +103,7 @@ class PeerReviewView(LoginRequiredMixin,
 
         return True
 
+    @classmethod
     def return_score(self, form):
         if form.is_valid():
             return form.cleaned_data['score']
@@ -116,6 +117,7 @@ class PeerReviewView(LoginRequiredMixin,
             else:
                 return self.form_invalid(form)
 
+    @classmethod            
     def return_existent_review(self, reviewed_by, student, session):
 
         """
