@@ -2,24 +2,16 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from django.contrib import messages
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.db.models import Q
 from django.http import HttpResponseRedirect
-from django.utils import timezone
-from django.views.generic import (
-    FormView,
-    ListView, UpdateView)
+from django.views.generic import (FormView, ListView, UpdateView)
 
 # Application imports
-from TBLSessions.forms import TBLSessionForm
 from TBLSessions.models import TBLSession
-from TBLSessions.utils import get_datetimes
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
-from groups.models import Group
 from peer_review.models import PeerReview
-from questions.forms import IRATForm, IRATDateForm
 from .forms import StudentForm, PeerReviewUpdateForm
 
 # Get the custom user from settings
@@ -207,7 +199,6 @@ class PeerReviewView(LoginRequiredMixin,
         """
         Get the specific discipline.
         """
-
         discipline = Discipline.objects.get(
             slug=self.kwargs.get('slug', '')
         )
@@ -218,7 +209,6 @@ class PeerReviewView(LoginRequiredMixin,
         """
         Take the session that the group belongs to
         """
-
         discipline = self.get_discipline()
 
         session = TBLSession.objects.get(
@@ -254,8 +244,6 @@ class PeerReviewResultView(LoginRequiredMixin,
 
     template_name = 'peer_review/result.html'
     context_object_name = 'submissions'
-
-    # Permissions
     permissions_required = [
         'only_teacher_can_change'
     ]
@@ -264,7 +252,6 @@ class PeerReviewResultView(LoginRequiredMixin,
         """
         Get the discipline from url kwargs.
         """
-
         discipline = Discipline.objects.get(
             slug=self.kwargs.get('slug', '')
         )
@@ -275,7 +262,6 @@ class PeerReviewResultView(LoginRequiredMixin,
         """
         get the session from url kwargs.
         """
-
         session = TBLSession.objects.get(
             pk=self.kwargs.get('pk', '')
         )
@@ -284,7 +270,7 @@ class PeerReviewResultView(LoginRequiredMixin,
 
     def get_all_students(self, student):
         """
-        Get students from dicipline except the current user
+        Get students from dicipline except the student passed
         """
         discipline = self.get_discipline()
 
@@ -297,12 +283,9 @@ class PeerReviewResultView(LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         """
-        Insert discipline, session into iRAT result context data.
+        Insert discipline, session end submissions into result context data.
         """
-        # irat_datetime, grat_datetime = get_datetimes(self.get_session())
-        #
         context = super(PeerReviewResultView, self).get_context_data(**kwargs)
-        # context['datetime'] = peer_review_datetime
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
         context['submissions'] = self.get_queryset()
@@ -327,7 +310,6 @@ class PeerReviewUpdateView(LoginRequiredMixin,
     model = TBLSession
     template_name = 'peer_review/update.html'
     form_class = PeerReviewUpdateForm
-
     permissions_required = [
         'monitor_can_change_if_is_teacher'
     ]
@@ -336,7 +318,6 @@ class PeerReviewUpdateView(LoginRequiredMixin,
         """
         Take the discipline that the tbl session belongs to
         """
-
         discipline = Discipline.objects.get(
             slug=self.kwargs.get('slug', '')
         )
@@ -347,7 +328,6 @@ class PeerReviewUpdateView(LoginRequiredMixin,
         """
         Take the session that the group belongs to
         """
-
         discipline = self.get_discipline()
 
         session = TBLSession.objects.get(
@@ -359,7 +339,7 @@ class PeerReviewUpdateView(LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         """
-        Insert a discipline inside template.
+        Insert a discipline and session inside template.
         """
         context = super(PeerReviewUpdateView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
@@ -370,7 +350,6 @@ class PeerReviewUpdateView(LoginRequiredMixin,
         """
         Return the form with fields valid
         """
-
         messages.success(self.request, 'Peer Review updated successfully.')
 
         return super(PeerReviewUpdateView, self).form_valid(form)
@@ -379,7 +358,6 @@ class PeerReviewUpdateView(LoginRequiredMixin,
         """
         Get success url to redirect.
         """
-
         discipline = self.get_discipline()
         session = self.get_session()
 
