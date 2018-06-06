@@ -49,7 +49,7 @@ class PeerReviewView(LoginRequiredMixin,
 
         if self.sum_of_scores(form1, form2, form3, form4, form5):
             messages.error(request, 'ERROR: Your review was not saved! Make sure the sum of scores is 100')
-            return HttpResponseRedirect(reverse_lazy('TBLSessions:details', kwargs={'slug': discipline.slug, 'pk': session.id}))
+            return HttpResponseRedirect(reverse_lazy('peer_review:review', kwargs={'slug': discipline.slug, 'pk': session.id}))
         else:
 
             self.form_validation(form1, students.count(), 0)
@@ -117,7 +117,7 @@ class PeerReviewView(LoginRequiredMixin,
             else:
                 return self.form_invalid(form)
 
-    @classmethod            
+    @classmethod
     def return_existent_review(self, reviewed_by, student, session):
 
         """
