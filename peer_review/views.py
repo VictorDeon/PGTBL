@@ -75,8 +75,8 @@ class PeerReviewView(LoginRequiredMixin,
         i = 1
         for student in students:
             if i == student_index:
-                reviewed_by = self.request.user.get_full_name()
-                student = student.get_full_name()
+                reviewed_by = self.request.user
+                student = student
 
                 peer_review = self.return_existent_review(reviewed_by, student, session)
 
@@ -164,32 +164,32 @@ class PeerReviewView(LoginRequiredMixin,
         for student in students:
             if i == 1:
                 context['student1'] = student
-                peer_review = self.return_existent_review(self.request.user.get_full_name(),
-                                                          student.get_full_name(),
+                peer_review = self.return_existent_review(self.request.user,
+                                                          student,
                                                           session.id)
                 context['form1'] = StudentForm(initial=self.get_form_data(peer_review), prefix='student1')
             elif i == 2:
                 context['student2'] = student
-                peer_review = self.return_existent_review(self.request.user.get_full_name(),
-                                                          student.get_full_name(),
+                peer_review = self.return_existent_review(self.request.user,
+                                                          student,
                                                           session.id)
                 context['form2'] = StudentForm(initial=self.get_form_data(peer_review), prefix='student2')
             elif i == 3:
                 context['student3'] = student
-                peer_review = self.return_existent_review(self.request.user.get_full_name(),
-                                                          student.get_full_name(),
+                peer_review = self.return_existent_review(self.request.user,
+                                                          student,
                                                           session.id)
                 context['form3'] = StudentForm(initial=self.get_form_data(peer_review), prefix='student3')
             elif i == 4:
                 context['student4'] = student
-                peer_review = self.return_existent_review(self.request.user.get_full_name(),
-                                                          student.get_full_name(),
+                peer_review = self.return_existent_review(self.request.user,
+                                                          student,
                                                           session.id)
                 context['form4'] = StudentForm(initial=self.get_form_data(peer_review), prefix='student4')
             elif i == 5:
                 context['student5'] = student
-                peer_review = self.return_existent_review(self.request.user.get_full_name(),
-                                                          student.get_full_name(),
+                peer_review = self.return_existent_review(self.request.user,
+                                                          student,
                                                           session.id)
                 context['form5'] = StudentForm(initial=self.get_form_data(peer_review), prefix='student5')
             i += 1

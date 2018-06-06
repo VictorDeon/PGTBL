@@ -1,5 +1,9 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
+from django.contrib.auth import get_user_model
+from tbl import settings
+
+User = get_user_model()
 
 
 class PeerReview(models.Model):
@@ -9,14 +13,18 @@ class PeerReview(models.Model):
         default=0,
     )
 
-    student = models.CharField(
-        _('Student'),
-        max_length=30,
+    student = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name=_('Student'),
+        related_name=_('Student'),
     )
 
-    reviewed_by = models.CharField(
-        _('Reviewed by'),
-        max_length=30,
+    reviewed_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name=_('Reviewed_by'),
+        related_name=_('Reviewed_by'),
     )
 
     feedback = models.TextField(
