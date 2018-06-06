@@ -6,6 +6,8 @@ from django import forms
 from pagedown.widgets import PagedownWidget
 from .models import Discipline, Attendance
 
+import datetime
+
 # # Get the custom user from settings
 User = get_user_model()
 
@@ -79,6 +81,7 @@ class AttendanceForm(forms.Form):
     date = forms.DateField(
         label=_('Attendence Date'),
         widget=forms.SelectDateWidget,
+        initial=datetime.date.today,
     )
 
     students = DynamicMultipleChoiceField(
