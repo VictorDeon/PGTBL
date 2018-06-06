@@ -3,8 +3,8 @@
 {% load i18n %}
 
 {% block css %}
-  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
-  <link rel="stylesheet" href="{% static 'questions/css/result.css' %}" />
+  <link rel="stylesheet" href="{% static 'peer_review/css/sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'peer_review/css/result.css' %}" />
 {% endblock %}
 
 {% block breadcrumb %}
@@ -16,7 +16,7 @@
   </li>
 {% endblock %}
 
-<!-- Result block -->
+<!-- Exercise list result block -->
 {% block content %}
   <div class="container-fluid">
     <div class="page-header profile">
@@ -30,24 +30,51 @@
         <div class="row">
           <div class="panel panel-default questions gradient">
             <div class="panel-body">
-              <div class="col-sm-12">
+              <div class="col-sm-7">
                 <h4>
                   <i class="fa fa-graduation-cap"></i>
-                  <span class="course">{% trans 'Course' %}:</span> {{ discipline.course }}
+                  <span class="course">{% trans 'Course' %}:</span>
+                  {{discipline.course}}
                 </h4>
                 <h4>
                   <i class="fa fa-book"></i>
-                  <span class="classes">{% trans 'Discipline' %}:</span> {{ discipline.title }}
+                  <span class="classes">{% trans 'Discipline' %}:</span>
+                  {{discipline.title}}
                 </h4>
                 <h4>
                   <i class="fa fa-user"></i>
-                  <span class="teacher">{% trans 'Teacher' %}:</span> {{ discipline.teacher.get_short_name }}
+                  <span class="teacher">{% trans 'Teacher' %}:</span>
+                  {{discipline.teacher.get_short_name}}
                 </h4>
-                <a class="btn btn-default submit-button center-block gradient"
-                   href="{% url 'peer_review:review-update' discipline.slug session.id %}">
-                   <i class="fa fa-edit"></i>
-                   {% trans 'Edit Peer Review' %}
-                </a>
+              </div>
+              <div class="col-sm-5">
+                {% if user == discipline.teacher %}
+                  <h1 class="time text-right">
+                    <i class="fa fa-clock-o"></i>
+                    <a href="{% url 'peer_review:review-update' discipline.slug session.id %}">
+                      {{session.peer_review_duration}}:00
+                    </a>
+                  </h1>
+                {% else %}
+                  <h1 class="time text-right">
+                    <i class="fa fa-clock-o"></i>
+                    {{session.peer_review_duration}}:00
+                  </h1>
+                {% endif %}
+                <br />
+                {% if user == discipline.teacher %}
+                  <h4 class="date text-right">
+                    <a href="{% url 'peer_review:review-datetime' discipline.slug session.id %}">
+                       {{session.peer_review_datetime|date:"d/m/Y H:i"}}
+                       <i class="fa fa-calendar"></i>
+                    </a>
+                  </h4>
+                {% else %}
+                  <h4 class="date text-right">
+                    {{session.peer_review_datetime|date:"d/m/Y H:i"}}
+                    <i class="fa fa-calendar"></i>
+                  </h4>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -57,26 +84,31 @@
     <div class="row fix-row">
       <div class="panel panel-default">
         <div class="panel-body">
-          <h3>{% trans 'Result' %}</h3>
+          <h2>{% trans 'Result' %}</h2>
           <hr />
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>{% trans 'Student' %}</th>
-                <th>{% trans 'Reviewed by' %}</th>
-                <th>{% trans 'Score' %}</th>
-              </tr>
-            </thead>
-            <tbody class="text-justify">
-                {% for submission in submissions %}
+          {% if submissions is not None %}
+            {% for student in students %}
+              <h3 align="center">{{ student.get_full_name }}</h3>
+              <table class="table table-hover">
+                <thead>
                   <tr>
-                    <td>{{ submission.student }}</td>
-                    <td>{{ submission.reviewed_by }}</td>
-                    <td>{{ submission.score }}</td>
+                    <th>{% trans 'Reviewed by' %}</th>
+                    <th>{% trans 'Score' %}</th>
                   </tr>
-                {% endfor %}
-            </tbody>
-          </table>
+                </thead>
+                <tbody class="text-justify">
+                  {% for submission in submissions %}
+                    <!--{#% if submission.student is student.email %}-->
+                    <tr>
+                      <td>{{ submission.reviewed_by }}</td>
+                      <td>{{ submission.score }}</td>
+                    </tr>
+                    <!--{#% endif %}-->
+                  {% endfor %}
+                </tbody>
+              </table>
+            {% endfor %}
+          {% endif %}
         </div>
       </div>
     </div>

@@ -289,6 +289,7 @@ class PeerReviewResultView(LoginRequiredMixin,
         context = super(PeerReviewResultView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
+        context['students'] = self.get_all_students(None)
         context['submissions'] = self.get_queryset()
         return context
 
@@ -298,6 +299,9 @@ class PeerReviewResultView(LoginRequiredMixin,
         """
         session = self.get_session()
         submissions = PeerReview.objects.filter(session=session.id)
+
+        if not submissions:
+            submissions = None
 
         return submissions
 
