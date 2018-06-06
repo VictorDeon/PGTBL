@@ -11,7 +11,26 @@ class PeerReviewUpdateForm(forms.ModelForm):
 
     class Meta:
         model = TBLSession
-        fields = ['peer_review_available', 'peer_review_weight']
+        fields = [
+            'peer_review_weight',
+            'peer_review_duration',
+        ]
+
+
+class PeerReviewDateForm(forms.ModelForm):
+    """
+    Form to update datetime of Peer Review.
+    """
+
+    peer_review_datetime = forms.DateTimeField(
+        label="Date and time to provide the peer review",
+        required=False,
+        input_formats=['%Y-%m-%dT%H:%M'] # '2016-04-06T17:18
+    )
+
+    class Meta:
+        model = TBLSession
+        fields = ['peer_review_datetime']
 
 
 class StudentForm(forms.ModelForm):
