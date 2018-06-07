@@ -31,21 +31,12 @@
           <div class="panel panel-default questions gradient">
             <div class="panel-body">
               <div class="col-sm-7">
-                <h4>
-                  <i class="fa fa-graduation-cap"></i>
-                  <span class="course">{% trans 'Course' %}:</span>
-                  {{discipline.course}}
-                </h4>
-                <h4>
-                  <i class="fa fa-book"></i>
-                  <span class="classes">{% trans 'Discipline' %}:</span>
-                  {{discipline.title}}
-                </h4>
-                <h4>
-                  <i class="fa fa-user"></i>
-                  <span class="teacher">{% trans 'Teacher' %}:</span>
-                  {{discipline.teacher.get_short_name}}
-                </h4>
+                <h4><i class="fa fa-graduation-cap"></i><span class="course">
+                  {% trans 'Course' %}:</span>{{ discipline.course }}</h4>
+                <h4><i class="fa fa-book"></i><span class="classes">
+                  {% trans 'Discipline' %}:</span>{{ discipline.title }}</h4>
+                <h4><i class="fa fa-user"></i><span class="teacher">
+                  {% trans 'Teacher' %}:</span>{{ discipline.teacher.get_short_name }}</h4>
               </div>
               <div class="col-sm-5">
                 {% if user == discipline.teacher %}

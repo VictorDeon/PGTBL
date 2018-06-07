@@ -2,7 +2,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from django.contrib import messages
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -12,8 +14,9 @@ from django.views.generic import (FormView, ListView, UpdateView)
 from TBLSessions.models import TBLSession
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
+from groups.models import Group
 from peer_review.models import PeerReview
-from .forms import StudentForm, PeerReviewUpdateForm
+from .forms import StudentForm, PeerReviewUpdateForm, PeerReviewDateForm
 
 # Get the custom user from settings
 User = get_user_model()
@@ -150,6 +153,7 @@ class PeerReviewView(LoginRequiredMixin,
         context = super(PeerReviewView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
+        context['group'] = self.get_student_group(self.request.user)
         context['student1'] = None
         context['student2'] = None
         context['student3'] = None
@@ -158,7 +162,7 @@ class PeerReviewView(LoginRequiredMixin,
 
         discipline = self.get_discipline()
         session = self.get_session()
-        students = self.get_all_students(discipline)
+        students = self.get_all_students()
 
         i = 1
         for student in students:
@@ -219,12 +223,13 @@ class PeerReviewView(LoginRequiredMixin,
 
         return session
 
-    def get_all_students(self, discipline):
+    def get_all_students(self):
         """
         Get students from dicipline except the current user
         """
         user_logged_in = self.get_user_logged_in()
-        students = discipline.students.exclude(username=user_logged_in.username)
+        group = self.get_student_group(user_logged_in)
+        students = group.students.exclude(username=user_logged_in.username)
 
         return students
 
@@ -234,6 +239,32 @@ class PeerReviewView(LoginRequiredMixin,
             user_logged_in = self.request.user
 
         return user_logged_in
+
+    def get_groups(self):
+        """
+        Get the group queryset from model database.
+        """
+
+        discipline = self.get_discipline()
+
+        groups = Group.objects.filter(discipline=discipline)
+
+        return groups
+
+    def get_student_group(self, student_wanted):
+        """
+        Get the group queryset from model database.
+        """
+
+        groups = self.get_groups()
+
+        for group in groups:
+            users_in_group = Group.objects.get(title=group.title).students.all()
+            for student in users_in_group:
+                if student == student_wanted:
+                    return group
+
+        return None
 
 
 class PeerReviewResultView(LoginRequiredMixin,
@@ -369,6 +400,98 @@ class PeerReviewUpdateView(LoginRequiredMixin,
         success_url = reverse_lazy(
             'peer_review:result',
             kwargs={'slug': discipline.slug, 'pk': session.id}
+        )
+
+        return success_url
+
+
+class PeerReviewDateUpdateView(LoginRequiredMixin,
+                               PermissionMixin,
+                               UpdateView):
+    """
+    Update the Peer Review datetime.
+    """
+
+    model = TBLSession
+    template_name = 'peer_review/datetime.html'
+    form_class = PeerReviewDateForm
+    permissions_required = [
+        'monitor_can_change_if_is_teacher'
+    ]
+
+    def get_discipline(self):
+        """
+        Get the discipline from url kwargs.
+        """
+        discipline = Discipline.objects.get(
+            slug=self.kwargs.get('slug', '')
+        )
+
+        return discipline
+
+    def get_groups(self):
+        """
+        Get the group queryset from model database.
+        """
+
+        discipline = self.get_discipline()
+
+        groups = Group.objects.filter(discipline=discipline)
+
+        return groups
+
+    def get_student_group(self, student_wanted):
+        """
+        Get the group queryset from model database.
+        """
+
+        groups = self.get_groups()
+
+        for group in groups:
+            for student in group.students:
+                if student is student_wanted:
+                    return group
+
+        return None
+
+    def form_valid(self, form):
+        """
+        Return the form with fields valided.
+        """
+        now = timezone.localtime(timezone.now())
+
+        if form.instance.peer_review_datetime is None:
+
+            messages.error(
+                self.request,
+                _("Peer Review date must to be filled in.")
+            )
+
+            return redirect(self.get_success_url())
+
+        if now > form.instance.peer_review_datetime:
+
+            messages.error(
+                self.request,
+                _("Peer Review date must to be later than today's date.")
+            )
+
+            return redirect(self.get_success_url())
+
+        messages.success(self.request, _('Peer Review date updated successfully.'))
+
+        return super(PeerReviewDateUpdateView, self).form_valid(form)
+
+    def get_success_url(self):
+        """
+        Get success url to redirect.
+        """
+        success_url = reverse_lazy(
+            'peer_review:result',
+            kwargs={
+                'slug': self.kwargs.get('slug', ''),
+                'pk': self.kwargs.get('pk', '')
+            }
         )
 
         return success_url
