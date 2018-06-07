@@ -92,7 +92,7 @@
     </a>
 
     <!-- Session peer test menu -->
-    {% if user in discipline.students.all and session.peer_review_available %}
+    {% if user in discipline.students.all%}
        <a href="{% url 'peer_review:review' discipline.slug session.id %}"
        class="btn"
        data-toggle="tooltip"

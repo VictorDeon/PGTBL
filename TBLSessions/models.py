@@ -107,6 +107,20 @@ class TBLSession(models.Model):
         help_text=_("Release the peer review test to be answered.")
     )
 
+    peer_review_duration = models.PositiveIntegerField(
+        _("Peer review duration in minutes"),
+        default=30,
+        blank=True,
+        help_text=_("Peer review duration in minutes to be answered.")
+    )
+
+    peer_review_datetime = models.DateTimeField(
+        _("Peer review date"),
+        blank=True,
+        null=True,
+        help_text=_("Date and time to provide the Peer review.")
+    )
+
     peer_review_weight = models.PositiveIntegerField(
         _("Peer review weight"),
         default=1,

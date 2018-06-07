@@ -4,7 +4,7 @@
 {% load i18n %}
 
 {% block css %}
-  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" type="text/css" />
+<link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" type="text/css" xmlns:Y-m-d/>
   <link rel="stylesheet" href="{% static 'TBLSessions/css/edit.css' %}" type="text/css" />
   <link rel="stylesheet" href="{% static 'core/css/markdown.css' %}" type="text/css" />
   {{form.media}}
@@ -32,22 +32,31 @@
     <div class="row">
       <div class="col-sm-12">
 
-        <form method="post" action="" class="post-form">
+        <form method="post" action="" class="post-form" novalidate>
           <!-- Form security -->
           {% csrf_token %}
 
           <!-- Weight field -->
           <div class="form-group white">
-            <label>Peer review weight:</label>
+            <label for="{{ form.peer_review_weight.id_for_label }}">
+              {{ form.peer_review_weight.label }}:
+            </label>
             {% render_field form.peer_review_weight class="form-control" min="0"%}
           </div>
 
-          <!-- Available field -->
+          <!-- Duration field -->
           <div class="form-group white">
-            <label>
-              {% render_field form.peer_review_available type="checkbox" %}
-              {% trans 'Make peer review available' %}
+            <label for="{{ form.peer_review_duration.id_for_label }}">
+              {{ form.peer_review_duration.label }}:
             </label>
+            <input
+              type="number"
+              id="{{ form.peer_review_duration.id_for_label }}"
+              min="0"
+              name="{{ form.peer_review_duration.name }}"
+              class="form-control"
+              value="{{ session.peer_review_duration }}"
+            />
           </div>
 
           <!-- Submit button -->

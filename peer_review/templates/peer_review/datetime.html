@@ -1,0 +1,44 @@
+{% load i18n %}
+
+<div class="modal fade" id="peer_review:review-datetime" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+          {% trans 'Edit iRAT date' %}
+        </h4>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'peer_review:result' discipline.slug session.id %}" method="post" novalidate>
+          <!-- Form security -->
+          {% csrf_token %}
+
+          <!-- Datetime field -->
+          <div class="form-group white">
+            <label for="{{form.peer_review_datetime.id_for_label}}">
+              {{ form.peer_review_datetime.label }}:
+            </label>
+
+            <input
+              type="datetime-local"
+              id="{{form.peer_review_datetime.id_for_label}}"
+              name="{{form.peer_review_datetime.name}}"
+              class="form-control"
+              value="{{session.peer_review_datetime|date:"Y-m-d\TH:i"}}"
+            />
+            <span>{{session.peer_review_datetime}}</span>
+          </div>
+
+          <!-- Submit button -->
+          <button type="submit"
+                  class="btn btn-default submit-button center-block gradient">
+                  <i class="fa fa-edit"></i>
+                  {% trans 'Edit' %}
+          </button>
+        </form>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>
