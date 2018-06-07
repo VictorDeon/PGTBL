@@ -30,7 +30,6 @@ class PeerReviewView(LoginRequiredMixin,
     """
 
     template_name = 'peer_review/form.html'
-    success_url = reverse_lazy('accounts:profile')
     form_class = StudentForm
     permissions_required = [
         'only_student_can_change'
@@ -42,7 +41,7 @@ class PeerReviewView(LoginRequiredMixin,
         POST variables and then check if it's valid.
         """
         discipline = self.get_discipline()
-        students = self.get_all_students(discipline)
+        students = self.get_all_students()
         session = self.get_session()
 
         form1 = StudentForm(request.POST, prefix='student1')
@@ -52,8 +51,13 @@ class PeerReviewView(LoginRequiredMixin,
         form5 = StudentForm(request.POST, prefix='student5')
 
         if self.sum_of_scores(form1, form2, form3, form4, form5):
-            messages.error(request, _('ERROR: Your review was not saved! Make sure the sum of scores is 100'))
-            return HttpResponseRedirect(reverse_lazy('peer_review:review', kwargs={'slug': discipline.slug, 'pk': session.id}))
+            messages.error(request, _('Make sure the sum of scores is 100 and you gave feedback to everyone'))
+            return HttpResponseRedirect(
+                reverse_lazy(
+                    'peer_review:review',
+                    kwargs={'slug': discipline.slug, 'pk': session.id}
+                )
+            )
         else:
 
             self.form_validation(form1, students.count(), 0)
@@ -64,7 +68,12 @@ class PeerReviewView(LoginRequiredMixin,
 
             messages.success(request, _('Your review was saved successfully!'))
 
-            return HttpResponseRedirect(self.get_success_url())
+            return HttpResponseRedirect(
+                reverse_lazy(
+                    'TBLSessions:details',
+                    kwargs={'slug': discipline.slug, 'pk': session.id}
+                )
+            )
 
     def form_valid(self, form, student_index):
 
@@ -72,7 +81,7 @@ class PeerReviewView(LoginRequiredMixin,
         Receive the form already validated to create an Peer Review
         """
         discipline = self.get_discipline()
-        students = self.get_all_students(discipline)
+        students = self.get_all_students()
         session = self.get_session().id
 
         i = 1
