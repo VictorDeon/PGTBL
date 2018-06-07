@@ -89,12 +89,12 @@
                 </thead>
                 <tbody class="text-justify">
                   {% for submission in submissions %}
-                    <!--{#% if submission.student is student.email %}-->
+                  {% if submission.student == student %}
                     <tr>
-                      <td>{{ submission.reviewed_by }}</td>
+                      <td>{{ submission.reviewed_by.get_full_name }}</td>
                       <td>{{ submission.score }}</td>
                     </tr>
-                    <!--{#% endif %}-->
+                    {% endif %}
                   {% endfor %}
                 </tbody>
               </table>
