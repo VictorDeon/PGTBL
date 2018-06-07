@@ -4,7 +4,7 @@
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'peer_review/css/sidebar.css' %}" />
-  <link rel="stylesheet" href="{% static 'peer_review/css/result.css' %}" />
+  <link rel="stylesheet" href="{% static 'questions/css/list.css' %}" />
 {% endblock %}
 
 {% block breadcrumb %}
@@ -25,7 +25,7 @@
         <small>{{discipline.title}} - {{session.title}}</small>
       </h1>
     </div>
-    <div class="row fix-row white">
+    <div class="row fix-row">
       <div class="col-sm-12">
         <div class="row">
           <div class="panel panel-default questions gradient">
@@ -39,33 +39,19 @@
                   {% trans 'Teacher' %}:</span>{{ discipline.teacher.get_short_name }}</h4>
               </div>
               <div class="col-sm-5">
-                {% if user == discipline.teacher %}
-                  <h1 class="time text-right">
-                    <i class="fa fa-clock-o"></i>
-                    <a href="{% url 'peer_review:review-update' discipline.slug session.id %}">
-                      {{session.peer_review_duration}}:00
-                    </a>
-                  </h1>
-                {% else %}
-                  <h1 class="time text-right">
-                    <i class="fa fa-clock-o"></i>
+                <h1 class="time text-right">
+                  <i class="fa fa-clock-o"></i>
+                  <a href="{% url 'peer_review:review-update' discipline.slug session.id %}">
                     {{session.peer_review_duration}}:00
-                  </h1>
-                {% endif %}
+                  </a>
+                </h1>
                 <br />
-                {% if user == discipline.teacher %}
-                  <h4 class="date text-right">
-                    <a href="{% url 'peer_review:review-datetime' discipline.slug session.id %}">
-                       {{session.peer_review_datetime|date:"d/m/Y H:i"}}
-                       <i class="fa fa-calendar"></i>
-                    </a>
-                  </h4>
-                {% else %}
-                  <h4 class="date text-right">
+                <h4 class="date text-right">
+                  <a href="{% url 'peer_review:review-datetime' discipline.slug session.id %}">
                     {{session.peer_review_datetime|date:"d/m/Y H:i"}}
                     <i class="fa fa-calendar"></i>
-                  </h4>
-                {% endif %}
+                  </a>
+                </h4>
               </div>
             </div>
           </div>

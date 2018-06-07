@@ -429,30 +429,27 @@ class PeerReviewDateUpdateView(LoginRequiredMixin,
 
         return discipline
 
-    def get_groups(self):
+    def get_session(self):
         """
-        Get the group queryset from model database.
+        Take the session that the group belongs to
         """
-
         discipline = self.get_discipline()
 
-        groups = Group.objects.filter(discipline=discipline)
+        session = TBLSession.objects.get(
+            Q(discipline=discipline),
+            Q(pk=self.kwargs.get('pk', ''))
+        )
 
-        return groups
+        return session
 
-    def get_student_group(self, student_wanted):
+    def get_context_data(self, **kwargs):
         """
-        Get the group queryset from model database.
+        Insert a discipline and session inside template.
         """
-
-        groups = self.get_groups()
-
-        for group in groups:
-            for student in group.students:
-                if student is student_wanted:
-                    return group
-
-        return None
+        context = super(PeerReviewDateUpdateView, self).get_context_data(**kwargs)
+        context['discipline'] = self.get_discipline()
+        context['session'] = self.get_session()
+        return context
 
     def form_valid(self, form):
         """
@@ -486,12 +483,12 @@ class PeerReviewDateUpdateView(LoginRequiredMixin,
         """
         Get success url to redirect.
         """
+        discipline = self.get_discipline()
+        session = self.get_session()
+
         success_url = reverse_lazy(
             'peer_review:result',
-            kwargs={
-                'slug': self.kwargs.get('slug', ''),
-                'pk': self.kwargs.get('pk', '')
-            }
+            kwargs={'slug': discipline.slug, 'pk': session.id}
         )
 
         return success_url

@@ -15,9 +15,14 @@ review_patterns = [
         name='result'
     ),
     url(
-        r'^update-peer-review/$',
+        r'^review-update/$',
         views.PeerReviewUpdateView.as_view(),
         name='review-update'
+    ),
+    url(
+        r'^review-datetime/$',
+        views.PeerReviewDateUpdateView.as_view(),
+        name='review-datetime'
     ),
 ]
 
