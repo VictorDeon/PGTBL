@@ -86,79 +86,62 @@
 
 <script>
 
-  $( "#id_date" ).focus(function() {
-    $( this ).blur();
-  });
+  /* 
+    Function that takes the date and send it to updateFormView via AJAX
+    if returns data, will automatically check the attended student checkbox
+    of the attendance of the chosen date
+  */
+
+  function check_attended_students(date, checkboxes){
+
+    $.ajax({
+      url: "{% url 'disciplines:updateFormView' discipline.slug %}",
+      data: {
+        'class_date': date
+      },
+      dataType: 'json',
+      success: function (data) {
+
+        if (data.attended_students_pk) {
+
+          console.log(data.attended_students_pk)
+
+          for(var i=0, n=checkboxes.length;i<n;i++) {
+            for (var j=0, m=data.attended_students_pk.length;j<m;j++) {
+              if (checkboxes[i].value == data.attended_students_pk[j]) {
+                checkboxes[i].checked = true;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
 
   $( document ).ready(function() {
 
-      var date = $("#id_date").val()
-        checkboxes = document.getElementsByName('students');
+    checkboxes = document.getElementsByName('students');
+    var date = $("#id_date").val()
 
-        for(var i=0, n=checkboxes.length;i<n;i++) {
-          checkboxes[i].checked = false;;
-        }
+    //Reset the cehckboxes everytime the page is loaded
+    for(var i=0, n=checkboxes.length;i<n;i++) {
+      checkboxes[i].checked = false;;
+    }
 
-        $.ajax({
-          url: "{% url 'disciplines:updateFormView' discipline.slug %}",
-          data: {
-            'class_date': date
-          },
-          dataType: 'json',
-          success: function (data) {
+    check_attended_students(date, checkboxes);
 
-            if (data.attended_students_pk) {
-
-              console.log(data.attended_students_pk)
-
-              for(var i=0, n=checkboxes.length;i<n;i++) {
-                for (var j=0, m=data.attended_students_pk.length;j<m;j++) {
-                  if (checkboxes[i].value == data.attended_students_pk[j]) {
-                    checkboxes[i].checked = true;
-                  }
-                }
-              }
-            }
-          }
-
-        });
-
-
-      $("#id_date").change(function () {
+    //Function to check if the form date has been changed
+    $("#id_date").change(function () {
       
-        var date = $("#id_date").val()
-        checkboxes = document.getElementsByName('students');
+      var date = $("#id_date").val()
 
-        for(var i=0, n=checkboxes.length;i<n;i++) {
-          checkboxes[i].checked = false;;
-        }
+      for(var i=0, n=checkboxes.length;i<n;i++) {
+        checkboxes[i].checked = false;;
+      }
 
-        $.ajax({
-          url: "{% url 'disciplines:updateFormView' discipline.slug %}",
-          data: {
-            'class_date': date
-          },
-          dataType: 'json',
-          success: function (data) {
+      check_attended_students(date, checkboxes);
 
-            if (data.attended_students_pk) {
-
-              console.log(data.attended_students_pk)
-
-              for(var i=0, n=checkboxes.length;i<n;i++) {
-                for (var j=0, m=data.attended_students_pk.length;j<m;j++) {
-                  if (checkboxes[i].value == data.attended_students_pk[j]) {
-                    checkboxes[i].checked = true;
-                  }
-                }
-              }
-            }
-          }
-
-        });
-
-      });
-
+    });
   });
 
 
@@ -168,6 +151,10 @@
   $( function() {
     $( "#id_date" ).datepicker({ dateFormat: 'yy-mm-dd' });
   } );
+
+  $( "#id_date" ).focus(function() {
+    $( this ).blur();
+  });
 </script>
 
 {% endblock %}

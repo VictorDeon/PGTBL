@@ -1124,6 +1124,10 @@ def get_attendancies_csv(request, *args, **kwargs):
 
 def check_attended_students(request, *args, **kwargs):
 
+    """
+    View to check existent attendance and update the form checking the attended students
+    """
+
     class_date = request.GET.get('class_date', None)
 
     discipline = Discipline.objects.get(
@@ -1141,8 +1145,6 @@ def check_attended_students(request, *args, **kwargs):
             date=class_date
         )
         attendance = query
-        print("DATA DA ATTENDANCE")
-        print(attendance.date)
 
         if attendance.attended_students.count() > 0:
             pks = []
@@ -1151,7 +1153,6 @@ def check_attended_students(request, *args, **kwargs):
             data = {
                 'attended_students_pk': pks,
             }
-            print(data)
 
     except Attendance.DoesNotExist:
         pass
