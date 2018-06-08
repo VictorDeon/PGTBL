@@ -33,6 +33,10 @@ from .models import Discipline, Attendance, AttendanceRate
 
 from decimal import Decimal
 
+from django.http import JsonResponse
+from django.core import serializers
+import datetime
+
 # Get the custom user from settings
 User = get_user_model()
 
@@ -901,7 +905,6 @@ class createAttendanceView(LoginRequiredMixin,
 
         return super(createAttendanceView, self).form_valid(form)
 
-
     def get_context_data(self, **kwargs):
         """
         Insert discipline instance
@@ -1118,3 +1121,39 @@ def get_attendancies_csv(request, *args, **kwargs):
         ])
 
     return response
+
+def check_attended_students(request, *args, **kwargs):
+
+    class_date = request.GET.get('class_date', None)
+
+    discipline = Discipline.objects.get(
+        slug=kwargs.get('slug', '')
+    )
+
+    if class_date == None:
+        class_date = datetime.date.today().isoformat()
+
+    data = {}
+
+    try:
+        query = Attendance.objects.get(
+            discipline=discipline,
+            date=class_date
+        )
+        attendance = query
+        print("DATA DA ATTENDANCE")
+        print(attendance.date)
+
+        if attendance.attended_students.count() > 0:
+            pks = []
+            for student in attendance.attended_students.all():
+                pks.append(student.pk)
+            data = {
+                'attended_students_pk': pks,
+            }
+            print(data)
+
+    except Attendance.DoesNotExist:
+        pass
+
+    return JsonResponse(data)

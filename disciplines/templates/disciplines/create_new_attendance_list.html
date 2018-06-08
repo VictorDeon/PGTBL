@@ -27,7 +27,7 @@
             <div class="page-header profile">
               <h1 class="white">Create or Edit attendance list</h1>
               <h1 class="white">
-                <i class="fa fa-book"></i> {{discipline.title}} {{discipline.classroom}}<br />
+                <i class="fa fa-book"></i> <div id="class_title">{{discipline.title}}</div>{{discipline.classroom}}<br />
                 <small>{{discipline.course}}</small> <br />
               </h1>
             </div>
@@ -51,7 +51,9 @@
                   <p>
                     <label class="white">Date:</label>
                     {% csrf_token %}
+                    <div class="attendance_date">
                     {{ form.date }}
+                    </div>
                     
                   </p>
                   <p>
@@ -70,13 +72,102 @@
         </div>
 {% endblock %}
 {% block js %}
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <script type="text/javascript">
   function toggle(source) {
   checkboxes = document.getElementsByName('students');
   for(var i=0, n=checkboxes.length;i<n;i++) {
     checkboxes[i].checked = source.checked;
+    }
   }
-}
+</script>
+
+<script>
+
+  $( "#id_date" ).focus(function() {
+    $( this ).blur();
+  });
+
+  $( document ).ready(function() {
+
+      var date = $("#id_date").val()
+        checkboxes = document.getElementsByName('students');
+
+        for(var i=0, n=checkboxes.length;i<n;i++) {
+          checkboxes[i].checked = false;;
+        }
+
+        $.ajax({
+          url: "{% url 'disciplines:updateFormView' discipline.slug %}",
+          data: {
+            'class_date': date
+          },
+          dataType: 'json',
+          success: function (data) {
+
+            if (data.attended_students_pk) {
+
+              console.log(data.attended_students_pk)
+
+              for(var i=0, n=checkboxes.length;i<n;i++) {
+                for (var j=0, m=data.attended_students_pk.length;j<m;j++) {
+                  if (checkboxes[i].value == data.attended_students_pk[j]) {
+                    checkboxes[i].checked = true;
+                  }
+                }
+              }
+            }
+          }
+
+        });
+
+
+      $("#id_date").change(function () {
+      
+        var date = $("#id_date").val()
+        checkboxes = document.getElementsByName('students');
+
+        for(var i=0, n=checkboxes.length;i<n;i++) {
+          checkboxes[i].checked = false;;
+        }
+
+        $.ajax({
+          url: "{% url 'disciplines:updateFormView' discipline.slug %}",
+          data: {
+            'class_date': date
+          },
+          dataType: 'json',
+          success: function (data) {
+
+            if (data.attended_students_pk) {
+
+              console.log(data.attended_students_pk)
+
+              for(var i=0, n=checkboxes.length;i<n;i++) {
+                for (var j=0, m=data.attended_students_pk.length;j<m;j++) {
+                  if (checkboxes[i].value == data.attended_students_pk[j]) {
+                    checkboxes[i].checked = true;
+                  }
+                }
+              }
+            }
+          }
+
+        });
+
+      });
+
+  });
+
 
 </script>
+
+<script>
+  $( function() {
+    $( "#id_date" ).datepicker({ dateFormat: 'yy-mm-dd' });
+  } );
+</script>
+
 {% endblock %}

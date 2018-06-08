@@ -80,8 +80,8 @@ class AttendanceForm(forms.Form):
 
     date = forms.DateField(
         label=_('Attendence Date'),
-        widget=forms.SelectDateWidget,
-        initial=datetime.date.today,
+        widget=forms.DateInput,
+        initial=datetime.date.today().isoformat(),
     )
 
     students = DynamicMultipleChoiceField(

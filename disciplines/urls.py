@@ -58,6 +58,11 @@ discipline_patterns = [
         views.createAttendanceView.as_view(),
         name='createNewAttendance'
     ),
+    url(
+        r'^(?P<slug>[\w_-]+)/attendance/updateFormView/$',
+        views.check_attended_students,
+        name='updateFormView'
+    ),
     # <discipline.slug>/attendance/download
     url(
         r'^(?P<slug>[\w_-]+)/attendance/download/$',
