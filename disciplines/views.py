@@ -925,11 +925,14 @@ class createAttendanceView(LoginRequiredMixin,
                 discipline=discipline,
                 date=date
             )
-            attendance = query
+            query.delete()
+            
         except Attendance.DoesNotExist:
-            attendance = Attendance()
+            pass
 
-        return attendance
+        new_attendance =  Attendance()
+
+        return new_attendance
 
     def get_discipline(self):
         """
