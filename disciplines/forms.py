@@ -4,7 +4,7 @@ from django import forms
 
 # App imports
 from pagedown.widgets import PagedownWidget
-from .models import Discipline, Attendance
+from .models import Discipline
 
 import datetime
 
