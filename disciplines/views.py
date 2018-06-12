@@ -31,10 +31,7 @@ from core.utils import order
 from .forms import DisciplineForm, DisciplineEditForm, EnterDisciplineForm, AttendanceForm
 from .models import Discipline, Attendance, AttendanceRate
 
-from decimal import Decimal
-
 from django.http import JsonResponse
-from django.core import serializers
 import datetime
 
 # Get the custom user from settings
