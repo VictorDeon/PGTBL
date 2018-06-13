@@ -238,9 +238,12 @@ class PeerReviewView(LoginRequiredMixin,
         """
         user_logged_in = self.get_user_logged_in()
         group = self.get_student_group(user_logged_in)
-        students = group.students.exclude(username=user_logged_in.username)
+        discipline = self.get_discipline()
 
-        return students
+        if user_logged_in.username == discipline.teacher:
+            return group.students
+        else:
+            return group.students.exclude(username=user_logged_in.username)
 
     def get_user_logged_in(self):
         user_logged_in = None

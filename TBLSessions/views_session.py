@@ -275,6 +275,10 @@ class ShowSessionView(LoginRequiredMixin,
 
     def set_peer_review_available(self, session):
         now = timezone.localtime(timezone.now())
+
+        if session.peer_review_datetime == None:
+            session.peer_review_datetime = now - timedelta(minutes=session.peer_review_duration)
+
         deadline = session.peer_review_datetime + timedelta(minutes=session.peer_review_duration)
 
         if session.peer_review_datetime < now < deadline:
