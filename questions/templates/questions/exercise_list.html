@@ -1,4 +1,3 @@
-
 {% extends 'TBLSessions/details.html' %}
 {% load widget_tweaks %}
 {% load static %}
@@ -72,6 +71,11 @@
         </div>
         <div class="panel-body">
           {% include 'questions/progress_bar.html' %}
+                          <div class="col-sm-12" id="question">
+                    <h3>
+                      <small>Total Score: </small><small id="current_score"></small>
+                    </h3>
+                  </div>
           {% for question in questions %}
             <div class="panel panel-default">
               <div class="panel-body">
@@ -116,7 +120,8 @@
                 <hr />
                 <form action="{% url 'questions:exercise-answer-question' discipline.slug session.id question.id page_obj.number %}" method="POST">
                   {% csrf_token %}
-
+                  
+                  <div class = "alternatives">
                   <div class="row">
                     <div class="col-sm-1">
                       <div class="form-group">
@@ -124,8 +129,9 @@
                           {% render_field form1.score class="form-control" %}
                       </div>
                     </div>
+
                     <div class="col-sm-11">
-                      <h4 class="text-justify">
+                      <h4 class="text-justify" id="alternative0">
                         {{question.alternatives.all.0.title}}
                       </h4>
                     </div>
@@ -137,7 +143,7 @@
                           {% render_field form2.score class="form-control" %}
                       </div>
                     </div>
-                    <div class="col-sm-11">
+                    <div class="col-sm-11" id="alternative1">
                       <h4 class="text-justify">
                         {{question.alternatives.all.1.title}}
                       </h4>
@@ -150,7 +156,7 @@
                           {% render_field form3.score class="form-control" %}
                       </div>
                     </div>
-                    <div class="col-sm-11">
+                    <div class="col-sm-11" id="alternative2">
                       <h4 class="text-justify">
                         {{question.alternatives.all.2.title}}
                       </h4>
@@ -163,11 +169,12 @@
                           {% render_field form4.score class="form-control" %}
                       </div>
                     </div>
-                    <div class="col-sm-11">
+                    <div class="col-sm-11" id="alternative3">
                       <h4 class="text-justify">
                         {{question.alternatives.all.3.title}}
                       </h4>
                     </div>
+                  </div>
                   </div>
                   <button type="submit" class="btn btn-primary submit-button center-block gradient">
                     <i class="fa fa-edit"></i>
@@ -195,5 +202,98 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>   
+{% endblock %}
+{% block js %}
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script>
+
+  {% if current_score != none%}
+       $("#current_score").text("{{current_score}}");
+  {% endif %}
+
+  $('form').submit(function () {
+
+    var alternative_one_points = parseInt($("#id_alternative01-score").val());
+    var alternative_two_points = parseInt($("#id_alternative02-score").val());
+    var alternative_three_points = parseInt($("#id_alternative03-score").val());
+    var alternative_four_points = parseInt($("#id_alternative04-score").val());
+
+    {% for question in questions %}
+
+      {% if question not in submited_questions %}
+        {% if question.alternatives.all.0.is_correct == True %}
+            alert(
+              "Correct alternative: {{question.alternatives.all.0.title}}"
+              + "\n"
+              + "You won " + alternative_one_points + " points"
+            );
+        {% endif %}
+        {% if question.alternatives.all.1.is_correct == True %}
+            alert(
+              "Correct alternative: {{question.alternatives.all.1.title}}"
+              + "\n"
+              + "You won " + alternative_two_points + " points"
+            )
+        {% endif %}
+        {% if question.alternatives.all.2.is_correct == True %}
+            alert(
+              "Correct alternative: {{question.alternatives.all.2.title}}"
+              + "\n"
+              + "You won " + alternative_three_points + " points"
+            )
+        {% endif %}
+        {% if question.alternatives.all.3.is_correct == True %}
+            alert(
+              "Correct alternative: {{question.alternatives.all.3.title}}"
+              + "\n"
+              + "You won " + alternative_four_points + " points"
+            )
+        {% endif %}
+      {% endif %}
+
+    {% endfor %}
+
+  });
+
+  /* 
+  Function to validate the entry of user points. Limiting up to 4 points distributed.
+  */
+
+  var alternative_one_previous = 0;
+  var alternative_two_previous = 0;
+  var alternative_three_previous = 0;
+  var alternative_four_previous = 0;
+
+  $( ".alternatives" ).change(function() {
+
+    var alternative_one = parseInt($("#id_alternative01-score").val());
+    var alternative_two = parseInt($("#id_alternative02-score").val());
+    var alternative_three = parseInt($("#id_alternative03-score").val());
+    var alternative_four = parseInt($("#id_alternative04-score").val());
+
+    var total = (alternative_one + alternative_two + alternative_three + alternative_four);
+
+    if (total > 4 ) {
+      alert("The distribution of points has gone from the 4-point limit");
+      $("#id_alternative01-score").val(alternative_one_previous);
+      $("#id_alternative02-score").val(alternative_two_previous);
+      $("#id_alternative03-score").val(alternative_three_previous);
+      $("#id_alternative04-score").val(alternative_four_previous);
+    }
+    else{
+      alternative_one_previous = alternative_one;
+      alternative_two_previous = alternative_two;
+      alternative_three_previous = alternative_three;
+      alternative_four_previous = alternative_four;
+    }
+
+  });
+
+
+</script>
+
 {% endblock %}
