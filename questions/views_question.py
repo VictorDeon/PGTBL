@@ -7,9 +7,6 @@ from django.views.generic import (
     ListView, CreateView, UpdateView, DeleteView
 )
 
-from django.shortcuts import get_object_or_404, redirect
-
-
 # App imports
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline

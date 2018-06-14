@@ -1,0 +1,3 @@
+[realease02 4372de1] Inform answers when submiting question. #36
+ 4 files changed, 339 insertions(+), 5 deletions(-)
+ create mode 100644 questions/templates/questions/exercise_list.html
