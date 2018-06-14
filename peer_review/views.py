@@ -312,6 +312,17 @@ class PeerReviewResultView(LoginRequiredMixin,
 
         return session
 
+    def get_groups(self):
+        """
+        Get the group queryset from model database.
+        """
+
+        discipline = self.get_discipline()
+
+        groups = Group.objects.filter(discipline=discipline)
+
+        return groups
+
     def get_all_students(self, student):
         """
         Get students from dicipline except the student passed
@@ -334,6 +345,8 @@ class PeerReviewResultView(LoginRequiredMixin,
         context['session'] = self.get_session()
         context['students'] = self.get_all_students(None)
         context['submissions'] = self.get_queryset()
+        context['groups'] = self.get_groups()
+
         return context
 
     def get_queryset(self):

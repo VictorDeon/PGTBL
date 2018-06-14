@@ -63,49 +63,62 @@
         <div class="panel-body">
           <h2>{% trans 'Result' %}</h2>
           <hr />
-          {% if submissions is not None %}
+          <!-- Group panel -->
           <div class="panel-group fix-row" id="accordion">
-            {% for student in students %}
-                <div class="panel panel-default">
-                  <!-- Panel heading -->
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse"
-                         data-parent="#accordion"
-                         href="#collapse{{student.id}}">
-                         <span>
-                           <i class="fa fa-slideshare"></i>
-                           {{ student.get_full_name }}
-                         </span>
-                      </a>
-                    </h4>
-                  </div>
+            {% for group in groups %}
+              <div class="panel panel-default">
+                <!-- Panel heading -->
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse"
+                       data-parent="#accordion"
+                       href="#collapse{{group.id}}">
+                       <span>
+                         <i class="fa fa-slideshare"></i>
+                         {{group.title}}
+                       </span>
+                      <span class="label label-primary pull-right">
+                        {{group.students.count}}/{{group.students_limit}}
+                      </span>
+                    </a>
+                  </h4>
+                </div>
 
-                  <div id="collapse{{student.id}}" class="panel-collapse collapse out">
-                    <div class="panel-body">
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th>{% trans 'Reviewed by' %}</th>
-                        <th>{% trans 'Score' %}</th>
-                      </tr>
-                    </thead>
-                    <tbody class="text-justify">
-                      {% for submission in submissions %}
-                      {% if submission.student == student %}
-                        <tr>
-                          <td>{{ submission.reviewed_by.get_full_name }}</td>
-                          <td>{{ submission.score }}</td>
-                        </tr>
-                        {% endif %}
-                      {% endfor %}
-                    </tbody>
-                  </table>
+                <!-- Panel body -->
+                <div id="collapse{{group.id}}" class="panel-collapse collapse out">
+                  <div class="panel-body">
+                    {% for student in group.students.all %}
+                      <h3 align="center">{{ student.get_full_name }}</h3>
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>{% trans 'Reviewed by' %}</th>
+                            <th>{% trans 'Score' %}</th>
+                          </tr>
+                        </thead>
+                        <tbody class="text-justify">
+                          {% for submission in submissions %}
+                            {% if submission.student == student %}
+                            <tr>
+                              <td>{{ submission.reviewed_by.get_full_name }}</td>
+                              <td>{{ submission.score }}</td>
+                            </tr>
+                            {% endif %}
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    {% empty %}
+                      <p>{% trans 'There is no students in this group.' %}</p>
+                    {% endfor %}
                   </div>
                 </div>
-              {% endfor %}
+
               </div>
-          {% endif %}
+            {% empty %}
+              <p class="white">{% trans 'There is no groups' %}</p>
+            {% endfor %}
+          </div>
+          <hr />
         </div>
       </div>
     </div>
