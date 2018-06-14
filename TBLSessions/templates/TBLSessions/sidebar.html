@@ -37,7 +37,7 @@
        <i class="fa fa-leanpub icon-lg"></i>
     </a>
     <!-- Session dashboard menu -->
-    <a href="#"
+    <a href="{% url 'dashboard:list' discipline.slug session.id %}"
        class="btn"
        data-toggle="tooltip"
        data-placement="right"

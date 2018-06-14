@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'', include('questions.urls')),
     url(r'', include('grades.urls')),
     url(r'', include('peer_review.urls')),
+    url(r'', include('dashboard.urls')),
 ]
 
 # While in development mode we will use relative URL for static and average
