@@ -11,6 +11,9 @@ from django.db.models import Q
 # Application imports
 from core.permissions import PermissionMixin
 # Get the custom user from settings
+from groups.models import Group
+from questions.models import Question
+
 User = get_user_model()
 
 
@@ -50,6 +53,49 @@ class DashboardView(LoginRequiredMixin,
 
         return session
 
+    def get_groups(self):
+        """
+        Get the group queryset from model database.
+        """
+
+        discipline = self.get_discipline()
+
+        groups = Group.objects.filter(discipline=discipline)
+
+        return groups
+
+    def get_all_students(self):
+        """
+        Get students from dicipline except the student passed
+        """
+        discipline = self.get_discipline()
+
+        students = discipline.students.all()
+
+        return students
+
+    def get_exercise_questions(self):
+        """
+        Get the group queryset from model database.
+        """
+
+        this_session = self.get_session()
+
+        questions = Question.objects.filter(session=this_session, is_exercise=True)
+
+        return questions
+
+    def get_RAT_questions(self):
+        """
+        Get the group queryset from model database.
+        """
+
+        this_session = self.get_session()
+
+        questions = Question.objects.filter(session=this_session, is_exercise=False)
+
+        return questions
+
     def get_context_data(self, **kwargs):
         """
         Insert discipline and session into context data.
@@ -57,6 +103,11 @@ class DashboardView(LoginRequiredMixin,
         context = super(DashboardView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
+        context['groups'] = self.get_groups()
+        context['students'] = self.get_all_students()
+        context['RATQuestions'] = self.get_RAT_questions()
+        context['ExerciseQuestions'] = self.get_exercise_questions()
+
         return context
 
     def get_queryset(self):

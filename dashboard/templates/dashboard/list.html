@@ -6,11 +6,10 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}">
     <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
-    <link rel="stylesheet" href="{% static 'dashboard/js/dashboard.js' %}">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" src="js/dashboard.js"></script>
+    <script type="text/javascript" src="{% static 'dashboard/js/dashboard.js' %}"></script>
 {% endblock %}
 
 {% block breadcrumb %}
@@ -22,7 +21,7 @@
 
 {% block content %}
 <div class="row">
-  <div class="col-sm-10">
+  <div class="col-sm-12">
           <div class="container-fluid">
             <div class="page-header profile">
               <h1 class="white">
