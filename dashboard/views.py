@@ -12,7 +12,7 @@ from django.db.models import Q
 from core.permissions import PermissionMixin
 # Get the custom user from settings
 from groups.models import Group
-from questions.models import Question
+from questions.models import Question, IRATSubmission, GRATSubmission
 
 User = get_user_model()
 
@@ -72,29 +72,63 @@ class DashboardView(LoginRequiredMixin,
 
         students = discipline.students.all()
 
-        return students
+        data = {}
+        i = 0
+        for student in students:
+            data[i] = student.username
+            i += 1
 
-    def get_exercise_questions(self):
+        return data
+
+    def get_questions(self, type):
         """
         Get the group queryset from model database.
         """
+        questions = Question.objects.filter(session=self.get_session(), is_exercise=type)
 
-        this_session = self.get_session()
+        data = {}
+        i = 0
+        for question in questions:
+            data[i] = question.title
+            i += 1
 
-        questions = Question.objects.filter(session=this_session, is_exercise=True)
+        return data
 
-        return questions
-
-    def get_RAT_questions(self):
+    def get_iRAT_submissions(self):
         """
         Get the group queryset from model database.
         """
+        submissions = IRATSubmission.objects.all()
 
-        this_session = self.get_session()
+        data = {}
+        i = 0
+        for submission in submissions:
+            data[i] = submission.user.username
+            i += 1
+            data[i] = submission.question.title
+            i += 1
+            data[i] = submission.score
+            i += 1
 
-        questions = Question.objects.filter(session=this_session, is_exercise=False)
+        return data
 
-        return questions
+    def get_gRAT_submissions(self):
+        """
+        Get the group queryset from model database.
+        """
+        submissions = GRATSubmission.objects.all()
+
+        data = {}
+        i = 0
+        for submission in submissions:
+            data[i] = submission.group.title
+            i += 1
+            data[i] = submission.question.title
+            i += 1
+            data[i] = submission.score
+            i += 1
+
+        return data
 
     def get_context_data(self, **kwargs):
         """
@@ -105,8 +139,9 @@ class DashboardView(LoginRequiredMixin,
         context['session'] = self.get_session()
         context['groups'] = self.get_groups()
         context['students'] = self.get_all_students()
-        context['RATQuestions'] = self.get_RAT_questions()
-        context['ExerciseQuestions'] = self.get_exercise_questions()
+        context['iRATSubmissions'] = self.get_iRAT_submissions()
+        context['gRATSubmissions'] = self.get_gRAT_submissions()
+        context['RATQuestions'] = self.get_questions(False)
 
         return context
 

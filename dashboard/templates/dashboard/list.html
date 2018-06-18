@@ -9,6 +9,16 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+      var student_count = {{ students|length }};
+      var student_list = {{ students|safe }};
+
+      var RAT_count = {{ RATQuestions|length }};
+      var RAT_Questions = {{ RATQuestions|safe }};
+
+      var iRATSubmissions_count = {{ iRATSubmissions|length }};
+      var iRATSubmissions = {{ iRATSubmissions|safe }};
+    </script>
     <script type="text/javascript" src="{% static 'dashboard/js/dashboard.js' %}"></script>
 {% endblock %}
 
@@ -81,12 +91,12 @@
                   </div>
                 </div>
                 <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div id="chart-questions"></div>
-                      <div id='png-questions'></div>
-                    </div>
-                  </div>
+                  <!--<div class="row">-->
+                    <!--<div class="col-md-12">-->
+                      <!--<div id="chart-questions"></div>-->
+                      <!--<div id='png-questions'></div>-->
+                    <!--</div>-->
+                  <!--</div>-->
                   <hr />
                   <div class="row">
                     <div class="col-md-12">
@@ -95,12 +105,12 @@
                     </div>
                   </div>
                   <hr />
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div id="chart-students-grat"></div>
-                      <div id='png-grat'></div>
-                    </div>
-                  </div>
+                  <!--<div class="row">-->
+                    <!--<div class="col-md-12">-->
+                      <!--<div id="chart-students-grat"></div>-->
+                      <!--<div id='png-grat'></div>-->
+                    <!--</div>-->
+                  <!--</div>-->
                 </div>
               </div>
             </div>
