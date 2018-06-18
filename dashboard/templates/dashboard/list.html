@@ -18,6 +18,12 @@
 
       var iRATSubmissions_count = {{ iRATSubmissions|length }};
       var iRATSubmissions = {{ iRATSubmissions|safe }};
+
+      var gRATSubmissions_count = {{ gRATSubmissions|length }};
+      var gRATSubmissions = {{ gRATSubmissions|safe }};
+
+      var groups_count = {{ groups|length }};
+      var groups = {{ groups|safe }};
     </script>
     <script type="text/javascript" src="{% static 'dashboard/js/dashboard.js' %}"></script>
 {% endblock %}
@@ -105,12 +111,12 @@
                     </div>
                   </div>
                   <hr />
-                  <!--<div class="row">-->
-                    <!--<div class="col-md-12">-->
-                      <!--<div id="chart-students-grat"></div>-->
-                      <!--<div id='png-grat'></div>-->
-                    <!--</div>-->
-                  <!--</div>-->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div id="chart-students-grat"></div>
+                      <div id='png-grat'></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

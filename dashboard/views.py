@@ -44,10 +44,8 @@ class DashboardView(LoginRequiredMixin,
         """
         Take the session that the group belongs to
         """
-        discipline = self.get_discipline()
-
         session = TBLSession.objects.get(
-            Q(discipline=discipline),
+            Q(discipline=self.get_discipline()),
             Q(pk=self.kwargs.get('pk', ''))
         )
 
@@ -62,7 +60,13 @@ class DashboardView(LoginRequiredMixin,
 
         groups = Group.objects.filter(discipline=discipline)
 
-        return groups
+        data = {}
+        i = 0
+        for group in groups:
+            data[i] = group.title
+            i += 1
+
+        return data
 
     def get_all_students(self):
         """
@@ -98,7 +102,7 @@ class DashboardView(LoginRequiredMixin,
         """
         Get the group queryset from model database.
         """
-        submissions = IRATSubmission.objects.all()
+        submissions = IRATSubmission.objects.filter(session=self.get_session())
 
         data = {}
         i = 0
@@ -116,7 +120,7 @@ class DashboardView(LoginRequiredMixin,
         """
         Get the group queryset from model database.
         """
-        submissions = GRATSubmission.objects.all()
+        submissions = GRATSubmission.objects.filter(session=self.get_session())
 
         data = {}
         i = 0
