@@ -68,6 +68,9 @@ class AttendanceTestCase(TestCase):
         return attendance
 
     def test_create_attendance(self):
+        """
+        This method will test if an attendance was succesfully created 
+        """
 
         students_pk = []
 
@@ -84,6 +87,9 @@ class AttendanceTestCase(TestCase):
         self.assertEqual(Attendance.objects.count(), 1)
 
     def test_attended_not_in_missed(self):
+        """
+        This method will test if a attended student is listed in missed students
+        """
 
         students_pk = []
 
@@ -103,6 +109,11 @@ class AttendanceTestCase(TestCase):
         self.assertNotIn(attendance.missing_students.all(), attendance.attended_students.all())
 
     def test_edit_attendance(self):
+        """
+        This method will test if a missing student marked as
+        attended, after certain attendance is edited, will still
+        be listed in missing students
+        """
 
         students_pk = []
         students_pk_after_edit = []
