@@ -22,9 +22,6 @@ class AttendanceTestCase(TestCase):
 
         self.client = Client()
         self.teacher = user_factory(name='Pedro', password='test1234')
-        self.teachers = user_factory(qtd=2)
-        self.student = user_factory(name='Maria', is_teacher=False)
-        self.monitor = user_factory(name='Caio')
         self.students = user_factory(
             qtd=9,
             is_teacher=False
@@ -37,9 +34,7 @@ class AttendanceTestCase(TestCase):
             password='12345',
             is_closed=True,
             students_limit=10,
-            monitors_limit=3,
             students=self.students,
-            monitors=self.teachers,
             make_m2m=True
         )
         self.client.login(username=self.teacher.username, password='test1234')
