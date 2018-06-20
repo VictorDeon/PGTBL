@@ -40,53 +40,40 @@ class PeerReviewView(LoginRequiredMixin,
         Handle POST requests: instantiate a form instance with the passed
         POST variables and then check if it's valid.
         """
-        discipline = self.get_discipline()
-        students = self.get_all_students()
-        session = self.get_session()
+        forms = {}
+        for idx, student in enumerate(self.get_all_students()):
+            forms[idx] = StudentForm(request.POST, prefix=student.username)
 
-        form1 = StudentForm(request.POST, prefix='student1')
-        form2 = StudentForm(request.POST, prefix='student2')
-        form3 = StudentForm(request.POST, prefix='student3')
-        form4 = StudentForm(request.POST, prefix='student4')
-        form5 = StudentForm(request.POST, prefix='student5')
-
-        if self.sum_of_scores(form1, form2, form3, form4, form5):
+        if self.sum_of_scores(forms):
             messages.error(request, _('Make sure the sum of scores is 100 and you gave feedback to everyone'))
             return HttpResponseRedirect(
                 reverse_lazy(
                     'peer_review:review',
-                    kwargs={'slug': discipline.slug, 'pk': session.id}
+                    kwargs={'slug': self.get_discipline().slug, 'pk': self.get_session().id}
                 )
             )
         else:
-
-            self.form_validation(form1, students.count(), 0)
-            self.form_validation(form2, students.count(), 1)
-            self.form_validation(form3, students.count(), 2)
-            self.form_validation(form4, students.count(), 3)
-            self.form_validation(form5, students.count(), 4)
+            for idx in forms:
+                self.form_validation(forms[idx], idx)
 
             messages.success(request, _('Your review was saved successfully!'))
 
             return HttpResponseRedirect(
                 reverse_lazy(
                     'TBLSessions:details',
-                    kwargs={'slug': discipline.slug, 'pk': session.id}
+                    kwargs={'slug': self.get_discipline().slug, 'pk': self.get_session().id}
                 )
             )
 
-    def form_valid(self, form, student_index):
-
+    def form_valid(self, form, idx):
         """
         Receive the form already validated to create an Peer Review
         """
-        discipline = self.get_discipline()
         students = self.get_all_students()
         session = self.get_session().id
 
-        i = 1
-        for student in students:
-            if i == student_index:
+        for student_idx, student in enumerate(students):
+            if idx == student_idx:
                 reviewed_by = self.request.user
                 student = student
 
@@ -102,14 +89,12 @@ class PeerReviewView(LoginRequiredMixin,
                 else:
                     peer_review.score = form.cleaned_data.get('score')
                 peer_review.save()
-            i += 1
 
-    def sum_of_scores(self, form1, form2, form3, form4, form5):
-        scores = int(self.return_score(form1)) + \
-                 int(self.return_score(form2)) + \
-                 int(self.return_score(form3)) + \
-                 int(self.return_score(form4)) + \
-                 int(self.return_score(form5))
+    def sum_of_scores(self, forms):
+
+        scores = 0
+        for idx in forms:
+            scores += int(self.return_score(forms[idx]))
 
         if scores == 100:
             return False
@@ -123,12 +108,11 @@ class PeerReviewView(LoginRequiredMixin,
         else:
             return 0
 
-    def form_validation(self, form, count, index):
-        if count > index:
-            if form.is_valid():
-                self.form_valid(form, index+1)
-            else:
-                return self.form_invalid(form)
+    def form_validation(self, form, idx):
+        if form.is_valid():
+            self.form_valid(form, idx)
+        else:
+            return self.form_invalid(form)
 
     @classmethod
     def return_existent_review(self, reviewed_by, student, session):
@@ -163,49 +147,11 @@ class PeerReviewView(LoginRequiredMixin,
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
         context['group'] = self.get_student_group(self.request.user)
-        context['student1'] = None
-        context['student2'] = None
-        context['student3'] = None
-        context['student4'] = None
-        context['student5'] = None
+        context['students'] = self.get_all_students()
 
-        discipline = self.get_discipline()
-        session = self.get_session()
-        students = self.get_all_students()
-
-        i = 1
-        for student in students:
-            if i == 1:
-                context['student1'] = student
-                peer_review = self.return_existent_review(self.request.user,
-                                                          student,
-                                                          session.id)
-                context['form1'] = StudentForm(initial=self.get_form_data(peer_review), prefix='student1')
-            elif i == 2:
-                context['student2'] = student
-                peer_review = self.return_existent_review(self.request.user,
-                                                          student,
-                                                          session.id)
-                context['form2'] = StudentForm(initial=self.get_form_data(peer_review), prefix='student2')
-            elif i == 3:
-                context['student3'] = student
-                peer_review = self.return_existent_review(self.request.user,
-                                                          student,
-                                                          session.id)
-                context['form3'] = StudentForm(initial=self.get_form_data(peer_review), prefix='student3')
-            elif i == 4:
-                context['student4'] = student
-                peer_review = self.return_existent_review(self.request.user,
-                                                          student,
-                                                          session.id)
-                context['form4'] = StudentForm(initial=self.get_form_data(peer_review), prefix='student4')
-            elif i == 5:
-                context['student5'] = student
-                peer_review = self.return_existent_review(self.request.user,
-                                                          student,
-                                                          session.id)
-                context['form5'] = StudentForm(initial=self.get_form_data(peer_review), prefix='student5')
-            i += 1
+        for idx, student in enumerate(self.get_all_students()):
+            peer_review = self.return_existent_review(self.request.user, student, self.get_session().id)
+            context['form'+str(idx+1)] = StudentForm(initial=self.get_form_data(peer_review), prefix=student.username)
 
         return context
 
