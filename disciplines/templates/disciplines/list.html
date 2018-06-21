@@ -166,7 +166,28 @@
                         </div>
                       </form>
                     </div>
-                  </div> <!-- Discipline panel-footer row -->
+                    <div class="col-lg-6">
+                      {% if discipline.halls.all %}
+                        <a href="{% url 'hallOfFame:list' discipline.slug %}"
+                          class="btn btn-primary btn-class"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="{% trans 'Hall of Fame' %}">
+                          <i class="fa fa-trophy"></i>
+                        </a>
+                      {% else %}
+                        <a
+                          class="btn btn-primary btn-class"
+                          data-toggle="modal"
+                          data-placement="top"
+                          data-target="#My-modal"
+                          title="{% trans 'Hall of Fame' %}">
+                          <i class="fa fa-trophy"></i>
+                        </a>
+                        {% include "accounts/info_hall.html" %}
+                      {% endif %}
+                  </div>
+              </div> <!-- Discipline panel-footer row -->
                 </div> <!-- Discipline panel-footer -->
               </div> <!-- Discipline collapse -->
             </div> <!-- Discipline panel-default -->
