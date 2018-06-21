@@ -133,8 +133,8 @@ class CreateHallView(generic.CreateView):
             messages.error(self.request,  ('Hall of Fame not added. Hall of Fame for this year and semester already exist.'))
             return redirect(self.get_success_url())
         else:
-        messages.error(self.request,  ('Hall of Fame not added.'))
-        return redirect(self.get_success_url())
+            messages.error(self.request,  ('Hall of Fame not added.'))
+            return redirect(self.get_success_url())
 
  
 
