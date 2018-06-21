@@ -11,6 +11,7 @@ from hallOfFame.models import HallOfFame
 from disciplines.models import Discipline
 from rankingGroup.models import Ranking, GroupInfo
 from .form import HallOfFameForm
+from TBLSessions.models import TBLSession
 
 import datetime
 
@@ -94,7 +95,16 @@ class CreateHallView(generic.CreateView):
 
 
         return halls
+    
+    def get_sessions_open(self):
+        """
+        Get the closeds tbl sessions from model database.
+        """
 
+        discipline = self.get_discipline()
+        sessions =  TBLSession.objects.filter(discipline=discipline,is_closed=False)
+
+        return sessions
 
     def form_valid(self, form):
         """If the form is valid, save the associated model."""
@@ -102,28 +112,30 @@ class CreateHallView(generic.CreateView):
         form.instance.discipline = self.get_discipline()
         form.instance.group_info = self.get_groupsInfo()
         # self.object = form.save()
+
+        sessions = self.get_sessions_open()
         halls = self.get_hallOfFame()
 
         discipline = self.get_discipline()
 
-        print(halls)
-        print("\n")
-
         semester = form.cleaned_data.get('semester')
         year = form.cleaned_data.get('year')
 
-        print(len(halls.filter(discipline=discipline, year=year, semester=semester)))
-
-
-        if(len(halls.filter(discipline=discipline, year=year, semester=semester)) == 0):
+        if(len(halls.filter(discipline=discipline, year=year, semester=semester)) == 0 and len(sessions) == 0):
             messages.success(self.request,  ('Hall of Fame added successfully.'))
             discipline.is_closed = True
             discipline.save()
             return super(CreateHallView,self).form_valid(form)
-
-        else:
+        elif(len(sessions) != 0):
+            messages.error(self.request,  ('Hall of Fame not added. All sessions must be closed.'))
+            return redirect(self.get_success_url())
+        elif(len(halls.filter(discipline=discipline, year=year, semester=semester)) != 0):
             messages.error(self.request,  ('Hall of Fame not added. Hall of Fame for this year and semester already exist.'))
             return redirect(self.get_success_url())
+        else:
+        messages.error(self.request,  ('Hall of Fame not added.'))
+        return redirect(self.get_success_url())
+
  
 
 
