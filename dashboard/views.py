@@ -55,16 +55,11 @@ class DashboardView(LoginRequiredMixin,
         """
         Get the group queryset from model database.
         """
-
-        discipline = self.get_discipline()
-
-        groups = Group.objects.filter(discipline=discipline)
+        groups = Group.objects.filter(discipline=self.get_discipline())
 
         data = {}
-        i = 0
-        for group in groups:
-            data[i] = group.title
-            i += 1
+        for counter, group in enumerate(groups):
+            data[counter] = group.title
 
         return data
 
@@ -72,47 +67,43 @@ class DashboardView(LoginRequiredMixin,
         """
         Get students from dicipline except the student passed
         """
-        discipline = self.get_discipline()
-
-        students = discipline.students.all()
-
         data = {}
-        i = 0
-        for student in students:
-            data[i] = student.username
-            i += 1
+        for counter, student in enumerate(self.get_discipline().students.all()):
+            data[counter] = student.username
 
         return data
 
     def get_questions(self, type):
-        """
-        Get the group queryset from model database.
-        """
         questions = Question.objects.filter(session=self.get_session(), is_exercise=type)
 
         data = {}
-        i = 0
-        for question in questions:
-            data[i] = question.title
-            i += 1
+        for counter, question in enumerate(questions):
+            data[counter] = question.title
 
         return data
 
     def get_iRAT_submissions(self):
-        """
-        Get the group queryset from model database.
-        """
         submissions = IRATSubmission.objects.filter(session=self.get_session())
 
         data = {}
-        i = 0
-        for submission in submissions:
-            data[i] = submission.user.username
-            i += 1
-            data[i] = submission.question.title
-            i += 1
-            data[i] = submission.score
-            i += 1
+        for counter, submission in enumerate(submissions):
+            data[3*counter] = submission.user.username
+            data[3*counter+1] = submission.question.title
+            data[3*counter+2] = submission.score
+
+        return data
+
+    def get_iRAT_questions_results(self):
+        questions = Question.objects.filter(session=self.get_session(), is_exercise=False)
+
+        data = {}
+        for counter, question in enumerate(questions):
+            score = 0
+            data[2*counter] = question.title
+            submissions = IRATSubmission.objects.filter(question=question)
+            for submission in submissions:
+                score += submission.score
+            data[2*counter+1] = score
 
         return data
 
@@ -123,20 +114,65 @@ class DashboardView(LoginRequiredMixin,
         submissions = GRATSubmission.objects.filter(session=self.get_session())
 
         data = {}
-        i = 0
-        for submission in submissions:
-            data[i] = submission.group.title
-            i += 1
-            data[i] = submission.question.title
-            i += 1
-            data[i] = submission.score
-            i += 1
+        for counter, submission in enumerate(submissions):
+            data[3*counter] = submission.group.title
+            data[3*counter+1] = submission.question.title
+            data[3*counter+2] = submission.score
+
+        return data
+
+    def get_gRAT_questions_results(self):
+        questions = Question.objects.filter(session=self.get_session(), is_exercise=False)
+
+        data = {}
+        for counter, question in enumerate(questions):
+            score = 0
+            data[2 * counter] = question.title
+            submissions = GRATSubmission.objects.filter(question=question)
+            for submission in submissions:
+                score += submission.score
+            data[2 * counter + 1] = score
+
+        return data
+
+    def get_peer_review_grades(self):
+        students = self.get_discipline().students.all()
+
+        data = {}
+        for counter, student in enumerate(students):
+            grades = Grade.objects.filter(session=self.get_session(), student=student)
+            data[2 * counter] = student
+            if grades:
+                for grade in grades:
+                    data[2*counter+1] = grade.peer_review
+            else:
+                data[2*counter+1] = 0
+
+        return data
+
+    def get_rat_average(self):
+        grades = Grade.objects.filter(session=self.get_session())
+
+        data = {}
+        score = 0
+        for counter, grade in enumerate(grades):
+            score += grade.irat
+
+        students = self.get_discipline().students.all()
+        data['iRAT'] = score / students.count()
+
+        score = 0
+        for counter, grade in enumerate(grades):
+            score += grade.grat
+
+        groups = Group.objects.filter(discipline=self.get_discipline())
+        data['gRAT'] = score / groups.count()
 
         return data
 
     def get_context_data(self, **kwargs):
         """
-        Insert discipline and session into context data.
+        Insert info into context data.
         """
         context = super(DashboardView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
@@ -145,7 +181,12 @@ class DashboardView(LoginRequiredMixin,
         context['students'] = self.get_all_students()
         context['iRATSubmissions'] = self.get_iRAT_submissions()
         context['gRATSubmissions'] = self.get_gRAT_submissions()
+        context['iRATTotalScore'] = self.get_iRAT_questions_results()
+        context['gRATTotalScore'] = self.get_gRAT_questions_results()
+        context['PeerReviewGrades'] = self.get_peer_review_grades()
         context['RATQuestions'] = self.get_questions(False)
+        context['ExerciseQuestions'] = self.get_questions(True)
+        context['RATAverage'] = self.get_rat_average()
 
         return context
 
@@ -155,6 +196,6 @@ class DashboardView(LoginRequiredMixin,
         """
         session = self.get_session()
 
-        grade = Grade.objects.filter(session=session.id)
+        grade = Grade.objects.filter(session=session)
 
         return grade

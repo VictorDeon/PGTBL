@@ -22,8 +22,12 @@
       var gRATSubmissions_count = {{ gRATSubmissions|length }};
       var gRATSubmissions = {{ gRATSubmissions|safe }};
 
+      var iRATTotalScore = {{ iRATTotalScore|safe }};
+      var gRATTotalScore = {{ gRATTotalScore|safe }};
+
       var groups_count = {{ groups|length }};
       var groups = {{ groups|safe }};
+
     </script>
     <script type="text/javascript" src="{% static 'dashboard/js/dashboard.js' %}"></script>
 {% endblock %}
@@ -52,10 +56,10 @@
                     <div class="panel-body">
                       <div class="col-sm-6">
                         <h4><i class="fa fa-bar-chart-o"></i> Média iRAT</h4>
-                        <p><i class="fa fa-calendar"></i> 20/04/2017 às 15:30</p>
+                        <p><i class="fa fa-calendar"></i> {{session.irat_datetime}}</p>
                       </div>
                       <div class="col-sm-6">
-                        <h1 class="pull-right">29</h1>
+                        <h1 class="pull-right">{{RATAverage.iRAT}}</h1>
                       </div>
                     </div>
                   </div>
@@ -67,10 +71,10 @@
                     <div class="panel-body">
                       <div class="col-sm-6">
                         <h4><i class="fa fa-bar-chart-o"></i> Média gRAT</h4>
-                        <p><i class="fa fa-calendar"></i> 20/04/2017 às 15:30</p>
+                        <p><i class="fa fa-calendar"></i> {{session.grat_datetime}}</p>
                       </div>
                       <div class="col-sm-6">
-                        <h1 class="pull-right">33</h1>
+                        <h1 class="pull-right">{{RATAverage.gRAT}}</h1>
                       </div>
                     </div>
                   </div>
@@ -84,25 +88,25 @@
                     <div class="col-sm-8">
                       <i class="fa fa-wpforms"></i> Relatórios iRAT e gRAT
                     </div>
-                    <div class="col-sm-2">
-                      <span class="pull-right">
-                        <i class="fa fa-chevron-up"></i> 39%
-                      </span>
-                    </div>
-                    <div class="col-sm-2">
-                      <span class="pull-right">
-                        <i class="fa fa-chevron-down"></i> -12%
-                      </span>
-                    </div>
+                    <!--<div class="col-sm-2">-->
+                      <!--<span class="pull-right">-->
+                        <!--<i class="fa fa-chevron-up"></i> 39%-->
+                      <!--</span>-->
+                    <!--</div>-->
+                    <!--<div class="col-sm-2">-->
+                      <!--<span class="pull-right">-->
+                        <!--<i class="fa fa-chevron-down"></i> -12%-->
+                      <!--</span>-->
+                    <!--</div>-->
                   </div>
                 </div>
                 <div class="panel-body">
-                  <!--<div class="row">-->
-                    <!--<div class="col-md-12">-->
-                      <!--<div id="chart-questions"></div>-->
-                      <!--<div id='png-questions'></div>-->
-                    <!--</div>-->
-                  <!--</div>-->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div id="chart-questions"></div>
+                      <div id='png-questions'></div>
+                    </div>
+                  </div>
                   <hr />
                   <div class="row">
                     <div class="col-md-12">
@@ -115,6 +119,13 @@
                     <div class="col-md-12">
                       <div id="chart-students-grat"></div>
                       <div id='png-grat'></div>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div id="chart-peer-review"></div>
+                      <div id='png-peer-review'></div>
                     </div>
                   </div>
                 </div>
