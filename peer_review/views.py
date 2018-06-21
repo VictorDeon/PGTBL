@@ -14,6 +14,7 @@ from django.views.generic import (FormView, ListView, UpdateView)
 from TBLSessions.models import TBLSession
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
+from grades.models import Grade
 from groups.models import Group
 from peer_review.models import PeerReview
 from .forms import StudentForm, PeerReviewUpdateForm, PeerReviewDateForm
@@ -90,6 +91,8 @@ class PeerReviewView(LoginRequiredMixin,
                     peer_review.score = form.cleaned_data.get('score')
                 peer_review.save()
 
+        self.calculate_peer_review()
+
     def sum_of_scores(self, forms):
 
         scores = 0
@@ -147,9 +150,9 @@ class PeerReviewView(LoginRequiredMixin,
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
         context['group'] = self.get_student_group(self.request.user)
-        context['students'] = self.get_all_students()
+        context['students'] = self.get_all_students(False)
 
-        for idx, student in enumerate(self.get_all_students()):
+        for idx, student in enumerate(self.get_all_students(False)):
             peer_review = self.return_existent_review(self.request.user, student, self.get_session().id)
             context['form'+str(idx+1)] = StudentForm(initial=self.get_form_data(peer_review), prefix=student.username)
 
@@ -178,16 +181,15 @@ class PeerReviewView(LoginRequiredMixin,
 
         return session
 
-    def get_all_students(self):
+    def get_all_students(self, all_students):
         """
         Get students from dicipline except the current user
         """
         user_logged_in = self.get_user_logged_in()
         group = self.get_student_group(user_logged_in)
-        discipline = self.get_discipline()
 
-        if user_logged_in.username == discipline.teacher:
-            return group.students
+        if all_students:
+            return group.students.all()
         else:
             return group.students.exclude(username=user_logged_in.username)
 
@@ -223,6 +225,55 @@ class PeerReviewView(LoginRequiredMixin,
                     return group
 
         return None
+
+    def save_peer_review_grade(self, grade, student, session):
+
+        """
+        Check if peer review already exists
+        """
+        print(grade)
+        try:
+            query = Grade.objects.get(
+                student=student,
+                session=session,
+            )
+            student_grade = query
+            student_grade.updated_at = timezone.localtime(timezone.now())
+        except Grade.DoesNotExist:
+            student_grade = Grade()
+            student_grade.created_at = timezone.localtime(timezone.now())
+            student_grade.student = student
+            student_grade.session = session
+            student_grade.group = self.get_student_group(student)
+
+        student_grade.peer_review = grade
+
+        student_grade.save()
+
+    def calculate_peer_review(self):
+        """
+        Calculate the final score of the students.
+        """
+        peer_review_scores = {}
+        students = self.get_all_students(True)
+
+        max_score = 0
+        for student in students:
+            peer_reviews = PeerReview.objects.filter(reviewed_by=student, session=self.get_session().id)
+            if not peer_reviews:
+                peer_review_scores[student] = 0
+            else:
+                peer_reviews = PeerReview.objects.filter(student=student, session=self.get_session().id)
+                score = 0
+                for peer_review in peer_reviews:
+                    score += peer_review.score
+                    peer_review_scores[student] = score
+                if max_score < score:
+                    max_score = score
+
+        for student in students:
+            grade = (peer_review_scores[student]*100) / max_score
+            self.save_peer_review_grade(round(grade, 1), student, self.get_session())
 
 
 class PeerReviewResultView(LoginRequiredMixin,
