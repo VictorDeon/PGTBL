@@ -12,7 +12,7 @@ from django.db.models import Q
 from core.permissions import PermissionMixin
 # Get the custom user from settings
 from groups.models import Group
-from questions.models import Question, IRATSubmission, GRATSubmission
+from questions.models import Question, IRATSubmission, GRATSubmission, ExerciseSubmission
 
 User = get_user_model()
 
@@ -82,6 +82,20 @@ class DashboardView(LoginRequiredMixin,
 
         return data
 
+    def get_exercises_total(self):
+        questions = Question.objects.filter(session=self.get_session(), is_exercise=True)
+
+        data = {}
+        for counter, question in enumerate(questions):
+            submissions = ExerciseSubmission.objects.filter(question=question)
+            score = 0
+            for submission in submissions:
+                score += submission.score
+
+            data[counter] = score / submissions.count()
+
+        return data
+
     def get_iRAT_submissions(self):
         submissions = IRATSubmission.objects.filter(session=self.get_session())
 
@@ -102,7 +116,7 @@ class DashboardView(LoginRequiredMixin,
             score = 0
             for submission in submissions:
                 score += submission.score
-            data[counter] = score
+            data[counter] = score / submissions.count()
 
         return data
 
@@ -129,7 +143,7 @@ class DashboardView(LoginRequiredMixin,
             score = 0
             for submission in submissions:
                 score += submission.score
-            data[counter] = score
+            data[counter] = score / submissions.count()
 
         return data
 
@@ -182,6 +196,7 @@ class DashboardView(LoginRequiredMixin,
         context['iRATTotalScore'] = self.get_iRAT_total()
         context['gRATTotalScore'] = self.get_gRAT_total()
         context['PeerReviewGrades'] = self.get_peer_review_grades()
+        context['ExerciseScores'] = self.get_exercises_total()
         context['RATQuestions'] = self.get_questions(False)
         context['ExerciseQuestions'] = self.get_questions(True)
         context['RATAverage'] = self.get_rat_average()

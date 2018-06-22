@@ -1,6 +1,7 @@
 google.charts.load('visualization', "1", {'packages': ['corechart']});
 
 google.charts.setOnLoadCallback(drawChartQuestions);
+google.charts.setOnLoadCallback(drawChartExercises);
 google.charts.setOnLoadCallback(drawChartiRAT);
 google.charts.setOnLoadCallback(drawChartgRAT);
 google.charts.setOnLoadCallback(drawChartPeerReview);
@@ -20,15 +21,42 @@ function drawChartQuestions() {
         data.setValue(i, 2, gRATTotalScore[i]);
     }
     var options = {
-        title: 'Quantidade de acertos por questões',
+        title: 'Média de acertos por questões',
         hAxis: {title: 'Questões',  titleTextStyle: {color: '#333'}},
-        vAxis: {title:'Quantidade de acertos', titleTextStyle: {color: '#333'}}
+        vAxis: {title:'Média de acertos', titleTextStyle: {color: '#333'}}
     }
 
     var chart = new google.visualization.AreaChart(document.getElementById('chart-questions'))
 
     google.visualization.events.addListener(chart, 'ready', function () {
         document.getElementById('png-questions').innerHTML = '<a href="' + chart.getImageURI() + '" download="questions_report">Download PNG</a>';
+    });
+
+    chart.draw(data, options)
+}
+
+function drawChartExercises() {
+    var data = new google.visualization.DataTable();
+    var i;
+    data.addColumn('string', 'Pergunta');
+    data.addColumn('number', 'Exercícios');
+
+    data.addRows(exercise_count);
+
+    for(i = 0; i < exercise_count; i++){
+        data.setValue(i, 0, ExerciseQuestions[i]);
+        data.setValue(i, 1, ExerciseScores[i]);
+    }
+    var options = {
+        title: 'Média de acertos por exercício',
+        hAxis: {title: 'Exercícios',  titleTextStyle: {color: '#333'}},
+        vAxis: {title:'Média de acertos',  minValue: 0, maxValue: 4,  titleTextStyle: {color: '#333'}}
+    }
+
+    var chart = new google.visualization.AreaChart(document.getElementById('chart-exercises'))
+
+    google.visualization.events.addListener(chart, 'ready', function () {
+        document.getElementById('png-exercises').innerHTML = '<a href="' + chart.getImageURI() + '" download="exercises_report">Download PNG</a>';
     });
 
     chart.draw(data, options)
@@ -180,6 +208,7 @@ function drawChartPeerReview() {
 
 $(window).resize(function(){
   drawChartQuestions();
+  drawChartExercises();
   drawChartiRAT();
   drawChartgRAT();
   drawChartPeerReview();

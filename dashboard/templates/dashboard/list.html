@@ -16,6 +16,9 @@
       var RAT_count = {{ RATQuestions|length }};
       var RAT_Questions = {{ RATQuestions|safe }};
 
+      var exercise_count = {{ ExerciseQuestions|length }};
+      var ExerciseQuestions = {{ ExerciseQuestions|safe }};
+
       var iRATSubmissions_count = {{ iRATSubmissions|length }};
       var iRATSubmissions = {{ iRATSubmissions|safe }};
 
@@ -25,6 +28,7 @@
       var iRATTotalScore = {{ iRATTotalScore|safe }};
       var gRATTotalScore = {{ gRATTotalScore|safe }};
       var PeerReviewGrades = {{ PeerReviewGrades|safe }};
+      var ExerciseScores = {{ ExerciseScores|safe }};
 
       var groups_count = {{ groups|length }};
       var groups = {{ groups|safe }};
@@ -102,6 +106,13 @@
                   </div>
                 </div>
                 <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div id="chart-exercises"></div>
+                      <div id='png-exercises'></div>
+                    </div>
+                  </div>
+                  <hr />
                   <div class="row">
                     <div class="col-md-12">
                       <div id="chart-questions"></div>
