@@ -22,7 +22,7 @@ function drawChartQuestions() {
     var options = {
         title: 'Quantidade de acertos por questões',
         hAxis: {title: 'Questões',  titleTextStyle: {color: '#333'}},
-        vAxis: {title:'Quantidade de acertos', minValue: 0, maxValue: 50, titleTextStyle: {color: '#333'}}
+        vAxis: {title:'Quantidade de acertos', titleTextStyle: {color: '#333'}}
     }
 
     var chart = new google.visualization.AreaChart(document.getElementById('chart-questions'))

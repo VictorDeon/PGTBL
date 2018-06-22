@@ -93,17 +93,16 @@ class DashboardView(LoginRequiredMixin,
 
         return data
 
-    def get_iRAT_questions_results(self):
+    def get_iRAT_total(self):
         questions = Question.objects.filter(session=self.get_session(), is_exercise=False)
 
         data = {}
         for counter, question in enumerate(questions):
-            score = 0
-            data[2*counter] = question.title
             submissions = IRATSubmission.objects.filter(question=question)
+            score = 0
             for submission in submissions:
                 score += submission.score
-            data[2*counter+1] = score
+            data[counter] = score
 
         return data
 
@@ -121,17 +120,16 @@ class DashboardView(LoginRequiredMixin,
 
         return data
 
-    def get_gRAT_questions_results(self):
+    def get_gRAT_total(self):
         questions = Question.objects.filter(session=self.get_session(), is_exercise=False)
 
         data = {}
         for counter, question in enumerate(questions):
-            score = 0
-            data[2 * counter] = question.title
             submissions = GRATSubmission.objects.filter(question=question)
+            score = 0
             for submission in submissions:
                 score += submission.score
-            data[2 * counter + 1] = score
+            data[counter] = score
 
         return data
 
@@ -181,17 +179,12 @@ class DashboardView(LoginRequiredMixin,
         context['students'] = self.get_all_students()
         context['iRATSubmissions'] = self.get_iRAT_submissions()
         context['gRATSubmissions'] = self.get_gRAT_submissions()
-        context['iRATTotalScore'] = self.get_iRAT_questions_results()
-        context['gRATTotalScore'] = self.get_gRAT_questions_results()
+        context['iRATTotalScore'] = self.get_iRAT_total()
+        context['gRATTotalScore'] = self.get_gRAT_total()
         context['PeerReviewGrades'] = self.get_peer_review_grades()
         context['RATQuestions'] = self.get_questions(False)
         context['ExerciseQuestions'] = self.get_questions(True)
         context['RATAverage'] = self.get_rat_average()
-
-        print("iRATs")
-        print(self.get_iRAT_questions_results())
-        print("gRATs")
-        print(self.get_gRAT_questions_results())
 
         return context
 
