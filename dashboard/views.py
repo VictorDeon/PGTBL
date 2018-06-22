@@ -141,7 +141,7 @@ class DashboardView(LoginRequiredMixin,
         data = {}
         for counter, student in enumerate(students):
             grades = Grade.objects.filter(session=self.get_session(), student=student)
-            data[2 * counter] = student
+            data[2 * counter] = student.username
             if grades:
                 for grade in grades:
                     data[2*counter+1] = grade.peer_review
@@ -187,6 +187,11 @@ class DashboardView(LoginRequiredMixin,
         context['RATQuestions'] = self.get_questions(False)
         context['ExerciseQuestions'] = self.get_questions(True)
         context['RATAverage'] = self.get_rat_average()
+
+        print("iRATs")
+        print(self.get_iRAT_questions_results())
+        print("gRATs")
+        print(self.get_gRAT_questions_results())
 
         return context
 

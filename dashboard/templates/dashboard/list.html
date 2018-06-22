@@ -24,6 +24,7 @@
 
       var iRATTotalScore = {{ iRATTotalScore|safe }};
       var gRATTotalScore = {{ gRATTotalScore|safe }};
+      var PeerReviewGrades = {{ PeerReviewGrades|safe }};
 
       var groups_count = {{ groups|length }};
       var groups = {{ groups|safe }};
@@ -124,7 +125,7 @@
                   <hr />
                   <div class="row">
                     <div class="col-md-12">
-                      <div id="chart-peer-review"></div>
+                      <div id="chart-peerreview"></div>
                       <div id='png-peer-review'></div>
                     </div>
                   </div>
