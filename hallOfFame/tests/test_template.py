@@ -16,10 +16,16 @@ class HallOfFamePageTestCase(TestCase):
     """
 
     def setUp(self):
+        """
+        This method will run before any test case.
+        """
         self.discipline1= mommy.make(Discipline)
         pass
 
     def tearDown(self):
+        """
+        This method will run after any test.
+        """
         self.discipline1.delete()
         
         pass

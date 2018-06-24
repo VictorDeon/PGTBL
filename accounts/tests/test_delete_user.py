@@ -39,7 +39,7 @@ class DeleteUserTestCase(TestCase):
         """
 
         response = self.client.get(self.url)
-        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.status_code, 302) 
         login_url = reverse('accounts:login')
         redirects_url = '{0}?next={1}'.format(login_url, self.url)
         self.assertRedirects(response, redirects_url)
