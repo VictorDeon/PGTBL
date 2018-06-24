@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib import messages
 from django.utils import timezone
 from django.views.generic import (
-    ListView, FormView, UpdateView
+    ListView, FormView, UpdateView, DetailView
 )
 
 # App imports
@@ -328,6 +328,12 @@ class AnswerGRATQuestionView(FormView):
 
         return question
 
+    def get_context_data(self, **kwargs):
+        """Use this to add extra context."""
+        context = super(AnswerGRATQuestionView, self).get_context_data(**kwargs)
+        context['message'] = self.get_object()
+        return context
+
     def get_page(self):
         """
         Get the page that the questions is inserted.
@@ -404,6 +410,18 @@ class AnswerGRATQuestionView(FormView):
                 )
 
         return redirect(self.get_success_url())
+
+    def get_GRAT_submission(self):
+
+        session = self.get_session()
+        group = sef.get_student_group()
+        question = self.get_object()
+
+        grat_submissions = GRATSubmission.objects.get(session=session,group=group,question=question)
+        # grat_submissions = question.exercise_submissions.all()
+
+        return grat_submissions
+
 
     def get_question_score(self, question, forms):
         """
