@@ -42,7 +42,7 @@ class PeerReviewView(LoginRequiredMixin,
         POST variables and then check if it's valid.
         """
         forms = {}
-        for idx, student in enumerate(self.get_all_students()):
+        for idx, student in enumerate(self.get_all_students(False)):
             forms[idx] = StudentForm(request.POST, prefix=student.username)
 
         if self.sum_of_scores(forms):
@@ -70,7 +70,7 @@ class PeerReviewView(LoginRequiredMixin,
         """
         Receive the form already validated to create an Peer Review
         """
-        students = self.get_all_students()
+        students = self.get_all_students(False)
         session = self.get_session().id
 
         for student_idx, student in enumerate(students):
@@ -320,16 +320,13 @@ class PeerReviewResultView(LoginRequiredMixin,
 
         return groups
 
-    def get_all_students(self, student):
+    def get_all_students(self):
         """
         Get students from dicipline except the student passed
         """
         discipline = self.get_discipline()
 
-        if student is None:
-            students = discipline.students.all()
-        else:
-            students = discipline.students.exclude(username=student.username)
+        students = discipline.students.all()
 
         return students
 
@@ -340,7 +337,7 @@ class PeerReviewResultView(LoginRequiredMixin,
         context = super(PeerReviewResultView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
-        context['students'] = self.get_all_students(None)
+        context['students'] = self.get_all_students()
         context['submissions'] = self.get_queryset()
         context['groups'] = self.get_groups()
 
