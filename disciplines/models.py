@@ -6,6 +6,7 @@ from django.core import validators
 from django.conf import settings
 from django.db import models
 
+
 # App imports
 from markdown_deux import markdown
 
@@ -48,6 +49,7 @@ class DisciplineManager(models.Manager):
             models.Q(students__email=user.email) |
             models.Q(monitors__email=user.email)
         )
+
 
 
 class Discipline(models.Model):
@@ -202,3 +204,76 @@ class Discipline(models.Model):
         verbose_name = _('Discipline')
         verbose_name_plural = _('Disciplines')
         ordering = ['title', 'created_at']
+
+
+class Attendance(models.Model):
+
+    """
+    Create a Attendance model
+    """
+
+    date = models.DateField(
+        _('Date'),
+        help_text=_("Date of the class"),
+    )
+
+    discipline = models.ForeignKey(
+        Discipline,
+        on_delete=models.CASCADE,
+        verbose_name='Discipline',
+        related_name='discipline_attendence',
+    )
+
+    attended_students = models.ManyToManyField(
+        User,
+        verbose_name='Attended Students',
+        related_name='student_attendance_attended',
+        blank=True,
+    )
+
+    missing_students = models.ManyToManyField(
+        User,
+        verbose_name='Missing Students',
+        related_name='student_attendance_missing',
+        blank=True,
+    )
+
+    class Meta:
+        verbose_name = _('Attendance')
+        verbose_name_plural = _('Attendancies')
+        ordering = ['date']
+
+class AttendanceRate(models.Model):
+
+    """
+    Create a Attendance rate model
+    """
+
+    discipline = models.ForeignKey(
+        Discipline,
+        on_delete=models.CASCADE,
+        verbose_name='Discipline',
+        related_name='discipline_attendance',
+    )
+
+    student = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name='Student',
+        related_name='students_attendance_rate',
+    )
+
+    attendance_rate = models.FloatField(
+        default=0,
+        verbose_name='Attendance rate',
+    )
+
+    times_attended = models.IntegerField(
+        default=0,
+        verbose_name='Number of times student attended',
+    )
+
+    times_missed = models.IntegerField(
+        default=0,
+        verbose_name='Number of times student missed',
+    )

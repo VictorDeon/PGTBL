@@ -7,13 +7,12 @@ from django.views.generic import (
     ListView, CreateView, UpdateView, DeleteView
 )
 
-
 # App imports
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
 from TBLSessions.utils import get_datetimes
-from .models import Question
+from .models import Question, ExerciseSubmission
 from .forms import AlternativeFormSet, AnswerQuestionForm
 
 
@@ -24,7 +23,7 @@ class ExerciseListView(LoginRequiredMixin,
     View to see all the questions that the students will answer.
     """
 
-    template_name = 'questions/list.html'
+    template_name = 'questions/exercise_list.html'
     paginate_by = 1
     context_object_name = 'questions'
 
@@ -71,6 +70,8 @@ class ExerciseListView(LoginRequiredMixin,
         context['form2'] = AnswerQuestionForm(prefix="alternative02")
         context['form3'] = AnswerQuestionForm(prefix="alternative03")
         context['form4'] = AnswerQuestionForm(prefix="alternative04")
+        context['current_score'] = self.get_score()
+        context['submited_questions'] = self.get_submited_questions()
         return context
 
     def get_queryset(self):
@@ -86,6 +87,36 @@ class ExerciseListView(LoginRequiredMixin,
         )
 
         return questions
+
+    def get_submissions(self):
+
+        submissions = ExerciseSubmission.objects.filter(
+            session=self.get_session(),
+            user=self.request.user
+        )
+
+        return submissions
+
+    def get_submited_questions(self):
+        
+        submissions = self.get_submissions()
+        questions = []
+
+        for submission in submissions:
+            questions.append(submission.question)
+
+        return questions
+
+    def get_score(self):
+        
+        submissions = self.get_submissions()
+
+        score = 0
+
+        for submission in submissions:
+            score += submission.score
+
+        return score
 
 
 class CreateQuestionView(LoginRequiredMixin,
