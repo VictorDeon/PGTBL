@@ -16,4 +16,7 @@ def filterGRAT(question,user):
     except Exception as e:
         return False
 
+    if  submission == None:
+        return False
+
     return submission.score
