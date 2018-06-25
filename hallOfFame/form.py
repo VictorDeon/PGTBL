@@ -4,7 +4,6 @@ from django import forms
 
 import datetime
 
-
 # App imports
 from pagedown.widgets import PagedownWidget
 from .models import HallOfFame
@@ -17,7 +16,7 @@ def year_choices():
 def current_year():
     return datetime.date.today().year
 
-def semester_choices():
+def semester_choices(): 
     list = [(r,r) for r in range(0, 3)]
 
     return list
@@ -34,7 +33,6 @@ class HallOfFameForm(forms.ModelForm):
         fields = [
             'year','semester',
         ]
-
 
     year = forms.ChoiceField(label='year', choices=YEARS)
 

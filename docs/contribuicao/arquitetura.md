@@ -72,7 +72,7 @@ Um diagrama de classe UML descreve o objeto e informações de estruturas usadas
 
 **Observação**: Os diagramas abaixo vão ser criados ao longo do projeto.
 
-![diagramadeclasse](https://user-images.githubusercontent.com/14116020/38151245-db5e0c7c-3438-11e8-8d41-638a176889bf.png)
+![diagrama_de_classe_atualizado](https://user-images.githubusercontent.com/16181794/41073053-d4cf29de-69d7-11e8-8a4c-95315bb8ed93.jpg)
 
 ***
 ## 4. Framework i*
@@ -319,6 +319,29 @@ A partir das informações obtidas, esse modelo conceitual será utilizado para 
 |user|[User](#user)|obrigatório|Estudante do grupo que submeteu a questão|
 |group|[Group](#group)|obrigatório|Grupo que submeteu a questão|
 
+#### <a name="ranking">Ranking</a>:
+
+Atributo | Tipo	| Característica | Descrição
+---------|------|----------------|----------
+discipline_id | Discipline | obrigatório | Disciplina na qual o Ranking de grupos pertence.
+
+#### <a name="group_info">GroupInfo</a>:
+
+Atributo | Tipo	| Característica | Descrição
+---------|------|----------------|----------
+results | float | automático, padrão 0 | Nota de desempenho do grupo com a média de todas as suas avaliações iRAT, gRAT, prática e em pares.
+group_id | Group | obrigatório | Grupo na qual estas informações pertencem.
+ranking_id | Ranking | obrigatório | Ranking de grupos no qual este GroupInfo está vinculado.  
+
+#### <a name="hall_of_fame">HallOfFame</a>:
+
+Atributo | Tipo	| Característica | Descrição
+---------|------|----------------|----------
+year | inteiro positivo | obrigatório | Ano no qual este objeto do HallOfFame pertence.
+semester | inteiro positivo | opcional, padrão 0 | Semestre no qual este objeto do HallOfFame pertence.
+discipline_id | Discipline | obrigatório | Disciplina no qual este objeto do HallOfFame pertence.
+group_info_id | GroupInfo | obrigatório | GroupInfo vinculado a este objeto do HallOfFame.
+
 ### Relacionamentos entre classes
 
 NEWS tem TAGS:
@@ -420,6 +443,31 @@ SUBMISSION pertence GROUP:
 
 - Uma submissão (gRAT) pertence a um grupo, porém um grupo poder ter várias submissões.
 - **Cardinalidade**: Nx1
+
+RANKING tem DISCIPLINE:
+
+- Um ranking de grupos deve ter uma disciplina, e uma disciplina deve ter um rankings de grupos.
+- Cardinalidade: 1x1
+
+GROUPINFO tem GROUP:
+
+- Uma informações de um grupo deve ter um grupo, e um grupo deve ter uma informações de um grupo.
+- **Cardinalidade:** 1x1
+
+GROUPINFO tem RANKING:
+
+- Uma informações de um grupo deve ter um ranking de grupo, e um ranking de grupos pode ter várias informações de grupos.
+- **Cardinalidade:** Nx1
+
+HALLOFFAME tem DISCIPLINE:
+
+- Um hall da fama deve ter uma disciplina, e uma disciplina pode ter vários halls da fama.
+- **Cardinalidade:** Nx1
+
+GROUPINFO pertence HALLOFFAME:
+
+- Uma informações de um grupo pode pertencer a um hall da fama, porém um hall da fama pode ter várias infromações de um grupo.
+- **Cardinalidade:** Nx1
 
 ***
 ## Referências

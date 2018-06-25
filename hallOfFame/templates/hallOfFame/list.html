@@ -66,12 +66,17 @@
                       </div>
                   </div>
               </form>
-          </div>      
+          </div>
         </div>
         <br>
         <br />
         <div class="row">
           <div class="col-sm-12">
+            {%if not halls%}
+            <div class="alert alert-warning">
+              <strong>There are no halls in the informed Year</strong>
+            </div>
+            {% endif %}
             {% for h in halls %}
               <div class="panel-group">
                 <div class="panel panel-default">

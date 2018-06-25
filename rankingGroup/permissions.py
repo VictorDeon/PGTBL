@@ -11,7 +11,7 @@ def show_ranking_permission(permission, user, view):
     discipline to see rankingGroup details features.
     """
 
-    discipline = view.get_object()
+    discipline = view.get_object() 
 
     if user in discipline.students.all() or \
        user in discipline.monitors.all() or \

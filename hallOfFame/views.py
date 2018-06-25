@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views import generic
 from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
+from django.shortcuts import redirect
 
 
 # App
@@ -10,6 +11,7 @@ from hallOfFame.models import HallOfFame
 from disciplines.models import Discipline
 from rankingGroup.models import Ranking, GroupInfo
 from .form import HallOfFameForm
+from TBLSessions.models import TBLSession
 
 import datetime
 
@@ -24,6 +26,7 @@ class CreateHallView(generic.CreateView):
     permissions_required = [
         'monitor_can_change_if_is_teacher'
     ]
+
 
     def get_ranking(self):
 
@@ -70,27 +73,70 @@ class CreateHallView(generic.CreateView):
                 ("There are no groups available to create a rank")
             )
 
-
-
         return first_groupInfo
 
+    def search_disciplines(self):
+        """
+        Search from disciplines a specific discipline.
+        """
+        query = self.request.GET.get("q_info")
 
+        return query
+
+
+    def get_hallOfFame(self):
+        """
+        Get the info_group queryset from model database.
+        """
+
+        year = self.search_disciplines()
+        discipline = self.get_discipline()
+        halls = HallOfFame.objects.filter(discipline=discipline).order_by('-year', '-semester')
+
+
+        return halls
+    
+    def get_sessions_open(self):
+        """
+        Get the closeds tbl sessions from model database.
+        """
+
+        discipline = self.get_discipline()
+        sessions =  TBLSession.objects.filter(discipline=discipline,is_closed=False)
+
+        return sessions
 
     def form_valid(self, form):
         """If the form is valid, save the associated model."""
 
         form.instance.discipline = self.get_discipline()
         form.instance.group_info = self.get_groupsInfo()
-        self.object = form.save()
+        # self.object = form.save()
+
+        sessions = self.get_sessions_open()
+        halls = self.get_hallOfFame()
 
         discipline = self.get_discipline()
 
-        discipline.is_closed = True
-        discipline.save()
+        semester = form.cleaned_data.get('semester')
+        year = form.cleaned_data.get('year')
 
-        messages.success(self.request,  ('Discipline session created successfully.'))
+        if(len(halls.filter(discipline=discipline, year=year, semester=semester)) == 0 and len(sessions) == 0):
+            messages.success(self.request,  ('Hall of Fame added successfully.'))
+            discipline.is_closed = True
+            discipline.save()
+            return super(CreateHallView,self).form_valid(form)
+        elif(len(sessions) != 0):
+            messages.error(self.request,  ('Hall of Fame not added. All sessions must be closed.'))
+            return redirect(self.get_success_url())
+        elif(len(halls.filter(discipline=discipline, year=year, semester=semester)) != 0):
+            messages.error(self.request,  ('Hall of Fame not added. Hall of Fame for this year and semester already exist.'))
+            return redirect(self.get_success_url())
+        else:
+            messages.error(self.request,  ('Hall of Fame not added.'))
+            return redirect(self.get_success_url())
 
-        return super(CreateHallView,self).form_valid(form)
+ 
 
 
     def get_success_url(self):
