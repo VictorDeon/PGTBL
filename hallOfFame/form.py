@@ -17,7 +17,7 @@ def year_choices():
 def current_year():
     return datetime.date.today().year
 
-def semester_choices():
+def semester_choices(): 
     list = [(r,r) for r in range(0, 3)]
 
     return list
