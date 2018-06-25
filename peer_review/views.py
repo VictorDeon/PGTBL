@@ -42,7 +42,7 @@ class PeerReviewView(LoginRequiredMixin,
         POST variables and then check if it's valid.
         """
         forms = {}
-        for idx, student in enumerate(self.get_all_students(False)):
+        for idx, student in enumerate(self.get_students_except_logged_student()):
             forms[idx] = StudentForm(request.POST, prefix=student.username)
 
         if self.sum_of_scores(forms):
@@ -70,7 +70,7 @@ class PeerReviewView(LoginRequiredMixin,
         """
         Receive the form already validated to create an Peer Review
         """
-        students = self.get_all_students(False)
+        students = self.get_students_except_logged_student()
         session = self.get_session().id
 
         for student_idx, student in enumerate(students):
@@ -150,9 +150,9 @@ class PeerReviewView(LoginRequiredMixin,
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
         context['group'] = self.get_student_group(self.request.user)
-        context['students'] = self.get_all_students(False)
+        context['students'] = self.get_students_except_logged_student()
 
-        for idx, student in enumerate(self.get_all_students(False)):
+        for idx, student in enumerate(self.get_students_except_logged_student()):
             peer_review = self.return_existent_review(self.request.user, student, self.get_session().id)
             context['form'+str(idx+1)] = StudentForm(initial=self.get_form_data(peer_review), prefix=student.username)
 
@@ -181,17 +181,23 @@ class PeerReviewView(LoginRequiredMixin,
 
         return session
 
-    def get_all_students(self, all_students):
+    def get_all_students(self):
         """
         Get students from dicipline except the current user
         """
         user_logged_in = self.get_user_logged_in()
         group = self.get_student_group(user_logged_in)
 
-        if all_students:
-            return group.students.all()
-        else:
-            return group.students.exclude(username=user_logged_in.username)
+        return group.students.all()
+
+    def get_students_except_logged_student(self):
+        """
+        Get students from dicipline except the current user
+        """
+        user_logged_in = self.get_user_logged_in()
+        group = self.get_student_group(user_logged_in)
+
+        return group.students.exclude(username=user_logged_in.username)
 
     def get_user_logged_in(self):
         user_logged_in = None
@@ -254,7 +260,7 @@ class PeerReviewView(LoginRequiredMixin,
         Calculate the final score of the students.
         """
         peer_review_scores = {}
-        students = self.get_all_students(True)
+        students = self.get_all_students()
 
         max_score = 0
         for student in students:
