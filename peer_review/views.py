@@ -231,7 +231,6 @@ class PeerReviewView(LoginRequiredMixin,
         """
         Check if peer review already exists
         """
-        print(grade)
         try:
             query = Grade.objects.get(
                 student=student,
