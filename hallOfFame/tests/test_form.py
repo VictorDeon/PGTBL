@@ -1,14 +1,9 @@
 #Core Django imports
 from django.test import TestCase
-from django.test.client import Client
-from django.core.urlresolvers import reverse
+import datetime
 
-#Third-party app imports
-from model_mommy import mommy
-from model_mommy.recipe import Recipe, foreign_key
-
-# Relative imports of the 'app-name' package
-from disciplines.models import Discipline
+# Relative imports of the TBL package
+from hallOfFame.form import HallOfFameForm
 
 class HallOfFameFormsTestCase(TestCase):
     """
@@ -19,28 +14,24 @@ class HallOfFameFormsTestCase(TestCase):
         """
         This method will run before any test case.
         """
-        self.discipline1= mommy.make(Discipline)
+
         pass
 
     def tearDown(self):
         """
         This method will run after any test.
-        """
-        self.discipline1.delete()
+        """ 
         
         pass
 
-    def test_close_discipline_form_error(self):
+    def test_close_discipline_form_submitted_successfully(self):
+        '''
+        Tests if the close discipline form was submitted with appropriate data.
+        '''
 
-        client = Client()
-        url = reverse('hallOfFame:list', args=[self.discipline1.slug])
+        current_year = datetime.date.today().year
+        form_data = {'year' : current_year, 'semester' : '1'}
+
+        form = HallOfFameForm(data=form_data)
         
-        form_data = {'year' : '', 'semester' : ''}
-        
-        response = client.post(url, form_data)
-
-        #self.assertFormError(response, 'halls', 'year', ) 
-        #self.assertFormError(response, 'halls', 'semester', )
-
-        pass
-
+        self.assertTrue(form.is_valid())

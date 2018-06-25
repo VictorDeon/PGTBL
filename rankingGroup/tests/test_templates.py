@@ -6,9 +6,8 @@ from django.contrib.auth import authenticate, login
 
 #Third-party app imports
 from model_mommy import mommy
-from model_mommy.recipe import Recipe, foreign_key
 
-# Relative imports of the 'app-name' package
+# Relative imports of the TBL package
 from disciplines.models import Discipline
 from accounts.models import User
 
