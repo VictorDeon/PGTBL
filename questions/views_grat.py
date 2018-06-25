@@ -5,8 +5,9 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib import messages
 from django.utils import timezone
 from django.views.generic import (
-    ListView, FormView, UpdateView
+    ListView, FormView, UpdateView, DetailView
 )
+from django import template
 
 # App imports
 from core.permissions import PermissionMixin
@@ -261,6 +262,15 @@ class AnswerGRATQuestionView(FormView):
         'grat_permissions'
     ]
 
+    def get_queryset(self):
+        """
+        Get the questions queryset from model database.
+        """
+
+        submissions = self.get_GRAT_submission()
+
+        return submissions
+
     def get_failure_redirect_path(self):
         """
         Get the failure redirect path.
@@ -327,6 +337,7 @@ class AnswerGRATQuestionView(FormView):
         )
 
         return question
+
 
     def get_page(self):
         """
@@ -404,6 +415,52 @@ class AnswerGRATQuestionView(FormView):
                 )
 
         return redirect(self.get_success_url())
+
+    def get_GRAT_submission(self):
+
+        session = self.get_session()
+        group = sef.get_student_group()
+        question = self.get_object()
+
+        grat_submissions = GRATSubmission.objects.get(session=session,group=group,question=question)
+
+        return grat_submissions
+
+
+    # def get_context_data(self, **kwargs):
+    #
+    #     context = super(AnswerGRATQuestionView, self).get_context_data(**kwargs)
+    #     context['teste'] = self.get_object()
+    #     return context
+    # def get(self,request):
+    #     context = super(GRATResultView, self).get_context_data(**kwargs)
+    #     context['pagetitle'] = 'My special Title'
+    #     return render(self.request,self.template_name,context)
+    #
+    # def get(self, request, *args, **kwargs):
+    #     form_class = self.get_form_class()
+    #     form = self.get_form(form_class)
+    #     context = self.get_context_data(**kwargs)
+    #     context['form'] = form
+    #     return self.render_to_response(context)
+    #
+    # def get_context_data(self, **kwargs):
+    #     context = super(AnswerGRATQuestionView, self).get_context_data(**kwargs)
+    #     context['plus_context_key'] = "plus_context"
+    #     return context
+    #
+    # def get_form_kwargs(self):
+    #     kwargs = super(AnswerGRATQuestionView, self).get_form_kwargs()
+    #     kwargs['plus_context_key'] = "number"
+    #     return kwargs
+
+    # def get_context_data(self, **kwargs):
+    #     context = FormView.get_context_data(self, **kwargs)
+    #     context['teste'] = 'teste'
+    #
+    #     return context
+
+
 
     def get_question_score(self, question, forms):
         """

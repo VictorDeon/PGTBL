@@ -119,15 +119,28 @@
                     </div>
 
                     <!-- Hall of fame -->
+                        <!--  url 'hallOfFame:' discipline.slug  -->
                     <div class="btn-group">
-                      <a href="#"
-                         class="btn btn-primary btn-class"
-                         data-toggle="tooltip"
-                         data-placement="top"
-                         title="{% trans 'Hall of Fame' %}">
-                         <i class="fa fa-trophy"></i>
-                      </a>
+                      {% if discipline.halls.all %}
+                        <a href="{% url 'hallOfFame:list' discipline.slug %}"
+                          class="btn btn-primary btn-class"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="{% trans 'Hall of Fame' %}">
+                          <i class="fa fa-trophy"></i>
+                        </a>
                     </div>
+                      {% else %}
+                        <a
+                          class="btn btn-primary btn-class"
+                          data-toggle="modal"
+                          data-placement="top"
+                          data-target="#My-modal"
+                          title="{% trans 'Hall of Fame' %}">
+                          <i class="fa fa-trophy"></i>
+                        </a>
+                        {% include "accounts/info_hall.html" %}
+                      {% endif %}
 
                     <!-- Discipline owner features -->
                     {% if discipline.teacher == user %}

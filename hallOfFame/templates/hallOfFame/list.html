@@ -1,0 +1,105 @@
+{% extends "accounts/profile.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'hallOfFame/css/home.css' %}" />
+  <link rel="stylesheet" href="{% static 'hallOfFame/css/hall.css' %}" />
+{% endblock %}
+
+{% block body %}
+    <header>
+      {% include 'core/navbar.html' %}
+    </header>
+    <main>
+      <div class="row">
+        <div class="col-sm-12 navegation">
+            <ul class="breadcrumb pull-left">
+            {% block breadcrumb %}
+            {{ block.super }}
+              <li><a href="javascript:window.location.href=window.location.href">Hall da Fama</a></li>
+            </ul>
+            {% endblock %}
+
+            <p class="pull-right">
+              {{ date }}
+              <i class="fa fa-calendar"></i>
+
+        </div>
+      </div>
+      <div class="container">
+        <div class="page-header">
+          <div class="row">
+            <div class="col-sm-8">
+              <h1 class="white">
+                <i class="fa fa-trophy"></i>{{discipline.title}}<br />
+                  <small>Hall da Fama</small>
+              </h1>
+            </div>
+            <div class="col-sm-4 text-center">
+              <h1>
+                <i class="fa fa-star star1"></i>
+                <i class="fa fa-star star2"></i>
+                <i class="fa fa-star star3"></i>
+                <i class="fa fa-star star4"></i>
+                <i class="fa fa-star star5"></i>
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-10 white">
+            <p class="pull-left"><i class="fa fa-users"></i> Grupos vencedores de cada semestre</p>
+          </div>
+          <div class="row">
+              <form method="get">
+                  <div class="col-lg-2">
+                      <div class="input-group">
+                      <input type="search" class="form-control" name="q_info" value="{{ request.GET.q_info }}" placeholder="{% trans 'Search by year' %}"/>
+                      <span class="input-group-btn">
+                          <button class="btn btn-primary" type="submit">
+                              <i class="fa fa-search"></i>
+                          </button>
+                      </span>
+                      </div>
+                  </div>
+              </form>
+          </div>
+        </div>
+        <br>
+        <br />
+        <div class="row">
+          <div class="col-sm-12">
+            {%if not halls%}
+            <div class="alert alert-warning">
+              <strong>There are no halls in the informed Year</strong>
+            </div>
+            {% endif %}
+            {% for h in halls %}
+              <div class="panel-group">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    {{h.group_info.group.title}}<span class="pull-right">0{{h.semester}}/{{h.year}} <i class="fa fa-calendar"></i></span>
+                  </div>
+                  <div class="panel-body">
+                    <div class="row">
+                      {% for s in h.group_info.group.students.all%}
+                        <div class="col-sm-2">
+                          <figure>
+                            <img src="{% static 'hallOfFame/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos">
+                            <figcaption>{{s.name}}</figcaption>
+                          </figure>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+          </div>
+        </div>
+      </div>
+    </main>
+{% endblock %}

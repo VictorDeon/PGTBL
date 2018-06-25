@@ -44,6 +44,7 @@ class FormListView(FormMixin, ListView):
         # Verify if form is valid and call the respective method.
         if self.form:
             return self.form_validation()
+            ation()
         else:
             return self.post_validation()
 

@@ -17,6 +17,10 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'core.context_processors.today_date',
             ],
+            'libraries':{
+                'filterGRAT': 'questions.templatetags.my_templatetag',
+
+            }
         },
     },
 ]

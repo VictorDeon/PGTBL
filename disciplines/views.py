@@ -26,6 +26,7 @@ from core.utils import order
 # Discipline app
 from .forms import DisciplineForm, DisciplineEditForm, EnterDisciplineForm
 from .models import Discipline
+from rankingGroup.models import Ranking
 
 # Get the custom user from settings
 User = get_user_model()
@@ -259,7 +260,7 @@ class EnterDisciplineView(LoginRequiredMixin, FormView):
         if success:
             messages.success(
                 self.request,
-                _("You have been entered into the discipline: {0}"
+                _("You have entered the discipline: {0}"
                   .format(discipline.title))
             )
 
@@ -276,7 +277,7 @@ class EnterDisciplineView(LoginRequiredMixin, FormView):
         if discipline.monitors.count() >= discipline.monitors_limit:
             messages.error(
                 self.request,
-                _("There are no more vacancies to monitor")
+                _("There are no more monitor vacancies")
             )
 
             return False
@@ -326,8 +327,31 @@ class ShowDisciplineView(LoginRequiredMixin,
     model = Discipline
     template_name = 'disciplines/details.html'
     permissions_required = [
-        'show_discipline_permission'
+        'show_ranking_permission'
     ]
+
+    def get_context_data(self, **kwargs):
+        """
+        """
+        discipline = self.get_object()
+
+        context = super(ShowDisciplineView, self).get_context_data(**kwargs)
+        context['ranking'] = self.get_ranking()
+
+        return context
+
+
+    def get_ranking(self):
+
+        discipline = self.get_object()
+
+        ranking = Ranking()
+        try:
+            ranking = Ranking.objects.get(discipline=discipline)
+        except Ranking.DoesNotExist:
+            ranking = None
+
+        return ranking
 
 
 class CloseDisciplineView(LoginRequiredMixin,
@@ -341,24 +365,38 @@ class CloseDisciplineView(LoginRequiredMixin,
         'change_own_discipline'
     ]
 
+
     def delete(self, request, *args, **kwargs):
         """
         Close or open discipline.
         """
 
+
+
         discipline = self.get_object()
 
         redirect_url = reverse_lazy(
             'disciplines:details',
-            kwargs={'slug': discipline.slug}
+            kwargs={'slug': discipline.slug},
+
         )
 
         if discipline.is_closed:
+            #salva em lista os primeiros colocados - estatico
+            #retira alunos e monitores
             discipline.is_closed = False
         else:
             discipline.is_closed = True
 
         discipline.save()
+
+        # Show message for discipline status
+        if discipline.is_closed:
+            success_message = "Discipline was closed successfully."
+            messages.success(self.request, success_message)
+        else:
+            success_message = "Discipline was open successfully."
+            messages.success(self.request, success_message)
 
         return redirect(redirect_url)
 
@@ -683,7 +721,7 @@ class InsertStudentView(LoginRequiredMixin,
         if discipline.monitors.count() >= discipline.monitors_limit:
             messages.error(
                 self.request,
-                _("There are no more vacancies to monitor")
+                _("There are no more monitor vacancies")
             )
 
             return False

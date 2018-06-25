@@ -1,5 +1,6 @@
 {% extends 'accounts/profile.html' %}
 {% load static %}
+{% load widget_tweaks %}
 {% load i18n %}
 
 {% block css %}
@@ -37,17 +38,26 @@
         <div class="col-sm-2">
           <h1 class="white">{{discipline.classroom}}</h1>
           {% if user.id == discipline.teacher.id %}
-            <form action="{% url 'disciplines:close' slug=discipline.slug %}" method="post">
-              {% csrf_token %}
 
-              {% if discipline.is_closed %}
-                <button type="submit" class="btn btn-danger pull-right">{% trans 'Closed' %}</button>
-              {% else %}
+            {% if not discipline.is_closed and ranking.groups_info.all %}
+                <form action="{% url 'hallOfFame:create' slug=discipline.slug %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-success pull-right">{% trans 'Open' %}</button>
+                </form>
+            {% elif not discipline.is_closed and not ranking.groups_info.all%}
+              <form action="{% url 'disciplines:close' slug=discipline.slug %}" method="post">
+                {% csrf_token %}
                 <button type="submit" class="btn btn-success pull-right">{% trans 'Open' %}</button>
-              {% endif %}
-            </form>
+              </form>
+            {% elif discipline.is_closed %}
+              <form action="{% url 'disciplines:close' slug=discipline.slug %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger pull-right">{% trans 'Closed' %}</button>
+              </form>
+            {% endif %}
           {% endif %}
         </div>
+
       </div>
     </div>
 
