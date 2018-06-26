@@ -37,7 +37,7 @@
        <i class="fa fa-leanpub icon-lg"></i>
     </a>
     <!-- Session dashboard menu -->
-    <a href="#"
+    <a href="{% url 'dashboard:list' discipline.slug session.id %}"
        class="btn"
        data-toggle="tooltip"
        data-placement="right"
@@ -92,15 +92,13 @@
     </a>
 
     <!-- Session peer test menu -->
-    {% if user in discipline.students.all and session.peer_review_available %}
-       <a href="{% url 'peer_review:review' discipline.slug session.id %}"
-       class="btn"
-       data-toggle="tooltip"
-       data-placement="right"
-       title="{% trans 'Peer Review' %}">
-       <i class="fa fa-vcard-o icon-lg"></i>
-    </a>
-    {% elif user == discipline.teacher%}
+
+    {% if user in discipline.students.all %}
+      <a href="{% url 'peer_review:review' discipline.slug session.id %}"
+        class="btn" data-toggle="tooltip" data-placement="right"
+        title="{% trans 'Peer Review' %}"><i class="fa fa-vcard-o icon-lg"></i>
+      </a>
+    {% elif user == discipline.teacher %}
       <a href="{% url 'peer_review:result' discipline.slug session.id %}"
          class="btn"
          data-toggle="tooltip"

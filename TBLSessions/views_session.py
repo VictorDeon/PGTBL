@@ -1,4 +1,7 @@
+from datetime import timedelta
+
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
@@ -270,11 +273,22 @@ class ShowSessionView(LoginRequiredMixin,
 
         return session
 
+    def set_peer_review_available(self, session):
+        now = timezone.localtime(timezone.now())
+
+        deadline = session.peer_review_datetime + timedelta(minutes=session.peer_review_duration)
+
+        if session.peer_review_datetime < now < deadline:
+            session.peer_review_available = True
+        else:
+            session.peer_review_available = False
+
+        session.save()
+
     def get_context_data(self, **kwargs):
         """
         Insert discipline into tbl session context.
         """
-
         session = self.get_object()
         irat_datetime, grat_datetime = get_datetimes(session)
 
@@ -282,4 +296,7 @@ class ShowSessionView(LoginRequiredMixin,
         context['discipline'] = self.get_discipline()
         context['irat_datetime'] = irat_datetime
         context['grat_datetime'] = grat_datetime
+
+        self.set_peer_review_available(session)
+
         return context

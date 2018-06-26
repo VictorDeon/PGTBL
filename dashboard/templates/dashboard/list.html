@@ -1,0 +1,149 @@
+{% extends 'TBLSessions/details.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+      var student_count = {{ students|length }};
+      var student_list = {{ students|safe }};
+
+      var RAT_count = {{ RATQuestions|length }};
+      var RAT_Questions = {{ RATQuestions|safe }};
+
+      var exercise_count = {{ ExerciseQuestions|length }};
+      var ExerciseQuestions = {{ ExerciseQuestions|safe }};
+
+      var iRATSubmissions_count = {{ iRATSubmissions|length }};
+      var iRATSubmissions = {{ iRATSubmissions|safe }};
+
+      var gRATSubmissions_count = {{ gRATSubmissions|length }};
+      var gRATSubmissions = {{ gRATSubmissions|safe }};
+
+      var iRATTotalScore = {{ iRATTotalScore|safe }};
+      var gRATTotalScore = {{ gRATTotalScore|safe }};
+      var PeerReviewGrades = {{ PeerReviewGrades|safe }};
+      var ExerciseScores = {{ ExerciseScores|safe }};
+
+      var groups_count = {{ groups|length }};
+      var groups = {{ groups|safe }};
+
+    </script>
+    <script type="text/javascript" src="{% static 'dashboard/js/dashboard.js' %}"></script>
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'dashboard:list' discipline.slug session.id %}">Dashboard</a>
+  </li>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-12">
+          <div class="container-fluid">
+            <div class="page-header profile">
+              <h1 class="white">
+                <i class="fa fa-bar-chart"></i> Dashboard - session {{session.id}}<br />
+                <small>{{discipline.title}}</small>
+              </h1>
+            </div>
+            <div class="row fix-row white">
+              <div class="col-sm-6">
+                <div class="row">
+                  <div class="panel panel-default report-left gradient">
+                    <div class="panel-body">
+                      <div class="col-sm-6">
+                        <h4><i class="fa fa-bar-chart-o"></i> Média iRAT</h4>
+                        <p><i class="fa fa-calendar"></i> {{session.irat_datetime}}</p>
+                      </div>
+                      <div class="col-sm-6">
+                        <h1 class="pull-right">{{RATAverage.iRAT}}</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="row">
+                  <div class="panel panel-default report-right gradient">
+                    <div class="panel-body">
+                      <div class="col-sm-6">
+                        <h4><i class="fa fa-bar-chart-o"></i> Média gRAT</h4>
+                        <p><i class="fa fa-calendar"></i> {{session.grat_datetime}}</p>
+                      </div>
+                      <div class="col-sm-6">
+                        <h1 class="pull-right">{{RATAverage.gRAT}}</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row fix-row">
+              <div class="panel panel-default report">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <i class="fa fa-wpforms"></i> Relatórios iRAT e gRAT
+                    </div>
+                    <!--<div class="col-sm-2">-->
+                      <!--<span class="pull-right">-->
+                        <!--<i class="fa fa-chevron-up"></i> 39%-->
+                      <!--</span>-->
+                    <!--</div>-->
+                    <!--<div class="col-sm-2">-->
+                      <!--<span class="pull-right">-->
+                        <!--<i class="fa fa-chevron-down"></i> -12%-->
+                      <!--</span>-->
+                    <!--</div>-->
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div id="chart-exercises"></div>
+                      <div id='png-exercises'></div>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div id="chart-questions"></div>
+                      <div id='png-questions'></div>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div id="chart-students-irat"></div>
+                      <div id='png-irat'></div>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div id="chart-students-grat"></div>
+                      <div id='png-grat'></div>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div id="chart-peerreview"></div>
+                      <div id='png-peer-review'></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

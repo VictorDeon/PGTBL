@@ -36,34 +36,27 @@
           <!-- Form security -->
           {% csrf_token %}
 
-          <!-- Weight field -->
+          <!-- Peer Review datetime -->
           <div class="form-group white">
-            <label for="{{ form.peer_review_weight.id_for_label }}">
-              {{ form.peer_review_weight.label }}:
+            <label for="{{form.peer_review_datetime.id_for_label}}">
+              {{ form.peer_review_datetime.label }}
             </label>
-            {% render_field form.peer_review_weight class="form-control" min="0"%}
-          </div>
 
-          <!-- Duration field -->
-          <div class="form-group white">
-            <label for="{{ form.peer_review_duration.id_for_label }}">
-              {{ form.peer_review_duration.label }}:
-            </label>
             <input
-              type="number"
-              id="{{ form.peer_review_duration.id_for_label }}"
-              min="0"
-              name="{{ form.peer_review_duration.name }}"
+              type="datetime-local"
+              id="{{ form.peer_review_datetime.id_for_label }}"
+              name="{{ form.peer_review_datetime.name}}"
               class="form-control"
-              value="{{ session.peer_review_duration }}"
+              value="{{ session.peer_review_datetime|date:"Y-m-d\TH:i"}}"
             />
+            <span>{{ session.peer_review_datetime }}</span>
           </div>
 
           <!-- Submit button -->
           <button type="submit"
-                  class="btn btn-default submit-button center-block gradient">
-                  <i class="fa fa-edit"></i>
-                  {% trans 'Edit' %}
+            class="btn btn-default submit-button center-block gradient">
+            <i class="fa fa-edit"></i>
+            {% trans 'Edit' %}
           </button>
         </form>
       </div>

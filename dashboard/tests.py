@@ -1,30 +1,28 @@
 from django.contrib.auth import get_user_model
-from django.core.urlresolvers import reverse_lazy
 from django.test import TestCase, Client
-from peer_review.models import PeerReview
-from disciplines.models import Discipline
-from TBLSessions.models import TBLSession
-from groups.models import Group
 from model_mommy import mommy
-from core.test_utils import user_factory
+from django.core.urlresolvers import reverse_lazy
+from disciplines.models import Discipline
+from groups.models import Group
+from TBLSessions.models import TBLSession
+from grades.models import Grade, FinalGrade
 
 User = get_user_model()
 
+class DashboardTestModel(TestCase):
 
-class PeerReviewTestModel(TestCase):
 
     def setUp(self):
         """
-        This method will run before any test case.
+        This metho will run before any test case.
         """
+
         self.client = Client()
-        self.peer_review = PeerReview()
         self.teacher = User.objects.create_user(
-            username='Test1',
+            username='professor',
             email='test1@gmail.com',
             password='teacher1'
         )
-
         self.student = User.objects.create_user(
             username='Test3',
             email='test3@gmail.com',
@@ -47,7 +45,6 @@ class PeerReviewTestModel(TestCase):
             students=[self.student],
             make_m2m=True
         )
-
         self.session = mommy.make(
             TBLSession,
             discipline=self.discipline,
@@ -55,13 +52,6 @@ class PeerReviewTestModel(TestCase):
             description='Session for test',
             make_m2m=True
         )
-
-        self.peer_review = mommy.make(
-            PeerReview,
-            feedback='Feedback test',
-            score=10
-        )
-
         self.group = mommy.make(
             Group,
             discipline=self.discipline,
@@ -69,15 +59,11 @@ class PeerReviewTestModel(TestCase):
             students_limit=5,
             students=[self.student],
         )
-
         self.url = reverse_lazy(
-            'peer_review:review',
+            'dashboard:list',
             kwargs={'slug': self.discipline.slug, 'pk': self.session.id}
         )
 
-        self.client.login(
-            username=self.teacher.username, password='teacher1'
-        )
 
     def tearDown(self):
         """
@@ -88,41 +74,26 @@ class PeerReviewTestModel(TestCase):
         self.student.delete()
         self.session.delete()
         self.group.delete()
-        self.peer_review.delete()
 
-    def teste_feedback(self):
-
-
-        self.client.logout()
-        self.client.login(
-            username=self.student.username, password='student1'
-        )
-
-        self.assertEqual(self.peer_review.feedback, 'Feedback test')
-
-
-    def test_score(self):
+    def test_student_can_see_dashboard(self):
 
 
         self.client.logout()
         self.client.login(
             username=self.student.username, password='student1'
         )
-
-        self.assertEqual(self.peer_review.score, 10)
-
-    def test_submit(self):
-
-        data ={
-            'feedback': 'Test feedback',
-            'score': 100
-        }
-
-        self.client.logout()
-        self.client.login(
-            username=self.student.username, password='student1'
-        )
-        response = self.client.post(self.url, data, fallow=True)
-
-        self.assertEqual(PeerReview.objects.all().count(), 1)
+        response = self.client.get(self.url)
         self.assertEqual(response.status_code, 302)
+        self.assertIn('/profile', response.url)
+
+    def test_teacher_can_see_dashboard(self):
+
+
+        self.client.logout()
+        self.client.login(
+            username=self.teacher.username, password='teacher1'
+        )
+
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'dashboard/list.html')

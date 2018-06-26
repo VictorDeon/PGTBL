@@ -1,191 +1,158 @@
-{% extends "core/base.html" %}
+{% extends 'TBLSessions/details.html' %}
+{% load widget_tweaks %}
 {% load static %}
 {% load i18n %}
-{% load widget_tweaks %}
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'peer_review/css/home.css' %}">
-    <link rel="stylesheet" href="{% static 'peer_review/css/pares.css' %}">
-    <link rel="stylesheet" href="{% static 'peer_review/css/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'peer_review/css/form.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}">
 {% endblock %}
 
-{% block body %}
-    <header>
-      {% include 'core/navbar.html' %}
-    </header>
-    <main>
-      <!-- Pages path -->
-      {% include 'peer_review/pages_path.html' %}
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'peer_review:review' discipline.slug session.id %}">Peer Review</a>
+  </li>
+{% endblock %}
 
-      <div class="row">
-        <!-- Sidebar page -->
-        {% block sidebar %}
-          {% include 'peer_review/sidebar.html' %}
-        {% endblock %}
-
-        <!-- profile -->
-        {% include 'peer_review/profile.html' %}
-            <div class="row fix-row">
-              <div class="panel panel-default header-down">
-                <div class="panel-heading">
-                  <div class="row">
-                    <div class="col-sm-11 text-center">
-                      <b>Peer Review</b>
-                    </div>
-                    <div class="col-sm-1">
-                      <a href="#" class="roles pull-right" data-toggle="modal" data-target="#myModal">
-                        <i class="fa fa-info-circle"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
+{% block content %}
+    <div class="col-sm-12">
+      <div class="container-fluid">
+        <div class="page-header">
+          <h1 class="white">
+            <i class="fa fa-vcard-o"></i> Peer Review <br />
+            <small>{{discipline.title}}</small>
+          </h1>
+        </div>
+        <div class="row fix-row">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="panel panel-default gradient header-up">
                 <div class="panel-body">
-                  <div class="panel panel-default">
-                    <div class="panel-body">
-
-                        <form method="post" action="" class="post-form">{% csrf_token %}
-
-                        <!--First Student-->
-
-                        {% if student1 is not None %}
-                        <div class="row">
-                          <div class="col-sm-2">
-                          <!-- Student photo -->
-                          {% if student1.photo %}
-                              <img src="{{student1.photo.url}}" class="img-thumbnail img-responsive" alt="Student">
-                          {% else %}
-                              <img src="{% static 'peer_review/img/user.png' %}" class="img-thumbnail img-responsive" alt="Student">
-                          {% endif %}
-                            <div class="form-group">
-                              {% render_field form1.score class="form-control" min="0" max="100" placeholder="Score"%}
-                            </div>
-                          </div>
-                          <div class="col-sm-10">
-                            <h3>{{ student1.get_full_name }}</h3>
-                            <div class="form-group">
-                              <label>Feedback:</label>
-                              {% render_field form1.feedback class="form-control" rows="5" min="0" max="100" placeholder="Feedback"%}
-                            </div>
-                          </div>
-                        </div>
-                        <hr />
-                        {% endif %}
-
-                        <!--Second student-->
-
-                        {% if student2 is not None %}
-                        <div class="row">
-                          <div class="col-sm-2">
-                          <!-- Student photo -->
-                          {% if student2.photo %}
-                              <img src="{{student2.photo.url}}" class="img-thumbnail img-responsive" alt="Student">
-                          {% else %}
-                              <img src="{% static 'peer_review/img/user.png' %}" class="img-thumbnail img-responsive" alt="Student">
-                          {% endif %}
-                            <div class="form-group">
-                              {% render_field form2.score class="form-control" min="0" max="100" placeholder="Score"%}
-                            </div>
-                          </div>
-                          <div class="col-sm-10">
-                            <h3>{{ student2.get_full_name }}</h3>
-                            <div class="form-group">
-                              <label>Feedback:</label>
-                              {% render_field form2.feedback class="form-control" rows="5" min="0" max="100" placeholder="Feedback"%}
-                            </div>
-                          </div>
-                        </div>
-                        <hr />
-                        {% endif %}
-
-                            <!--Third Student-->
-                        {% if student3 is not None %}
-                        <div class="row">
-                          <div class="col-sm-2">
-                          <!-- Student photo -->
-                          {% if student3.photo %}
-                              <img src="{{student3.photo.url}}" class="img-thumbnail img-responsive" alt="Student">
-                          {% else %}
-                              <img src="{% static 'peer_review/img/user.png' %}" class="img-thumbnail img-responsive" alt="Student">
-                          {% endif %}
-                            <div class="form-group">
-                              {% render_field form3.score class="form-control" min="0" max="100" placeholder="Score"%}
-                            </div>
-                          </div>
-                          <div class="col-sm-10">
-                            <h3>{{ student3.get_full_name }}</h3>
-                            <div class="form-group">
-                              <label>Feedback:</label>
-                              {% render_field form3.feedback class="form-control" rows="5" min="0" max="100" placeholder="Feedback"%}
-                            </div>
-                          </div>
-                        </div>
-                        <hr />
-                        {% endif %}
-
-                            <!--Fourth Student-->
-                        {% if student4 is not None and user.get_full_name != student4.get_full_name %}
-                        <div class="row">
-                          <div class="col-sm-2">
-                          <!-- Student photo -->
-                          {% if student4.photo %}
-                              <img src="{{student4.photo.url}}" class="img-thumbnail img-responsive" alt="Student">
-                          {% else %}
-                              <img src="{% static 'peer_review/img/user.png' %}" class="img-thumbnail img-responsive" alt="Student">
-                          {% endif %}
-                            <div class="form-group">
-                              {% render_field form4.score class="form-control" min="0" max="100" placeholder="Score"%}
-                            </div>
-                          </div>
-                          <div class="col-sm-10">
-                            <h3>{{ student4.get_full_name }}</h3>
-                            <div class="form-group">
-                              <label>Feedback:</label>
-                              {% render_field form4.feedback class="form-control" rows="5" min="0" max="100" placeholder="Feedback"%}
-                            </div>
-                          </div>
-                        </div>
-                        <hr />
-                        {% endif %}
-
-                            <!--Fifth Student-->
-                        {% if student5 is not None %}
-                        <div class="row">
-                          <div class="col-sm-2">
-                          <!-- Student photo -->
-                          {% if student5.photo %}
-                              <img src="{{student5.photo.url}}" class="img-thumbnail img-responsive" alt="Student">
-                          {% else %}
-                              <img src="{% static 'peer_review/img/user.png' %}" class="img-thumbnail img-responsive" alt="Student">
-                          {% endif %}
-                            <div class="form-group">
-                              {% render_field form5.score class="form-control" min="0" max="100" placeholder="Score"%}
-                            </div>
-                          </div>
-                          <div class="col-sm-10">
-                            <h3>{{ student5.get_full_name }}</h3>
-                            <div class="form-group">
-                              <label >Feedback:</label>
-                              {% render_field form5.feedback class="form-control" rows="5" min="0" max="100" placeholder="Feedback"%}
-                            </div>
-                          </div>
-                        </div>
-                        <hr />
-                        {% endif %}
-
-
-                            <button type="submit" class="btn btn-primary btn-block">
-                          Submit Peer Review <i class="fa fa-send"></i>
-                        </button>
-                      </form>
-
-                    </div>
+                  <div class="col-sm-5">
+                    <h4><i class="fa fa-graduation-cap"></i><span class="course">
+                      {% trans 'Course' %}:</span>{{ discipline.course }}</h4>
+                    <h4><i class="fa fa-book"></i><span class="classes">
+                      {% trans 'Discipline' %}:</span>{{ discipline.title }}</h4>
+                    <h4><i class="fa fa-user"></i><span class="teacher">
+                      {% trans 'Teacher' %}:</span>{{ discipline.teacher.get_short_name }}</h4>
+                    <h4><i class="fa fa-user"></i><span class="student">
+                      {% trans 'Student' %}:</span>{{ user.get_short_name }}</h4>
+                  </div>
+                  <div class="col-sm-6">
+                    <h1 class="time text-right">
+                      <i class="fa fa-clock-o"></i> {{ session.peer_review_duration }}:00
+                    </h1>
+                    <br />
+                    <h4 class="date text-right">
+                      <i class="fa fa-calendar"></i> {{session.peer_review_datetime|date:"d/m/Y H:i"}}
+                    </h4>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="row fix-row">
+          <div class="panel panel-default header-down">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-sm-11 text-center">
+                  <b>Peer Review - {{ group.title }}</b>
+                </div>
+                <div class="col-sm-1">
+                  <a href="#" class="roles pull-right" data-toggle="modal" data-target="#myModal">
+                    <i class="fa fa-info-circle"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="panel panel-default">
+                <div class="panel-body">
+
+                  {% if session.peer_review_available %}
+                    <form method="post" action="" class="post-form" novalidate>{% csrf_token %}
+                      {% for student in students %}
+                      <div class="row">
+                        <div class="col-sm-2">
+                        <!-- Student photo -->
+                        {% if student.photo %}
+                            <img src="{{student.photo.url}}" class="img-thumbnail img-responsive" alt="Student">
+                        {% else %}
+                            <img src="{% static 'peer_review/img/user.png' %}" class="img-thumbnail img-responsive" alt="Student">
+                        {% endif %}
+                          <div class="form-group">
+                            {% if forloop.counter == 1 %}
+                              {% render_field form1.score class="form-control" min="0" max="100" placeholder="Score"%}
+                            {% elif forloop.counter == 2 %}
+                              {% render_field form2.score class="form-control" min="0" max="100" placeholder="Score"%}
+                            {% elif forloop.counter == 3 %}
+                              {% render_field form3.score class="form-control" min="0" max="100" placeholder="Score"%}
+                            {% elif forloop.counter == 4 %}
+                              {% render_field form4.score class="form-control" min="0" max="100" placeholder="Score"%}
+                            {% elif forloop.counter == 5 %}
+                              {% render_field form5.score class="form-control" min="0" max="100" placeholder="Score"%}
+                            {% elif forloop.counter == 6 %}
+                              {% render_field form6.score class="form-control" min="0" max="100" placeholder="Score"%}
+                            {% elif forloop.counter == 7 %}
+                              {% render_field form7.score class="form-control" min="0" max="100" placeholder="Score"%}
+                            {% elif forloop.counter == 8 %}
+                              {% render_field form8.score class="form-control" min="0" max="100" placeholder="Score"%}
+                            {% elif forloop.counter == 9 %}
+                              {% render_field form9.score class="form-control" min="0" max="100" placeholder="Score"%}
+                            {% elif forloop.counter == 10 %}
+                              {% render_field form10.score class="form-control" min="0" max="100" placeholder="Score"%}
+                            {% endif %}
+                          </div>
+                        </div>
+                        <div class="col-sm-10">
+                          <h3>{{ student.get_full_name }}</h3>
+                          <div class="form-group">
+                            <label>Feedback:</label>
+                            {% if forloop.counter == 1 %}
+                              {% render_field form1.feedback class="form-control" rows="5" placeholder="Feedback"%}
+                            {% elif forloop.counter == 2 %}
+                              {% render_field form2.feedback class="form-control" rows="5" placeholder="Feedback"%}
+                            {% elif forloop.counter == 3 %}
+                              {% render_field form3.feedback class="form-control" rows="5" placeholder="Feedback"%}
+                            {% elif forloop.counter == 4 %}
+                              {% render_field form4.feedback class="form-control" rows="5" placeholder="Feedback"%}
+                            {% elif forloop.counter == 5 %}
+                              {% render_field form5.feedback class="form-control" rows="5" placeholder="Feedback"%}
+                            {% elif forloop.counter == 6 %}
+                              {% render_field form6.feedback class="form-control" rows="5" placeholder="Feedback"%}
+                            {% elif forloop.counter == 7 %}
+                              {% render_field form7.feedback class="form-control" rows="5" placeholder="Feedback"%}
+                            {% elif forloop.counter == 8 %}
+                              {% render_field form8.feedback class="form-control" rows="5" placeholder="Feedback"%}
+                            {% elif forloop.counter == 9 %}
+                              {% render_field form9.feedback class="form-control" rows="5" placeholder="Feedback"%}
+                            {% elif forloop.counter == 10 %}
+                              {% render_field form10.feedback class="form-control" rows="5" placeholder="Feedback"%}
+                            {% endif %}
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      {% endfor %}
+
+                      <button type="submit" class="btn btn-primary btn-block">
+                        Submit Peer Review <i class="fa fa-send"></i>
+                      </button>
+                    </form>
+
+                  {% else %}
+                    <h4 align="center">{% trans 'Peer Review not available' %}</h4>
+                  {% endif %}
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </main>
+    </div>
   {% include 'peer_review/info.html' %}
 {% endblock %}
