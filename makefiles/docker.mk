@@ -1,51 +1,49 @@
 # DOCKER DEPLOY ------------------------------------------------
+file := "docker-compose.yml"
+
 up:
-	# Create and start containers
-	sudo docker-compose up -d
+# Create and start containers
+ifeq (${file}, "docker-compose.test.yml")
+	sudo docker-compose -f ${file} up
+else
+	sudo docker-compose -f ${file} up -d
+endif
 
 build:
 	# Rebuild the docker compose
-	sudo docker-compose build
-
-images:
-	# List images
-	sudo docker images
-
-ps:
-	# List all running containers
-	sudo docker ps
-
-psall:
-	# List all containers
-	sudo docker ps -a
-
-top:
-	# List running processes
-	sudo docker-compose top
+	sudo docker-compose -f ${file} build
 
 restart:
 	# Restart services
-	sudo docker-compose restart
-
-start:
-	# Start services
-	sudo docker-compose start
-
-stop:
-	# Stop services
-	sudo docker-compose stop
+	sudo docker-compose -f ${file} restart
 
 logs:
 	# View output from containers
-	sudo docker-compose logs
+	sudo docker-compose -f ${file} logs -f -t
 
-rm:
-	# Remove all containers not running
-	sudo docker-compose rm
+start:
+	# Start services
+	sudo docker-compose -f ${file} start
+
+stop:
+	# Stop services
+	sudo docker-compose -f ${file} stop
+
+ps:
+	# List all running containers
+	sudo docker-compose -f ${file} ps
+
+down:
+	# Stop and Remove all containers
+	sudo docker-compose -f ${file} down
 
 help:
 	# Help of docker-compose commands
 	sudo docker-compose help
+
+images:
+	# List images
+	sudo docker images
 
 exec:
 	# Get in the bash of tlb container

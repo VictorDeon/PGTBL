@@ -1,31 +1,13 @@
 version: '3'
 services:
-  # Nginx to static file
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
-      - ./tbl/staticfiles/:/usr/share/nginx/html
-    ports:
-      - "8000:8000"
-    depends_on:
-      - tbl
-
-  # Postgresql database
-  db:
-    image: postgres
-    container_name: tbl_db
-
-  # TBL app
-  tbl:
-    build: .
-    command: bash -c "chmod +x init.sh & ./init.sh & gunicorn --bind 0.0.0.0:8000 tbl.wsgi"
+  tbl-local:
+    image: victorhad/tbl:local
+    container_name: tbl-local
+    command: ./compose/local/dev.sh
+    build:
+      context: .
+      dockerfile: ./compose/local/Dockerfile
     volumes:
       - .:/software
-    image: tbl:2.0
-    container_name: tbl
-    environment:
-      - MODE_ENVIROMENT=production
-    depends_on:
-      - db
+    ports:
+      - "8000:8000"
