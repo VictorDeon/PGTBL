@@ -1,0 +1,92 @@
+.panel {
+  box-shadow: 1px 1px 10px white;
+}
+
+.panel-body {
+  background-image: url('../img/wood.jpg');
+}
+
+.panel-body > img {
+  width: 150px;
+  margin: 10px;
+  margin-left: 18px;
+  border: 15px ridge gold !important;
+  box-shadow: 5px 5px 5px grey;
+}
+
+.fa-star {
+  color: gold;
+  text-shadow: 3px 2px 4px floralwhite;
+}
+.star1 {
+  font-size: 40px;
+}
+.star2 {
+  font-size: 50px;
+}
+.star3 {
+  font-size: 60px;
+}
+.star4 {
+  font-size: 50px;
+}
+.star5 {
+  font-size: 40px;
+}
+
+.page-header {
+  margin: 15px 20px 20px;
+}
+
+.fa-flag-checkered {
+  position: absolute;
+  font-size: 24px;
+  right: 30px;
+  top: 8px;
+}
+
+img {
+  box-shadow: 20px 0 50px black;
+  border-radius: 50% !important;
+}
+
+.media-right {
+  position: relative;
+}
+
+.position {
+  position: absolute;
+  font-weight: bold;
+  z-index: 1;
+  top: 7px;
+  right: 13px;
+}
+
+.first > .fa-trophy {
+  font-size: 45px;
+  color: gold;
+  text-shadow: 5px 5px 5px black;
+}
+
+.second > .fa-trophy {
+  font-size: 45px;
+  color: silver;
+  text-shadow: 5px 5px 5px black;
+}
+
+.third > .fa-trophy {
+  font-size: 45px;
+  color: #cd7f32;
+  text-shadow: 5px 5px 5px black;
+}
+
+.media-heading {
+  color: white;
+  text-shadow: 5px 5px 5px black;
+  padding-bottom: 20px;
+}
+
+figcaption {
+  text-align: center;
+  color: white;
+}

@@ -71,6 +71,36 @@
                            {% trans 'Edit' %}
                         </a>
                       </div>
+                      {% if user == discipline.teacher %}
+                        {% if not session.is_closed %}
+                          <div class="btn-group btn-group-justified">
+                            <div class="btn-group">
+                              <button class="btn btn-danger"
+                                      type="button"
+                                      data-toggle="modal"
+                                      data-target="#close-{{session.id}}-modal">
+                                      <i class="fa fa-lock"></i>
+                                      {% trans 'Close' %}
+                              </button>
+                              {% include 'TBLSessions/end_session.html' %}
+                            </div>
+                          </div>
+                      {% endif %} 
+                        {% if session.is_closed %}
+                          <div class="btn-group btn-group-justified">
+                            <div class="btn-group">
+                              <button class="btn btn-success"
+                                      type="button"
+                                      data-toggle="modal"
+                                      data-target="#open-{{session.id}}-modal">
+                                      <i class="fa fa-lock"></i>
+                                      {% trans 'Open' %}
+                              </button>
+                              {% include 'TBLSessions/open_session.html' %}
+                            </div>
+                          </div>
+                        {% endif %} 
+                      {% endif %}      
                     </div>
                   </div>
                   <div class="col-md-4">

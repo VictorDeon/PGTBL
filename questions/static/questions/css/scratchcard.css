@@ -1,0 +1,73 @@
+
+h2 {
+    font-size: 40px;
+    margin: 0 0 10px;
+    color: #f00;
+    text-shadow: 0 0 10px #fff;
+}
+
+.container {
+    overflow: hidden;
+    border: 3px solid #333;
+    position: relative;
+    width: 300px;
+    height: 190px;
+    margin: 0 auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: url('../img/coin.ico'), grab;
+    cursor: url('../img/coin.ico'), -webkit-grab;
+}
+
+.canvas {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+}
+
+.winner-box {
+    position: relative;
+    visibility: hidden;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.blinker {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 0.6s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 0.6s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+
+    animation-name: blinker;
+    animation-duration: 0.6s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
