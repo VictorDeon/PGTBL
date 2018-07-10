@@ -1,6 +1,10 @@
-#!/bin/sh
+#!/bin/bash
+#
+# Purpose: Config production enviroment
+#
+# Author: Victor Arnaud <victorhad@gmail.com>
 
-# Esperando o Postgres inicializar
+# Waiting the PostgreSQL initialize
 postgres_ready() {
 python3 << END
 import sys
@@ -14,20 +18,23 @@ END
 }
 
 until postgres_ready; do
-  >&2 echo "Postgresql está indisponível - Esperando..."
+  >&2 echo "Postgresql is unavailable - Waiting..."
   sleep 1
 done
 
-echo "Deletando migrações"
+echo "Deleting migrations"
 find . -path "*/migrations/*.pyc"  -delete
 find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
 
-echo "Deletando diretorio de arquivos estáticos"
+echo "Deleting staticfiles"
 find . -path "tbl/staticfiles/*"  -delete
 
-echo "Criando migrações e tabelas do banco de dados"
+echo "Creating migrations and insert into psql database"
 python3 manage.py makemigrations
 python3 manage.py migrate
 
-echo "Coletar arquivos estáticos"
+echo "Collect staticfiles"
 python3 manage.py collectstatic --noinput
+
+echo "Run server"
+gunicorn --bind 0.0.0.0:8000 tbl.wsgi
