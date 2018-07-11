@@ -5,4 +5,4 @@ services:
     image: victorhad/tbl:latest
     build:
       context: .
-      dockerfile: ./compose/production/Dockerfile
+      dockerfile: ./images/production/Dockerfile

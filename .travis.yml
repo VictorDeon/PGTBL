@@ -17,11 +17,15 @@ service:
 
 # Specify the docker-compose version to deploy
 env:
-  - DOCKER_COMPOSE_VERSION=1.17.1
+  - DOCKER_COMPOSE_VERSION=1.15.0
+
+# Install docker dependencies
+before_script:
+  - docker-compose up -d
 
 # Script project dependencies
 script:
-  - docker-compose -f docker-compose.test.yml up
+  - docker exec tbl-local make test
 
 deploy:
   # deploy to staging enviroment
