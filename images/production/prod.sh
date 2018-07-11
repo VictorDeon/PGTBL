@@ -23,18 +23,18 @@ until postgres_ready; do
 done
 
 echo "Deleting migrations"
-find . -path "*/migrations/*.pyc"  -delete
-find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+find . -path "pgtbl/*/migrations/*.pyc"  -delete
+find . -path "pgtbl/*/migrations/*.py" -not -name "__init__.py" -delete
 
 echo "Deleting staticfiles"
-find . -path "tbl/staticfiles/*"  -delete
+find . -path "pgtbl/tbl/staticfiles/*"  -delete
 
 echo "Creating migrations and insert into psql database"
-python3 manage.py makemigrations
-python3 manage.py migrate
+python3 pgtbl/manage.py makemigrations
+python3 pgtbl/manage.py migrate
 
 echo "Collect staticfiles"
-python3 manage.py collectstatic --noinput
+python3 pgtbl/manage.py collectstatic --noinput
 
 echo "Run server"
-gunicorn --bind 0.0.0.0:8000 tbl.wsgi
+gunicorn --bind 0.0.0.0:8000 --chdir pgtbl tbl.wsgi

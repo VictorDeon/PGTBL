@@ -11,25 +11,23 @@ RUN apt-get update && apt-get install -y \
     vim \
     build-essential \
     postgresql \
-    postgresql-contrib
-
-# Install pip dependecies
-RUN pip3 install --upgrade pip
-
-# Insert Enviroment variable
-ENV MODE_ENVIROMENT=production
+    nginx \
+    postgresql-contrib && pip3 install --upgrade pip
 
 # Create software folder and install requirements
 ADD . /software
 WORKDIR /software
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r pgtbl/requirements.txt
 
-# Expose the port 8000
+# Insert Enviroment variable
+ENV MODE_ENVIROMENT=production
+
+# Expose the port 80
 EXPOSE 8000
 
 # Run the production script before and after any command
-RUN chmod +x compose/production/prod.sh
-ENTRYPOINT ["compose/production/prod.sh"]
+RUN chmod +x images/production/prod.sh
+ENTRYPOINT ["images/production/prod.sh"]
 
 # Run the server
-CMD ["gunicorn", "--bind 0.0.0.0:8000", "tbl.wsgi"]
+CMD ["gunicorn", "--bind 0.0.0.0:8000", "--chdir pgtbl", "tbl.wsgi"]
