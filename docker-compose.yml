@@ -3,10 +3,6 @@ services:
   tbl-local:
     image: victorhad/tbl:local
     container_name: tbl-local
-    command: ./compose/local/dev.sh
-    build:
-      context: .
-      dockerfile: ./compose/local/Dockerfile
     volumes:
       - .:/software
     ports:

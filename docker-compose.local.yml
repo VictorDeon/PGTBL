@@ -2,7 +2,7 @@ version: '3'
 # Homolog enviroment
 services:
   tbl-homolog:
-    image: victorhad/tbl:staging
+    image: victorhad/tbl:local
     build:
       context: .
-      dockerfile: ./compose/production/Dockerfile
+      dockerfile: ./images/local/Dockerfile

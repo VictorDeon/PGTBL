@@ -106,7 +106,8 @@ mediafiles
 staticfiles
 
 # Migrations and DB
-db.sqlite3
-**/migrations/**
-!**/migrations
-!**/migrations/__init__.py
+pgtbl/db.sqlite3
+pgtbl/**/migrations/**
+!pgtbl/**/migrations
+!pgtbl/**/migrations/__init__.py
+ubuntu-xenial-16.04-cloudimg-console.log
