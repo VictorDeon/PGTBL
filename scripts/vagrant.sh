@@ -45,7 +45,7 @@ docker-compose -f docker-compose.deploy.yml up -d --build
 
 # Config NGINX
 # Copying the nginx configuration file into the container
-cp nginx.conf /etc/nginx/conf.d/nginx.conf
+cp scripts/nginx.conf /etc/nginx/conf.d/nginx.conf
 # Removing the nginx default page
 rm -rf /usr/share/nginx/html/*
 rm -rf /etc/nginx/sites-enabled/* && rm -rf /etc/nginx/sites-available/*
