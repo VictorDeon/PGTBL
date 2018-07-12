@@ -94,6 +94,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+.vagrant
 
 # mkdocs documentation
 /site

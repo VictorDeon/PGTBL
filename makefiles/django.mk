@@ -2,35 +2,35 @@
 
 SERVER = 0.0.0.0:8080
 
-run: manage.py
+run: pgtbl/manage.py
 	# Run the development server
 	python3 pgtbl/manage.py runserver ${SERVER}
 
 # DATABASE -----------------------------------------------------
 
-migrations: manage.py
+migrations: pgtbl/manage.py
 	# Create all migrations from models
 	python3 pgtbl/manage.py makemigrations
 
-migrate: manage.py
+migrate: pgtbl/manage.py
 	# Migrate all migrations on database
 	python3 pgtbl/manage.py migrate
 
-superuser: manage.py
+superuser: pgtbl/manage.py
 	# Create a super user on system.
 	python3 pgtbl/manage.py createsuperuser
 
-sql: manage.py
+sql: pgtbl/manage.py
 	# Show SQL commands
 	python3 pgtbl/manage.py sqlmigrate ${app_label} ${migration_name}
 
 # SHELL --------------------------------------------------------
 
-shell: manage.py
+shell: pgtbl/manage.py
 	# Run iteractive shell of project.
 	python3 pgtbl/manage.py shell_plus
 
-notebook: manage.py
+notebook: pgtbl/manage.py
 	# Run iteractive shell notebook of project
 	python3 pgtbl/manage.py shell_plus --notebook
 
@@ -48,6 +48,6 @@ compilemessages:
 
 # STATIC FILES -------------------------------------------------
 
-staticfiles: manage.py
+staticfiles: pgtbl/manage.py
 	# Collect all static files
-	python3 pgtbl/manage.py collectstatic
+	python3 pgtbl/manage.py collectstatic --noinput
