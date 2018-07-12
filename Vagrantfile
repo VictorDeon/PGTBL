@@ -36,9 +36,10 @@ Vagrant.configure("2") do |config|
       # Clone the TBL repository
       if [ ! -d "/home/vagrant/TBL" ]; then
         git clone https://github.com/VictorArnaud/TBL.git
+      else
+        git pull origin master
       fi
       cd /home/vagrant/TBL
-      pip3 install --upgrade pip
       pip3 install -r pgtbl/requirements.txt
 
       # Run deploy enviroment
@@ -57,8 +58,12 @@ Vagrant.configure("2") do |config|
 
       # Pick up the static files and insert them inside the nginx repository so that they are served
 	    python3 pgtbl/manage.py collectstatic --noinput
-      cp ./pgtbl/tbl/staticfiles/ /usr/share/nginx/html
-      cp ./pgtbl/tbl/mediafiles/ /usr/share/nginx/html
+      if [ -d "./pgtbl/tbl/staticfiles/" ]; then
+        cp ./pgtbl/tbl/staticfiles/ /usr/share/nginx/html
+      fi
+      if [ -d "./pgtbl/tbl/mediafiles/" ]; then
+        cp ./pgtbl/tbl/mediafiles/ /usr/share/nginx/html
+      fi
 
       # Run nginx
       service nginx start
