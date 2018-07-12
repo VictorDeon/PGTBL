@@ -30,12 +30,12 @@ script:
 deploy:
   # deploy to staging enviroment
   - provider: script
-    script: bash staging-deploy.sh
+    script: bash scripts/staging-deploy.sh
     on:
       branch: develop
 
   # deploy to production enviroment
   - provider: script
-    script: bash production-deploy.sh
+    script: bash scripts/production-deploy.sh
     on:
       branch: master

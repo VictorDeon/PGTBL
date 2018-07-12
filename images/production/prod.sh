@@ -28,13 +28,11 @@ find . -path "pgtbl/*/migrations/*.py" -not -name "__init__.py" -delete
 
 echo "Deleting staticfiles"
 find . -path "pgtbl/tbl/staticfiles/*"  -delete
+find . -path "pgtbl/tbl/mediafiles/*"  -delete
 
 echo "Creating migrations and insert into psql database"
 python3 pgtbl/manage.py makemigrations
 python3 pgtbl/manage.py migrate
-
-echo "Collect staticfiles"
-python3 pgtbl/manage.py collectstatic --noinput
 
 echo "Run server"
 gunicorn --bind 0.0.0.0:8000 --chdir pgtbl tbl.wsgi

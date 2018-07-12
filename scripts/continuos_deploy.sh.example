@@ -2,7 +2,7 @@
 cd TBL
 git fetch origin
 git pull origin master
-echo y | docker-compose -f docker-compose.deploy.yml rm --stop tbl
-docker-compose -f docker-compose.deploy.yml up --build -d
+echo y | docker-compose -f ../docker-compose.deploy.yml rm --stop tbl
+docker-compose -f ../docker-compose.deploy.yml up --build -d
 docker exec tbl python3 manage.py makemigrations
 docker exec tbl python3 manage.py migrate
