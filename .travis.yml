@@ -5,12 +5,6 @@ language: python
 python:
   - "3.5"
 
-# Specify branchs that travis will monitor
-branches:
-  only:
-    - master
-    - devel
-
 # Use docker to deploy
 service:
   - docker
@@ -30,7 +24,7 @@ script:
 deploy:
   # deploy to staging enviroment
   - provider: script
-    script: bash scripts/staging-deploy.sh
+    script: bash scripts/homolog-deploy.sh
     on:
       branch: develop
 

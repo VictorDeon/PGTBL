@@ -7,10 +7,7 @@ apt-get install -y \
   ca-certificates \
   curl \
   software-properties-common \
-  nginx vim git \
-  python3-dev \
-  python3-pip \
-  build-essential
+  nginx vim git
 
 # Modify language to PT-BR
 locale-gen pt_BR.UTF-8
@@ -29,7 +26,6 @@ docker --version && docker-compose --version
 # Clone the TBL repository
 git clone https://github.com/VictorArnaud/TBL.git
 cd TBL
-pip3 install -r pgtbl/requirements.txt
 
 # Run deploy enviroment
 docker-compose -f docker-compose.deploy.yml up -d --build
@@ -42,10 +38,8 @@ rm -rf /usr/share/nginx/html/*
 rm -rf /etc/nginx/sites-enabled/* && rm -rf /etc/nginx/sites-available/*
 
 # Pick up the static files and insert them inside the nginx repository so that they are served
-python3 pgtbl/manage.py collectstatic --noinput
 cp -r ./pgtbl/tbl/staticfiles/* /usr/share/nginx/html
 
 # Run nginx
-service nginx start
-systemctl status nginx.service
 service nginx restart
+systemctl status nginx.service

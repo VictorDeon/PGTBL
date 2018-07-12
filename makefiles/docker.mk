@@ -2,12 +2,8 @@
 file := "docker-compose.yml"
 
 up:
-# Create and start containers
-ifeq (${file}, "docker-compose.test.yml")
-	sudo docker-compose -f ${file} up
-else
+	# Create and start containers
 	sudo docker-compose -f ${file} up -d
-endif
 
 build:
 	# Rebuild the docker compose

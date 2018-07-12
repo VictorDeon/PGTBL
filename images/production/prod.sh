@@ -31,8 +31,10 @@ find . -path "pgtbl/tbl/staticfiles/*"  -delete
 find . -path "pgtbl/tbl/mediafiles/*"  -delete
 
 echo "Creating migrations and insert into psql database"
-python3 pgtbl/manage.py makemigrations
-python3 pgtbl/manage.py migrate
+make migrations
+make migrate
+make compilemessages
+make staticfiles
 
 echo "Run server"
 gunicorn --bind 0.0.0.0:8000 --chdir pgtbl tbl.wsgi

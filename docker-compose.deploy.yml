@@ -9,6 +9,8 @@ services:
   tbl:
     image: victorhad/tbl:latest
     container_name: tbl
+    volumes:
+      - .:/software
     ports:
       - "8000:8000"
     depends_on:
