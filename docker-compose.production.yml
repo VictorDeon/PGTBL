@@ -1,8 +1,18 @@
 version: '3'
 # Production enviroment
 services:
+  tbl-nginx-production:
+    image: victorhad/tbl:nginx
+    build:
+      context: .
+      dockerfile: ./images/nginx/Dockerfile
+    depends_on:
+      - tbl-production
+
   tbl-production:
     image: victorhad/tbl:latest
     build:
       context: .
       dockerfile: ./images/production/Dockerfile
+    volumes:
+      - ./pgtbl/tbl/staticfiles:/software/pgtbl/tbl/staticfiles

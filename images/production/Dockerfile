@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     vim \
     build-essential \
     postgresql \
+    nginx \
     postgresql-contrib && pip3 install --upgrade pip
 
 # Create software folder and install requirements
@@ -27,3 +28,5 @@ EXPOSE 8000
 # Run the production script before and after any command
 RUN chmod +x images/production/prod.sh
 ENTRYPOINT ["images/production/prod.sh"]
+
+CMD ["gunicorn", "--bind 0.0.0.0:8000", "--chdir pgtbl", "tbl.wsgi"]

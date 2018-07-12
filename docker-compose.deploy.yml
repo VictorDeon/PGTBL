@@ -1,17 +1,22 @@
 version: '3'
 services:
-  # Postgresql database
-  db:
-    image: postgres:latest
-    container_name: tbl_db
+  # NGINX server
+  tbl-nginx:
+    image: victorhad/tbl:nginx
+    container_name: tbl-server
+    ports:
+      - "8000:8080"
+    depends_on:
+      - tbl
 
   # TBL app
   tbl:
     image: victorhad/tbl:latest
     container_name: tbl
-    volumes:
-      - .:/software
-    ports:
-      - "8000:8000"
     depends_on:
       - db
+
+  # Postgresql database
+  db:
+    image: postgres:latest
+    container_name: tbl_db

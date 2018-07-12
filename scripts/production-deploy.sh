@@ -9,4 +9,4 @@ sudo docker-compose -f docker-compose.production.yml build
 sudo docker-compose -f docker-compose.production.yml push
 
 # sudo apt-get install sshpass -y
-# sshpass -p $SSH_PASSWORD ssh vagrant@IP '/bin/bash /home/vagrant/TBL/scripts/deploy.sh'
+# sshpass -p $SSH_PASSWORD ssh vagrant@192.168.45.21 '/bin/bash /home/vagrant/TBL/scripts/deploy.sh'

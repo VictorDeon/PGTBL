@@ -38,6 +38,8 @@ rm -rf /usr/share/nginx/html/*
 rm -rf /etc/nginx/sites-enabled/* && rm -rf /etc/nginx/sites-available/*
 
 # Pick up the static files and insert them inside the nginx repository so that they are served
+ls -la
+ls /home/vagrant/TBL/pgtbl/tbl/
 cp -r /home/vagrant/TBL/pgtbl/tbl/staticfiles/* /usr/share/nginx/html
 
 # Run nginx
