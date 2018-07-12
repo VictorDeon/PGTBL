@@ -32,16 +32,18 @@ if [ ! -d "/home/vagrant/TBL" ]; then
   cd /home/vagrant/TBL
 else
   cd /home/vagrant/TBL
+  git fetch origin
   git pull origin master
 fi
-pip3 install django
+pip3 install --upgrade pip
+pip3 install -f pgtbl/requirements.txt
 
 # Run deploy enviroment
- if [ ! -f "continuos_deploy.sh" ]; then
-  mv scripts/continuos_deploy.sh.example scripts/continuos_deploy.sh
-fi
-chmod +x scripts/continuos_deploy.sh
-docker-compose -f docker-compose.deploy.yml up -d --build
+echo y | docker-compose -f ../docker-compose.deploy.yml rm --stop tbl
+docker-compose -f ../docker-compose.deploy.yml up -d --build
+docker exec tbl python3 manage.py makemigrations
+docker exec tbl python3 manage.py migrate
+docker exec tbl django-admin compilemessages
 
 # Config NGINX
 # Copying the nginx configuration file into the container
