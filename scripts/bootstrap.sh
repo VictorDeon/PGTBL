@@ -25,23 +25,6 @@ docker --version && docker-compose --version
 
 # Clone the TBL repository
 git clone https://github.com/VictorArnaud/TBL.git
-cd TBL
 
 # Run deploy enviroment
 docker-compose -f docker-compose.deploy.yml up -d --build
-
-# Config NGINX
-# Copying the nginx configuration file into the container
-cp scripts/nginx.conf /etc/nginx/conf.d/nginx.conf
-# Removing the nginx default page
-rm -rf /usr/share/nginx/html/*
-rm -rf /etc/nginx/sites-enabled/* && rm -rf /etc/nginx/sites-available/*
-
-# Pick up the static files and insert them inside the nginx repository so that they are served
-ls -la
-ls /home/vagrant/TBL/pgtbl/tbl/
-cp -r /home/vagrant/TBL/pgtbl/tbl/staticfiles/* /usr/share/nginx/html
-
-# Run nginx
-service nginx restart
-systemctl status nginx.service
