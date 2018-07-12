@@ -29,10 +29,10 @@ docker --version && docker-compose --version
 # Clone the TBL repository
 git clone https://github.com/VictorArnaud/TBL.git
 cd TBL
-pip3 install -f pgtbl/requirements.txt
+pip3 install -r pgtbl/requirements.txt
 
 # Run deploy enviroment
-docker-compose -f ../docker-compose.deploy.yml up -d --build
+docker-compose -f docker-compose.deploy.yml up -d --build
 
 # Config NGINX
 # Copying the nginx configuration file into the container
@@ -43,13 +43,9 @@ rm -rf /etc/nginx/sites-enabled/* && rm -rf /etc/nginx/sites-available/*
 
 # Pick up the static files and insert them inside the nginx repository so that they are served
 python3 pgtbl/manage.py collectstatic --noinput
-if [ -d "./pgtbl/tbl/staticfiles/" ]; then
-  cp ./pgtbl/tbl/staticfiles/ /usr/share/nginx/html
-fi
-if [ -d "./pgtbl/tbl/mediafiles/" ]; then
-  cp ./pgtbl/tbl/mediafiles/ /usr/share/nginx/html
-fi
+cp -r ./pgtbl/tbl/staticfiles/* /usr/share/nginx/html
 
 # Run nginx
 service nginx start
 systemctl status nginx.service
+service nginx restart
