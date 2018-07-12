@@ -6,4 +6,4 @@ services:
     volumes:
       - .:/software
     ports:
-      - "8000:8000"
+      - "8080:8080"

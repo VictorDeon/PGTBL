@@ -1,3 +1,6 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bcbcac621e1847e7af8e61bc202a03c6)](https://www.codacy.com/app/VictorArnaud/TBL?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=TeamBasedLearning/TBL&amp;utm_campaign=Badge_Grade) 
+[![Build Status](https://travis-ci.org/VictorArnaud/TBL.svg?branch=master)](https://travis-ci.org/VictorArnaud/TBL)
+
 # Documentação do PGTBL: Plataforma gerenciadora de Team Based Learning.
 
 ![TBL](https://user-images.githubusercontent.com/14116020/27844653-b26ac236-60fa-11e7-9e87-b105b4878180.png)
@@ -49,7 +52,3 @@ Os documentos abaixos são de leitura obrigatória para quem irá contribuir com
 ## Documentation and Badges
 
 Documentação: https://victorarnaud.github.io/TBL/ ou https://github.com/VictorArnaud/TBL/wiki
-
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bcbcac621e1847e7af8e61bc202a03c6)](https://www.codacy.com/app/VictorArnaud/TBL?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=TeamBasedLearning/TBL&amp;utm_campaign=Badge_Grade)
-
-[![Build Status](https://travis-ci.org/VictorArnaud/TBL.svg?branch=master)](https://travis-ci.org/VictorArnaud/TBL)

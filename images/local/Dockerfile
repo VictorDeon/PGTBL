@@ -30,10 +30,10 @@ RUN chmod +x images/local/dev.sh
 ENTRYPOINT ["images/local/dev.sh"]
 
 # Expose 8000 port
-EXPOSE 8000
+EXPOSE 8080
 
 # Set the container user
 USER developer
 
 # Run the server
-CMD ["python3", "pgtbl/manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python3", "pgtbl/manage.py", "runserver", "0.0.0.0:8080"]
