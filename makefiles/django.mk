@@ -36,7 +36,7 @@ notebook: pgtbl/manage.py
 
 # TRANSLATION --------------------------------------------------
 
-files := "tbl/*.py"
+files := "pgtbl/*.py"
 
 messages:
 	# Create a django.po to insert translations (pt-BR)
