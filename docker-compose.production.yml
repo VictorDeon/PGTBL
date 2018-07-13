@@ -14,5 +14,3 @@ services:
     build:
       context: .
       dockerfile: ./images/production/Dockerfile
-    volumes:
-      - ./pgtbl/tbl/staticfiles:/software/pgtbl/tbl/staticfiles

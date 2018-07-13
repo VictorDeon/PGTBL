@@ -3,6 +3,8 @@ services:
   tbl-local:
     image: victorhad/tbl:local
     container_name: tbl-local
+    environment:
+      - CODACY_PROJECT_TOKEN=2856565478ce4400a4cd4731950bfb89
     volumes:
       - .:/software
     ports:
