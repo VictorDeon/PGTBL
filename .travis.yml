@@ -30,7 +30,7 @@ deploy:
     script: bash scripts/homolog-deploy.sh
     skip_cleanup: true
     on:
-      branch: develop
+      branch: dev
 
   # deploy to production enviroment
   - provider: script
