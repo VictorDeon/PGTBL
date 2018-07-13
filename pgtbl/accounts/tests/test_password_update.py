@@ -8,7 +8,7 @@ from core.test_utils import check_messages
 User = get_user_model()
 
 
-class EditPasswordTestCase(TestCase):
+class PasswordUpdateTestCase(TestCase):
     """
     Test to edit password from user.
     """

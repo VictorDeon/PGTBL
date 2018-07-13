@@ -9,7 +9,7 @@ from django.views.generic import DeleteView
 User = get_user_model()
 
 
-class DeleteProfileView(LoginRequiredMixin, DeleteView):
+class UserDeleteView(LoginRequiredMixin, DeleteView):
     """
     Delete the user account
     """
@@ -35,4 +35,4 @@ class DeleteProfileView(LoginRequiredMixin, DeleteView):
         messages.success(self.request, _("Accounts deleted successfully."))
 
         # Redirect to success_url
-        return super(DeleteProfileView, self).get_success_url()
+        return super(UserDeleteView, self).get_success_url()

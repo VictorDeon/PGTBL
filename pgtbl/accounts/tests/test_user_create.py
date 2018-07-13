@@ -9,7 +9,7 @@ from rolepermissions.checkers import has_role
 User = get_user_model()
 
 
-class RegisterTestCase(TestCase):
+class UserCreateTestCase(TestCase):
     """
     Test to register a new user into the system.
     """

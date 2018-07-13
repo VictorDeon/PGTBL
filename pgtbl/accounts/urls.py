@@ -8,26 +8,26 @@ profile_patterns = [
     # /
     url(
         r'^$',
-        views.ProfileView.as_view(),
+        views.UserDetailView.as_view(),
         name='profile'
     ),
-    # edit/
+    # update/
     url(
-        r'^edit/$',
-        views.EditProfileView.as_view(),
+        r'^update/$',
+        views.UserUpdateView.as_view(),
         name='update-user'
-    ),
-    # edit-password/
-    url(
-        r'^edit-password/$',
-        views.EditPasswordView.as_view(),
-        name='update-password'
     ),
     # delete/
     url(
         r'^delete/$',
-        views.DeleteProfileView.as_view(),
+        views.UserDeleteView.as_view(),
         name='delete-user'
+    ),
+    # password-update/
+    url(
+        r'^password-update/$',
+        views.PasswordUpdateView.as_view(),
+        name='update-password'
     ),
 ]
 
@@ -52,7 +52,7 @@ urlpatterns = [
     # /register/
     url(
         r'^register/$',
-        views.RegisterView.as_view(),
+        views.UserCreateView.as_view(),
         name='register'
     ),
     # /reset-password/

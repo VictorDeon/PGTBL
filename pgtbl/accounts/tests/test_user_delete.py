@@ -7,7 +7,7 @@ from core.test_utils import check_messages
 User = get_user_model()
 
 
-class DeleteUserTestCase(TestCase):
+class UserDeleteTestCase(TestCase):
     """
     Test to delete a user account.
     """

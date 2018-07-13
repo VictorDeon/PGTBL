@@ -6,7 +6,7 @@ from django.views.generic import ListView
 from disciplines.models import Discipline
 
 
-class ProfileView(LoginRequiredMixin, ListView):
+class UserDetailView(LoginRequiredMixin, ListView):
     """
     Class to read a profile user and his disciplines.
     """

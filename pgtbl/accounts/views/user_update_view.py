@@ -9,7 +9,7 @@ from django.views.generic import UpdateView
 User = get_user_model()
 
 
-class EditProfileView(LoginRequiredMixin, UpdateView):
+class UserUpdateView(LoginRequiredMixin, UpdateView):
     """
     Edit personal information from user.
     """
@@ -43,4 +43,4 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
         )
 
         # Redirect to success_url
-        return super(EditProfileView, self).form_valid(form)
+        return super(UserUpdateView, self).form_valid(form)

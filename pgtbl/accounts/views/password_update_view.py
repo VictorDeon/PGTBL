@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.views.generic import FormView
 
 
-class EditPasswordView(LoginRequiredMixin, FormView):
+class PasswordUpdateView(LoginRequiredMixin, FormView):
     """
     Edit user password.
     """
@@ -25,7 +25,7 @@ class EditPasswordView(LoginRequiredMixin, FormView):
         """
 
         # Get the kwargs from the original class FormView
-        kwargs = super(EditPasswordView, self).get_form_kwargs()
+        kwargs = super(PasswordUpdateView, self).get_form_kwargs()
 
         # Insert the parameter logged user into the form template
         kwargs['user'] = self.request.user
@@ -43,4 +43,4 @@ class EditPasswordView(LoginRequiredMixin, FormView):
         messages.success(self.request, _("Password updated successfully."))
 
         # Redirect to success_url
-        return super(EditPasswordView, self).form_valid(form)
+        return super(PasswordUpdateView, self).form_valid(form)

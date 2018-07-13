@@ -14,7 +14,7 @@ from accounts.forms import UserCreationForm
 User = get_user_model()
 
 
-class RegisterView(CreateView):
+class UserCreateView(CreateView):
     """
     Class to create a new user.
     """

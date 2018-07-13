@@ -8,7 +8,7 @@ from core.test_utils import check_messages
 User = get_user_model()
 
 
-class EditUserTestCase(TestCase):
+class UserUpdateTestCase(TestCase):
     """
     Test to edit personal information from user.
     """
