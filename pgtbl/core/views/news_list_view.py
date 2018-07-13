@@ -5,7 +5,7 @@ from core.models import News
 
 class NewsListView(ListView):
     paginate_by = 6
-    template_name = 'core/news_list.html'
+    template_name = 'news/list.html'
     context_object_name = 'news_list'
 
     def get_queryset(self):

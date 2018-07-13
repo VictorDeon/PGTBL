@@ -4,4 +4,4 @@ from core.models import News
 
 class NewsDetailView(DetailView):
     model = News
-    template_name = 'core/news_details.html'
+    template_name = 'news/details.html'

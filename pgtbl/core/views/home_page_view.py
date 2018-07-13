@@ -15,7 +15,7 @@ class HomePageView(FormListView):
     Home page of application.
     """
 
-    template_name = 'core/home.html'
+    template_name = 'home/home.html'
     context_object_name = 'news_list'
 
     # Get the SendEmailForm

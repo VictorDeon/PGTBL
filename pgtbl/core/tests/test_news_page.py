@@ -70,7 +70,7 @@ class NewsPageTestCase(TestCase):
 
         response = self.client.get(reverse('core:news'))
         self.assertTemplateUsed(response, 'core/base.html')
-        self.assertTemplateUsed(response, 'core/news_list.html')
+        self.assertTemplateUsed(response, 'news/list.html')
 
     def test_to_access_the_news_url_with_tag(self):
         """
@@ -107,4 +107,4 @@ class NewsPageTestCase(TestCase):
         url = reverse('core:news-details', kwargs={'slug': self.news1.slug})
         response = self.client.get(url)
         self.assertTemplateUsed(response, 'core/base.html')
-        self.assertTemplateUsed(response, 'core/news_details.html')
+        self.assertTemplateUsed(response, 'news/details.html')
