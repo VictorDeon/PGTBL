@@ -71,10 +71,14 @@ class StudentInsertView(LoginRequiredMixin,
         """
 
         discipline = self.get_discipline()
+        group = self.get_group()
 
         success_url = reverse_lazy(
-            'groups:list',
-            kwargs={'slug': discipline.slug}
+            'groups:students',
+            kwargs={
+                'slug': discipline.slug,
+                'pk': group.id
+            }
         )
 
         return success_url
