@@ -20,7 +20,7 @@ class GRATView(LoginRequiredMixin,
     gRAT (Group Readiness Assurance Test)
     """
 
-    template_name = 'questions/grat.html'
+    template_name = 'grat/grat.html'
     paginate_by = 1
     context_object_name = 'questions'
 

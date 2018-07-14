@@ -17,7 +17,7 @@ class GRATResultView(LoginRequiredMixin,
     Show the result of gRAT test.
     """
 
-    template_name = 'questions/grat_result.html'
+    template_name = 'grat/result.html'
     context_object_name = 'submissions'
 
     # Permissions

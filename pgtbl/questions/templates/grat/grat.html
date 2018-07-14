@@ -59,7 +59,7 @@
                        {{session.grat_duration}}:00
                     </a>
                   </h1>
-                  {% include 'questions/grat_update.html' %}
+                  {% include 'grat/update.html' %}
                 {% else %}
                   <h1 class="time text-right">
                     <i class="fa fa-clock-o"></i>
@@ -76,7 +76,7 @@
                        <i class="fa fa-calendar"></i>
                     </a>
                   </h4>
-                  {% include 'questions/grat_date.html' %}
+                  {% include 'grat/date.html' %}
                 {% else %}
                   <h4 class="date text-right">
                     {{session.grat_datetime|date:"d/m/Y H:i"}}
@@ -103,12 +103,12 @@
                  data-target="#grat-info">
                  <i class="fa fa-info-circle"></i>
               </a>
-              {% include 'questions/grat_info.html' %}
+              {% include 'grat/info.html' %}
             </div>
           </div>
         </div>
         <div class="panel-body">
-          {% include 'questions/progress_bar.html' %}
+          {% include 'grat/progress_bar.html' %}
           {% for question in questions %}
             <div class="panel panel-default">
               <div class="panel-body">
@@ -217,7 +217,7 @@
             <p>{% trans 'There is no questions in this session.' %}</p>
           {% endfor %}
           {% if questions.count > 0 %}
-            {% include 'questions/grat_pagination.html' %}
+            {% include 'grat/pagination.html' %}
           {% endif %}
         </div>
       </div>

@@ -15,7 +15,7 @@ class ExerciseResultView(LoginRequiredMixin,
     Show the result of exercise list.
     """
 
-    template_name = 'questions/result.html'
+    template_name = 'exercise/result.html'
     context_object_name = 'submissions'
 
     # Permissions

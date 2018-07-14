@@ -20,7 +20,7 @@ class IRATDateUpdateView(LoginRequiredMixin,
     """
 
     model = TBLSession
-    template_name = 'questions/irat.html'
+    template_name = 'irat/irat.html'
     form_class = IRATDateForm
 
     # Permissions

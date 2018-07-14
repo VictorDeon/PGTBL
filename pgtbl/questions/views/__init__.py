@@ -1,7 +1,8 @@
 from .exercise.answer_question_view import AnswerQuestionView
-from .exercise.csv import get_csv
 from .exercise.exercise_result_view import ExerciseResultView
 from .exercise.reset_exercise_view import ResetExerciseView
+from .exercise.exercise_list_view import ExerciseListView
+from .exercise.csv import get_csv
 from .grat.grat_answer_question_view import GRATAnswerQuestionView
 from .grat.grat_date_update_view import GRATDateUpdateView
 from .grat.grat_result_view import GRATResultView
@@ -14,5 +15,4 @@ from .irat.irat_update_view import IRATUpdateView
 from .irat.irat_view import IRATView
 from .question.create_question_view import CreateQuestionView
 from .question.delete_question_view import DeleteQuestionView
-from .question.exercise_list_view import ExerciseListView
 from .question.update_question_view import UpdateQuestionView

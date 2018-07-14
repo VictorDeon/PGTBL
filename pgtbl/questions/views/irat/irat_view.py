@@ -19,7 +19,7 @@ class IRATView(LoginRequiredMixin,
     iRAT (Individual Readiness Assurance Test)
     """
 
-    template_name = 'questions/irat.html'
+    template_name = 'irat/irat.html'
     paginate_by = 1
     context_object_name = 'questions'
 

@@ -1,0 +1,27 @@
+{% load i18n %}
+
+<div class="modal fade" id="irat-info" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{% trans 'Rules' %}</h4>
+      </div>
+      <div class="modal-body">
+        <p>{% trans 'The rules are very simple' %}:</p>
+        <ul>
+          <li>{% trans 'We have 4 options per question: A, B, C, D' %}</li>
+          <li>{% trans 'You will have 4 points to distribute in each question.' %}</li>
+          <li>{% trans 'You can not enter more than 4 points in an option.' %}</li>
+          <li>{% trans 'The sum of the options has to give 4 points, can not go beyond that.' %}</li>
+          <li>{% trans 'The question will only be considered if the sum of the points of the alternatives is between 0 and 4' %}</li>
+          <li><b>{% trans 'Example' %} 01</b>: {% trans 'Insert 4 points in option A.' %}</li>
+          <li><b>{% trans 'Example' %} 02</b>: {% trans 'Insert 2 points in option B and 2 points in option C.' %}</li>
+          <li><b>{% trans 'Example' %} 03</b>: {% trans 'Insert 3 points in option A and 1 points in option D.' %}</li>
+          <li><b>{% trans 'Example' %} 04</b>: {% trans 'Insert 1 points in each option.' %}</li>
+        </ul>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>

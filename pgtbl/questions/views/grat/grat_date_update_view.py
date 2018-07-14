@@ -24,7 +24,7 @@ class GRATDateUpdateView(LoginRequiredMixin,
     """
 
     model = TBLSession
-    template_name = 'questions/grat.html'
+    template_name = 'grat/grat.html'
     form_class = GRATDateForm
 
     # Permissions

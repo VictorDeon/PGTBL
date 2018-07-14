@@ -16,7 +16,7 @@ class AnswerQuestionView(LoginRequiredMixin, FormView):
     Answer the respective question.
     """
 
-    template_name = 'questions/list.html'
+    template_name = 'exercise/list.html'
     form_class = AnswerQuestionForm
 
     # Permissions

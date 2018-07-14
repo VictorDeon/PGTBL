@@ -17,7 +17,7 @@ class GRATAnswerQuestionView(LoginRequiredMixin, FormView):
     Answer the respective gRAT question.
     """
 
-    template_name = 'questions/grat.html'
+    template_name = 'grat/grat.html'
     form_class = AnswerGRATQuestionForm
 
     # Permissions

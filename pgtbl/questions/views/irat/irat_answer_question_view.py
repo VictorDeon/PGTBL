@@ -16,7 +16,7 @@ class IRATAnswerQuestionView(LoginRequiredMixin, FormView):
     Answer the respective iRAT question.
     """
 
-    template_name = 'questions/irat-list.html'
+    template_name = 'irat/list.html'
     form_class = AnswerQuestionForm
 
     # Permissions

@@ -20,7 +20,7 @@ class IRATResultView(LoginRequiredMixin,
     Show the result of iRAT test.
     """
 
-    template_name = 'questions/irat_result.html'
+    template_name = 'irat/result.html'
     context_object_name = 'submissions'
 
     # Permissions

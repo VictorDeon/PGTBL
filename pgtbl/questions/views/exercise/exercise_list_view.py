@@ -16,7 +16,7 @@ class ExerciseListView(LoginRequiredMixin,
     View to see all the questions that the students will answer.
     """
 
-    template_name = 'questions/list.html'
+    template_name = 'exercise/list.html'
     paginate_by = 1
     context_object_name = 'questions'
 
