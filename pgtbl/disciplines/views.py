@@ -1,8 +1,3 @@
-"""
-The list of user disciplines is in accounts.views.ProfileView
-Disciplines functionalities
-"""
-
 # Django app
 from django.views.generic import (
     CreateView, UpdateView, DeleteView, DetailView,
@@ -31,7 +26,7 @@ from .models import Discipline
 User = get_user_model()
 
 
-class CreateDisciplineView(LoginRequiredMixin,
+class DisciplineCreateView(LoginRequiredMixin,
                            ModelPermissionMixin,
                            CreateView):
     """
@@ -74,10 +69,10 @@ class CreateDisciplineView(LoginRequiredMixin,
         messages.success(self.request, _('Discipline created successfully.'))
 
         # Redirect to success url
-        return super(CreateDisciplineView, self).form_valid(form)
+        return super(DisciplineCreateView, self).form_valid(form)
 
 
-class UpdateDisciplineView(LoginRequiredMixin,
+class DisciplineUpdateView(LoginRequiredMixin,
                            PermissionMixin,
                            UpdateView):
     """
@@ -123,10 +118,10 @@ class UpdateDisciplineView(LoginRequiredMixin,
         messages.success(self.request, _("Discipline updated successfully."))
 
         # Redirect to success_url.
-        return super(UpdateDisciplineView, self).form_valid(form)
+        return super(DisciplineUpdateView, self).form_valid(form)
 
 
-class DeleteDisciplineView(LoginRequiredMixin,
+class DisciplineDeleteView(LoginRequiredMixin,
                            PermissionMixin,
                            DeleteView):
     """
@@ -150,10 +145,10 @@ class DeleteDisciplineView(LoginRequiredMixin,
         messages.success(self.request, _("Discipline deleted successfully."))
 
         # Redirect to success_url
-        return super(DeleteDisciplineView, self).get_success_url()
+        return super(DisciplineDeleteView, self).get_success_url()
 
 
-class ListDisciplineView(LoginRequiredMixin, ListView):
+class DisciplineListView(LoginRequiredMixin, ListView):
     """
     View to search a discipline and enter it.
     """
@@ -167,7 +162,7 @@ class ListDisciplineView(LoginRequiredMixin, ListView):
         Insert a form inside discipline list.
         """
 
-        context = super(ListDisciplineView, self).get_context_data(**kwargs)
+        context = super(DisciplineListView, self).get_context_data(**kwargs)
         context['form'] = DisciplineEnterForm()
         return context
 
@@ -200,7 +195,7 @@ class ListDisciplineView(LoginRequiredMixin, ListView):
         return disciplines
 
 
-class EnterDisciplineView(LoginRequiredMixin, FormView):
+class DisciplineEnterView(LoginRequiredMixin, FormView):
     """
     Insert students or monitors inside discipline.
     """
@@ -218,7 +213,7 @@ class EnterDisciplineView(LoginRequiredMixin, FormView):
 
         if success:
             # Redirect to success_url
-            return super(EnterDisciplineView, self).form_valid(form)
+            return super(DisciplineEnterView, self).form_valid(form)
 
         # Redirect to same page with error.
         redirect_url = reverse_lazy('disciplines:search')
@@ -316,9 +311,9 @@ class EnterDisciplineView(LoginRequiredMixin, FormView):
         return True
 
 
-class ShowDisciplineView(LoginRequiredMixin,
-                         PermissionMixin,
-                         DetailView):
+class DisciplineDetailView(LoginRequiredMixin,
+                           PermissionMixin,
+                           DetailView):
     """
     View to show a specific discipline.
     """
@@ -330,7 +325,7 @@ class ShowDisciplineView(LoginRequiredMixin,
     ]
 
 
-class CloseDisciplineView(LoginRequiredMixin,
+class DisciplineCloseView(LoginRequiredMixin,
                           PermissionMixin,
                           DeleteView):
 
@@ -434,7 +429,7 @@ class StudentListView(LoginRequiredMixin,
         return queryset
 
 
-class RemoveStudentView(LoginRequiredMixin,
+class StudentRemoveView(LoginRequiredMixin,
                         PermissionMixin,
                         DeleteView):
     """
@@ -530,7 +525,7 @@ class RemoveStudentView(LoginRequiredMixin,
         return success_url
 
 
-class ListUsersView(LoginRequiredMixin,
+class UsersListView(LoginRequiredMixin,
                     PermissionMixin,
                     ListView):
     """
@@ -551,7 +546,7 @@ class ListUsersView(LoginRequiredMixin,
         Insert form into list view.
         """
 
-        context = super(ListUsersView, self).get_context_data(**kwargs)
+        context = super(UsersListView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
         return context
 
@@ -610,7 +605,7 @@ class ListUsersView(LoginRequiredMixin,
         return users
 
 
-class InsertStudentView(LoginRequiredMixin,
+class StudentInsertView(LoginRequiredMixin,
                         PermissionMixin,
                         ObjectRedirectView):
     """
@@ -723,7 +718,7 @@ class InsertStudentView(LoginRequiredMixin,
         return True
 
 
-class ChangeStudentView(LoginRequiredMixin,
+class StudentChangeView(LoginRequiredMixin,
                         PermissionMixin,
                         ObjectRedirectView):
     """
