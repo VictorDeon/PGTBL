@@ -1,0 +1,48 @@
+[
+{
+    "model": "modules.tblsession",
+    "pk": 1,
+    "fields": {
+        "discipline": 1,
+        "title": "T\u00e9cnicas est\u00e1ticas de V&V.",
+        "description": "## Descri\u00e7\u00e3o\r\n\r\nA literatura sobre testes \u00e9 tratada em v\u00e1rias fontes de consulta (desde livros, disserta\u00e7\u00f5es e teses at\u00e9 artigos sobre o assunto). V\u00e1rias pessoas participaram da elabora\u00e7\u00e3o das quest\u00f5es que ser\u00e3o o alvo do TBL1 sobre t\u00e9cnicas est\u00e1ticas de\tV&V.\r\n\r\nEnt\u00e3o lembrem-se: o Foco do TBL 1 s\u00e3o as t\u00e9cnicas est\u00e1ticas de V&V como ferramentas de avalia\u00e7\u00e3o da qualidade do software sendo produzido. Este \u00e9 o assunto que deve ser procurado na literatura utilizada. Para facilitar seguem algumas dicas j\u00e1 fornecidas pelos autores das quest\u00f5es:\r\n\r\n* Sobre revis\u00f5es em pares (incluindo _pair programming_):\r\n\r\n  - Livro de engenharia de software do Pressman (6\u00b0 edi\u00e7\u00e3o caps: 13 e 14, 7\u00b0 edi\u00e7\u00e3o: caps 17 e 20)\r\n\r\n  - Livro de engenharia de software do Sommerville (8\u00b0 edi\u00e7\u00e3o caps: 22, 23 e 24)\r\n\r\n* Sobre Inspe\u00e7\u00f5es:\r\n\r\n  - Artigo Inspe\u00e7\u00e3o de Software (Silvana M.Melo)\r\n\r\n  - Livro do [Sommerville](http://www.ifc-camboriu.edu.br/~catia/IA16/Engenharia_Software_3Edicao.pdf) caps: 9 e 24\r\n\r\n* Sobre Walkthrough\r\n\r\n  - Foi usado o livro do Myers\r\n\r\n  - Disserta\u00e7\u00e3o disponibilizada para o assunto walkthrough\r\n\r\n* Sobre Auditorias\r\n\r\n  - Foi usado o artigo _Software testing and preventive quality assurance for metrology_ de (Norbert Greif, Elsevier, 2005)\r\n\r\nPor\u00e9m \u00e9 importante que vcs usem o site da BCE e descubram como fazer para usarem o Proxy da UnB como ferramenta de acesso ao portal de peri\u00f3dicos da CAPES ou ent\u00e3o o servi\u00e7o CAFE - Comunidade Acad\u00eamica Federada que disponibiliza v\u00e1rias bases digitais de pesquisa de publica\u00e7\u00f5es cient\u00edficas. L\u00e1 no site da BCE vcs encontrar\u00e3o as instru\u00e7\u00f5es para poderem acessar este site, via proxy da UnB. Como alunos da institui\u00e7\u00e3o, vcs podem usar as publica\u00e7\u00f5es disponibilizadas pelas assinaturas de UnB \u00e0s bases digitais disponibilizadas.\r\n\r\nComo planejado voc\u00eas tem 15 dias para estudar e se preparar para o TBL-1. Qualquer uma das literaturas apontadas neste documento e disponibilizadas na sess\u00e3o s\u00e3o potencialmente fontes de onde posso tirar quest\u00f5es para o TBL.\r\n\r\nProf. Ricardo Ajax e Cristiane Ramos\r\nUnB/FGA - Faculdade Gama\r\nESW - Curso de Engenharia de Software",
+        "is_closed": true,
+        "irat_datetime": null,
+        "irat_weight": 3,
+        "irat_duration": 30,
+        "grat_datetime": null,
+        "grat_weight": 2,
+        "grat_duration": 30,
+        "practical_available": false,
+        "practical_weight": 4,
+        "practical_description": "",
+        "peer_review_available": false,
+        "peer_review_weight": 1,
+        "created_at": "2018-07-14T22:23:47.251Z",
+        "updated_at": "2018-07-14T22:49:37.713Z"
+    }
+},
+{
+    "model": "modules.tblsession",
+    "pk": 2,
+    "fields": {
+        "discipline": 1,
+        "title": "T\u00e9cnicas din\u00e2micas de V&V",
+        "description": "## Descri\u00e7\u00e3o\r\n\r\nIremos utilizar do livro do Myers pela facilidade de termos o PDF dispon\u00edvel na internet, por\u00e9m n\u00e3o \u00e9 a unica refer\u00eancia.\r\n\r\n#### Cap\u00edtulo 2\r\n\r\nEstudar as se\u00e7\u00f5es:\r\n\r\n* Introdu\u00e7\u00e3o\r\n* Black-box testing\r\n\r\n#### Cap\u00edtulo 4\r\n\r\nEstudar as se\u00e7\u00f5es:\r\n\r\n* White-box testing\r\n* Logic coverage testing\r\n* Equivalence particioning (Intervalo de equival\u00eancia)\r\n* An example\r\n* Boundary value Analysis (An\u00e1lise do valor limite)\r\n* The strategy\r\n\r\n#### Cap\u00edtulo 5\r\n\r\nEstudar as se\u00e7\u00f5es:\r\n\r\n* Top-down versus Bottom-up testing\r\n* Incremental Testing\r\n\r\n#### Cap\u00edtulo 6\r\n\r\nEstudar as se\u00e7\u00f5es:\r\n\r\n* Toda a introdu\u00e7\u00e3o do cap\u00edtulo\r\n* Function testing\r\n* System testing\r\n* Usability testing, Performance testing e Reliability testing\r\n* Documentation testing\r\n* Test Planning and Control\r\n* Test completion criteria\r\n\r\n#### Cap\u00edtulo 7\r\n\r\nEstudar as se\u00e7\u00f5es: Error Analysis\r\n\r\n#### Artigos (Opcional)\r\n\r\n* Influences on regression testing strategies in agile software development environments\r\n* Research on Optimization Scheme of Regression Testing.\r\n* Continuous Software Engineering and Beyond: trends and Challenges\r\n* Enhancing the agility and performance of a project with lean manufacturing practices\r\n* Introducing Lean Canvas Model Adaptation in the Scrum Software Testing\r\n* The Erffects of Test-Driven Development on External Quality and Productivity , a Meta-Analysis\r\n\r\nEmbora os artigos n\u00e3o sejam para serem estudados como escopo do TBL eu os coloco como evid\u00eancias da import\u00e2ncia dos testes para o desenvolvimento do software",
+        "is_closed": false,
+        "irat_datetime": null,
+        "irat_weight": 3,
+        "irat_duration": 30,
+        "grat_datetime": null,
+        "grat_weight": 2,
+        "grat_duration": 30,
+        "practical_available": false,
+        "practical_weight": 4,
+        "practical_description": "",
+        "peer_review_available": false,
+        "peer_review_weight": 1,
+        "created_at": "2018-07-14T22:41:11.714Z",
+        "updated_at": "2018-07-14T22:49:17.996Z"
+    }
+}
+]
