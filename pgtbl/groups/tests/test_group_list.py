@@ -9,7 +9,7 @@ from groups.models import Group
 User = get_user_model()
 
 
-class ListGroupTestCase(TestCase):
+class GroupListTestCase(TestCase):
     """
     Test to list all groups.
     """

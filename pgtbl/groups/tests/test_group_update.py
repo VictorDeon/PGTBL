@@ -1,16 +1,17 @@
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
-from disciplines.models import Discipline
 from core.test_utils import check_messages
 from model_mommy import mommy
+from disciplines.models import Discipline
+from groups.models import Group
 
 User = get_user_model()
 
 
-class CreateGroupTestCase(TestCase):
+class GroupUpdateTestCase(TestCase):
     """
-    Test to create a new group by teacher.
+    Test to update a new group by teacher.
     """
 
     def setUp(self):
@@ -47,9 +48,16 @@ class CreateGroupTestCase(TestCase):
             monitors=[self.monitor],
             make_m2m=True
         )
+        self.group = mommy.make(
+            Group,
+            discipline=self.discipline,
+            title='Group01',
+            students_limit=3,
+            students=[self.student],
+        )
         self.url = reverse_lazy(
-            'groups:create',
-            kwargs={'slug': self.discipline.slug}
+            'groups:update',
+            kwargs={'slug': self.discipline.slug, 'pk': self.group.id}
         )
 
     def tearDown(self):
@@ -58,128 +66,81 @@ class CreateGroupTestCase(TestCase):
         """
 
         self.teacher.delete()
-        self.student.delete()
         self.monitor.delete()
+        self.student.delete()
 
-    def test_create_group_ok(self):
+    def test_update_group_ok(self):
         """
-        Test to create a new group with success.
+        Test to update a new group with success.
         """
 
-        data = {
-            'title': 'Group',
-            'students_limit': 5,
-        }
-
-        self.assertEqual(self.discipline.groups.count(), 0)
+        data = {'title': 'Group', 'students_limit': 3}
         self.client.login(username=self.teacher.username, password='test1234')
+        self.assertEqual(self.group.title, 'Group01')
         response = self.client.post(self.url, data, follow=True)
         url = reverse_lazy(
             'groups:list',
             kwargs={'slug': self.discipline.slug}
         )
         self.assertRedirects(response, url)
-        self.assertEqual(self.discipline.groups.count(), 1)
+        self.group.refresh_from_db()
+        self.assertEqual(self.group.title, 'Group')
         check_messages(
             self, response,
             tag='alert-success',
-            content="Group created successfully."
+            content='Group updated successfully.'
         )
 
-    def test_create_group_title_fail(self):
+    def test_update_group_fail(self):
         """
-        Test to try create a group with invalid title.
+        Test to try update a group with invalid title.
         """
 
-        data = {
-            'title': '',
-            'students_limit': 5,
-        }
-
-        self.assertEqual(self.discipline.groups.count(), 0)
+        data = {'title': '', 'students_limit': 3}
         self.client.login(username=self.teacher.username, password='test1234')
-        response = self.client.post(self.url, data, follow=True)
-        url = reverse_lazy(
-            'groups:list',
-            kwargs={'slug': self.discipline.slug}
-        )
-        self.assertRedirects(response, url)
-        self.assertEqual(self.discipline.groups.count(), 0)
-        check_messages(
-            self, response,
-            tag='alert-danger',
-            content="Invalid fields, please fill in the fields correctly."
-        )
+        self.assertEqual(self.group.title, 'Group01')
+        self.client.post(self.url, data, follow=True)
+        self.group.refresh_from_db()
+        self.assertEqual(self.group.title, 'Group01')
 
-    def test_create_group_students_limit_fail(self):
-        """
-        Test to try create a group with invalid students_limit.
-        """
-
-        data = {
-            'title': 'Grupo01',
-            'students_limit': -1,
-        }
-
-        self.assertEqual(self.discipline.groups.count(), 0)
-        self.client.login(username=self.teacher.username, password='test1234')
-        response = self.client.post(self.url, data, follow=True)
-        url = reverse_lazy(
-            'groups:list',
-            kwargs={'slug': self.discipline.slug}
-        )
-        self.assertRedirects(response, url)
-        self.assertEqual(self.discipline.groups.count(), 0)
-        check_messages(
-            self, response,
-            tag='alert-danger',
-            content="Invalid fields, please fill in the fields correctly."
-        )
-
-    def test_create_group_by_student(self):
+    def test_update_group_by_student(self):
         """
         Student can't create a group.
         """
 
-        data = {
-            'title': 'Group',
-            'students_limit': 5,
-        }
-
-        self.assertEqual(self.discipline.groups.count(), 0)
+        data = {'title': 'Group', 'students_limit': 3}
         self.client.login(username=self.student.username, password='test1234')
+        self.assertEqual(self.group.title, 'Group01')
         response = self.client.post(self.url, data, follow=True)
         url = reverse_lazy(
             'disciplines:details',
             kwargs={'slug': self.discipline.slug}
         )
         self.assertRedirects(response, url)
-        self.assertEqual(self.discipline.groups.count(), 0)
+        self.group.refresh_from_db()
+        self.assertEqual(self.group.title, 'Group01')
         check_messages(
             self, response,
             tag='alert-danger',
             content="You are not authorized to do this action."
         )
 
-    def test_create_group_by_monitor(self):
+    def test_update_group_by_monitor(self):
         """
-        Monitor can't create a group.
+        Monitor can't update a group.
         """
 
-        data = {
-            'title': 'Group',
-            'students_limit': 5,
-        }
-
-        self.assertEqual(self.discipline.groups.count(), 0)
+        data = {'title': 'Group', 'students_limit': 3}
         self.client.login(username=self.monitor.username, password='test1234')
+        self.assertEqual(self.group.title, 'Group01')
         response = self.client.post(self.url, data, follow=True)
         url = reverse_lazy(
             'disciplines:details',
             kwargs={'slug': self.discipline.slug}
         )
         self.assertRedirects(response, url)
-        self.assertEqual(self.discipline.groups.count(), 0)
+        self.group.refresh_from_db()
+        self.assertEqual(self.group.title, 'Group01')
         check_messages(
             self, response,
             tag='alert-danger',

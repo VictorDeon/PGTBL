@@ -7,49 +7,49 @@ group_patterns = [
     # /
     url(
         r'^$',
-        views.ListGroupView.as_view(),
+        views.GroupListView.as_view(),
         name='list'
     ),
     # add/
     url(
         r'^add/$',
-        views.CreateGroupView.as_view(),
+        views.GroupCreateView.as_view(),
         name='create'
     ),
     # <group.id>/edit/
     url(
         r'^(?P<pk>[0-9]+)/edit/$',
-        views.UpdateGroupView.as_view(),
+        views.GroupUpdateView.as_view(),
         name='update'
     ),
     # <group.id>/delete/
     url(
         r'^(?P<pk>[0-9]+)/delete/$',
-        views.DeleteGroupView.as_view(),
+        views.GroupDeleteView.as_view(),
         name='delete'
     ),
     # provide/
     url(
         r'^provide/$',
-        views.ProvideGroupView.as_view(),
+        views.GroupProvideView.as_view(),
         name='provide'
     ),
     # <group.id>/students/
     url(
         r'^(?P<pk>[0-9]+)/students/$',
-        views.ListAvailableStudentsView.as_view(),
+        views.StudentListAvailableView.as_view(),
         name='students'
     ),
     # <group.id>/students/<student.id>/add/
     url(
         r'^(?P<group_id>[0-9]+)/students/(?P<student_id>[0-9]+)/add/$',
-        views.InsertStudentView.as_view(),
+        views.StudentInsertView.as_view(),
         name='add-student'
     ),
     # <group.id>/students/<student.id>/remove/
     url(
         r'^(?P<group_id>[0-9]+)/students/(?P<student_id>[0-9]+)/remove/$',
-        views.RemoveStudentView.as_view(),
+        views.StudentRemoveView.as_view(),
         name='remove-student'
     ),
 ]

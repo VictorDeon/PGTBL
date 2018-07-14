@@ -9,7 +9,7 @@ from groups.models import Group
 User = get_user_model()
 
 
-class DeleteGroupTestCase(TestCase):
+class GroupDeleteTestCase(TestCase):
     """
     Test to delete a new group by teacher.
     """
