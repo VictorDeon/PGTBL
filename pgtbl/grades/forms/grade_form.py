@@ -1,5 +1,5 @@
 from django import forms
-from .models import Grade
+from grades.models import Grade
 
 
 class GradeForm(forms.ModelForm):
