@@ -10,7 +10,7 @@ from core.test_utils import (
 User = get_user_model()
 
 
-class ListDisciplineTestCase(TestCase):
+class DisciplineListTestCase(TestCase):
     """
     Tests to view all disciplines and search or filter discipline.
     """

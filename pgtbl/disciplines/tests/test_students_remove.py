@@ -10,7 +10,7 @@ from core.test_utils import (
 User = get_user_model()
 
 
-class RemoveStudentsTestCase(TestCase):
+class StudentsRemoveTestCase(TestCase):
     """
     Test to remove students or monitors from discipline.
     """

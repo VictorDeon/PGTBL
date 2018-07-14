@@ -7,7 +7,7 @@ from core.test_utils import check_messages
 User = get_user_model()
 
 
-class DeleteDisciplineTestCase(TestCase):
+class DisciplineDeleteTestCase(TestCase):
     """
     Test to delete a disciplina.
     """

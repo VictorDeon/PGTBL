@@ -8,7 +8,7 @@ from core.test_utils import check_messages
 User = get_user_model()
 
 
-class UpdateDisciplineTestCase(TestCase):
+class DisciplineUpdateTestCase(TestCase):
     """
     Test to update discipline by teacher.
     """

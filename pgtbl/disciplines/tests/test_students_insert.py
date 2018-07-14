@@ -10,9 +10,9 @@ from core.test_utils import (
 User = get_user_model()
 
 
-class ListUsersTestCase(TestCase):
+class StudentInsertTestCase(TestCase):
     """
-    Test case to list all available users that can be inserted into discipline
+    Test case to insert students into discipline
     """
 
     def setUp(self):

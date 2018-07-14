@@ -4,13 +4,13 @@ from django.test import TestCase, Client
 from disciplines.models import Discipline
 from model_mommy import mommy
 from core.test_utils import (
-    list_transform, check_messages, user_factory
+    check_messages, user_factory
 )
 
 User = get_user_model()
 
 
-class ChangeStudentTestCase(TestCase):
+class StudentChangeTestCase(TestCase):
     """
     Tests to change student to monitor or monitor to student.
     """

@@ -10,7 +10,7 @@ from core.test_utils import (
 User = get_user_model()
 
 
-class EnterDisciplineTestCase(TestCase):
+class DisciplineEnterTestCase(TestCase):
     """
     Tests to enter in discipline.
     """

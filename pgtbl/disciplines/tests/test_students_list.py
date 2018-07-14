@@ -10,7 +10,7 @@ from core.test_utils import (
 User = get_user_model()
 
 
-class ListDisciplineTestCase(TestCase):
+class StudentsListTestCase(TestCase):
     """
     Tests to view all students and monitors from discipline.
     """
