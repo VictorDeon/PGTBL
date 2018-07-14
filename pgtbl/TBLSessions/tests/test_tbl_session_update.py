@@ -8,9 +8,9 @@ from TBLSessions.models import TBLSession
 User = get_user_model()
 
 
-class CreateTBLSessionTestCase(TestCase):
+class TBLSessionUpdateTestCase(TestCase):
     """
-    Test to create a new TBL session.
+    Test to update a TBL session.
     """
 
     def setUp(self):
@@ -29,42 +29,42 @@ class CreateTBLSessionTestCase(TestCase):
 
     def test_redirect_to_login(self):
         """
-        User can not create a new TBL session without logged in.
+        User can not update a TBL session without logged in.
         """
 
         pass
 
-    def test_create_tbl_session_by_teacher(self):
+    def test_update_tbl_session_by_teacher(self):
         """
-        Test to create a new tbl session by teacher.
-        """
-
-        pass
-
-    def test_create_tbl_session_by_monitors(self):
-        """
-        Test to create a new tbl session by monitors if monitor is a teacher.
+        Test to update a tbl session by teacher.
         """
 
         pass
 
-    def test_create_tbl_session_fail(self):
+    def test_update_tbl_session_by_monitors(self):
         """
-        User can not create a tbl session with invalid fields.
-        """
-
-        pass
-
-    def test_create_tbl_session_by_student_fail(self):
-        """
-        Student can not create a tbl session.
+        Test to update a tbl session by monitors if monitor is a teacher.
         """
 
         pass
 
-    def test_create_tbl_session_by_monitors_fail(self):
+    def test_update_tbl_session_fail(self):
         """
-        Student monitors can not create a tbl session.
+        User can not update a tbl session with invalid fields.
+        """
+
+        pass
+
+    def test_update_tbl_session_by_student_fail(self):
+        """
+        Student can not update a tbl session.
+        """
+
+        pass
+
+    def test_update_tbl_session_by_monitors_fail(self):
+        """
+        Student monitors can not update a tbl session.
         """
 
         pass

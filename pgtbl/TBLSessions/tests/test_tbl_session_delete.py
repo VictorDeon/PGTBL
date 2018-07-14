@@ -8,9 +8,9 @@ from TBLSessions.models import TBLSession
 User = get_user_model()
 
 
-class UpdateTBLSessionTestCase(TestCase):
+class TBLSessionDeleteTestCase(TestCase):
     """
-    Test to update a TBL session.
+    Test to delete a new tbl session.
     """
 
     def setUp(self):
@@ -29,42 +29,35 @@ class UpdateTBLSessionTestCase(TestCase):
 
     def test_redirect_to_login(self):
         """
-        User can not update a TBL session without logged in.
+        User can not delete a tbl session without logged in.
         """
 
         pass
 
-    def test_update_tbl_session_by_teacher(self):
+    def test_delete_tbl_session_by_teacher(self):
         """
-        Test to update a tbl session by teacher.
-        """
-
-        pass
-
-    def test_update_tbl_session_by_monitors(self):
-        """
-        Test to update a tbl session by monitors if monitor is a teacher.
+        Test to delete a tbl session by teacher.
         """
 
         pass
 
-    def test_update_tbl_session_fail(self):
+    def test_delete_tbl_session_by_monitors(self):
         """
-        User can not update a tbl session with invalid fields.
-        """
-
-        pass
-
-    def test_update_tbl_session_by_student_fail(self):
-        """
-        Student can not update a tbl session.
+        Test to delete a tbl session by monitors if they are a teacher.
         """
 
         pass
 
-    def test_update_tbl_session_by_monitors_fail(self):
+    def test_delete_tbl_session_by_student_fail(self):
         """
-        Student monitors can not update a tbl session.
+        Student can not delete a tbl session.
+        """
+
+        pass
+
+    def test_delete_tbl_session_by_monitors_fail(self):
+        """
+        Student monitors can not delete a tbl session.
         """
 
         pass

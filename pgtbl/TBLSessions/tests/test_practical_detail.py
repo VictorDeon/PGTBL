@@ -8,7 +8,7 @@ from TBLSessions.models import TBLSession
 User = get_user_model()
 
 
-class ShowPracticalTestCase(TestCase):
+class DetailPracticalTestCase(TestCase):
     """
     Test to show the practical test.
     """

@@ -8,7 +8,7 @@ from TBLSessions.models import TBLSession
 User = get_user_model()
 
 
-class ListTBLSessionTestCase(TestCase):
+class TBLSessionListTestCase(TestCase):
     """
     Test to list tbl sessions.
     """

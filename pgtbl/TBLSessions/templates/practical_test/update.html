@@ -1,11 +1,11 @@
-{% extends 'TBLSessions/practical_test.html' %}
+{% extends 'practical_test/detail.html' %}
 {% load static %}
 {% load widget_tweaks %}
 {% load i18n %}
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" type="text/css" />
-  <link rel="stylesheet" href="{% static 'TBLSessions/css/practical_update.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'practical_test/css/update.css' %}" type="text/css" />
   <link rel="stylesheet" href="{% static 'core/css/markdown.css' %}" type="text/css" />
   {{form.media}}
 {% endblock %}

@@ -21,7 +21,7 @@ class PracticalTestUpdateView(LoginRequiredMixin,
     """
 
     model = TBLSession
-    template_name = 'TBLSessions/practical_update.html'
+    template_name = 'practical_test/update.html'
     context_object_name = 'session'
     form_class = PracticalTestForm
 

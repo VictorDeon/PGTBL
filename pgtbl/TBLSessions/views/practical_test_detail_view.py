@@ -18,7 +18,7 @@ class PracticalTestDetailView(LoginRequiredMixin,
     View to show the practical test.
     """
 
-    template_name = 'TBLSessions/practical_test.html'
+    template_name = 'practical_test/detail.html'
     context_object_name = 'session'
 
     permissions_required = [
