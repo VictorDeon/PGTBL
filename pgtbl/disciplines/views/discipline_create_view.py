@@ -4,13 +4,13 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import CreateView
 from django.utils.text import slugify
 from django.contrib import messages
-from core.permissions import ModelPermissionMixin
+from core.permissions import PermissionMixin
 from disciplines.forms import DisciplineForm
 from disciplines.models import Discipline
 
 
 class DisciplineCreateView(LoginRequiredMixin,
-                           ModelPermissionMixin,
+                           PermissionMixin,
                            CreateView):
     """
     View to create a new discipline.
