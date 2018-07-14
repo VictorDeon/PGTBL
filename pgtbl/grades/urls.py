@@ -19,7 +19,7 @@ grade_patterns = [
     # /session-csv/
     url(
         r'^session-csv/$',
-        views.get_session_grade_csv,
+        views.get_module_grade_csv,
         name='session-csv'
     ),
 ]
