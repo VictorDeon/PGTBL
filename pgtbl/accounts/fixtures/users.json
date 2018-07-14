@@ -1,0 +1,992 @@
+[
+{
+    "model": "accounts.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$s16uUOHHHkUi$arZA1eAHQ2kBaXiA3scVUfPk6P1psPbiK/SBnJqFwSw=",
+        "is_superuser": false,
+        "username": "ajax",
+        "email": "ajax@gmail.com",
+        "name": "Ricardo Ajax",
+        "institution": "UnB",
+        "course": "Engenharia de Software",
+        "photo": "",
+        "is_teacher": true,
+        "last_login": "2018-07-14T21:23:30.179Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T20:45:57.799Z",
+        "updated_at": "2018-07-14T21:23:47.292Z",
+        "groups": [
+            1
+        ],
+        "user_permissions": [
+            67
+        ]
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$yVUBzFfe8u26$NvdwR+Jgt5qgxmz4ty7PmMedP48c6Qa2bQc/X5wIu1Q=",
+        "is_superuser": false,
+        "username": "14/0133305",
+        "email": "caio_nunes@gmail.com",
+        "name": "Caio Felipe Dias Nunes",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:00:49.666Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:00:49.601Z",
+        "updated_at": "2018-07-14T21:00:49.601Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$DDzRhMiONTcN$G8LoqZDCkqLyxsOEvKHYr3pXOm9JQc8Htjz2skc+a0U=",
+        "is_superuser": false,
+        "username": "15/0007329",
+        "email": "caio_medeiros@gmail.com",
+        "name": "Caio Gabriel Araujo Medeiros",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:01:25.029Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:01:24.966Z",
+        "updated_at": "2018-07-14T21:01:24.966Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$uMqRrxw5c8dR$ze5pKYpnosT8F3/woeAnDVy2OlS/ImQgqHrbvAI7BfY=",
+        "is_superuser": false,
+        "username": "11/0061250",
+        "email": "gustavo_araujo@gmail.com",
+        "name": "Gustavo Moreira Nascimento Araujo",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:01:59.876Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:01:59.819Z",
+        "updated_at": "2018-07-14T21:01:59.819Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$PYYHOCL8cp2x$NVCG3ONy6aayb0Trne2v+9hpKSiWopaehPUvabgDAsQ=",
+        "is_superuser": false,
+        "username": "14/0145575",
+        "email": "joao_egewarth@gmail.com",
+        "name": "Joao Henrique Egewarth",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:02:35.232Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:02:35.169Z",
+        "updated_at": "2018-07-14T21:02:35.169Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$985yPN8MakXs$cUEFdJTu54DdHK9+Z42eAWL/RM7rdIO0QXIbK7r7vPE=",
+        "is_superuser": false,
+        "username": "14/0145826",
+        "email": "joao_pereira@gmail.com",
+        "name": "Jo\u00e3o Pedro de Lima Pereira",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:03:02.727Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:03:02.656Z",
+        "updated_at": "2018-07-14T21:03:02.656Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 8,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$pFYzHje4jEHj$Dg+XAe+eqRDoYi0vUEuTBqnj2jQZoJjUxa/0UvTxwSw=",
+        "is_superuser": false,
+        "username": "13/0143901",
+        "email": "marcelo_silva@gmail.com",
+        "name": "Marcelo Cristiano Araujo Silva",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:03:44.818Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:03:44.756Z",
+        "updated_at": "2018-07-14T21:03:44.756Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$Jcts1lgqoym1$3BGDuvd06oc+ldFXJ9mRy+MwUsd9cZ/ecfEkCKbOLWM=",
+        "is_superuser": false,
+        "username": "16/0160464",
+        "email": "marco_kuroiva@gmail.com",
+        "name": "Marco Antonio Rodrigues Loureiro Kuroiva",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:04:50.851Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:04:50.792Z",
+        "updated_at": "2018-07-14T21:04:50.792Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 10,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$UrxE7MHEz1m5$40R/0qDoKjjp8mfpRbn4xJ9Mek+UGHh5aZWPs7KxWGI=",
+        "is_superuser": false,
+        "username": "13/0136026",
+        "email": "ulysses_lara@gmail.com",
+        "name": "Ulysses Bernard Mendes Lara",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:05:18.508Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:05:18.445Z",
+        "updated_at": "2018-07-14T21:05:18.445Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 11,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$sotnKPLzH0b3$8HsiBL0sto31hyaO4HJJfC/ORefgzZ1/nzdm0KQ7A2E=",
+        "is_superuser": false,
+        "username": "15/0029624",
+        "email": "allan_nobre@gmail.com",
+        "name": "Allan Jefrey Pereira Nobre",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:06:11.865Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:06:11.806Z",
+        "updated_at": "2018-07-14T21:06:11.806Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 12,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$L4HRN5wqwlJd$wH6/6zEj37ISYkXgahtdBgyzDvazsAIYr6bXMKBJGyA=",
+        "is_superuser": false,
+        "username": "15/0037074",
+        "email": "igor_evangelista@gmail.com",
+        "name": "Igor Gabriel Marciano Evangelista",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:06:43.034Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:06:42.970Z",
+        "updated_at": "2018-07-14T21:06:42.970Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 13,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$7DejOBka5Cdd$j573xXLr6yAQx3iwsGSR/BHdUntAR6KtR49LwdNsO80=",
+        "is_superuser": false,
+        "username": "15/0038267",
+        "email": "joao_soares@gmail.com",
+        "name": "Jo\u00e3o Paulo Nunes Soares",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:07:17.362Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:07:17.297Z",
+        "updated_at": "2018-07-14T21:07:17.297Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 14,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$mecmd6To3VO8$gKK9Eh4HMq9V9/tFYkoNk2diZtcje7jEOGfsVN/NGNY=",
+        "is_superuser": false,
+        "username": "14/0046411",
+        "email": "marcelo_reis@gmail.com",
+        "name": "Marcelo Augusto Araujo dos Reis",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:07:52.372Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:07:52.309Z",
+        "updated_at": "2018-07-14T21:07:52.309Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 15,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$ZlPKmRxyGHRL$z3MfXYg9UW66/5+VFHmNDGLKIyDvEdpqebW2rdI4Cvg=",
+        "is_superuser": false,
+        "username": "15/0021437",
+        "email": "roger_lenke@gmail.com",
+        "name": "Roger da Silva Lenke",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:08:20.729Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:08:20.669Z",
+        "updated_at": "2018-07-14T21:08:20.669Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 16,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$g34zQtegiIC7$aj4G6ynx1c1IJehYstc9dQq+QQqI/Z5s8CYMsS0ehkg=",
+        "is_superuser": false,
+        "username": "15/0046073",
+        "email": "ronyell_santos@gmail.com",
+        "name": "Ronyell Henrique dos Santos",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:08:46.294Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:08:46.233Z",
+        "updated_at": "2018-07-14T21:08:46.233Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 17,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$MusZ7JBylQ4Y$b41leJNrt8VwCefsw8D2UUP1ViC0Dx8VTl3HoRrcIIM=",
+        "is_superuser": false,
+        "username": "15/0047142",
+        "email": "thiago_freire@gmail.com",
+        "name": "Thiago Nogueira Freire",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:09:16.835Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:09:16.772Z",
+        "updated_at": "2018-07-14T21:09:16.772Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 18,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$ZJrvmHviFoCB$uIea0sbhYtsSe8aT2L1dAA8ZQF+DKnyRkyrwWg+kXeI=",
+        "is_superuser": false,
+        "username": "15/0009275",
+        "email": "fabiola_fleury@gmail.com",
+        "name": "Fabiola Malta Fleury",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:09:55.884Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:09:55.822Z",
+        "updated_at": "2018-07-14T21:09:55.822Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 19,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$bRtK3DxR0D9M$/0skoZTFTfi/Tgo1CZywEUrAwSAC4QZ2B0juI6UZGF8=",
+        "is_superuser": false,
+        "username": "15/0015771",
+        "email": "lucas_martins@gmail.com",
+        "name": "Lucas de Araujo Martins",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:10:28.801Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:10:28.738Z",
+        "updated_at": "2018-07-14T21:10:28.738Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 20,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$TGRKgDJrUEfL$9HwuiexqH0Bp7m5cQCa1+M1d7J/zhOdL+HH1LJnglZY=",
+        "is_superuser": false,
+        "username": "14/0063919",
+        "email": "marlon_guimaraes@gmail.com",
+        "name": "Marlon Mendes Ciriatico Guimaraes",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:10:59.773Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:10:59.715Z",
+        "updated_at": "2018-07-14T21:10:59.715Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 21,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$ml4MXd2GZUSy$d3m+1JUjqxfr1k+bdZOij59VFJVaaeEq4ZzdDdprsxA=",
+        "is_superuser": false,
+        "username": "14/0028340",
+        "email": "matheus_bernardo@gmail.com",
+        "name": "Matheus de Sousa Bernardo",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:11:28.206Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:11:28.143Z",
+        "updated_at": "2018-07-14T21:11:28.143Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 22,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$7rzhKhWgzRR5$+n9diUWeA+iaVpyE4EUxBPH0ZUcTkRbZW8P3wHXsMks=",
+        "is_superuser": false,
+        "username": "15/0043023",
+        "email": "matheus_melo@gmail.com",
+        "name": "Matheus Richard Torres Gomes de Melo",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:12:01.843Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:12:01.779Z",
+        "updated_at": "2018-07-14T21:12:01.779Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 23,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$v61XOgJjEVLK$X5KvsEhW6i1OyN0f+Liap9zZekZn/5zNNPjozMPKQ5I=",
+        "is_superuser": false,
+        "username": "15/0018428",
+        "email": "matheus_joranhezon@gmail.com",
+        "name": "Matheus Vitor Costa Joranhezon",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:12:35.186Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:12:35.121Z",
+        "updated_at": "2018-07-14T21:12:35.121Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 24,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$dhW4PS2ds1PB$teOMQwMdvKMY7hoxmwvoklSYax7AEPQk9iYXjNFnXck=",
+        "is_superuser": false,
+        "username": "15/0046871",
+        "email": "thalisson_silva@gmail.com",
+        "name": "Thalisson Barreto de Melo Silva",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:13:04.022Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:13:03.956Z",
+        "updated_at": "2018-07-14T21:13:03.956Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 25,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$aDHUlT7UJwKp$bZo8jwCArSCqtSxviMnHA/8BilLGWD7sq+vlWQ7DzWs=",
+        "is_superuser": false,
+        "username": "14/0138676",
+        "email": "felipe_oliveira@gmail.com",
+        "name": "Felipe Osorio de Oliveira",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:13:29.032Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:13:28.968Z",
+        "updated_at": "2018-07-14T21:13:28.968Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 26,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$1bnkj6rBpo7C$137rJW7PooBdwNyX74tdbyVDyrqTVB2lF0Lc5ntnEsQ=",
+        "is_superuser": false,
+        "username": "14/0058371",
+        "email": "augusto_silva@gmail.com",
+        "name": "Augusto Moreno Vilarins Cardoso da Silva",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:14:06.279Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:14:06.218Z",
+        "updated_at": "2018-07-14T21:14:06.218Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 27,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$S9rFNpH6cu1B$l9pf6Hw27mHuclYvbLEu+WbeI/hAtVYWugZ5hj0PP90=",
+        "is_superuser": false,
+        "username": "14/0140034",
+        "email": "gabriel_climaco@gmail.com",
+        "name": "Gabriel de Souza Climaco",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:14:41.991Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:14:41.926Z",
+        "updated_at": "2018-07-14T21:14:41.926Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 28,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$tLv7glSsYPAG$LszgsC9u9ZDJM+1x76MPEDKxqy0Zwh9yPDarSrYiIiA=",
+        "is_superuser": false,
+        "username": "14/0142193",
+        "email": "guilherme_santana@gmail.com",
+        "name": "Guilherme dos Santos Ribeiro Santana",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:15:15.863Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:15:15.801Z",
+        "updated_at": "2018-07-14T21:15:15.801Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 29,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$s3xT2zU4S48s$aPtExI3rUOCA3BYDhAIkQSdcMTwI1KKzTWIXXoBa8fI=",
+        "is_superuser": false,
+        "username": "14/0142657",
+        "email": "gustavo_brito@gmail.com",
+        "name": "Gustavo Lopes de Brito",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:15:42.093Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:15:42.030Z",
+        "updated_at": "2018-07-14T21:15:42.030Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 30,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$KPbtmoOE5vcF$HIRp1fBiJKnr7zzO/elmTVOVZ0SfOjebWkup4YRBQvs=",
+        "is_superuser": false,
+        "username": "15/0043449",
+        "email": "naiara_camelo@gmail.com",
+        "name": "Naiara Andrade Camelo",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:16:07.482Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:16:07.416Z",
+        "updated_at": "2018-07-14T21:16:07.416Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 31,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$dtQHnflf9nNr$2XNV9d7ZAQ1KLfYyh5X7CWRCSqaqp22AU8op6pR5i7w=",
+        "is_superuser": false,
+        "username": "13/0010014",
+        "email": "hale_silva@gmail.com",
+        "name": "Hale Valente Silva",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:16:44.290Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:16:44.226Z",
+        "updated_at": "2018-07-14T21:16:44.226Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 32,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$leQqHj4sHWlI$Aager8VFKb1eFsr5cnSGEm/wvdDVq5XDwawSpx+oUUI=",
+        "is_superuser": false,
+        "username": "14/0142801",
+        "email": "harrison_almeida@gmail.com",
+        "name": "Harrison Pedro Ferreira Almeida",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:17:11.801Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:17:11.740Z",
+        "updated_at": "2018-07-14T21:17:11.740Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 33,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$7BOkLSheovqs$Lv5sk2mgE6uP+gm4BKm5W+1tXLrZA13ER/mn7sIoN9E=",
+        "is_superuser": false,
+        "username": "15/0127006",
+        "email": "gabriela_gama@gmail.com",
+        "name": "Gabriela Alves da Gama",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:17:38.342Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:17:38.281Z",
+        "updated_at": "2018-07-14T21:17:38.281Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 34,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$fWADAbgDffNQ$NlXjOnlHmcwr4YvPohHOriUD9sGr6vYL3BCjSk4WQF8=",
+        "is_superuser": false,
+        "username": "14/0041478",
+        "email": "gustavo_goncalves@gmail.com",
+        "name": "Gustavo Vieira Braz Goncalves",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:18:06.481Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:18:06.412Z",
+        "updated_at": "2018-07-14T21:18:06.412Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 35,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$RIfsRlEqThHd$Qc3Rg1dzof7CiLf0YlipSekJC8at3X97/6R1rwjmTeg=",
+        "is_superuser": false,
+        "username": "14/0042709",
+        "email": "jeferson_ferreira@gmail.com",
+        "name": "Jeferson Alves Ferreira",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:18:38.785Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:18:38.716Z",
+        "updated_at": "2018-07-14T21:18:38.716Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 36,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$u7cMUPi6wIjD$Yg9tvzzmQjDEscBW2BKCsmNt1aY/CQWK75I0Sqi79Y8=",
+        "is_superuser": false,
+        "username": "14/0154027",
+        "email": "mariana_mendes@gmail.com",
+        "name": "Mariana de Souza Mendes",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:19:04.194Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:19:04.129Z",
+        "updated_at": "2018-07-14T21:19:04.129Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 37,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$IIvNlETow5eW$pmyM7VkpcVaIY8qkysh0pypwrcM00ZbI1MRHxHoYyEM=",
+        "is_superuser": false,
+        "username": "15/0017880",
+        "email": "mateus_silva@gmail.com",
+        "name": "Mateus de Morais Amaro da Silva",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:19:31.760Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:19:31.695Z",
+        "updated_at": "2018-07-14T21:19:31.695Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 38,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$OBZvcNpAV99Q$EWjYfYW55ypTwfnouGV9UgLaBI2xOdxRZEhQcUJ2YCw=",
+        "is_superuser": false,
+        "username": "15/0045603",
+        "email": "renata_souza@gmail.com",
+        "name": "Renata Francelino de Souza",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:20:04.291Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:20:04.231Z",
+        "updated_at": "2018-07-14T21:20:04.231Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 39,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$1OrfZnbQo4Tj$lvljS8g9J95muD6UybMemqM5CJE9+pE8wzaBqjfz9IU=",
+        "is_superuser": false,
+        "username": "13/0132233",
+        "email": "ricardo_canela@gmail.com",
+        "name": "Ricardo Lima Canela",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:20:33.023Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:20:32.956Z",
+        "updated_at": "2018-07-14T21:20:32.956Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 40,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$xhA1wGINOkiF$gP0lRxUGMuWgpsNvHgIShzUzgW7e945ykERoBJcVSWk=",
+        "is_superuser": false,
+        "username": "13/0136484",
+        "email": "victorhad@gmail.com",
+        "name": "Victor Hugo Arnaud Deon",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": false,
+        "last_login": "2018-07-14T21:20:56.948Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:20:56.886Z",
+        "updated_at": "2018-07-14T21:20:56.887Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 41,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$kGVugTv1g8z0$KD9+BIw+xGsdGYoekDVNPNahWdZ3xQVvOijXFdsW9qY=",
+        "is_superuser": true,
+        "username": "admin",
+        "email": "admin@gmail.com",
+        "name": "",
+        "institution": "",
+        "course": "",
+        "photo": "",
+        "is_teacher": true,
+        "last_login": null,
+        "is_active": true,
+        "is_staff": true,
+        "created_at": "2018-07-14T21:21:26.712Z",
+        "updated_at": "2018-07-14T21:21:26.712Z",
+        "groups": [
+            1
+        ],
+        "user_permissions": [
+            67
+        ]
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 42,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$Lu5g3exUPEy5$QKbqt9rT9iupRrWkEt5fLI9VpEmSCWnGLXIJOSsbVfo=",
+        "is_superuser": false,
+        "username": "cris",
+        "email": "cristiane_ramos@gmail.com",
+        "name": "Cristiane Soares Ramos",
+        "institution": "UnB",
+        "course": "Engenharia de Software",
+        "photo": "",
+        "is_teacher": true,
+        "last_login": "2018-07-14T21:23:54.865Z",
+        "is_active": true,
+        "is_staff": false,
+        "created_at": "2018-07-14T21:23:23.170Z",
+        "updated_at": "2018-07-14T21:24:07.214Z",
+        "groups": [
+            1
+        ],
+        "user_permissions": [
+            67
+        ]
+    }
+}
+]
