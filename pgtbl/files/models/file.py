@@ -1,10 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 
-# App imports
-from disciplines.models import Discipline
-from TBLSessions.models import TBLSession
-
 
 class File(models.Model):
     """
@@ -78,29 +74,3 @@ class File(models.Model):
         verbose_name = _("File")
         verbose_name_plural = _("Files")
         ordering = ['title', 'created_at']
-
-
-class DisciplineFile(File):
-    """
-    Insert files into discipline.
-    """
-
-    discipline = models.ForeignKey(
-        Discipline,
-        on_delete=models.CASCADE,
-        verbose_name='Discipline',
-        related_name='files'
-    )
-
-
-class SessionFile(File):
-    """
-    File to insert into tbl sessions.
-    """
-
-    session = models.ForeignKey(
-        TBLSession,
-        on_delete=models.CASCADE,
-        verbose_name='Session',
-        related_name='files'
-    )
