@@ -12,8 +12,8 @@ from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
 from TBLSessions.utils import get_datetimes
-from .models import SessionFile
-from .forms import SessionFileForm
+from files.models import SessionFile
+from files.forms import SessionFileForm
 
 
 class ListSessionFileView(LoginRequiredMixin,

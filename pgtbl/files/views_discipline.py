@@ -10,8 +10,8 @@ from django.views.generic import (
 # App imports
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
-from .models import DisciplineFile
-from .forms import FileForm
+from files.models import DisciplineFile
+from files.forms import DisciplineFileForm
 
 
 class ListDisciplineFileView(LoginRequiredMixin,
@@ -47,7 +47,7 @@ class ListDisciplineFileView(LoginRequiredMixin,
 
         context = super(ListDisciplineFileView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
-        context['form'] = FileForm()
+        context['form'] = DisciplineFileForm()
         return context
 
     def get_queryset(self):
@@ -71,7 +71,7 @@ class CreateDisciplineFileView(LoginRequiredMixin,
 
     model = DisciplineFile
     template_name = 'files/list.html'
-    form_class = FileForm
+    form_class = DisciplineFileForm
 
     permissions_required = [
         'monitor_can_change'
@@ -137,7 +137,7 @@ class EditDisciplineFileView(LoginRequiredMixin,
     model = DisciplineFile
     template_name = 'files/form.html'
     context_object_name = 'file'
-    form_class = FileForm
+    form_class = DisciplineFileForm
 
     permissions_required = [
         'monitor_can_change'
