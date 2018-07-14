@@ -9,7 +9,7 @@ services:
     depends_on:
       - tbl
 
-  # TBL app
+  # TBL production app
   tbl:
     image: victorhad/tbl:latest
     container_name: tbl

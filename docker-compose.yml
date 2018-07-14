@@ -1,8 +1,12 @@
 version: '3'
+# Development enviroment
 services:
   tbl-local:
     image: victorhad/tbl:local
     container_name: tbl-local
+    build:
+      context: .
+      dockerfile: ./images/local/Dockerfile
     volumes:
       - .:/home/developer/
     ports:
