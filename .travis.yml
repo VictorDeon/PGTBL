@@ -15,7 +15,7 @@ env:
 
 # Install docker dependencies
 before_script:
-  - docker-compose up -d
+  - docker-compose -f docker-compose.local.yml up -d
 
 # Script project dependencies
 script:

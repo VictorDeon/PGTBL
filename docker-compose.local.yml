@@ -3,6 +3,9 @@ version: '3'
 services:
   tbl-homolog:
     image: victorhad/tbl:local
+    container_name: tbl-local
     build:
       context: .
       dockerfile: ./images/local/Dockerfile
+    environment:
+      - CODACY_PROJECT_TOKEN=2856565478ce4400a4cd4731950bfb89
