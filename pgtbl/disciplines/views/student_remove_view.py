@@ -20,7 +20,7 @@ class StudentRemoveView(LoginRequiredMixin,
     Remove student from discipline.
     """
 
-    template_name = 'disciplines/students.html'
+    template_name = 'students/list.html'
     permissions_required = [
         'show_discipline_permission'
     ]

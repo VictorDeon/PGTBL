@@ -60,7 +60,7 @@ class StudentsListTestCase(TestCase):
 
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'disciplines/students.html')
+        self.assertTemplateUsed(response, 'students/list.html')
 
     def test_context(self):
         """

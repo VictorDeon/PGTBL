@@ -22,7 +22,7 @@ class StudentChangeView(LoginRequiredMixin,
     teacher.
     """
 
-    template_name = 'disciplines/students.html'
+    template_name = 'students/list.html'
     permissions_required = [
         'change_own_discipline'
     ]

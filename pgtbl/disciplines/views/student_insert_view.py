@@ -20,7 +20,7 @@ class StudentInsertView(LoginRequiredMixin,
     Insert a student or monitor inside discipline by teacher.
     """
 
-    template_name = 'disciplines/users.html'
+    template_name = 'students/users.html'
     permissions_required = [
         'change_own_discipline'
     ]

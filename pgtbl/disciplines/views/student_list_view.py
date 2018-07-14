@@ -13,7 +13,7 @@ class StudentListView(LoginRequiredMixin,
     Insert, delete and list all students from specific discipline.
     """
 
-    template_name = 'disciplines/students.html'
+    template_name = 'students/list.html'
     paginate_by = 12
     context_object_name = 'students'
     permissions_required = [

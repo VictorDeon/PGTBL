@@ -19,7 +19,7 @@ class UsersListView(LoginRequiredMixin,
     username, or email
     """
 
-    template_name = 'disciplines/users.html'
+    template_name = 'students/users.html'
     context_object_name = 'users'
     ordering = 'name'
     paginate_by = 12
