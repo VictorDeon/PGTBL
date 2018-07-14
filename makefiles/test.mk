@@ -1,5 +1,5 @@
 # TESTS --------------------------------------------------------
-tests_folder := pgtbl/**/tests/
+tests_folder := pgtbl
 
 test: coverage report xml
 
