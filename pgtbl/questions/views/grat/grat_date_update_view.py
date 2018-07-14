@@ -9,7 +9,7 @@ from django.utils import timezone
 # App imports
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
-from TBLSessions.models import TBLSession
+from modules.models import TBLSession
 from questions.forms import GRATDateForm
 
 # Python imports

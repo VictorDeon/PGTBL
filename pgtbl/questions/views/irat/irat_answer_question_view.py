@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.views.generic import FormView
 
 from disciplines.models import Discipline
-from TBLSessions.models import TBLSession
+from modules.models import TBLSession
 from questions.models import Question, IRATSubmission
 from questions.forms import AnswerQuestionForm
 
@@ -36,7 +36,7 @@ class IRATAnswerQuestionView(LoginRequiredMixin, FormView):
         )
 
         failure_redirect_path = reverse_lazy(
-            'TBLSessions:details',
+            'modules:details',
             kwargs={
                 'slug': self.kwargs.get('slug', ''),
                 'pk': self.kwargs.get('pk', '')

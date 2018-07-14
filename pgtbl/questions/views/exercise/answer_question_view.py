@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.views.generic import FormView
 
 from disciplines.models import Discipline
-from TBLSessions.models import TBLSession
+from modules.models import TBLSession
 from questions.models import Question, ExerciseSubmission
 from questions.forms import AnswerQuestionForm
 

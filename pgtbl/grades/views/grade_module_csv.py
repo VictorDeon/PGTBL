@@ -2,7 +2,7 @@ from django.http import HttpResponse
 import csv
 
 from disciplines.models import Discipline
-from TBLSessions.models import TBLSession
+from modules.models import TBLSession
 from grades.models import Grade
 
 

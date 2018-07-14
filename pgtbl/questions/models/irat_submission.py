@@ -1,7 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.db import models
-from TBLSessions.models import TBLSession
+from modules.models import TBLSession
 from .question import Question
 from .submission import Submission
 

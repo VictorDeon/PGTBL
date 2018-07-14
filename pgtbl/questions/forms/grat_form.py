@@ -1,6 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 from django import forms
-from TBLSessions.models import TBLSession
+from modules.models import TBLSession
 
 
 class GRATForm(forms.ModelForm):

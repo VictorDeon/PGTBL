@@ -6,8 +6,8 @@ from django.views.generic import ListView
 
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
-from TBLSessions.models import TBLSession
-from TBLSessions.utils import get_datetimes
+from modules.models import TBLSession
+from modules.utils import get_datetimes
 from grades.models import Grade
 from groups.models import Group
 from questions.models import Question, IRATSubmission
@@ -40,7 +40,7 @@ class IRATResultView(LoginRequiredMixin,
         )
 
         failure_redirect_path = reverse_lazy(
-            'TBLSessions:details',
+            'modules:details',
             kwargs={
                 'slug': self.kwargs.get('slug', ''),
                 'pk': self.kwargs.get('pk', '')

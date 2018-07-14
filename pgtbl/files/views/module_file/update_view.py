@@ -6,8 +6,8 @@ from django.views.generic import UpdateView
 
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
-from TBLSessions.models import TBLSession
-from TBLSessions.utils import get_datetimes
+from modules.models import TBLSession
+from modules.utils import get_datetimes
 from files.models import ModuleFile
 from files.forms import ModuleFileForm
 

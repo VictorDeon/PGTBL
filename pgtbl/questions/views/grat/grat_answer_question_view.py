@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.views.generic import FormView
 
 from disciplines.models import Discipline
-from TBLSessions.models import TBLSession
+from modules.models import TBLSession
 from groups.models import Group
 from questions.models import Question, GRATSubmission
 from questions.forms import AnswerGRATQuestionForm
@@ -37,7 +37,7 @@ class GRATAnswerQuestionView(LoginRequiredMixin, FormView):
         )
 
         failure_redirect_path = reverse_lazy(
-            'TBLSessions:details',
+            'modules:details',
             kwargs={
                 'slug': self.kwargs.get('slug', ''),
                 'pk': self.kwargs.get('pk', '')

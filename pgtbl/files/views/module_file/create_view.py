@@ -7,7 +7,7 @@ from django.views.generic import CreateView
 
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
-from TBLSessions.models import TBLSession
+from modules.models import TBLSession
 from files.models import ModuleFile
 from files.forms import ModuleFileForm
 

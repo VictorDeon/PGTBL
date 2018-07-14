@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'', include('disciplines.urls')),
     url(r'', include('groups.urls')),
     url(r'', include('files.urls')),
-    url(r'', include('TBLSessions.urls')),
+    url(r'', include('modules.urls')),
     url(r'', include('questions.urls')),
     url(r'', include('grades.urls')),
 ]

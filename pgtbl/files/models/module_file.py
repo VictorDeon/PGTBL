@@ -1,5 +1,5 @@
 from django.db import models
-from TBLSessions.models import TBLSession
+from modules.models import TBLSession
 from .file import File
 
 
