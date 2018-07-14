@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from . import views_session, views_practical
+from . import views
 
 app_name = 'TBLSessions'
 
@@ -7,31 +7,31 @@ session_patterns = [
     # /
     url(
         r'^$',
-        views_session.ListTBLSessionView.as_view(),
+        views.TBLSessionListView.as_view(),
         name='list'
     ),
     # add/
     url(
-        r'^add/$',
-        views_session.CreateSessionView.as_view(),
+        r'^create/$',
+        views.TBLSessionCreateView.as_view(),
         name='create'
     ),
     # <session.id>/edit/
     url(
-        r'^(?P<pk>[0-9]+)/edit/$',
-        views_session.EditSessionView.as_view(),
+        r'^(?P<pk>[0-9]+)/update/$',
+        views.TBLSessionUpdateView.as_view(),
         name='update'
     ),
     # <session.id>/delete/
     url(
         r'^(?P<pk>[0-9]+)/delete/$',
-        views_session.DeleteSessionView.as_view(),
+        views.TBLSessionDeleteView.as_view(),
         name='delete'
     ),
     # <session.id>/details/
     url(
         r'^(?P<pk>[0-9]+)/details/$',
-        views_session.ShowSessionView.as_view(),
+        views.TBLSessionDetailView.as_view(),
         name='details'
     ),
 ]
@@ -40,13 +40,13 @@ practical_patterns = [
     # practical-test/
     url(
         r'^practical-test/$',
-        views_practical.PracticalTestDetailView.as_view(),
+        views.PracticalTestDetailView.as_view(),
         name='practical-details'
     ),
     # practical-test/edit/
     url(
         r'^practical-test/edit/$',
-        views_practical.PracticalTestUpdateView.as_view(),
+        views.PracticalTestUpdateView.as_view(),
         name='practical-update'
     ),
 ]
