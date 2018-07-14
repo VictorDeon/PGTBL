@@ -16,7 +16,7 @@ class ModuleFileListView(LoginRequiredMixin,
     View to see all tbl session file of discipline.
     """
 
-    template_name = 'files/session_list.html'
+    template_name = 'files/module/list.html'
     paginate_by = 10
     context_object_name = 'files'
 

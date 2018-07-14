@@ -19,7 +19,7 @@ class DisciplineFileCreateView(LoginRequiredMixin,
     """
 
     model = DisciplineFile
-    template_name = 'files/list.html'
+    template_name = 'files/discipline/list.html'
     form_class = DisciplineFileForm
 
     permissions_required = [

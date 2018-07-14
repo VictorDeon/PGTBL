@@ -14,7 +14,7 @@ class DisciplineFileListView(LoginRequiredMixin,
     View to see all file of discipline.
     """
 
-    template_name = 'files/list.html'
+    template_name = 'files/discipline/list.html'
     paginate_by = 10
     context_object_name = 'files'
 

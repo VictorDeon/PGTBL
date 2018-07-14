@@ -18,7 +18,7 @@ class DisciplineFileUpdateView(LoginRequiredMixin,
     """
 
     model = DisciplineFile
-    template_name = 'files/form.html'
+    template_name = 'files/discipline/form.html'
     context_object_name = 'file'
     form_class = DisciplineFileForm
 

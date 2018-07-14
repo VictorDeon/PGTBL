@@ -20,7 +20,7 @@ class ModuleFileUpdateView(LoginRequiredMixin,
     """
 
     model = ModuleFile
-    template_name = 'files/session_form.html'
+    template_name = 'files/module/form.html'
     context_object_name = 'file'
     form_class = ModuleFileForm
 

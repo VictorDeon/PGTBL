@@ -20,7 +20,7 @@ class ModuleFileCreateView(LoginRequiredMixin,
     """
 
     model = ModuleFile
-    template_name = 'files/session-list.html'
+    template_name = 'files/module/list.html'
     form_class = ModuleFileForm
 
     permissions_required = [
