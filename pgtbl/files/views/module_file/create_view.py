@@ -1,23 +1,27 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
+from django.shortcuts import redirect
 from django.contrib import messages
-from django.views.generic import DeleteView
+from django.views.generic import CreateView
 
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
-from files.models import SessionFile
+from files.models import ModuleFile
+from files.forms import ModuleFileForm
 
 
-class SessionFileDeleteView(LoginRequiredMixin,
-                            PermissionMixin,
-                            DeleteView):
+class ModuleFileCreateView(LoginRequiredMixin,
+                           PermissionMixin,
+                           CreateView):
     """
-    View to delete a specific tbl session file.
+    View to insert a new file into the tbl session.
     """
 
-    model = SessionFile
+    model = ModuleFile
+    template_name = 'files/session-list.html'
+    form_class = ModuleFileForm
 
     permissions_required = [
         'monitor_can_change'
@@ -45,19 +49,30 @@ class SessionFileDeleteView(LoginRequiredMixin,
 
         return session
 
-    def get_object(self):
+    def form_valid(self, form):
         """
-        Get the specific file from tbl session of discipline.
+        Receive the form already validated to create a file.
         """
 
-        session = self.get_session()
+        form.instance.discipline = self.get_discipline()
+        form.instance.session = self.get_session()
+        form.save()
 
-        archive = SessionFile.objects.get(
-            session=session,
-            pk=self.kwargs.get('file_id', '')
+        messages.success(self.request, _('File created successfully.'))
+
+        return super(ModuleFileCreateView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        """
+        Redirect to form with form error.
+        """
+
+        messages.error(
+            self.request,
+            _("Invalid fields, please fill in the fields correctly.")
         )
 
-        return archive
+        return redirect(self.get_success_url())
 
     def get_success_url(self):
         """
@@ -68,13 +83,11 @@ class SessionFileDeleteView(LoginRequiredMixin,
         session = self.get_session()
 
         success_url = reverse_lazy(
-            'files:session-list',
+            'files:module-list',
             kwargs={
                 'slug': discipline.slug,
                 'pk': session.id
             }
         )
-
-        messages.success(self.request, _("File deleted successfully."))
 
         return success_url

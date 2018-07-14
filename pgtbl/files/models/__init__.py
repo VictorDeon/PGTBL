@@ -1,2 +1,2 @@
 from .discipline_file import DisciplineFile
-from .session_file import SessionFile
+from .module_file import ModuleFile

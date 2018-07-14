@@ -10,7 +10,7 @@
 {% block breadcrumb %}
   {{ block.super }}
   <li>
-    <a href="{% url 'files:session-list' discipline.slug session.id %}">
+    <a href="{% url 'files:module-list' discipline.slug session.id %}">
        {% trans 'File list' %}
     </a>
   </li>
@@ -60,7 +60,7 @@
                       </div>
                       <div class="btn-group">
                         <a class="btn btn-primary"
-                           href="{% url 'files:session-update' discipline.slug session.id file.id %}">
+                           href="{% url 'files:module-update' discipline.slug session.id file.id %}">
                            <i class="fa fa-edit"></i>
                            {% trans 'Edit file' %}
                         </a>

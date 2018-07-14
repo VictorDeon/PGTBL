@@ -5,13 +5,13 @@ from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
 from TBLSessions.utils import get_datetimes
-from files.models import SessionFile
-from files.forms import SessionFileForm
+from files.models import ModuleFile
+from files.forms import ModuleFileForm
 
 
-class SessionFileListView(LoginRequiredMixin,
-                          PermissionMixin,
-                          ListView):
+class ModuleFileListView(LoginRequiredMixin,
+                         PermissionMixin,
+                         ListView):
     """
     View to see all tbl session file of discipline.
     """
@@ -55,12 +55,12 @@ class SessionFileListView(LoginRequiredMixin,
 
         irat_datetime, grat_datetime = get_datetimes(self.get_session())
 
-        context = super(SessionFileListView, self).get_context_data(**kwargs)
+        context = super(ModuleFileListView, self).get_context_data(**kwargs)
         context['irat_datetime'] = irat_datetime
         context['grat_datetime'] = grat_datetime
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
-        context['form'] = SessionFileForm()
+        context['form'] = ModuleFileForm()
 
         return context
 
@@ -72,7 +72,7 @@ class SessionFileListView(LoginRequiredMixin,
         session = self.get_session()
 
         # Modificar
-        files = SessionFile.objects.filter(
+        files = ModuleFile.objects.filter(
             session=session
         )
 

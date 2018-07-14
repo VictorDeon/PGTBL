@@ -3,7 +3,7 @@ from TBLSessions.models import TBLSession
 from .file import File
 
 
-class SessionFile(File):
+class ModuleFile(File):
     """
     File to insert into tbl sessions.
     """

@@ -15,7 +15,7 @@
         </h4>
       </div>
       <div class="modal-body">
-        <form action="{% url 'files:session-create' discipline.slug session.id %}"
+        <form action="{% url 'files:module-create' discipline.slug session.id %}"
               method="post" enctype="multipart/form-data" novalidate>
           {% csrf_token %}
 

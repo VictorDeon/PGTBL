@@ -1,12 +1,12 @@
-from files.models import SessionFile
+from files.models import ModuleFile
 from django import forms
 
 
-class SessionFileForm(forms.ModelForm):
+class ModuleFileForm(forms.ModelForm):
     """
     Form to create a new file to tbl session.
     """
 
     class Meta:
-        model = SessionFile
+        model = ModuleFile
         fields = ['title', 'extension', 'description', 'archive']

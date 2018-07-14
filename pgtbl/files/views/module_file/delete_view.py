@@ -2,27 +2,22 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
 from django.contrib import messages
-from django.views.generic import UpdateView
+from django.views.generic import DeleteView
 
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from TBLSessions.models import TBLSession
-from TBLSessions.utils import get_datetimes
-from files.models import SessionFile
-from files.forms import SessionFileForm
+from files.models import ModuleFile
 
 
-class SessionFileUpdateView(LoginRequiredMixin,
-                            PermissionMixin,
-                            UpdateView):
+class ModuleFileDeleteView(LoginRequiredMixin,
+                           PermissionMixin,
+                           DeleteView):
     """
-    View to update a specific session file.
+    View to delete a specific tbl session file.
     """
 
-    model = SessionFile
-    template_name = 'files/session_form.html'
-    context_object_name = 'file'
-    form_class = SessionFileForm
+    model = ModuleFile
 
     permissions_required = [
         'monitor_can_change'
@@ -57,36 +52,12 @@ class SessionFileUpdateView(LoginRequiredMixin,
 
         session = self.get_session()
 
-        archive = SessionFile.objects.get(
+        archive = ModuleFile.objects.get(
             session=session,
             pk=self.kwargs.get('file_id', '')
         )
 
         return archive
-
-    def get_context_data(self, **kwargs):
-        """
-        Insert a discipline and session inside file form template.
-        """
-
-        irat_datetime, grat_datetime = get_datetimes(self.get_session())
-
-        context = super(SessionFileUpdateView, self).get_context_data(**kwargs)
-        context['irat_datetime'] = irat_datetime
-        context['grat_datetime'] = grat_datetime
-        context['discipline'] = self.get_discipline()
-        context['session'] = self.get_session()
-
-        return context
-
-    def form_valid(self, form):
-        """
-        Return the form with fields valided.
-        """
-
-        messages.success(self.request, _('File updated successfully.'))
-
-        return super(SessionFileUpdateView, self).form_valid(form)
 
     def get_success_url(self):
         """
@@ -97,11 +68,13 @@ class SessionFileUpdateView(LoginRequiredMixin,
         session = self.get_session()
 
         success_url = reverse_lazy(
-            'files:session-list',
+            'files:module-list',
             kwargs={
                 'slug': discipline.slug,
                 'pk': session.id
             }
         )
+
+        messages.success(self.request, _("File deleted successfully."))
 
         return success_url

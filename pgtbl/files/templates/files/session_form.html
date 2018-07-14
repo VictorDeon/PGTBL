@@ -11,7 +11,7 @@
 {% block breadcrumb %}
   {{ block.super }}
   <li>
-    <a href="{% url 'files:session-update' discipline.slug session.id file.id %}">
+    <a href="{% url 'files:module-update' discipline.slug session.id file.id %}">
       {% trans 'Edit' %} {{file}}
     </a>
   </li>
@@ -30,7 +30,7 @@
     <div class="row">
       <div class="col-sm-12">
         <!-- Form without html5 validation -->
-        <form action="{% url 'files:session-update' discipline.slug session.id file.id %}"
+        <form action="{% url 'files:module-update' discipline.slug session.id file.id %}"
               method="post" enctype="multipart/form-data" novalidate>
           <!-- Form security -->
           {% csrf_token %}

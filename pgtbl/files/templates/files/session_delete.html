@@ -31,7 +31,7 @@
       <!-- Footer -->
       <div class="modal-footer">
         <!-- Delete form -->
-        <form action="{% url 'files:session-delete' discipline.slug session.id file.id %}" method="post">
+        <form action="{% url 'files:module-delete' discipline.slug session.id file.id %}" method="post">
           <!-- Form security -->
           {% csrf_token %}
 

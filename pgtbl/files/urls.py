@@ -30,30 +30,30 @@ discipline_patterns = [
     ),
 ]
 
-session_patterns = [
+module_patterns = [
     # /
     url(
         r'^$',
-        views.SessionFileListView.as_view(),
-        name='session-list'
+        views.ModuleFileListView.as_view(),
+        name='module-list'
     ),
     # create/
     url(
         r'^create/$',
-        views.SessionFileCreateView.as_view(),
-        name='session-create'
+        views.ModuleFileCreateView.as_view(),
+        name='module-create'
     ),
     # <file.id>/update/
     url(
         r'^(?P<file_id>[0-9]+)/update/$',
-        views.SessionFileUpdateView.as_view(),
-        name='session-update'
+        views.ModuleFileUpdateView.as_view(),
+        name='module-update'
     ),
     # <file.id>/delete/
     url(
         r'^(?P<file_id>[0-9]+)/delete/$',
-        views.SessionFileDeleteView.as_view(),
-        name='session-delete'
+        views.ModuleFileDeleteView.as_view(),
+        name='module-delete'
     ),
 ]
 
@@ -62,7 +62,7 @@ urlpatterns = [
     # /profile/<discipline.slug>/sessions/<session.id>/files/...
     url(
         r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/files/',
-        include(session_patterns)
+        include(module_patterns)
     ),
 
     # /profile/<discipline.slug>/files/...
