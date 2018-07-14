@@ -24,7 +24,7 @@ from core.generics import ObjectRedirectView
 from core.utils import order
 
 # Discipline app
-from .forms import DisciplineForm, DisciplineEditForm, EnterDisciplineForm
+from .forms import DisciplineForm, DisciplineUpdateForm, DisciplineEnterForm
 from .models import Discipline
 
 # Get the custom user from settings
@@ -86,7 +86,7 @@ class UpdateDisciplineView(LoginRequiredMixin,
 
     model = Discipline
     template_name = 'disciplines/form.html'
-    form_class = DisciplineEditForm
+    form_class = DisciplineUpdateForm
     success_url = reverse_lazy('accounts:profile')
 
     # Permissions
@@ -168,7 +168,7 @@ class ListDisciplineView(LoginRequiredMixin, ListView):
         """
 
         context = super(ListDisciplineView, self).get_context_data(**kwargs)
-        context['form'] = EnterDisciplineForm()
+        context['form'] = DisciplineEnterForm()
         return context
 
     def get_queryset(self):
@@ -205,7 +205,7 @@ class EnterDisciplineView(LoginRequiredMixin, FormView):
     Insert students or monitors inside discipline.
     """
 
-    form_class = EnterDisciplineForm
+    form_class = DisciplineEnterForm
     success_url = reverse_lazy('accounts:profile')
     template_name = 'disciplines/list.html'
 
