@@ -12,12 +12,41 @@
         "students_limit": 60,
         "monitors_limit": 5,
         "is_closed": false,
-        "was_group_provided": false,
+        "was_group_provided": true,
         "teacher": 2,
         "created_at": "2018-07-14T21:46:56.625Z",
-        "updated_at": "2018-07-14T21:46:56.635Z",
-        "students": [],
-        "monitors": []
+        "updated_at": "2018-07-14T22:10:57.830Z",
+        "students": [
+            11,
+            26,
+            4,
+            3,
+            18,
+            25,
+            27,
+            33,
+            28,
+            5,
+            29,
+            34,
+            31,
+            32,
+            12,
+            35,
+            6,
+            7,
+            13,
+            19,
+            14,
+            8,
+            9,
+            36,
+            20
+        ],
+        "monitors": [
+            42,
+            40
+        ]
     }
 }
 ]

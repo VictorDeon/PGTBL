@@ -1,0 +1,92 @@
+[
+{
+    "model": "groups.group",
+    "pk": 1,
+    "fields": {
+        "discipline": 1,
+        "title": "X-Force",
+        "students_limit": 5,
+        "created_at": "2018-07-14T22:04:30.070Z",
+        "updated_at": "2018-07-14T22:05:58.619Z",
+        "students": [
+            33,
+            35,
+            6,
+            13,
+            20
+        ]
+    }
+},
+{
+    "model": "groups.group",
+    "pk": 2,
+    "fields": {
+        "discipline": 1,
+        "title": "Vingadores",
+        "students_limit": 5,
+        "created_at": "2018-07-14T22:05:00.485Z",
+        "updated_at": "2018-07-14T22:05:39.114Z",
+        "students": [
+            26,
+            25,
+            29,
+            32,
+            7
+        ]
+    }
+},
+{
+    "model": "groups.group",
+    "pk": 3,
+    "fields": {
+        "discipline": 1,
+        "title": "X-Men",
+        "students_limit": 5,
+        "created_at": "2018-07-14T22:05:26.804Z",
+        "updated_at": "2018-07-14T22:05:26.808Z",
+        "students": [
+            19,
+            14,
+            8,
+            9,
+            36
+        ]
+    }
+},
+{
+    "model": "groups.group",
+    "pk": 4,
+    "fields": {
+        "discipline": 1,
+        "title": "Titans",
+        "students_limit": 5,
+        "created_at": "2018-07-14T22:06:19.429Z",
+        "updated_at": "2018-07-14T22:09:44.765Z",
+        "students": [
+            18,
+            27,
+            28,
+            31,
+            12
+        ]
+    }
+},
+{
+    "model": "groups.group",
+    "pk": 5,
+    "fields": {
+        "discipline": 1,
+        "title": "Guardi\u00f5es da Gal\u00e1xia",
+        "students_limit": 5,
+        "created_at": "2018-07-14T22:06:32.219Z",
+        "updated_at": "2018-07-14T22:06:32.223Z",
+        "students": [
+            11,
+            4,
+            3,
+            5,
+            34
+        ]
+    }
+}
+]
