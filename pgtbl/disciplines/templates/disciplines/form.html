@@ -6,16 +6,13 @@
   <link href="{% static 'accounts/css/sidebar.css' %}" rel="stylesheet" />
   <link href="{% static 'disciplines/css/create.css' %}" rel="stylesheet" />
   <link href="{% static 'core/css/markdown.css' %}" rel="stylesheet" />
-  {{form.media}}
-{% endblock %}
-
-{% block breadcrumb %}
-  {{ block.super }}
-  <li>
-    <a href="{% url 'disciplines:create' %}">
-       {% trans 'Create Discipline' %}
-    </a>
-  </li>
+  <link href="/" type="text/css" media="all" rel="stylesheet" />
+  <script type="text/javascript" src="/static/pagedown/Markdown.Converter.js"></script>
+  <script type="text/javascript" src="/static/pagedown-extra/pagedown/Markdown.Converter.js"></script>
+  <script type="text/javascript" src="/static/pagedown/Markdown.Sanitizer.js"></script>
+  <script type="text/javascript" src="/static/pagedown/Markdown.Editor.js"></script>
+  <script type="text/javascript" src="/static/pagedown-extra/Markdown.Extra.js"></script>
+  <script type="text/javascript" src="/static/pagedown_init.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -59,6 +56,7 @@
                 name="{{form.title.name}}"
                 class="form-control"
                 placeholder="{{form.title.help_text}}"
+                value="{{discipline.title}}"
                 required
               />
             </div>
@@ -88,6 +86,7 @@
                 name="{{form.course.name}}"
                 class="form-control"
                 placeholder="{{form.course.help_text}}"
+                value="{{discipline.course}}"
               />
             </div>
 
@@ -110,7 +109,7 @@
                 name="{{form.description.name}}"
                 placeholder="{{form.description.help_text}}"
                 id="{{form.description.id_for_label}}"
-                cols="130" rows="10"></textarea>
+                cols="130" rows="10">{{discipline.description}}</textarea>
             </div>
 
             <!-- Field errors -->
@@ -149,6 +148,7 @@
                   name="{{form.classroom.name}}"
                   class="form-control"
                   placeholder="{{form.classroom.help_text}}"
+                  value="{{discipline.classroom}}"
                   required
                 />
               </div>
@@ -178,6 +178,7 @@
                   name="{{form.password.name}}"
                   class="form-control"
                   placeholder="{{form.password.help_text}}"
+                  value="{{discipline.password}}"
                 />
               </div>
 
@@ -204,11 +205,11 @@
                 <input
                   type="number"
                   name="{{form.students_limit.name}}"
-                  value="0"
                   min="0"
                   class="form-control"
                   max="60"
                   placeholder="{{form.students_limit.help_text}}"
+                  value="{{discipline.students_limit}}"
                   required
                 />
               </div>
@@ -236,7 +237,7 @@
                 <input
                   type="number"
                   name="{{form.monitors_limit.name}}"
-                  value="0"
+                  value="{{discipline.monitors_limit}}"
                   min="0"
                   class="form-control"
                   max="10"

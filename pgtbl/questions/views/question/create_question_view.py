@@ -22,7 +22,7 @@ class CreateQuestionView(LoginRequiredMixin,
 
     model = Question
     fields = ['title', 'level', 'topic', 'is_exercise']
-    template_name = 'questions/add.html'
+    template_name = 'questions/form.html'
 
     permissions_required = [
         'crud_question_permission'

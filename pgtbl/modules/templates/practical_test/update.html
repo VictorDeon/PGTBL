@@ -6,7 +6,13 @@
   <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" type="text/css" />
   <link rel="stylesheet" href="{% static 'practical_test/css/update.css' %}" type="text/css" />
   <link rel="stylesheet" href="{% static 'core/css/markdown.css' %}" type="text/css" />
-  {{form.media}}
+  <link href="/" type="text/css" media="all" rel="stylesheet" />
+  <script type="text/javascript" src="/static/pagedown/Markdown.Converter.js"></script>
+  <script type="text/javascript" src="/static/pagedown-extra/pagedown/Markdown.Converter.js"></script>
+  <script type="text/javascript" src="/static/pagedown/Markdown.Sanitizer.js"></script>
+  <script type="text/javascript" src="/static/pagedown/Markdown.Editor.js"></script>
+  <script type="text/javascript" src="/static/pagedown-extra/Markdown.Extra.js"></script>
+  <script type="text/javascript" src="/static/pagedown_init.js"></script>
 {% endblock %}
 
 {% block breadcrumb %}

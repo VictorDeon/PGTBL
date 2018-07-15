@@ -7,15 +7,6 @@
   <link rel="stylesheet" href="{% static 'files/css/edit.css' %}" />
 {% endblock %}
 
-{% block breadcrumb %}
-  {{ block.super }}
-  <li>
-    <a href="{% url 'files:module-update' discipline.slug session.id file.id %}">
-      {% trans 'Edit' %} {{file}}
-    </a>
-  </li>
-{% endblock %}
-
 {% block content %}
   <div class="container-fluid">
     <!-- Header -->

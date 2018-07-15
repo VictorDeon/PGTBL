@@ -8,15 +8,6 @@
   <link rel="stylesheet" href="{% static 'grades/css/edit.css' %}" type="text/css" />
 {% endblock %}
 
-{% block breadcrumb %}
-  {{ block.super }}
-  <li>
-    <a href="{% url 'grades:update' discipline.slug session.id grade.student.id %}">
-      {% trans 'Edit grade' %}
-    </a>
-  </li>
-{% endblock %}
-
 {% block content %}
   <div class="container-fluid">
     <!-- Header -->

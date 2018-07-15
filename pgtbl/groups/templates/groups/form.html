@@ -7,15 +7,6 @@
   <link rel="stylesheet" href="{% static 'groups/css/edit.css' %}" />
 {% endblock %}
 
-{% block breadcrumb %}
-  {{ block.super }}
-  <li>
-    <a href="{% url 'groups:update' discipline.slug group.id %}">
-      {% trans 'Edit' %} {{group}}
-    </a>
-  </li>
-{% endblock %}
-
 {% block content %}
   <div class="container-fluid">
     <!-- Header -->
