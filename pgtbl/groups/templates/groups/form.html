@@ -1,6 +1,5 @@
 {% extends 'groups/list.html' %}
 {% load static %}
-{% load widget_tweaks %}
 {% load i18n %}
 
 {% block css %}
@@ -53,7 +52,14 @@
               </span>
 
               <!-- Field -->
-              {% render_field form.title class="form-control" type="text" placeholder=form.title.help_text %}
+              <input
+                type="text"
+                name="{{form.title.name}}"
+                class="form-control"
+                placeholder="{{form.title.help_text}}"
+                value="{{group.title}}"
+                required
+              />
             </div>
 
             <!-- Field errors -->
@@ -76,7 +82,16 @@
               </span>
 
               <!-- Field -->
-              {% render_field form.students_limit class="form-control" type="number" min="0" %}
+              <input
+                type="number"
+                name="{{form.students_limit.name}}"
+                min="0"
+                value="{{group.students_limit}}"
+                id="{{form.students_limit.id_for_label}}"
+                class="form-control"
+                placeholder="{{form.students_limit.help_text}}"
+                required
+              />
             </div>
 
             <!-- Field errors -->

@@ -1,4 +1,3 @@
-{% load widget_tweaks %}
 {% load i18n %}
 
 <div class="modal fade" id="add-modal" role="dialog">
@@ -19,16 +18,33 @@
           {% csrf_token %}
 
           <div class="form-group">
-            <label for="title">{% trans 'Session title' %}:</label>
-            {% render_field form.title class="form-control" type="text" placeholder=form.title.help_text %}
+            <label for="{{form.title.id_for_label}}">
+              {% trans 'Session title' %}:
+            </label>
+            <input
+              type="text"
+              name="{{form.title.name}}"
+              class="form-control"
+              id="{{form.title.id_for_label}}"
+              placeholder="{{form.title.help_text}}"
+              required
+            />
           </div>
           <div class="form-group">
-            <label for="description">{% trans 'Session description' %}:</label>
-            {% render_field form.description class="form-control" type="text" %}
+            <label for="{{form.description.id_for_label}}">
+              {% trans 'Session description' %}:
+            </label>
+            <textarea
+              type="text"
+              class="form-control wmd-input"
+              name="{{form.description.name}}"
+              id="{{form.description.id_for_label}}"
+              rows="5"
+            ></textarea>
           </div>
           <div class="form-group">
             <label>
-              {% render_field form.is_closed type="checkbox" %}
+              {{form.is_closed}}
               {% trans 'Close session' %}
             </label>
           </div>

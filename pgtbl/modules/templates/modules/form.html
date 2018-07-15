@@ -1,6 +1,5 @@
 {% extends 'modules/list.html' %}
 {% load static %}
-{% load widget_tweaks %}
 {% load i18n %}
 
 {% block css %}
@@ -55,7 +54,14 @@
               </span>
 
               <!-- Field -->
-              {% render_field form.title class="form-control" type="text" placeholder=form.title.help_text %}
+              <input
+                type="text"
+                name="{{form.title.name}}"
+                class="form-control"
+                value="{{session.title}}"
+                placeholder="{{form.title.help_text}}"
+                required
+              />
             </div>
 
             <!-- Field errors -->
@@ -70,7 +76,14 @@
           <div class="{% if form.description.errors %}alert alert-warning{% endif %}">
             <!-- Input group -->
             <div class="form-group">
-              {% render_field form.description class="form-control" rows="10" type="text" %}
+              <div id="{{form.description.id_for_label}}_wmd_button_bar"></div>
+              <textarea
+                type="text"
+                class="form-control wmd-input"
+                name="{{form.description.name}}"
+                id="{{form.description.id_for_label}}"
+                rows="10"
+              >{{session.description}}</textarea>
             </div>
 
             <!-- Field errors -->
@@ -92,7 +105,7 @@
           <!-- Is closed field -->
           <div class="form-group white">
             <label>
-              {% render_field form.is_closed type="checkbox" %}
+              {{form.is_closed}}
               {% trans 'Make session unavailable' %}
             </label>
           </div>

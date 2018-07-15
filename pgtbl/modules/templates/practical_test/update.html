@@ -1,6 +1,5 @@
 {% extends 'practical_test/detail.html' %}
 {% load static %}
-{% load widget_tweaks %}
 {% load i18n %}
 
 {% block css %}
@@ -46,7 +45,7 @@
           <!-- Practical Test -->
           <div class="form-group white">
             <label>
-              {% render_field form.practical_available type="checkbox" %}
+              {{form.practical_available}}
               {% trans 'Make practical test available' %}
             </label>
           </div>
@@ -56,12 +55,25 @@
               {{form.practical_weight.label}}
             </label>
 
-            {% render_field form.practical_weight class="form-control" %}
+            <input
+              type="number"
+              name="{{form.practical_weight.name}}"
+              value="{{session.practical_weight}}"
+              id="{{form.practical_weight.id_for_label}}"
+              class="form-control"
+            />
           </div>
 
           <!-- Practical test description field -->
           <div class="form-group">
-            {% render_field form.practical_description class="form-control" rows="10" type="text" %}
+            <div id="{{form.practical_description.id_for_label}}_wmd_button_bar"></div>
+            <textarea
+              type="text"
+              class="form-control wmd-input"
+              name="{{form.practical_description.name}}"
+              id="{{form.practical_description.id_for_label}}"
+              rows="10"
+            >{{session.practical_description}}</textarea>
           </div>
 
           <!-- Session description preview -->
