@@ -1,65 +1,56 @@
-from django.conf.urls import url, include
+from django.urls import path, include
 from . import views
 
 app_name = 'modules'
 
 session_patterns = [
-    # /
-    url(
-        r'^$',
+    path(
+        '',
         views.TBLSessionListView.as_view(),
         name='list'
     ),
-    # add/
-    url(
-        r'^create/$',
+    path(
+        'create/',
         views.TBLSessionCreateView.as_view(),
         name='create'
     ),
-    # <session.id>/edit/
-    url(
-        r'^(?P<pk>[0-9]+)/update/$',
+    path(
+        '<int:pk>/update/',
         views.TBLSessionUpdateView.as_view(),
         name='update'
     ),
-    # <session.id>/delete/
-    url(
-        r'^(?P<pk>[0-9]+)/delete/$',
+    path(
+        '<int:pk>/delete/',
         views.TBLSessionDeleteView.as_view(),
         name='delete'
     ),
-    # <session.id>/details/
-    url(
-        r'^(?P<pk>[0-9]+)/details/$',
+    path(
+        '<int:pk>/details/',
         views.TBLSessionDetailView.as_view(),
         name='details'
     ),
 ]
 
 practical_patterns = [
-    # practical-test/
-    url(
-        r'^practical-test/$',
+    path(
+        'practical-test/',
         views.PracticalTestDetailView.as_view(),
         name='practical-details'
     ),
-    # practical-test/edit/
-    url(
-        r'^practical-test/edit/$',
+    path(
+        'practical-test/edit/',
         views.PracticalTestUpdateView.as_view(),
         name='practical-update'
     ),
 ]
 
 urlpatterns = [
-    # /profile/<discipline.slug>/sessions/...
-    url(
-        r'^profile/(?P<slug>[\w_-]+)/sessions/',
+    path(
+        'profile/<slug:slug>/sessions/',
         include(session_patterns)
     ),
-    # /profile/<discipline.slug>/sessions/<session.id>/
-    url(
-        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/',
+    path(
+        'profile/<slug:slug>/sessions/<int:pk>/',
         include(practical_patterns)
     ),
 ]

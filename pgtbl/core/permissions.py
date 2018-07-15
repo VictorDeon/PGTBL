@@ -3,7 +3,7 @@ File to create decorator mixins
 """
 
 from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib import messages
 

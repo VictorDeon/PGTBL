@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import SetPasswordForm
 from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.views.generic import FormView

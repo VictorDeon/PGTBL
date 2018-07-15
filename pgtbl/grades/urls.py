@@ -1,45 +1,39 @@
-from django.conf.urls import url, include
+from django.urls import path, include
 from . import views
 
 app_name = 'grades'
 
 grade_patterns = [
-    # /
-    url(
-        r'^$',
+    path(
+        '',
         views.GradeListView.as_view(),
         name='list'
     ),
-    # /<student.id>/edit/
-    url(
-        r'^(?P<student_pk>[0-9]+)/edit/$',
+    path(
+        '<int:student_pk>/edit/',
         views.GradeUpdateView.as_view(),
         name='update'
     ),
-    # /session-csv/
-    url(
-        r'^session-csv/$',
+    path(
+        'session-csv/',
         views.get_module_grade_csv,
         name='session-csv'
     ),
 ]
 
 urlpatterns = [
-    # /final-csv/
-    url(
-        r'^profile/(?P<slug>[\w_-]+)/grades/final-csv/',
+    path(
+        'profile/<slug:slug>/grades/final-csv/',
         views.get_final_grade_csv,
         name='final-csv'
     ),
-    # /profile/<discipline.slug>/grades/
-    url(
-        r'^profile/(?P<slug>[\w_-]+)/grades/',
+    path(
+        'profile/<slug:slug>/grades/',
         views.GradeResultView.as_view(),
         name='result'
     ),
-    # /profile/<discipline.slug>/sessions/<session.id>/grades/...
-    url(
-        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/grades/',
+    path(
+        'profile/<slug:slug>/sessions/<int:pk>/grades/',
         include(grade_patterns)
     ),
 ]

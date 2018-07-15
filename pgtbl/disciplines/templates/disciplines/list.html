@@ -156,7 +156,13 @@
 
                         <!-- Password field and submit button -->
                         <div class="input-group">
-                          {% render_field form.password class="form-control" type="password" placeholder=form.password.label %}
+                          <input
+                            type="password"
+                            id="{{form.password.id_for_label}}"
+                            class="form-control"
+                            name="{{form.password.name}}"
+                            placeholder={{form.password.label}}
+                          />
                           <div class="input-group-btn">
                             <button class="btn btn-primary"
                                     type="submit">

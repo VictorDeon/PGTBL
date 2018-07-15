@@ -2,14 +2,10 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import (
     AbstractBaseUser, PermissionsMixin, UserManager
 )
-from django.core import validators
 from django.db import models
 
 # External imports
 from rolepermissions.roles import assign_role
-
-# Python imports
-import re
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -18,21 +14,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     add permission to our user model.
     """
 
-    username_validator = validators.RegexValidator(
-        re.compile('^[\w.@+-]+$'),
-        _('Enter a valid username'),
-        _('This value should only contain letters, numbers, \
-        and characters ./@/+/-/_.'),
-        'invalid'
-    )
-
-    # Username with regex validators
     username = models.CharField(
         _('User'),
         max_length=30,
         unique=True,
         help_text='Short name that will be used uniquely on the platform.',
-        validators=[username_validator],
         error_messages={
             'unique': _("A user with that username already exists."),
         }

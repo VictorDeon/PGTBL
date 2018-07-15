@@ -2,7 +2,7 @@
 from django.utils.translation import ugettext_lazy as _
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.views.generic import CreateView

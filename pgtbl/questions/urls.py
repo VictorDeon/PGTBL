@@ -1,144 +1,125 @@
-from django.conf.urls import url, include
+from django.urls import path, include
 from . import views
 
 app_name = 'questions'
 
 questions_patterns = [
-    # /
-    url(
-        r'^$',
+    path(
+        '',
         views.ExerciseListView.as_view(),
         name='list'
     ),
-    # /add-question/
-    url(
-        r'^add-question/$',
+    path(
+        'add-question/',
         views.CreateQuestionView.as_view(),
         name='create-question'
     ),
-    # /question.id/edit/
-    url(
-        r'^(?P<question_id>[0-9]+)/edit/$',
+    path(
+        '<int:question_id>/edit/',
         views.UpdateQuestionView.as_view(),
         name='update-question'
     ),
-    # /question.id/delete/
-    url(
-        r'^(?P<question_id>[0-9]+)/delete/$',
+    path(
+        '<int:question_id>/delete/',
         views.DeleteQuestionView.as_view(),
         name='delete-question'
     ),
 ]
 
 exercise_patterns = [
-    # /result/
-    url(
-        r'^result/$',
+    path(
+        'result/',
         views.ExerciseResultView.as_view(),
         name='exercise-result'
     ),
-    # /result/csv/
-    url(
-        r'^result/csv/$',
+    path(
+        'result/csv/',
         views.get_csv,
         name='exercise-result-csv'
     ),
-    # /result/reset/
-    url(
-        r'^result/reset/$',
+    path(
+        'result/reset/',
         views.ResetExerciseView.as_view(),
         name='exercise-reset'
     ),
-    # /question/<question.id>/answer-page/<page_obj.number>/
-    url(
-        r'^question/(?P<question_id>[0-9]+)/answer-page/(?P<question_page>[0-9]+)/$',
+    path(
+        'question/<int:question_id>/answer-page/<int:question_page>/',
         views.AnswerQuestionView.as_view(),
         name='exercise-answer-question'
     )
 ]
 
 irat_patterns = [
-    # /
-    url(
-        r'^$',
+    path(
+        '',
         views.IRATView.as_view(),
         name='irat-list'
     ),
-    # /edit-date/
-    url(
-        r'^edit-date/$',
+    path(
+        'edit-date/',
         views.IRATDateUpdateView.as_view(),
         name='irat-date'
     ),
-    # /edit-irat/
-    url(
-        r'^edit-irat/$',
+    path(
+        'edit-irat/',
         views.IRATUpdateView.as_view(),
         name='irat-update'
     ),
-    # /result/
-    url(
-        r'^result/$',
+    path(
+        'result/',
         views.IRATResultView.as_view(),
         name='irat-result'
     ),
-    # /question/<question.id>/answer-page/<page_obj.number>/
-    url(
-        r'^question/(?P<question_id>[0-9]+)/answer-page/(?P<question_page>[0-9]+)/$',
+    path(
+        'question/<int:question_id>/answer-page/<int:question_page>/',
         views.IRATAnswerQuestionView.as_view(),
         name='irat-answer-question'
     ),
 ]
 
 grat_patterns = [
-    # /
-    url(
-        r'^$',
+    path(
+        '',
         views.GRATView.as_view(),
         name='grat-list'
     ),
-    # /edit-date/
-    url(
-        r'^edit-date/$',
+    path(
+        'edit-date/',
         views.GRATDateUpdateView.as_view(),
         name='grat-date'
     ),
-    # /edit-irat/
-    url(
-        r'^edit-irat/$',
+    path(
+        'edit-irat/',
         views.GRATUpdateView.as_view(),
         name='grat-update'
     ),
-    # /result/
-    url(
-        r'^result/$',
+    path(
+        'result/',
         views.GRATResultView.as_view(),
         name='grat-result'
     ),
-    # /question/<question.id>/answer-page/<page_obj.number>/
-    url(
-        r'^question/(?P<question_id>[0-9]+)/answer-page/(?P<question_page>[0-9]+)/$',
+    path(
+        'question/<int:question_id>/answer-page/<int:question_page>/',
         views.GRATAnswerQuestionView.as_view(),
         name='grat-answer-question'
     ),
 ]
 
 urlpatterns = [
-    # /profile/<discipline.slug>/sessions/<session.id>/exercises/...
-    url(
-        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/questions/',
+    path(
+        'profile/<slug:slug>/sessions/<int:pk>/questions/',
         include(questions_patterns)
     ),
-    url(
-        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/exercises/',
+    path(
+        'profile/<slug:slug>/sessions/<int:pk>/exercises/',
         include(exercise_patterns)
     ),
-    url(
-        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/irat/',
+    path(
+        'profile/<slug:slug>/sessions/<int:pk>/irat/',
         include(irat_patterns)
     ),
-    url(
-        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/grat/',
+    path(
+        'profile/<slug:slug>/sessions/<int:pk>/grat/',
         include(grat_patterns)
     ),
 ]

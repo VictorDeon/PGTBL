@@ -1,57 +1,49 @@
-from django.conf.urls import url, include
+from django.urls import path, include
 from . import views
 
 app_name = 'files'
 
 discipline_patterns = [
-    # /
-    url(
-        r'^$',
+    path(
+        '',
         views.DisciplineFileListView.as_view(),
         name='list'
     ),
-    # add/
-    url(
-        r'^create/$',
+    path(
+        'create/',
         views.DisciplineFileCreateView.as_view(),
         name='create'
     ),
-    # <file.id>/edit/
-    url(
-        r'^(?P<pk>[0-9]+)/update/$',
+    path(
+        '<int:pk>/update/',
         views.DisciplineFileUpdateView.as_view(),
         name='update'
     ),
-    # <file.id>/delete/
-    url(
-        r'^(?P<pk>[0-9]+)/delete/$',
+    path(
+        '<int:pk>/delete/',
         views.DisciplineFileDeleteView.as_view(),
         name='delete'
     ),
 ]
 
 module_patterns = [
-    # /
-    url(
-        r'^$',
+    path(
+        '',
         views.ModuleFileListView.as_view(),
         name='module-list'
     ),
-    # create/
-    url(
-        r'^create/$',
+    path(
+        'create/',
         views.ModuleFileCreateView.as_view(),
         name='module-create'
     ),
-    # <file.id>/update/
-    url(
-        r'^(?P<file_id>[0-9]+)/update/$',
+    path(
+        '<int:file_id>/update/',
         views.ModuleFileUpdateView.as_view(),
         name='module-update'
     ),
-    # <file.id>/delete/
-    url(
-        r'^(?P<file_id>[0-9]+)/delete/$',
+    path(
+        '<int:file_id>/delete/',
         views.ModuleFileDeleteView.as_view(),
         name='module-delete'
     ),
@@ -59,15 +51,13 @@ module_patterns = [
 
 
 urlpatterns = [
-    # /profile/<discipline.slug>/sessions/<session.id>/files/...
-    url(
-        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/files/',
+    path(
+        'profile/<slug:slug>/sessions/<int:pk>/files/',
         include(module_patterns)
     ),
 
-    # /profile/<discipline.slug>/files/...
-    url(
-        r'^profile/(?P<slug>[\w_-]+)/files/',
+    path(
+        'profile/<slug:slug>/files/',
         include(discipline_patterns)
     ),
 ]

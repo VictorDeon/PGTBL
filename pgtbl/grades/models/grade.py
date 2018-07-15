@@ -19,12 +19,14 @@ class Grade(models.Model):
 
     student = models.ForeignKey(
         settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
         verbose_name='Students',
         related_name='session_grades'
     )
 
     group = models.ForeignKey(
         Group,
+        on_delete=models.CASCADE,
         verbose_name='Group',
         related_name='grades'
     )
