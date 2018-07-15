@@ -31,7 +31,6 @@ class UserAdmin(BaseUserAdmin):
                 'institution',
                 'course',
                 'is_teacher',
-                'last_login',
             )
         }),
         (_('Permissions'), {
@@ -39,8 +38,6 @@ class UserAdmin(BaseUserAdmin):
                 'is_active',
                 'is_staff',
                 'is_superuser',
-                'groups',
-                'user_permissions'
             )
         })
     )
