@@ -1,6 +1,5 @@
 {% extends 'files/discipline/list.html' %}
 {% load static %}
-{% load widget_tweaks %}
 {% load i18n %}
 
 {% block css %}
@@ -54,34 +53,18 @@
               </span>
 
               <!-- Field -->
-              {% render_field form.title class="form-control" type="text" placeholder=form.title.help_text %}
+              <input
+                type="text"
+                class="form-control"
+                name="{{form.title.name}}"
+                placeholder="{{form.title.help_text}}"
+                value="{{file.title}}"
+                required
+              />
             </div>
 
             <!-- Field errors -->
             {% for error in form.title.errors %}
-              <span class="error">
-                {{ error }}
-              </span>
-            {% endfor %}
-          </div>
-
-          <!-- File description field -->
-          <div class="{% if form.description.errors %}alert alert-warning{% endif %}">
-            <!-- Input group -->
-            <div class="input-group">
-              <!-- Field icon -->
-              <span class="input-group-addon gradient"
-                    data-toggle="tooltip"
-                    title="{{form.description.label}}">
-                    <i class="fa fa-file-text-o"></i>
-              </span>
-
-              <!-- Field -->
-              {% render_field form.description class="form-control" type="text" %}
-            </div>
-
-            <!-- Field errors -->
-            {% for error in form.description.errors %}
               <span class="error">
                 {{ error }}
               </span>
@@ -100,7 +83,14 @@
               </span>
 
               <!-- Field -->
-              {% render_field form.extension class="form-control" type="text" %}
+              <input
+                type="text"
+                class="form-control"
+                name="{{form.extension.name}}"
+                placeholder="{{form.extension.help_text}}"
+                value="{{file.extension}}"
+                required
+              />
             </div>
 
             <!-- Field errors -->
@@ -111,11 +101,49 @@
             {% endfor %}
           </div>
 
+          <!-- File description field -->
+          <div class="{% if form.description.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
+            <div class="input-group">
+              <!-- Field icon -->
+              <span class="input-group-addon gradient"
+                    data-toggle="tooltip"
+                    title="{{form.description.label}}">
+                    <i class="fa fa-file-text-o"></i>
+              </span>
+
+              <!-- Field -->
+              <textarea
+                type="text"
+                name="{{form.description.name}}"
+                class="form-control"
+                rows="10"
+              >{{file.description}}</textarea>
+            </div>
+
+            <!-- Field errors -->
+            {% for error in form.description.errors %}
+              <span class="error">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+
           <!-- File field -->
           <div class="{% if form.archive.errors %}alert alert-warning{% endif %}">
             <!-- Input group -->
             <div class="input-group white">
-              {% render_field form.archive class="form-control" %}
+              {% if file.archive %}
+                Atualmente:
+                <a href="{{file.archive.url}}">{{file.archive.name}}</a>
+                <br />Modificar:
+              {% endif %}
+              <input
+                type="file"
+                name="{{form.archive.name}}"
+                class="form-control"
+                required
+              />
             </div>
 
             <!-- Field errors -->

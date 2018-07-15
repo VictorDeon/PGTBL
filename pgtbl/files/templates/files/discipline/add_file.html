@@ -1,4 +1,3 @@
-{% load widget_tweaks %}
 {% load i18n %}
 
 <div class="modal fade" id="add-modal" role="dialog">
@@ -20,19 +19,50 @@
           {% csrf_token %}
 
           <div class="form-group">
-            <label for="title">{% trans 'File title' %}:</label>
-            {% render_field form.title class="form-control" type="text" placeholder=form.title.help_text %}
+            <label for="{{form.title.id_for_label}}">
+              {% trans 'File title' %}:
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              name="{{form.title.name}}"
+              id="{{form.title.id_for_label}}"
+              placeholder="{{form.title.help_text}}"
+              required
+            />
           </div>
           <div class="form-group">
-            <label for="extension">{% trans 'File extension' %}:</label>
-            {% render_field form.extension class="form-control" type="text" %}
+            <label for="{{form.extension.id_for_label}}">
+              {% trans 'File extension' %}:
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              name="{{form.extension.name}}"
+              id="{{form.extension.id_for_label}}"
+              placeholder="{{form.extension.help_text}}"
+              required
+            />
           </div>
           <div class="form-group">
-            <label for="description">{% trans 'File description' %}:</label>
-            {% render_field form.description class="form-control" type="text" %}
+            <label for="{{form.description.id_for_label}}">
+              {% trans 'File description' %}:
+            </label>
+            <textarea
+              type="text"
+              name="{{form.description.name}}"
+              id="{{form.description.id_for_label}}"
+              class="form-control"
+              rows="10"
+            ></textarea>
           </div>
           <div class="form-group">
-            {% render_field form.archive class="form-control" %}
+            <input
+              type="file"
+              name="{{form.archive.name}}"
+              class="form-control"
+              required
+            />
           </div>
           <button type="submit" class="btn btn-primary submit-button center-block">
             <i class="fa fa-plus"></i>
