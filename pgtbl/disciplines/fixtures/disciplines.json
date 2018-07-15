@@ -48,5 +48,49 @@
             40
         ]
     }
+},
+{
+    "model": "disciplines.discipline",
+    "pk": 2,
+    "fields": {
+        "title": "M\u00e9todos de Desenvolvimento de Software",
+        "description": "## Plano de Ensino\r\n\r\n### 1. Ementa\r\n\r\n* Modelos de ciclo de vida e de processos;\r\n* Processo Unificado;\r\n* Desenvolvimento r\u00e1pido de software.\r\n* M\u00e9todos de desenvolvimento de software (orientado a dados, orientado a fun\u00e7\u00f5es, orientado a objetos, orientado a aspectos, \u00e1geis).\r\n* Ferramentas.\r\n\r\n### 2. Objetivos da disciplina\r\n\r\nA disciplina m\u00e9todos de desenvolvimento de software apresenta maior enfoque nos diferentes ciclos de vida e t\u00e9cnicas de desenvolvimento de software. Os principais objetivos s\u00e3o:\r\n\r\n* Capacitar o estudante a entender os diferentes m\u00e9todos, procedimentos e paradigmas de desenvolvimento de software;\r\n\r\n* Capacitar o estudante a aplicar/adaptar processos de desenvolvimento software \u00e0 resolu\u00e7\u00e3o de problemas de software.\r\n\r\n### 3. Conte\u00fado Program\u00e1tico\r\n\r\n#### Processos de Desenvolvimento de software\r\n\r\n* Modelos de Processo de Desenvolvimento de Software (ciclo de vida)\r\n\r\n* Atividades de Processo\r\n\r\n* Disciplinas de desenvolvimento de software \r\n\r\n#### M\u00e9todos e Ferramentas de Desenvolvimento de Software\r\n\r\n* M\u00e9todos e ferramentas orientados a fun\u00e7\u00f5es e dados\r\n\r\n* M\u00e9todos e ferramentas orientados a objetos \r\n\r\n#### Processo Unificado de Desenvolvimento de Software\r\n\r\n* Conceitos\r\n\r\n* Fases de ciclo de vida\r\n\r\n* No\u00e7\u00f5es de UML\r\n\r\n#### M\u00e9todos \u00c1geis de Desenvolvimento de Software\r\n\r\n* M\u00e9todo SCRUM de Gerenciamento de Projetos\r\n\r\n* Extreme Programming (xp)\r\n\r\n* Kanbam\r\n\r\n### Bibliografia\r\n\r\n#### B\u00e1sica\r\n\r\n* Beck, K., Programa\u00e7\u00e3o Extrema (XP) Explicada, 1st ed. Bookman, 2004\r\n\r\n* Jacobson, I., Booch G., Rumbauch J., The Unified Software Development Process, 1st ed., Addison-Wesley, 1999.\r\n\r\n* [EBRARY] Lano, K.,UML 2 Semantics and Applications, 1st ed., Wiley, 2009.\r\n\r\n#### Complementar:\r\n\r\n* Sommerville, I., Engenharia de software. 8th ed., Pearson Addison Wesley, 2007.\r\n\r\n* Pfleeger, S. L., Engenharia de software: teoria e pr\u00e1tica. 2nd ed., Prentice Hall, 2004. \r\n\r\n* Pressman, R. S., Engenharia de software. 6th ed., McGraw-Hill, 2006.\r\n\r\n* Ambler, S., Agile Modeling: Effective Practices for eXtreme Programming and the Unified Process, 1st ed., Wiley, 2002\r\n\r\n* Jacobson, I., Booch G., Rumbauch J., UML: Guia do Usu\u00e1rio, 2nd ed., Elsevier, 2005.\r\n\r\n* [OPEN ACCESS] Scrum e XP direto das Trincheiras. (http://www.infoq.com/br/minibooks/scrum-xp-from-the-trenches)",
+        "course": "Engenharia de Software",
+        "slug": "2-metodos-de-desenvolvimento-de-software-turma-a",
+        "classroom": "Turma A",
+        "password": "12345",
+        "students_limit": 30,
+        "monitors_limit": 5,
+        "is_closed": false,
+        "was_group_provided": false,
+        "teacher": 2,
+        "created_at": "2018-07-15T03:42:05.402Z",
+        "updated_at": "2018-07-15T03:42:05.414Z",
+        "students": [],
+        "monitors": [
+            42
+        ]
+    }
+},
+{
+    "model": "disciplines.discipline",
+    "pk": 3,
+    "fields": {
+        "title": "Melhoria de Processo de Software",
+        "description": "## Plano de Ensino\r\n\r\n### 1. Ementa\r\n\r\n* Qualidade Produto e Processo.\r\n* Programa de Melhoria de Processo de Software.\r\n* Modelos de melhoria de processo de software.\r\n* Normas.\r\n* Garantia de qualidade do produto e do processo.\r\n* Modelos de avalia\u00e7\u00e3o de processo de software.\r\n* An\u00e1lise de causa-raiz e preven\u00e7\u00e3o de defeitos.\r\n* Ferramentas. \r\n\r\n### 2. Objetivos da disciplina\r\n\r\nCapacitar o estudante a:\r\n\r\n*  Entender a terminologia e fundamentos b\u00e1sicos de processos e produtos de software, no contexto de ciclos de vida;\r\n\r\n* Entender os princ\u00edpio e regras de normas e modelos de melhoria de processo e modelos de avalia\u00e7\u00e3o;\r\n\r\n* Conhecer e utilizar as ferramentas de apoio ao desenvolvimento e manuten\u00e7\u00e3o de processos de software. \r\n\r\n### 3. Conte\u00fado program\u00e1tico\r\n\r\n* **Qualidade de produto e processo**: Motiva\u00e7\u00e3o e conceitos; Qualidade de processo e de produto de software; Iniciativas para qualidade de processo e de produto; Defini\u00e7\u00e3o e adapta\u00e7\u00e3o de processos de software\r\n\r\n* **Normas e Modelos de melhoria de processo de software**: PDCA; IDEAL; Processos de ciclo de vida (norma ISO 12207); Modelos de maturidade.\r\n\r\n* **Garantia da Qualidade do Processo e do Produto**: O processo de garantia da qualidade do processo e do produto; Garantia da qualidade do processo e do produto no contexto de normas e modelos de melhoria.\r\n\r\n* **Avalia\u00e7\u00e3o de processos de software**: Norma ISO 15504; M\u00e9todo de avalia\u00e7\u00e3o de processo.\r\n\r\n* **An\u00e1lise de causa raiz e preven\u00e7\u00e3o de defeitos**: Processo de an\u00e1lise de causa de resolu\u00e7\u00e3o de problemas; Categorias de problemas e natureza dos defeitos; T\u00e9cnicas e ferramentas.\r\n\r\n### Bibliografia\r\n\r\n1. [OPEN ACCESS] CMMI Product Team. CMMI for Development, Version 1.3 (CMU/SEI-2010- TR-033). Software Engineering Institute, Carnegie Mellon University, 2010. Dispon\u00edvel em http://cmmiinstitute.com/assets/reports/10tr033.pdf\r\n\r\n2. [Cole\u00e7\u00e3o ABNT. Acesso em http://www.abntcolecao.com.br/] ABNT NBR ISO/IEC. ISO/IEC 12207: 2009. Engenharia de Sistemas e Software - Processos do Ciclo de Vida de Software.\r\n\r\n3. [Cole\u00e7\u00e3o ABNT. Acesso em http://www.abntcolecao.com.br/] ABNT NBR ISO/IEC 15504 - Tecnologia da Informa\u00e7\u00e3o - Avalia\u00e7\u00e3o de Processo. \u00daltima vers\u00e3o das partes 1, 2, 3 e 4.\r\n\r\n4. [OPEN ACCESS] SCAMPI Upgrade Team. Standard CMMI Appraisal Method for Process Improvement (SCAMPI) A, Version 1.3: Method Definition Document (CMU/SEI-2011-HB001). Software Engineering Institute, Carnegie Mellon University, 2011. Dispon\u00edvel em: http://www.sei.cmu.edu/reports/11hb001.pdf\r\n\r\n5. [OPEN ACCESS] SOFTEX - Sociedade Softex. MPS BR - Melhoria de Processo de Software Brasileiro - Guias Geral, de Avalia\u00e7\u00e3o e de Implementa\u00e7\u00e3o. Dispon\u00edveis em http://www.softex.br/mpsbr/_guias/default.asp.\r\n\r\n6. [OPEN ACCESS] McFeeley, Bob, IDEAL: A Users Guide for Software Process Improvement, 1996. Dispon\u00edvel em http://www.sei.cmu.edu/reports/96hb001.pdf\r\n\r\n7. Artigos indicados pela professora",
+        "course": "Engenharia de Software",
+        "slug": "3-melhoria-de-processo-de-software-turma-c",
+        "classroom": "Turma C",
+        "password": "12345",
+        "students_limit": 30,
+        "monitors_limit": 5,
+        "is_closed": false,
+        "was_group_provided": false,
+        "teacher": 42,
+        "created_at": "2018-07-15T03:47:15.053Z",
+        "updated_at": "2018-07-15T03:47:15.065Z",
+        "students": [],
+        "monitors": []
+    }
 }
 ]
