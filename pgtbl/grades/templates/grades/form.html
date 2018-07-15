@@ -1,5 +1,5 @@
 {% extends 'grades/list.html' %}
-{% load widget_tweaks %}
+{% load replace %}
 {% load static %}
 {% load i18n %}
 
@@ -47,7 +47,16 @@
               {{form.irat.label}}
             </label>
 
-            {% render_field form.irat class="form-control" min="0.0" max="10.0" step="0.1" %}
+            <input
+              type="number"
+              name="{{form.irat.name}}"
+              value="{{grade.irat|floatformat:2|change:", ."}}"
+              class="form-control"
+              min="0.0" max="10.0"
+              id="{{form.irat.id_for_label}}"
+              step="0.1"
+              required
+            />
           </div>
 
           <!-- grade gRAT -->
@@ -56,7 +65,16 @@
               {{form.grat.label}}
             </label>
 
-            {% render_field form.grat class="form-control" min="0.0" max="10.0" step="0.1" %}
+            <input
+              type="number"
+              name="{{form.grat.name}}"
+              value="{{grade.grat|floatformat:2|change:", ."}}"
+              class="form-control"
+              min="0.0" max="10.0"
+              id="{{form.grat.id_for_label}}"
+              step="0.1"
+              required
+            />
           </div>
 
           <!-- grade practical -->
@@ -65,7 +83,16 @@
               {{form.practical.label}}
             </label>
 
-            {% render_field form.practical class="form-control" min="0.0" max="10.0" step="0.1" %}
+            <input
+              type="number"
+              name="{{form.practical.name}}"
+              value="{{grade.practical|floatformat:2|change:", ."}}"
+              class="form-control"
+              min="0.0" max="10.0"
+              id="{{form.practical.id_for_label}}"
+              step="0.1"
+              required
+            />
           </div>
 
           <!-- grade peer review -->
@@ -74,7 +101,16 @@
               {{form.peer_review.label}}
             </label>
 
-            {% render_field form.peer_review class="form-control" min="0.0" max="10.0" step="0.1" %}
+            <input
+              type="number"
+              name="{{form.peer_review.name}}"
+              value="{{grade.peer_review|floatformat:2|change:", ."}}"
+              class="form-control"
+              min="0.0" max="10.0"
+              id="{{form.peer_review.id_for_label}}"
+              step="0.1"
+              required
+            />
           </div>
 
           <!-- Submit button -->

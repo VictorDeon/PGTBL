@@ -76,7 +76,7 @@
                 <div class="row">
                   {% if user == discipline.teacher or user in discipline.monitors.all %}
                     <div class="col-sm-8" id="question">
-                      <h3>
+                      <h3 class="text-justify">
                         {{page_obj.number}}) {{question.title}}<br />
                         <small>{{question.topic}} - ({{question.level}})</small>
                       </h3>
@@ -104,7 +104,7 @@
                     </div>
                   {% else %}
                     <div class="col-sm-12" id="question">
-                      <h3>
+                      <h3 class="text-justify">
                         {{page_obj.number}}) {{question.title}}<br />
                         <small>{{question.topic}} - ({{question.level}})</small>
                       </h3>
