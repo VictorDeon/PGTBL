@@ -1,0 +1,93 @@
+[
+{
+    "model": "questions.question",
+    "pk": 1,
+    "fields": {
+        "title": "A inspe\u00e7\u00e3o visa encontrar erros lendo e entendendo o que o documento descreve. As inspe\u00e7\u00f5es podem ser apoiadas por listas de defeitos pr\u00e9 estabelecidas como os Checklists e seguem um processo constitu\u00eddo pelas fases: Planejamento, Apresenta\u00e7\u00e3o, Prepara\u00e7\u00e3o, Reuni\u00e3o de Inspe\u00e7\u00e3o, Retrabalho e Acompanhamento, sobre o qual \u00e9 correto afirmar que:",
+        "session": 1,
+        "level": "B\u00e1sico",
+        "topic": "Inspe\u00e7\u00f5es",
+        "is_exercise": false,
+        "created_at": "2018-07-15T02:39:24.394Z",
+        "updated_at": "2018-07-15T03:08:01.362Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 2,
+    "fields": {
+        "title": "O processo de inspe\u00e7\u00e3o \u00e9 realizado por uma equipe composta por: desenvolvedores, autores, um moderador, um redator e inspetores. Acerca dos pap\u00e9is da inspe\u00e7\u00e3o, \u00e9 incorreto afirmar que:",
+        "session": 1,
+        "level": "Intermediario",
+        "topic": "Inspe\u00e7\u00e3o",
+        "is_exercise": true,
+        "created_at": "2018-07-15T02:44:15.170Z",
+        "updated_at": "2018-07-15T02:45:27.333Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 3,
+    "fields": {
+        "title": "Considerando conceitos de verifica\u00e7\u00e3o e valida\u00e7\u00e3o, \u00e9 incorreto afirmar que:",
+        "session": 1,
+        "level": "B\u00e1sico",
+        "topic": "Verifica\u00e7\u00e3o e Valida\u00e7\u00e3o",
+        "is_exercise": false,
+        "created_at": "2018-07-15T02:50:49.502Z",
+        "updated_at": "2018-07-15T03:08:31.595Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 4,
+    "fields": {
+        "title": "Que tipo de afirma\u00e7\u00e3o \u00e9 correta sobre inspe\u00e7\u00f5es?",
+        "session": 1,
+        "level": "B\u00e1sico",
+        "topic": "Inspe\u00e7\u00f5es",
+        "is_exercise": true,
+        "created_at": "2018-07-15T02:53:52.798Z",
+        "updated_at": "2018-07-15T02:53:52.807Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 5,
+    "fields": {
+        "title": "Sobre o processo de inspe\u00e7\u00e3o \u00e9 correto afirmar que:",
+        "session": 1,
+        "level": "B\u00e1sico",
+        "topic": "Inspe\u00e7\u00f5es",
+        "is_exercise": true,
+        "created_at": "2018-07-15T02:56:46.986Z",
+        "updated_at": "2018-07-15T02:56:46.991Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 6,
+    "fields": {
+        "title": "Sobre Walkthrough, \u00e9 correto afirmar:",
+        "session": 1,
+        "level": "Avan\u00e7ado",
+        "topic": "Walkthrough",
+        "is_exercise": true,
+        "created_at": "2018-07-15T03:03:31.581Z",
+        "updated_at": "2018-07-15T03:03:31.593Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 7,
+    "fields": {
+        "title": "Com base no estudo realizado nas ref\u00earencias recomendadas assinale a alternativa correta:",
+        "session": 1,
+        "level": "Intermediario",
+        "topic": "Walkthrough",
+        "is_exercise": false,
+        "created_at": "2018-07-15T03:07:52.673Z",
+        "updated_at": "2018-07-15T03:08:11.658Z"
+    }
+}
+]
