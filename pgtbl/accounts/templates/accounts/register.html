@@ -1,6 +1,5 @@
 {% extends "core/base.html" %}
 {% load static %}
-{% load widget_tweaks %}
 {% load i18n %}
 
 {% block css %}
@@ -34,7 +33,13 @@
             <span class="input-group-addon">
               <i class="fa fa-user-circle icon-md white"></i>
             </span>
-            {% render_field form.name class="form-control" type="text" placeholder=form.name.label %}
+            <input
+              type="text"
+              name="{{form.name.name}}"
+              class="form-control"
+              placeholder="{{form.name.label}}"
+              required
+            />
           </div>
 
           <!-- Username errors -->
@@ -51,7 +56,13 @@
             <span class="input-group-addon">
               <i class="fa fa-user-circle-o icon-md white"></i>
             </span>
-            {% render_field form.username class="form-control" type="text" placeholder=form.username.label %}
+            <input
+              type="text"
+              name="{{form.username.name}}"
+              class="form-control"
+              placeholder="{{form.username.label}}"
+              required
+            />
           </div>
 
           <!-- Username errors -->
@@ -68,7 +79,13 @@
             <span class="input-group-addon">
               <i class="fa fa-envelope icon-md white"></i>
             </span>
-            {% render_field form.email type="text" class="form-control" placeholder=form.email.label %}
+            <input
+              type="email"
+              name="{{form.email.name}}"
+              class="form-control"
+              placeholder="{{form.email.label}}"
+              required
+            />
           </div>
 
           <!-- Email errors -->
@@ -86,7 +103,11 @@
                    class="white">
                    {% trans 'Select the type of user' %}:
             </label>
-            {% render_field form.is_teacher type="select" class="form-control" id=form.is_teacher_auto_id %}
+            <select name="{{form.is_teacher.name}}" type="select" class="form-control">
+              {% for type in form.is_teacher %}
+                {{type}}
+              {% endfor %}
+            </select>
           </div>
         </div>
 
@@ -96,7 +117,13 @@
             <span class="input-group-addon">
               <i class="fa fa-lock icon-md white"></i>
             </span>
-            {% render_field form.password1 type="password" class="form-control" placeholder=form.password1.label %}
+            <input
+              type="password"
+              name="{{form.password1.name}}"
+              class="form-control"
+              placeholder="{{form.password1.label}}"
+              required
+            />
           </div>
 
           <!-- Password errors -->
@@ -111,7 +138,13 @@
             <span class="input-group-addon">
               <i class="fa fa-lock icon-md white"></i>
             </span>
-            {% render_field form.password2 type="password" class="form-control" placeholder=form.password2.label %}
+            <input
+              type="password"
+              name="{{form.password2.name}}"
+              class="form-control"
+              placeholder="{{form.password2.label}}"
+              required
+            />
           </div>
 
           <!-- Password confirmation errors -->

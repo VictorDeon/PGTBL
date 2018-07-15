@@ -10,4 +10,4 @@ services:
     environment:
       - CODACY_PROJECT_TOKEN=2856565478ce4400a4cd4731950bfb89
     ports:
-      - "8080:8080"
+      - "8000:8080"
