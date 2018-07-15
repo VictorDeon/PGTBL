@@ -1,0 +1,49 @@
+[
+{
+    "model": "core.news",
+    "pk": 1,
+    "fields": {
+        "title": "Funcionalidade de book",
+        "image": "",
+        "created_at": "2018-07-15T03:28:41.277Z",
+        "link": null,
+        "content": "O software ser\u00e1 atualizado com uma nova funcionalidade que o aluno poder\u00e1 dentro do software foliar os materiais disponbilizados pelo professor.",
+        "slug": "funcionalidade-de-book",
+        "tags": [
+            3,
+            4
+        ]
+    }
+},
+{
+    "model": "core.news",
+    "pk": 2,
+    "fields": {
+        "title": "Manuten\u00e7\u00e3o dia 25/08/2018",
+        "image": "",
+        "created_at": "2018-07-15T03:29:33.876Z",
+        "link": null,
+        "content": "A equipe encontrou um problema na remo\u00e7\u00e3o de grupos e o software ficar\u00e1 off durante 2 dias para manuten\u00e7\u00e3o.",
+        "slug": "manutencao-dia-25082018",
+        "tags": [
+            5
+        ]
+    }
+},
+{
+    "model": "core.news",
+    "pk": 3,
+    "fields": {
+        "title": "Novo colaborador",
+        "image": "",
+        "created_at": "2018-07-15T03:30:16.017Z",
+        "link": null,
+        "content": "Um novo colaborador ir\u00e1 ajudar a manter o projeto, seu nome \u00e9 ...",
+        "slug": "novo-colaborador",
+        "tags": [
+            1,
+            2
+        ]
+    }
+}
+]

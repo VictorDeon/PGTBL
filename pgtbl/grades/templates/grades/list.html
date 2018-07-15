@@ -1,4 +1,4 @@
-{% extends 'TBLSessions/details.html' %}
+{% extends 'modules/details.html' %}
 {% load static %}
 {% load i18n %}
 
@@ -71,10 +71,12 @@
             {% endfor %}
           </tbody>
         </table>
-        <a href="{% url 'grades:session-csv' discipline.slug session.id %}" class="btn btn-primary btn-block">
-          <i class="fa fa-download"></i>
-          Download CSV
-        </a>
+        {% if user == discipline.teacher %}
+          <a href="{% url 'grades:session-csv' discipline.slug session.id %}" class="btn btn-primary btn-block">
+            <i class="fa fa-download"></i>
+            Download CSV
+          </a>
+        {% endif %}
       </div>
     </div>
   </div>

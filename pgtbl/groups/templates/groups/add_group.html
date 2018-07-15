@@ -1,4 +1,3 @@
-{% load widget_tweaks %}
 {% load i18n %}
 
 <div class="modal fade" id="add-modal" role="dialog">
@@ -23,14 +22,34 @@
 
           <!-- Group title field -->
           <div class="form-group">
-            <label for="group">{% trans 'Group title' %}:</label>
-            {% render_field form.title class="form-control" type="text" placeholder=form.title.help_text %}
+            <label for="{{form.title.id_for_label}}">
+              {% trans 'Group title' %}:
+            </label>
+            <input
+              type="text"
+              name="{{form.title.name}}"
+              class="form-control"
+              id="{{form.title.id_for_label}}"
+              placeholder="{{form.title.help_text}}"
+              required
+            />
           </div>
 
           <!-- Number of students field -->
           <div class="form-group">
-            <label for="number">{% trans 'Number of students' %}:</label>
-            {% render_field form.students_limit class="form-control" type="number" min="0" %}
+            <label for="{{form.students_limit.id_for_label}}">
+              {% trans 'Number of students' %}:
+            </label>
+            <input
+              type="number"
+              name="{{form.students_limit.name}}"
+              min="0"
+              value="0"
+              id="{{form.students_limit.id_for_label}}"
+              class="form-control"
+              placeholder="{{form.students_limit.help_text}}"
+              required
+            />
           </div>
 
           <!-- Submit button -->

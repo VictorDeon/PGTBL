@@ -1,0 +1,125 @@
+{% extends 'modules/details.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'questions/css/result.css' %}" />
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'questions:list' discipline.slug session.id %}">
+       {% trans 'Exercise list' %}
+    </a>
+  </li>
+  <li>
+    <a href="{% url 'questions:exercise-result' discipline.slug session.id %}">
+       {% trans 'Exercise list result' %}
+    </a>
+  </li>
+{% endblock %}
+
+<!-- Exercise list result block -->
+{% block content %}
+  <div class="container-fluid">
+    <div class="page-header profile">
+      <h1 class="white">
+        <i class="fa fa-leanpub"></i> {% trans 'Exercise list result' %}<br />
+        <small>{{discipline.title}} - {{session.title}}</small>
+      </h1>
+    </div>
+    <div class="row fix-row white">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="panel panel-default questions gradient">
+            <div class="panel-body">
+              <div class="col-sm-6">
+                <h4>
+                  <i class="fa fa-graduation-cap"></i>
+                  <span class="course">{% trans 'Course' %}:</span>
+                  {{discipline.course}}
+                </h4>
+                <h4>
+                  <i class="fa fa-book"></i>
+                  <span class="classes">{% trans 'Discipline' %}:</span>
+                  {{discipline.title}}
+                </h4>
+                <h4>
+                  <i class="fa fa-user"></i>
+                  <span class="teacher">{% trans 'Teacher' %}:</span>
+                  {{discipline.teacher.get_short_name}}
+                </h4>
+              </div>
+              <div class="col-sm-6">
+                <div class="row">
+                  <h4 class="pull-right">
+                    {{session.created_at.date}}
+                    <i class="fa fa-calendar"></i>
+                  </h4>
+                </div>
+                <div class="row">
+                  <a href="{% url 'questions:exercise-reset' discipline.slug session.id %}"
+                     class="btn btn-primary reset pull-right">
+                     <i class="fa fa-mail-reply"></i>
+                     {% trans 'Reset' %}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row fix-row">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h3>{% trans 'Result' %}</h3>
+          <hr />
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>{% trans 'Question' %}</th>
+                <th>{% trans 'Correct option' %}</th>
+              </tr>
+            </thead>
+            <tbody class="text-justify">
+                {% for submission in submissions %}
+                  <tr>
+                    <td>{{forloop.counter}}) {{submission.question.title}}</td>
+                    <td>
+                      <span class="label label-primary">{{submission.score}}</span>
+                      {{submission.correct_alternative}}
+                    </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-sm-10">
+              <a href="{% url 'questions:exercise-result-csv' discipline.slug session.id %}"
+                 class="btn btn-primary btn-block">
+                 <i class="fa fa-download"></i>
+                 {% trans 'Download CSV' %}
+              </a>
+            </div>
+            <div class="col-sm-2">
+              <p><b>{% trans 'Total' %}</b> = {{result.score}}/{{result.total}}</p>
+              <p>
+                <b>{% trans 'Grade' %}</b> =
+                {% if result.grade >= "5" %}
+                  <span class="text-success">{{result.grade}}</span>
+                {% else %}
+                  <span class="text-danger">{{result.grade}}</span>
+                {% endif %}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

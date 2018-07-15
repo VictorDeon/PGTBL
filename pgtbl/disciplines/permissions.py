@@ -5,6 +5,18 @@ User = get_user_model()
 
 
 @register_object_checker()
+def create_discipline(permission, user, view):
+    """
+    Only teacher can create disciplines.
+    """
+
+    if user.is_teacher:
+        return True
+
+    return False
+
+
+@register_object_checker()
 def change_own_discipline(permission, user, view):
     """
     Function to verify if user is the discipline owner.

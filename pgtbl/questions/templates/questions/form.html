@@ -1,0 +1,177 @@
+{% extends 'exercise/list.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'questions/css/form.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    <!-- Header -->
+    <div class="page-header profile">
+      <h1 class="white">
+        {% trans 'Update Question' %}<br />
+        <small>{{discipline.title}} - {{session.title}}: {{question}}</small>
+      </h1>
+    </div>
+
+    <!-- Form -->
+    <div class="row">
+      <div class="col-sm-12">
+        <!-- Form without html5 validation -->
+        <form method="post" novalidate>
+          <!-- Form security -->
+          {% csrf_token %}
+
+          <!-- Get all erros from form -->
+          {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+              {{ error }}
+            </div>
+          {% endfor %}
+
+          <!-- Question title field -->
+          <div class="{% if form.title.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
+            <div class="input-group">
+              <!-- Field icon -->
+              <span class="input-group-addon gradient"
+                    data-toggle="tooltip"
+                    title="{{form.title.label}}">
+                    <i class="fa fa-leaf"></i>
+              </span>
+
+              <!-- Field -->
+              <input
+                class="form-control"
+                type="text"
+                name="{{form.title.name}}"
+                placeholder="{{form.title.help_text}}"
+                value="{{question.title}}"
+              />
+            </div>
+
+            <!-- Field errors -->
+            {% for error in form.title.errors %}
+              <span class="error">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+
+          <!-- Question topic field -->
+          <div class="{% if form.topic.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
+            <div class="input-group">
+              <!-- Field icon -->
+              <span class="input-group-addon gradient"
+                    data-toggle="tooltip"
+                    title="{{form.title.label}}">
+                    <i class="fa fa-book"></i>
+              </span>
+
+              <!-- Field -->
+              <input
+                class="form-control"
+                type="text"
+                name="{{form.topic.name}}"
+                placeholder="{{form.topic.help_text}}"
+                value="{{question.topic}}"
+              />
+            </div>
+
+            <!-- Field errors -->
+            {% for error in form.topic.errors %}
+              <span class="error">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+
+          <!-- Question level field -->
+          <div class="{% if form.level.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
+            <div class="form-group">
+              <select class="form-control" name="{{form.level.name}}">
+                {% for level in form.level %}
+                  {{level}}
+                {% endfor %}
+              </select>
+            </div>
+
+            <!-- Field errors -->
+            {% for error in form.level.errors %}
+              <span class="error">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+
+          <!-- Is exercise field -->
+          <div class="{% if form.is_exercise.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
+            <div class="form-group white">
+              <label>
+                {{form.is_exercise}}
+                {% trans 'Is exercise?' %}
+              </label>
+            </div>
+
+            <!-- Field errors -->
+            {% for error in form.is_exercise.errors %}
+              <span class="error">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+
+          <!-- Formset alternatives -->
+          <fieldset class="white">
+            <legend>{% trans 'Alternatives' %}</legend>
+            <!-- Required to formset work -->
+            {{ alternatives.management_form }}
+
+            {% for form in alternatives.forms %}
+              <!-- Required fields to formset work -->
+              {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+              {% endfor %}
+
+              <div class="col-sm-10 alternative">
+                {% if form.title.value %}
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="alternatives-{{forloop.counter | add:-1}}-{{form.title.name}}"
+                    placeholder="{{form.title.help_text}}"
+                    value="{{form.title.value}}"
+                  />
+                {% else %}
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="alternatives-{{forloop.counter | add:-1}}-{{form.title.name}}"
+                    placeholder="{{form.title.help_text}}"
+                  />
+                {% endif %}
+              </div>
+              <div class="col-sm-2">
+                {{form.is_correct}}
+                {{ form.is_correct.label|capfirst }}
+              </div>
+            {% endfor %}
+          </fieldset>
+
+          <!-- Submit button -->
+          <button type="submit"
+                  class="btn btn-default submit-button center-block gradient">
+                  <i class="fa fa-send"></i>
+                  {% trans 'Submit' %}
+          </button>
+        </form>
+      </div> <!-- Close col -->
+    </div> <!-- Close row -->
+  </div> <!-- Close container -->
+{% endblock %}

@@ -1,0 +1,111 @@
+{% load i18n %}
+
+<!-- Contact -->
+<div class="parallax" id="contact">
+  <div class="row">
+    <!-- Contact header -->
+    <div class="col-sm-12">
+      <h1 class="contact-header">
+        {% trans 'Contact' %}
+      </h1>
+    </div>
+
+    <!-- Contact form -->
+    <form class="container" method="POST" autocomplete="off" novalidate>
+      <!-- Form security -->
+      {% csrf_token %}
+
+      <!-- Get all erros from form -->
+      {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+          {{ error }}
+        </div>
+      {% endfor %}
+
+      <div class="row">
+        <!-- Contact name field -->
+        <div class="col-sm-6 {% if form.name.errors %}alert alert-warning{% endif %}">
+          <div class="input-group">
+            <span class="input-group-addon gradient"
+                  data-toggle="tooltip"
+                  title="{{form.name.label}}">
+                  <i class="fa fa-user-circle contact-icon-size"></i>
+            </span>
+            <input
+              type="text"
+              name="{{form.name.name}}"
+              class="form-control"
+              placeholder="{{form.name.help_text}}"
+              required
+            />
+          </div>
+
+          <!-- Contact name errors -->
+          {% for error in form.name.errors %}
+            <span class="error">
+              {{ error }}
+            </span>
+          {% endfor %}
+        </div>
+
+        <!-- Contact email field -->
+        <div class="col-sm-6 {% if form.email.errors %}alert alert-warning{% endif %}">
+          <div class="input-group">
+            <span class="input-group-addon gradient"
+                  data-toggle="tooltip"
+                  title="{{form.email.label}}">
+                  <i class="fa fa-envelope contact-icon-size"></i>
+            </span>
+            <input
+              type="email"
+              name="{{form.email.name}}"
+              class="form-control"
+              placeholder="{{form.email.help_text}}"
+              required
+            />
+          </div>
+
+          <!-- Contact email errors -->
+          {% for error in form.email.errors %}
+            <span class="error">
+              {{ error }}
+            </span>
+          {% endfor %}
+        </div>
+      </div> <!-- End row -->
+
+      <br />
+
+      <!-- Contact message field -->
+      <div class="row">
+        <div class="col-sm-12 {% if form.message.errors %}alert alert-warning{% endif %}">
+          <div class="form-group">
+            <textarea
+              name="{{form.message.name}}"
+              class="form-control"
+              placeholder="{{form.message.help_text}}"
+              rows="10"></textarea>
+          </div>
+
+          <!-- Contact message errors -->
+          {% for error in form.comment.errors %}
+            <span class="error">
+              {{ error }}
+            </span>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- submit and send email -->
+      <div class="row">
+        <div class="col-sm-12">
+          <button type="submit"
+                  class="btn btn-primary send-button">
+                  <i class="fa fa-send"></i>
+                  {% trans 'Send' %}
+          </button>
+        </div>
+      </div>
+    </form> <!-- End contact email -->
+  </div> <!-- End Row -->
+</div> <!-- End div parallax -->

@@ -1,74 +1,63 @@
-from django.conf.urls import url, include
-from . import views_discipline
-from . import views_sessions
+from django.urls import path, include
+from . import views
 
 app_name = 'files'
 
 discipline_patterns = [
-    # /
-    url(
-        r'^$',
-        views_discipline.ListDisciplineFileView.as_view(),
+    path(
+        '',
+        views.DisciplineFileListView.as_view(),
         name='list'
     ),
-    # add/
-    url(
-        r'^add/$',
-        views_discipline.CreateDisciplineFileView.as_view(),
+    path(
+        'create/',
+        views.DisciplineFileCreateView.as_view(),
         name='create'
     ),
-    # <file.id>/edit/
-    url(
-        r'^(?P<pk>[0-9]+)/edit/$',
-        views_discipline.EditDisciplineFileView.as_view(),
+    path(
+        '<int:pk>/update/',
+        views.DisciplineFileUpdateView.as_view(),
         name='update'
     ),
-    # <file.id>/delete/
-    url(
-        r'^(?P<pk>[0-9]+)/delete/$',
-        views_discipline.DeleteDisciplineFileView.as_view(),
+    path(
+        '<int:pk>/delete/',
+        views.DisciplineFileDeleteView.as_view(),
         name='delete'
     ),
 ]
 
-session_patterns = [
-    # /
-    url(
-        r'^$',
-        views_sessions.ListSessionFileView.as_view(),
-        name='session-list'
+module_patterns = [
+    path(
+        '',
+        views.ModuleFileListView.as_view(),
+        name='module-list'
     ),
-    # add/
-    url(
-        r'^add/$',
-        views_sessions.CreateSessionFileView.as_view(),
-        name='session-create'
+    path(
+        'create/',
+        views.ModuleFileCreateView.as_view(),
+        name='module-create'
     ),
-    # <file.id>/edit/
-    url(
-        r'^(?P<file_id>[0-9]+)/edit/$',
-        views_sessions.EditSessionFileView.as_view(),
-        name='session-update'
+    path(
+        '<int:file_id>/update/',
+        views.ModuleFileUpdateView.as_view(),
+        name='module-update'
     ),
-    # <file.id>/delete/
-    url(
-        r'^(?P<file_id>[0-9]+)/delete/$',
-        views_sessions.DeleteSessionFileView.as_view(),
-        name='session-delete'
+    path(
+        '<int:file_id>/delete/',
+        views.ModuleFileDeleteView.as_view(),
+        name='module-delete'
     ),
 ]
 
 
 urlpatterns = [
-    # /profile/<discipline.slug>/sessions/<session.id>/files/...
-    url(
-        r'^profile/(?P<slug>[\w_-]+)/sessions/(?P<pk>[0-9]+)/files/',
-        include(session_patterns)
+    path(
+        'profile/<slug:slug>/sessions/<int:pk>/files/',
+        include(module_patterns)
     ),
 
-    # /profile/<discipline.slug>/files/...
-    url(
-        r'^profile/(?P<slug>[\w_-]+)/files/',
+    path(
+        'profile/<slug:slug>/files/',
         include(discipline_patterns)
     ),
 ]

@@ -1,6 +1,5 @@
 {% extends 'accounts/profile.html' %}
 {% load static %}
-{% load widget_tweaks %}
 {% load i18n %}
 
 {% block css %}
@@ -62,7 +61,23 @@
 
             <!-- Image field -->
             <div class="input-group center-block white">
-              {% render_field form.photo class="form-control" type="file" %}
+              {% if user.photo %}
+                Atualmente:
+                <a href="{{user.photo.url}}">{{user.photo.name}}</a>
+                <input
+                  type="checkbox"
+                  name="{{form.photo.name}}-clear"
+                  id="{{form.photo.name}}-clear_id"
+                />
+                <label for="{{form.photo.name}}-clear_id">Limpar</label>
+                <br />Modificar:
+              {% endif %}
+              <input
+                type="file"
+                name="{{form.photo.name}}"
+                id="{{form.photo.id_for_label}}"
+                class="form-control"
+              />
             </div>
 
             <hr />
@@ -75,7 +90,13 @@
                       title="{{ form.username.label }}">
                       <i class="fa fa-user-secret icon-md"></i>
                 </span>
-                {% render_field form.username class="form-control" type="text" placeholder=form.username.help_text %}
+                <input
+                  type="text"
+                  class="form-control"
+                  name="{{form.username.name}}"
+                  placeholder="{{form.username.help_text}}"
+                  value="{{user.username}}"
+                />
               </div>
 
               <!-- Username errors -->
@@ -94,7 +115,13 @@
                       title="{{ form.name.label }}">
                       <i class="fa fa-user icon-md"></i>
                 </span>
-                {% render_field form.name class="form-control" type="text" placeholder=form.name.help_text %}
+                <input
+                  type="text"
+                  class="form-control"
+                  name="{{form.name.name}}"
+                  placeholder="{{form.name.help_text}}"
+                  value="{{user.name}}"
+                />
               </div>
 
               <!-- Name errors -->
@@ -113,7 +140,14 @@
                       title="{{ form.email.label }}">
                       <i class="fa fa-envelope"></i>
                 </span>
-                {% render_field form.email class="form-control" type="email" placeholder=form.email.help_text %}
+                <input
+                  type="email"
+                  name="{{form.email.name}}"
+                  value="{{user.email}}"
+                  class="form-control"
+                  placeholder="{{form.email.help_text}}"
+                  required
+                />
               </div>
 
               <!-- Email errors -->
@@ -132,7 +166,14 @@
                       title="{{ form.institution.label }}">
                       <i class="fa fa-institution"></i>
                 </span>
-                {% render_field form.institution class="form-control" type="text" placeholder=form.institution.help_text %}
+                <input
+                  type="text"
+                  name="{{form.institution.name}}"
+                  value="{{user.institution}}"
+                  class="form-control"
+                  placeholder="{{form.institution.help_text}}"
+                  required
+                />
               </div>
 
               <!-- Institution errors -->
@@ -152,7 +193,14 @@
                   title="{{ form.course.label }}">
                   <i class="fa fa-graduation-cap"></i>
                 </span>
-                {% render_field form.course class="form-control" type="text" placeholder=form.course.help_text %}
+                <input
+                  type="text"
+                  name="{{form.course.name}}"
+                  value="{{user.course}}"
+                  class="form-control"
+                  placeholder="{{form.course.help_text}}"
+                  required
+                />
               </div>
 
               <!-- Course errors -->

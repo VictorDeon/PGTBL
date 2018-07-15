@@ -1,6 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import get_user_model
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.test import TestCase, Client
 from django.conf import settings
 
@@ -70,13 +70,13 @@ class LoginTestCase(TestCase):
         response = self.client.get(self.login_url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'accounts/login.html')
-        self.assertTrue(not response.wsgi_request.user.is_authenticated())
+        self.assertTrue(not response.wsgi_request.user.is_authenticated)
         data = {'username': username, 'password': password}
         response = self.client.post(self.login_url, data)
         redirect_url = reverse(settings.LOGIN_REDIRECT_URL)
         self.assertEquals(response.status_code, 302)
         self.assertRedirects(response, redirect_url)
-        self.assertTrue(response.wsgi_request.user.is_authenticated())
+        self.assertTrue(response.wsgi_request.user.is_authenticated)
 
     def login_error(self, username, password):
         """

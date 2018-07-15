@@ -1,0 +1,120 @@
+{% extends 'modules/list.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'modules/css/edit.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'core/css/markdown.css' %}" type="text/css" />
+  <link href="/" type="text/css" media="all" rel="stylesheet" />
+  <script type="text/javascript" src="/static/pagedown/Markdown.Converter.js"></script>
+  <script type="text/javascript" src="/static/pagedown-extra/pagedown/Markdown.Converter.js"></script>
+  <script type="text/javascript" src="/static/pagedown/Markdown.Sanitizer.js"></script>
+  <script type="text/javascript" src="/static/pagedown/Markdown.Editor.js"></script>
+  <script type="text/javascript" src="/static/pagedown-extra/Markdown.Extra.js"></script>
+  <script type="text/javascript" src="/static/pagedown_init.js"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    <!-- Header -->
+    <div class="page-header profile">
+      <h1 class="white">
+        {% trans 'Edit' %} {{session}}
+      </h1>
+    </div>
+
+    <!-- Form -->
+    <div class="row">
+      <div class="col-sm-12">
+        <!-- Form without html5 validation -->
+        <form action="{% url 'modules:update' discipline.slug session.id %}" method="post" novalidate>
+          <!-- Form security -->
+          {% csrf_token %}
+
+          <!-- Get all erros from form -->
+          {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+              {{ error }}
+            </div>
+          {% endfor %}
+
+          <!-- Session title field -->
+          <div class="{% if form.title.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
+            <div class="input-group">
+              <!-- Field icon -->
+              <span class="input-group-addon gradient"
+                    data-toggle="tooltip"
+                    title="{{form.title.label}}">
+                    <i class="fa fa-file-o"></i>
+              </span>
+
+              <!-- Field -->
+              <input
+                type="text"
+                name="{{form.title.name}}"
+                class="form-control"
+                value="{{session.title}}"
+                placeholder="{{form.title.help_text}}"
+                required
+              />
+            </div>
+
+            <!-- Field errors -->
+            {% for error in form.title.errors %}
+              <span class="error">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+
+          <!-- Session description field -->
+          <div class="{% if form.description.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
+            <div class="form-group">
+              <div id="{{form.description.id_for_label}}_wmd_button_bar"></div>
+              <textarea
+                type="text"
+                class="form-control wmd-input"
+                name="{{form.description.name}}"
+                id="{{form.description.id_for_label}}"
+                rows="10"
+              >{{session.description}}</textarea>
+            </div>
+
+            <!-- Field errors -->
+            {% for error in form.description.errors %}
+              <span class="error">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+
+          <!-- Session description preview -->
+          <fieldset>
+            <legend>{% trans 'Preview' %}</legend>
+            <div class="col-sm-12 preview">
+              <div class="markdown-preview"></div>
+            </div>
+          </fieldset>
+
+          <!-- Is closed field -->
+          <div class="form-group white">
+            <label>
+              {{form.is_closed}}
+              {% trans 'Make session unavailable' %}
+            </label>
+          </div>
+
+          <!-- Submit button -->
+          <button type="submit"
+                  class="btn btn-default submit-button center-block gradient">
+                  <i class="fa fa-edit"></i>
+                  {% trans 'Edit' %}
+          </button>
+        </form>
+      </div> <!-- Close col -->
+    </div> <!-- Close row -->
+  </div> <!-- Close container -->
+{% endblock %}

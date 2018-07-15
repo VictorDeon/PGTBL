@@ -15,14 +15,14 @@ env:
 
 # Install docker dependencies
 before_script:
-  - docker-compose up -d
+  - docker-compose -f docker-compose.test.yml up -d
 
 # Script project dependencies
 script:
-  - docker exec tbl-local coverage run --source="." pgtbl/manage.py test pgtbl/**/tests/
-  - docker exec tbl-local coverage report -m
-  - docker exec tbl-local coverage xml
-  - docker exec tbl-local python-codacy-coverage -r coverage.xml
+  - docker exec tbl-test coverage run --source="." pgtbl/manage.py test pgtbl
+  - docker exec tbl-test coverage report -m
+  - docker exec tbl-test coverage xml
+  - docker exec tbl-test python-codacy-coverage -r coverage.xml
 
 deploy:
   # deploy to staging enviroment
@@ -30,7 +30,7 @@ deploy:
     script: bash scripts/homolog-deploy.sh
     skip_cleanup: true
     on:
-      branch: develop
+      branch: dev
 
   # deploy to production enviroment
   - provider: script

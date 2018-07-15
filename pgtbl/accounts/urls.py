@@ -1,48 +1,48 @@
 from django.contrib.auth.views import login, logout
-from django.conf.urls import url, include
+from django.urls import path, include
 from . import views
 
 app_name = 'accounts'
 
 profile_patterns = [
     # /
-    url(
-        r'^$',
-        views.ProfileView.as_view(),
+    path(
+        '',
+        views.UserDetailView.as_view(),
         name='profile'
     ),
-    # edit/
-    url(
-        r'^edit/$',
-        views.EditProfileView.as_view(),
+    # update/
+    path(
+        'update/',
+        views.UserUpdateView.as_view(),
         name='update-user'
     ),
-    # edit-password/
-    url(
-        r'^edit-password/$',
-        views.EditPasswordView.as_view(),
-        name='update-password'
-    ),
     # delete/
-    url(
-        r'^delete/$',
-        views.DeleteProfileView.as_view(),
+    path(
+        'delete/',
+        views.UserDeleteView.as_view(),
         name='delete-user'
+    ),
+    # password-update/
+    path(
+        'password-update/',
+        views.PasswordUpdateView.as_view(),
+        name='update-password'
     ),
 ]
 
 urlpatterns = [
     # /login/
-    url(
-        r'^login/$',
+    path(
+        'login/',
         login,
         # Subscribe the template_name of login view from django.
         {'template_name': 'accounts/login.html'},
         name='login'
     ),
     # /logout/
-    url(
-        r'^logout/$',
+    path(
+        'logout/',
         logout,
         # Subscribe the next_page of logout view from django.
         # The next_page redirect the view to the home page.
@@ -50,23 +50,23 @@ urlpatterns = [
         name='logout'
     ),
     # /register/
-    url(
-        r'^register/$',
-        views.RegisterView.as_view(),
+    path(
+        'register/',
+        views.UserCreateView.as_view(),
         name='register'
     ),
     # /reset-password/
-    url(
-        r'^reset-password/$',
+    path(
+        'reset-password/',
         views.ResetPasswordView.as_view(),
         name="reset-password"
     ),
     # /confirm-new-password/<key>/
-    url(
-        r'^confirm-new-password/(?P<key>\w+)/$',
+    path(
+        'confirm-new-password/<slug:key>/',
         views.ResetPasswordConfirmView.as_view(),
         name="reset-password-confirm"
     ),
     # /profile/...
-    url(r'^profile/', include(profile_patterns)),
+    path('profile/', include(profile_patterns)),
 ]

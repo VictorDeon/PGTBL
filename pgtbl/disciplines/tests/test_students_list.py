@@ -1,4 +1,4 @@
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from disciplines.models import Discipline
@@ -10,7 +10,7 @@ from core.test_utils import (
 User = get_user_model()
 
 
-class ListDisciplineTestCase(TestCase):
+class StudentsListTestCase(TestCase):
     """
     Tests to view all students and monitors from discipline.
     """
@@ -60,7 +60,7 @@ class ListDisciplineTestCase(TestCase):
 
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'disciplines/students.html')
+        self.assertTemplateUsed(response, 'students/list.html')
 
     def test_context(self):
         """

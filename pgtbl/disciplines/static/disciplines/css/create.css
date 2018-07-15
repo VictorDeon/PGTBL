@@ -9,6 +9,10 @@ fieldset > legend {
   color: white;
 }
 
+.preview {
+  background-color: white;
+}
+
 textarea {
   resize: none;
 }

@@ -1,6 +1,5 @@
 {% extends "core/base.html" %}
 {% load static %}
-{% load widget_tweaks %}
 {% load i18n %}
 
 {% block css %}
@@ -36,7 +35,13 @@
             <span class="input-group-addon">
               <i class="fa fa-user white"></i>
             </span>
-            {% render_field form.username class="input-login form-control" type="text" placeholder=form.username.label %}
+            <input
+              type="text"
+              name="{{form.username.name}}"
+              class="input-login form-control"
+              placeholder="{{form.username.label}}"
+              autofocus
+            />
           </div>
 
           <!-- Username errors -->
@@ -53,7 +58,13 @@
             <span class="input-group-addon">
               <i class="fa fa-lock icon-md white"></i>
             </span>
-            {% render_field form.password class="input-login form-control" type="password" placeholder=form.password.label %}
+            <input
+              type="password"
+              name="{{form.password.name}}"
+              class="input-login form-control"
+              placeholder="{{form.password.label}}"
+            />
+
           </div>
 
           <!-- Password errors -->

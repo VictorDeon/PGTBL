@@ -1,0 +1,310 @@
+[
+{
+    "model": "questions.alternative",
+    "pk": 1,
+    "fields": {
+        "title": "Na fase de Retrabalho, deve ser selecionado um membro do time da inspe\u00e7\u00e3o repons\u00e1vel por validar os defeitos encontrados na fase que a procede.",
+        "is_correct": false,
+        "question": 1,
+        "created_at": "2018-07-15T02:39:24.395Z",
+        "updated_at": "2018-07-15T02:39:24.395Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 2,
+    "fields": {
+        "title": "Na fase de Prepara\u00e7\u00e3o, o time de inspe\u00e7\u00e3o recebe orienta\u00e7\u00f5es acerca de todos os produtos (artefatos) e materiais que ser\u00e3o inspecionados principalmente sobre quais s\u00e3o os principais pontos que devem ser inspecionados,",
+        "is_correct": true,
+        "question": 1,
+        "created_at": "2018-07-15T02:39:24.396Z",
+        "updated_at": "2018-07-15T02:39:24.396Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 3,
+    "fields": {
+        "title": "Na fase de retrabalho, integrantes do projeto s\u00e3o selecionados para corrigir os defeitos encontrados pelo time de inspe\u00e7\u00e3o. Ap\u00f3s a corre\u00e7\u00e3o no prazo estabelecido, \u00e9 iniciado a fase de Acompanhamento, na qual o time de inspe\u00e7\u00e3o \u00e9 reponsavel por avaliar se os defeitos apontados foram realmente corrigidos. Assim sendo, al\u00e9m de validar a corre\u00e7\u00e3o do defeito, \u00e9 tamb\u00e9m importante avaliar se nenhum defeito adicional foi introduzido.",
+        "is_correct": false,
+        "question": 1,
+        "created_at": "2018-07-15T02:39:24.397Z",
+        "updated_at": "2018-07-15T02:39:24.397Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 4,
+    "fields": {
+        "title": "O acompanhamento deve ser realizado somente pelo moderador",
+        "is_correct": false,
+        "question": 1,
+        "created_at": "2018-07-15T02:39:24.398Z",
+        "updated_at": "2018-07-15T02:39:24.398Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 5,
+    "fields": {
+        "title": "Autores s\u00e3o os respons\u00e1veis pela elabora\u00e7\u00e3o dos artefatos/produtos de software que ser\u00e3o inspecionados",
+        "is_correct": false,
+        "question": 2,
+        "created_at": "2018-07-15T02:44:15.171Z",
+        "updated_at": "2018-07-15T02:44:15.171Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 6,
+    "fields": {
+        "title": "O inspetor \u00e9 respons\u00e1vel por encontrar os defeitos nos artefatos inspecionados.",
+        "is_correct": false,
+        "question": 2,
+        "created_at": "2018-07-15T02:44:15.171Z",
+        "updated_at": "2018-07-15T02:44:15.172Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 7,
+    "fields": {
+        "title": "Na etapa de acompanhamento, o time de inspe\u00e7\u00e3o \u00e9 respons\u00e1vel por assegurar que todos os defeitos encontrados foram corrigidos e nenhum outro tipo de defeito foi introduzido na fase de retrabalho. O acompanhamento tamb\u00e9m pode ser realizado somente pelo moderador",
+        "is_correct": false,
+        "question": 2,
+        "created_at": "2018-07-15T02:44:15.172Z",
+        "updated_at": "2018-07-15T02:45:27.329Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 8,
+    "fields": {
+        "title": "Al\u00e9m de documentar os defeitos encontrados cabe tamb\u00e9m ao redator propor a solu\u00e7\u00e3o a eles.",
+        "is_correct": true,
+        "question": 2,
+        "created_at": "2018-07-15T02:44:15.172Z",
+        "updated_at": "2018-07-15T02:44:53.426Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 9,
+    "fields": {
+        "title": "Inspe\u00e7\u00f5es s\u00e3o boas op\u00e7\u00f5es para avaliar a conformidade com as especifica\u00e7\u00f5es, mas n\u00e3o s\u00e3o indicadas para avaliar a conformidade com os requisitos do cliente, ou seja, \u00e9 uma t\u00e9cnica eminentemente voltada para habilidade de verifica\u00e7\u00e3o e n\u00e3o de valida\u00e7\u00e3o",
+        "is_correct": false,
+        "question": 3,
+        "created_at": "2018-07-15T02:50:49.502Z",
+        "updated_at": "2018-07-15T02:50:49.502Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 10,
+    "fields": {
+        "title": "Uma das vantagens das inspe\u00e7\u00f5es \u00e9 identificar erros o quanto antes poss\u00edvel e, desta maneira facilitando a sua corre\u00e7\u00e3o afim de evitar que virem defeitos e falhas.",
+        "is_correct": false,
+        "question": 3,
+        "created_at": "2018-07-15T02:50:49.503Z",
+        "updated_at": "2018-07-15T02:50:49.503Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 11,
+    "fields": {
+        "title": "Inspe\u00e7\u00f5es s\u00e3o \u00fateis para validar requisitos n\u00e3o-funcionais de sistema como desempenho do mesmo.",
+        "is_correct": true,
+        "question": 3,
+        "created_at": "2018-07-15T02:50:49.504Z",
+        "updated_at": "2018-07-15T02:50:49.504Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 12,
+    "fields": {
+        "title": "Inspe\u00e7\u00f5es \u00e9 um tipo particular de revis\u00e3o que pode ser aplicado a todos os artefatos de software, possuindo um processo de detec\u00e7\u00e3o de defeitos rigoroso e bem definido.",
+        "is_correct": false,
+        "question": 3,
+        "created_at": "2018-07-15T02:50:49.504Z",
+        "updated_at": "2018-07-15T02:50:49.504Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 13,
+    "fields": {
+        "title": "N\u00e3o-conformidade com as especifica\u00e7\u00f5es t\u00e9cnicas s\u00e3o defeitos t\u00edpicos encontrados por inspe\u00e7\u00f5es",
+        "is_correct": true,
+        "question": 4,
+        "created_at": "2018-07-15T02:53:52.800Z",
+        "updated_at": "2018-07-15T02:53:52.800Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 14,
+    "fields": {
+        "title": "Defeitos relacionados a intera\u00e7\u00f5es inesperadas entre diferentes partes de um programa quando executados tamb\u00e9m s\u00e3o defeitos t\u00edpicos encontrados em inspe\u00e7\u00f5es.",
+        "is_correct": false,
+        "question": 4,
+        "created_at": "2018-07-15T02:53:52.802Z",
+        "updated_at": "2018-07-15T02:53:52.802Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 15,
+    "fields": {
+        "title": "Problemas de desempenho de funcionalidades da aplica\u00e7\u00e3o",
+        "is_correct": false,
+        "question": 4,
+        "created_at": "2018-07-15T02:53:52.803Z",
+        "updated_at": "2018-07-15T02:53:52.803Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 16,
+    "fields": {
+        "title": "Desenvolvedores costumam ser peritos na leitura e avalia\u00e7\u00e3o de documentos de forma que \u00e9 dispens\u00e1vel treinamentos sobre t\u00e9cnicas de leitura e avalia\u00e7\u00e3o de documentos.",
+        "is_correct": false,
+        "question": 4,
+        "created_at": "2018-07-15T02:53:52.803Z",
+        "updated_at": "2018-07-15T02:53:52.803Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 17,
+    "fields": {
+        "title": "Os resultados das inspe\u00e7\u00f5es n\u00e3o devem ser formalmente registradas como parte do processo de gerenciamento de qualidade",
+        "is_correct": false,
+        "question": 5,
+        "created_at": "2018-07-15T02:56:46.986Z",
+        "updated_at": "2018-07-15T02:56:46.986Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 18,
+    "fields": {
+        "title": "Procedimentos de gerenciamento de configura\u00e7\u00e3o e padr\u00f5es de processo n\u00e3o podem ser inspecionados",
+        "is_correct": false,
+        "question": 5,
+        "created_at": "2018-07-15T02:56:46.987Z",
+        "updated_at": "2018-07-15T02:56:46.987Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 19,
+    "fields": {
+        "title": "O objetivo da inspe\u00e7\u00e3o tamb\u00e9m \u00e9 avaliar o desempenho das pessoas na equipe de desenvolvimento",
+        "is_correct": false,
+        "question": 5,
+        "created_at": "2018-07-15T02:56:46.987Z",
+        "updated_at": "2018-07-15T02:56:46.987Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 20,
+    "fields": {
+        "title": "A t\u00e9cnica de leitura Ad Hoc pode ser usada nas inspe\u00e7\u00f5es, onde \u00e9 importante a experi\u00eancia do avaliador",
+        "is_correct": true,
+        "question": 5,
+        "created_at": "2018-07-15T02:56:46.987Z",
+        "updated_at": "2018-07-15T02:56:46.987Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 21,
+    "fields": {
+        "title": "Durante o Walkthrough, o criador de um produto, ou lider da equipe repassa ou faz uma checagem desse produto, atrav\u00e9s da execu\u00e7\u00e3o do sistema usando dados de testes.",
+        "is_correct": false,
+        "question": 6,
+        "created_at": "2018-07-15T03:03:31.587Z",
+        "updated_at": "2018-07-15T03:03:31.587Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 22,
+    "fields": {
+        "title": "Walkthrough s\u00e3o uma evolu\u00e7\u00e3o da t\u00e9cnica de Auditoria. Utiliza-se um m\u00e9todo em equipe, onde essa equipe \u00e9 normalmente composta de v\u00e1rios stakeholders do assunto em quest\u00e3o, sobre an\u00e1lise de sistemas e teste. Diretrizes gerais devem ser estabelecidas em como conduzir a an\u00e1lise e os participantes devem ser treinados nesse procedimentos. \u00c9 geralmente aconselh\u00e1vel para o time respons\u00e1vel em executar essa fun\u00e7\u00e3o aconselhe o desenvolvedor sobre pontos espec\u00edficos que ele deve cobrir durante a avalia\u00e7\u00e3o.",
+        "is_correct": false,
+        "question": 6,
+        "created_at": "2018-07-15T03:03:31.588Z",
+        "updated_at": "2018-07-15T03:03:31.588Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 23,
+    "fields": {
+        "title": "Walkthrough \u00e9 um processo de uso intensivo de pessoas com o custo variando de acordo com o n\u00famero de participantes, da equipe e do tamanho do projeto analisado.",
+        "is_correct": true,
+        "question": 6,
+        "created_at": "2018-07-15T03:03:31.588Z",
+        "updated_at": "2018-07-15T03:03:31.588Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 24,
+    "fields": {
+        "title": "Em avalia\u00e7\u00f5es de especifica\u00e7\u00f5es de alto n\u00edvel de abstra\u00e7\u00e3o, a t\u00e9cnica walkthrough requer habilidades de programadores do sistema e para avalia\u00e7\u00f5es de baixo-n\u00edvel requer habilidades de usu\u00e1rios.",
+        "is_correct": false,
+        "question": 6,
+        "created_at": "2018-07-15T03:03:31.589Z",
+        "updated_at": "2018-07-15T03:03:31.589Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 25,
+    "fields": {
+        "title": "Assim como realiza\u00e7\u00e3o de testes unit\u00e1rios, a t\u00e9cnica de Verifica\u00e7\u00e3o de Valida\u00e7\u00e3o de Software Walkthrough tem como pressuposto exig\u00edvel a execu\u00e7\u00e3o do c\u00f3digo-fonte do programa.",
+        "is_correct": false,
+        "question": 7,
+        "created_at": "2018-07-15T03:07:52.674Z",
+        "updated_at": "2018-07-15T03:07:52.674Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 26,
+    "fields": {
+        "title": "Seja utilizando t\u00e9cnicas est\u00e1ticas, como por exemplo Walkthrough, ou din\u00e2micas de verifica\u00e7\u00e3o e valida\u00e7\u00e3o de software, como por exemplo teste unit\u00e1rios, o objetivo da equipe \u00e9 encontrar os defeitos possivelmente existentes no software.",
+        "is_correct": true,
+        "question": 7,
+        "created_at": "2018-07-15T03:07:52.674Z",
+        "updated_at": "2018-07-15T03:07:52.674Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 27,
+    "fields": {
+        "title": "S\u00e3o t\u00e9cnicas st\u00e1ticas de verifica\u00e7\u00e3o e valida\u00e7\u00e3o de software: auditorias, revis\u00f5es em pares, testes de aceita\u00e7\u00e3o, inspe\u00e7\u00f5es e walkthrough",
+        "is_correct": false,
+        "question": 7,
+        "created_at": "2018-07-15T03:07:52.675Z",
+        "updated_at": "2018-07-15T03:07:52.675Z"
+    }
+},
+{
+    "model": "questions.alternative",
+    "pk": 28,
+    "fields": {
+        "title": "Walkthrough \u00e9 uma t\u00e9cnica que deve ser evitada devido ao seu alto custo de realiza\u00e7\u00e3o",
+        "is_correct": false,
+        "question": 7,
+        "created_at": "2018-07-15T03:07:52.675Z",
+        "updated_at": "2018-07-15T03:07:52.675Z"
+    }
+}
+]

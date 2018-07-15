@@ -1,11 +1,11 @@
 # TESTS --------------------------------------------------------
-tests_folder := pgtbl/**/tests/
+folder := pgtbl
 
 test: coverage report xml
 
 coverage:
 	# Execute all tests
-	coverage run --source="." pgtbl/manage.py test ${tests_folder}
+	coverage run --source="." pgtbl/manage.py test ${folder}
 
 report:
 	# Show coverage on terminal

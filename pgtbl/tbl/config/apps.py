@@ -18,7 +18,7 @@ TBL_APPS = [
     'disciplines',
     'groups',
     'files',
-    'TBLSessions',
+    'modules',
     'questions',
     'grades',
 ]

@@ -51,3 +51,15 @@ compilemessages:
 staticfiles: pgtbl/manage.py
 	# Collect all static files
 	python3 pgtbl/manage.py collectstatic --noinput
+
+# POPULATE DB --------------------------------------------------
+
+json := database.json
+
+fixture: pgtbl/manage.py
+	# Create files with data
+	python3 pgtbl/manage.py dumpdata ${model} --indent 4 > ${json}
+
+populate: pgtbl/manage.py
+	# Populate database with specific model
+	python3 pgtbl/manage.py loaddata pgtbl/**/fixtures/**.json

@@ -1,0 +1,42 @@
+[
+{
+    "model": "core.tag",
+    "pk": 1,
+    "fields": {
+        "title": "Importante",
+        "slug": "importante"
+    }
+},
+{
+    "model": "core.tag",
+    "pk": 2,
+    "fields": {
+        "title": "Novidade",
+        "slug": "novidade"
+    }
+},
+{
+    "model": "core.tag",
+    "pk": 3,
+    "fields": {
+        "title": "Em breve",
+        "slug": "em-breve"
+    }
+},
+{
+    "model": "core.tag",
+    "pk": 4,
+    "fields": {
+        "title": "Funcionalidades",
+        "slug": "funcionalidades"
+    }
+},
+{
+    "model": "core.tag",
+    "pk": 5,
+    "fields": {
+        "title": "Manuten\u00e7\u00e3o",
+        "slug": "manutencao"
+    }
+}
+]

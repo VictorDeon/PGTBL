@@ -1,11 +1,13 @@
 version: '3'
+# Development enviroment
 services:
   tbl-local:
     image: victorhad/tbl:local
     container_name: tbl-local
-    environment:
-      - CODACY_PROJECT_TOKEN=2856565478ce4400a4cd4731950bfb89
+    build:
+      context: .
+      dockerfile: ./images/local/Dockerfile
     volumes:
-      - .:/software
+      - .:/home/developer/
     ports:
-      - "8080:8080"
+      - "8000:8080"

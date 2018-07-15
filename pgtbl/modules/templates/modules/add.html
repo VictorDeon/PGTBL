@@ -1,0 +1,60 @@
+{% load i18n %}
+
+<div class="modal fade" id="add-modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button"
+                class="close"
+                data-dismiss="modal">
+                <i class="fa fa-close"></i>
+        </button>
+        <h4 class="modal-title">
+          {% trans 'Add TBL session' %}
+        </h4>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'modules:create' discipline.slug %}" method="post" novalidate>
+          {% csrf_token %}
+
+          <div class="form-group">
+            <label for="{{form.title.id_for_label}}">
+              {% trans 'Session title' %}:
+            </label>
+            <input
+              type="text"
+              name="{{form.title.name}}"
+              class="form-control"
+              id="{{form.title.id_for_label}}"
+              placeholder="{{form.title.help_text}}"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="{{form.description.id_for_label}}">
+              {% trans 'Session description' %}:
+            </label>
+            <textarea
+              type="text"
+              class="form-control wmd-input"
+              name="{{form.description.name}}"
+              id="{{form.description.id_for_label}}"
+              rows="5"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label>
+              {{form.is_closed}}
+              {% trans 'Close session' %}
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary submit-button center-block">
+            <i class="fa fa-plus"></i>
+            {% trans 'Add' %}
+          </button>
+        </form>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>

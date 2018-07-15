@@ -1,22 +1,18 @@
 {% extends 'accounts/profile.html' %}
 {% load static %}
-{% load widget_tweaks %}
 {% load i18n %}
 
 {% block css %}
   <link href="{% static 'accounts/css/sidebar.css' %}" rel="stylesheet" />
   <link href="{% static 'disciplines/css/create.css' %}" rel="stylesheet" />
   <link href="{% static 'core/css/markdown.css' %}" rel="stylesheet" />
-  {{form.media}}
-{% endblock %}
-
-{% block breadcrumb %}
-  {{ block.super }}
-  <li>
-    <a href="{% url 'disciplines:create' %}">
-       {% trans 'Create Discipline' %}
-    </a>
-  </li>
+  <link href="/" type="text/css" media="all" rel="stylesheet" />
+  <script type="text/javascript" src="/static/pagedown/Markdown.Converter.js"></script>
+  <script type="text/javascript" src="/static/pagedown-extra/pagedown/Markdown.Converter.js"></script>
+  <script type="text/javascript" src="/static/pagedown/Markdown.Sanitizer.js"></script>
+  <script type="text/javascript" src="/static/pagedown/Markdown.Editor.js"></script>
+  <script type="text/javascript" src="/static/pagedown-extra/Markdown.Extra.js"></script>
+  <script type="text/javascript" src="/static/pagedown_init.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -55,7 +51,14 @@
               </span>
 
               <!-- Field -->
-              {% render_field form.title class="form-control" type="text" placeholder=form.title.help_text %}
+              <input
+                type="text"
+                name="{{form.title.name}}"
+                class="form-control"
+                placeholder="{{form.title.help_text}}"
+                value="{{discipline.title}}"
+                required
+              />
             </div>
 
             <!-- Field errors -->
@@ -78,7 +81,13 @@
               </span>
 
               <!-- Field -->
-              {% render_field form.course class="form-control" type="text" placeholder=form.course.help_text %}
+              <input
+                type="text"
+                name="{{form.course.name}}"
+                class="form-control"
+                placeholder="{{form.course.help_text}}"
+                value="{{discipline.course}}"
+              />
             </div>
 
             <!-- Field errors -->
@@ -93,7 +102,14 @@
           <div class="{% if form.description.errors %}alert alert-warning{% endif %}">
             <!-- Input group -->
             <div class="input-group">
-              {% render_field form.description class="form-control" rows="10" cols="130" type="text" placeholder=form.description.help_text %}
+              <div id="{{form.description.id_for_label}}_wmd_button_bar"></div>
+              <textarea
+                type="text"
+                class="form-control wmd-input"
+                name="{{form.description.name}}"
+                placeholder="{{form.description.help_text}}"
+                id="{{form.description.id_for_label}}"
+                cols="130" rows="10">{{discipline.description}}</textarea>
             </div>
 
             <!-- Field errors -->
@@ -105,10 +121,12 @@
           </div>
 
           <!-- Discipline description preview -->
-          <div class="col-sm-12">
-            <h3 class="white">{% trans 'Preview' %}</h3><hr />
-            <div class="markdown-preview white"></div>
-          </div>
+          <fieldset>
+            <legend>{% trans 'Preview' %}</legend>
+            <div class="col-sm-12 preview">
+              <div class="markdown-preview"></div>
+            </div>
+          </fieldset>
 
           <!-- Classroom fieldset -->
           <fieldset>
@@ -125,7 +143,14 @@
                 </span>
 
                 <!-- Field -->
-                {% render_field form.classroom class="form-control" type="text" placeholder=form.classroom.help_text %}
+                <input
+                  type="text"
+                  name="{{form.classroom.name}}"
+                  class="form-control"
+                  placeholder="{{form.classroom.help_text}}"
+                  value="{{discipline.classroom}}"
+                  required
+                />
               </div>
 
               <!-- Field errors -->
@@ -148,7 +173,13 @@
                 </span>
 
                 <!-- Field -->
-                {% render_field form.password class="form-control" type="password" placeholder=form.password.help_text %}
+                <input
+                  type="password"
+                  name="{{form.password.name}}"
+                  class="form-control"
+                  placeholder="{{form.password.help_text}}"
+                  value="{{discipline.password}}"
+                />
               </div>
 
               <!-- Field errors -->
@@ -171,7 +202,16 @@
                 </span>
 
                 <!-- Field -->
-                {% render_field form.students_limit class="form-control" type="number" min="0" max="60" placeholder=form.students_limit.help_text %}
+                <input
+                  type="number"
+                  name="{{form.students_limit.name}}"
+                  min="0"
+                  class="form-control"
+                  max="60"
+                  placeholder="{{form.students_limit.help_text}}"
+                  value="{{discipline.students_limit}}"
+                  required
+                />
               </div>
 
               <!-- Field errors -->
@@ -194,7 +234,16 @@
                 </span>
 
                 <!-- Field -->
-                {% render_field form.monitors_limit class="form-control" type="number" min="0" max="60" placeholder=form.monitors_limit.help_text %}
+                <input
+                  type="number"
+                  name="{{form.monitors_limit.name}}"
+                  value="{{discipline.monitors_limit}}"
+                  min="0"
+                  class="form-control"
+                  max="10"
+                  placeholder="{{form.monitors_limit.help_text}}"
+                  required
+                />
               </div>
 
               <!-- Field errors -->

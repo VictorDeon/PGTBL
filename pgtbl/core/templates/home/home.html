@@ -1,0 +1,29 @@
+<!-- Extends core/base.html layout -->
+{% extends "core/base.html" %}
+
+<!-- Insert static files like images or css -->
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'home/css/parallax.css' %}">
+  <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+  <link rel="stylesheet" href="{% static 'home/css/timeline.css' %}">
+  <link rel="stylesheet" href="{% static 'news/css/home.css' %}">
+  <link rel="stylesheet" href="{% static 'home/css/contact.css' %}">
+  <link rel="stylesheet" href="{% static 'home/css/footer.css' %}">
+{% endblock %}
+
+{% block body %}
+  <header>
+    {% include 'core/navbar.html' %}
+  </header>
+  <main>
+    {% include 'home/parallax.html' %}
+    {% include 'home/features.html' %}
+    {% include 'news/news.html' %}
+    {% include 'home/contact.html' %}
+  </main>
+  <footer id="footer">
+    {% include 'home/footer.html' %}
+  </footer>
+{% endblock %}
