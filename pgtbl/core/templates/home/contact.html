@@ -1,5 +1,4 @@
 {% load i18n %}
-{% load widget_tweaks %}
 
 <!-- Contact -->
 <div class="parallax" id="contact">
@@ -32,7 +31,13 @@
                   title="{{form.name.label}}">
                   <i class="fa fa-user-circle contact-icon-size"></i>
             </span>
-            {% render_field form.name class="form-control" type="text" placeholder=form.name.help_text %}
+            <input
+              type="text"
+              name="{{form.name.name}}"
+              class="form-control"
+              placeholder="{{form.name.help_text}}"
+              required
+            />
           </div>
 
           <!-- Contact name errors -->
@@ -51,7 +56,13 @@
                   title="{{form.email.label}}">
                   <i class="fa fa-envelope contact-icon-size"></i>
             </span>
-            {% render_field form.email class="form-control" type="email" placeholder=form.email.help_text %}
+            <input
+              type="email"
+              name="{{form.email.name}}"
+              class="form-control"
+              placeholder="{{form.email.help_text}}"
+              required
+            />
           </div>
 
           <!-- Contact email errors -->
@@ -69,7 +80,11 @@
       <div class="row">
         <div class="col-sm-12 {% if form.message.errors %}alert alert-warning{% endif %}">
           <div class="form-group">
-            {% render_field form.message class="form-control" rows="10" placeholder=form.message.help_text %}
+            <textarea
+              name="{{form.message.name}}"
+              class="form-control"
+              placeholder="{{form.message.help_text}}"
+              rows="10"></textarea>
           </div>
 
           <!-- Contact message errors -->
