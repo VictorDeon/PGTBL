@@ -1,6 +1,5 @@
 {% extends 'exercise/list.html' %}
 {% load static %}
-{% load widget_tweaks %}
 {% load i18n %}
 
 {% block css %}
@@ -54,7 +53,12 @@
               </span>
 
               <!-- Field -->
-              {% render_field form.title class="form-control" type="text" placeholder=form.title.help_text %}
+              <input
+                class="form-control"
+                type="text"
+                name="{{form.title.name}}"
+                placeholder="{{form.title.help_text}}"
+              />
             </div>
 
             <!-- Field errors -->
@@ -77,7 +81,12 @@
               </span>
 
               <!-- Field -->
-              {% render_field form.topic class="form-control" type="text" placeholder=form.topic.help_text %}
+              <input
+                class="form-control"
+                type="text"
+                name="{{form.topic.name}}"
+                placeholder="{{form.topic.help_text}}"
+              />
             </div>
 
             <!-- Field errors -->
@@ -92,7 +101,11 @@
           <div class="{% if form.level.errors %}alert alert-warning{% endif %}">
             <!-- Input group -->
             <div class="form-group">
-              {% render_field form.level class="form-control" %}
+              <select class="form-control" name="{{form.level.name}}">
+                {% for level in form.level %}
+                  {{level}}
+                {% endfor %}
+              </select>
             </div>
 
             <!-- Field errors -->
@@ -108,7 +121,10 @@
             <!-- Input group -->
             <div class="form-group white">
               <label>
-                {% render_field form.is_exercise type="checkbox" %}
+                <input
+                  type="checkbox"
+                  name="{{form.is_exercise.name}}"
+                />
                 {% trans 'Is exercise?' %}
               </label>
             </div>
@@ -134,10 +150,15 @@
               {% endfor %}
 
               <div class="col-sm-10 alternative">
-                {% render_field form.title class="form-control" type="text" placeholder=form.title.help_text %}
+                <input
+                  class="form-control"
+                  type="text"
+                  name="alternatives-{{forloop.counter | add:-1}}-{{form.title.name}}"
+                  placeholder="{{form.title.help_text}}"
+                />
               </div>
               <div class="col-sm-2">
-                {% render_field form.is_correct %}
+                {{form.is_correct}}
                 {{ form.is_correct.label|capfirst }}
               </div>
             {% endfor %}

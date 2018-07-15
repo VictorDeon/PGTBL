@@ -1,5 +1,4 @@
 {% load i18n %}
-{% load widget_tweaks %}
 
 <div class="modal fade" id="irat-update" role="dialog">
   <div class="modal-dialog modal-lg">
@@ -21,7 +20,14 @@
               {{irat_form.irat_weight.label}}
             </label>
 
-            {% render_field irat_form.irat_weight class="form-control" %}
+            <input
+              type="number"
+              id="{{irat_form.irat_weight.id_for_label}}"
+              min="0"
+              name="{{irat_form.irat_weight.name}}"
+              class="form-control"
+              value="{{session.irat_weight}}"
+            />
           </div>
 
           <!-- iRAT duration -->

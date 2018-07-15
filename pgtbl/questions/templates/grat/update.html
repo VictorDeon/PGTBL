@@ -1,5 +1,4 @@
 {% load i18n %}
-{% load widget_tweaks %}
 
 <div class="modal fade" id="grat-update" role="dialog">
   <div class="modal-dialog modal-lg">
@@ -21,7 +20,14 @@
               {{grat_form.grat_weight.label}}
             </label>
 
-            {% render_field grat_form.grat_weight class="form-control" %}
+            <input
+              type="number"
+              class="form-control"
+              id="{{grat_form.weight.id_for_label}}"
+              min="0"
+              name="{{grat_form.weight.name}}"
+              value="0"
+            />
           </div>
 
           <!-- iRAT duration -->
