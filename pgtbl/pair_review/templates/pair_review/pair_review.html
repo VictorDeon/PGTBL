@@ -1,0 +1,177 @@
+{% extends 'modules/details.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}"/>
+  <link rel="stylesheet" href="{% static 'pair_review/pair_review.css' %}"/>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="page-header">
+      <h1 class="white">
+        <i class="fa fa-vcard-o"></i> {% trans 'Pair Review' %}<br/>
+        <small>{{ discipline.title }}</small>
+      </h1>
+    </div>
+    <div class="row fix-row">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="panel panel-default gradient header-up">
+            <div class="panel-body">
+              <div class="col-sm-7">
+                <table class="table table-responsive">
+                  <tr>
+                    <th>
+                      <i class="fa fa-graduation-cap"></i>
+                      {% trans 'Course' %}:
+                    </th>
+                    <td>{{ discipline.course }}</td>
+                  </tr>
+                  <tr>
+                    <th>
+                      <i class="fa fa-book"></i>
+                      {% trans 'Discipline' %}:
+                    </th>
+                    <td>{{ discipline.title }}</td>
+                  </tr>
+                  <tr>
+                    <th>
+                      <i class="fa fa-user"></i>
+                      {% trans 'Teacher' %}:
+                    </th>
+                    <td>{{ discipline.teacher.get_short_name }}</td>
+                  </tr>
+                  {% if user != discipline.teacher %}
+                    <tr>
+                      <th>
+                        <i class="fa fa-user"></i>
+                        {% trans 'Student' %}:
+                      </th>
+                      <td>{{ user.get_short_name }}</td>
+                    </tr>
+                  {% endif %}
+                  {% if group %}
+                    <tr>
+                      <th>
+                        <i class="fa fa-users"></i>
+                        {% trans 'Group' %}:
+                      </th>
+                      <td>{{ group }}</td>
+                    </tr>
+                  {% endif %}
+                </table>
+              </div>
+              <div class="col-sm-5">
+                {% if user == discipline.teacher %}
+                  <h1 class="time text-right">
+                    <i class="fa fa-clock-o"></i>
+                    <a href="#"
+                       data-toggle="modal"
+                       data-target="#pair-review-update">
+                       {{session.irat_duration}}:00
+                    </a>
+                  </h1>
+                  {% include 'pair_review/update.html' %}
+                {% else %}
+                  <h1 class="time text-right">
+                    <i class="fa fa-clock-o"></i>
+                    {{session.irat_duration}}:00
+                  </h1>
+                {% endif %}
+                {% if user == discipline.teacher %}
+                  <h4 class="date text-right">
+                    <a href="#"
+                       data-toggle="modal"
+                       data-target="#pair-review-date">
+                       {{session.irat_datetime|date:"d/m/Y H:i"}}
+                       <i class="fa fa-calendar"></i>
+                    </a>
+                  </h4>
+                  {% include 'pair_review/date.html' %}
+                {% else %}
+                  <h4 class="date text-right">
+                    {{session.irat_datetime|date:"d/m/Y H:i"}}
+                    <i class="fa fa-calendar"></i>
+                  </h4>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row fix-row">
+      <div class="panel panel-default header-down">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-sm-11 text-center">
+              <b>{% trans 'Pair Review' %}</b>
+            </div>
+            <div class="col-sm-1">
+              <a href="#" class="roles pull-right" data-toggle="modal" data-target="#pair-review-info">
+                <i class="fa fa-info-circle"></i>
+              </a>
+              {% include 'pair_review/info.html' %}
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <form method="post">
+                {% for student in students %}
+                  <div class="row">
+                    <div class="col-sm-2">
+                      {% if user.photo %}
+                        <img src="{{ user.photo.url }}"
+                             class="img-thumbnail img-responsive"
+                             alt="Student"
+                        />
+                      {% else %}
+                        <img src="{% static 'accounts/img/user.png' %}"
+                             class="img-thumbnail img-responsive"
+                             alt="Student"
+                        />
+                      {% endif %}
+                      <div class="form-group">
+                        <input
+                          type="number"
+                          class="form-control number"
+                          name="point"
+                          min="0"
+                          max="100"
+                          placeholder="{% trans 'Punctuation' %}"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-sm-10">
+                      <h3>{{ student.get_short_name }}</h3>
+                      <div class="form-group">
+                        <label for="comment">{% trans 'Comment' %}:</label>
+                        <textarea
+                          class="form-control"
+                          rows="5"
+                          id="comment"
+                          name="comment"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  {% if not forloop.last %}<hr />{% endif %}
+                {% empty %}
+                  <p>{% trans "There aren't students in this group." %}</p>
+                {% endfor %}
+                <hr/>
+                <button type="submit" class="btn btn-primary btn-block">
+                  {% trans 'Send' %} <i class="fa fa-send"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -21,6 +21,7 @@ TBL_APPS = [
     'modules',
     'questions',
     'grades',
+    'pair_review',
 ]
 
 EXTERNAL_APPS = [
