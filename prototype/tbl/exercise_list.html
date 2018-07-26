@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TBL</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="css/exercise.css">
+    <link rel="stylesheet" href="css/delete.css">
+    <link rel="stylesheet" href="css/add_button.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse-navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand navbar-link" href="#vai-para-a-home-logado"><i class="fa fa-home"></i> Team Based Learning</a>
+          </div>
+          <div class="collapse navbar-collapse" id="collapse-navbar">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="../home.html#home" class="navbar-link"><i class="fa fa-sign-out"></i> Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="row">
+        <div class="col-sm-12 navegation">
+            <ul class="breadcrumb pull-left">
+              <li><a href="../home.html#home">Home</a></li>
+              <li><a href="../profile/profile.html">Perfil</a></li>
+              <li><a href="../classes/class.html">Medição e Análise</a></li>
+              <li><a href="../classes/sessions.html">Sessões do TBL</a></li>
+              <li><a href="session.html">Sessão 01</a></li>
+              <li><a href="exercise_list.html">Lista de exercícios</a></li>
+            </ul>
+            <p class="pull-right">Quinta, 10 de Janeiro de 2017 <i class="fa fa-calendar"></i></p>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="col-sm-2">
+          <div class="btn-group-vertical">
+            <a href="session.html" class="btn" data-toggle="tooltip" data-placement="right" title="Sessão do TBL">
+              <i class="fa fa-puzzle-piece icon-lg"></i>
+            </a>
+            <a href="files.html" class="btn" data-toggle="tooltip" data-placement="right" title="Materiais">
+              <i class="fa fa-folder-open-o icon-lg"></i>
+            </a>
+            <a href="exercise_list.html" class="btn" data-toggle="tooltip" data-placement="right" title="Lista de execícios">
+              <i class="fa fa-leanpub icon-lg"></i>
+            </a>
+            <a href="dashboard.html" class="btn" data-toggle="tooltip" data-placement="right" title="Dashboard">
+              <i class="fa fa-bar-chart icon-lg"></i>
+            </a>
+            <a href="irat.html" class="btn" data-toggle="tooltip" data-placement="right" title="Avaliação iRAT">
+              <i class="fa fa-street-view icon-lg"></i>
+            </a>
+            <a href="grat.html" class="btn" data-toggle="tooltip" data-placement="right" title="Avaliação gRAT">
+              <i class="fa fa-group icon-lg"></i>
+            </a>
+            <a href="pratica.html" class="btn" data-toggle="tooltip" data-placement="right" title="Avaliação prática">
+              <i class="fa fa-crosshairs icon-lg"></i>
+            </a>
+            <a href="pares.html" class="btn" data-toggle="tooltip" data-placement="right" title="Avaliação em pares">
+              <i class="fa fa-vcard-o icon-lg"></i>
+            </a>
+            <a href="apelacao.html" class="btn" data-toggle="tooltip" data-placement="right" title="Apelação">
+              <i class="fa fa-gavel icon-lg"></i>
+            </a>
+          </div>
+        </div>
+        <!-- profile -->
+        <div class="col-sm-10">
+          <div class="container-fluid">
+            <div class="page-header profile">
+              <h1 class="white">
+                <i class="fa fa-leanpub"></i> Lista de Exercícios<br />
+                <small>Medição e Análise</small>
+              </h1>
+            </div>
+            <div class="row fix-row white">
+              <div class="col-sm-12">
+                <div class="row">
+                  <div class="panel panel-default questions gradient">
+                    <div class="panel-body">
+                      <div class="col-sm-6">
+                        <h4><i class="fa fa-graduation-cap"></i> <span class="course">Curso:</span> Engenharia de Software</h4>
+                        <h4><i class="fa fa-book"></i> <span class="classes">Disciplina:</span> Medição e Análise de Software</h4>
+                        <h4><i class="fa fa-user"></i> <span class="teacher">Professor:</span> Elaine Venson</h4>
+                      </div>
+                      <div class="col-sm-6">
+                        <h4 class="pull-right"><i class="fa fa-calendar"></i> Data: 01/06/2017</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row fix-row">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-sm-11 text-center">
+                      <b>LISTA DE EXERCÍCIOS</b>
+                    </div>
+                    <div class="col-sm-1">
+                      <a href="#" class="roles pull-right" data-toggle="modal" data-target="#myModal">
+                        <i class="fa fa-info-circle"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <ul class="nav nav-tabs nav-justified">
+                    <li class="active"><a data-toggle="tab" href="#basic">Básico</a></li>
+                    <li><a data-toggle="tab" href="#intermediary">Intermediario</a></li>
+                    <li><a data-toggle="tab" href="#advanced">Avançado</a></li>
+                  </ul>
+                  <div class="tab-content">
+                    <div id="basic" class="tab-pane fade in active">
+                      <div class="progress">
+                        <div
+                           class="progress-bar progress-bar-striped active"
+                           role="progressbar"
+                           aria-valuenow="40"
+                           aria-valuemin="0"
+                           aria-valuemax="100"
+                           style="width: 100%">
+                           100%
+                        </div>
+                      </div>
+                      <div class="panel panel-default">
+                        <div class="panel-body">
+                          <div class="row">
+                            <div class="col-sm-8">
+                              <h3>20) Lorem ipsum dolor sit ament?</h3>
+                            </div>
+                            <div class="col-sm-4">
+                              <div class="btn-group btn-group-justified">
+                                <div class="btn-group">
+                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit-modal">
+                                    <i class="fa fa-edit"></i> Editar
+                                  </button>
+                                </div>
+                                <div class="btn-group">
+                                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-modal">
+                                    <i class="fa fa-trash"></i> Deletar
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <hr />
+                          <form method="post">
+                            <div class="row">
+                              <div class="col-sm-1">
+                                <div class="form-group">
+                                  <select class="form-control" name="point">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-sm-11">
+                               <h4>A) Blah blah blah blah ...</h4>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-1">
+                                <div class="form-group">
+                                  <select class="form-control" name="point">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-sm-11">
+                               <h4>B) Blah blah blah blah ...</h4>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-1">
+                                <div class="form-group">
+                                  <select class="form-control" name="point">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-sm-11">
+                               <h4>C) Blah blah blah blah ...</h4>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-1">
+                                <div class="form-group">
+                                  <select class="form-control" name="point">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-sm-11">
+                               <h4>D) Blah blah blah blah ...</h4>
+                              </div>
+                            </div>
+                            <button type="button" class="btn btn-primary pull-left">
+                              <i class="fa fa-chevron-left"></i> Voltar
+                            </button>
+                            <button type="button" class="btn btn-primary pull-right disabled">
+                              Concluir <i class="fa fa-flag-checkered"></i>
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-offset-10 col-sm-2">
+                          <button type="button" class="btn btn-primary btn-lg add-button" data-toggle="modal" data-target="#add-modal">
+                            <i class="fa fa-plus"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="intermediary" class="tab-pane fade">
+                      <div class="progress">
+                        <div
+                           class="progress-bar progress-bar-striped active"
+                           role="progressbar"
+                           aria-valuenow="40"
+                           aria-valuemin="0"
+                           aria-valuemax="100"
+                           style="width: 50%">
+                           50%
+                        </div>
+                      </div>
+                      <div class="panel panel-default">
+                        <div class="panel-body">
+                          <h3>10) Lorem ipsum dolor sit ament?</h3>
+                          <hr />
+                          <form method="post">
+                            <div class="row">
+                              <div class="col-sm-1">
+                                <div class="form-group">
+                                  <select class="form-control" name="point_a">
+                                    <option value="3">3</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-sm-11">
+                               <h4>A) Blah blah blah blah ...</h4>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-1">
+                                <div class="form-group">
+                                  <select class="form-control" name="point_b">
+                                    <option value="1">1</option>
+                                    <option value="0">0</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-sm-11">
+                               <h4>B) Blah blah blah blah ...</h4>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-1">
+                                <div class="form-group">
+                                  <select class="form-control" name="point_c" disabled>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-sm-11">
+                               <h4>C) Blah blah blah blah ...</h4>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-1">
+                                <div class="form-group">
+                                  <select class="form-control" name="point_d" disabled>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-sm-11">
+                               <h4>D) Blah blah blah blah ...</h4>
+                              </div>
+                            </div>
+                            <button type="button" class="btn btn-primary pull-left">
+                              <i class="fa fa-chevron-left"></i> Voltar
+                            </button>
+                            <button type="button" class="btn btn-primary pull-right">
+                              Próxima <i class="fa fa-chevron-right"></i>
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="advanced" class="tab-pane fade">
+                      <div class="progress">
+                        <div
+                           class="progress-bar progress-bar-striped active"
+                           role="progressbar"
+                           aria-valuenow="40"
+                           aria-valuemin="0"
+                           aria-valuemax="100"
+                           style="width: 100%">
+                           100%
+                        </div>
+                      </div>
+                      <div class="panel panel-default">
+                        <div class="panel-body">
+                          <h3>Resultado</h3>
+                          <hr />
+                          <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th>Questão</th>
+                                <th>Opções marcadas</th>
+                                <th>Opção correta</th>
+                                <th>Pontuação</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                  <td>1) Blah blah blah...</td>
+                                  <td>
+                                    <ul>
+                                      <li><span class="badge">4</span> A) blah blah blah...</li>
+                                      <li><span class="badge">0</span> B) blah blah blah...</li>
+                                      <li><span class="badge">0</span> C) blah blah blah...</li>
+                                      <li><span class="badge">0</span> D) blah blah blah...</li>
+                                    </ul>
+                                  </td>
+                                  <td>A) blah blah blah...</td>
+                                  <td><span class="label label-primary">4</span></td>
+                                </tr>
+                                <tr>
+                                  <td>2) Blah blah blah...</td>
+                                  <td>
+                                    <ul>
+                                      <li><span class="badge">2</span> A) blah blah blah...</li>
+                                      <li><span class="badge">0</span> B) blah blah blah...</li>
+                                      <li><span class="badge">2</span> C) blah blah blah...</li>
+                                      <li><span class="badge">0</span> D) blah blah blah...</li>
+                                    </ul>
+                                  </td>
+                                  <td>C) blah blah blah...</td>
+                                  <td><span class="label label-primary">2</span></td>
+                                </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="panel-footer">
+                          <div class="row">
+                            <div class="col-sm-10">
+                              <button type="button" class="btn btn-primary btn-block">
+                                <i class="fa fa-download"></i> Download
+                              </button>
+                            </div>
+                            <div class="col-sm-2">
+                              <p>Total = <span class="label label-primary total">6 / 80</span></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Edit modal -->
+    <div class="modal fade" id="edit-modal" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
+            <h4 class="modal-title">Editar Questão 20</h4>
+          </div>
+          <div class="modal-body">
+            <form method="post">
+              <div class="form-group">
+                <label for="title">Título da questão:</label>
+                <input type="text" class="form-control" name='title' value="Lorem ipsum dolor sit ament?" id="title">
+              </div>
+              <div class="form-group">
+                <label for="a">Opção A:</label>
+                <input type="text" class="form-control" name='optionA' value="Blah blah blah blah..." id="a">
+              </div>
+              <div class="form-group">
+                <label for="b">Opção B:</label>
+                <input type="text" class="form-control" name='optionB' value="Blah blah blah blah..." id="b">
+              </div>
+              <div class="form-group">
+                <label for="c">Opção C:</label>
+                <input type="text" class="form-control" name='optionC' value="Blah blah blah blah..." id="c">
+              </div>
+              <div class="form-group">
+                <label for="d">Opção D:</label>
+                <input type="text" class="form-control" name='optionD' value="Blah blah blah blah..." id="d">
+              </div>
+              <button type="submit" class="btn btn-default submit-button center-block">
+                <i class="fa fa-edit"></i> Editar
+              </button>
+            </form>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Add modal -->
+    <div class="modal fade" id="add-modal" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
+            <h4 class="modal-title">Adicionar arquivo</h4>
+          </div>
+          <div class="modal-body">
+            <form method="post">
+              <div class="form-group">
+                <input type="text" class="form-control" name='title' placeholder="Título da questão">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name='optionA' placeholder="A) Primeira opção da questão">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name='optionB' placeholder="B) Segunda opção da questão">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name='optionC' placeholder="C) Terceira opção da questão">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name='optionD' placeholder="D) Quarta opção da questão">
+              </div>
+              <button type="submit" class="btn btn-default submit-button center-block">
+                <i class="fa fa-plus"></i> Criar
+              </button>
+            </form>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Delete modal -->
+    <div class="modal fade" id="delete-modal" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
+            <h4 class="modal-title">Deletar</h4>
+          </div>
+          <div class="modal-body">
+            <p>Tem certeza que deseja deletar?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">
+              <i class="fa fa-trash"></i> Deletar
+            </button>
+            <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">
+              <i class="fa fa-close"></i> Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Regras do jogo</h4>
+          </div>
+          <div class="modal-body">
+            <p>As regras do jogo são bem simples:</p>
+            <ul>
+              <li>Temos 4 opções por questão: A, B, C, D.</li>
+              <li>Você terá 4 pontos para distribuir em cada questão.</li>
+              <li>Você não pode inserir mais de 4 pontos em um opção.</li>
+              <li>A somatória das opções tem que dar 4 pontos, não pode passar disso.</li>
+              <li>Só será habilitado a opção de avançar quando a somatória dos pontos der exatamente 4 pontos.</li>
+              <li><b>Exemplo 01</b>: Inserir 4 pontos na opção A.</li>
+              <li><b>Exemplo 02</b>: Inserir 2 pontos na opção B e 2 pontos na opção C.</li>
+              <li><b>Exemplo 03</b>: Inserir 3 pontos na opção A e 1 ponto na opção D.</li>
+              <li><b>Exemplo 04</b>: Inserir 1 ponto em cada opção.</li>
+            </ul>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

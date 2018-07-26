@@ -1,0 +1,39 @@
+.panel-title > a:hover,
+.panel-title > a:focus {
+  text-decoration: none;
+}
+
+.panel-heading {
+  box-shadow: 0 1px 15px gray;
+}
+
+.panel-heading:hover {
+  background-color: #efef8f;
+  color: white;
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+.panel-footer {
+  box-shadow: 0 1px 5px grey;
+}
+
+.submit-button {
+  background-color: #263238 !important;
+  width: 97%;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.submit-button:hover, .submit-button:focus {
+  color: white;
+}
+
+.page-header {
+  margin: 15px 20px 20px;
+}
+
+.modal-footer {
+  background-color: #263238 !important;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TBL</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/authentication.css">
+    <link rel="stylesheet" href="css/parallax.css">
+    <link rel="stylesheet" href="css/timeline.css">
+    <link rel="stylesheet" href="css/news.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body data-spy="scroll" data-target=".navbar">
+    <header>
+      <!-- Navbar -->
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse-navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand navbar-link" href="#home"><i class="fa fa-home"></i> Team Based Learning</a>
+          </div>
+          <div class="collapse navbar-collapse" id="collapse-navbar">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#features" class="navbar-link"><i class="fa fa-puzzle-piece"></i> Funcionalidades</a></li>
+              <li><a href="#news" class="navbar-link"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
+              <li><a href="#contact" class="navbar-link"><i class="fa fa-envelope-o"></i> Contato</a></li>
+              <li><a href="#footer" class="navbar-link"><i class="fa fa-slideshare"></i> Sobre</a></li>
+              <li>
+                <a style="cursor:pointer" class="navbar-link" data-toggle="modal" data-target="#register-modal">
+                  <i class="fa fa-user-plus"></i> Registrar
+                </a>
+              </li>
+              <li>
+                <a style="cursor:pointer" class="navbar-link" data-toggle="modal" data-target="#login-modal">
+                  <i class="fa fa-sign-in"></i> Login
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Login -->
+      <div class="modal fade" id="login-modal" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
+              <h4 class="modal-title">Login</h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-sm-12">
+                  <img src="img/parallax.jpg" class="img-thumbnail img-responsive center-block photo" alt="Foto de perfil">
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <form action="profile/profile.html" method="post">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                    <input id="email" type="text" class="form-control" name="email" placeholder="Email">
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock icon-md"></i></span>
+                    <input id="password" type="password" class="form-control" name="password" placeholder="Senha">
+                  </div>
+                  <button type="submit" class="btn btn-default submit-button center-block">
+                    <i class="fa fa-sign-in"></i> Logar
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <a href="password.html" class="pull-right lighten-blue-grey forget-password no-decoration">Esqueceu a senha ?</a>
+              <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">
+                <i class="fa fa-close"></i> Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Register -->
+      <div class="modal fade" id="register-modal" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
+              <h4 class="modal-title">Cadastro</h4>
+            </div>
+            <div class="modal-body">
+              <form action="#" method="post">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-user-circle-o icon-md"></i></span>
+                  <input id="name" type="text" class="form-control" name="name" placeholder="Nome">
+                </div>
+                <div class="form-group">
+                  <label for="user-type">Selecione o tipo de usuário:</label>
+                  <select class="form-control" id="user-type" name="user">
+                    <option value="teacher">Professor</option>
+                    <option value="student">Aluno</option>
+                  </select>
+                </div>
+                <hr />
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-user icon-md"></i></span>
+                  <input id="email" type="text" class="form-control" name="email" placeholder="Email">
+                </div>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-lock icon-md"></i></span>
+                  <input id="password" type="password" class="form-control" name="password" placeholder="Senha">
+                </div>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-lock icon-md"></i></span>
+                  <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" placeholder="Confirmar Senha">
+                </div>
+                <button type="submit" class="btn btn-default submit-button center-block">
+                  <i class="fa fa-user-plus"></i> Registrar
+                </button>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">
+                <i class="fa fa-close"></i> Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <!-- Home parallax -->
+      <div class="parallax" id="home">
+        <div class="carousel slide" data-ride="carousel" id="slide-carousel" data-interval="30000">
+          <!-- Bottom Carousel Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#slide-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#slide-carousel" data-slide-to="1"></li>
+            <li data-target="#slide-carousel" data-slide-to="2"></li>
+            <li data-target="#slide-carousel" data-slide-to="3"></li>
+            <li data-target="#slide-carousel" data-slide-to="4"></li>
+            <li data-target="#slide-carousel" data-slide-to="5"></li>
+          </ol>
+          <!-- Carousel Slides -->
+          <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="item active">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h1 class="parallax-header">Team Based Learning</h1>
+                  <p class="parallax-text">
+                    Aprendizagem baseada em equipe ou TBL é uma estratégia de ensino aprendizagem colaborativa
+                    que se concentra em um ciclo de três passos: <b>Preparação</b>, <b>Avaliação em classe ou RAT</b>
+                    e <b>Pequeno projeto centrado na aplicação</b>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="item">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h1 class="parallax-header">Preparação</h1>
+                  <p class="parallax-text">
+                    Basicamente a(o) professor(a) irá disponibilizar de artigos e livros para estudo, na qual os alunos
+                    irão poder baixar, esse material será a preparação para a avaliação, além de ter uma área para resolução
+                    de lista de exercícios;
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="item">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h1 class="parallax-header">Avaliação em classe: iRAT</h1>
+                  <p class="parallax-text">
+                    <b>iRAT</b> Individual radiness assurance test, essa avaliação é respondido individualmente
+                    sem consulta a qualquer material, consiste de 10 a 20 questões de múltipla escolha contemplando os conceitos
+                    mais relevantes das leituras ou das atividades indicadas previamente, cada questão vai ter um número x de
+                    alternativas e o aluno poderá distribuir pontos entre as alternativas, por exemplo se a questão tem 4
+                    alternativas e ele ta em duvida entre a alternativa A e C ele pode distribuir seus 4 pontos em 2 na A e
+                    2 na C, se a resposta correta for a C ele ganha 2 pontos dos 4 e a somatória de todos os pontos dividido
+                    pelo total de pontos da prova é calculado a nota do aluno nessa avaliação.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 4 -->
+            <div class="item">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h1 class="parallax-header">Avaliação em classe: gRAT</h1>
+                  <p class="parallax-text">
+                    <b>gRAT</b> Group radiness assurance test, é a segunda avaliação do RAT, respondido em grupo sem consulta a
+                    qualquer material, consiste das mesmas questões do iRAT, terá feedbacks imediatos da resposta certa, porém
+                    ele pode ir raspando até acertar, se acertar de primeira recebe pontuação total, 4 se for o número de
+                    alternativas existentes, porém a cada erro a pontuação da questão cai um ponto se ele raspar
+                    todas as alternativa terá nota zero na questão, o somatório de todos os pontos dividido pelo total é calculado
+                    a nota do grupo nessa avaliação.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 5 -->
+            <div class="item">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h1 class="parallax-header">Projeto centrado na aplicação e apelações</h1>
+                  <p class="parallax-text">
+                    Aplicar todo o conhecimento adquirido em um contexto real do tópico proposto. Além desses 3 passos temos também
+                    <b>apelações</b> na qual as equipes podem recorrer no caso de não concordar com a resposta indicado como correta,
+                    todo apelo deve ser feito acompanhado de argumentação, sugestão de melhoria e com consulta a fontes bibliográficas
+                    pertinentes. A equipe deve também propor o novo formato e a resposta correta da questão.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 6 -->
+            <div class="item">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h1 class="parallax-header">Avaliações em pares</h1>
+                  <p class="parallax-text">
+                    Durante o semestre pode ocorrer avaliações em pares na qual cada integrante da equipe irá avaliar os outros
+                    integrantes da equipe, será disponibilizado uma pontuação máxima para cada membro distribuir entre os outros
+                    membros da equipe e um campo para dizer o porque da pontuação podendo inserir feedback para o colega de equipe,
+                    essa avaliação não precisa se identificar ela será anônima e a pontuação fará parte da nota individual de cada
+                    membro da equipe.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Features -->
+      <div class="container">
+        <div class="page-header" id="features">
+          <h1 id="timeline" class="white">Funcionalidades</h1>
+        </div>
+        <ul class="timeline">
+          <li>
+            <div class="timeline-badge primary"><i class="fa fa-graduation-cap"></i></div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4 class="timeline-title">Administrar disciplinas e alunos</h4>
+                <hr />
+              </div>
+              <div class="timeline-body">
+                <p>O professor pode adicionar, remover, criar e editar disciplinas e turmas e disponibilizar a senha de acesso a elas para os alunos entrarem. além de poder remover estudantes da turma ou da disciplina e adicioná-lo em outras turmas e disciplinas de sua autoria e gerenciar suas notas.</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="timeline-inverted">
+            <div class="timeline-badge warning"><i class="fa fa-users"></i></div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4 class="timeline-title">Funcionalidades do TBL</h4>
+                <hr />
+              </div>
+              <div class="timeline-body">
+                <p>Funcionalidades relacionadas às fases de preparação, garantia de preparo ou RAT, iRAT, gRAT e apelações, Aplicação de conceitos e avaliação em pares</p>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div class="timeline-badge danger"><i class="fa fa-bar-chart"></i></div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4 class="timeline-title">Relatório</h4>
+                <hr />
+              </div>
+              <div class="timeline-body">
+                <p>O professor terá um dashboard com relatórios do desempenho dos alunos em cada questão da avaliação, tendo um feedback para o que ele deve focar mais nas aulas, além de poder gerar um csv das provas dos alunos com suas respectivas respostas.</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="timeline-inverted">
+            <div class="timeline-badge success"><i class="fa fa-gamepad"></i></div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4 class="timeline-title">Rank e Gamificação</h4>
+                <hr />
+              </div>
+              <div class="timeline-body">
+                <p>Terá também um rank de grupos, na qual o primeiro colocado ficará exposto no Hall da Fama que será visto por novos alunos dos próximos semestres, não há rank individual porque o objetivo não é a competição e sim a colaboração. Além de ter uma gameficação na lista de exercícios entre outros locais do software.</p>
+              </div>
+            </div>
+          </li>
+        </div>
+      </div>
+      <!-- News -->
+      <div class="container">
+        <div class="page-header" id="news">
+          <h1 class="white">Notícias</h1>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="panel panel-default panel-shadow">
+                  <div class="panel-body">
+                    <img src="img/parallax.jpg" class="img-thumbnail img-responsive center-block" alt="Notícia 1">
+                    <div class="row">
+                      <div class="col-sm-4 pull-right">
+                        <a href="news/news.html#important"><span class="label label-primary news-label">Importante</span></a>
+                      </div>
+                      <div class="col-sm-8">
+                        <h3>Notícia 1 <br /><small>(21 de Agosto de 2017)</small></h3>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <p class="text-justify">Sed porttitor lectus nibh. Donec rutrum congue leo eget malesuada. Proin eget tortor risus.
+                        Sed porttitor lectus nibh. Nulla quis lorem ut libero malesuada feugiat. Pellentesque in ipsum id orci porta dapibus.
+                        Cras ultricies ligula sed magna dictum porta. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.
+                        Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vivamus magna justo, lacinia eget consectetur sed,
+                        convallis at tellus.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-footer">
+                    <a href="news/new1.html"  class="btn btn-primary">Ler mais</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="panel panel-default panel-shadow">
+                  <div class="panel-body">
+                    <img src="img/parallax.jpg" class="img-thumbnail img-responsive center-block" alt="Notícia 2">
+                    <div class="row">
+                      <div class="col-sm-4 pull-right">
+                        <a href="news/news.html#features"><span class="label label-success news-label">Funcionalidade</span></a>
+                      </div>
+                      <div class="col-sm-8">
+                        <h3>Notícia 2 <br /><small>(15 de Agosto de 2017)</small></h3>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <p class="text-justify">Sed porttitor lectus nibh. Donec rutrum congue leo eget malesuada. Proin eget tortor risus.
+                        Sed porttitor lectus nibh. Nulla quis lorem ut libero malesuada feugiat. Pellentesque in ipsum id orci porta dapibus.
+                        Cras ultricies ligula sed magna dictum porta. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.
+                        Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vivamus magna justo, lacinia eget consectetur sed,
+                        convallis at tellus.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-footer">
+                    <a href="news/new2.html" class="btn btn-primary">Ler mais</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <a href="news/news.html" class="btn btn-primary news-button">Ver todas as nóticias</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Contact -->
+      <div class="parallax" id="contact">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 class="contact-header">Contact</h1>
+          </div>
+          <form class="container" action="#" method="post" autocomplete="off" novalidate>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="input-group">
+                  <span class="input-group-addon gradient"><i class="fa fa-user-circle contact-icon-size"></i></span>
+                  <input id="name" type="text" class="form-control" name="name" placeholder="Nome">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="input-group">
+                  <span class="input-group-addon gradient"><i class="fa fa-envelope contact-icon-size"></i></span>
+                  <input id="email" type="text" class="form-control" name="email" placeholder="Email">
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <textarea class="form-control" rows="10" id="comment" placeholder="Comentário"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <button type="submit" class="btn btn-primary send-button"><i class="fa fa-send"></i> Enviar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer id="footer">
+      <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a data-toggle="tab" href="#advantages" class="footer-navbar"><i class="fa fa-list-alt"></i> Vantagens</a></li>
+        <li><a data-toggle="tab" href="#about" class="footer-navbar"><i class="fa fa-slideshare"></i> Sobre</a></li>
+        <li><a data-toggle="tab" href="#wiki" class="footer-navbar"><i class="fa fa-leanpub"></i> Documentação</a></li>
+        <li><a data-toggle="tab" href="#how-to-use" class="footer-navbar"><i class="fa fa-film"></i> Como usar</a></li>
+      </ul>
+      <div class="tab-content container">
+        <!-- Advantages -->
+        <div id="advantages" class="panel panel-primary tab-pane fade in active footer-panel-shadow">
+          <div class="panel-heading">Vantagens</div>
+          <div class="panel-body text-justify">
+            <p>A utilização do TBL tem algumas vantagens:</p>
+            <ol>
+              <li><b>Colaboração</b>: O principal objetivo é o aprendizado em equipes, um ajudando o outro.</li>
+              <li><b>Entreterimento</b>: O software tem uma ideia de gameficação, tendo competição entre equipes para
+              que as equipes possam treinar a colaboração entre si.</li>
+              <li><b>Capacitação</b>: Profissionais mais capacitados para o mercado de trabalho, pois a métodologia faz o estudante
+              estudar constantemente e trabalhar em equipe..</li>
+              <li><b>Inovação</b>: Sair do comodismo e experimentar o novo.</li>
+              <li><b>Ensino aprendizado</b>: O aluno se torna mais participativo e motivado a aprender e o professor torna a aula
+              mais ativa e interessante.</li>
+            </ol>
+          </div>
+        </div>
+        <!-- About -->
+        <div id="about" class="panel panel-primary tab-pane fade footer-panel-shadow">
+          <div class="panel-heading">Sobre</div>
+          <div class="panel-body text-justify">
+            <p>Projeto desenvolvido por um aluno da universidade de brasília, UnB-Gama, no curso de Engenharia de Software,
+            através do trabalho de conclusão de curso ou TCC.</p>
+            <ul>
+              <li><b>Aluno:</b> <a href="https://github.com/VictorArnaud" target="_blank">Victor Arnaud</a></li>
+              <li><b>Orientador(a):</b> Cristiane Soares Ramos</li>
+              <li><b>Universidade:</b> Universidade de Brasília - UnB campus Gama</li>
+              <li><b>Curso:</b> Engenharia de Software</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Documentation -->
+        <div id="wiki" class="panel panel-primary tab-pane fade footer-panel-shadow">
+          <div class="panel-heading">Documentação</div>
+          <div class="panel-body">A documentação se encontra na
+            <a href="https://github.com/TeamBasedLearning/Service/wiki" target="_blank">wiki do projeto</a>.
+            <p>Repositorio do <a href="https://github.com/TeamBasedLearning" target="_blank">projeto</a>.
+          </div>
+        </div>
+        <!-- How to use -->
+        <div id="how-to-use" class="panel panel-primary tab-pane fade footer-panel-shadow">
+          <div class="panel-heading">Como usar</div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="embed-responsive embed-responsive-4by3">
+                  <iframe class="video-frame embed-responsive-item" src="https://www.youtube.com/embed/LwUO6HEq6kM" frameborder="0" allowfullscreen>
+                  </iframe>
+                </div>
+                <p>Vídeo de como usar o TBL.</p>
+              </div>
+              <div class="col-sm-6">
+                <div class="embed-responsive embed-responsive-4by3">
+                  <iframe class="video-frame embed-responsive-item" src="https://www.youtube.com/embed/yHssVGwCgDw" frameborder="0" allowfullscreen>
+                  </iframe>
+                </div>
+                <p>Vídeo de como usar o software.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Copyright -->
+      <div class="row">
+        <div class="col-sm-12">
+          <p class="copyright">
+            <i class="fa fa-copyright"></i> Team Based Learning. Code licensed GPL-3.0
+          </p>
+          <p class="copyright">
+          Designed and built by
+          <a href="https://github.com/orgs/TeamBasedLearning/people" target="_blank">Team members</a> with the help of our backend
+          <a href="https://github.com/TeamBasedLearning/Service/graphs/contributors" target="_blank">contributor</a> and frontend
+          <a href="https://github.com/TeamBasedLearning/Client/graphs/contributors" target="_blank">contributor</a>.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+.input-group {
+  padding: 10px;
+}
+
+.form-group {
+  padding-bottom: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.icon-md {
+  font-size: 20px;
+}
+
+.submit-button {
+  width: 100%;
+  margin-bottom: 10px;
+}

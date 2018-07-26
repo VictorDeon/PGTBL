@@ -1,0 +1,73 @@
+.panel-heading {
+  background-color: #286090 !important;
+  color: white !important;
+}
+
+.header-up {
+  border-radius: 5px 5px 0 0;
+  margin-bottom: 0;
+}
+
+.header-down {
+  border-radius: 0;
+}
+
+.course {
+  padding-right: 34px;
+}
+
+.classes {
+  padding-right: 5px;
+}
+
+.fa-book {
+  padding-right: 7px;
+}
+
+.teacher {
+  padding-right: 4px;
+}
+
+.fa-user {
+  padding-right: 11px;
+}
+
+.student {
+  padding-right: 35px;
+}
+
+.time {
+  position:relative;
+  bottom: 25px;
+  left: 25px;
+}
+
+.date {
+  position: relative;
+  top: 20px;
+  left: 50px;
+}
+
+.roles {
+  cursor: pointer;
+  color: whitesmoke;
+  font-size: 25px;
+}
+
+.roles:hover, .roles:focus {
+  color: white;
+}
+
+.number {
+  margin-top: 25px;
+}
+
+textarea {
+  resize: none;
+}
+
+.modal-footer {
+  background-color: #263238 !important;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
