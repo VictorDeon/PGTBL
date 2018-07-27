@@ -131,28 +131,6 @@ class PeerReviewAnswerView(LoginRequiredMixin,
 
         return super(PeerReviewAnswerView, self).form_valid(form)
 
-    def create_submission(self, student, form):
-        """
-        Create a submission with form inputs
-        """
-
-        PeerReviewSubmission.objects.create(
-            session=self.get_session(),
-            score=int(form['score'].value()),
-            comment=form['comment'].value(),
-            user=self.request.user,
-            student=student,
-            group=self.get_student_group()
-        )
-
-        # self.send_message(student, form)
-
-        messages.success(
-            self.request,
-            _("Peer Review answered successfully.")
-        )
-
-
     def validate_answer(self, form):
         """
         Verify if score is correct
@@ -196,3 +174,24 @@ class PeerReviewAnswerView(LoginRequiredMixin,
             return False
 
         return True
+
+    def create_submission(self, student, form):
+        """
+        Create a submission with form inputs
+        """
+
+        PeerReviewSubmission.objects.create(
+            session=self.get_session(),
+            score=int(form['score'].value()),
+            comment=form['comment'].value(),
+            user=self.request.user,
+            student=student,
+            group=self.get_student_group()
+        )
+
+        # self.send_message(student, form)
+
+        messages.success(
+            self.request,
+            _("Peer Review answered successfully.")
+        )
