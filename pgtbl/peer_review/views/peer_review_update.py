@@ -125,13 +125,14 @@ class PeerReviewUpdateView(LoginRequiredMixin,
         for submission in submissions:
             peer_review_grade += submission.score
 
-        group_length = self.get_group_length(student)
+        group = self.get_student_group(student)
+        group_length = group.students.count()
 
         peer_review_grade = (peer_review_grade / group_length) / 10
 
         return peer_review_grade
 
-    def get_group_length(self, student):
+    def get_student_group(self, student):
         """
         Get the student group length
 
@@ -144,9 +145,7 @@ class PeerReviewUpdateView(LoginRequiredMixin,
 
         for group in groups:
             if student in group.students.all():
-                return len(group.students.all())
-
-        return 0
+                return group
 
     def update_grade(self, student, peer_review_grade):
         """
@@ -165,4 +164,8 @@ class PeerReviewUpdateView(LoginRequiredMixin,
             grade.peer_review = peer_review_grade
             grade.save()
         except:
-            pass
+            Grade.objects.create(
+                session=self.get_session(),
+                student=student,
+                group=self.get_student_group(student)
+            )

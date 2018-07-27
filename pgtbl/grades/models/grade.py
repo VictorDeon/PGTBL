@@ -74,32 +74,19 @@ class Grade(models.Model):
 
         session_grade = 0
 
-        if not self.session.peer_review_available:
-            session_grade += (
-                (self.irat * self.session.irat_weight) +
-                (self.grat * self.session.grat_weight) +
-                (self.practical * self.session.practical_weight)
-            )
+        session_grade += (
+            (self.irat * self.session.irat_weight) +
+            (self.grat * self.session.grat_weight) +
+            (self.practical * self.session.practical_weight) +
+            (self.peer_review * self.session.peer_review_weight)
+        )
 
-            session_grade /= (
-                self.session.irat_weight +
-                self.session.grat_weight +
-                self.session.practical_weight
-            )
-        else:
-            session_grade += (
-                (self.irat * self.session.irat_weight) +
-                (self.grat * self.session.grat_weight) +
-                (self.practical * self.session.practical_weight) +
-                (self.peer_review * self.session.peer_review_weight)
-            )
-
-            session_grade /= (
-                self.session.irat_weight +
-                self.session.grat_weight +
-                self.session.practical_weight +
-                self.session.peer_review_weight
-            )
+        session_grade /= (
+            self.session.irat_weight +
+            self.session.grat_weight +
+            self.session.practical_weight +
+            self.session.peer_review_weight
+        )
 
         return session_grade
 

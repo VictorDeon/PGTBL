@@ -109,7 +109,7 @@ class TBLSession(models.Model):
 
     peer_review_weight = models.PositiveIntegerField(
         _("Peer review weight"),
-        default=1,
+        default=0,
         blank=True,
         help_text=_("Peer review weight.")
     )

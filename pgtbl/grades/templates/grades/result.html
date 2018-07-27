@@ -43,11 +43,10 @@
             {% for grade in grades %}
               <tr>
                 <td>{{grade.student.username}}</td>
+                <td>{{grade.calcule_final_grade|floatformat:2}}</td>
                 {% if grade.calcule_final_grade >= 5 %}
-                  <td>{{grade.calcule_final_grade|floatformat}}</td>
                   <td class="text-success">{% trans 'Approved' %}</td>
                 {% else %}
-                  <td>{{grade.calcule_final_grade|floatformat}}</td>
                   <td class="text-danger">{% trans 'Disapproved' %}</td>
                 {% endif %}
               </tr>
