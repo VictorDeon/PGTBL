@@ -1,9 +1,6 @@
 from rolepermissions.permissions import register_object_checker
-from django.contrib.auth import get_user_model
 from django.utils import timezone
 from datetime import timedelta
-
-User = get_user_model()
 
 
 @register_object_checker()

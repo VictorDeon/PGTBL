@@ -4,7 +4,16 @@
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}"/>
-  <link rel="stylesheet" href="{% static 'pair_review/pair_review.css' %}"/>
+  <link rel="stylesheet" href="{% static 'peer_review/peer_review.css' %}"/>
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'peer_review:list' discipline.slug session.id %}">
+       {% trans 'Peer Review' %}
+    </a>
+  </li>
 {% endblock %}
 
 {% block content %}
@@ -65,36 +74,15 @@
               </div>
               <div class="col-sm-5">
                 {% if user == discipline.teacher %}
-                  <h1 class="time text-right">
-                    <i class="fa fa-clock-o"></i>
+                  <h4 class="update text-right">
+                    <i class="fa fa-edit"></i>
                     <a href="#"
                        data-toggle="modal"
                        data-target="#pair-review-update">
-                       {{session.irat_duration}}:00
-                    </a>
-                  </h1>
-                  {% include 'pair_review/update.html' %}
-                {% else %}
-                  <h1 class="time text-right">
-                    <i class="fa fa-clock-o"></i>
-                    {{session.irat_duration}}:00
-                  </h1>
-                {% endif %}
-                {% if user == discipline.teacher %}
-                  <h4 class="date text-right">
-                    <a href="#"
-                       data-toggle="modal"
-                       data-target="#pair-review-date">
-                       {{session.irat_datetime|date:"d/m/Y H:i"}}
-                       <i class="fa fa-calendar"></i>
+                       Update Peer Review
                     </a>
                   </h4>
-                  {% include 'pair_review/date.html' %}
-                {% else %}
-                  <h4 class="date text-right">
-                    {{session.irat_datetime|date:"d/m/Y H:i"}}
-                    <i class="fa fa-calendar"></i>
-                  </h4>
+                  {% include 'peer_review/update.html' %}
                 {% endif %}
               </div>
             </div>
@@ -113,19 +101,21 @@
               <a href="#" class="roles pull-right" data-toggle="modal" data-target="#pair-review-info">
                 <i class="fa fa-info-circle"></i>
               </a>
-              {% include 'pair_review/info.html' %}
+              {% include 'peer_review/info.html' %}
             </div>
           </div>
         </div>
         <div class="panel-body">
           <div class="panel panel-default">
             <div class="panel-body">
-              <form method="post">
-                {% for student in students %}
+              {% for student in students %}
+                <form action="{% url 'peer_review:answer-review' discipline.slug session.id student.id %}" method="POST">
+                  {% csrf_token %}
+
                   <div class="row">
                     <div class="col-sm-2">
-                      {% if user.photo %}
-                        <img src="{{ user.photo.url }}"
+                      {% if student.photo %}
+                        <img src="{{ student.photo.url }}"
                              class="img-thumbnail img-responsive"
                              alt="Student"
                         />
@@ -139,35 +129,37 @@
                         <input
                           type="number"
                           class="form-control number"
-                          name="point"
+                          name="{{ answer_form.score.name }}"
                           min="0"
                           max="100"
-                          placeholder="{% trans 'Punctuation' %}"
+                          placeholder="{{ answer_form.score.label }}"
                         />
                       </div>
                     </div>
                     <div class="col-sm-10">
                       <h3>{{ student.get_short_name }}</h3>
                       <div class="form-group">
-                        <label for="comment">{% trans 'Comment' %}:</label>
+                        <label for="{{ answer_form.comment.id_for_label }}">
+                          {{ answer_form.comment.label }}
+                        </label>
                         <textarea
                           class="form-control"
                           rows="5"
-                          id="comment"
-                          name="comment"
+                          id="{{ answer_form.comment.id_for_label }}"
+                          name="{{ answer_form.comment.name }}"
                         ></textarea>
                       </div>
                     </div>
                   </div>
-                  {% if not forloop.last %}<hr />{% endif %}
-                {% empty %}
-                  <p>{% trans "There aren't students in this group." %}</p>
-                {% endfor %}
-                <hr/>
-                <button type="submit" class="btn btn-primary btn-block">
-                  {% trans 'Send' %} <i class="fa fa-send"></i>
-                </button>
-              </form>
+                  <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fa fa-send"></i>
+                    {% trans 'Send to' %} {{ student.get_short_name }}
+                  </button>
+                </form>
+                {% if not forloop.last %}<hr />{% endif %}
+              {% empty %}
+                <p>{% trans "There aren't students in this group." %}</p>
+              {% endfor %}
             </div>
           </div>
         </div>

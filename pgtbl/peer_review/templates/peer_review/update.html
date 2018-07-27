@@ -10,40 +10,36 @@
         </h4>
       </div>
       <div class="modal-body">
-        <form action="#" method="post" novalidate>
+        <form action="{% url 'peer_review:update' discipline.slug session.id %}" method="post" novalidate>
           <!-- Form security -->
           {% csrf_token %}
 
           <!-- iRAT weight -->
           <div class="form-group">
-            <label for="id1">
-              Pair Review Weight
+            <label for="{{ form.peer_review_weight.id_for_label }}">
+              {{ form.peer_review_weight.label }}
             </label>
 
             <input
               type="number"
-              id="id1"
+              id="{{ form.peer_review_weight.id_for_label }}"
               min="0"
-              name="name1"
+              name="{{ form.peer_review_weight.name }}"
               class="form-control"
-              value="{{session.irat_weight}}"
+              value="{{session.peer_review_weight}}"
             />
           </div>
 
-          <!-- iRAT duration -->
-          <div class="form-group">
-            <label for="id2">
-              Pair Review duration in minutes
+          <!-- iRAT available -->
+          <div class="checkbox">
+            <label>
+              <input
+                type="checkbox"
+                name="{{ form.peer_review_available.name }}"
+                {% if session.peer_review_available %}checked{% endif %}
+              />
+              {{ form.peer_review_available.label }}
             </label>
-
-            <input
-              type="number"
-              id="id2"
-              min="0"
-              name="name2"
-              class="form-control"
-              value="{{session.irat_duration}}"
-            />
           </div>
 
           <!-- Submit button -->

@@ -1,4 +1,3 @@
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
@@ -9,20 +8,40 @@ from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from groups.models import Group
 from modules.models import TBLSession
+from peer_review.forms import PeerReviewForm, PeerReviewAnswerForm
 
 
-class PairReviewView(LoginRequiredMixin,
+class PeerReviewView(LoginRequiredMixin,
                      PermissionMixin,
                      ListView):
     """
-    Pair Review test
+    Peer Review test
     """
 
-    template_name = "pair_review/pair_review.html"
-    paginate_by = 10
+    template_name = "peer_review/peer_review.html"
     context_object_name = "students"
 
-    permissions_required = []
+    permissions_required = ['show_peer_review_test']
+
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        messages.error(
+            self.request,
+            _("You are not authorized to do this action.")
+        )
+
+        failure_redirect_path = reverse_lazy(
+            'modules:details',
+            kwargs={
+                'slug': self.kwargs.get('slug', ''),
+                'pk': self.kwargs.get('pk', '')
+            }
+        )
+
+        return failure_redirect_path
 
     def get_discipline(self):
         """
@@ -77,6 +96,8 @@ class PairReviewView(LoginRequiredMixin,
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
         context['group'] = self.get_group()
+        context['form'] = PeerReviewForm()
+        context['answer_form'] = PeerReviewAnswerForm()
 
         return context
 
@@ -88,17 +109,20 @@ class PairReviewView(LoginRequiredMixin,
         """
 
         group = self.get_group()
+        discipline = self.get_discipline()
 
         if group:
             students = group.students.exclude(
                 pk=self.request.user.pk
             )
-        else:
+        elif self.request.user != discipline.teacher:
             messages.error(
                 self.request,
                 _("{0} has't group".format(self.request.user.get_short_name()))
             )
 
+            return []
+        else:
             return []
 
         return students

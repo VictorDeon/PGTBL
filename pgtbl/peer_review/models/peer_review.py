@@ -6,7 +6,7 @@ from groups.models import Group
 from modules.models import TBLSession
 
 
-class PairReviewSubmission(models.Model):
+class PeerReviewSubmission(models.Model):
     """
     Create a pair review test.
     """
@@ -15,13 +15,13 @@ class PairReviewSubmission(models.Model):
         TBLSession,
         on_delete=models.CASCADE,
         verbose_name=_("TBL Session"),
-        related_name="pair_review_submissions"
+        related_name="peer_review_submissions"
     )
 
     score = models.PositiveIntegerField(
         _("Score"),
         default=0,
-        help_text=_("Pair Review score to specific student")
+        help_text=_("Peer Review score to specific student")
     )
 
     comment = models.TextField(
@@ -33,21 +33,21 @@ class PairReviewSubmission(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         verbose_name=_("Student who is evaluating"),
-        related_name="pair_review_created_submissions"
+        related_name="peer_review_created_submissions"
     )
 
     student = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         verbose_name=_("Student being assessed"),
-        related_name="pair_review_received_submissions"
+        related_name="peer_review_received_submissions"
     )
 
     group = models.ForeignKey(
         Group,
         on_delete=models.CASCADE,
         verbose_name=_('Group'),
-        related_name="pair_review_submissions"
+        related_name="peer_review_submissions"
     )
 
     created_at = models.DateTimeField(
@@ -58,7 +58,7 @@ class PairReviewSubmission(models.Model):
 
     def __str__(self):
         """
-        Alternative of question string.
+        Alternative of Peer Review string.
         """
 
         obj = "{0}: {1} - {2}".format(
@@ -70,6 +70,6 @@ class PairReviewSubmission(models.Model):
         return obj
 
     class Meta:
-        verbose_name = _('Pair Review Submission')
-        verbose_name_plural = _('Pair Review Submissions')
+        verbose_name = _('Peer Review Submission')
+        verbose_name_plural = _('Peer Review Submissions')
         ordering = ['user', 'student', 'created_at']

@@ -46,31 +46,17 @@ textarea {
   border-bottom-right-radius: 10px;
 }
 
-.time {
+.update {
   position:relative;
-  bottom: 25px;
-  left: 25px;
+  bottom: 15px;
+  left: 15px;
 }
 
-.time > a {
+.update > a {
   color: white;
 }
 
-.time > a:hover {
-  text-decoration: none;
-}
-
-.date {
-  position: relative;
-  top: 45px;
-  left: 25px;
-}
-
-.date > a {
-  color: white;
-}
-
-.date > a:hover {
+.update > a:hover {
   text-decoration: none;
 }
 

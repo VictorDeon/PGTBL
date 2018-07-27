@@ -5,13 +5,14 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views.generic import FormView
 
+from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from modules.models import TBLSession
 from questions.models import Question, IRATSubmission
 from questions.forms import AnswerQuestionForm
 
 
-class IRATAnswerQuestionView(LoginRequiredMixin, FormView):
+class IRATAnswerQuestionView(LoginRequiredMixin, PermissionMixin, FormView):
     """
     Answer the respective iRAT question.
     """
