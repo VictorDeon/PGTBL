@@ -136,11 +136,14 @@ class SessionFileListTestCase(TestCase):
 
     def test_users_can_see_the_files(self):
         """
-        User like students, monitors and teacher can see the list of files.
+        User like students, monitors and teacher can see the list of files
+        if tbl session is opened.
         """
 
         self.client.logout()
         self.client.login(username=self.monitor.username, password='test1234')
+        self.module.is_closed = False
+        self.module.save()
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
 

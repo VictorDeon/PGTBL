@@ -30,6 +30,26 @@ class PracticalTestUpdateView(LoginRequiredMixin,
         'show_tbl_session'
     ]
 
+    def get_failure_redirect_path(self):
+        """
+        Get the failure redirect path.
+        """
+
+        messages.error(
+            self.request,
+            _("You are not authorized to do this action.")
+        )
+
+        failure_redirect_path = reverse_lazy(
+            'modules:details',
+            kwargs={
+                'slug': self.kwargs.get('slug', ''),
+                'pk': self.kwargs.get('pk', '')
+            }
+        )
+
+        return failure_redirect_path
+
     def get_discipline(self):
         """
         Take the discipline that the tbl session belongs to
@@ -41,7 +61,7 @@ class PracticalTestUpdateView(LoginRequiredMixin,
 
         return discipline
 
-    def get_object(self):
+    def get_object(self, **kwargs):
         """
         Get the session discipline.
         """

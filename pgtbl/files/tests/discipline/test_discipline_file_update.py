@@ -129,7 +129,7 @@ class DisciplineFileTestUpdateCase(TestCase):
         self.assertFormError(
             response, 'form', 'title', _("This field is required.")
         )
-        self.discipline.refresh_from_db()
+        self.file.refresh_from_db()
         self.assertEqual(self.file.title, 'File title')
 
     def test_update_file_by_student_fail(self):

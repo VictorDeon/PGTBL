@@ -10,9 +10,9 @@ from modules.models import TBLSession
 User = get_user_model()
 
 
-class DetailPracticalTestCase(TestCase):
+class DetailTBLSessionTestCase(TestCase):
     """
-    Test to show the practical test.
+    Test to show the TBL session.
     """
 
     def setUp(self):
@@ -40,8 +40,7 @@ class DetailPracticalTestCase(TestCase):
             TBLSession,
             discipline=self.discipline,
             title="TBL session title",
-            description="TBL session description",
-            is_closed=False
+            description="TBL session description"
         )
         self.url = reverse_lazy(
             'modules:practical-details',
@@ -62,7 +61,7 @@ class DetailPracticalTestCase(TestCase):
 
     def test_redirect_to_login(self):
         """
-        User can not see practical test details without logged in.
+        User can not see tbl session details without logged in.
         """
 
         response = self.client.get(self.url)
@@ -78,8 +77,8 @@ class DetailPracticalTestCase(TestCase):
         self.client.login(username=self.teacher.username, password='test1234')
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'practical_test/detail.html')
-        self.assertTemplateUsed(response, 'practical_test/info.html')
+        self.assertTemplateUsed(response, 'modules/details.html')
+        self.assertTemplateUsed(response, 'modules/sidebar.html')
 
     def test_context(self):
         """
@@ -95,90 +94,56 @@ class DetailPracticalTestCase(TestCase):
         self.assertTrue('grat_datetime' in response.context)
         self.assertTrue('date' in response.context)
 
-    def test_student_can_access_practical_test(self):
+    def test_student_can_access_tbl_session(self):
         """
-        The practical test need to be opened by teacher for student to see
+        The TBL session need to be opened by teacher for student to see
         """
 
         self.client.login(username=self.student.username, password='test1234')
-        self.session.practical_available = True
+        self.session.is_closed = False
         self.session.save()
         response = self.client.get(self.url, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'practical_test/detail.html')
+        self.assertTemplateUsed(response, 'modules/details.html')
 
-    def test_monitor_can_access_practical_test(self):
+    def test_monitor_can_access_tbl_session(self):
         """
-        The practical test need to be opened by teacher for monitors that
-        is student can see
+        The monitors can access TBL sessions without be opened
         """
 
         self.client.login(username=self.monitor.username, password='test1234')
-        self.session.practical_available = True
-        self.session.save()
         response = self.client.get(self.url, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'practical_test/detail.html')
+        self.assertTemplateUsed(response, 'modules/details.html')
 
-    def test_monitor_teacher_can_see_practical_test(self):
+    def test_monitor_teacher_can_see_tbl_sessions(self):
         """
-        Teacher and monitors that is a teacher can see the practical test,
-        before it being opened.
+        The monitors that is a teacher can access TBL sessions without be opened
         """
 
         self.client.login(username=self.teacher_monitor.username, password='test1234')
         response = self.client.get(self.url, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'practical_test/detail.html')
+        self.assertTemplateUsed(response, 'modules/details.html')
 
-    def test_teacher_can_see_practical_test(self):
+    def test_teacher_can_see_tbl_sessions(self):
         """
-        Teacher can see the practical test, before it being opened.
+        Teacher can see the tbl sessions before it being opened.
         """
 
         self.client.login(username=self.teacher.username, password='test1234')
         response = self.client.get(self.url, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'practical_test/detail.html')
+        self.assertTemplateUsed(response, 'modules/details.html')
 
-    def test_student_can_not_access_practical_test(self):
+    def test_student_can_not_access_tbl_session(self):
         """
-        The practical test need to be opened by teacher for student to see
+        The tbl session need to be opened by teacher for student to see
         """
 
         self.client.login(username=self.student.username, password='test1234')
         response = self.client.get(self.url, follow=True)
-        session_url = reverse_lazy(
-            'modules:details',
-            kwargs={
-                'slug': self.discipline.slug,
-                'pk': self.session.pk
-            }
-        )
-        self.assertRedirects(response, session_url)
-        self.assertTemplateUsed(response, 'modules/details.html')
-        check_messages(
-            self, response,
-            tag='alert-danger',
-            content="You are not authorized to do this action."
-        )
-
-    def test_monitor_can_not_access_practical_test(self):
-        """
-        The practical test need to be opened by teacher for monitor to see
-        """
-
-        self.client.login(username=self.monitor.username, password='test1234')
-        response = self.client.get(self.url, follow=True)
-        session_url = reverse_lazy(
-            'modules:details',
-            kwargs={
-                'slug': self.discipline.slug,
-                'pk': self.session.pk
-            }
-        )
-        self.assertRedirects(response, session_url)
-        self.assertTemplateUsed(response, 'modules/details.html')
+        self.assertRedirects(response, reverse_lazy('accounts:profile'))
         check_messages(
             self, response,
             tag='alert-danger',

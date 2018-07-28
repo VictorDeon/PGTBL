@@ -33,7 +33,7 @@ class TBLSession(models.Model):
 
     is_closed = models.BooleanField(
         _("Is closed?"),
-        default=False,
+        default=True,
         help_text=_("Close TBL session.")
     )
 
@@ -97,6 +97,7 @@ class TBLSession(models.Model):
 
     practical_description = models.TextField(
         _('Description'),
+        blank=True,
         help_text=_('Practical test description.')
     )
 

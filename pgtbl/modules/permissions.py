@@ -42,12 +42,12 @@ def show_tbl_session(permission, user, view):
     discipline = view.get_discipline()
     session = view.get_object()
 
-    if session.is_closed and \
-       user not in discipline.monitors.all() and \
-       user != discipline.teacher:
-        return False
+    if not session.is_closed or \
+       user in discipline.monitors.all() or \
+       user == discipline.teacher:
+        return True
 
-    return True
+    return False
 
 
 @register_object_checker()
@@ -60,6 +60,8 @@ def show_practical_test(permission, user, view):
     session = view.get_object()
 
     if session.practical_available or \
+       user in discipline.monitors.all() and \
+       user.is_teacher or \
        user == discipline.teacher:
         return True
 
