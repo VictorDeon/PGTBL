@@ -73,7 +73,7 @@ class IRATView(LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         """
-        Insert discipline, session and form into exercise list context data.
+        Insert discipline, session and form into exercises list context data.
         """
 
         irat_datetime, grat_datetime = get_datetimes(self.get_session())

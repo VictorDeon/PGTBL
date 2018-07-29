@@ -1,19 +1,12 @@
-from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
-from django.test import TestCase, Client
-from core.test_utils import check_messages
-from model_mommy import mommy
-from questions.models import (
-    Question, Alternative, ExerciseSubmission,
-    IRATSubmission, GRATSubmission
-)
+from django.test import TestCase
 
 User = get_user_model()
 
 
 class ListExerciseTestCase(TestCase):
     """
-    Test to list question into exercise.
+    Test to list question into exercises.
     """
 
     def setUp(self):
@@ -32,7 +25,7 @@ class ListExerciseTestCase(TestCase):
 
     def test_redirect_to_login(self):
         """
-        User can not see the exercise list without logged in.
+        User can not see the exercises list without logged in.
         """
 
         pass
@@ -46,8 +39,8 @@ class ListExerciseTestCase(TestCase):
 
     def test_users_can_see_the_exercise_list(self):
         """
-        User like students, monitors and teacher can see the exercise list
-        with exercise questions.
+        User like students, monitors and teacher can see the exercises list
+        with exercises questions.
         """
 
         pass

@@ -179,7 +179,7 @@ class UpdateQuestionView(LoginRequiredMixin,
 
         if question.is_exercise:
             success_url = reverse_lazy(
-                'questions:list',
+                'exercises:list',
                 kwargs={
                     'slug': discipline.slug,
                     'pk': session.id

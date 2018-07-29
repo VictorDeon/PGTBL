@@ -4,18 +4,18 @@
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
-  <link rel="stylesheet" href="{% static 'questions/css/result.css' %}" />
+  <link rel="stylesheet" href="{% static 'exercises/css/result.css' %}" />
 {% endblock %}
 
 {% block breadcrumb %}
   {{ block.super }}
   <li>
-    <a href="{% url 'questions:list' discipline.slug session.id %}">
+    <a href="{% url 'exercises:list' discipline.slug session.id %}">
        {% trans 'Exercise list' %}
     </a>
   </li>
   <li>
-    <a href="{% url 'questions:exercise-result' discipline.slug session.id %}">
+    <a href="{% url 'exercises:result' discipline.slug session.id %}">
        {% trans 'Exercise list result' %}
     </a>
   </li>
@@ -60,7 +60,7 @@
                   </h4>
                 </div>
                 <div class="row">
-                  <a href="{% url 'questions:exercise-reset' discipline.slug session.id %}"
+                  <a href="{% url 'exercises:reset' discipline.slug session.id %}"
                      class="btn btn-primary reset pull-right">
                      <i class="fa fa-mail-reply"></i>
                      {% trans 'Reset' %}
@@ -100,7 +100,7 @@
         <div class="panel-footer">
           <div class="row">
             <div class="col-sm-10">
-              <a href="{% url 'questions:exercise-result-csv' discipline.slug session.id %}"
+              <a href="{% url 'exercises:result-csv' discipline.slug session.id %}"
                  class="btn btn-primary btn-block">
                  <i class="fa fa-download"></i>
                  {% trans 'Download CSV' %}

@@ -22,7 +22,7 @@
      {% trans 'Next' %}
   </a>
 {% else %}
-  <a href="{% url 'questions:exercise-result' discipline.slug session.id %}"
+  <a href="{% url 'exercises:result' discipline.slug session.id %}"
      class="btn btn-primary pull-right">
      <i class="fa fa-flag-checkered"></i>
      {% trans 'Conclude' %}

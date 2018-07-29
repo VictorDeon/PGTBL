@@ -13,7 +13,7 @@ User = get_user_model()
 
 class UpdateQuestionTestCase(TestCase):
     """
-    Test to update a question to exercise and tests.
+    Test to update a question to exercises and tests.
     """
 
     def setUp(self):

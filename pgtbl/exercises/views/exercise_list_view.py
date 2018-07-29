@@ -16,7 +16,7 @@ class ExerciseListView(LoginRequiredMixin,
     View to see all the questions that the students will answer.
     """
 
-    template_name = 'exercise/list.html'
+    template_name = 'exercises/list.html'
     paginate_by = 1
     context_object_name = 'questions'
 
@@ -49,7 +49,7 @@ class ExerciseListView(LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         """
-        Insert discipline, session and form into exercise list context data.
+        Insert discipline, session and form into exercises list context data.
         """
 
         irat_datetime, grat_datetime = get_datetimes(self.get_session())

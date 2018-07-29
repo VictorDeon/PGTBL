@@ -1,19 +1,12 @@
-from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
-from django.test import TestCase, Client
-from core.test_utils import check_messages
-from model_mommy import mommy
-from questions.models import (
-    Question, Alternative, ExerciseSubmission,
-    IRATSubmission, GRATSubmission
-)
+from django.test import TestCase
 
 User = get_user_model()
 
 
 class ExerciseResultTestCase(TestCase):
     """
-    Test to show exercise result.
+    Test to show exercises result.
     """
 
     def setUp(self):
@@ -32,14 +25,14 @@ class ExerciseResultTestCase(TestCase):
 
     def test_user_can_see_exercise_result(self):
         """
-        User like student, teacher and monitors can see the result of exercise.
+        User like student, teacher and monitors can see the result of exercises.
         """
 
         pass
 
     def test_show_only_exercise_question(self):
         """
-        Show only exercise question that are into exercise list with his
+        Show only exercises question that are into exercises list with his
         result.
         """
 
@@ -47,7 +40,7 @@ class ExerciseResultTestCase(TestCase):
 
     def test_calcule_the_exercise_result(self):
         """
-        Calcule the exercise result from exercise list.
+        Calcule the exercises result from exercises list.
         score that the user made, total of scores and grade of user.
         """
 
@@ -55,7 +48,7 @@ class ExerciseResultTestCase(TestCase):
 
     def test_reset_exercise_list(self):
         """
-        Remove all submissions from exercise list.
+        Remove all submissions from exercises list.
         """
 
         pass

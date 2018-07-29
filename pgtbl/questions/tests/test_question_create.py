@@ -13,7 +13,7 @@ User = get_user_model()
 
 class CreateQuestionTestCase(TestCase):
     """
-    Test to create a new question to exercise and tests.
+    Test to create a new question to exercises and tests.
     """
 
     def setUp(self):

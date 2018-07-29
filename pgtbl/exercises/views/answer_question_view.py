@@ -7,7 +7,8 @@ from django.views.generic import FormView
 
 from disciplines.models import Discipline
 from modules.models import TBLSession
-from questions.models import Question, ExerciseSubmission
+from questions.models import Question
+from exercises.models import ExerciseSubmission
 from questions.forms import AnswerQuestionForm
 
 
@@ -16,7 +17,7 @@ class AnswerQuestionView(LoginRequiredMixin, FormView):
     Answer the respective question.
     """
 
-    template_name = 'exercise/list.html'
+    template_name = 'exercises/list.html'
     form_class = AnswerQuestionForm
 
     # Permissions
@@ -76,7 +77,7 @@ class AnswerQuestionView(LoginRequiredMixin, FormView):
         session = self.get_session()
 
         success_url = reverse_lazy(
-            'questions:list',
+            'exercises:list',
             kwargs={
                 'slug': discipline.slug,
                 'pk': session.id
@@ -144,7 +145,6 @@ class AnswerQuestionView(LoginRequiredMixin, FormView):
         """
 
         form1, form2, form3, form4 = forms
-        score = 0
 
         if question.alternatives.all()[0].is_correct:
             score = int(form1['score'].value())

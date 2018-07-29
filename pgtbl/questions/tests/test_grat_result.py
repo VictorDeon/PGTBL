@@ -40,7 +40,7 @@ class GRATResultTestCase(TestCase):
 
     def test_show_only_not_exercise_question(self):
         """
-        Show only not exercise question that are into grat test, and show the
+        Show only not exercises question that are into grat test, and show the
         answers.
         """
 

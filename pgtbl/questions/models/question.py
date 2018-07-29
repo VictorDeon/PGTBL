@@ -41,9 +41,9 @@ class Question(models.Model):
     )
 
     is_exercise = models.BooleanField(
-        _('Is it an exercise?'),
+        _('Is it an exercises?'),
         default=True,
-        help_text=_('Exercise are questions that appear in the exercise list.')
+        help_text=_('Exercise are questions that appear in the exercises list.')
     )
 
     created_at = models.DateTimeField(

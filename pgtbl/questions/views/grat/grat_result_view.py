@@ -49,7 +49,7 @@ class GRATResultView(LoginRequiredMixin,
 
     def get_questions(self):
         """
-        Get all exercise list questions.
+        Get all exercises list questions.
         """
 
         questions = Question.objects.filter(

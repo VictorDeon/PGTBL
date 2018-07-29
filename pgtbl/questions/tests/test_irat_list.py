@@ -47,7 +47,7 @@ class ListIRATTestCase(TestCase):
     def test_users_can_see_the_irat_list(self):
         """
         User like students, monitors and teacher can see the irat test
-        with not exercise questions and when the date of irat arrive.
+        with not exercises questions and when the date of irat arrive.
         """
 
         pass

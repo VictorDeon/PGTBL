@@ -5,17 +5,18 @@ from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from modules.models import TBLSession
 from modules.utils import get_datetimes
-from questions.models import Question, ExerciseSubmission
+from questions.models import Question
+from exercises.models import ExerciseSubmission
 
 
 class ExerciseResultView(LoginRequiredMixin,
                          PermissionMixin,
                          ListView):
     """
-    Show the result of exercise list.
+    Show the result of exercises list.
     """
 
-    template_name = 'exercise/result.html'
+    template_name = 'exercises/result.html'
     context_object_name = 'submissions'
 
     # Permissions
@@ -47,7 +48,7 @@ class ExerciseResultView(LoginRequiredMixin,
 
     def get_questions(self):
         """
-        Get all exercise list questions.
+        Get all exercises list questions.
         """
 
         questions = Question.objects.filter(
@@ -59,7 +60,7 @@ class ExerciseResultView(LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         """
-        Insert discipline, session into exercise result context data.
+        Insert discipline, session into exercises result context data.
         """
 
         irat_datetime, grat_datetime = get_datetimes(self.get_session())
@@ -87,7 +88,7 @@ class ExerciseResultView(LoginRequiredMixin,
 
     def result(self):
         """
-        Get the total scores about exercise list.
+        Get the total scores about exercises list.
         """
 
         questions = self.get_questions()

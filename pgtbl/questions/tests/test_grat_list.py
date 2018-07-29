@@ -47,7 +47,7 @@ class ListGRATTestCase(TestCase):
     def test_users_can_see_the_grat_list(self):
         """
         User like students, monitors and teacher can see the grat test
-        with not exercise questions and when the date of grat arrive.
+        with not exercises questions and when the date of grat arrive.
         """
 
         pass

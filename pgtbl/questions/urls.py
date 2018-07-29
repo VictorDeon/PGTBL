@@ -5,11 +5,6 @@ app_name = 'questions'
 
 questions_patterns = [
     path(
-        '',
-        views.ExerciseListView.as_view(),
-        name='list'
-    ),
-    path(
         'add-question/',
         views.CreateQuestionView.as_view(),
         name='create-question'
@@ -24,29 +19,6 @@ questions_patterns = [
         views.DeleteQuestionView.as_view(),
         name='delete-question'
     ),
-]
-
-exercise_patterns = [
-    path(
-        'result/',
-        views.ExerciseResultView.as_view(),
-        name='exercise-result'
-    ),
-    path(
-        'result/csv/',
-        views.get_csv,
-        name='exercise-result-csv'
-    ),
-    path(
-        'result/reset/',
-        views.ResetExerciseView.as_view(),
-        name='exercise-reset'
-    ),
-    path(
-        'question/<int:question_id>/answer-page/<int:question_page>/',
-        views.AnswerQuestionView.as_view(),
-        name='exercise-answer-question'
-    )
 ]
 
 irat_patterns = [
@@ -109,10 +81,6 @@ urlpatterns = [
     path(
         'profile/<slug:slug>/sessions/<int:pk>/questions/',
         include(questions_patterns)
-    ),
-    path(
-        'profile/<slug:slug>/sessions/<int:pk>/exercises/',
-        include(exercise_patterns)
     ),
     path(
         'profile/<slug:slug>/sessions/<int:pk>/irat/',

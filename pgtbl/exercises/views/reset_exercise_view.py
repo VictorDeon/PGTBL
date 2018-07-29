@@ -8,14 +8,14 @@ from django.shortcuts import redirect
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from modules.models import TBLSession
-from questions.models import ExerciseSubmission
+from exercises.models import ExerciseSubmission
 
 
 class ResetExerciseView(LoginRequiredMixin,
                         PermissionMixin,
                         RedirectView):
     """
-    Reset the exercise.
+    Reset the exercises.
     """
 
     permissions_required = [
@@ -62,7 +62,7 @@ class ResetExerciseView(LoginRequiredMixin,
         """
 
         success_url = reverse_lazy(
-            'questions:list',
+            'exercises:list',
             kwargs={
                 'slug': self.kwargs.get('slug', ''),
                 'pk': self.kwargs.get('pk', '')
@@ -73,7 +73,7 @@ class ResetExerciseView(LoginRequiredMixin,
 
     def get(self, request, *args, **kwargs):
         """
-        Reset exercise list.
+        Reset exercises list.
         """
 
         submissions = self.get_queryset()

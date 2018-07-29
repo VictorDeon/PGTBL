@@ -34,7 +34,7 @@ def crud_question_permission(permission, user, view):
 def show_questions_permission(permission, user, view):
     """
     Permission that allows only students, monitors and teacher of specific
-    discipline to see the exercise list session features.
+    discipline to see the exercises list session features.
     """
 
     discipline = view.get_discipline()

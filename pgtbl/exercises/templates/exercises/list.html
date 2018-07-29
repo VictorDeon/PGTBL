@@ -4,13 +4,13 @@
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
-  <link rel="stylesheet" href="{% static 'questions/css/list.css' %}" />
+  <link rel="stylesheet" href="{% static 'exercises/css/list.css' %}" />
 {% endblock %}
 
 {% block breadcrumb %}
   {{ block.super }}
   <li>
-    <a href="{% url 'questions:list' discipline.slug session.id %}">
+    <a href="{% url 'exercises:list' discipline.slug session.id %}">
        {% trans 'Exercise list' %}
     </a>
   </li>
@@ -64,12 +64,12 @@
                  data-target="#irat-info">
                  <i class="fa fa-info-circle"></i>
               </a>
-              {% include 'exercise/info.html' %}
+              {% include 'exercises/info.html' %}
             </div>
           </div>
         </div>
         <div class="panel-body">
-          {% include 'exercise/progress_bar.html' %}
+          {% include 'exercises/progress_bar.html' %}
           {% for question in questions %}
             <div class="panel panel-default">
               <div class="panel-body">
@@ -112,7 +112,7 @@
                   {% endif %}
                 </div>
                 <hr />
-                <form action="{% url 'questions:exercise-answer-question' discipline.slug session.id question.id page_obj.number %}" method="POST">
+                <form action="{% url 'exercises:answer-question' discipline.slug session.id question.id page_obj.number %}" method="POST">
                   {% csrf_token %}
 
                   <div class="row">
@@ -210,7 +210,7 @@
             <p>{% trans 'There is no questions in this session.' %}</p>
           {% endfor %}
           {% if questions.count > 0 %}
-            {% include 'exercise/pagination.html' %}
+            {% include 'exercises/pagination.html' %}
           {% endif %}
           {% if user == discipline.teacher or user in discipline.monitors.all %}
             <div class="row">

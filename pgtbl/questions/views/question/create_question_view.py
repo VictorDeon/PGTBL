@@ -167,7 +167,7 @@ class CreateQuestionView(LoginRequiredMixin,
         session = self.get_session()
 
         success_url = reverse_lazy(
-            'questions:list',
+            'exercises:list',
             kwargs={
                 'slug': discipline.slug,
                 'pk': session.id

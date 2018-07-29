@@ -3,17 +3,18 @@ import csv
 
 from disciplines.models import Discipline
 from modules.models import TBLSession
-from questions.models import Question, ExerciseSubmission
+from questions.models import Question
+from exercises.models import ExerciseSubmission
 
 
 def get_csv(request, *args, **kwargs):
     """
-    Create a CSV about exercise list result.
+    Create a CSV about exercises list result.
     """
 
     # Create the HttpResponse object with the approprieate CSV headers.
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="exercise-result.csv"'
+    response['Content-Disposition'] = 'attachment; filename="exercises-result.csv"'
 
     # Create the CSV writer
     writer = csv.writer(response)
