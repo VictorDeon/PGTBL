@@ -10,7 +10,7 @@ from disciplines.models import Discipline
 from modules.models import TBLSession
 from modules.utils import get_datetimes
 from questions.models import Question
-from questions.forms import AnswerGRATQuestionForm, GRATDateForm, GRATForm
+from grat.forms import AnswerGRATQuestionForm, GRATDateForm, GRATForm
 
 
 class GRATView(LoginRequiredMixin,

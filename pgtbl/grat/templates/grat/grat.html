@@ -4,13 +4,13 @@
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
-  <link rel="stylesheet" href="{% static 'questions/css/list.css' %}" />
+  <link rel="stylesheet" href="{% static 'grat/css/list.css' %}" />
 {% endblock %}
 
 {% block breadcrumb %}
   {{ block.super }}
   <li>
-    <a href="{% url 'questions:grat-list' discipline.slug session.id %}">
+    <a href="{% url 'grat:list' discipline.slug session.id %}">
        {% trans 'gRAT' %}
     </a>
   </li>
@@ -150,7 +150,7 @@
                   {% endif %}
                 </div>
                 <hr />
-                <form action="{% url 'questions:grat-answer-question' discipline.slug session.id question.id page_obj.number %}" method="POST">
+                <form action="{% url 'grat:answer-question' discipline.slug session.id question.id page_obj.number %}" method="POST">
                   {% csrf_token %}
 
                   <div class="row">

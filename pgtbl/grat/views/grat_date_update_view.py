@@ -10,7 +10,7 @@ from django.utils import timezone
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from modules.models import TBLSession
-from questions.forms import GRATDateForm
+from grat.forms import GRATDateForm
 
 # Python imports
 from datetime import timedelta
@@ -85,7 +85,7 @@ class GRATDateUpdateView(LoginRequiredMixin,
         """
 
         success_url = reverse_lazy(
-            'questions:grat-list',
+            'grat:list',
             kwargs={
                 'slug': self.kwargs.get('slug', ''),
                 'pk': self.kwargs.get('pk', '')

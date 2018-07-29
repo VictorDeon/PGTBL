@@ -7,7 +7,8 @@ from modules.models import TBLSession
 from modules.utils import get_datetimes
 from grades.models import Grade
 from groups.models import Group
-from questions.models import Question, GRATSubmission
+from questions.models import Question
+from grat.models import GRATSubmission
 
 
 class GRATResultView(LoginRequiredMixin,

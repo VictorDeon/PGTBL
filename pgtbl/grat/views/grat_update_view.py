@@ -8,7 +8,7 @@ from django.views.generic import UpdateView
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from modules.models import TBLSession
-from questions.forms import GRATForm
+from grat.forms import GRATForm
 
 
 class GRATUpdateView(LoginRequiredMixin,
@@ -51,7 +51,7 @@ class GRATUpdateView(LoginRequiredMixin,
         """
 
         success_url = reverse_lazy(
-            'questions:grat-list',
+            'grat:list',
             kwargs={
                 'slug': self.kwargs.get('slug', ''),
                 'pk': self.kwargs.get('pk', '')

@@ -8,8 +8,9 @@ from django.views.generic import FormView
 from disciplines.models import Discipline
 from modules.models import TBLSession
 from groups.models import Group
-from questions.models import Question, GRATSubmission
-from questions.forms import AnswerGRATQuestionForm
+from questions.models import Question
+from grat.models import GRATSubmission
+from grat.forms import AnswerGRATQuestionForm
 
 
 class GRATAnswerQuestionView(LoginRequiredMixin, FormView):
@@ -108,7 +109,7 @@ class GRATAnswerQuestionView(LoginRequiredMixin, FormView):
         """
 
         success_url = reverse_lazy(
-            'questions:grat-list',
+            'grat:list',
             kwargs={
                 'slug': self.kwargs.get('slug', ''),
                 'pk': self.kwargs.get('pk', '')
