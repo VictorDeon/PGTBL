@@ -1,12 +1,5 @@
-from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
-from django.test import TestCase, Client
-from core.test_utils import check_messages
-from model_mommy import mommy
-from questions.models import (
-    Question, Alternative, ExerciseSubmission,
-    IRATSubmission, GRATSubmission
-)
+from django.test import TestCase
 
 User = get_user_model()
 
