@@ -23,6 +23,19 @@ class FinalGrade(models.Model):
         related_name='discipline_grades'
     )
 
+    final_grade = models.FloatField(
+        _("Final grade"),
+        default=0.0,
+        help_text=_("Student final grade.")
+    )
+
+    status = models.CharField(
+        _('Status'),
+        max_length=15,
+        default=_('Disapproved'),
+        help_text=_('Student status')
+    )
+
     created_at = models.DateTimeField(
         _('Created at'),
         help_text=_("Date that the session is created."),
