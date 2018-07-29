@@ -44,7 +44,7 @@ class DetailPracticalTestCase(TestCase):
             is_closed=False
         )
         self.url = reverse_lazy(
-            'modules:practical-details',
+            'practical:details',
             kwargs={
                 'slug': self.discipline.slug,
                 'pk': self.session.pk

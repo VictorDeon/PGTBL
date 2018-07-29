@@ -43,7 +43,7 @@ class UpdatePracticalTestCase(TestCase):
             description="TBL session description"
         )
         self.url = reverse_lazy(
-            'modules:practical-update',
+            'practical:update',
             kwargs={
                 'slug': self.discipline.slug,
                 'pk': self.session.pk
@@ -84,7 +84,7 @@ class UpdatePracticalTestCase(TestCase):
         self.assertEqual(self.session.practical_weight, 4)
         response = self.client.post(self.url, self.data, follow=True)
         practical_url = reverse_lazy(
-            'modules:practical-details',
+            'practical:details',
             kwargs={
                 'slug': self.discipline.slug,
                 'pk': self.session.pk
@@ -108,7 +108,7 @@ class UpdatePracticalTestCase(TestCase):
         self.assertEqual(self.session.practical_weight, 4)
         response = self.client.post(self.url, self.data, follow=True)
         practical_url = reverse_lazy(
-            'modules:practical-details',
+            'practical:details',
             kwargs={
                 'slug': self.discipline.slug,
                 'pk': self.session.pk

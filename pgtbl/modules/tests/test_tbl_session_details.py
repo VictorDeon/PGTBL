@@ -43,7 +43,7 @@ class DetailTBLSessionTestCase(TestCase):
             description="TBL session description"
         )
         self.url = reverse_lazy(
-            'modules:practical-details',
+            'modules:details',
             kwargs={
                 'slug': self.discipline.slug,
                 'pk': self.session.pk

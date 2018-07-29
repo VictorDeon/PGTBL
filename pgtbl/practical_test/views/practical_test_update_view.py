@@ -10,7 +10,7 @@ from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from modules.models import TBLSession
 from modules.utils import get_datetimes
-from modules.forms import PracticalTestForm
+from practical_test.forms import PracticalTestForm
 
 
 class PracticalTestUpdateView(LoginRequiredMixin,
@@ -105,7 +105,7 @@ class PracticalTestUpdateView(LoginRequiredMixin,
         """
 
         success_url = reverse_lazy(
-            'modules:practical-details',
+            'practical:details',
             kwargs={
                 'slug': self.kwargs.get('slug', ''),
                 'pk': self.kwargs.get('pk', '')

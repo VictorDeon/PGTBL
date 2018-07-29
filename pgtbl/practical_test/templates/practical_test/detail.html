@@ -10,7 +10,7 @@
 {% block breadcrumb %}
   {{ block.super }}
   <li>
-    <a href="{% url 'modules:practical-details' discipline.slug session.id %}">
+    <a href="{% url 'practical:details' discipline.slug session.id %}">
       {% trans 'Practical test' %}
     </a>
   </li>
@@ -83,7 +83,7 @@
           {% if user == discipline.teacher or user in discipline.monitors.all %}
             <div class="row">
               <div class="col-sm-offset-10 col-sm-2">
-                <a href="{% url 'modules:practical-update' discipline.slug session.id %}"
+                <a href="{% url 'practical:update' discipline.slug session.id %}"
                    class="btn btn-primary btn-lg edit-button">
                    <i class="fa fa-edit"></i>
                 </a>
