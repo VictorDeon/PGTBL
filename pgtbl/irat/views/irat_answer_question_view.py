@@ -8,7 +8,8 @@ from django.views.generic import FormView
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from modules.models import TBLSession
-from questions.models import Question, IRATSubmission
+from questions.models import Question
+from irat.models import IRATSubmission
 from questions.forms import AnswerQuestionForm
 
 
@@ -17,7 +18,7 @@ class IRATAnswerQuestionView(LoginRequiredMixin, PermissionMixin, FormView):
     Answer the respective iRAT question.
     """
 
-    template_name = 'irat/list.html'
+    template_name = 'irat/irat.html'
     form_class = AnswerQuestionForm
 
     # Permissions
@@ -95,7 +96,7 @@ class IRATAnswerQuestionView(LoginRequiredMixin, PermissionMixin, FormView):
         """
 
         success_url = reverse_lazy(
-            'questions:irat-list',
+            'irat:list',
             kwargs={
                 'slug': self.kwargs.get('slug', ''),
                 'pk': self.kwargs.get('pk', '')

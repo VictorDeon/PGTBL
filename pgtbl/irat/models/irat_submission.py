@@ -2,11 +2,10 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.db import models
 from modules.models import TBLSession
-from .question import Question
-from .submission import Submission
+from questions.models.question import Question
 
 
-class IRATSubmission(Submission):
+class IRATSubmission(models.Model):
     """
     Store all submissions for a given iRAT question.
     """
@@ -30,6 +29,24 @@ class IRATSubmission(Submission):
         on_delete=models.CASCADE,
         verbose_name=_('Users'),
         related_name="irat_submissions"
+    )
+
+    correct_alternative = models.CharField(
+        _('Correct Alternative'),
+        max_length=1000,
+        help_text=_('Correct alternative title.')
+    )
+
+    score = models.PositiveIntegerField(
+        _("Score"),
+        default=0,
+        help_text=_("Question score answered."),
+    )
+
+    created_at = models.DateTimeField(
+        _('Created at'),
+        help_text=_("Date that the submission of question is created."),
+        auto_now_add=True
     )
 
     def __str__(self):

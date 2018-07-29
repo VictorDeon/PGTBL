@@ -187,7 +187,7 @@ class UpdateQuestionView(LoginRequiredMixin,
             )
         else:
             success_url = reverse_lazy(
-                'questions:irat-list',
+                'irat:list',
                 kwargs={
                     'slug': discipline.slug,
                     'pk': session.id

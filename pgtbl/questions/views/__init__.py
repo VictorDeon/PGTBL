@@ -3,11 +3,6 @@ from .grat.grat_date_update_view import GRATDateUpdateView
 from .grat.grat_result_view import GRATResultView
 from .grat.grat_update_view import GRATUpdateView
 from .grat.grat_view import GRATView
-from .irat.irat_answer_question_view import IRATAnswerQuestionView
-from .irat.irat_date_update_view import IRATDateUpdateView
-from .irat.irat_result_view import IRATResultView
-from .irat.irat_update_view import IRATUpdateView
-from .irat.irat_view import IRATView
 from .question.create_question_view import CreateQuestionView
 from .question.delete_question_view import DeleteQuestionView
 from .question.update_question_view import UpdateQuestionView

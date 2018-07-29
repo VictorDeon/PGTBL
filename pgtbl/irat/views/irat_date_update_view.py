@@ -1,25 +1,27 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse_lazy
 from django.contrib import messages
+from django.utils import timezone
 from django.views.generic import UpdateView
 
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from modules.models import TBLSession
-from questions.forms import IRATForm
+from irat.forms import IRATDateForm
 
 
-class IRATUpdateView(LoginRequiredMixin,
-                     PermissionMixin,
-                     UpdateView):
+class IRATDateUpdateView(LoginRequiredMixin,
+                         PermissionMixin,
+                         UpdateView):
     """
-    Update the iRAT duration and weight
+    Update the iRAT date.
     """
 
     model = TBLSession
     template_name = 'irat/irat.html'
-    form_class = IRATForm
+    form_class = IRATDateForm
 
     # Permissions
     permissions_required = ['crud_tests']
@@ -40,9 +42,29 @@ class IRATUpdateView(LoginRequiredMixin,
         Return the form with fields valided.
         """
 
-        messages.success(self.request, _('iRAT updated successfully.'))
+        now = timezone.localtime(timezone.now())
 
-        return super(IRATUpdateView, self).form_valid(form)
+        if form.instance.irat_datetime is None:
+
+            messages.error(
+                self.request,
+                _("iRAT date must to be filled in.")
+            )
+
+            return redirect(self.get_success_url())
+
+        if now > form.instance.irat_datetime:
+
+            messages.error(
+                self.request,
+                _("iRAT date must to be later than today's date.")
+            )
+
+            return redirect(self.get_success_url())
+
+        messages.success(self.request, _('iRAT date updated successfully.'))
+
+        return super(IRATDateUpdateView, self).form_valid(form)
 
     def get_success_url(self):
         """
@@ -50,7 +72,7 @@ class IRATUpdateView(LoginRequiredMixin,
         """
 
         success_url = reverse_lazy(
-            'questions:irat-list',
+            'irat:list',
             kwargs={
                 'slug': self.kwargs.get('slug', ''),
                 'pk': self.kwargs.get('pk', '')

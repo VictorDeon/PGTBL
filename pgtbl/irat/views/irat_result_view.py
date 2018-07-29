@@ -10,7 +10,8 @@ from modules.models import TBLSession
 from modules.utils import get_datetimes
 from grades.models import Grade
 from groups.models import Group
-from questions.models import Question, IRATSubmission
+from questions.models import Question
+from irat.models import IRATSubmission
 
 
 class IRATResultView(LoginRequiredMixin,

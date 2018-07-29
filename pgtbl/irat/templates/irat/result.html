@@ -4,13 +4,13 @@
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
-  <link rel="stylesheet" href="{% static 'questions/css/result.css' %}" />
+  <link rel="stylesheet" href="{% static 'irat/css/result.css' %}" />
 {% endblock %}
 
 {% block breadcrumb %}
   {{ block.super }}
   <li>
-    <a href="{% url 'questions:irat-result' discipline.slug session.id %}">
+    <a href="{% url 'irat:result' discipline.slug session.id %}">
        {% trans 'iRAT result' %}
     </a>
   </li>

@@ -4,13 +4,13 @@
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
-  <link rel="stylesheet" href="{% static 'questions/css/list.css' %}" />
+  <link rel="stylesheet" href="{% static 'irat/css/list.css' %}" />
 {% endblock %}
 
 {% block breadcrumb %}
   {{ block.super }}
   <li>
-    <a href="{% url 'questions:irat-list' discipline.slug session.id %}">
+    <a href="{% url 'irat:list' discipline.slug session.id %}">
        {% trans 'iRAT' %}
     </a>
   </li>
@@ -150,7 +150,7 @@
                   {% endif %}
                 </div>
                 <hr />
-                <form action="{% url 'questions:irat-answer-question' discipline.slug session.id question.id page_obj.number %}" method="POST">
+                <form action="{% url 'irat:answer-question' discipline.slug session.id question.id page_obj.number %}" method="POST">
                   {% csrf_token %}
 
                   <div class="row">

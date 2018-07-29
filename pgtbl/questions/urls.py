@@ -21,34 +21,6 @@ questions_patterns = [
     ),
 ]
 
-irat_patterns = [
-    path(
-        '',
-        views.IRATView.as_view(),
-        name='irat-list'
-    ),
-    path(
-        'edit-date/',
-        views.IRATDateUpdateView.as_view(),
-        name='irat-date'
-    ),
-    path(
-        'edit-irat/',
-        views.IRATUpdateView.as_view(),
-        name='irat-update'
-    ),
-    path(
-        'result/',
-        views.IRATResultView.as_view(),
-        name='irat-result'
-    ),
-    path(
-        'question/<int:question_id>/answer-page/<int:question_page>/',
-        views.IRATAnswerQuestionView.as_view(),
-        name='irat-answer-question'
-    ),
-]
-
 grat_patterns = [
     path(
         '',
@@ -81,10 +53,6 @@ urlpatterns = [
     path(
         'profile/<slug:slug>/sessions/<int:pk>/questions/',
         include(questions_patterns)
-    ),
-    path(
-        'profile/<slug:slug>/sessions/<int:pk>/irat/',
-        include(irat_patterns)
     ),
     path(
         'profile/<slug:slug>/sessions/<int:pk>/grat/',

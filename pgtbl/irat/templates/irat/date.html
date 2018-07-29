@@ -10,7 +10,7 @@
         </h4>
       </div>
       <div class="modal-body">
-        <form action="{% url 'questions:irat-date' discipline.slug session.id %}" method="post" novalidate>
+        <form action="{% url 'irat:date' discipline.slug session.id %}" method="post" novalidate>
           <!-- Form security -->
           {% csrf_token %}
 

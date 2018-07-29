@@ -9,7 +9,8 @@ from disciplines.models import Discipline
 from modules.models import TBLSession
 from modules.utils import get_datetimes
 from questions.models import Question
-from questions.forms import AnswerQuestionForm, IRATDateForm, IRATForm
+from questions.forms import AnswerQuestionForm
+from irat.forms import IRATDateForm, IRATForm
 
 
 class IRATView(LoginRequiredMixin,
