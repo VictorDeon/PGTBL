@@ -30,7 +30,7 @@ class Question(models.Model):
         _('Level'),
         max_length=15,
         choices=LEVELS,
-        default='basic',
+        default=_('Basic'),
         help_text=_('Difficulty level')
     )
 
