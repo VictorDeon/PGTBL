@@ -112,7 +112,7 @@
                   {% endif %}
                 </div>
                 <hr />
-                <form action="{% url 'exercises:answer-question' discipline.slug session.id question.id page_obj.number %}" method="POST">
+                <form action="{% url 'exercises:answer-question' discipline.slug session.id question.id page_obj.number %}" method="POST" novalidate>
                   {% csrf_token %}
 
                   <div class="row">

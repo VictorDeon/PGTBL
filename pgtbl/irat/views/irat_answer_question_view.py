@@ -119,7 +119,7 @@ class IRATAnswerQuestionView(LoginRequiredMixin, PermissionMixin, FormView):
         form3 = AnswerQuestionForm(request.POST, prefix="alternative03")
         form4 = AnswerQuestionForm(request.POST, prefix="alternative04")
 
-        success = False
+        self.validate_input([form1, form2, form3, form4])
 
         if form1.is_valid() and \
            form2.is_valid() and \
@@ -157,6 +157,18 @@ class IRATAnswerQuestionView(LoginRequiredMixin, PermissionMixin, FormView):
                 )
 
         return redirect(self.get_success_url())
+
+    def validate_input(self, forms):
+        """
+        Validated the user input.
+        """
+
+        for form in forms:
+            if int(form['score'].value()) > 4 or int(form['score'].value()) < 0:
+                messages.error(
+                    self.request,
+                    _("You can only enter from 0 to 4 points")
+                )
 
     def get_question_score(self, question, forms):
         """
