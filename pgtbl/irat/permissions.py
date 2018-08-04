@@ -46,14 +46,15 @@ def show_test_result(permission, user, view):
     grat_duration = timedelta(minutes=session.grat_duration)
     now = timezone.localtime(timezone.now())
 
-    if user == discipline.teacher:
+    if user == discipline.teacher or \
+       user in discipline.monitors.all() and user.is_teacher is True:
         return True
 
     # If grat date and time is null only the teacher can change
     if not session.grat_datetime:
         return False
 
-    if now > (session.grat_datetime + grat_duration):
+    if now > (session.grat_datetime + grat_duration) and user in discipline.students.all():
         return True
 
     return False
@@ -62,7 +63,7 @@ def show_test_result(permission, user, view):
 @register_object_checker()
 def irat_permissions(permission, user, view):
     """
-    iRAT exam permissions.
+    iRAT exam permissions only teacher and teacher monitor can see.
     """
 
     session = view.get_session()
@@ -71,7 +72,8 @@ def irat_permissions(permission, user, view):
     irat_duration = timedelta(minutes=session.irat_duration)
     now = timezone.localtime(timezone.now())
 
-    if user == discipline.teacher:
+    if user == discipline.teacher or \
+       user in discipline.monitors.all() and user.is_teacher is True:
         return True
 
     # If irat date and time is null only the teacher can change
@@ -79,7 +81,8 @@ def irat_permissions(permission, user, view):
         return False
 
     if now > session.irat_datetime and \
-       (now - irat_duration) < session.irat_datetime:
+       (now - irat_duration) < session.irat_datetime and \
+       user in discipline.students.all():
            return True
 
     return False

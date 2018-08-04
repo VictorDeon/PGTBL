@@ -226,8 +226,7 @@ class IRATAnswerQuestionView(LoginRequiredMixin, PermissionMixin, FormView):
 
         messages.error(
             self.request,
-            _("You only have 4 points to distribute to the \
-              4 alternatives.")
+            _("You only have 4 points to distribute to the 4 alternatives.")
         )
 
         return False
