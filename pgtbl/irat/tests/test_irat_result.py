@@ -204,7 +204,7 @@ class IRATResultTestCase(TestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
 
-    def test_student_can_see_the_closed_session_irat_result(self):
+    def test_student_can_not_see_the_closed_session_irat_result(self):
         """
         Student can not see the iRAT result when session is closed
         with exercises questions answered.
@@ -216,9 +216,9 @@ class IRATResultTestCase(TestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 302)
 
-    def test_student_can_see_the_irat_result_if_grat_not_finished(self):
+    def test_student_can_not_see_the_irat_result_if_grat_not_finished(self):
         """
-        Student can see the iRAT result if gRAT is not finished.
+        Student can not see the iRAT result if gRAT is not finished.
         """
 
         # Now 10:00, grat 9:40, gRAt finish 10:10
@@ -302,5 +302,3 @@ class IRATResultTestCase(TestCase):
         self.client.login(username=self.monitor.username, password='test1234')
         response = self.client.get(self.url)
         self.assertEqual(Grade.objects.count(), 0)
-        self.assertTrue('result' in response.context)
-        self.assertEqual(response.context['result'], result)

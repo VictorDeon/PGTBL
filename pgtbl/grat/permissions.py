@@ -46,14 +46,15 @@ def show_test_result(permission, user, view):
     grat_duration = timedelta(minutes=session.grat_duration)
     now = timezone.localtime(timezone.now())
 
-    if user == discipline.teacher:
+    if user == discipline.teacher or \
+       user in discipline.monitors.all() and user.is_teacher is True:
         return True
 
     # If grat date and time is null only the teacher can change
     if not session.grat_datetime:
         return False
 
-    if now > (session.grat_datetime + grat_duration):
+    if now > (session.grat_datetime + grat_duration) and user in discipline.students.all():
         return True
 
     return False
@@ -71,7 +72,8 @@ def grat_permissions(permission, user, view):
     grat_duration = timedelta(minutes=session.grat_duration)
     now = timezone.localtime(timezone.now())
 
-    if user == discipline.teacher:
+    if user == discipline.teacher or \
+       user in discipline.monitors.all() and user.is_teacher is True:
         return True
 
     # If grat date and time is null only the teacher can change
@@ -79,7 +81,8 @@ def grat_permissions(permission, user, view):
         return False
 
     if now > session.grat_datetime and \
-       (now - grat_duration) < session.grat_datetime:
+       (now - grat_duration) < session.grat_datetime and \
+       user in discipline.students.all():
            return True
 
     return False
