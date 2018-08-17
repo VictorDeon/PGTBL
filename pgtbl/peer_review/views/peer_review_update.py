@@ -126,7 +126,7 @@ class PeerReviewUpdateView(LoginRequiredMixin,
             peer_review_grade += submission.score
 
         group = self.get_student_group(student)
-        group_length = group.students.count()
+        group_length = group.students.count() - 1
 
         peer_review_grade = (peer_review_grade / group_length) / 10
 
@@ -167,5 +167,6 @@ class PeerReviewUpdateView(LoginRequiredMixin,
             Grade.objects.create(
                 session=self.get_session(),
                 student=student,
-                group=self.get_student_group(student)
+                group=self.get_student_group(student),
+                peer_review=peer_review_grade
             )

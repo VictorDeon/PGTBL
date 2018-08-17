@@ -86,6 +86,8 @@ class PeerReviewAnswerView(LoginRequiredMixin,
             if self.request.user in group.students.all():
                 return group
 
+        return None
+
     def get_student(self):
         """
         Get the student by url kwargs

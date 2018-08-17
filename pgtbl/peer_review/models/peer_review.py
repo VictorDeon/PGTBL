@@ -18,7 +18,7 @@ class PeerReviewSubmission(models.Model):
         related_name="peer_review_submissions"
     )
 
-    score = models.PositiveIntegerField(
+    score = models.IntegerField(
         _("Score"),
         default=0,
         help_text=_("Peer Review score to specific student")
@@ -26,6 +26,7 @@ class PeerReviewSubmission(models.Model):
 
     comment = models.TextField(
         _("Comment"),
+        blank=True,
         help_text=_("Comment about the assessed student.")
     )
 

@@ -20,9 +20,7 @@ class PeerReviewAnswerForm(forms.Form):
 
     score = forms.IntegerField(
         initial=0,
-        max_value=100,
-        min_value=0,
         label=_("Student score")
     )
 
-    comment = forms.CharField(widget=forms.Textarea, label=_("Student comment"))
+    comment = forms.CharField(widget=forms.Textarea, label=_("Student comment"), required=False)

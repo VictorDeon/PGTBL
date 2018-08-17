@@ -16,9 +16,9 @@ from questions.models import Question, Alternative
 User = get_user_model()
 
 
-class ListGRATTestCase(TestCase):
+class AnswerGRATTestCase(TestCase):
     """
-    Test to list question into gRAT.
+    Test to answer question into gRAT.
     """
 
     def setUp(self):

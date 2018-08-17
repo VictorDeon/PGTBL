@@ -61,8 +61,15 @@ def send_peer_review(permission, user, view):
     discipline = view.get_discipline()
     session = view.get_session()
     group = view.get_student_group()
+    student = view.get_student()
+
+    if not group:
+        return False
 
     if not session.peer_review_available:
+        return False
+
+    if student not in group.students.all():
         return False
 
     if user in discipline.students.all() and \
