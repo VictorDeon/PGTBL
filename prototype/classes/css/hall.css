@@ -1,0 +1,50 @@
+.panel {
+  box-shadow: 1px 1px 10px white;
+}
+
+.panel-body {
+  background-image: url('../img/wood.jpg');
+}
+
+figure > img {
+  width: 150px;
+  border: 15px ridge gold !important;
+  box-shadow: 5px 5px 5px grey;
+}
+
+figcaption {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.fa-star {
+  color: gold;
+  text-shadow: 3px 2px 4px floralwhite;
+}
+.star1 {
+  font-size: 40px;
+}
+.star2 {
+  font-size: 50px;
+}
+.star3 {
+  font-size: 60px;
+}
+.star4 {
+  font-size: 50px;
+}
+.star5 {
+  font-size: 40px;
+}
+
+.page-header {
+  margin: 15px 0 20px;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.open > .dropdown-toggle.btn-primary:focus,
+.open > .dropdown-toggle.btn-primary:hover {
+  border-color: white;
+}

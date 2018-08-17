@@ -56,14 +56,14 @@
                 {% else %}
                   <td>{{grade.student.username}}</td>
                 {% endif %}
-                <td>{{grade.irat}}</td>
-                <td>{{grade.grat}}</td>
-                <td>{{grade.practical}}</td>
-                <td>{{grade.peer_review}}</td>
+                <td>{{grade.irat | floatformat:2}}</td>
+                <td>{{grade.grat | floatformat:2}}</td>
+                <td>{{grade.practical | floatformat:2}}</td>
+                <td>{{grade.peer_review | floatformat:2}}</td>
                 {% if grade.calcule_session_grade > 5 %}
-                  <td class="text-success">{{grade.calcule_session_grade|floatformat}}</td>
+                  <td class="text-success">{{grade.calcule_session_grade|floatformat:2}}</td>
                 {% else %}
-                  <td class="text-danger">{{grade.calcule_session_grade|floatformat}}</td>
+                  <td class="text-danger">{{grade.calcule_session_grade|floatformat:2}}</td>
                 {% endif %}
               </tr>
             {% empty %}

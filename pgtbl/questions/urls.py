@@ -5,11 +5,6 @@ app_name = 'questions'
 
 questions_patterns = [
     path(
-        '',
-        views.ExerciseListView.as_view(),
-        name='list'
-    ),
-    path(
         'add-question/',
         views.CreateQuestionView.as_view(),
         name='create-question'
@@ -26,100 +21,9 @@ questions_patterns = [
     ),
 ]
 
-exercise_patterns = [
-    path(
-        'result/',
-        views.ExerciseResultView.as_view(),
-        name='exercise-result'
-    ),
-    path(
-        'result/csv/',
-        views.get_csv,
-        name='exercise-result-csv'
-    ),
-    path(
-        'result/reset/',
-        views.ResetExerciseView.as_view(),
-        name='exercise-reset'
-    ),
-    path(
-        'question/<int:question_id>/answer-page/<int:question_page>/',
-        views.AnswerQuestionView.as_view(),
-        name='exercise-answer-question'
-    )
-]
-
-irat_patterns = [
-    path(
-        '',
-        views.IRATView.as_view(),
-        name='irat-list'
-    ),
-    path(
-        'edit-date/',
-        views.IRATDateUpdateView.as_view(),
-        name='irat-date'
-    ),
-    path(
-        'edit-irat/',
-        views.IRATUpdateView.as_view(),
-        name='irat-update'
-    ),
-    path(
-        'result/',
-        views.IRATResultView.as_view(),
-        name='irat-result'
-    ),
-    path(
-        'question/<int:question_id>/answer-page/<int:question_page>/',
-        views.IRATAnswerQuestionView.as_view(),
-        name='irat-answer-question'
-    ),
-]
-
-grat_patterns = [
-    path(
-        '',
-        views.GRATView.as_view(),
-        name='grat-list'
-    ),
-    path(
-        'edit-date/',
-        views.GRATDateUpdateView.as_view(),
-        name='grat-date'
-    ),
-    path(
-        'edit-irat/',
-        views.GRATUpdateView.as_view(),
-        name='grat-update'
-    ),
-    path(
-        'result/',
-        views.GRATResultView.as_view(),
-        name='grat-result'
-    ),
-    path(
-        'question/<int:question_id>/answer-page/<int:question_page>/',
-        views.GRATAnswerQuestionView.as_view(),
-        name='grat-answer-question'
-    ),
-]
-
 urlpatterns = [
     path(
         'profile/<slug:slug>/sessions/<int:pk>/questions/',
         include(questions_patterns)
-    ),
-    path(
-        'profile/<slug:slug>/sessions/<int:pk>/exercises/',
-        include(exercise_patterns)
-    ),
-    path(
-        'profile/<slug:slug>/sessions/<int:pk>/irat/',
-        include(irat_patterns)
-    ),
-    path(
-        'profile/<slug:slug>/sessions/<int:pk>/grat/',
-        include(grat_patterns)
-    ),
+    )
 ]

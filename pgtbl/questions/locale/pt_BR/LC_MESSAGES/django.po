@@ -79,11 +79,11 @@ msgid "Question topic."
 msgstr "Tópico da questão"
 
 #: questions/models.py:47
-msgid "Is it an exercise?"
+msgid "Is it an exercises?"
 msgstr "É um exercício?"
 
 #: questions/models.py:49
-msgid "Exercise are questions that appear in the exercise list."
+msgid "Exercise are questions that appear in the exercises list."
 msgstr "Exercício são questões que aparecem somente na lista de exercícios."
 
 #: questions/models.py:53 questions/models.py:101 questions/models.py:164
@@ -204,7 +204,7 @@ msgstr "Criar questão"
 
 #: questions/templates/questions/add.html:112
 #: questions/templates/questions/update.html:112
-msgid "Is exercise?"
+msgid "Is exercises?"
 msgstr "É exercício?"
 
 #: questions/templates/questions/add.html:150

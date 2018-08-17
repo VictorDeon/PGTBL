@@ -1,0 +1,103 @@
+{% extends 'practical_test/detail.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'practical_test/css/update.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'core/css/markdown.css' %}" type="text/css" />
+  <link href="/" type="text/css" media="all" rel="stylesheet" />
+  <script type="text/javascript" src="/static/pagedown/Markdown.Converter.js"></script>
+  <script type="text/javascript" src="/static/pagedown-extra/pagedown/Markdown.Converter.js"></script>
+  <script type="text/javascript" src="/static/pagedown/Markdown.Sanitizer.js"></script>
+  <script type="text/javascript" src="/static/pagedown/Markdown.Editor.js"></script>
+  <script type="text/javascript" src="/static/pagedown-extra/Markdown.Extra.js"></script>
+  <script type="text/javascript" src="/static/pagedown_init.js"></script>
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'practical:update' discipline.slug session.id %}">
+      {% trans 'Edit practical test' %}
+    </a>
+  </li>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    <!-- Header -->
+    <div class="page-header profile">
+      <h1 class="white">
+        {% trans 'Edit practical test' %}
+      </h1>
+    </div>
+
+    <!-- Form -->
+    <div class="row">
+      <div class="col-sm-12">
+        <!-- Form without html5 validation -->
+        <form action="{% url 'practical:update' discipline.slug session.id %}" method="post" novalidate>
+          <!-- Form security -->
+          {% csrf_token %}
+
+          <!-- Get all erros from form -->
+          {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+              {{ error }}
+            </div>
+          {% endfor %}
+
+          <!-- Practical Test -->
+          <div class="form-group white">
+            <label>
+              {{form.practical_available}}
+              {% trans 'Make practical test available' %}
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label class="white" for="{{form.practical_weight.id_for_label}}">
+              {{form.practical_weight.label}}
+            </label>
+
+            <input
+              type="number"
+              name="{{form.practical_weight.name}}"
+              value="{{session.practical_weight}}"
+              id="{{form.practical_weight.id_for_label}}"
+              class="form-control"
+            />
+          </div>
+
+          <!-- Practical test description field -->
+          <div class="form-group">
+            <div id="{{form.practical_description.id_for_label}}_wmd_button_bar"></div>
+            <textarea
+              type="text"
+              class="form-control wmd-input"
+              name="{{form.practical_description.name}}"
+              id="{{form.practical_description.id_for_label}}"
+              rows="10"
+            >{{session.practical_description}}</textarea>
+          </div>
+
+          <!-- Session description preview -->
+          <fieldset>
+            <legend>{% trans 'Preview' %}</legend>
+            <div class="col-sm-12 preview">
+              <div class="markdown-preview"></div>
+            </div>
+          </fieldset>
+
+          <!-- Submit button -->
+          <button type="submit"
+                  class="btn btn-default submit-button center-block gradient">
+                  <i class="fa fa-edit"></i>
+                  {% trans 'Edit' %}
+          </button>
+        </form>
+      </div> <!-- Close col -->
+    </div> <!-- Close row -->
+  </div> <!-- Close container -->
+{% endblock %}

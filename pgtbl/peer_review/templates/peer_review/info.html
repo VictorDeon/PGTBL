@@ -1,0 +1,63 @@
+{% load i18n %}
+
+<div class="modal fade" id="pair-review-info" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+          {% trans 'Pair Review Rules' %}</h4>
+      </div>
+      <div class="modal-body">
+        <p>{% trans 'The rules of the game are very simple:' %}</p>
+        <ul>
+          <li>{% trans 'Peer evaluation is used to evaluate the performance of your teammates during TBL.' %}</li>
+          <li>
+            {% blocktrans %}
+            This evaluation is totally anonymous, only the evaluated student will receive the feedback and will not
+            appear his name.
+            {% endblocktrans %}
+          </li>
+          <li>
+            {% blocktrans %}
+            The student can leave a comment for the evaluated colleague, this will appear in their profile
+            in anonymous.
+            {% endblocktrans %}
+          </li>
+          <li>{% trans 'You will have 100 points to distribute among the participants in your group.' %}</li>
+          <li>
+            {% blocktrans %}
+            The sum of the evaluation of all the members of the group evaluating you will compose your grade in
+            this evaluation.
+            {% endblocktrans %}
+          </li>
+          <li>
+            {% blocktrans %}
+            If the sum total of 100 points will have a bonus on the note, otherwise it will compose the score
+            according to the score.
+            {% endblocktrans %}
+          </li>
+          <li><b>{% trans 'Example' %} 01</b>:
+            {% blocktrans %}
+            In a team of 5 members, each member inserts 20 points into you, then adding everything will give you
+            100 points and you will get a maximum score.
+            {% endblocktrans %}
+          </li>
+          <li><b>{% trans 'Example' %} 02</b>:
+            {% blocktrans %}
+            In a team of 5 members, each member inserts the score in you and the sum of the 110, soon you will receive
+            the maximum score plus a bonus.
+            {% endblocktrans %}
+          </li>
+          <li><b>{% trans 'Example' %} 03</b>:
+            {% blocktrans %}
+            In a team of 5 members, each member enters the score on you and the sum of the 80, then your score will
+            be calculated according to that score.
+            {% endblocktrans %}
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>

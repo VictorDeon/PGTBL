@@ -1,0 +1,63 @@
+/* Profile block */
+.name {
+  color: white;
+  margin-top: 10px;
+}
+
+.label-text {
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.label-number {
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+.email {
+  padding-left: 44px;
+}
+
+.college {
+  padding-left: 10px;
+}
+
+.course {
+  padding-left: 37px;
+}
+
+/* class list */
+.panel-title > a:hover,
+.panel-title > a:focus {
+  text-decoration: none;
+}
+
+.panel-heading {
+  box-shadow: 0 1px 15px gray;
+}
+
+.panel-heading:hover {
+  background-color: #efef8f;
+  color: white;
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+.panel-footer {
+  box-shadow: 0 1px 5px grey;
+}
+
+.justify {
+  padding-left: 42px;
+}
+
+.btn-class {
+  border: unset;
+}
+
+.btn-class:hover {
+  border: 1px solid #292C33;
+}
+
+.pagination {
+  margin: 10px 0;
+}

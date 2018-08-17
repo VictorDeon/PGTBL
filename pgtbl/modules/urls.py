@@ -31,26 +31,9 @@ session_patterns = [
     ),
 ]
 
-practical_patterns = [
-    path(
-        'practical-test/',
-        views.PracticalTestDetailView.as_view(),
-        name='practical-details'
-    ),
-    path(
-        'practical-test/edit/',
-        views.PracticalTestUpdateView.as_view(),
-        name='practical-update'
-    ),
-]
-
 urlpatterns = [
     path(
         'profile/<slug:slug>/sessions/',
         include(session_patterns)
-    ),
-    path(
-        'profile/<slug:slug>/sessions/<int:pk>/',
-        include(practical_patterns)
-    ),
+    )
 ]
