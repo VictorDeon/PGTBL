@@ -1,3 +1,8 @@
+---
+name: Bug report
+about: Create a report to help us improve
+ ---
+
 <!--- Forneça um resumo geral da _issue_ no título acima -->
 
 ## Comportamento Esperado
