@@ -1,14 +1,10 @@
-from datetime import timedelta, datetime
-
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from django.urls import reverse_lazy
-from django.utils import timezone
 from model_mommy import mommy
 
 from core.test_utils import user_factory, check_messages
 from disciplines.models import Discipline
-from irat.forms import IRATForm
 from modules.models import TBLSession
 
 User = get_user_model()
@@ -17,8 +13,6 @@ User = get_user_model()
 class GRATUpdateTestCase(TestCase):
     """
     Test to update GRAT test.
-
-    BUG: For some reason the commented tests are breaking
     """
 
     def setUp(self):
@@ -90,28 +84,28 @@ class GRATUpdateTestCase(TestCase):
         redirect_url = '{0}?next={1}'.format(login_url, self.url)
         self.assertRedirects(response, redirect_url)
 
-    # def test_teacher_can_update_grat(self):
-    #     """
-    #     Only teacher can update gRAT test.
-    #     """
-    #
-    #     data = {
-    #         'grat_weigth': 5,
-    #         'grat_duration': 10
-    #     }
-    #     self.client.login(username=self.teacher.username, password='test1234')
-    #     self.assertEqual(self.module.grat_weight, 2)
-    #     self.assertEqual(self.module.grat_duration, 30)
-    #     response = self.client.post(self.url, data, follow=True)
-    #     self.assertRedirects(response, self.success_url)
-    #     self.module.refresh_from_db()
-    #     self.assertEqual(self.module.grat_weight, 5)
-    #     self.assertEqual(self.module.grat_duration, 10)
-    #     check_messages(
-    #         self, response,
-    #         tag='alert-success',
-    #         content="gRAT updated successfully."
-    #     )
+    def test_teacher_can_update_grat(self):
+        """
+        Only teacher can update gRAT test.
+        """
+
+        data = {
+            'grat_weight': 5,
+            'grat_duration': 10
+        }
+        self.client.login(username=self.teacher.username, password='test1234')
+        self.assertEqual(self.module.grat_weight, 2)
+        self.assertEqual(self.module.grat_duration, 30)
+        response = self.client.post(self.url, data, follow=True)
+        self.assertRedirects(response, self.success_url)
+        self.module.refresh_from_db()
+        self.assertEqual(self.module.grat_weight, 5)
+        self.assertEqual(self.module.grat_duration, 10)
+        check_messages(
+            self, response,
+            tag='alert-success',
+            content="gRAT updated successfully."
+        )
 
     def test_teacher_monitor_can_not_update_grat(self):
         """

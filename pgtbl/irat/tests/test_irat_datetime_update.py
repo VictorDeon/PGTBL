@@ -16,8 +16,6 @@ User = get_user_model()
 class IRATDatetimeUpdateTestCase(TestCase):
     """
     Test to update datetime into IRAT test.
-
-    BUG: For some reason the commented tests are breaking
     """
 
     def setUp(self):
@@ -41,7 +39,7 @@ class IRATDatetimeUpdateTestCase(TestCase):
             students=[self.student],
             monitors=[self.monitor, self.teacher_monitor]
         )
-        self.now = timezone.localtime(timezone.now())
+        self.now = timezone.localtime(timezone.now()) + timedelta(minutes=1)
         self.module = mommy.make(
             TBLSession,
             discipline=self.discipline,
@@ -83,59 +81,60 @@ class IRATDatetimeUpdateTestCase(TestCase):
         redirect_url = '{0}?next={1}'.format(login_url, self.url)
         self.assertRedirects(response, redirect_url)
 
-    # def test_teacher_can_update_datetime(self):
-    #     """
-    #     Only teacher can update datetime test.
-    #     """
-    #
-    #     data = {'irat_datetime': self.now}
-    #     self.client.login(username=self.teacher.username, password='test1234')
-    #     self.assertIsNone(self.module.irat_datetime)
-    #     response = self.client.post(self.url, data, follow=True)
-    #     self.assertRedirects(response, self.success_url)
-    #     self.module.refresh_from_db()
-    #     self.assertIsNotNone(self.module.irat_datetime)
-    #     check_messages(
-    #         self, response,
-    #         tag='alert-success',
-    #         content="iRAT date updated successfully."
-    #     )
-    #
-    # def test_teacher_can_not_update_empty_datetime(self):
-    #     """
-    #     Only teacher can update datetime test.
-    #     """
-    #
-    #     data = {'irat_datetime': None}
-    #     self.client.login(username=self.teacher.username, password='test1234')
-    #     self.assertIsNone(self.module.irat_datetime)
-    #     response = self.client.post(self.url, data, follow=True)
-    #     self.module.refresh_from_db()
-    #     self.assertIsNone(self.module.irat_datetime)
-    #     check_messages(
-    #         self, response,
-    #         tag='alert-danger',
-    #         content="iRAT date must to be filled in."
-    #     )
-    #
-    # def test_teacher_can_not_update_later_datetime(self):
-    #     """
-    #     Only teacher can update datetime test.
-    #     """
-    #
-    #     self.module.irat_datetime = self.now
-    #     self.module.save()
-    #
-    #     data = {'irat_datetime': self.now - timedelta(minutes=5)}
-    #     self.client.login(username=self.teacher.username, password='test1234')
-    #     response = self.client.post(self.url, data, follow=True)
-    #     self.module.refresh_from_db()
-    #     self.assertIsNone(self.module.irat_datetime)
-    #     check_messages(
-    #         self, response,
-    #         tag='alert-danger',
-    #         content="iRAT date must to be later than today's date."
-    #     )
+    def test_teacher_can_update_datetime(self):
+        """
+        Only teacher can update datetime test.
+        """
+
+        data = {'irat_datetime': self.now.strftime("%Y-%m-%dT%H:%M")}
+        self.client.login(username=self.teacher.username, password='test1234')
+        self.assertEqual(self.module.irat_datetime, None)
+        response = self.client.post(self.url, data, follow=True)
+        self.assertRedirects(response, self.success_url)
+        self.module.refresh_from_db()
+        self.assertIsNotNone(self.module.irat_datetime)
+        check_messages(
+            self, response,
+            tag='alert-success',
+            content="iRAT date updated successfully."
+        )
+
+    def test_teacher_can_not_update_empty_datetime(self):
+        """
+        Teacher can not update empty datetime.
+        """
+
+        data = {'irat_datetime': ""}
+        self.client.login(username=self.teacher.username, password='test1234')
+        self.assertIsNone(self.module.irat_datetime)
+        response = self.client.post(self.url, data, follow=True)
+        self.module.refresh_from_db()
+        self.assertIsNone(self.module.irat_datetime)
+        check_messages(
+            self, response,
+            tag='alert-danger',
+            content="iRAT date must to be filled in."
+        )
+
+    def test_teacher_can_not_update_last_datetime(self):
+        """
+        Teacher can not update a date if the date is not later than today's date.
+        """
+
+        self.module.irat_datetime = self.now
+        self.module.save()
+
+        now = self.now - timedelta(minutes=5)
+
+        data = {'irat_datetime': now.strftime("%Y-%m-%dT%H:%M")}
+        self.client.login(username=self.teacher.username, password='test1234')
+        response = self.client.post(self.url, data, follow=True)
+        self.module.refresh_from_db()
+        check_messages(
+            self, response,
+            tag='alert-danger',
+            content="iRAT date must to be later than today's date."
+        )
 
     def test_teacher_monitor_can_not_update_datetime(self):
         """

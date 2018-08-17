@@ -16,8 +16,6 @@ User = get_user_model()
 class GRATDatetimeUpdateTestCase(TestCase):
     """
     Test to update datetime into GRAT test.
-
-    BUG: For some reason the commented tests are breaking
     """
 
     def setUp(self):
@@ -47,6 +45,7 @@ class GRATDatetimeUpdateTestCase(TestCase):
             discipline=self.discipline,
             title="Module test",
             description="Description test",
+            irat_datetime=self.now,
             is_closed=False
         )
         self.success_url = reverse_lazy(
@@ -83,59 +82,82 @@ class GRATDatetimeUpdateTestCase(TestCase):
         redirect_url = '{0}?next={1}'.format(login_url, self.url)
         self.assertRedirects(response, redirect_url)
 
-    # def test_teacher_can_update_datetime(self):
-    #     """
-    #     Only teacher can update datetime test.
-    #     """
-    #
-    #     data = {'grat_datetime': self.now}
-    #     self.client.login(username=self.teacher.username, password='test1234')
-    #     self.assertIsNone(self.module.grat_datetime)
-    #     response = self.client.post(self.url, data, follow=True)
-    #     self.assertRedirects(response, self.success_url)
-    #     self.module.refresh_from_db()
-    #     self.assertIsNotNone(self.module.grat_datetime)
-    #     check_messages(
-    #         self, response,
-    #         tag='alert-success',
-    #         content="gRAT date updated successfully."
-    #     )
+    def test_teacher_can_update_datetime(self):
+        """
+        Only teacher can update datetime test.
+        """
 
-    # def test_teacher_can_not_update_empty_datetime(self):
-    #     """
-    #     Only teacher can update datetime test.
-    #     """
-    #
-    #     data = {'grat_datetime': None}
-    #     self.client.login(username=self.teacher.username, password='test1234')
-    #     self.assertIsNone(self.module.grat_datetime)
-    #     response = self.client.post(self.url, data, follow=True)
-    #     self.module.refresh_from_db()
-    #     self.assertIsNone(self.module.grat_datetime)
-    #     check_messages(
-    #         self, response,
-    #         tag='alert-danger',
-    #         content="gRAT date must to be filled in."
-    #     )
-    #
-    # def test_teacher_can_not_update_later_datetime(self):
-    #     """
-    #     Only teacher can update datetime test.
-    #     """
-    #
-    #     self.module.grat_datetime = self.now
-    #     self.module.save()
-    #
-    #     data = {'grat_datetime': self.now - timedelta(minutes=5)}
-    #     self.client.login(username=self.teacher.username, password='test1234')
-    #     response = self.client.post(self.url, data, follow=True)
-    #     self.module.refresh_from_db()
-    #     self.assertIsNone(self.module.grat_datetime)
-    #     check_messages(
-    #         self, response,
-    #         tag='alert-danger',
-    #         content="gRAT date must to be later than today's date."
-    #     )
+        now = self.now + timedelta(minutes=31)
+
+        data = {'grat_datetime': now.strftime("%Y-%m-%dT%H:%M")}
+        self.client.login(username=self.teacher.username, password='test1234')
+        self.assertIsNone(self.module.grat_datetime)
+        response = self.client.post(self.url, data, follow=True)
+        self.assertRedirects(response, self.success_url)
+        self.module.refresh_from_db()
+        self.assertIsNotNone(self.module.grat_datetime)
+        check_messages(
+            self, response,
+            tag='alert-success',
+            content="gRAT date updated successfully."
+        )
+
+    def test_teacher_can_not_update_empty_datetime(self):
+        """
+        Teacher can not update empty datetime.
+        """
+
+        data = {'grat_datetime': ""}
+        self.client.login(username=self.teacher.username, password='test1234')
+        self.assertIsNone(self.module.grat_datetime)
+        response = self.client.post(self.url, data, follow=True)
+        self.module.refresh_from_db()
+        self.assertIsNone(self.module.grat_datetime)
+        check_messages(
+            self, response,
+            tag='alert-danger',
+            content="gRAT date must to be filled in."
+        )
+
+    def test_teacher_can_not_update_last_datetime(self):
+        """
+        Teacher can not update a grat date if the date is not later than today's date.
+        """
+
+        self.module.grat_datetime = self.now
+        self.module.save()
+
+        now = self.now - timedelta(minutes=5)
+
+        data = {'grat_datetime': now.strftime("%Y-%m-%dT%H:%M")}
+        self.client.login(username=self.teacher.username, password='test1234')
+        response = self.client.post(self.url, data, follow=True)
+        self.module.refresh_from_db()
+        check_messages(
+            self, response,
+            tag='alert-danger',
+            content="gRAT date must to be later than today's date."
+        )
+
+    def test_teacher_can_not_update_before_irat_datetime(self):
+        """
+        Teacher can not update a grat date if the date is not later than irat date.
+        """
+
+        self.module.grat_datetime = self.now
+        self.module.save()
+
+        now = self.now + timedelta(minutes=5)
+
+        data = {'grat_datetime': now.strftime("%Y-%m-%dT%H:%M")}
+        self.client.login(username=self.teacher.username, password='test1234')
+        response = self.client.post(self.url, data, follow=True)
+        self.module.refresh_from_db()
+        check_messages(
+            self, response,
+            tag='alert-danger',
+            content="gRAT date must to be later than iRAT date with its duration."
+        )
 
     def test_teacher_monitor_can_not_update_datetime(self):
         """
