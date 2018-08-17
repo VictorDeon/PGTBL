@@ -1,35 +1,32 @@
----
-name: Bug report
-about: Create a report to help us improve
+<!--- Forneça um resumo geral da _issue_ no título acima -->
 
----
+## Comportamento Esperado
+<!--- Se você está descrevendo um _bug_, conte-nos o que deveria acontecer. -->
+<!--- Se você está sugerindo uma mudança/melhoria, conte-nos como deve funcionar. -->
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## Comportamento Atual
+<!--- Se está descrevendo um bug, conte-nos o que acontece em vez do comportamento esperado. -->
+<!--- Se está sugerindo uma mudança/melhoria, explique a diferença com o comportamento atual. -->
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+## Possível Solução
+<!--- Não é obrigatório, mas sugira uma possível correção/razão para o bug -->
+<!--- ou ideias de como implementar a adição/mudança. -->
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## Passos para Reproduzir (para bugs)
+<!--- Forneça um link para um exemplo, ou um conjunto de passos inequívocos -->
+<!--- para reproduzir esse bug. Inclua código para reproduzir, se relevante. -->
+1.
+2.
+3.
+4.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+## Contexto
+<!--- Como esse problema o afeta? O que você está tentando realizar? -->
+<!--- Fornecer o contexto nos ajuda a encontrar uma solução que seja mais útil no mundo real -->
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+## Seu Ambiente
+<!--- Inclua detalhes relevantes sobre o ambiente em que você presenciou/experienciou o bug. -->
+* Versão usada (Software):
+* Nome e versão do navegador:
+* Nome e versão do Sistema Operacional (desktop ou mobile):
+* Link para o seu projeto (Caso de fork deste projeto):
