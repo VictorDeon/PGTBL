@@ -13,6 +13,11 @@ urlpatterns = [
     url(r'', include('modules.urls')),
     url(r'', include('questions.urls')),
     url(r'', include('grades.urls')),
+    url(r'', include('peer_review.urls')),
+    url(r'', include('practical_test.urls')),
+    url(r'', include('exercises.urls')),
+    url(r'', include('irat.urls')),
+    url(r'', include('grat.urls'))
 ]
 
 # While in development mode we will use relative URL for static and average

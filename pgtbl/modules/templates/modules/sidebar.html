@@ -29,7 +29,7 @@
        <i class="fa fa-graduation-cap icon-lg"></i>
     </a>
     <!-- Session exercise menu -->
-    <a href="{% url 'questions:list' discipline.slug session.id %}"
+    <a href="{% url 'exercises:list' discipline.slug session.id %}"
        class="btn"
        data-toggle="tooltip"
        data-placement="right"
@@ -46,7 +46,7 @@
     </a>
     <!-- Session iRAT menu -->
     {% if date > irat_datetime and user in discipline.students.all %}
-      <a href="{% url 'questions:irat-result' discipline.slug session.id %}"
+      <a href="{% url 'irat:result' discipline.slug session.id %}"
          class="btn"
          data-toggle="tooltip"
          data-placement="right"
@@ -54,7 +54,7 @@
          <i class="fa fa-street-view icon-lg"></i>
       </a>
     {% else %}
-      <a href="{% url 'questions:irat-list' discipline.slug session.id %}"
+      <a href="{% url 'irat:list' discipline.slug session.id %}"
          class="btn"
          data-toggle="tooltip"
          data-placement="right"
@@ -65,7 +65,7 @@
 
     <!-- Session gRAT menu -->
     {% if date > grat_datetime and user in discipline.students.all %}
-      <a href="{% url 'questions:grat-result' discipline.slug session.id %}"
+      <a href="{% url 'grat:result' discipline.slug session.id %}"
          class="btn"
          data-toggle="tooltip"
          data-placement="right"
@@ -73,7 +73,7 @@
          <i class="fa fa-group icon-lg"></i>
       </a>
     {% else %}
-      <a href="{% url 'questions:grat-list' discipline.slug session.id %}"
+      <a href="{% url 'grat:list' discipline.slug session.id %}"
          class="btn"
          data-toggle="tooltip"
          data-placement="right"
@@ -83,7 +83,7 @@
     {% endif %}
 
     <!-- Session practical menu -->
-    <a href="{% url 'modules:practical-details' discipline.slug session.id %}"
+    <a href="{% url 'practical:details' discipline.slug session.id %}"
        class="btn"
        data-toggle="tooltip"
        data-placement="right"
@@ -92,11 +92,11 @@
     </a>
 
     <!-- Session peer test menu -->
-    <a href="#"
+    <a href="{% url 'peer_review:list' discipline.slug session.id %}"
        class="btn"
        data-toggle="tooltip"
        data-placement="right"
-       title="{% trans 'Test Peer' %}">
+       title="{% trans 'Pair Review' %}">
        <i class="fa fa-vcard-o icon-lg"></i>
     </a>
 

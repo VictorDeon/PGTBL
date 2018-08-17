@@ -1,0 +1,2 @@
+from .practical_test_detail_view import PracticalTestDetailView
+from .practical_test_update_view import PracticalTestUpdateView

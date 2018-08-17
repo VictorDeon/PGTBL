@@ -1,0 +1,55 @@
+/* Parallax */
+.parallax {
+  /* The image used */
+  background-image: url("../img/parallax.jpg");
+  /* Set a specific height */
+  height: 570px;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax-header {
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+.parallax-text {
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+/* Carousel */
+#slide-carousel {
+  padding: 0 10px 30px 10px;
+  text-align:center;
+}
+
+/* indicator position */
+.carousel-indicators {
+  right: 50%;
+  top: 560px;
+}
+
+/* indicator color */
+.carousel-indicators li {
+  background: #c0c0c0;
+  height:15px;
+  width:15px;
+}
+
+/* active indicator */
+.carousel-indicators .active {
+  background: #333333;
+  height:15px;
+  width:15px;
+  margin-bottom:1px;
+}
+
+.carousel-inner {
+  top: 130px;
+}

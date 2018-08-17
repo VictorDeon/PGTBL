@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TBL</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/class_list.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse-navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand navbar-link" href="#vai-para-a-home-logado"><i class="fa fa-home"></i> Team Based Learning</a>
+          </div>
+          <div class="collapse navbar-collapse" id="collapse-navbar">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="../home.html#home" class="navbar-link"><i class="fa fa-sign-out"></i> Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="row">
+        <div class="col-sm-12 navegation">
+          <ul class="breadcrumb pull-left">
+            <li><a href="../home.html#home">Home</a></li>
+            <li><a href="profile.html">Perfil</a></li>
+            <li><a href="class_list.html">Procurar disciplinas e turmas</a></li>
+          </ul>
+          <p class="pull-right">Quinta, 10 de Janeiro de 2017 <i class="fa fa-calendar"></i></p>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="col-sm-2">
+          <div class="btn-group-vertical">
+            <a href="profile.html" class="btn" data-toggle="tooltip" data-placement="right" title="Perfil">
+              <i class="fa fa-user icon-lg"></i>
+            </a>
+            <a href="edit_information.html" class="btn" data-toggle="tooltip" data-placement="right" title="Editar informações pessoais">
+              <i class="fa fa-edit icon-lg"></i>
+            </a>
+            <a href="edit_password.html" class="btn" data-toggle="tooltip" data-placement="right" title="Editar senha">
+              <i class="fa fa-expeditedssl icon-lg"></i>
+            </a>
+            <a href="class_list.html" class="btn" data-toggle="tooltip" data-placement="right" title="Procurar disciplina/turma">
+              <i class="fa fa-search icon-lg"></i>
+            </a>
+            <a href="create_class.html" class="btn" data-toggle="tooltip" data-placement="right" title="Criar disciplina/turma">
+              <i class="fa fa-book icon-lg"></i>
+            </a>
+            <a href="#" class="btn" data-toggle="tooltip" data-placement="right" title="Mensagens">
+              <i class="fa fa-envelope icon-lg"></i>
+            </a>
+            <a href="#" class="btn" data-toggle="tooltip" data-placement="right" title="Deletar conta">
+              <i class="fa fa-trash icon-lg"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-sm-10">
+          <div class="container-fluid">
+            <div class="page-header">
+              <h1 class="white">Lista de disciplinas e turmas</h1>
+            </div>
+            <form method="get">
+              <div class="input-group">
+                <div class="dropdown input-group-btn">
+                  <button class="btn btn-primary dropdown-toggle btn-border" type="button" data-toggle="dropdown">
+                    <span class="fa fa-chevron-down"></span>
+                    <b>Filtro</b>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Curso</a></li>
+                    <li><a href="#">Disciplina</a></li>
+                    <li><a href="#">Professor</a></li>
+                  </ul>
+                </div>
+                <input type="text" class="form-control" placeholder="Pesquisar">
+                <div class="input-group-btn">
+                  <button class="btn btn-primary btn-border" type="submit">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="panel-group" id="accordion">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                          <span><i class="fa fa-book"></i> Medição e Análise</span>
+                          <span class="pull-right">Turma A <i class="fa fa-slideshare"></i></span>
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse out">
+                      <div class="panel-body">
+                        <div class="row">
+                          <div class="col-sm-11">
+                            Disciplina de medição e análise...
+                          </div>
+                          <div class="col-sm-1">
+                            <span class="label label-primary">10/50</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel-footer">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <span><b>Professor(a)</b>: Fulano de Tal</span><br />
+                            <span><b>Curso</b>: <span class="justify">Engenharia de Software</span></span>
+                          </div>
+                          <div class="col-sm-6">
+                            <form action="profile.html" method="post">
+                              <div class="input-group">
+                                <input type="password" class="form-control" name="class01" placeholder="Senha de acesso">
+                                <div class="input-group-btn">
+                                  <button class="btn btn-primary" type="submit">
+                                    <i class="fa fa-user-plus"></i>
+                                  </button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                          <span><i class="fa fa-book"></i> Requisitos de Software</span>
+                          <span class="pull-right">Turma C <i class="fa fa-slideshare"></i></span>
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse out">
+                      <div class="panel-body">
+                        <div class="row">
+                          <div class="col-sm-11">
+                            Disciplina de requisitos de software...
+                          </div>
+                          <div class="col-sm-1">
+                            <span class="label label-primary">15/60</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel-footer">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <span><b>Professor(a)</b>: Fulano de Tal</span><br />
+                            <span><b>Curso</b>: <span class="justify">Engenharia de Software</span></span>
+                          </div>
+                          <div class="col-sm-6">
+                            <form action="profile.html" method="post">
+                              <div class="input-group">
+                                <input type="password" class="form-control" name="class02" placeholder="Senha de acesso">
+                                <div class="input-group-btn">
+                                  <button class="btn btn-primary" type="submit">
+                                    <i class="fa fa-user-plus"></i>
+                                  </button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                          <span><i class="fa fa-book"></i> Calculo 01</span>
+                          <span class="pull-right">Turma A <i class="fa fa-slideshare"></i></span>
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse out">
+                      <div class="panel-body">
+                        <div class="row">
+                          <div class="col-sm-11">
+                            Disciplina de calculo 01...
+                          </div>
+                          <div class="col-sm-1">
+                            <span class="label label-primary">15/60</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel-footer">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <span><b>Professor(a)</b>: João da Silva</span><br />
+                            <span><b>Curso</b>: <span class="justify">Engenharia de Software</span></span>
+                          </div>
+                          <div class="col-sm-6">
+                            <form action="profile.html" method="post">
+                              <div class="input-group">
+                                <input type="password" class="form-control" name="class03" placeholder="Senha de acesso">
+                                <div class="input-group-btn">
+                                  <button class="btn btn-primary" type="submit">
+                                    <i class="fa fa-user-plus"></i>
+                                  </button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ul class="pagination">
+              <li><a href="#"><<</a></li>
+              <li><a href="#">1</a></li>
+              <li class="active"><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#">>></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

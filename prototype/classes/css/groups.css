@@ -1,0 +1,61 @@
+.panel-title > a:hover,
+.panel-title > a:focus {
+  text-decoration: none;
+}
+
+.panel-heading {
+  box-shadow: 0 1px 15px gray;
+}
+
+.panel-heading:hover {
+  background-color: #efef8f;
+  color: white;
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+.panel-footer {
+  box-shadow: 0 1px 5px grey;
+}
+
+img {
+  width: 150px;
+  margin: 10px;
+}
+
+.thumbnail {
+  padding: 10px;
+}
+
+.panel-group {
+  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-right: 30px;
+}
+
+.submit-button {
+  background-color: #263238 !important;
+  width: 100%;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.submit-button:hover {
+  color: white;
+}
+
+.send-button {
+  width: 100%;
+  position: relative;
+  right: 15px;
+}
+
+.remove-student-button {
+  color: black !important;
+  margin-bottom: 2px;
+}
+
+.modal-footer {
+  background-color: #263238 !important;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}

@@ -1,0 +1,52 @@
+.panel {
+  height: 475px;
+  overflow-y: auto;
+}
+
+.approved {
+  color: green;
+}
+
+.disapproved {
+  color: red;
+}
+
+ul > li > a {
+  color: white;
+}
+
+tbody > tr > td > a:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.submit-button {
+  background-color: #263238 !important;
+  width: 100%;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.submit-button:hover, .submit-button:focus {
+  color: white;
+}
+
+thead > tr {
+  border: 1px solid #DDDDDD;
+  background-color: #286090;
+  color: white;
+}
+
+th {
+  border: 2px solid #DDDDDD;
+}
+
+tr > th, tr > td {
+  text-align: center;
+}
+
+.modal-footer {
+  background-color: #263238 !important;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}

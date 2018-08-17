@@ -1,0 +1,74 @@
+.panel-heading {
+  background-color: #286090 !important;
+  color: white !important;
+}
+
+.header-up {
+  border-radius: 5px 5px 0 0;
+  margin-bottom: 0;
+}
+
+.header-down {
+  border-radius: 0;
+}
+
+.table {
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+th, td {
+  border-top: initial !important;
+  padding: 1px !important;
+}
+
+.roles {
+  cursor: pointer;
+  color: whitesmoke;
+  font-size: 25px;
+}
+
+.roles:hover, .roles:focus {
+  color: white;
+}
+
+.number {
+  margin-top: 25px;
+}
+
+textarea {
+  resize: none;
+}
+
+.modal-footer {
+  background-color: #263238 !important;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.update {
+  position:relative;
+  bottom: 15px;
+  left: 15px;
+}
+
+.update > a {
+  color: white;
+}
+
+.update > a:hover {
+  text-decoration: none;
+}
+
+.btn:active:focus, .btn:focus {
+  outline: none;
+}
+
+.submit-button {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.modal-body {
+  color: black;
+}
