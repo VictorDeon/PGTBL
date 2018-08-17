@@ -1,6 +1,7 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bcbcac621e1847e7af8e61bc202a03c6)](https://www.codacy.com/app/VictorArnaud/TBL?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=TeamBasedLearning/TBL&amp;utm_campaign=Badge_Grade) 
-[![Build Status](https://travis-ci.org/VictorArnaud/TBL.svg?branch=master)](https://travis-ci.org/VictorArnaud/TBL)
-[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/bcbcac621e1847e7af8e61bc202a03c6)](https://www.codacy.com/app/VictorArnaud/TBL?utm_source=github.com&utm_medium=referral&utm_content=TeamBasedLearning/TBL&utm_campaign=Badge_Coverage)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bcbcac621e1847e7af8e61bc202a03c6)](https://www.codacy.com/app/VictorArnaud/PGTBL?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=VictorArnaud/PGTBL&amp;utm_campaign=Badge_Grade)
+[![Build Dev Status](https://travis-ci.org/VictorArnaud/PGTBL.svg?branch=dev)](https://travis-ci.org/VictorArnaud/PGTBL)
+[![Build Master Status](https://travis-ci.org/VictorArnaud/PGTBL.svg?branch=master)](https://travis-ci.org/VictorArnaud/PGTBL)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/bcbcac621e1847e7af8e61bc202a03c6)](https://www.codacy.com/app/VictorArnaud/PGTBL?utm_source=github.com&utm_medium=referral&utm_content=VictorArnaud/PGTBL&utm_campaign=Badge_Coverage)
 
 # Documentação do PGTBL: Plataforma gerenciadora de Team Based Learning.
 
