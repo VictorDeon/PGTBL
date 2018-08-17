@@ -1,5 +1,3 @@
-from .practical_test_detail_view import PracticalTestDetailView
-from .practical_test_update_view import PracticalTestUpdateView
 from .tbl_session_create_view import TBLSessionCreateView
 from .tbl_session_delete_view import TBLSessionDeleteView
 from .tbl_session_detail_view import TBLSessionDetailView

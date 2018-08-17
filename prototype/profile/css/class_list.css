@@ -1,0 +1,43 @@
+.panel {
+  margin-top: 10px;
+}
+
+.panel-title > a:hover,
+.panel-title > a:focus {
+  text-decoration: none;
+}
+
+.panel-heading {
+  box-shadow: 0 1px 15px gray;
+}
+
+.panel-heading:hover {
+  background-color: #efef8f;
+  color: white;
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+.panel-footer {
+  box-shadow: 0 1px 5px grey;
+  padding: 5px 10px;
+}
+
+.justify {
+  padding-left: 42px;
+}
+
+.btn-border,
+.btn-border:hover,
+.open > .dropdown-toggle.btn-primary:focus,
+.open > .dropdown-toggle.btn-primary:hover {
+  border-color: white;
+}
+
+
+.pagination {
+  margin: 10px 0;
+}
+
+.icon-md {
+  font-size: 20px;
+}

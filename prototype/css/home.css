@@ -1,0 +1,155 @@
+body {
+  background-color: #292C33;
+  position: relative;
+  overflow-x: hidden;
+}
+
+main {
+  position: relative;
+  top: 50px;
+}
+
+footer {
+  position: relative;
+  top: 50px;
+}
+
+/* Navbar */
+.navbar-link {
+  color: #cfd8dc !important;
+}
+
+.navbar-link:hover {
+  color: white !important;
+}
+
+/* Navbar - Bootstrap */
+.navbar {
+  margin-bottom: 0px;
+}
+
+.navbar-inverse {
+  background-color: #263238;
+}
+
+.navbar-inverse .navbar-nav > .active > a {
+  background-color: #1f272b;
+}
+
+.navbar-inverse .navbar-nav > .active > a:hover {
+  background-color: #1f272b;
+}
+
+/* breadcrumb */
+.breadcrumb {
+  padding: 0px 15px;
+  padding-top: 10px;
+  margin-bottom: unset;
+  list-style: none;
+  background-color: transparent;
+  border-radius: unset;
+}
+
+.breadcrumb > li > a {
+  color: #B3B3B3;
+}
+
+.breadcrumb > li > a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.navegation {
+  background-color: #343841;
+}
+
+.navegation > p {
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #B3B3B3;
+}
+
+/* Others */
+.no-decoration:hover {
+  text-decoration: none;
+}
+
+.divisor {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-top: 0.2px solid #656363;
+}
+
+.fix-row {
+  margin-right: 15px;
+  margin-left: 0;
+}
+
+/* Copyright */
+.copyright {
+  color: white;
+  padding-left: 10px;
+}
+
+/* Paleta de cores */
+.white {
+  color: white;
+}
+
+.lighten-blue-grey {
+  color: #ECEFF1;
+}
+
+.darken-blue-grey {
+  color: #263238;
+}
+
+.darken-red {
+  color: #b71c1c;
+}
+
+.btn-primary {
+  background: #283F4A; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#283F4A, #286090); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#283F4A, #286090); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#283F4A, #286090); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#283F4A, #286090); /* Standard syntax */
+  border-color: #263238;
+}
+
+.btn-primary:hover {
+  background: #283F4A; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#283F4A, #3C6A92); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#283F4A, #3C6A92); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#283F4A, #3C6A92); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#283F4A, #3C6A92); /* Standard syntax */
+  border-color: #263238;
+}
+
+.btn-danger {
+  background: #D01C1C; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#71292B, #D01C1C); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#71292B, #D01C1C); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#71292B, #D01C1C); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#71292B, #D01C1C); /* Standard syntax */
+  border-color: #71292B;
+}
+
+.btn-danger:hover {
+  background: #D01C1C; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#71292B, #BF4343); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#71292B, #BF4343); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#71292B, #BF4343); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#71292B, #BF4343); /* Standard syntax */
+  border-color: #71292B;
+}
+
+.gradient {
+  background: #283F4A; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#283F4A, #286090); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#283F4A, #286090); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#283F4A, #286090); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#283F4A, #286090); /* Standard syntax */
+  color: white;
+}

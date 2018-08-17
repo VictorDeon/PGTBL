@@ -1,22 +1,19 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
+from django.utils.translation import ugettext_lazy as _
 
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from grades.models import FinalGrade
 
 
-class GradeResultView(LoginRequiredMixin,
-                      PermissionMixin,
-                      ListView):
+class GradeResultView(LoginRequiredMixin, ListView):
     """
     Show the list of students with their final grade.
     """
 
     template_name = 'grades/result.html'
     context_object_name = 'grades'
-
-    permissions_required = []
 
     def get_discipline(self):
         """
@@ -47,10 +44,20 @@ class GradeResultView(LoginRequiredMixin,
         discipline = self.get_discipline()
 
         for student in discipline.students.all():
-            grade, created = FinalGrade.objects.get_or_create(
+            result, created = FinalGrade.objects.get_or_create(
                 discipline=discipline,
                 student=student
             )
-            grades.append(grade)
+            grade = result.calcule_final_grade()
+            result.final_grade = grade
+
+            if grade >= 5:
+                result.status = _("Approved")
+            else:
+                result.status = _("Disapproved")
+
+            result.save()
+
+            grades.append(result)
 
         return grades
