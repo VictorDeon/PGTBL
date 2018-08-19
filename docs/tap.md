@@ -53,7 +53,7 @@ O TBL ou Team Based Learning é um modelo educacional já empregado em várias u
 ## 4. Objetivo do projeto
 ***
 
-O objetivo inicial do projeto é a aplicação do software na disciplina da UnB de Medição e Análise, substituído o método tradicional de ensino e avaliação, tornando o processo mais prazeroso, tanto para o aluno quanto para o professor através dessa tecnologia.
+O objetivo inicial do projeto é a aplicação do software em disciplinas da UnB, substituído o método tradicional de ensino e avaliação, tornando o processo mais prazeroso, tanto para o aluno quanto para o professor através dessa tecnologia.
  
 O sistema terá um design atrativo e será responsável por todo o processo do TBL desde a preparação até a avaliação em pares. Futuramente a aplicação terá um sistema de machine learning e Gamificação além de ser extensível a qualquer disciplina ou curso tanto superior como ensino médio.
 
@@ -130,11 +130,15 @@ O projeto tem como base dois principais marcos, que representam entregas do prod
 
 ### 9.1 EAP
 
-![eap](https://user-images.githubusercontent.com/14116020/38158455-0ce9b48a-346b-11e8-8df0-7d04d929c7fd.png)
+![eap](https://user-images.githubusercontent.com/14116020/44312145-d6a9b400-a3c9-11e8-99c3-ea2268161f48.png)
+
+![eap-release 01](https://user-images.githubusercontent.com/14116020/44312144-d6a9b400-a3c9-11e8-99a3-741100b333ea.png)
+
+![eap-release 02](https://user-images.githubusercontent.com/14116020/44312143-d6a9b400-a3c9-11e8-9f0d-36f969a24d21.png)
 
 ### 9.2 Roadmap
 
-![roadmap](https://user-images.githubusercontent.com/14116020/38158456-0d0a2710-346b-11e8-8155-ce93e107446f.png)
+![roadmap](https://user-images.githubusercontent.com/14116020/44312141-d6111d80-a3c9-11e8-8e53-60e4aa832e01.png)
 
 ***
 ## 10. Custo Estimado

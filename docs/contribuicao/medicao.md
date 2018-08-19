@@ -149,11 +149,9 @@ Será feito o uso de cinco métricas de qualidade de código e uma de conhecimen
 
 * índice de qualidade (Certification);
 
-* Segurança;
-
 * Quantidade de issues geradas pela ferramenta de análise estática;
 
-* Churn: Alterações de arquivo e Complexidade ciclomática;
+* Complexidade ciclomática;
 
 * Quadro de conhecimento
 
@@ -320,66 +318,7 @@ Os indicadores são as bases as quais buscam auxiliar na interpretação e verif
   </tr>
 </table>
 
-### 4.3 Segurança
-
-<table>
-  <tr>
-    <td colspan="2"><b>Questão 1.2 A qualidade do código está aceitável?</b></td>
-  </tr>
-  <tr>
-    <td><b>Objetivo da medição</b></td>
-    <td>Esta métrica avalia a segurança do nosso código evitando ataques perigosos de usuários maliciosos.</td>
-  </tr>
-  <tr>
-    <td><b>Entidade</b></td>
-    <td>Produto</td>
-  </tr>
-  <tr>
-    <td><b>Tipo</b></td>
-    <td>Métrica objetiva, direta e externa</td>
-  </tr>
-  <tr>
-    <td><b>Escala da Medição</b></td>
-    <td>Nominal</td>
-  </tr>
-  <tr>
-    <td><b>Coleta</b></td>
-    <td>
-        <ul>
-            <li><b>Responsável</b>: Equipe de Gerência</li>
-            <li><b>Periodicidade ou Evento</b>​: por sprint</li>
-            <li><b>Procedimentos​</b>: A segurança se da através de uma lista de técnicas de segurança disponibilizado pela ferramenta Codacy, entre essas técnicas temos: CSRF, Command Injection, Auth, Cryptography, Input validation, SQL Injection, entre outras.</li>
-            <li><b>Armazenamento</b>: ​ Resultados da sprint - Wiki</li>
-        </ul>
-    </td>
-  </tr>
-  <tr>
-    <td><b>Análise</b></td>
-    <td>
-        <ul>
-            <li><b>Responsável</b>: Equipe de Gerência</li>
-            <li><b>Valor aceitável</b>: Verde, manter segurança estável.</li>
-            <li><b>Valor preocupante</b>: vermelho, verificar o que é possível fazer para melhorar a segurança no ponto em que estiver vermelho.</li>
-        </ul>
-    </td>
-  </tr>
-  <tr>
-    <td><b>Indicadores</b></td>
-    <td>O resultado desta métrica será dado de acordo com duas cores básicas, se tiver vermelho quer dizer que a segurança do software está instável e se tiver verde a segurança está boa.</td>
-  </tr>
-  <tr>
-    <td><b>Qualidade de Produto de Software</b></td>
-    <td>
-        <ul>
-            <li><b>Dimensão</b>: Qualidade interna de código</li>
-            <li><b>Característica</b>​: Segurança</li>
-            <li><b>Sub-característica</b>: Integridade - Verifique a integridade do sistema em relação a produção do software</li>
-        </ul>
-    </td>
-  </tr>
-</table>
-
-### 4.4 Churn: Alterações de arquivo e complexidade ciclomática
+### 4.3 Complexidade ciclomática e Churn
 
 <table>
   <tr>
@@ -407,7 +346,7 @@ Os indicadores são as bases as quais buscam auxiliar na interpretação e verif
         <ul>
             <li><b>Responsável</b>: Equipe de Gerência</li>
             <li><b>Periodicidade ou Evento</b>​: por sprint</li>
-            <li><b>Procedimentos</b>: A ferramenta codacy gera um gráfico chamado Churn/Complexity onde terá vários pontos coloridos em diferentes posições do gráfico, o eixo X do gráfico é o CHURN e o eixo Y é a Complexidade dos arquivos, nesse gráfico que iremos coletar as informações.</li>
+            <li><b>Procedimentos</b>: A ferramenta codacy gera um gráfico chamado Churn/Complexity onde terá vários pontos coloridos em diferentes posições do gráfico, o eixo X do gráfico é o CHURN e o eixo Y é a Complexidade dos arquivos, nesse gráfico que iremos coletar as informações. Na nova versão do Codacy a complexidade ciclomática do projeto vem em percentagem.</li>
             <li><b>Armazenamento</b>: ​ Resultados da sprint - Wiki</li>
         </ul>
     </td>
@@ -417,15 +356,15 @@ Os indicadores são as bases as quais buscam auxiliar na interpretação e verif
     <td>
         <ul>
             <li><b>Responsável</b>: Equipe de Gerência</li>
-            <li><b>Valor aceitável</b>: Complexidade entre 5 a 20 e arquivos com qualidade B a esquerda e abaixo do gráfico, refatorar sempre que possível o código do arquivo até atingir o valor ótimo.</li>
-            <li><b>Valor ótimo</b>: Complexidade abaixo de 5 e arquivos com qualidade A a esquerda e abaixo do gráfico, manter a qualidade do código do arquivo estável.</li>
-            <li><b>Valor preocupante</b>: Complexidade acima de 20 e arquivos com qualidade C, D e F a direita e acima do gráfico, priorizar a refatoração do código do arquivo com urgência, e focar todos os esforços possíveis a fim de aumentá-lo para o valor ótimo.</li>
+            <li><b>Valor aceitável</b>: Complexidade entre 5% a 20% e arquivos com qualidade B a esquerda e abaixo do gráfico, refatorar sempre que possível o código do arquivo até atingir o valor ótimo.</li>
+            <li><b>Valor ótimo</b>: Complexidade abaixo de 5% e arquivos com qualidade A a esquerda e abaixo do gráfico, manter a qualidade do código do arquivo estável.</li>
+            <li><b>Valor preocupante</b>: Complexidade acima de 20% e arquivos com qualidade C, D e F a direita e acima do gráfico, priorizar a refatoração do código do arquivo com urgência, e focar todos os esforços possíveis a fim de aumentá-lo para o valor ótimo.</li>
         </ul>
     </td>
   </tr>
   <tr>
     <td><b>Indicadores</b></td>
-    <td>O resultado desta métrica será dado um gráfico com pontos coloridos separados em posições distintas, os arquivos que tiverem mais a esquerda e abaixo no gráfico terá uma cor normalmente verde a amarela e indicadores A e B e estarão com complexidade entre 0 e 20, é um valor de ótimo para aceitável, o os pontos/arquivos que tiverem a direita e acima do gráfico terá cores laranja para vermelho com indices de C, D e F que são valores preocupantes que necessitam ser observados, terão complexidades acima de 20, consequentemente gera complexidade computacional custosa podendo refletir em tempo de espera em consultas. Pode ser útil para identificar churn alto, arquivos de baixa qualidade dentro de um repositório. O eixo X deste gráfico é o churn do arquivo, quanto mais a esquerda, é melhor. O eixo Y é a complexidade, quanto mais abaixo é melhor.</td>
+    <td>O resultado desta métrica será dado um gráfico com pontos coloridos separados em posições distintas, os arquivos que tiverem mais a esquerda e abaixo no gráfico terá uma cor normalmente verde a amarela e indicadores A e B e estarão com complexidade entre 0% e 20%, é um valor de ótimo para aceitável, o os pontos/arquivos que tiverem a direita e acima do gráfico terá cores laranja para vermelho com indices de C, D e F que são valores preocupantes que necessitam ser observados, terão complexidades acima de 20%, consequentemente gera complexidade computacional custosa podendo refletir em tempo de espera em consultas. Pode ser útil para identificar churn alto, arquivos de baixa qualidade dentro de um repositório. O eixo X deste gráfico é o churn do arquivo, quanto mais a esquerda, é melhor. O eixo Y é a complexidade, quanto mais abaixo é melhor.</td>
   </tr>
   <tr>
     <td><b>Qualidade de Produto de Software</b></td>
@@ -441,7 +380,7 @@ Os indicadores são as bases as quais buscam auxiliar na interpretação e verif
   </tr>
 </table>
 
-### 4.5 Quantidade de issues
+### 4.4 Quantidade de issues
 
 <table>
   <tr>
@@ -469,7 +408,7 @@ Os indicadores são as bases as quais buscam auxiliar na interpretação e verif
         <ul>
             <li><b>Responsável</b>: Equipe de Gerência</li>
             <li><b>Periodicidade ou Evento</b>: por sprint</li>
-            <li><b>Procedimentos</b>: Verificar a quantidade de issues por categoria geradas pela ferramenta de análise estática Code Climate e o nível de gravidade de cada uma.</li>
+            <li><b>Procedimentos</b>: Verificar a quantidade de issues por categoria geradas pela ferramenta de análise estática Codacy e o nível de gravidade de cada uma.</li>
             <li><b>Armazenamento</b>: ​ Resultados da sprint - Wiki</li>
         </ul>
     </td>
@@ -487,7 +426,7 @@ Os indicadores são as bases as quais buscam auxiliar na interpretação e verif
   </tr>
   <tr>
     <td><b>Indicadores</b></td>
-    <td>O resultado desta métrica será dado em um valor que é a quantidade de issues que a ferramenta de análise estática de código encontrou, a ferramenta utiliza folhas de estilos normalmente adotadas para padronizar as linguagens, por exemplo a pep8 que é uma folha de estilo para a linguagem python padronizando seu código. Além disso cada issue é separado em categorias entre elas as mais importantes são Style, Error Prone, Unused code, security e code complexity e em níves de gravidade como Info, Warning e Error, que podem ajudar a escolher e priorizar quais issues são mais importantes para arrumar.</td>
+    <td>O resultado desta métrica será dado em um valor que é a quantidade de issues que a ferramenta de análise estática de código encontrou, a ferramenta utiliza folhas de estilos normalmente adotadas para padronizar as linguagens, por exemplo a pep8 que é uma folha de estilo para a linguagem python padronizando seu código. Além disso cada issue é separado em categorias entre elas as mais importantes são Style, Error Prone, Unused code, security.</td>
   </tr>
   <tr>
     <td><b>Qualidade de Produto de Software</b></td>
@@ -503,7 +442,7 @@ Os indicadores são as bases as quais buscam auxiliar na interpretação e verif
   </tr>
 </table>
 
-### 4.6 Quadro de conhecimento
+### 4.5 Quadro de conhecimento
 
 <table>
   <tr>
@@ -569,22 +508,19 @@ Junto com o processo de GQM que foi o paradigma que norteou a equipe durante as 
     <th>Métricas</th>
   </tr>
   <tr>
-    <td rowspan="5">O1: A qualidade de código</td>
+    <td rowspan="4">O1: A qualidade de código</td>
     <td>Q1.1 O software está com uma cobertura de código aceitável?</td>
     <td>M1.1.1 Cobertura de Testes</td>
   </tr>
   <tr>
-    <td rowspan="4">Q1.2 A qualidade do código está aceitável?</td>
+    <td rowspan="3">Q1.2 A qualidade do código está aceitável?</td>
     <td>M1.2.1 índice de qualidade (Certification)</td>
   </tr>
   <tr>
-    <td>M1.2.2 Segurança</td>
-  </tr>
-  <tr>
-    <td>M1.2.3 Quantidade de issues geradas pela ferramenta de análise estática</td>
+    <td>M1.2.2 Quantidade de issues geradas pela ferramenta de análise estática</td>
   </tr>
   <tr>    
-    <td>M1.2.4 Churn: Alterações de arquivo e Complexidade ciclomática</td>
+    <td>M1.2.3 Complexidade ciclomática e Churn</td>
   </tr>
   <tr>
     <td>O2: O conhecimento da equipe.</td>
@@ -627,7 +563,7 @@ Utilizar de algumas ferramentas de UX para que o software possa ter uma boa acei
 
 * [HTML/CSS](https://www.w3schools.com/) - Ferramenta para criação do protótipos de alta fidelidade que será usado no sistema também.
 
-* [Vagrant](https://www.vagrantup.com/docs/) - Ferramenta para gerar o ambiente de desenvolvimento do projeto e produção.
+* [Vagrant](https://www.vagrantup.com/docs/) - Ferramenta para simular o ambiente de produção.
 
 * [Docker](https://docs.docker.com/) - Ferramenta para gerar o container de produção do projeto.
 

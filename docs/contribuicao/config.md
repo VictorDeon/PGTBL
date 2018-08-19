@@ -26,7 +26,7 @@ Caso não exista, crie uma [Nova _Issue_](https://github.com/VictorArnaud/TBL/is
 As mudanças devem ser submetidas através de _Pull Requests_.
 
 ***
-# 2. Padrão de _Commit_
+## 2. Padrão de _Commit_
 ***
 
 ### 2.1 Por questões de padronização recomendamos que sigam nosso estilo de _commit_:
@@ -101,3 +101,9 @@ Todos os artefatos de gerenciamento devem informar sua versão atual no seguinte
 **Y**: Apenas incrementa quando é realizada a alteração ou adição de alguma nova funcionalidade.
 
 **Z**: Apenas incrementa quando são realizadas correções ou alterações no código.
+
+***
+# Processo de Devops
+***
+
+![devops](https://user-images.githubusercontent.com/14116020/42727480-e2b04d30-877d-11e8-9c8b-94efbe3be94e.png)

@@ -101,7 +101,7 @@ Trata-se de uma estratégia reconhecida para compreender as interações entre a
 |**Objetivo**|Descrever como funciona a etapa de avaliação no software|
 |**Atores**|Professor e Aluno|
 |**Recursos**|Software|
-|**Episódios**|No dia da avaliação o sistema irá disponibilizar a avaliação individual _iRAT_ para os alunos responderem, a avaliação é de múltipla escolha na qual o aluno poderá distribuir pontos entre as 4 opções tendo 4 pontos para isso e terá um tempo limite para responder, esgotando esse tempo a avaliação será fechada, e em seguida na data estipulada pelo professor irá ser disponibilizado a avaliação em grupo _gRAT_ na qual os alunos dos grupos irão se reunir e responder a avaliação, também terá um tempo e somente um aluno do grupo irá submeter à avaliação, ela será de múltipla escolha e terá o layout de raspadinha como feedback, os alunos vão ter 4 opções para distribuir entre as 4 alternativas, a primeira opção vale 4 pontos, segunda 2 pontos, terceira 1 ponto e quarta nenhum ponto, com isso se a alternativa correta for a que o aluno marcou como opção 01 o grupo ganha 4 pontos na questão e será mostrado o layout de raspadinha para o aluno verificar sua resposta, não é obrigatorio, no final de ambas as avaliações terá uma tabela com o resultado de cada questão e a nota final da avaliação.|
+|**Episódios**|No dia da avaliação o sistema irá disponibilizar a avaliação individual _iRAT_ para os alunos responderem, a avaliação é de múltipla escolha na qual o aluno poderá distribuir pontos entre as 4 opções tendo 4 pontos para isso e terá um tempo limite para responder, esgotando esse tempo a avaliação será fechada, e em seguida na data estipulada pelo professor irá ser disponibilizado a avaliação em grupo _gRAT_ na qual os alunos dos grupos irão se reunir e responder a avaliação, também terá um tempo e somente um aluno do grupo irá submeter à avaliação, ela será de múltipla escolha e terá o layout de raspadinha, ao raspar uma alternativa e estiver errada a pontuação do grupo cai pela metade até chegar a zero, no final de ambas as avaliações terá uma tabela com o resultado de cada questão e a nota final da avaliação.|
  
 ### Cenário 10: Relatorio
  
@@ -123,7 +123,7 @@ Trata-se de uma estratégia reconhecida para compreender as interações entre a
 |**Objetivo**|Descreve como é o processo para entrar em recurso|
 |**Atores**|Professor e Aluno|
 |**Recursos**|Software|
-|**Episódios**|Assim que terminar as avaliações iRAT e gRAT, os alunos já receberam um feedback das respostas da avaliação, caso algum aluno discorde da resposta ele deve enviar ao professor um recurso com o número da questão, e a justificativa do porque a questão deve ser anulada, o professor irá receber esse recurso e avaliar, se for viável ele poderá mudar a nota dos alunos se não for nada acontece.|
+|**Episódios**|Assim que terminar as avaliações iRAT e gRAT, os alunos já receberam um feedback das respostas da avaliação, caso algum aluno discorde da resposta ele deve enviar ao professor um recurso com o número da questão, e a justificativa do porque a questão deve ser anulada, seguindo o template disponibilizado, o professor irá receber esse recurso e avaliar, comentar se for necessário, se for viável ele poderá mudar a nota dos alunos se não for nada acontece. A apelação é publica para todos os alunos, monitore e o professor comentar.|
  
 ### Cenário 12: Avaliação prática
  
@@ -145,7 +145,7 @@ Trata-se de uma estratégia reconhecida para compreender as interações entre a
 |**Objetivo**|Descrever como funciona a criação e disponibilização da avaliação em pares aos alunos|
 |**Atores**|Professor e Aluno|
 |**Recursos**|Software|
-|**Episódios**|Durante o semestre nas sessões do TBL o professor poderá disponibilizar uma avaliação em pares para que os alunos do grupo se avaliem, cada aluno irá distribuir 100 entre cada um dos membros do grupo e o porque dos pontos inseridos e falando o que devem melhorar, esses pontos vai somar a nota final de cada um dos alunos, esse feedback será disponibilizado para cada aluno em seu perfil, obviamente sem aparece quem mandou, o professor irá definir na criação da sessão se ele irá fazer essa avaliação e qual a porcentagem da nota ela terá.|
+|**Episódios**|Durante o semestre nas sessões do TBL o professor poderá disponibilizar uma avaliação em pares para que os alunos do grupo se avaliem, cada aluno irá distribuir 100 para cada um dos membros do grupo e o porque dos pontos inseridos e falando o que devem melhorar, esses pontos vai somar a nota final de cada um dos alunos por meio de uma média ponderada, esse feedback será disponibilizado para cada aluno em seu perfil, obviamente sem aparece quem mandou, o professor irá definir na criação da sessão se ele irá fazer essa avaliação e qual a porcentagem da nota ela terá.|
  
 ### Cenário 14: Notas e Rank
  
@@ -156,7 +156,7 @@ Trata-se de uma estratégia reconhecida para compreender as interações entre a
 |**Objetivo**|Descrever como o software irá disponibilizar as notas de cada aluno e o rank de grupos|
 |**Atores**|Professor e Aluno|
 |**Recursos**|Software|
-|**Episódios**|A cada sessão o software irá atualizar a planilha de notas de cada aluno com as notas (iRAT, gRAT, avaliação prática) e as notas do aluno avaliado pelos colegas se tiver, com isso ele irá calcular a média da turma e a nota da sessão do TBL de cada aluno pela matrícula dele, com isso o software irá disponibilizar o rank de grupos na qual o primeiro lugar ao final do semestre ficará no **hall da fama** para servir de exemplo nos próximos semestres para os próximos alunos, o rank de grupo será calculado pela média de notas das sessões de TBL de cada aluno do grupo, o grupo que tiver a maior média é o ganhador.|
+|**Episódios**|A cada sessão o software irá atualizar a planilha de notas de cada aluno com as notas (iRAT, gRAT, avaliação prática) e as notas do aluno avaliado pelos colegas se tiver, com isso ele irá calcular a média da turma e a nota da sessão do TBL de cada aluno pelo nome de usuário dele, com isso o software irá disponibilizar o rank de grupos na qual o primeiro lugar ao final do semestre ficará no **hall da fama** para servir de exemplo nos próximos semestres para os próximos alunos, o rank de grupo será calculado pela média de notas das sessões de TBL de cada aluno do grupo, o grupo que tiver a maior média é o ganhador.|
  
 ### Cenário 15: Final do semestre
  
@@ -167,4 +167,4 @@ Trata-se de uma estratégia reconhecida para compreender as interações entre a
 |**Objetivo**|Como realizar as atividades ao finalizar o semestre|
 |**Atores**|Professor|
 |**Recursos**|Software|
-|**Episódios**|No final do semestre o professor irá retirar os alunos da turma para deixar vago novos alunos no próximo semestre e fechar a turma até que o semestre se inicie novamente, os alunos poderá entrar novamente na turma no próximo semestre se for o caso.|
+|**Episódios**|No final do semestre o professor irá resetar a disciplina removendo os alunos, grupos e notas da turma para deixar vago para novos alunos no próximo semestre, os alunos poderá entrar novamente na turma no próximo semestre se for o caso. Ao resetar a disciplina o rank de grupos é resetado e o primeiro colocado é inserido no hall da fama|
