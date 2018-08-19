@@ -221,17 +221,6 @@
 
 
   <li class="toctree-l2 toc-item">
-    <a href="#vagrant" title="Instalação">Vagrant</a>
-  </li>
-
-      
-        
-
-  
-  
-
-
-  <li class="toctree-l2 toc-item">
     <a href="#docker" title="Instalação">Docker</a>
   </li>
 
@@ -354,7 +343,7 @@
 <hr />
 <h3 id="linux">Linux</h3>
 <hr />
-<p>Pega o repositorio do github: <code>git clone https://github.com/VictorArnaud/TBL.git</code></p>
+<p>Pega o repositorio do github: <code>git clone https://github.com/VictorArnaud/PGTBL.git</code></p>
 <p>Instalar dependencias para rodar o python3 e pip3</p>
 <pre><code class="sh">sudo apt-get update
 
@@ -385,7 +374,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 </li>
 </ul>
 <p>Instalar dependencias do projeto dentro do ambiente virtual</p>
-<pre><code class="sh">pip install -r requeriments.txt
+<pre><code class="sh">pip install -r pgtbl/requeriments.txt
 </code></pre>
 
 <p>Rodar comandos para popular o banco de dados</p>
@@ -399,21 +388,14 @@ make superuser
 </code></pre>
 
 <hr />
-<h3 id="vagrant">Vagrant</h3>
-<hr />
-<p>Neste tópico serão abordadas as etapas para configuração do ambiente de desenvolvimento do projeto. Este será desenvolvido em Python/Django. Utilizamos para o desenvolvimento uma Máquina Virtual configurada com o Vagrant e com o Virtual Box atuando como provider.</p>
-<p>Os passos para configuração do ambiente estão definidos abaixo.</p>
-<p>1 - O primeiro passo é o clone do <a href="https://github.com/VictorArnaud/TBL">repositório</a></p>
-<p>2 - O próximo passo é a instalação do <a href="https://www.vagrantup.com/downloads.html">Vagrant</a> e do <a href="https://www.virtualbox.org/wiki/Downloads">virtual box</a> a forma de instalação depende do seu sistema operacional, caso utilize o windows baixe o <a href="../git-scm.com">GIT BASH</a> utilizando a configuração Unix Tool.</p>
-<p>3 - Execute o <code>vagrant up</code> no repositório que tem o <strong>Vagrantfile</strong> para criar a máquina, isso irá instalar tudo que estiver dentro do provision "shell" especificado no Vagrantfile, ele instalará automaticamente o projeto para desenvolvimento.</p>
-<p>4 - Execute o <code>Vagrant ssh</code> para entrar na máquina, o repositório do projeto estará em <strong>/home/vagrant</strong> dentro da máquina é só da o comando <code>cd /home/vagrant</code></p>
-<p>5 - Ao sair da máquina lembre-se de fecha-la com um <code>vagrant halt</code>. Se quiser entrar novamente só executar o <code>vagrant up</code>.</p>
-<p>6 - Dentro do vagrant você precisa executar o comando <code>mkvirtualenv nome_do_ambiente --python=python3</code>, isso irá criar o ambiente de desenvolvimento para instalar as dependências do software. Podemos sair do ambiente com o comando <code>deactivate</code> e entrar novamente nele com o comando <code>workon nome_do_ambiente</code>.</p>
-<p>7 - Dentro do ambiente você precisa instalar todos os pacotes do software, incluindo o django, esses pacotes se encontram no arquivo <strong>requirements.txt</strong> e você pode instala-los com o comando <code>pip3 install -r requeriments.txt</code> se der algum problema de permissão insira o sudo na frente.</p>
-<p>Com isso você já pode começar a desenvolver o sistema, tem vários comandos/atalhos dentro do arquivo <strong>Makefile</strong> que pode facilitar sua vida no desenvolvimento.</p>
-<hr />
 <h3 id="docker">Docker</h3>
 <hr />
+<p>Instale o docker: https://docs.docker.com/install/linux/docker-ce/ubuntu/</p>
+<p>Execute o comando no diretorio do projeto:</p>
+<pre><code class="sh">docker-compose up -d
+</code></pre>
+
+<p>Obs: Se der erro tente com o sudo na frente do comando.</p>
               
             </div>
           </div>

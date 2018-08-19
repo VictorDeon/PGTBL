@@ -409,25 +409,25 @@
 <p>3 - A parte dinâmica é delegada ao servidor de aplicativos WSGI (Web Server Gateway Interface) do django, no caso o gunicorn que é um servidor WSGI para Unix feito em python puro, ele irá converter solicitações HTTP recebidas do servidor em chamadas python em colaboração com o framework django que irá ter um arquivo chamado urls.py que diz ao nginx qual código deverá ser executado de acordo com o path e código HTTP recebido, através de proxy reverso será feito o redirecionamento inicial do Nginx com o servidor da aplicação, ou seja, o proxy reverso irá funcionar como uma ponte de ligação entre o nginx e o django através do gunicorn.</p>
 <p>4 - Dentro do django a requisição recebida pelo <strong>web server</strong> é mapeado para uma view especifica através das urls, a view pede dados a modelo, a model pega os dados do banco de dados postgresql e retorna a view, a view seleciona o template e fornece os dados, com isso o template é preenchido e devolvido a view, a view devolve o template como resposta ao web server.</p>
 <p>5 - O web server (nginx) retorna a resposta para o web client (navegador)</p>
-<p>A arquitetura utilizada no projeto será o arquitetura de microserviços.</p>
-<p>O projeto será implementado utilizando o framework <a href="https://www.djangoproject.com/">Django</a> na versão 1.11. O django utiliza-se do MVT (Model-View-Template) como uma adaptação do MVC (Model-View-Controller), o que muda é que a view do MVC virou template do MVT e a controller do MVC virou view do MVT, nas views utilizaremos as <a href="http://ccbv.co.uk/">Classe Based Views</a>. Esse framework fará comunicação com o banco de dados Postgresql e o servidor nginx.</p>
+<p>O projeto será implementado utilizando o framework <a href="https://www.djangoproject.com/">Django</a> na versão 2.0. O django utiliza-se do MVT (Model-View-Template) como uma adaptação do MVC (Model-View-Controller), o que muda é que a view do MVC virou template do MVT e a controller do MVC virou view do MVT, nas views utilizaremos as <a href="http://ccbv.co.uk/">Classe Based Views</a>. Esse framework fará comunicação com o banco de dados Postgresql e o servidor nginx.</p>
 <h4 id="21-pacotes-significativos-do-ponto-de-vista-da-arquitetura">2.1 Pacotes Significativos do Ponto de Vista da Arquitetura</h4>
-<p><img alt="package" src="https://user-images.githubusercontent.com/14116020/36355763-e065e10e-14c6-11e8-9fef-fdd8b4d33ed1.png" /></p>
+<p><img alt="package" src="https://user-images.githubusercontent.com/14116020/44312142-d6a9b400-a3c9-11e8-91aa-b5efb1d0dd03.png" /></p>
 <p>Os pacotes dos apps:</p>
 <ul>
 <li><strong>locale</strong>: Pasta que irá ter toda a tradução do software para pt-BR.</li>
 <li><strong>migrations</strong>: pasta com todas as migrações das modelos para o banco, são os SQLs.</li>
 <li><strong>static</strong>: É onde fica os arquivos estáticos da aplicação (CSS, JS e IMG)</li>
 <li><strong>templates</strong>: É onde fica os templates da aplicação (HTML)</li>
-<li><strong>tests</strong>: contém os testes unitários feitos no sistema.</li>
+<li><strong>tests</strong>: contém os testes automatizados feitos no sistema.</li>
 <li><strong>__init__</strong>: É o arquivo que define que sua pasta é um pacote python.</li>
 <li><strong>admin</strong>: contém a instância da modelo que fará parte do sistema de administração do django, lá pode-se fazer CRUD das models.</li>
 <li><strong>app</strong>: arquivo que contém informações da aplicação do django.</li>
-<li><strong>forms</strong>: contém os campos que será inserido no formularios</li>
-<li><strong>model</strong>: faz interface com o banco de dados, é responsável por leitura, validação e escrita de dados no banco de dados.</li>
+<li><strong>forms</strong>: pasta que contém os campos que será inserido no formularios</li>
+<li><strong>models</strong>: pasta de arquivos que faz interface com o banco de dados, é responsável por leitura, validação e escrita de dados no banco de dados.</li>
 <li><strong>permissions</strong>: Arquivo de implementação de permissões do aplicativo.</li>
 <li><strong>urls</strong>: São as rotas para ser acessada pelo navegador</li>
-<li><strong>view</strong>: contém a camada lógica do sistema e a comunicação com a API por meio de rotas (Classe Based Views).</li>
+<li><strong>views</strong>: pasta que contém a camada lógica do sistema e a comunicação com o navegador por meio de rotas (Classe Based Views).</li>
+<li><strong>fixtures</strong>: pasta que contém arquivos json para pré-popular o banco de dados para testes manuais</li>
 </ul>
 <p>Os pacotes do projeto settings:</p>
 <ul>
@@ -436,15 +436,28 @@
 <li><strong>urls</strong>: Arquivo que terá o mapeamento de rotas de todo o projeto com todas as aplicações.</li>
 <li><strong>wsgi</strong>: Arquivo usado para deploy do projeto.</li>
 </ul>
-<p>Os pacotes gerais do projeto tbl:</p>
+<p>Os pacotes do projeto pgtbl:</p>
+<ul>
+<li><strong>manage</strong>: Arquivo de configuração geral do django.</li>
+<li><strong>requirements</strong>: Arquivos para instalar dependências da aplicação através do seguinte comando <code>pip3 install -r requirements.txt</code></li>
+</ul>
+<p>Os pacotes gerais do projeto:</p>
 <ul>
 <li><strong>Vagrantfile</strong>: Arquivo que gerencia a máquina virtual de desenvolvimento, criado para desenvolvedores que queiram desenvolver em sistemas operacionais diferentes do Linux, como Windows ou Mac, precisa ter o <a href="https://www.vagrantup.com/docs/installation/">Vagrant</a> instalado.</li>
-<li><strong>Dockerfile</strong>: Arquivo que gerencia o container de deploy da aplicação tbl.</li>
-<li><strong>docker-compose</strong>: Arquivo que gerencia todos os containers de deploy da aplicação.</li>
-<li><strong>.travis</strong>: Arquivo que gerencia a entrega continua da aplicação através da ferramenta Travis CI no github.</li>
 <li><strong>Makefile</strong>: Arquivo de atalhos para comandos muito usados pelos desenvolvedores.</li>
-<li><strong>requirements</strong>: Arquivos para instalar dependências da aplicação através do seguinte comando <code>pip3 install -r requirements.txt</code></li>
-<li><strong>manage</strong>: Arquivo de configuração geral do django.</li>
+<li><strong>docker-compose</strong>: Arquivos que gerencia todos os containers da aplicação (deploy, homolog, production, test e
+  desenvolvimento).</li>
+<li><strong>.travis</strong>: Arquivo que gerencia a entrega continua da aplicação através da ferramenta Travis CI no github.</li>
+<li><strong>.codacy</strong>: Arquivo de configuração da ferramenta de análise estática de código Codacy.</li>
+<li><strong>.gitignore</strong>: Arquivo que faz o git ignorar alguns arquivos do projeto.</li>
+<li><strong>README</strong>: Arquivo com um conteúdo markdown inicial do projeto.</li>
+<li><strong>LICENSE</strong>: Licença do software.</li>
+<li><strong>mkdocs</strong>: Arquivo que contém a configuração da documentação do software.</li>
+<li><strong>prototype</strong>: Pasta com o protótipo do software.</li>
+<li><strong>docs</strong>: Pasta com toda a documentação do software.</li>
+<li><strong>makefiles</strong>: Pasta que contém de forma organizada comandos do Makefile.</li>
+<li><strong>images</strong>: Pasta que armazena as imagens de deploy da aplicação tbl.</li>
+<li><strong>scripts</strong>: Pasta com alguns scripts de integração e deploy continuo</li>
 </ul>
 <hr />
 <h2 id="3-diagrama-de-classe">3. Diagrama de classe</h2>
@@ -483,7 +496,7 @@
 <p><strong>OR e OR</strong>: uma das duas irá acontecer.</p>
 </li>
 </ul>
-<p><img alt="i__sr" src="https://user-images.githubusercontent.com/14116020/38155590-fc4b12ca-344e-11e8-82fc-45183b9712f5.png" /></p>
+<p><img alt="i__sr" src="https://user-images.githubusercontent.com/14116020/40564986-3174de68-6041-11e8-9b78-2b853ddc4ded.png" /></p>
 <hr />
 <h2 id="5-framework-nfr">5. Framework NFR</h2>
 <hr />
@@ -837,6 +850,18 @@
 <td>Aluno dono da nota.</td>
 </tr>
 <tr>
+<td>final_grade</td>
+<td>float</td>
+<td>obrigatório</td>
+<td>Nota final do aluno</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>obrigatório</td>
+<td>Status final do aluno (aprovado ou reprovado)</td>
+</tr>
+<tr>
 <td>created_at</td>
 <td>date</td>
 <td>automático</td>
@@ -861,12 +886,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>discipline</td>
-<td><a href="#discipline">Discipline</a></td>
-<td>obrigatorio</td>
-<td>Disciplina na qual o TBL pertence.</td>
-</tr>
 <tr>
 <td>title</td>
 <td>string</td>
@@ -906,6 +925,24 @@
 </tbody>
 </table>
 <h4 id="disciplinefile-file"><a name="discipline_file">DisciplineFile: <a href="#file">File</a></a>:</h4>
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo</th>
+<th>Característica</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>discipline</td>
+<td><a href="#discipline">Discipline</a></td>
+<td>obrigatorio</td>
+<td>Disciplina na qual o TBL pertence.</td>
+</tr>
+</tbody>
+</table>
 <h4 id="tblsession"><a name="tblsession">TBLSession</a></h4>
 <table>
 <thead>
@@ -1205,38 +1242,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="submission"><a name="submission">Submission</a>:</h4>
-<table>
-<thead>
-<tr>
-<th>Atributo</th>
-<th>Tipo</th>
-<th>Característica</th>
-<th>Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>correct_alternative</td>
-<td>string</td>
-<td>obrigatório</td>
-<td>Título da alternativa correta</td>
-</tr>
-<tr>
-<td>score</td>
-<td>inteiro positivo</td>
-<td>obrigatório, padrao 0</td>
-<td>Pontuação da alternativa</td>
-</tr>
-<tr>
-<td>created_at</td>
-<td>date</td>
-<td>automático</td>
-<td>Data de criação da submissão</td>
-</tr>
-</tbody>
-</table>
-<h4 id="exercisesubmission-submission"><a name="exercise_submission">ExerciseSubmission: <a href="#submission">Submission</a></a>:</h4>
+<h4 id="exercisesubmission"><a name="exercise_submission">ExerciseSubmission</a>:</h4>
 <table>
 <thead>
 <tr>
@@ -1265,9 +1271,27 @@
 <td>obrigatório</td>
 <td>Usuário que submeteu a questão</td>
 </tr>
+<tr>
+<td>correct_alternative</td>
+<td>string</td>
+<td>obrigatório</td>
+<td>Título da alternativa correta</td>
+</tr>
+<tr>
+<td>score</td>
+<td>inteiro positivo</td>
+<td>obrigatório, padrao 0</td>
+<td>Pontuação da alternativa</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>date</td>
+<td>automático</td>
+<td>Data de criação da submissão</td>
+</tr>
 </tbody>
 </table>
-<h4 id="iratsubmission-submission"><a name="irat_submission">IRATSubmission: <a href="#submission">Submission</a></a>:</h4>
+<h4 id="iratsubmission"><a name="irat_submission">IRATSubmission</a>:</h4>
 <table>
 <thead>
 <tr>
@@ -1296,9 +1320,27 @@
 <td>obrigatório</td>
 <td>Estudante que submeteu a questão</td>
 </tr>
+<tr>
+<td>correct_alternative</td>
+<td>string</td>
+<td>obrigatório</td>
+<td>Título da alternativa correta</td>
+</tr>
+<tr>
+<td>score</td>
+<td>inteiro positivo</td>
+<td>obrigatório, padrao 0</td>
+<td>Pontuação da alternativa</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>date</td>
+<td>automático</td>
+<td>Data de criação da submissão</td>
+</tr>
 </tbody>
 </table>
-<h4 id="gratsubmission-submission"><a name="grat_submission">GRATSubmission: <a href="#submission">Submission</a></a>:</h4>
+<h4 id="gratsubmission"><a name="grat_submission">GRATSubmission</a>:</h4>
 <table>
 <thead>
 <tr>
@@ -1332,6 +1374,24 @@
 <td><a href="#group">Group</a></td>
 <td>obrigatório</td>
 <td>Grupo que submeteu a questão</td>
+</tr>
+<tr>
+<td>correct_alternative</td>
+<td>string</td>
+<td>obrigatório</td>
+<td>Título da alternativa correta</td>
+</tr>
+<tr>
+<td>score</td>
+<td>inteiro positivo</td>
+<td>obrigatório, padrao 0</td>
+<td>Pontuação da alternativa</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>date</td>
+<td>automático</td>
+<td>Data de criação da submissão</td>
 </tr>
 </tbody>
 </table>
