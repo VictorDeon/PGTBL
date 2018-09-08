@@ -190,6 +190,7 @@
       
   
   
+  
   <ul class="current subnav">
     
       
@@ -201,6 +202,11 @@
 
   <li class="current toctree-l2">
     
+      <a href="#1-instalacoes" title="Instalação"
+          class="current">
+        1. Instalações
+      </a>
+    
     <ul class="current subnav">
       
         
@@ -210,7 +216,7 @@
 
 
   <li class="toctree-l2 toc-item">
-    <a href="#linux" title="Instalação">Linux</a>
+    <a href="#11-linux" title="Instalação">1.1 Linux</a>
   </li>
 
       
@@ -221,7 +227,81 @@
 
 
   <li class="toctree-l2 toc-item">
-    <a href="#docker" title="Instalação">Docker</a>
+    <a href="#12-docker" title="Instalação">1.2 Docker</a>
+  </li>
+
+      
+    </ul>
+  </li>
+
+    
+      
+
+  
+  
+
+
+  <li class=" toctree-l2">
+    
+      <a href="#2-contribuindo-com-o-pgtbl" title="Instalação"
+          class="">
+        2. Contribuindo com o PGTBL
+      </a>
+    
+    <ul class=" subnav">
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#21-como-eu-posso-contribuir" title="Instalação">2.1 Como eu posso contribuir?</a>
+  </li>
+
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#22-padrao-de-commit" title="Instalação">2.2 Padrão de Commit</a>
+  </li>
+
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#23-politica-de-branchs" title="Instalação">2.3 Política de Branchs</a>
+  </li>
+
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#24-politica-de-pull-request" title="Instalação">2.4 Política de Pull Request</a>
+  </li>
+
+      
+        
+
+  
+  
+
+
+  <li class="toctree-l2 toc-item">
+    <a href="#25-politica-de-versionamento" title="Instalação">2.5 Política de Versionamento</a>
   </li>
 
       
@@ -329,7 +409,7 @@
     <li>Instalação</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/VictorArnaud/PGTBL/edit/master/docs/contribuicao/install.md"
+        <a href="https://github.com/VictorArnaud/TBL/edit/master/docs/contribuicao/install.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -339,9 +419,9 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="instalacoes">Instalações</h1>
+                <h2 id="1-instalacoes">1. Instalações</h2>
 <hr />
-<h3 id="linux">Linux</h3>
+<h3 id="11-linux">1.1 Linux</h3>
 <hr />
 <p>Pega o repositorio do github: <code>git clone https://github.com/VictorArnaud/PGTBL.git</code></p>
 <p>Instalar dependencias para rodar o python3 e pip3</p>
@@ -388,14 +468,88 @@ make superuser
 </code></pre>
 
 <hr />
-<h3 id="docker">Docker</h3>
+<h3 id="12-docker">1.2 Docker</h3>
 <hr />
 <p>Instale o docker: https://docs.docker.com/install/linux/docker-ce/ubuntu/</p>
 <p>Execute o comando no diretorio do projeto:</p>
 <pre><code class="sh">docker-compose up -d
 </code></pre>
 
+<p>Se tudo der certo o projeto estará rodando na porta 8000</p>
 <p>Obs: Se der erro tente com o sudo na frente do comando.</p>
+<hr />
+<h2 id="2-contribuindo-com-o-pgtbl">2. Contribuindo com o PGTBL</h2>
+<hr />
+<p>Caso queira contribuir com o projeto, talvez seja uma boa ideia começar pelo <a href="https://github.com/VictorArnaud/TBL/blob/master/README.md">README</a> para conhecer melhor sobre nós. </p>
+<p>Outro documento importante e que deve ser lido é o <a href="https://github.com/VictorArnaud/TBL/blob/master/.github/CODE_OF_CONDUCT.md">Código de Conduta</a>.</p>
+<p>Obrigado por contribuir! Sua ajuda será recebida com muita gratidão!</p>
+<hr />
+<h3 id="21-como-eu-posso-contribuir">2.1 Como eu posso contribuir?</h3>
+<hr />
+<h4 id="211-reportando-um-bug">2.1.1 Reportando um Bug</h4>
+<p>Esse projeto segue um padrão de <em>Issues</em>. Logo, caso encontre um bug, verifique se ele não se encontra em uma das nossas <em>Issues</em>. Os bugs devem ser marcados com <em>tag (label)</em> <strong>bug</strong>.</p>
+<p>Se o bug encontrado não consta nas <em>Isses</em>, basta abrir uma <a href="https://github.com/VictorArnaud/TBL/issues/new">Nova <em>Issue</em></a>.</p>
+<h4 id="212-adicionando-eou-modificando-alguma-funcionalidade">2.1.2 Adicionando e/ou modificando alguma funcionalidade</h4>
+<p>Primeiro verifique que não existe nenhuma <a href="https://github.com/VictorArnaud/TBL/issues"><em>Issue</em></a> a respeito dessa modificação e/ou adição.</p>
+<p>Caso não exista, crie uma <a href="https://github.com/VictorArnaud/TBL/issues/new">Nova <em>Issue</em></a>. Dê um título significativo a ela, coloque uma descrição e pelo menos uma <em>label</em>.</p>
+<p>As mudanças devem ser submetidas através de <em>Pull Requests</em>.</p>
+<hr />
+<h3 id="22-padrao-de-commit">2.2 Padrão de <em>Commit</em></h3>
+<hr />
+<h4 id="221-por-questoes-de-padronizacao-recomendamos-que-sigam-nosso-estilo-de-commit">2.2.1 Por questões de padronização recomendamos que sigam nosso estilo de <em>commit</em>:</h4>
+<p>Os <em>commits</em> devem ser todos em <strong>inglês</strong>;</p>
+<p>Ele deve conter um título curto e objetivo do que foi feito naquele <em>commit</em>;</p>
+<p>Se for preciso, após esse título, deve-se descrever, com um pouco mais de detalhes, todas as atividades executadas.</p>
+<p>Caso esteja trabalhando em com algum associado assine nos seus <em>commits</em> os seus parceiros</p>
+<p><strong>Exemplo:</strong></p>
+<pre><code>  Creating project community files (Título curto e objetivo)
+
+  Issue #01
+
+  Adds project license (Descrição de uma das atividades)
+
+  Adds project code of conduct file
+
+  Adds project contributing file
+
+  Adds project issue template file
+
+  Adds projects pull request file
+
+  Signed-off-by: Victor Arnaud &lt;victorhad@gmail.com&gt; (Assinatura de parceria)
+</code></pre>
+
+<hr />
+<h3 id="23-politica-de-branchs">2.3 Política de <em>Branchs</em></h3>
+<hr />
+<p><img alt="Política de branchs" src="https://cloud.githubusercontent.com/assets/14116020/21487025/bcc38f2c-cba6-11e6-9447-f392a31a2b2d.png" /></p>
+<p>A política de branches que será utilizada no decorrer do projeto seguirá o modelo descrito na imagem acima: para cada funcionalidade a ser implementada será criada uma branch a partir da branch devel, que estará em constante atualização com a branch master e vice versa.</p>
+<p>Assim que cada funcionalidade for completada, será aberto um pull request (feito pela equipe de desenvolvimento) da branch correspondente à funcionalidade para a branch devel, para que esta seja aprovada.</p>
+<p>O servidor de integração contínua estará funcionando em cima da branch master e devel. Ao fim de cada sprint, será realizado um rebase da branch devel para a branch master e então será realizado o processo de integração contínua do projeto. Tanto a branch master como a devel estarão em constante atualização, para que as próximas funcionalidades a serem implementadas tenham sempre o projeto mais atualizado possível.</p>
+<p>Essa Política de Branches deverá guiar os desenvolvedores na forma de organização de suas contribuições ao repositório.</p>
+<p><strong>master</strong> - Branch principal do repositório onde será permitida somente a integração de software consolidado e testado. Essa branch será exclusiva para a entrega de Realeases, ou seja, um conjunto maior de funcionalidades que integram o software, aqui estará a versão <em><strong>stable</strong></em> do software.</p>
+<p><strong>dev</strong> - Branch para integração de novas funcionalidades, onde será permitido a entrega das features desenvolvidas e que estão em um estágio avançado de completude. Será o branch base para o início do desenvolvimento das features e da correção de bugs. Aqui também serão <em>mergeadas</em> as releases.</p>
+<p><strong>nome-da-feature</strong> - Branch utilizada para o desenvolvimento de novas features do <em>backlog</em>. Caso a feature tenha sida proposta por uma <em>issue</em> do repositório e aceita no <em>backlog</em> o nome deverá conter o número da <em>issue</em>. 
+Ex: US01_<nome-da-nova-feature> (Considerando que a feature tenha sido solicitada na <em>issue</em> #1)</p>
+<hr />
+<h3 id="24-politica-de-pull-request">2.4 Política de <em>Pull Request</em></h3>
+<hr />
+<p>Para que o "Pull Request" das funcionalidades seja devidamente aceito, esta deve estar devidamente testada e conforme os padrões de commit e estilo de código. Além disso, a build da Integração Contínua deve estar "passando" para tal funcionalidade e o pull request deve ser aberto seguindo o padrão estipulado no template.</p>
+<hr />
+<h3 id="25-politica-de-versionamento">2.5 Política de Versionamento</h3>
+<hr />
+<p>Todos os artefatos de gerenciamento devem informar sua versão atual no seguinte formato: <strong>X.Y.Z</strong>, descrito abaixo:</p>
+<p><strong>X</strong>: Apenas incrementa quando há mudanças que quebram a estrutura do projeto ou que disponibiliza uma versão estável para uso do projeto.</p>
+<ul>
+<li>
+<p><strong>X &lt; 1</strong>: A versão do projeto não é estável.</p>
+</li>
+<li>
+<p><strong>X &gt;= 1</strong>: A versão do projeto é estável.</p>
+</li>
+</ul>
+<p><strong>Y</strong>: Apenas incrementa quando é realizada a alteração ou adição de alguma nova funcionalidade.</p>
+<p><strong>Z</strong>: Apenas incrementa quando são realizadas correções ou alterações no código.</p>
               
             </div>
           </div>
@@ -431,7 +585,7 @@ make superuser
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/VictorArnaud/PGTBL/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/VictorArnaud/TBL/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../../storyboards/" style="color: #fcfcfc;">&laquo; Previous</a></span>

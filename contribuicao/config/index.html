@@ -245,7 +245,6 @@
       
   
   
-  
   <ul class="current subnav">
     
       
@@ -257,11 +256,6 @@
 
   <li class="current toctree-l2">
     
-      <a href="#contribuindo-com-o-pgtbl" title="Configuração de software"
-          class="current">
-        Contribuindo com o PGTBL.
-      </a>
-    
     <ul class="current subnav">
       
         
@@ -271,66 +265,11 @@
 
 
   <li class="toctree-l2 toc-item">
-    <a href="#1-como-eu-posso-contribuir" title="Configuração de software">1. Como eu posso contribuir?</a>
-  </li>
-
-      
-        
-
-  
-  
-
-
-  <li class="toctree-l2 toc-item">
-    <a href="#2-padrao-de-commit" title="Configuração de software">2. Padrão de Commit</a>
-  </li>
-
-      
-        
-
-  
-  
-
-
-  <li class="toctree-l2 toc-item">
-    <a href="#3-politica-de-branchs" title="Configuração de software">3. Política de Branchs</a>
-  </li>
-
-      
-        
-
-  
-  
-
-
-  <li class="toctree-l2 toc-item">
-    <a href="#4-politica-de-pull-request" title="Configuração de software">4. Política de Pull Request</a>
-  </li>
-
-      
-        
-
-  
-  
-
-
-  <li class="toctree-l2 toc-item">
-    <a href="#5-politica-de-versionamento" title="Configuração de software">5. Política de Versionamento</a>
+    <a href="#processo-de-devops" title="Configuração de software">Processo de DevOps</a>
   </li>
 
       
     </ul>
-  </li>
-
-    
-      
-
-  
-  
-
-
-  <li class="toctree-l2 toc-item">
-    <a href="#processo-de-devops" title="Configuração de software">Processo de Devops</a>
   </li>
 
     
@@ -379,7 +318,7 @@
     <li>Configuração de software</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/VictorArnaud/PGTBL/edit/master/docs/contribuicao/config.md"
+        <a href="https://github.com/VictorArnaud/TBL/edit/master/docs/contribuicao/config.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -389,82 +328,88 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="contribuindo-com-o-pgtbl">Contribuindo com o PGTBL.</h1>
+                <h1 id="devops">DevOps</h1>
 <hr />
-<p>Caso queira contribuir com o projeto, talvez seja uma boa ideia começar pelo <a href="https://github.com/VictorArnaud/TBL/blob/master/README.md">README</a> para conhecer melhor sobre nós. </p>
-<p>Outro documento importante e que deve ser lido é o <a href="https://github.com/VictorArnaud/TBL/blob/master/.github/CODE_OF_CONDUCT.md">Código de Conduta</a>.</p>
-<p>Obrigado por contribuir! Sua ajuda será recebida com muita gratidão!</p>
+<p>De acordo com a Amazon DevOps é a combinação de filosofias, práticas e ferramentas que aumentam a capacidade de distribuir aplicativos e serviços em alta velocidade. Essas velocidade permite que seus clientes sejam atendidos de forma melhor e as empresas conseguem competir de forma mais eficaz no mercado. Com esse novo modelo, as equipes de desenvolvimento e operações não são mais separadas, ou seja, os engenheiros trabalham durante todo o ciclo de vida do aplicativo, da fase de desenvolvimento e testes à fase de implantação e operações.</p>
+<p>Essas equipes usam práticas para automatizar processos que sempre foram feitas de maneira manual e lenta. Eles usam várias técnologias que o auxiliam a automatizar todo esse processo que envolve a infraestrutura do software e isso aumenta ainda mais a velocidade e produtividade da equipe.</p>
+<p>A Amazon cita alguns benefícios do DevOps, são eles: velocidade, en- trega rápida, confiabilidade, operações em escala, colaboração melhorada e segurança.  Além disso o modelo de DevOps é importante já que o software já não apenas sustenta uma atividade empresarial, ele tornou-se um componente integral de cada parte de uma empresa. O objetivo principal desse modelo é remover as barreiras entre duas equipes tradicionalmente separadas, desenvolvimento e operações, com essa abordagem as duas equipes trabalham juntas para otimizar a produtividade dos desenvolvedores e a confia- bilidade das operações de forma a automatizar alguns processos que antes eram feitos de forma manual e que gerava uma certa dependencia entre as equipes.</p>
+<p>De acordo com Amazon existem algumas práticas essenciais que ajudam as empresas a inovar mais rapidamente por meio da automação e da simplificação dos processos de desenvolvimento de software e gerenciamento de infraestrutura. A maioria dessas práticas já são realizadas e mencionadas em algumas metodologias como o XP. São elas: integração contínua, entrega contínua, microsserviços, infraestrutura como código, monitoramento e registro em log, comunicação e colaboração.</p>
 <hr />
-<h2 id="1-como-eu-posso-contribuir">1. Como eu posso contribuir?</h2>
+<h3 id="processo-de-devops">Processo de DevOps</h3>
 <hr />
-<h3 id="11-reportando-um-bug">1.1 Reportando um Bug</h3>
-<p>Esse projeto segue um padrão de <em>Issues</em>. Logo, caso encontre um bug, verifique se ele não se encontra em uma das nossas <em>Issues</em>. Os bugs devem ser marcados com <em>tag (label)</em> <strong>bug</strong>.</p>
-<p>Se o bug encontrado não consta nas <em>Isses</em>, basta abrir uma <a href="https://github.com/VictorArnaud/TBL/issues/new">Nova <em>Issue</em></a>.</p>
-<h3 id="12-adicionando-eou-modificando-alguma-funcionalidade">1.2 Adicionando e/ou modificando alguma funcionalidade</h3>
-<p>Primeiro verifique que não existe nenhuma <a href="https://github.com/VictorArnaud/TBL/issues"><em>Issue</em></a> a respeito dessa modificação e/ou adição.</p>
-<p>Caso não exista, crie uma <a href="https://github.com/VictorArnaud/TBL/issues/new">Nova <em>Issue</em></a>. Dê um título significativo a ela, coloque uma descrição e pelo menos uma <em>label</em>.</p>
-<p>As mudanças devem ser submetidas através de <em>Pull Requests</em>.</p>
-<hr />
-<h2 id="2-padrao-de-commit">2. Padrão de <em>Commit</em></h2>
-<hr />
-<h3 id="21-por-questoes-de-padronizacao-recomendamos-que-sigam-nosso-estilo-de-commit">2.1 Por questões de padronização recomendamos que sigam nosso estilo de <em>commit</em>:</h3>
-<p>Os <em>commits</em> devem ser todos em <strong>inglês</strong>;</p>
-<p>Ele deve conter um título curto e objetivo do que foi feito naquele <em>commit</em>;</p>
-<p>Se for preciso, após esse título, deve-se descrever, com um pouco mais de detalhes, todas as atividades executadas.</p>
-<p>Caso esteja trabalhando em com algum associado assine nos seus <em>commits</em> os seus parceiros</p>
-<p><strong>Exemplo:</strong></p>
-<pre><code>  Creating project community files (Título curto e objetivo)
-
-  Issue #01
-
-  Adds project license (Descrição de uma das atividades)
-
-  Adds project code of conduct file
-
-  Adds project contributing file
-
-  Adds project issue template file
-
-  Adds projects pull request file
-
-  Signed-off-by: Victor Arnaud &lt;victorhad@gmail.com&gt; (Assinatura de parceria)
-</code></pre>
-
-<hr />
-<h2 id="3-politica-de-branchs">3. Política de <em>Branchs</em></h2>
-<hr />
-<p><img alt="Política de branchs" src="https://cloud.githubusercontent.com/assets/14116020/21487025/bcc38f2c-cba6-11e6-9447-f392a31a2b2d.png" /></p>
-<p>A política de branches que será utilizada no decorrer do projeto seguirá o modelo descrito na imagem acima: para cada funcionalidade a ser implementada será criada uma branch a partir da branch devel, que estará em constante atualização com a branch master e vice versa.</p>
-<p>Assim que cada funcionalidade for completada, será aberto um pull request (feito pela equipe de desenvolvimento) da branch correspondente à funcionalidade para a branch devel, para que esta seja aprovada.</p>
-<p>O servidor de integração contínua estará funcionando em cima da branch master e devel. Ao fim de cada sprint, será realizado um rebase da branch devel para a branch master e então será realizado o processo de integração contínua do projeto. Tanto a branch master como a devel estarão em constante atualização, para que as próximas funcionalidades a serem implementadas tenham sempre o projeto mais atualizado possível.</p>
-<p>Essa Política de Branches deverá guiar os desenvolvedores na forma de organização de suas contribuições ao repositório.</p>
-<p><strong>master</strong> - Branch principal do repositório onde será permitida somente a integração de software consolidado e testado. Essa branch será exclusiva para a entrega de Realeases, ou seja, um conjunto maior de funcionalidades que integram o software, aqui estará a versão <em><strong>stable</strong></em> do software.</p>
-<p><strong>dev</strong> - Branch para integração de novas funcionalidades, onde será permitido a entrega das features desenvolvidas e que estão em um estágio avançado de completude. Será o branch base para o início do desenvolvimento das features e da correção de bugs. Aqui também serão <em>mergeadas</em> as releases.</p>
-<p><strong>nome-da-feature</strong> - Branch utilizada para o desenvolvimento de novas features do <em>backlog</em>. Caso a feature tenha sida proposta por uma <em>issue</em> do repositório e aceita no <em>backlog</em> o nome deverá conter o número da <em>issue</em>. 
-Ex: US01_<nome-da-nova-feature> (Considerando que a feature tenha sido solicitada na <em>issue</em> #1)</p>
-<hr />
-<h2 id="4-politica-de-pull-request">4. Política de <em>Pull Request</em></h2>
-<hr />
-<p>Para que o "Pull Request" das funcionalidades seja devidamente aceito, esta deve estar devidamente testada e conforme os padrões de commit e estilo de código. Além disso, a build da Integração Contínua deve estar "passando" para tal funcionalidade e o pull request deve ser aberto seguindo o padrão estipulado no template.</p>
-<hr />
-<h2 id="5-politica-de-versionamento">5. Política de Versionamento</h2>
-<hr />
-<p>Todos os artefatos de gerenciamento devem informar sua versão atual no seguinte formato: <strong>X.Y.Z</strong>, descrito abaixo:</p>
-<p><strong>X</strong>: Apenas incrementa quando há mudanças que quebram a estrutura do projeto ou que disponibiliza uma versão estável para uso do projeto.</p>
+<p><img alt="devops" src="https://user-images.githubusercontent.com/14116020/45258237-c2365700-b38a-11e8-96fb-3ca11baa5a45.png" /></p>
+<h4 id="criacao-da-branch-para-fazer-a-funcionalidade">Criação da branch para fazer a funcionalidade:</h4>
 <ul>
-<li>
-<p><strong>X &lt; 1</strong>: A versão do projeto não é estável.</p>
-</li>
-<li>
-<p><strong>X &gt;= 1</strong>: A versão do projeto é estável.</p>
-</li>
+<li><strong>Descrição</strong>: O desenvolvedor irá criar uma nova branch a partir da devel para criar a nova funcionalidade proposta de acordo com a política de branch estabelecida.</li>
+<li><strong>Entradas</strong>: N/A</li>
+<li><strong>Saídas</strong>: Nova branch da funcionalidade.</li>
 </ul>
-<p><strong>Y</strong>: Apenas incrementa quando é realizada a alteração ou adição de alguma nova funcionalidade.</p>
-<p><strong>Z</strong>: Apenas incrementa quando são realizadas correções ou alterações no código.</p>
-<hr />
-<h1 id="processo-de-devops">Processo de Devops</h1>
-<hr />
-<p><img alt="devops" src="https://user-images.githubusercontent.com/14116020/42727480-e2b04d30-877d-11e8-9c8b-94efbe3be94e.png" /></p>
+<h4 id="construcao-do-codigo">Construção do código:</h4>
+<ul>
+<li><strong>Descrição</strong>: Com a nova branch criada o desenvolvedor irá criar o código para a nova funcionalidade.</li>
+<li><strong>Entradas</strong>: Branch</li>
+<li><strong>Saídas</strong>: Nova funcionalidade.</li>
+</ul>
+<h4 id="envio-do-codigo-para-o-github">Envio do código para o github:</h4>
+<ul>
+<li><strong>Descrição</strong>: Assim que o código estiver pronto, o desenvolvedor irá enviar o código para o repositorio do github.</li>
+<li><strong>Entradas</strong>: Nova funcionalidade</li>
+<li><strong>Saídas</strong>: N/A</li>
+</ul>
+<h4 id="pull-request-da-branch-atual-para-a-branch-devel">Pull Request da branch atual para a branch devel:</h4>
+<ul>
+<li><strong>Descrição</strong>: Assim que o código for enviado para o github o desenvolvedor irá abrir um Pull Request para que comece o processo de Integração Contínua e Deploy Continúo.</li>
+<li><strong>Entradas</strong>: Nova funcionalidade</li>
+<li><strong>Saídas</strong>: N/A</li>
+</ul>
+<h4 id="execucao-do-travis-ci">Execução do Travis CI:</h4>
+<ul>
+<li><strong>Descrição</strong>: Processo automatizado para execução da Integração Contínua e Deploy Contínuo.</li>
+<li><strong>Entradas</strong>: Nova funcionalidade</li>
+<li><strong>Saídas</strong>: N/A</li>
+</ul>
+<h4 id="testes-e-qualidade-de-codigo">Testes e Qualidade de Código:</h4>
+<ul>
+<li><strong>Descrição</strong>: Na integração Contínua de forma automatizada será executado os testes unitários, integração e aceitação, além de verificar a qualidade do código por meio da ferramenta de análise estática.</li>
+<li><strong>Entradas</strong>: Nova funcionalidade</li>
+<li><strong>Saídas</strong>: Relatório com a cobertura de teste e qualidade de código.</li>
+</ul>
+<h4 id="aprovacao-e-merge-do-pull-request">Aprovação e Merge do Pull Request:</h4>
+<ul>
+<li><strong>Descrição</strong>: Assim que a integração contínua for finalizada será feito o merge do código para a branch devel ou master e começará o deploy contínuo do software.</li>
+<li><strong>Entradas</strong>: Nova funcionalidade</li>
+<li><strong>Saídas</strong>: Versão publicavel do software.</li>
+</ul>
+<h4 id="publicacao-das-imagens-no-dockerhub">Publicação das imagens no Dockerhub:</h4>
+<ul>
+<li><strong>Descrição</strong>: Por meio de Scripts automatizados o deploy continuo irá mandar a imagem do docker de homologação ou produção gerada para o respositório de imagens chamado Dockerhub.</li>
+<li><strong>Entradas</strong>: Imagem do software.</li>
+<li><strong>Saídas</strong>: Versão publicavel da imagem do software de homologação ou produção.</li>
+</ul>
+<h4 id="conexao-na-maquina-de-deploy">Conexão na máquina de deploy:</h4>
+<ul>
+<li><strong>Descrição</strong>: Por meio de SSH o script irá entrar na máquina de homologação ou produção</li>
+<li><strong>Entradas</strong>: Scrips de conexão.</li>
+<li><strong>Saídas</strong>: Conexão na máquina de homologação ou produção.</li>
+</ul>
+<h4 id="atualizacao-dos-ambientes-com-a-ultima-versao-dos-containers">Atualização dos ambientes com a última versão dos containers:</h4>
+<ul>
+<li><strong>Descrição</strong>: Assim que tiver dentro da máquina o script irá atualizar o respo- sitório com as novas modificações e irá subir o software por meio das imagens armazenadas no dockerhub.</li>
+<li>Entradas**: Scrips de conexão e Imagens do Dockerhub.</li>
+<li>Saídas**: Software em produção ou Homologação.</li>
+</ul>
+<h4 id="disponibilidade-da-nova-versao-para-o-usuario">Disponibilidade da nova versão para o usuãrio:</h4>
+<ul>
+<li><strong>Descrição</strong>: Assim que subir a imagem a nova versão do software estará pronta para uso.</li>
+<li><strong>Entradas</strong>: Scrips de conexão e Imagens do Dockerhub.</li>
+<li><strong>Saídas</strong>: Software em produção ou Homologação.</li>
+</ul>
+<h4 id="pull-request-da-branch-devel-para-a-branch-master">Pull Request da branch devel para a branch master:</h4>
+<ul>
+<li><strong>Descrição</strong>: Se o processo acima foi dentro da branch devel, ou seja, ambiente de homologação, o desenvolvedor terá que mandar um Pull Request para a branch master para subir o ambiente de produção.</li>
+<li><strong>Entradas</strong>: Novas Funcionalidade.</li>
+<li><strong>Saídas</strong>: Software em produção.</li>
+</ul>
               
             </div>
           </div>
@@ -498,7 +443,7 @@ Ex: US01_<nome-da-nova-feature> (Considerando que a feature tenha sido solicitad
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/VictorArnaud/PGTBL/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/VictorArnaud/TBL/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../vev/" style="color: #fcfcfc;">&laquo; Previous</a></span>
