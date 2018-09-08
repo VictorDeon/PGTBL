@@ -1,7 +1,7 @@
 # Processo de medição GQM
 ***
 
-![processo_gqm](https://user-images.githubusercontent.com/14116020/27945080-4e1f117e-62c1-11e7-919f-1e6d71582f00.png)
+![gqm](https://user-images.githubusercontent.com/14116020/45258263-06295c00-b38b-11e8-89ca-dec1a8373818.png)
 
 O processo de medição deve ser estabelecido durante o projeto para assegurar que dados úteis e relevantes sejam coletados, e esse processo segue o padrão ISO/IEC/IEEE 15939:2008 que é o padrão internacional que define um processo de medição aplicável às disciplinas de gestão e engenharia de software e sistemas.
 

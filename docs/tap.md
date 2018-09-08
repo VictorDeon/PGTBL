@@ -85,7 +85,7 @@ A proposta desse projeto envolve a utilização de certos recursos:
 ### 7.2 Processo de desenvolvimento
 ***
  
-![processo_desenvolvimento](https://user-images.githubusercontent.com/14116020/27970956-40c3d058-6327-11e7-9a29-af4bfd75330a.png)
+![desenvolvimento](https://user-images.githubusercontent.com/14116020/45258236-c19dc080-b38a-11e8-8a82-53e1d7082841.png)
 
 ***
 ## 8. Riscos
@@ -130,15 +130,15 @@ O projeto tem como base dois principais marcos, que representam entregas do prod
 
 ### 9.1 EAP
 
-![eap](https://user-images.githubusercontent.com/14116020/44312145-d6a9b400-a3c9-11e8-99c3-ea2268161f48.png)
+![eap](https://user-images.githubusercontent.com/14116020/45258241-c2ceed80-b38a-11e8-8869-2307cf91fd07.png)
 
-![eap-release 01](https://user-images.githubusercontent.com/14116020/44312144-d6a9b400-a3c9-11e8-99a3-741100b333ea.png)
+![eap-release 01](https://user-images.githubusercontent.com/14116020/45258240-c2365700-b38a-11e8-8fa6-8d1129c53d46.png)
 
-![eap-release 02](https://user-images.githubusercontent.com/14116020/44312143-d6a9b400-a3c9-11e8-9f0d-36f969a24d21.png)
+![eap-release 02](https://user-images.githubusercontent.com/14116020/45258239-c2365700-b38a-11e8-9d1d-9a5b72fd6e9e.png)
 
 ### 9.2 Roadmap
 
-![roadmap](https://user-images.githubusercontent.com/14116020/44312141-d6111d80-a3c9-11e8-8e53-60e4aa832e01.png)
+![roadmap](https://user-images.githubusercontent.com/14116020/45258242-c2ceed80-b38a-11e8-802c-6e6f84f36e01.png)
 
 ***
 ## 10. Custo Estimado
