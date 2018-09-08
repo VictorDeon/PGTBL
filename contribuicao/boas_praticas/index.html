@@ -254,18 +254,7 @@
 
 
   <li class="toctree-l2 toc-item">
-    <a href="#3-clean-code" title="Boas Práticas">3. Clean Code</a>
-  </li>
-
-      
-        
-
-  
-  
-
-
-  <li class="toctree-l2 toc-item">
-    <a href="#4-solid" title="Boas Práticas">4. SOLID</a>
+    <a href="#3-solid" title="Boas Práticas">3. SOLID</a>
   </li>
 
       
@@ -497,118 +486,7 @@
 <li>Este comentário deve estar logo após a declaração do método privado.</li>
 </ul>
 <hr />
-<h2 id="3-clean-code">3. Clean Code</h2>
-<hr />
-<h4 id="composicao-de-metodo">Composição de método</h4>
-<p>Os métodos devem ser simplificados chamando outros métodos dentro dele, cada qual fazendo algo especifico</p>
-<pre><code class="py">def primos_ate(n):
-    cria_inteiros_desmarcados_ate(n)
-    marca_multiplos()
-    coloca_nao_marcados_no_resultado()
-    return resultado
-</code></pre>
-
-<h4 id="metodos-explicativos">Métodos explicativos</h4>
-<p>Os métodos devem encapsula alguma operação dentro de outro método que seja não muito clara, normalmente são operações associadas a um comentario que explique ela.</p>
-<pre><code class="py">def destaca(palavra):
-    palavra.cor_do_fundo(Cor.amarela)
-</code></pre>
-
-<h4 id="metodos-como-condicionais">Métodos como condicionais</h4>
-<p>Criar um método ou atributo que encapsula uma expressão booleana para obter condicionais mais claros</p>
-<pre><code class="py">def ainda_ha_dobras_a_serem_feitas():
-    return dobra[inicio] != dobra[inicio+1] and inicio &lt; n
-</code></pre>
-
-<h4 id="evitar-estruturas-encadeadas">Evitar estruturas encadeadas</h4>
-<p>Para cada estrutura de controle (if, switch, laços) crie um método para simplificar e não deixar elas encadeadas</p>
-<pre><code class="py">def marca_multiplos():
-    for candidato in range(0, limite + 1):
-        marca_multiplos_se_nao_esta_marcado(candidato)
-
-def marca_multiplos_se_nao_esta_marcado(candidato):
-    if nao_marcado(candidato):
-        marca_multiplos_de(candidato)
-
-def marca_multiplos_de(primo):
-    for multiplo in range(2*primo, limite + 1, primo):
-        numeros[multiplo].marca()
-</code></pre>
-
-<h4 id="clausulas-guarda">Cláusulas guarda</h4>
-<p>Criar um <strong>return if condicao(): ...</strong> para que não precise criar um else sem nada</p>
-<pre><code class="py">def inicializa():
-    return if ja_inicializado():
-        # Implementação do código de inicialização
-</code></pre>
-
-<h4 id="objeto-metodo">Objeto Método</h4>
-<p>Criar uma classe que encapsula uma operação complexa simplificando a original (cliente), basicamente toda a implementação ficará nessa classe nova e a classe que o cliente irá usar só tem os métodos necessários para o cliente saber, o padrão de projeto adapter faz isso.</p>
-<pre><code class="py">class ImpressorDePrimo(object):
-
-    def imprime_primo(self, n):
-        primo = self.calcula_primo(n):
-        print &quot;_________________&quot;
-        print &quot;O primo numero&quot;, n, &quot;e&quot;, primo
-
-    def calcula_primo(self, n):
-        calculador = CalculadorDoEnesimoPrimo(n)
-        return calculador.calcula()
-
-class CalculadorDoEnesimoPrimo(object):
-
-    enesimo_primo = 0
-
-    def __init__(self, n):
-        self.enesimo_primo = n
-
-    def calcula():
-        # Implementação do Crivo de erastotones
-</code></pre>
-
-<h4 id="evite-flags-como-argumentos">Evite flags como argumentos</h4>
-<p>Para casos que tenha que passar flags de comparação como argumento para usar no if crie uma função para cada condição do if e retorne o resultado</p>
-<pre><code class="py"># Errado
-def rotaciona(angulo, sentido_horario):
-    if(sentido_horario == True):
-        this.angulo += angulo
-    else:
-        this.angulo -= angulo
-
-def rotaciona_sentido_horario(angulo):
-    this.angulo += angulo
-
-def rotaciona_sentido_antihorario(angulo):
-    this.angulo -= angulo
-</code></pre>
-
-<h4 id="objeto-como-parametro">Objeto como parâmetro</h4>
-<p>Quando tiver passando vários argumentos passados para o construtor de uma classe, verifique se esses argumentos podem ser transformados em variáveis de instancia de outra classe para ser usado nela.</p>
-<h4 id="parametros-como-variaveis-de-instancia">Parâmetros como variáveis de instáncia</h4>
-<p>Localizar parâmetros muito utilizados pelos métodos de uma classe e transformá-lo em variável de instância  da propria classe (self.variavel).</p>
-<h4 id="maximizar-coesao">Maximizar coesão</h4>
-<p>Quebrar uma classe que não segue principios da responsabilidade única.</p>
-<h4 id="delegacao-de-tarefa">Delegação de tarefa</h4>
-<p>Transferir um método que utiliza dados de uma classe B para a classe B, se o método da classe A usa muitos dados da classe B, então provavelmente ele deve ser um método da classe B e não da A.</p>
-<pre><code class="py">class CalculaReceita(object):
-
-    def calcula_total_de_salarios(self):
-        total = 0
-        for empregado in empregados:
-            total += empregado.salario_do_mes()
-        return total
-
-class Empregado(object):
-
-    def salario_do_mes(self):
-        return 0 if self.nao_trabalhou_esse_mes()
-        return self.salario_por_hora * self.horas_trabalhadas + self.bonus
-</code></pre>
-
-<h4 id="objeto-centralizador">Objeto centralizador</h4>
-<p>Criar uma classe que encapsula uma operação com alta dependencia entre classes, será um intermediario que fará a relação entre duas classes para diminuir o acoplamento de ambas, essa classe deve centralizar a comunicação dos objetos</p>
-<hr />
-<h2 id="4-solid">4. SOLID</h2>
+<h2 id="3-solid">3. SOLID</h2>
 <hr />
 <h4 id="alta-coesao">Alta coesão</h4>
 <p>É fator de qualidade de projeto e representa que cada classe tem sua respectiva responsabilidade bem definida</p>
