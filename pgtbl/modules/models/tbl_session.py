@@ -37,6 +37,12 @@ class TBLSession(models.Model):
         help_text=_("Close TBL session.")
     )
 
+    is_finished = models.BooleanField(
+        _("Is finished?"),
+        default=False,
+        help_text=_("Finish TBL session.")
+    )
+
     # iRAT test
     irat_datetime = models.DateTimeField(
         _("iRAT date"),

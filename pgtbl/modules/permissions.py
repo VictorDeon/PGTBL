@@ -17,6 +17,17 @@ def monitor_can_change_if_is_teacher(permission, user, view):
     return False
 
 @register_object_checker()
+def only_teacher_can_change(permission, user, view):
+    """
+    Only teacher can change.
+    """
+
+    if user == discipline.teacher:
+        return True
+
+    return False
+
+@register_object_checker()
 def show_sessions_permission(permission, user, view):
     """
     Permission that allows only students, monitors and teacher of specific
