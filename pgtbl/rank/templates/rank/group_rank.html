@@ -1,0 +1,88 @@
+{% extends 'disciplines/details.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'rank/css/rank.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="page-header">
+    <div class="row">
+      <div class="col-sm-8">
+        <h1 class="white">
+          <i class="fa fa-trophy"></i> Rank de grupos<br />
+          <small>{{ discipline.title }}</small>
+        </h1>
+      </div>
+      <div class="col-sm-4 text-center">
+        <h1>
+          <i class="fa fa-star star1"></i>
+          <i class="fa fa-star star2"></i>
+          <i class="fa fa-star star3"></i>
+          <i class="fa fa-star star4"></i>
+          <i class="fa fa-star star5"></i>
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="row fix-row">
+    <div class="col-sm-12">
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <b>Rank de grupos</b> <span><i class="fa fa-flag-checkered"></i></span>
+          </div>
+          <div class="panel-body">
+            {% for group in groups %}
+              <div class="media">
+                <div class="media-body">
+                  <h2 class="media-heading">{{ group.title }}</h2>
+                  {% for student in group.students.all %}
+                    {% if forloop.first %}<div class="row">{% endif %}
+                    <div class="col-sm-2">
+                      <figure>
+                        {% if student.photo %}
+                          <img src="{{ student.photo.url }}" class="img-thumbnail img-responsive" alt="Alunos" />
+                        {% else %}
+                          <img src="{% static 'rank/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos" />
+                        {% endif %}
+                        <figcaption>{{ student.get_short_name }}</figcaption>
+                      </figure>
+                    </div>
+                    {% if forloop.counter|divisibleby:6 %}</div><div class="row">{% endif %}
+                    {% if forloop.last %}</div>{% endif %}
+                  {% endfor %}
+                </div>
+                {% if forloop.counter == 1 %}
+                  <div class="media-right">
+                    <span class="position">1°</span>
+                    <span class="first"><i class="fa fa-trophy"></i></span>
+                  </div>
+                {% elif forloop.counter == 2 %}
+                  <div class="media-right">
+                    <span class="position">2°</span>
+                    <span class="second"><i class="fa fa-trophy"></i></span>
+                  </div>
+                {% else %}
+                  <div class="media-right">
+                    <span class="position">3°</span>
+                    <span class="third"><i class="fa fa-trophy"></i></span>
+                  </div>
+                {% endif %}
+              </div>
+              {% if not forloop.last %}<hr />{% endif %}
+            {% empty %}
+              <div class="media">
+                <div class="media-body">
+                  <h2 class="media-heading">Não há equipes no rank ainda.</h2>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

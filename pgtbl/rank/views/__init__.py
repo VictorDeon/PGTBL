@@ -1,0 +1,1 @@
+from .group_rank import GroupRankView

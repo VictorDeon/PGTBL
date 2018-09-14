@@ -17,7 +17,8 @@ urlpatterns = [
     url(r'', include('practical_test.urls')),
     url(r'', include('exercises.urls')),
     url(r'', include('irat.urls')),
-    url(r'', include('grat.urls'))
+    url(r'', include('grat.urls')),
+    url(r'', include('rank.urls'))
 ]
 
 # While in development mode we will use relative URL for static and average

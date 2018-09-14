@@ -16,6 +16,7 @@ class Grade(models.Model):
         verbose_name='TBL Session',
         related_name='grades'
     )
+
     student = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
