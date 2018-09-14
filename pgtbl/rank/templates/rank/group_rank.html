@@ -74,11 +74,7 @@
               </div>
               {% if not forloop.last %}<hr />{% endif %}
             {% empty %}
-              <div class="media">
-                <div class="media-body">
-                  <h2 class="media-heading">Não há equipes no rank ainda.</h2>
-                </div>
-              </div>
+              <div class="well">{% trans 'There are no teams in rank yet.' %}</div>
             {% endfor %}
           </div>
         </div>

@@ -102,14 +102,13 @@ class DisciplineResetView(LoginRequiredMixin,
         Create a Hall of Fame with first group of rank.
         """
 
-        group = self.get_groups()[0]
-
         if Group.objects.count() > 0:
-
             exists = self.verify_if_hall_of_fame_exists(discipline)
 
             if exists:
                 return None
+
+            group = self.get_groups()[0]
 
             hall_of_fame = HallOfFameGroup.objects.create(
                 discipline=discipline,

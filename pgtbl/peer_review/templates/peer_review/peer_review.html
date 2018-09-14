@@ -84,6 +84,15 @@
                   </h4>
                   {% include 'peer_review/update.html' %}
                 {% endif %}
+                {% if session.peer_review_available %}
+                  <span class="label label-success pull-right">
+                    {% trans 'Available' %}
+                  </span>
+                {% else %}
+                  <span class="label label-danger pull-right">
+                    {% trans 'Unavailable' %}
+                  </span>
+                {% endif %}
               </div>
             </div>
           </div>

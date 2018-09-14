@@ -48,6 +48,8 @@
                   {{ grade.status }}
                 </td>
               </tr>
+            {% empty %}
+              <tr><td>{% trans 'There are no grades.' %}</td></tr>
             {% endfor %}
           </tbody>
         </table>
