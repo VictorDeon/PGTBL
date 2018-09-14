@@ -7,6 +7,7 @@ from django.views.generic import ListView
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from groups.models import Group
+from rank.utils import get_group_grades
 
 import operator
 
@@ -65,7 +66,7 @@ class GroupRankView(LoginRequiredMixin,
         Get all groups.
         """
 
-        groups_grade = self.get_group_grades()
+        groups_grade = get_group_grades(self.get_discipline())
 
         sorted_groups = sorted(groups_grade, key=operator.itemgetter('grade'), reverse=True)
         # print(sorted_groups)
@@ -76,42 +77,5 @@ class GroupRankView(LoginRequiredMixin,
             groups.append(group)
 
         return groups
-
-    def get_group_grades(self):
-        """
-        Get the grades of tbl groups
-        """
-
-        discipline = self.get_discipline()
-
-        groups = Group.objects.filter(discipline=discipline)
-
-        groups_grade = []
-        for group in groups:
-            final_grade = self.calcule_final_grade(group)
-
-            group = {
-                'id': group.id,
-                'group': group.title,
-                'grade': final_grade
-            }
-            groups_grade.append(group)
-
-        return groups_grade
-
-    def calcule_final_grade(self, group):
-        """
-        Calcule group final grade.
-        """
-        grades = 0.0
-        final_grade = 0.0
-
-        for grade in group.grades.all():
-            grades += grade.calcule_session_grade()
-
-        if group.grades.count() > 0:
-            final_grade = grades / group.grades.count()
-
-        return final_grade
 
 

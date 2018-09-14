@@ -21,3 +21,19 @@ def show_rank_permission(permission, user, view):
         return True
 
     return False
+
+@register_object_checker()
+def show_hall_of_fame(permission, user, view):
+    """
+    Permission that allows only students, monitors and teacher of specific
+    discipline to see discipline hall of fame.
+    """
+
+    discipline = view.get_discipline()
+
+    if user in discipline.students.all() or \
+       user in discipline.monitors.all() or \
+       user == discipline.teacher:
+        return True
+
+    return False

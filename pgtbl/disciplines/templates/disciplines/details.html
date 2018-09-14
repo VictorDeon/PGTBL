@@ -37,7 +37,14 @@
         <div class="col-sm-2">
           <h1 class="white">{{discipline.classroom}}</h1>
           {% if user == discipline.teacher %}
-            <button type="submit" class="btn btn-danger btn-block">{% trans 'Reset Discipline' %}</button>
+            <button class="btn btn-danger btn-block"
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#reset-{{ discipline.id }}-modal">
+                    <i class="fa fa-backward"></i>
+                    {% trans 'Reset Discipline' %}
+            </button>
+            {% include 'disciplines/reset.html' %}
           {% endif %}
         </div>
       </div>
@@ -70,10 +77,12 @@
 
             {% if discipline.is_closed %}
               <button type="submit" class="btn btn-success btn-block close-button">
+                <i class="fa fa-eye"></i>
                 {% trans 'Open Discipline' %}
               </button>
             {% else %}
               <button type="submit" class="btn btn-danger btn-block close-button">
+                <i class="fa fa-eye-slash"></i>
                 {% trans 'Close Discipline' %}
               </button>
             {% endif %}

@@ -1,0 +1,59 @@
+{% load i18n %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'modules/css/delete.css' %}" />
+{% endblock %}
+
+<!-- Delete modal -->
+<div id="reset-{{discipline.id}}-modal" class="modal fade">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <!-- Header -->
+      <div class="modal-header">
+        <button type="button"
+                class="close"
+                data-dismiss="modal">
+                <i class="fa fa-close"></i>
+        </button>
+        <h4 class="modal-title">
+          {% trans 'Reset' %} {{discipline.title}}
+        </h4>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+        <p class="text-justify">
+          {% trans 'This action will close the discipline, all groups and submissions will be deleted and students and monitors removed.' %}
+        </p>
+        <p class="text-center">
+          {% trans 'Are you sure you want to reset' %} {{discipline.title}} ?
+        </p>
+      </div>
+
+      <!-- Footer -->
+      <div class="modal-footer">
+        <!-- Delete form -->
+        <form action="{% url 'disciplines:reset' discipline.slug %}" method="post">
+          <!-- Form security -->
+          {% csrf_token %}
+
+          <!-- Form button -->
+          <button type="submit"
+                  class="btn btn-danger pull-right">
+                  <i class="fa fa-lock"></i>
+                  {% trans 'Reset' %}
+          </button>
+        </form>
+
+        <!-- Cancel button -->
+        <button class="btn btn-primary pull-left"
+                data-dismiss="modal"
+                type="button">
+                <i class="fa fa-close"></i>
+                {% trans 'Cancel' %}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
