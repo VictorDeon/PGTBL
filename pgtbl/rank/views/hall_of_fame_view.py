@@ -14,6 +14,7 @@ class HallOfFameView(LoginRequiredMixin,
     """
 
     template_name = 'rank/hall_of_fame.html'
+    paginate_by = 3
     context_object_name = 'hall_of_fame'
 
     permissions_required = ['show_hall_of_fame']
@@ -47,5 +48,19 @@ class HallOfFameView(LoginRequiredMixin,
         groups = HallOfFameGroup.objects.filter(
             discipline=self.get_discipline()
         )
+
+        queryset = self.search_group(groups)
+
+        return queryset
+
+    def search_group(self, groups):
+        """
+        Search for a specific group.
+        """
+
+        query = self.request.GET.get("q_info")
+
+        if query:
+            groups = groups.filter(title__icontains=query)
 
         return groups

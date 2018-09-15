@@ -45,20 +45,15 @@
         </p>
       </div>
       <div class="col-sm-4">
-        <form method="get">
+        <form method="get" accept-charset="utf-8">
           <div class="input-group">
-            <div class="dropdown input-group-btn">
-              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                <span class="fa fa-chevron-down"></span>
-                <b>Filtro</b>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a href="#">2017</a></li>
-                <li><a href="#">2016</a></li>
-                <li><a href="#">2015</a></li>
-              </ul>
-            </div>
-            <input type="text" class="form-control" placeholder="Pesquisar">
+            <input
+              type="text"
+              class="form-control"
+              name="q_info"
+              value="{{ request.GET.q_info }}"
+              placeholder="Pesquisar"
+            />
             <div class="input-group-btn">
               <button class="btn btn-primary" type="submit">
                 <i class="fa fa-search"></i>
@@ -105,12 +100,6 @@
         </div>
       </div>
     </div>
-    <ul class="pagination">
-      <li><a href="#"><<</a></li>
-      <li class="active"><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">>></a></li>
-    </ul>
+    {% include 'core/pagination.html' %}
   </div>
 {% endblock %}

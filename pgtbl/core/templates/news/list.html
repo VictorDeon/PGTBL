@@ -57,8 +57,7 @@
             <p><i class="fa fa-tags"></i> tags:
               {% for tag in news.tags.all %}
                 <!-- Go to news-tag url and pass by argment the slug from tag -->
-                <a href="{% url 'core:news-tag' tag.slug %}"
-                   class="no-decoration">
+                <a href="{% url 'core:news-tag' tag.slug %}" class="no-decoration">
                    {{tag}}
                    <!-- If is the last element on loop not insert , -->
                 </a>{% if not forloop.last %},{% endif %}
