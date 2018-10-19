@@ -74,8 +74,6 @@ class ExerciseListView(LoginRequiredMixin,
 
         session = self.get_session()
 
-        # page = self.request.GET.get('page', 1)
-
         questions = Question.objects.filter(
             session=session,
             is_exercise=True

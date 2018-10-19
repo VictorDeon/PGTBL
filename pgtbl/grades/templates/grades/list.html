@@ -60,10 +60,10 @@
                 <td>{{grade.grat | floatformat:2}}</td>
                 <td>{{grade.practical | floatformat:2}}</td>
                 <td>{{grade.peer_review | floatformat:2}}</td>
-                {% if grade.calcule_session_grade > 5 %}
-                  <td class="text-success">{{grade.calcule_session_grade|floatformat:2}}</td>
+                {% if grade.session_grade > 5 %}
+                  <td class="text-success">{{grade.session_grade|floatformat:2}}</td>
                 {% else %}
-                  <td class="text-danger">{{grade.calcule_session_grade|floatformat:2}}</td>
+                  <td class="text-danger">{{grade.session_grade|floatformat:2}}</td>
                 {% endif %}
               </tr>
             {% empty %}

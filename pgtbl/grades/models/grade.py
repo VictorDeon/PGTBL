@@ -55,6 +55,12 @@ class Grade(models.Model):
         help_text=_("Peer review grade.")
     )
 
+    session_grade = models.FloatField(
+        _("TBL session grade"),
+        default=0.0,
+        help_text=_("TBL session grade.")
+    )
+
     created_at = models.DateTimeField(
         _('Created at'),
         help_text=_("Date that the session is created."),
@@ -99,7 +105,7 @@ class Grade(models.Model):
         return '{0}: {1} - {2}'.format(
             self.session,
             self.student.get_short_name(),
-            self.calcule_session_grade()
+            self.session_grade
         )
 
     class Meta:

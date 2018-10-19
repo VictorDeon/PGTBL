@@ -66,4 +66,10 @@ class GradeListView(LoginRequiredMixin,
             session=self.get_session()
         )
 
+        for grade in grades:
+            session_grade = grade.calcule_session_grade()
+            grade.session_grade = session_grade
+
+            grade.save()
+
         return grades
