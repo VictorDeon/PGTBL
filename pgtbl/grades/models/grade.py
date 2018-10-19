@@ -1,6 +1,8 @@
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.db import models
+
+from exercises.models import GamificationPointSubmission
 from modules.models import TBLSession
 from groups.models import Group
 
@@ -55,12 +57,6 @@ class Grade(models.Model):
         help_text=_("Peer review grade.")
     )
 
-    session_grade = models.FloatField(
-        _("TBL session grade"),
-        default=0.0,
-        help_text=_("TBL session grade.")
-    )
-
     created_at = models.DateTimeField(
         _('Created at'),
         help_text=_("Date that the session is created."),
@@ -94,7 +90,32 @@ class Grade(models.Model):
             self.session.peer_review_weight
         )
 
+        if self.group == self.get_group_gamification_winner():
+            session_grade += self.session.exercise_score
+
         return session_grade
+
+    def get_group_gamification_winner(self):
+        """
+        Calcule gamification score points to get the group winner
+        """
+
+        groups = Group.objects.filter(discipline=self.session.discipline)
+
+        group_winner = groups.first()
+        winner = 0
+
+        for group in groups:
+            total_score = 0
+
+            for submission in GamificationPointSubmission.objects.filter(session=self.session, group=group):
+                total_score += submission.total_score
+
+            if total_score > winner:
+                winner = total_score
+                group_winner = group
+
+        return group_winner
 
     def __str__(self):
         """
@@ -105,7 +126,7 @@ class Grade(models.Model):
         return '{0}: {1} - {2}'.format(
             self.session,
             self.student.get_short_name(),
-            self.session_grade
+            self.calcule_session_grade()
         )
 
     class Meta:

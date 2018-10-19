@@ -54,51 +54,9 @@ class TBLSessionFinishView(LoginRequiredMixin,
                 peer_review_grade = self.calcule_peer_review_grade(student)
                 self.update_grade(student, peer_review_grade)
 
-            self.calcule_gamification_bonus()
-
         session.save()
 
         return redirect(redirect_url)
-
-    def calcule_gamification_bonus(self):
-        """
-        Calcule gamification bonus
-        """
-
-        session = self.get_object()
-        group_winner = self.get_group_gamification_winner()
-
-        grades = Grade.objects.filter(
-            session=session,
-            group=group_winner
-        )
-
-        for grade in grades:
-            grade.session_grade += session.exercise_score
-            grade.save()
-
-    def get_group_gamification_winner(self):
-        """
-        Calcule gamification score points to get the group winner
-        """
-
-        groups = Group.objects.filter(discipline=self.get_discipline())
-        session = self.get_object()
-
-        group_winner = groups.first()
-        winner = 0
-
-        for group in groups:
-            total_score = 0
-            
-            for submission in GamificationPointSubmission.objects.filter(session=session, group=group):
-                total_score += submission.total_score
-
-            if total_score > winner:
-                winner = total_score
-                group_winner = group
-
-        return group_winner
 
     def calcule_peer_review_grade(self, student):
         """
