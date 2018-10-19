@@ -10,6 +10,7 @@ from disciplines.models import Discipline
 from groups.models import Group
 from modules.models import TBLSession
 from exercises.models import ExerciseSubmission, GamificationPointSubmission
+from questions.models import Question
 
 
 class ResetExerciseView(LoginRequiredMixin,
@@ -91,8 +92,12 @@ class ResetExerciseView(LoginRequiredMixin,
         """
 
         submissions = self.get_queryset()
+        questions = Question.objects.filter(session=self.get_session(), is_exercise=True)
 
         total_score = 0
+
+        if submissions.count() < questions.count():
+            total_score -= ((questions.count() - submissions.count()) * 4)
 
         for submission in submissions:
 

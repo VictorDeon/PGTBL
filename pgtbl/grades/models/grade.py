@@ -102,7 +102,7 @@ class Grade(models.Model):
 
         groups = Group.objects.filter(discipline=self.session.discipline)
 
-        group_winner = groups.first()
+        group_winner = None
         winner = 0
 
         for group in groups:
