@@ -8,6 +8,7 @@ from modules.utils import get_datetimes
 from questions.models import Question
 from questions.forms import AnswerQuestionForm
 
+from random import shuffle
 
 class ExerciseListView(LoginRequiredMixin,
                        PermissionMixin,
@@ -72,6 +73,8 @@ class ExerciseListView(LoginRequiredMixin,
         """
 
         session = self.get_session()
+
+        # page = self.request.GET.get('page', 1)
 
         questions = Question.objects.filter(
             session=session,

@@ -42,6 +42,14 @@ class TBLSession(models.Model):
         default=False,
         help_text=_("Finish TBL session.")
     )
+    
+    # Exercise test
+    exercise_score = models.PositiveIntegerField(
+        _("Exercise score"),
+        default=1,
+        blank=True,
+        help_text=_("Exercise score to group gamification winner.")
+    )
 
     # iRAT test
     irat_datetime = models.DateTimeField(
