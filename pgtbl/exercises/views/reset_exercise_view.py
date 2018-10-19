@@ -7,8 +7,9 @@ from django.shortcuts import redirect
 
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
+from groups.models import Group
 from modules.models import TBLSession
-from exercises.models import ExerciseSubmission
+from exercises.models import ExerciseSubmission, GamificationPointSubmission
 
 
 class ResetExerciseView(LoginRequiredMixin,
@@ -44,6 +45,19 @@ class ResetExerciseView(LoginRequiredMixin,
 
         return session
 
+    def get_student_group(self):
+        """
+        Get current student group.
+        """
+
+        groups = Group.objects.filter(
+            discipline=self.get_discipline()
+        )
+
+        for group in groups:
+            if self.request.user in group.students.all():
+                return group
+
     def get_queryset(self):
         """
         Get the questions queryset from model database.
@@ -78,7 +92,22 @@ class ResetExerciseView(LoginRequiredMixin,
 
         submissions = self.get_queryset()
 
+        total_score = 0
+
         for submission in submissions:
+
+            if (submission.score > 0):
+                total_score += submission.score
+            else:
+                total_score -= 4
+
+            GamificationPointSubmission.objects.get_or_create(
+                session=self.get_session(),
+                student=self.request.user,
+                group=self.get_student_group(),
+                total_score=total_score
+            )
+
             submission.delete()
 
         messages.success(
