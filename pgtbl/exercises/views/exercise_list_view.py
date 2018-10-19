@@ -3,6 +3,7 @@ from django.views.generic import ListView
 
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
+from exercises.models import GamificationPointSubmission
 from modules.models import TBLSession
 from modules.utils import get_datetimes
 from questions.models import Question

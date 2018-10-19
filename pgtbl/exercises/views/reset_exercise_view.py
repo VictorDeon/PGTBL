@@ -101,14 +101,25 @@ class ResetExerciseView(LoginRequiredMixin,
             else:
                 total_score -= 4
 
-            GamificationPointSubmission.objects.get_or_create(
-                session=self.get_session(),
-                student=self.request.user,
-                group=self.get_student_group(),
-                total_score=total_score
-            )
-
             submission.delete()
+
+        if self.get_student_group():
+            try:
+                gamification = GamificationPointSubmission.objects.get(
+                    session=self.get_session(),
+                    student=self.request.user,
+                    group=self.get_student_group()
+                )
+
+                gamification.total_score += total_score
+                gamification.save()
+            except:
+                GamificationPointSubmission.objects.create(
+                    session=self.get_session(),
+                    student=self.request.user,
+                    group=self.get_student_group(),
+                    total_score=total_score
+                )
 
         messages.success(
             self.request,
