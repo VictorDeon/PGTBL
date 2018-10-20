@@ -13,7 +13,7 @@
       <div class="col-sm-8">
         <h1 class="white">
           <i class="fa fa-trophy"></i> Dashboard<br />
-          <small>Grupo: {{group.title}}</small>
+          <small>{% trans 'Group' %}: {{group.title}}</small>
         </h1>
       </div>
       <div class="col-sm-4 text-center">
@@ -30,17 +30,17 @@
   <div class="row fix-row">
     <div class="col-sm-12">
       <div class="panel-group">
-        <div class="panel panel-default">
+        <div class="panel panel-default panel-shadow">
           <div class="panel-heading gradient title">
             <h4>{{group.title}}</h4>
           </div>
-          <div class="panel-body">
+          <div class="panel-body wood-body">
             <div class="row">
               <div class="col-sm-10">
                 <div class="row">
                   <div class="col-sm-3">
                     <div class="panel panel-default qtd-body">
-                      <div class="panel-heading gradient">Total de pontos</div>
+                      <div class="panel-heading gradient">{% trans 'Total of points' %}</div>
                       <div class="panel-body data">
                         {{total_score}}
                       </div>
@@ -48,15 +48,19 @@
                   </div>
                   <div class="col-sm-3">
                     <div class="panel panel-default qtd-body">
-                      <div class="panel-heading gradient">Subir de colocação</div>
+                      <div class="panel-heading gradient">{% trans 'Move up' %}</div>
                       <div class="panel-body data">
-                        {{winner_points}}
+                        {% if position > 1 %}
+                          {{winner_points}} {% trans 'point' %}{{winner_points|pluralize}}
+                        {% else %}
+                          1°
+                        {% endif %}
                       </div>
                     </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="panel panel-default qtd-body">
-                      <div class="panel-heading gradient">Média de pontos</div>
+                      <div class="panel-heading gradient">{% trans 'Average points' %}</div>
                       <div class="panel-body data">
                         {{average}}
                       </div>
@@ -64,17 +68,28 @@
                   </div>
                   <div class="col-sm-3">
                     <div class="panel panel-default qtd-body">
-                      <div class="panel-heading gradient">Bonificação 1° colocado</div>
+                      <div class="panel-heading gradient">{% trans '1st position bonus' %}</div>
                       <div class="panel-body data">
-                        {{session.exercise_score}} ponto(s)
+                        {{session.exercise_score}} {% trans 'point' %}{{session.exercise_score|pluralize}}
+                        <div class="subtitle">{% trans 'on the average of TBL session' %}</div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-sm-2">
-                <span class="position">{{position}}°</span>
-                <span class="third"><i class="fa fa-trophy"></i></span>
+                {% if position == 1 %}
+                  <span class="position">{{position}}°</span>
+                  <span class="first"><i class="fa fa-trophy"></i></span>
+                {% elif position == 2 %}
+                  <span class="position">{{position}}°</span>
+                  <span class="second"><i class="fa fa-trophy"></i></span>
+                {% else %}
+                  {% if position < 10 %}
+                    <span class="position">{{position}}°</span>
+                  {% endif %}
+                  <span class="third"><i class="fa fa-trophy"></i></span>
+                {% endif %}
               </div>
             </div>
             <div class="row">
@@ -106,7 +121,7 @@
                       {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
                       {% if forloop.last %}</div>{% endif %}
                     {% empty %}
-                      <div class="well">{% trans 'There are no students in this group.' %}</div>
+                      <div class="well">{% trans 'There are no students submission in this group.' %}</div>
                     {% endfor %}
                   </div>
                 </div>

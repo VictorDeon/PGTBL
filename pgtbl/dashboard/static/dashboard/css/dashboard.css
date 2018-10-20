@@ -1,4 +1,4 @@
-.panel {
+.panel-shadow {
   box-shadow: 1px 1px 10px white;
 }
 
@@ -59,7 +59,15 @@
 .first > .fa-trophy {
   font-size: 105px;
   color: gold;
-  text-shadow: 5px 5px 5px black;
+  text-shadow: 5px 5px 5px grey;
+  position: relative;
+  left: 10px;
+}
+
+.second > .fa-trophy {
+  font-size: 105px;
+  color: silver;
+  text-shadow: 5px 5px 5px grey;
   position: relative;
   left: 10px;
 }
@@ -67,7 +75,7 @@
 .third > .fa-trophy {
   font-size: 105px;
   color: #9e7547;
-  text-shadow: 5px 5px 5px black;
+  text-shadow: 5px 5px 5px grey;
   position: relative;
   left: 10px;
 }
@@ -94,4 +102,13 @@
   font-size: 30px;
   color: grey;
   text-align: center;
+}
+
+.wood-body {
+  background-image: url('../img/wood.jpg');
+}
+
+.subtitle {
+  font-size: 10px;
+  margin-bottom: -10px;
 }
