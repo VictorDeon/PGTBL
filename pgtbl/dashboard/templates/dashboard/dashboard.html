@@ -42,7 +42,7 @@
                     <div class="panel panel-default qtd-body">
                       <div class="panel-heading gradient">Total de pontos</div>
                       <div class="panel-body data">
-                        1500
+                        {{total_score}}
                       </div>
                     </div>
                   </div>
@@ -50,7 +50,7 @@
                     <div class="panel panel-default qtd-body">
                       <div class="panel-heading gradient">Subir de colocação</div>
                       <div class="panel-body data">
-                        304
+                        {{winner_points}}
                       </div>
                     </div>
                   </div>
@@ -58,7 +58,7 @@
                     <div class="panel panel-default qtd-body">
                       <div class="panel-heading gradient">Média de pontos</div>
                       <div class="panel-body data">
-                        167
+                        {{average}}
                       </div>
                     </div>
                   </div>
@@ -66,38 +66,38 @@
                     <div class="panel panel-default qtd-body">
                       <div class="panel-heading gradient">Bonificação 1° colocado</div>
                       <div class="panel-body data">
-                        1 ponto
+                        {{session.exercise_score}} ponto(s)
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-sm-2">
-                <span class="position">3°</span>
+                <span class="position">{{position}}°</span>
                 <span class="third"><i class="fa fa-trophy"></i></span>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-12">
                 <div class="panel panel-default qtd-body big-panel">
-                  <div class="panel-heading gradient">Students</div>
+                  <div class="panel-heading gradient">{% trans 'Student Points' %}</div>
                   <div class="panel-body">
-                    {% for student in group.students.all %}
+                    {% for submission in gamification %}
                       {% if forloop.first %}<div class="row">{% endif %}
                       <div class="col-sm-4">
                         <div class="panel panel-default panel-student">
                           <div class="panel-body">
                             <div class="media">
                               <div class="media-left">
-                                {% if student.photo %}
-                                  <img src="{{ student.photo.url }}" class="media-object img-thumbnail img-responsive" alt="Alunos" />
+                                {% if submission.student.photo %}
+                                  <img src="{{ submission.student.photo.url }}" class="media-object img-thumbnail img-responsive" alt="Alunos" />
                                 {% else %}
                                   <img src="{% static 'dashboard/img/user.png' %}" class="media-object img-thumbnail img-responsive" alt="Alunos" />
                                 {% endif %}
                               </div>
                               <div class="media-body">
-                                <h4 class="media-heading">{{ student.get_short_name }}</h4>
-                                <p><b>{% trans 'Point' %}</b>: -330</p>
+                                <h4 class="media-heading">{{ submission.student.get_short_name }}</h4>
+                                <p><b>{% trans 'Point' %}</b>: {{ submission.total_score }}</p>
                               </div>
                             </div>
                           </div>
@@ -115,7 +115,7 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="panel panel-default qtd-body big-panel">
-                  <div class="panel-heading gradient">{% trans 'Badges' %}</div>
+                  <div class="panel-heading gradient">{% trans 'Group Badges' %}</div>
                   <div class="panel-body badges-body">
                   </div>
                 </div>

@@ -7,6 +7,8 @@ from exercises.models import GamificationPointSubmission
 from groups.models import Group
 from modules.models import TBLSession
 
+import operator
+
 
 class DashboardDetailView(LoginRequiredMixin,
                           PermissionMixin,
@@ -16,7 +18,7 @@ class DashboardDetailView(LoginRequiredMixin,
     """
 
     template_name = 'dashboard/dashboard.html'
-    context_object_name = 'group'
+    context_object_name = 'gamification'
 
     permissions_required = []
 
@@ -50,9 +52,15 @@ class DashboardDetailView(LoginRequiredMixin,
         context = super(DashboardDetailView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
+        context['group'] = self.get_student_group()
+        context['total_score'] = self.get_total_points()
+        context['average'] = self.get_average()
+        context['winner_points'] = self.get_student_group_position()['winner_points']
+        context['position'] = self.get_student_group_position()['position']
+
         return context
 
-    def get_object(self):
+    def get_student_group(self):
         """
         Get specific group.
         """
@@ -67,4 +75,90 @@ class DashboardDetailView(LoginRequiredMixin,
                 return group
 
         return None
+
+    def get_object(self, queryset=None):
+        """
+        Get gamification students points
+        """
+
+        gamification = GamificationPointSubmission.objects.filter(
+            session=self.get_session(),
+            group=self.get_student_group()
+        )
+
+        return gamification
+
+    def get_total_points(self):
+        """
+        Calcule total points of group
+        """
+
+        gamification = self.get_object()
+
+        total_score = 0
+
+        for submission in gamification:
+            total_score += submission.total_score
+
+        return total_score
+
+    def get_average(self):
+        """
+        Get the group point average.
+        """
+
+        group = self.get_student_group()
+
+        average = self.get_total_points() / group.students.count()
+
+        return average
+
+    def get_groups_gamification(self):
+        """
+        Get groups positions
+        """
+
+        groups = Group.objects.filter(discipline=self.get_discipline())
+
+        groups_position = []
+        for group in groups:
+            total_score = 0
+
+            for submission in group.point_submissions.all():
+                total_score += submission.total_score
+
+            group = {
+                'id': group.id,
+                'title': group.title,
+                'total_score': total_score
+            }
+
+            groups_position.append(group)
+
+        return groups_position
+
+    def get_student_group_position(self):
+        """
+        Get the current group student position.
+        """
+
+        groups = self.get_groups_gamification()
+        sorted_groups = sorted(groups, key=operator.itemgetter('total_score'), reverse=True)
+
+        position = 1
+        winner_points = 0
+
+        for group in sorted_groups:
+            if group['id'] == self.get_student_group().id:
+                break
+
+            position += 1
+            winner_points = group['total_score'] - self.get_total_points()
+
+        group = {
+            'position': position,
+            'winner_points': winner_points
+        }
+
+        return group
 
