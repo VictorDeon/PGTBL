@@ -36,14 +36,25 @@
        title="{% trans 'Exercise list' %}">
        <i class="fa fa-leanpub icon-lg"></i>
     </a>
-    <!-- Session dashboard menu -->
-    <a href="#"
-       class="btn"
-       data-toggle="tooltip"
-       data-placement="right"
-       title="{% trans 'Dashboard' %}">
-       <i class="fa fa-bar-chart icon-lg"></i>
-    </a>
+    {% if user in discipline.students.all %}
+      <!-- Session dashboard menu -->
+      <a href="{% url 'dashboard:dashboard' discipline.slug session.id %}"
+         class="btn"
+         data-toggle="tooltip"
+         data-placement="right"
+         title="{% trans 'Dashboard' %}">
+         <i class="fa fa-bar-chart icon-lg"></i>
+      </a>
+    {% else %}
+      <!-- Session report menu -->
+      <a href="{% url 'dashboard:dashboard' discipline.slug session.id %}"
+         class="btn"
+         data-toggle="tooltip"
+         data-placement="right"
+         title="{% trans 'Report' %}">
+         <i class="fa fa-bar-chart icon-lg"></i>
+      </a>
+    {% endif %}
     <!-- Session iRAT menu -->
     {% if date > irat_datetime and user in discipline.students.all %}
       <a href="{% url 'irat:result' discipline.slug session.id %}"

@@ -1,0 +1,97 @@
+.panel {
+  box-shadow: 1px 1px 10px white;
+}
+
+.fa-star {
+  color: gold;
+  text-shadow: 3px 2px 4px floralwhite;
+}
+.star1 {
+  font-size: 40px;
+}
+.star2 {
+  font-size: 50px;
+}
+.star3 {
+  font-size: 60px;
+}
+.star4 {
+  font-size: 50px;
+}
+.star5 {
+  font-size: 40px;
+}
+
+.page-header {
+  margin: 15px 20px 20px;
+}
+
+.media-heading {
+  color: black;
+  padding-bottom: 20px;
+}
+
+.img-thumbnail {
+  max-width: 80px !important;
+}
+
+.panel-default > .panel-heading {
+  color: white;
+}
+
+.panel-default > .title {
+  padding-bottom: 1px;
+  padding-top: 1px;
+}
+
+.big-panel {
+  margin-top: 10px;
+}
+
+.badges-body {
+  min-height: 150px;
+}
+
+.qtd-body {
+  min-height: 120px;
+}
+
+.first > .fa-trophy {
+  font-size: 105px;
+  color: gold;
+  text-shadow: 5px 5px 5px black;
+  position: relative;
+  left: 10px;
+}
+
+.third > .fa-trophy {
+  font-size: 105px;
+  color: #9e7547;
+  text-shadow: 5px 5px 5px black;
+  position: relative;
+  left: 10px;
+}
+
+.position {
+  position: absolute;
+  font-weight: bold;
+  z-index: 1;
+  font-size: 34px;
+  top: 12px;
+  right: 76px;
+}
+
+.text-size {
+  font-size: 27px;
+}
+
+.panel-student {
+  margin: 10px;
+  box-shadow: 5px 5px 5px grey;
+}
+
+.data {
+  font-size: 30px;
+  color: grey;
+  text-align: center;
+}
