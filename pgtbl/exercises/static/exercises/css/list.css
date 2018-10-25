@@ -70,35 +70,7 @@
   margin-bottom: 10px;
 }
 
-/* iRAT */
-.time {
-  position:relative;
-  bottom: 25px;
-  left: 25px;
-}
-
-.time > a {
-  color: white;
-}
-
-.time > a:hover {
+.update, .update:hover, .update:focus {
   text-decoration: none;
-}
-
-.date {
-  position: relative;
-  top: 20px;
-  left: 25px;
-}
-
-.date > a {
   color: white;
-}
-
-.date > a:hover {
-  text-decoration: none;
-}
-
-.form-group {
-  padding-top: 12px;
 }
