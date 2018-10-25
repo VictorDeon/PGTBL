@@ -20,7 +20,7 @@ class DashboardDetailView(LoginRequiredMixin,
     template_name = 'dashboard/dashboard.html'
     context_object_name = 'gamification'
 
-    permissions_required = []
+    permissions_required = ['show_dashboard_permission']
 
     def get_discipline(self):
         """
