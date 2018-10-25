@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 from django.views.generic import ListView
 
 from core.permissions import PermissionMixin
@@ -8,6 +9,8 @@ from modules.models import TBLSession
 from modules.utils import get_datetimes
 from questions.models import Question
 from questions.forms import AnswerQuestionForm
+
+from django.core.cache import cache
 
 class ExerciseListView(LoginRequiredMixin,
                        PermissionMixin,
@@ -65,18 +68,28 @@ class ExerciseListView(LoginRequiredMixin,
         context['form3'] = AnswerQuestionForm(prefix="alternative03")
         context['form4'] = AnswerQuestionForm(prefix="alternative04")
 
+        questions = self.get_queryset()
+        context['paginator'] = Paginator(questions, 1)
+
         return context
 
     def get_queryset(self):
         """
         Get the questions queryset from model database.
+        BUG: Pagination buttons in template
         """
 
         session = self.get_session()
 
-        questions = Question.objects.filter(
+        random_questions = Question.objects.filter(
             session=session,
             is_exercise=True
-        )
+        ).order_by('?')[:10]
+
+        questions = cache.get('questions')
+
+        if not questions:
+            cache.set('questions', random_questions)
+            questions = cache.get('questions')
 
         return questions
