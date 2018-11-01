@@ -9,7 +9,8 @@
        class="btn"
        data-toggle="tooltip"
        data-placement="right"
-       title="{% trans 'Profile' %}">
+       title="{% trans 'Profile' %}"
+       data-intro='Aqui você acessa o perfil'>
        <i class="fa fa-user icon-lg"></i>
     </a>
 
@@ -18,7 +19,8 @@
        class="btn"
        data-toggle="tooltip"
        data-placement="right"
-       title="{% trans 'Edit personal information' %}">
+       title="{% trans 'Edit personal information' %}"
+       data-intro='Aqui você edita suas informações pessoais'>
        <i class="fa fa-edit icon-lg"></i>
     </a>
 
@@ -27,7 +29,8 @@
        class="btn"
        data-toggle="tooltip"
        data-placement="right"
-       title="{% trans 'Edit password' %}">
+       title="{% trans 'Edit password' %}"
+       data-intro='Aqui você altera sua senha'>
        <i class="fa fa-expeditedssl icon-lg"></i>
     </a>
 
@@ -36,7 +39,8 @@
        class="btn"
        data-toggle="tooltip"
        data-placement="right"
-       title="{% trans 'Search discipline and classroom' %}">
+       title="{% trans 'Search discipline and classroom' %}"
+       data-intro='Aqui você pode procurar disciplinas e salas de aula'>
        <i class="fa fa-search icon-lg"></i>
     </a>
 
@@ -45,7 +49,9 @@
       <a href="{% url 'disciplines:create' %}"
          class="btn" data-toggle="tooltip"
          data-placement="right"
-         title="{% trans 'Create discipline and classroom' %}">
+         title="{% trans 'Create discipline and classroom' %}"
+         data-intro='Aqui você pode criar disciplinas e salas de aula'>
+         >
          <i class="fa fa-book icon-lg"></i>
       </a>
     {% endif %}
@@ -54,7 +60,8 @@
     <button type="button"
             class="btn side-button message-button"
             data-toggle="modal"
-            data-target="#message-modal">
+            data-target="#message-modal"
+            data-intro='Aqui você acessa suas mensagens'>
             <i class="fa fa-envelope icon-lg"></i>
             <span class="badge">05</span>
     </button>
@@ -63,8 +70,16 @@
     <button type="button"
             class="btn side-button"
             data-toggle="modal"
-            data-target="#delete-user-modal">
+            data-target="#delete-user-modal"
+            data-intro='Aqui você deleta seu usuário'>
             <i class="fa fa-trash icon-lg"></i>
+    </button>
+
+    <button type="button"
+            class="btn side-button"
+            data-toggle="modal"
+            onClick="introJs().start()">
+            <i class="fa fa-question-circle-o icon-lg"></i>
     </button>
   </div>
 </div>
