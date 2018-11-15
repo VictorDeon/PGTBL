@@ -3,3 +3,4 @@ from .csv import get_csv
 from .exercise_list_view import ExerciseListView
 from .exercise_result_view import ExerciseResultView
 from .reset_exercise_view import ResetExerciseView
+from .exercise_update_view import ExerciseUpdateView
