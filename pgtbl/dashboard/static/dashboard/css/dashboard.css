@@ -2,6 +2,10 @@
   box-shadow: 1px 1px 10px white;
 }
 
+.badges {
+  max-height: 130px;
+}
+
 .fa-star {
   color: gold;
   text-shadow: 3px 2px 4px floralwhite;
@@ -33,6 +37,10 @@
 
 .img-thumbnail {
   max-width: 80px !important;
+}
+
+.panel-default {
+  margin-top: 10px;
 }
 
 .panel-default > .panel-heading {

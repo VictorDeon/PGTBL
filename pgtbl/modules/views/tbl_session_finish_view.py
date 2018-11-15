@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
+from exercises.models import GamificationPointSubmission
 from modules.models import TBLSession
 from grades.models import Grade
 from groups.models import Group
@@ -49,6 +50,7 @@ class TBLSessionFinishView(LoginRequiredMixin,
         if not session.is_finished:
             session.is_finished = True
             session.is_closed = True
+            self.update_gamification()
 
             for student in discipline.students.all():
                 peer_review_grade = self.calcule_peer_review_grade(student)
@@ -94,6 +96,52 @@ class TBLSessionFinishView(LoginRequiredMixin,
         for group in groups:
             if student in group.students.all():
                 return group
+
+    def update_gamification(self):
+        """
+        Update position status gamification
+        """
+
+        groups = Group.objects.filter(
+            discipline=self.get_discipline()
+        )
+
+        results = []
+
+        for group in groups:
+            gamifications = GamificationPointSubmission.objects.filter(
+                session=self.get_object(),
+                group=group
+            )
+
+            total_score = 0
+
+            for gamification in gamifications:
+                total_score += gamification.total_score
+
+            group_result = {
+                'group': group,
+                'total_score': total_score
+            }
+
+            results.append(group_result)
+
+        bigger = 0
+        group_winner = groups[0]
+
+        for result in results:
+            if result['total_score'] > bigger:
+                bigger = result['total_score']
+                group_winner = result['group']
+
+        gamification_winner = GamificationPointSubmission.objects.filter(
+            session=self.get_object(),
+            group=group_winner
+        )
+
+        for gamification in gamification_winner:
+            gamification.first_position = True
+            gamification.save()
 
     def update_grade(self, student, peer_review_grade):
         """

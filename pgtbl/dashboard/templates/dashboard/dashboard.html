@@ -36,6 +36,20 @@
           </div>
           <div class="panel-body wood-body">
             <div class="row">
+              <div class="col-sm-2">
+                {% if position == 1 %}
+                  <span class="position">{{position}}°</span>
+                  <span class="first"><i class="fa fa-trophy"></i></span>
+                {% elif position == 2 %}
+                  <span class="position">{{position}}°</span>
+                  <span class="second"><i class="fa fa-trophy"></i></span>
+                {% else %}
+                  {% if position < 10 %}
+                    <span class="position">{{position}}°</span>
+                  {% endif %}
+                  <span class="third"><i class="fa fa-trophy"></i></span>
+                {% endif %}
+              </div>
               <div class="col-sm-10">
                 <div class="row">
                   <div class="col-sm-3">
@@ -76,20 +90,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-sm-2">
-                {% if position == 1 %}
-                  <span class="position">{{position}}°</span>
-                  <span class="first"><i class="fa fa-trophy"></i></span>
-                {% elif position == 2 %}
-                  <span class="position">{{position}}°</span>
-                  <span class="second"><i class="fa fa-trophy"></i></span>
-                {% else %}
-                  {% if position < 10 %}
-                    <span class="position">{{position}}°</span>
-                  {% endif %}
-                  <span class="third"><i class="fa fa-trophy"></i></span>
-                {% endif %}
               </div>
             </div>
             <div class="row">
@@ -132,6 +132,80 @@
                 <div class="panel panel-default qtd-body big-panel">
                   <div class="panel-heading gradient">{% trans 'Group Badges' %}</div>
                   <div class="panel-body badges-body">
+                    <div class="row">
+                      {% if badges.total_score > 500 %}
+                        <div class="col-sm-2">
+                          <figure>
+                            <img
+                              src="{% static 'dashboard/img/500.png' %}"
+                              class="img-responsive badges"
+                              alt="{% trans '500 Group Points' %}"
+                            />
+                            <figcaption class="text-center">{% trans '500 Group Points' %}</figcaption>
+                          </figure>
+                        </div>
+                      {% endif %}
+                      {% if badges.total_score > 1000 %}
+                        <div class="col-sm-2">
+                          <figure>
+                            <img
+                              src="{% static 'dashboard/img/1000.png' %}"
+                              class="img-responsive badges"
+                              alt="{% trans '1500 Group Points' %}"
+                            />
+                            <figcaption class="text-center">{% trans '1000 Group Points' %}</figcaption>
+                          </figure>
+                        </div>
+                      {% endif %}
+                      {% if badges.total_score > 2000 %}
+                        <div class="col-sm-2">
+                          <figure>
+                            <img
+                              src="{% static 'dashboard/img/2000.png' %}"
+                              class="img-responsive badges"
+                              alt="{% trans '2000 Group Points' %}"
+                            />
+                            <figcaption class="text-center">{% trans '2000 Group Points' %}</figcaption>
+                          </figure>
+                        </div>
+                      {% endif %}
+                      {% if badges.total_score > 3000 %}
+                        <div class="col-sm-2">
+                          <figure>
+                            <img
+                              src="{% static 'dashboard/img/3000.png' %}"
+                              class="img-responsive badges"
+                              alt="{% trans '3000 Group Points' %}"
+                            />
+                            <figcaption class="text-center">{% trans '3000 Group Points' %}</figcaption>
+                          </figure>
+                        </div>
+                       {% endif %}
+                      {% if badges.first_position %}
+                        <div class="col-sm-2">
+                          <figure>
+                            <img
+                              src="{% static 'dashboard/img/first_position.png' %}"
+                              class="img-responsive badges"
+                              alt="{% trans 'First position' %}"
+                            />
+                            <figcaption class="text-center">{% trans 'First Position Once' %}</figcaption>
+                          </figure>
+                        </div>
+                      {% endif %}
+                      {% if badges.all_first_position %}
+                        <div class="col-sm-2">
+                          <figure>
+                            <img
+                              src="{% static 'dashboard/img/trophy.png' %}"
+                              class="img-responsive badges"
+                              alt="{% trans 'Always first position' %}"
+                            />
+                            <figcaption class="text-center">{% trans 'First Position Always' %}</figcaption>
+                          </figure>
+                        </div>
+                      {% endif %}
+                    </div>
                   </div>
                 </div>
               </div>

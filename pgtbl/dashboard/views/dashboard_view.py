@@ -57,6 +57,7 @@ class DashboardDetailView(LoginRequiredMixin,
         context['average'] = self.get_average()
         context['winner_points'] = self.get_student_group_position()['winner_points']
         context['position'] = self.get_student_group_position()['position']
+        context['badges'] = self.get_badges()
 
         return context
 
@@ -87,6 +88,35 @@ class DashboardDetailView(LoginRequiredMixin,
         )
 
         return gamification
+
+    def get_badges(self):
+        """
+        Get total points to visualize badges.
+        """
+
+        gamifications = GamificationPointSubmission.objects.filter(
+            group=self.get_student_group()
+        )
+
+        total_score = 0
+        first_position = False
+        all_first_position = True
+
+        for gamification in gamifications:
+            if gamification.first_position:
+                first_position = True
+            else:
+                all_first_position = False
+
+            total_score += gamification.total_score
+
+        result = {
+            'total_score': total_score,
+            'first_position': first_position,
+            'all_first_position': all_first_position
+        }
+
+        return result
 
     def get_total_points(self):
         """

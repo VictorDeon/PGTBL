@@ -38,6 +38,12 @@ class GamificationPointSubmission(models.Model):
         help_text=_("Student total score answered."),
     )
 
+    first_position = models.BooleanField(
+        _("Is first position?"),
+        default=False,
+        help_text=_("Is first position in this session?")
+    )
+
     created_at = models.DateTimeField(
         _('Created at'),
         help_text=_("Date that the submission of question is created."),
