@@ -25,6 +25,11 @@ session_patterns = [
         name='delete'
     ),
     path(
+        '<int:pk>/finish/',
+        views.TBLSessionFinishView.as_view(),
+        name='finish'
+    ),
+    path(
         '<int:pk>/details/',
         views.TBLSessionDetailView.as_view(),
         name='details'

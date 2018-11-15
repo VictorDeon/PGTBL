@@ -53,6 +53,9 @@ class TBLSessionUpdateView(LoginRequiredMixin,
 
         messages.success(self.request, _('TBL session updated successfully.'))
 
+        if not form.instance.is_closed:
+            form.instance.is_finished = False
+
         return super(TBLSessionUpdateView, self).form_valid(form)
 
     def get_success_url(self):

@@ -14,6 +14,11 @@ exercise_patterns = [
         views.ExerciseResultView.as_view(),
         name='result'
     ),
+path(
+        'edit-exercise/',
+        views.ExerciseUpdateView.as_view(),
+        name='update'
+    ),
     path(
         'result/csv/',
         views.get_csv,

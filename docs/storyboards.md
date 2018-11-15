@@ -15,6 +15,6 @@ Ele se assemelha a uma história em quadrinho, que demonstra como seria a experi
 
 ![storyboard6](https://user-images.githubusercontent.com/14116020/28044526-46270ae0-65ae-11e7-84ef-d94383739e31.png)
 
-![storyboard7](https://user-images.githubusercontent.com/14116020/28044528-47c34b5c-65ae-11e7-86a0-d76293982c41.png)
+![storyboard7](https://user-images.githubusercontent.com/14116020/44312881-7caeeb80-a3d5-11e8-9380-57fc18e54eb4.png)
 
 ![storyboard8](https://user-images.githubusercontent.com/14116020/27982148-d0404ab4-6371-11e7-9ea7-829550e5b74c.png)

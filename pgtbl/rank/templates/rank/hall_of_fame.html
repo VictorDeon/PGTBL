@@ -1,0 +1,192 @@
+{% extends 'accounts/profile.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'rank/css/hall_of_fame.css' %}" />
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'disciplines:details' discipline.slug %}">
+      {{discipline.title}}
+    </a>
+  </li>
+{% endblock %}
+
+{% block content %}
+  <div class="page-header">
+    <div class="row">
+      <div class="col-sm-8">
+        <h1 class="white">
+          <i class="fa fa-trophy"></i> {{ discipline.title }}<br />
+          <small>{% trans 'Hall da fama' %}</small>
+        </h1>
+      </div>
+      <div class="col-sm-4 text-center">
+        <h1>
+          <i class="fa fa-star star1"></i>
+          <i class="fa fa-star star2"></i>
+          <i class="fa fa-star star3"></i>
+          <i class="fa fa-star star4"></i>
+          <i class="fa fa-star star5"></i>
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="row">
+      <div class="col-sm-8 white">
+        <p class="pull-left">
+          <i class="fa fa-users"></i>
+          {%  trans 'Winning groups each semester' %}
+        </p>
+      </div>
+      <div class="col-sm-4">
+        <form method="get" accept-charset="utf-8">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              name="q_info"
+              value="{{ request.GET.q_info }}"
+              placeholder="Pesquisar"
+            />
+            <div class="input-group-btn">
+              <button class="btn btn-primary" type="submit">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel-group">
+          {% for group in hall_of_fame %}
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                {{ group.title }}
+                <span class="pull-right">
+                  0{{ group.get_semester }}/{{ group.get_year }}
+                  <i class="fa fa-calendar"></i>
+                </span>
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-sm-12">
+                    {% for student in group.students.all %}
+                      {% if forloop.first %}<div class="row">{% endif %}
+                      <div class="col-sm-2">
+                        <figure class="student-figure">
+                          {% if student.photo %}
+                            <img src="{{ student.photo.url }}" class="img-thumbnail img-responsive" alt="Alunos" />
+                          {% else %}
+                            <img src="{% static 'rank/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos" />
+                          {% endif %}
+                          <figcaption>{{ student.get_short_name }}</figcaption>
+                        </figure>
+                      </div>
+                      {% if forloop.counter|divisibleby:6 %}</div><div class="row">{% endif %}
+                      {% if forloop.last %}</div>{% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">{% trans 'Badges' %}</div>
+                      <div class="panel-body">
+                        <div class="row">
+                          {% if group.gamification_score > 500 %}
+                            <div class="col-sm-2">
+                              <figure>
+                                <img
+                                  src="{% static 'dashboard/img/500.png' %}"
+                                  class="img-responsive badges"
+                                  alt="{% trans '500 Group Points' %}"
+                                />
+                                <figcaption class="text-center">{% trans '500 Group Points' %}</figcaption>
+                              </figure>
+                            </div>
+                          {% endif %}
+                          {% if group.gamification_score > 1000 %}
+                            <div class="col-sm-2">
+                              <figure>
+                                <img
+                                  src="{% static 'dashboard/img/1000.png' %}"
+                                  class="img-responsive badges"
+                                  alt="{% trans '1500 Group Points' %}"
+                                />
+                                <figcaption class="text-center">{% trans '1000 Group Points' %}</figcaption>
+                              </figure>
+                            </div>
+                          {% endif %}
+                          {% if group.gamification_score > 2000 %}
+                            <div class="col-sm-2">
+                              <figure>
+                                <img
+                                  src="{% static 'dashboard/img/2000.png' %}"
+                                  class="img-responsive badges"
+                                  alt="{% trans '2000 Group Points' %}"
+                                />
+                                <figcaption class="text-center">{% trans '2000 Group Points' %}</figcaption>
+                              </figure>
+                            </div>
+                          {% endif %}
+                          {% if group.gamification_score > 3000 %}
+                            <div class="col-sm-2">
+                              <figure>
+                                <img
+                                  src="{% static 'dashboard/img/3000.png' %}"
+                                  class="img-responsive badges"
+                                  alt="{% trans '3000 Group Points' %}"
+                                />
+                                <figcaption class="text-center">{% trans '3000 Group Points' %}</figcaption>
+                              </figure>
+                            </div>
+                           {% endif %}
+                          {% if group.first_position_once %}
+                            <div class="col-sm-2">
+                              <figure>
+                                <img
+                                  src="{% static 'dashboard/img/first_position.png' %}"
+                                  class="img-responsive badges"
+                                  alt="{% trans 'First position' %}"
+                                />
+                                <figcaption class="text-center">{% trans 'First Position Once' %}</figcaption>
+                              </figure>
+                            </div>
+                          {% endif %}
+                          {% if group.first_position_always %}
+                            <div class="col-sm-2">
+                              <figure>
+                                <img
+                                  src="{% static 'dashboard/img/trophy.png' %}"
+                                  class="img-responsive badges"
+                                  alt="{% trans 'Always first position' %}"
+                                />
+                                <figcaption class="text-center">{% trans 'First Position Always' %}</figcaption>
+                              </figure>
+                            </div>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <div class="well">{% trans 'No groups in the Hall of Fame' %}</div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% include 'core/pagination.html' %}
+  </div>
+{% endblock %}

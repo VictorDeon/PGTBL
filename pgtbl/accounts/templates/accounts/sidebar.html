@@ -11,6 +11,7 @@
        data-placement="right"
        title="{% trans 'Profile' %}">
        <i class="fa fa-user icon-lg"></i>
+       <p>{% trans 'Profile' %}</p>
     </a>
 
     <!-- Edit information menu -->
@@ -20,6 +21,7 @@
        data-placement="right"
        title="{% trans 'Edit personal information' %}">
        <i class="fa fa-edit icon-lg"></i>
+       <p>{% trans 'Update Account' %}</p>
     </a>
 
     <!-- Edit password menu -->
@@ -29,6 +31,7 @@
        data-placement="right"
        title="{% trans 'Edit password' %}">
        <i class="fa fa-expeditedssl icon-lg"></i>
+       <p>{% trans 'Update Password' %}</p>
     </a>
 
     <!-- Search discipline and classroom menu -->
@@ -38,6 +41,7 @@
        data-placement="right"
        title="{% trans 'Search discipline and classroom' %}">
        <i class="fa fa-search icon-lg"></i>
+       <p>{% trans 'Search Discipline' %}</p>
     </a>
 
     <!-- Create discipline and classroom menu -->
@@ -47,6 +51,7 @@
          data-placement="right"
          title="{% trans 'Create discipline and classroom' %}">
          <i class="fa fa-book icon-lg"></i>
+         <p>{% trans 'Create Discipline' %}</p>
       </a>
     {% endif %}
 
@@ -57,6 +62,7 @@
             data-target="#message-modal">
             <i class="fa fa-envelope icon-lg"></i>
             <span class="badge">05</span>
+            <p class="notification">{% trans 'Notification' %}</p>
     </button>
 
     <!-- Button to open delete user modal -->
@@ -65,6 +71,7 @@
             data-toggle="modal"
             data-target="#delete-user-modal">
             <i class="fa fa-trash icon-lg"></i>
+            <p>{% trans 'Delete Account' %}</p>
     </button>
   </div>
 </div>

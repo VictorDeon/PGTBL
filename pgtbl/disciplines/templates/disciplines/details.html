@@ -36,16 +36,15 @@
         <!-- Close and  Open discipline -->
         <div class="col-sm-2">
           <h1 class="white">{{discipline.classroom}}</h1>
-          {% if user.id == discipline.teacher.id %}
-            <form action="{% url 'disciplines:close' slug=discipline.slug %}" method="post">
-              {% csrf_token %}
-
-              {% if discipline.is_closed %}
-                <button type="submit" class="btn btn-danger pull-right">{% trans 'Closed' %}</button>
-              {% else %}
-                <button type="submit" class="btn btn-success pull-right">{% trans 'Open' %}</button>
-              {% endif %}
-            </form>
+          {% if user == discipline.teacher %}
+            <button class="btn btn-danger btn-block"
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#reset-{{ discipline.id }}-modal">
+                    <i class="fa fa-backward"></i>
+                    {% trans 'Reset Discipline' %}
+            </button>
+            {% include 'disciplines/reset.html' %}
           {% endif %}
         </div>
       </div>
@@ -53,7 +52,7 @@
 
     <!-- Teacher information -->
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-sm-10">
         <div class="media lighten-blue-grey">
           {% if discipline.teacher.photo %}
             <div class="media-left">
@@ -70,6 +69,25 @@
             <p>{{discipline.teacher.email}}</p>
           </div>
         </div>
+      </div>
+      <div class="col-sm-2">
+        {% if user.id == discipline.teacher.id %}
+          <form action="{% url 'disciplines:close' slug=discipline.slug %}" method="post">
+            {% csrf_token %}
+
+            {% if discipline.is_closed %}
+              <button type="submit" class="btn btn-success btn-block close-button">
+                <i class="fa fa-eye"></i>
+                {% trans 'Open Discipline' %}
+              </button>
+            {% else %}
+              <button type="submit" class="btn btn-danger btn-block close-button">
+                <i class="fa fa-eye-slash"></i>
+                {% trans 'Close Discipline' %}
+              </button>
+            {% endif %}
+          </form>
+        {% endif %}
       </div>
     </div>
 

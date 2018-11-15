@@ -1,1 +1,2 @@
 from .exercise_submission import ExerciseSubmission
+from .point_submission import GamificationPointSubmission

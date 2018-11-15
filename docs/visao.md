@@ -15,7 +15,7 @@ O projeto TBL ou Team Based Learning é um modelo educacional já empregado em v
  
 ### 1.2 Escopo
  
-O objetivo inicial do projeto é a aplicação do software na disciplina da UnB de Medição e Análise, substituído o método tradicional de ensino e avaliação, tornando o processo mais prazeroso, tanto para o aluno quanto para o professor através dessa tecnologia.
+O objetivo inicial do projeto é a aplicação do software em disciplinas da UnB, substituído o método tradicional de ensino e avaliação, tornando o processo mais prazeroso, tanto para o aluno quanto para o professor através dessa tecnologia.
  
 O sistema terá um design atrativo e será responsável por todo o processo do TBL desde a preparação até a avaliação em pares. Futuramente a aplicação terá um sistema de machine learning e Gamificação além de ser extensível a qualquer disciplina ou curso tanto superior como ensino médio.
  
@@ -25,7 +25,7 @@ O documento está organizado de maneira que o leitor consiga extrair o máximo d
  
 ### 1.4 Definições, Acrônimos e Abreviações
  
-A maioria das definições relacionadas ao software se encontra na página: [[Léxico]]
+A maioria das definições relacionadas ao software se encontra na página: [Léxicos](lexicos)
  
 * **TBL**: Team-based Learning.
 * **UnB**: Universidade de Brasília, Brasil.
@@ -109,7 +109,7 @@ Inicialmente o software vai ser voltado para fins educacionais, sendo implantado
 |Nome|Descrição|Responsabilidade|Representante|
 |:---|:-------|:----------------|:------------|
 |Scrum master|Gerenciam o projeto e a equipe|Elaboram os planos de projeto, Monitoram o andamento do projeto, Revisam o projeto, Auxiliam a equipe de desenvolvimento a seguir a metodologia|Victor Arnaud|
-|Time|Desenvolvem o sistema|Documentação e código|Victor Arnaud|
+|Time|Desenvolvem o sistema|Documentação, código e testes|Victor Arnaud|
 |Product owner|Requisitou o sistema|Fornece e valida os requisitos do sistema, avalia o andamento do produto a cada release e tem um acompanhamento constante do projeto.|Elaine Venson, Cristiane Soares Ramos, Ricardo Ajax|
  
 ### 3.2 Resumo dos Usuários
@@ -222,13 +222,13 @@ A proposta do serviço ofertado que é abrangida nesse documento, envolve a util
  
 ### 5.2 Restrições de confiabilidade
  
-O sistema deve ter cobertura de testes - mínimo de 50%;
+O sistema deve ter cobertura de testes - mínimo de 90%;
  
 ***
 ## 6. Requisitos de Qualidade
 ***
 
-**Sistema**: O sistema deve seguir a arquitetura MVC definida no documento de [[Arquitetura]] e as ferramentas de desenvolvimento será o Python (versão 3.5) e o framework Django (versão 1.11).
+**Sistema**: O sistema deve seguir a arquitetura MVC definida no [documento de arquitetura](contribuicao/arquitetura) e as ferramentas de desenvolvimento será o Python (versão 3.5) e o framework Django (versão 2.0).
 
 **Suportabilidade**: O sistema poderá ser acessado em computadores pessoais - notebook, desktop – utilizando-se de um serviço de internet. Sendo uma aplicação Web compatível com os principais sistemas operacionais (Linux, Mac, Windows), acessada através do navegador Google Chrome e/ou Firefox de um dispositivo móvel ou fixo.
  

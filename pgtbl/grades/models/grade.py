@@ -1,6 +1,8 @@
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.db import models
+
+from exercises.models import GamificationPointSubmission
 from modules.models import TBLSession
 from groups.models import Group
 
@@ -16,6 +18,7 @@ class Grade(models.Model):
         verbose_name='TBL Session',
         related_name='grades'
     )
+
     student = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -87,7 +90,32 @@ class Grade(models.Model):
             self.session.peer_review_weight
         )
 
+        if self.group == self.get_group_gamification_winner():
+            session_grade += self.session.exercise_score
+
         return session_grade
+
+    def get_group_gamification_winner(self):
+        """
+        Calcule gamification score points to get the group winner
+        """
+
+        groups = Group.objects.filter(discipline=self.session.discipline)
+
+        group_winner = None
+        winner = 0
+
+        for group in groups:
+            total_score = 0
+
+            for submission in GamificationPointSubmission.objects.filter(session=self.session, group=group):
+                total_score += submission.total_score
+
+            if total_score > winner:
+                winner = total_score
+                group_winner = group
+
+        return group_winner
 
     def __str__(self):
         """

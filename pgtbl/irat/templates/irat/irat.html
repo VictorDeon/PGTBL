@@ -71,14 +71,22 @@
                     <a href="#"
                        data-toggle="modal"
                        data-target="#irat-date">
-                       {{session.irat_datetime|date:"d/m/Y H:i"}}
+                       {% if session.irat_datetime %}
+                         {{session.irat_datetime|date:"d/m/Y H:i"}}
+                       {% else %}
+                         {% trans 'The date has not yet been defined' %}
+                       {% endif %}
                        <i class="fa fa-calendar"></i>
                     </a>
                   </h4>
                   {% include 'irat/date.html' %}
                 {% else %}
                   <h4 class="date text-right">
-                    {{session.irat_datetime|date:"d/m/Y H:i"}}
+                    {% if session.irat_datetime %}
+                      {{session.irat_datetime|date:"d/m/Y H:i"}}
+                    {% else %}
+                      {% trans 'The date of the evaluation has not yet been defined' %}
+                    {% endif %}
                     <i class="fa fa-calendar"></i>
                   </h4>
                 {% endif %}

@@ -10,7 +10,7 @@ class TBLSessionForm(forms.ModelForm):
 
     class Meta:
         model = TBLSession
-        fields = ['title', 'description', 'is_closed']
+        fields = ['title', 'description', 'is_closed', 'is_finished']
 
         # Widgets about some fields
         widgets = {

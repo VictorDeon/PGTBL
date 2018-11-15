@@ -11,4 +11,4 @@ O Project Model Canvas tem por objetivo permitir a cocriação do plano de proje
 ## Business Model Canvas
 ***
 
-![canvas-produto](https://user-images.githubusercontent.com/14116020/38158114-09f647a8-3465-11e8-864c-86826f0a2f9d.png)
+![canvas-produto](https://user-images.githubusercontent.com/14116020/44312567-e973b700-a3d0-11e8-96c4-66a6fecfb450.png)

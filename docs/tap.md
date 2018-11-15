@@ -53,7 +53,7 @@ O TBL ou Team Based Learning é um modelo educacional já empregado em várias u
 ## 4. Objetivo do projeto
 ***
 
-O objetivo inicial do projeto é a aplicação do software na disciplina da UnB de Medição e Análise, substituído o método tradicional de ensino e avaliação, tornando o processo mais prazeroso, tanto para o aluno quanto para o professor através dessa tecnologia.
+O objetivo inicial do projeto é a aplicação do software em disciplinas da UnB, substituído o método tradicional de ensino e avaliação, tornando o processo mais prazeroso, tanto para o aluno quanto para o professor através dessa tecnologia.
  
 O sistema terá um design atrativo e será responsável por todo o processo do TBL desde a preparação até a avaliação em pares. Futuramente a aplicação terá um sistema de machine learning e Gamificação além de ser extensível a qualquer disciplina ou curso tanto superior como ensino médio.
 
@@ -85,7 +85,7 @@ A proposta desse projeto envolve a utilização de certos recursos:
 ### 7.2 Processo de desenvolvimento
 ***
  
-![processo_desenvolvimento](https://user-images.githubusercontent.com/14116020/27970956-40c3d058-6327-11e7-9a29-af4bfd75330a.png)
+![desenvolvimento](https://user-images.githubusercontent.com/14116020/45258236-c19dc080-b38a-11e8-8a82-53e1d7082841.png)
 
 ***
 ## 8. Riscos
@@ -130,11 +130,15 @@ O projeto tem como base dois principais marcos, que representam entregas do prod
 
 ### 9.1 EAP
 
-![eap](https://user-images.githubusercontent.com/14116020/38158455-0ce9b48a-346b-11e8-8df0-7d04d929c7fd.png)
+![eap](https://user-images.githubusercontent.com/14116020/45258241-c2ceed80-b38a-11e8-8869-2307cf91fd07.png)
+
+![eap-release 01](https://user-images.githubusercontent.com/14116020/45258240-c2365700-b38a-11e8-8fa6-8d1129c53d46.png)
+
+![eap-release 02](https://user-images.githubusercontent.com/14116020/45258239-c2365700-b38a-11e8-9d1d-9a5b72fd6e9e.png)
 
 ### 9.2 Roadmap
 
-![roadmap](https://user-images.githubusercontent.com/14116020/38158456-0d0a2710-346b-11e8-8155-ce93e107446f.png)
+![roadmap](https://user-images.githubusercontent.com/14116020/45258242-c2ceed80-b38a-11e8-802c-6e6f84f36e01.png)
 
 ***
 ## 10. Custo Estimado

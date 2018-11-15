@@ -27,7 +27,9 @@
               class="form-control"
               value="{{session.irat_datetime|date:"Y-m-d\TH:i"}}"
             />
-            <span>{{session.irat_datetime}}</span>
+            {% if session.irat_datetime %}
+              <span>{{session.irat_datetime}}</span>
+            {% endif %}
           </div>
 
           <!-- Submit button -->

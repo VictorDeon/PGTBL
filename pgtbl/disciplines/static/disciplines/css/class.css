@@ -7,3 +7,8 @@
   width: 60px;
   height: 60px;
 }
+
+.close-button {
+  position: relative;
+  top: 40px;
+}

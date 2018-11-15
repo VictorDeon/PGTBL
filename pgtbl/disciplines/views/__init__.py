@@ -1,4 +1,5 @@
 from .discipline_close_view import DisciplineCloseView
+from .discipline_reset_view import DisciplineResetView
 from .discipline_create_view import DisciplineCreateView
 from .discipline_delete_view import DisciplineDeleteView
 from .discipline_detail_view import DisciplineDetailView

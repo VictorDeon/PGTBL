@@ -23,13 +23,11 @@ Este tópico visa estabelecer de forma clara as especificidades sobre as decisõ
 
 5 - O web server (nginx) retorna a resposta para o web client (navegador)
 
-A arquitetura utilizada no projeto será o arquitetura de microserviços.
-
-O projeto será implementado utilizando o framework [Django](https://www.djangoproject.com/) na versão 1.11. O django utiliza-se do MVT (Model-View-Template) como uma adaptação do MVC (Model-View-Controller), o que muda é que a view do MVC virou template do MVT e a controller do MVC virou view do MVT, nas views utilizaremos as [Classe Based Views](http://ccbv.co.uk/). Esse framework fará comunicação com o banco de dados Postgresql e o servidor nginx.
+O projeto será implementado utilizando o framework [Django](https://www.djangoproject.com/) na versão 2.0. O django utiliza-se do MVT (Model-View-Template) como uma adaptação do MVC (Model-View-Controller), o que muda é que a view do MVC virou template do MVT e a controller do MVC virou view do MVT, nas views utilizaremos as [Classe Based Views](http://ccbv.co.uk/). Esse framework fará comunicação com o banco de dados Postgresql e o servidor nginx.
 
 #### 2.1 Pacotes Significativos do Ponto de Vista da Arquitetura
 
-![package](https://user-images.githubusercontent.com/14116020/36355763-e065e10e-14c6-11e8-9fef-fdd8b4d33ed1.png)
+![package](https://user-images.githubusercontent.com/14116020/44312142-d6a9b400-a3c9-11e8-91aa-b5efb1d0dd03.png)
 
 Os pacotes dos apps:
 
@@ -37,15 +35,16 @@ Os pacotes dos apps:
 * **migrations**: pasta com todas as migrações das modelos para o banco, são os SQLs.
 * **static**: É onde fica os arquivos estáticos da aplicação (CSS, JS e IMG)
 * **templates**: É onde fica os templates da aplicação (HTML)
-* **tests**: contém os testes unitários feitos no sistema.
+* **tests**: contém os testes automatizados feitos no sistema.
 * **__init__**: É o arquivo que define que sua pasta é um pacote python.
 * **admin**: contém a instância da modelo que fará parte do sistema de administração do django, lá pode-se fazer CRUD das models.
 * **app**: arquivo que contém informações da aplicação do django.
-* **forms**: contém os campos que será inserido no formularios
-* **model**: faz interface com o banco de dados, é responsável por leitura, validação e escrita de dados no banco de dados.
+* **forms**: pasta que contém os campos que será inserido no formularios
+* **models**: pasta de arquivos que faz interface com o banco de dados, é responsável por leitura, validação e escrita de dados no banco de dados.
 * **permissions**: Arquivo de implementação de permissões do aplicativo.
 * **urls**: São as rotas para ser acessada pelo navegador
-* **view**: contém a camada lógica do sistema e a comunicação com a API por meio de rotas (Classe Based Views).
+* **views**: pasta que contém a camada lógica do sistema e a comunicação com o navegador por meio de rotas (Classe Based Views).
+* **fixtures**: pasta que contém arquivos json para pré-popular o banco de dados para testes manuais
 
 Os pacotes do projeto settings:
 
@@ -54,15 +53,28 @@ Os pacotes do projeto settings:
 * **urls**: Arquivo que terá o mapeamento de rotas de todo o projeto com todas as aplicações.
 * **wsgi**: Arquivo usado para deploy do projeto.
 
-Os pacotes gerais do projeto tbl:
+Os pacotes do projeto pgtbl:
+
+* **manage**: Arquivo de configuração geral do django.
+* **requirements**: Arquivos para instalar dependências da aplicação através do seguinte comando ```pip3 install -r requirements.txt```
+
+Os pacotes gerais do projeto:
 
 * **Vagrantfile**: Arquivo que gerencia a máquina virtual de desenvolvimento, criado para desenvolvedores que queiram desenvolver em sistemas operacionais diferentes do Linux, como Windows ou Mac, precisa ter o [Vagrant](https://www.vagrantup.com/docs/installation/) instalado.
-* **Dockerfile**: Arquivo que gerencia o container de deploy da aplicação tbl.
-* **docker-compose**: Arquivo que gerencia todos os containers de deploy da aplicação.
-* **.travis**: Arquivo que gerencia a entrega continua da aplicação através da ferramenta Travis CI no github.
 * **Makefile**: Arquivo de atalhos para comandos muito usados pelos desenvolvedores.
-* **requirements**: Arquivos para instalar dependências da aplicação através do seguinte comando ```pip3 install -r requirements.txt```
-* **manage**: Arquivo de configuração geral do django.
+* **docker-compose**: Arquivos que gerencia todos os containers da aplicação (deploy, homolog, production, test e
+  desenvolvimento).
+* **.travis**: Arquivo que gerencia a entrega continua da aplicação através da ferramenta Travis CI no github.
+* **.codacy**: Arquivo de configuração da ferramenta de análise estática de código Codacy.
+* **.gitignore**: Arquivo que faz o git ignorar alguns arquivos do projeto.
+* **README**: Arquivo com um conteúdo markdown inicial do projeto.
+* **LICENSE**: Licença do software.
+* **mkdocs**: Arquivo que contém a configuração da documentação do software.
+* **prototype**: Pasta com o protótipo do software.
+* **docs**: Pasta com toda a documentação do software.
+* **makefiles**: Pasta que contém de forma organizada comandos do Makefile.
+* **images**: Pasta que armazena as imagens de deploy da aplicação tbl.
+* **scripts**: Pasta com alguns scripts de integração e deploy continuo
 
 ***
 ## 3. Diagrama de classe
@@ -205,6 +217,8 @@ A partir das informações obtidas, esse modelo conceitual será utilizado para 
 |--------|----|--------------|---------|
 |discipline|[Discipline](#discipline)|obrigatório|Disciplina que a nota pertence|
 |student|[User](#user)|obrigatório|Aluno dono da nota.|
+|final_grade|float|obrigatório|Nota final do aluno|
+|status|string|obrigatório|Status final do aluno (aprovado ou reprovado)|
 |created_at|date|automático|Data de criação da nota|
 |updated_at|date|automático|Data de modificação da nota|
 
@@ -212,7 +226,6 @@ A partir das informações obtidas, esse modelo conceitual será utilizado para 
 
 |Atributo|Tipo|Característica|Descrição|
 |--------|----|--------------|---------|
-|discipline|[Discipline](#discipline)|obrigatorio|Disciplina na qual o TBL pertence.|
 |title|string|obrigatório|Título do arquivo|
 |description|string|obrigatório|Descrição do arquivo|
 |extension|string|obrigatório|Extensão do arquivo, PDF, PPT, ...|
@@ -221,6 +234,10 @@ A partir das informações obtidas, esse modelo conceitual será utilizado para 
 |updated_at|date|automático|Data de modificação do arquivo|
 
 #### <a name="discipline_file">DisciplineFile: [File](#file)</a>:
+
+|Atributo|Tipo|Característica|Descrição|
+|--------|----|--------------|---------|
+|discipline|[Discipline](#discipline)|obrigatorio|Disciplina na qual o TBL pertence.|
 
 #### <a name="tblsession">TBLSession</a>
 
@@ -286,31 +303,29 @@ A partir das informações obtidas, esse modelo conceitual será utilizado para 
 |created_at|date|automático|Data de criação da alternativa|
 |updated_at|date|automático|Data de modificação da alternativa|
 
-#### <a name="submission">Submission</a>:
-
-|Atributo|Tipo|Característica|Descrição|
-|--------|----|--------------|---------|
-|correct_alternative|string|obrigatório|Título da alternativa correta|
-|score|inteiro positivo|obrigatório, padrao 0|Pontuação da alternativa|
-|created_at|date|automático|Data de criação da submissão|
-
-#### <a name="exercise_submission">ExerciseSubmission: [Submission](#submission)</a>:
+#### <a name="exercise_submission">ExerciseSubmission</a>:
 
 |Atributo|Tipo|Característica|Descrição|
 |--------|----|--------------|---------|
 |session|[Session](#session)|obrigatório|Sessão TBL que a submissão foi realizada|
 |question|[Question](#question)|obrigatório|Questão da lista de exercicio respondida|
 |user|[User](#user)|obrigatório|Usuário que submeteu a questão|
+|correct_alternative|string|obrigatório|Título da alternativa correta|
+|score|inteiro positivo|obrigatório, padrao 0|Pontuação da alternativa|
+|created_at|date|automático|Data de criação da submissão|
 
-#### <a name="irat_submission">IRATSubmission: [Submission](#submission)</a>:
+#### <a name="irat_submission">IRATSubmission</a>:
 
 |Atributo|Tipo|Característica|Descrição|
 |--------|----|--------------|---------|
 |session|[Session](#session)|obrigatório|Sessão TBL que a submissão foi realizada|
 |question|[Question](#question)|obrigatório|Questão da avaliação iRAT respondida|
 |user|[User](#user)|obrigatório|Estudante que submeteu a questão|
+|correct_alternative|string|obrigatório|Título da alternativa correta|
+|score|inteiro positivo|obrigatório, padrao 0|Pontuação da alternativa|
+|created_at|date|automático|Data de criação da submissão|
 
-#### <a name="grat_submission">GRATSubmission: [Submission](#submission)</a>:
+#### <a name="grat_submission">GRATSubmission</a>:
 
 |Atributo|Tipo|Característica|Descrição|
 |--------|----|--------------|---------|
@@ -318,6 +333,9 @@ A partir das informações obtidas, esse modelo conceitual será utilizado para 
 |question|[Question](#question)|obrigatório|Questão da avaliação gRAT respondida|
 |user|[User](#user)|obrigatório|Estudante do grupo que submeteu a questão|
 |group|[Group](#group)|obrigatório|Grupo que submeteu a questão|
+|correct_alternative|string|obrigatório|Título da alternativa correta|
+|score|inteiro positivo|obrigatório, padrao 0|Pontuação da alternativa|
+|created_at|date|automático|Data de criação da submissão|
 
 ### Relacionamentos entre classes
 

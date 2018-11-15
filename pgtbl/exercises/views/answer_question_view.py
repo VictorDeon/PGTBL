@@ -8,7 +8,7 @@ from django.views.generic import FormView
 from disciplines.models import Discipline
 from modules.models import TBLSession
 from questions.models import Question
-from exercises.models import ExerciseSubmission
+from exercises.models import ExerciseSubmission, GamificationPointSubmission
 from questions.forms import AnswerQuestionForm
 
 

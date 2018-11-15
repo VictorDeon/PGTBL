@@ -1,103 +1,88 @@
-# Contribuindo com o PGTBL.
+# DevOps
 ***
 
-Caso queira contribuir com o projeto, talvez seja uma boa ideia começar pelo [README](https://github.com/VictorArnaud/TBL/blob/master/README.md) para conhecer melhor sobre nós. 
+De acordo com a Amazon DevOps é a combinação de filosofias, práticas e ferramentas que aumentam a capacidade de distribuir aplicativos e serviços em alta velocidade. Essas velocidade permite que seus clientes sejam atendidos de forma melhor e as empresas conseguem competir de forma mais eficaz no mercado. Com esse novo modelo, as equipes de desenvolvimento e operações não são mais separadas, ou seja, os engenheiros trabalham durante todo o ciclo de vida do aplicativo, da fase de desenvolvimento e testes à fase de implantação e operações.
 
-Outro documento importante e que deve ser lido é o [Código de Conduta](https://github.com/VictorArnaud/TBL/blob/master/.github/CODE_OF_CONDUCT.md).
+Essas equipes usam práticas para automatizar processos que sempre foram feitas de maneira manual e lenta. Eles usam várias técnologias que o auxiliam a automatizar todo esse processo que envolve a infraestrutura do software e isso aumenta ainda mais a velocidade e produtividade da equipe.
 
-Obrigado por contribuir! Sua ajuda será recebida com muita gratidão!
+A Amazon cita alguns benefícios do DevOps, são eles: velocidade, en- trega rápida, confiabilidade, operações em escala, colaboração melhorada e segurança.  Além disso o modelo de DevOps é importante já que o software já não apenas sustenta uma atividade empresarial, ele tornou-se um componente integral de cada parte de uma empresa. O objetivo principal desse modelo é remover as barreiras entre duas equipes tradicionalmente separadas, desenvolvimento e operações, com essa abordagem as duas equipes trabalham juntas para otimizar a produtividade dos desenvolvedores e a confia- bilidade das operações de forma a automatizar alguns processos que antes eram feitos de forma manual e que gerava uma certa dependencia entre as equipes.
 
-***
-## 1. Como eu posso contribuir?
-***
-
-### 1.1 Reportando um Bug
-
-Esse projeto segue um padrão de _Issues_. Logo, caso encontre um bug, verifique se ele não se encontra em uma das nossas _Issues_. Os bugs devem ser marcados com _tag (label)_ __bug__.
-
-Se o bug encontrado não consta nas _Isses_, basta abrir uma [Nova _Issue_](https://github.com/VictorArnaud/TBL/issues/new).
-
-### 1.2 Adicionando e/ou modificando alguma funcionalidade
-
-Primeiro verifique que não existe nenhuma [_Issue_](https://github.com/VictorArnaud/TBL/issues) a respeito dessa modificação e/ou adição.
-
-Caso não exista, crie uma [Nova _Issue_](https://github.com/VictorArnaud/TBL/issues/new). Dê um título significativo a ela, coloque uma descrição e pelo menos uma _label_.
-
-As mudanças devem ser submetidas através de _Pull Requests_.
+De acordo com Amazon existem algumas práticas essenciais que ajudam as empresas a inovar mais rapidamente por meio da automação e da simplificação dos processos de desenvolvimento de software e gerenciamento de infraestrutura. A maioria dessas práticas já são realizadas e mencionadas em algumas metodologias como o XP. São elas: integração contínua, entrega contínua, microsserviços, infraestrutura como código, monitoramento e registro em log, comunicação e colaboração.
 
 ***
-# 2. Padrão de _Commit_
+### Processo de DevOps
 ***
 
-### 2.1 Por questões de padronização recomendamos que sigam nosso estilo de _commit_:
+![devops](https://user-images.githubusercontent.com/14116020/45258237-c2365700-b38a-11e8-96fb-3ca11baa5a45.png)
 
-Os _commits_ devem ser todos em __inglês__;
+#### Criação da branch para fazer a funcionalidade:
 
-Ele deve conter um título curto e objetivo do que foi feito naquele _commit_;
+* **Descrição**: O desenvolvedor irá criar uma nova branch a partir da devel para criar a nova funcionalidade proposta de acordo com a política de branch estabelecida.
+* **Entradas**: N/A
+* **Saídas**: Nova branch da funcionalidade.
 
-Se for preciso, após esse título, deve-se descrever, com um pouco mais de detalhes, todas as atividades executadas.
+#### Construção do código:
 
-Caso esteja trabalhando em com algum associado assine nos seus _commits_ os seus parceiros
+* **Descrição**: Com a nova branch criada o desenvolvedor irá criar o código para a nova funcionalidade.
+* **Entradas**: Branch
+* **Saídas**: Nova funcionalidade.
 
-__Exemplo:__
+#### Envio do código para o github:
 
-```
-  Creating project community files (Título curto e objetivo)
+* **Descrição**: Assim que o código estiver pronto, o desenvolvedor irá enviar o código para o repositorio do github.
+* **Entradas**: Nova funcionalidade
+* **Saídas**: N/A
 
-  Issue #01
+#### Pull Request da branch atual para a branch devel:
 
-  Adds project license (Descrição de uma das atividades)
+* **Descrição**: Assim que o código for enviado para o github o desenvolvedor irá abrir um Pull Request para que comece o processo de Integração Contínua e Deploy Continúo.
+* **Entradas**: Nova funcionalidade
+* **Saídas**: N/A
 
-  Adds project code of conduct file
+#### Execução do Travis CI:
 
-  Adds project contributing file
+* **Descrição**: Processo automatizado para execução da Integração Contínua e Deploy Contínuo.
+* **Entradas**: Nova funcionalidade
+* **Saídas**: N/A
 
-  Adds project issue template file
+#### Testes e Qualidade de Código:
 
-  Adds projects pull request file
+* **Descrição**: Na integração Contínua de forma automatizada será executado os testes unitários, integração e aceitação, além de verificar a qualidade do código por meio da ferramenta de análise estática.
+* **Entradas**: Nova funcionalidade
+* **Saídas**: Relatório com a cobertura de teste e qualidade de código.
 
-  Signed-off-by: Victor Arnaud <victorhad@gmail.com> (Assinatura de parceria)
-```
+#### Aprovação e Merge do Pull Request:
 
-***
-## 3. Política de _Branchs_
-***
+* **Descrição**: Assim que a integração contínua for finalizada será feito o merge do código para a branch devel ou master e começará o deploy contínuo do software.
+* **Entradas**: Nova funcionalidade
+* **Saídas**: Versão publicavel do software.
 
-![Política de branchs](https://cloud.githubusercontent.com/assets/14116020/21487025/bcc38f2c-cba6-11e6-9447-f392a31a2b2d.png)
+#### Publicação das imagens no Dockerhub:
 
-A política de branches que será utilizada no decorrer do projeto seguirá o modelo descrito na imagem acima: para cada funcionalidade a ser implementada será criada uma branch a partir da branch devel, que estará em constante atualização com a branch master e vice versa.
+* **Descrição**: Por meio de Scripts automatizados o deploy continuo irá mandar a imagem do docker de homologação ou produção gerada para o respositório de imagens chamado Dockerhub.
+* **Entradas**: Imagem do software.
+* **Saídas**: Versão publicavel da imagem do software de homologação ou produção.
 
-Assim que cada funcionalidade for completada, será aberto um pull request (feito pela equipe de desenvolvimento) da branch correspondente à funcionalidade para a branch devel, para que esta seja aprovada.
+#### Conexão na máquina de deploy:
 
-O servidor de integração contínua estará funcionando em cima da branch master e devel. Ao fim de cada sprint, será realizado um rebase da branch devel para a branch master e então será realizado o processo de integração contínua do projeto. Tanto a branch master como a devel estarão em constante atualização, para que as próximas funcionalidades a serem implementadas tenham sempre o projeto mais atualizado possível.
+* **Descrição**: Por meio de SSH o script irá entrar na máquina de homologação ou produção
+* **Entradas**: Scrips de conexão.
+* **Saídas**: Conexão na máquina de homologação ou produção.
 
-Essa Política de Branches deverá guiar os desenvolvedores na forma de organização de suas contribuições ao repositório.
+#### Atualização dos ambientes com a última versão dos containers:
 
-__master__ - Branch principal do repositório onde será permitida somente a integração de software consolidado e testado. Essa branch será exclusiva para a entrega de Realeases, ou seja, um conjunto maior de funcionalidades que integram o software, aqui estará a versão _**stable**_ do software.
+* **Descrição**: Assim que tiver dentro da máquina o script irá atualizar o respo- sitório com as novas modificações e irá subir o software por meio das imagens armazenadas no dockerhub.
+* Entradas**: Scrips de conexão e Imagens do Dockerhub.
+* Saídas**: Software em produção ou Homologação.
 
-__dev__ - Branch para integração de novas funcionalidades, onde será permitido a entrega das features desenvolvidas e que estão em um estágio avançado de completude. Será o branch base para o início do desenvolvimento das features e da correção de bugs. Aqui também serão _mergeadas_ as releases.
+#### Disponibilidade da nova versão para o usuãrio:
 
-__nome-da-feature__ - Branch utilizada para o desenvolvimento de novas features do _backlog_. Caso a feature tenha sida proposta por uma _issue_ do repositório e aceita no _backlog_ o nome deverá conter o número da _issue_. 
-Ex: US01_<nome-da-nova-feature> (Considerando que a feature tenha sido solicitada na _issue_ #1)
+* **Descrição**: Assim que subir a imagem a nova versão do software estará pronta para uso.
+* **Entradas**: Scrips de conexão e Imagens do Dockerhub.
+* **Saídas**: Software em produção ou Homologação.
 
-***
-## 4. Política de _Pull Request_
-***
+#### Pull Request da branch devel para a branch master:
 
-Para que o "Pull Request" das funcionalidades seja devidamente aceito, esta deve estar devidamente testada e conforme os padrões de commit e estilo de código. Além disso, a build da Integração Contínua deve estar "passando" para tal funcionalidade e o pull request deve ser aberto seguindo o padrão estipulado no template.
-
-***
-## 5. Política de Versionamento
-***
-
-Todos os artefatos de gerenciamento devem informar sua versão atual no seguinte formato: **X.Y.Z**, descrito abaixo:
-
-**X**: Apenas incrementa quando há mudanças que quebram a estrutura do projeto ou que disponibiliza uma versão estável para uso do projeto.
-
-* **X < 1**: A versão do projeto não é estável.
-
-* **X >= 1**: A versão do projeto é estável.
-
-**Y**: Apenas incrementa quando é realizada a alteração ou adição de alguma nova funcionalidade.
-
-**Z**: Apenas incrementa quando são realizadas correções ou alterações no código.
+* **Descrição**: Se o processo acima foi dentro da branch devel, ou seja, ambiente de homologação, o desenvolvedor terá que mandar um Pull Request para a branch master para subir o ambiente de produção.
+* **Entradas**: Novas Funcionalidade.
+* **Saídas**: Software em produção.

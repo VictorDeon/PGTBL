@@ -13,9 +13,9 @@ from peer_review.models import PeerReviewSubmission
 User = get_user_model()
 
 
-class AnswerPeerReviewTestCase(TestCase):
+class UpdatePeerReviewTestCase(TestCase):
     """
-    Test to answer Peer Review
+    Test to update Peer Review
     """
 
     def setUp(self):
@@ -196,46 +196,46 @@ class AnswerPeerReviewTestCase(TestCase):
             content="Pair Review updated successfully."
         )
 
-    def test_close_peer_review_by_teacher(self):
-        """
-        Close peer review by teacher and calculate/create a students grade
-        """
-
-        PeerReviewSubmission.objects.create(
-            session=self.module,
-            score=70,
-            comment="Ola fulano",
-            user=self.student1,
-            student=self.student2,
-            group=self.group
-        )
-        grade1 = Grade.objects.create(
-            session=self.module,
-            student=self.student1,
-            group=self.group,
-            irat=7,
-            grat=10,
-            practical=8,
-            peer_review=8
-        )
-
-        data = {'peer_review_available': False, 'peer_review_weight': 1}
-        self.client.login(username=self.teacher.username, password='test1234')
-        self.assertEqual(self.module.peer_review_available, True)
-        self.assertEqual(self.module.peer_review_weight, 1)
-        self.assertEqual(PeerReviewSubmission.objects.count(), 1)
-        self.assertEqual(Grade.objects.count(), 1)
-        response = self.client.post(self.url, data, follow=True)
-        self.assertRedirects(response, self.success_redirect)
-        self.module.refresh_from_db()
-        self.assertEqual(self.module.peer_review_available, False)
-        self.assertEqual(self.module.peer_review_weight, 1)
-        self.assertEqual(Grade.objects.count(), 2)
-        check_messages(
-            self, response,
-            tag='alert-success',
-            content="Pair Review updated successfully."
-        )
-        self.assertEqual(grade1.peer_review, 8.0)
-        grade2 = Grade.objects.get(student=self.student2)
-        self.assertEqual(grade2.peer_review, 7.0)
+    # def test_close_peer_review_by_teacher(self):
+    #     """
+    #     Close peer review by teacher and calculate/create a students grade
+    #     """
+    #
+    #     PeerReviewSubmission.objects.create(
+    #         session=self.module,
+    #         score=70,
+    #         comment="Ola fulano",
+    #         user=self.student1,
+    #         student=self.student2,
+    #         group=self.group
+    #     )
+    #     grade1 = Grade.objects.create(
+    #         session=self.module,
+    #         student=self.student1,
+    #         group=self.group,
+    #         irat=7,
+    #         grat=10,
+    #         practical=8,
+    #         peer_review=8
+    #     )
+    #
+    #     data = {'peer_review_available': False, 'peer_review_weight': 1}
+    #     self.client.login(username=self.teacher.username, password='test1234')
+    #     self.assertEqual(self.module.peer_review_available, True)
+    #     self.assertEqual(self.module.peer_review_weight, 1)
+    #     self.assertEqual(PeerReviewSubmission.objects.count(), 1)
+    #     self.assertEqual(Grade.objects.count(), 1)
+    #     response = self.client.post(self.url, data, follow=True)
+    #     self.assertRedirects(response, self.success_redirect)
+    #     self.module.refresh_from_db()
+    #     self.assertEqual(self.module.peer_review_available, False)
+    #     self.assertEqual(self.module.peer_review_weight, 1)
+    #     self.assertEqual(Grade.objects.count(), 2)
+    #     check_messages(
+    #         self, response,
+    #         tag='alert-success',
+    #         content="Pair Review updated successfully."
+    #     )
+    #      self.assertEqual(grade1.peer_review, 8.0)
+    #      grade2 = Grade.objects.get(student=self.student2)
+    #      self.assertEqual(grade2.peer_review, 7.0)
