@@ -79,7 +79,8 @@ class GradeUpdateView(LoginRequiredMixin,
         )
 
         grade = Grade.objects.get(
-            student=user
+            student=user,
+            session=self.get_session()
         )
 
         return grade

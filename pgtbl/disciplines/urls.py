@@ -39,6 +39,11 @@ discipline_patterns = [
         views.DisciplineCloseView.as_view(),
         name='close'
     ),
+    path(
+        '<slug:slug>/reset/',
+        views.DisciplineResetView.as_view(),
+        name='reset'
+    ),
 ]
 
 student_patterns = [

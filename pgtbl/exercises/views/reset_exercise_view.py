@@ -7,8 +7,10 @@ from django.shortcuts import redirect
 
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
+from groups.models import Group
 from modules.models import TBLSession
-from exercises.models import ExerciseSubmission
+from exercises.models import ExerciseSubmission, GamificationPointSubmission
+from questions.models import Question
 
 
 class ResetExerciseView(LoginRequiredMixin,
@@ -44,6 +46,19 @@ class ResetExerciseView(LoginRequiredMixin,
 
         return session
 
+    def get_student_group(self):
+        """
+        Get current student group.
+        """
+
+        groups = Group.objects.filter(
+            discipline=self.get_discipline()
+        )
+
+        for group in groups:
+            if self.request.user in group.students.all():
+                return group
+
     def get_queryset(self):
         """
         Get the questions queryset from model database.
@@ -77,9 +92,39 @@ class ResetExerciseView(LoginRequiredMixin,
         """
 
         submissions = self.get_queryset()
+        questions = Question.objects.filter(session=self.get_session(), is_exercise=True)
+
+        total_score = 0
+
+        if submissions.count() < questions.count():
+            total_score -= ((questions.count() - submissions.count()) * 4)
 
         for submission in submissions:
+
+            if (submission.score > 0):
+                total_score += submission.score
+            else:
+                total_score -= 4
+
             submission.delete()
+
+        if self.get_student_group():
+            try:
+                gamification = GamificationPointSubmission.objects.get(
+                    session=self.get_session(),
+                    student=self.request.user,
+                    group=self.get_student_group()
+                )
+
+                gamification.total_score += total_score
+                gamification.save()
+            except:
+                GamificationPointSubmission.objects.create(
+                    session=self.get_session(),
+                    student=self.request.user,
+                    group=self.get_student_group(),
+                    total_score=total_score
+                )
 
         messages.success(
             self.request,

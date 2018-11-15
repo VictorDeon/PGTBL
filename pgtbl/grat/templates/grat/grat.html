@@ -71,14 +71,22 @@
                     <a href="#"
                        data-toggle="modal"
                        data-target="#grat-date">
-                       {{session.grat_datetime|date:"d/m/Y H:i"}}
+                       {% if session.grat_datetime %}
+                         {{session.grat_datetime|date:"d/m/Y H:i"}}
+                       {% else %}
+                         {% trans 'The date has not yet been defined' %}
+                       {% endif %}
                        <i class="fa fa-calendar"></i>
                     </a>
                   </h4>
                   {% include 'grat/date.html' %}
                 {% else %}
                   <h4 class="date text-right">
-                    {{session.grat_datetime|date:"d/m/Y H:i"}}
+                    {% if session.grat_datetime %}
+                      {{session.grat_datetime|date:"d/m/Y H:i"}}
+                    {% else %}
+                      {% trans 'The date has not yet been defined' %}
+                    {% endif %}
                     <i class="fa fa-calendar"></i>
                   </h4>
                 {% endif %}

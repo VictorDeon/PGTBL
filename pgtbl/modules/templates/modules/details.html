@@ -24,10 +24,26 @@
   <div class="container-fluid">
     <!-- Header -->
     <div class="page-header">
-      <h1 class="white">
-        <i class="fa fa-book"></i> {{session}} <br />
-        <small>{{discipline.title}}</small>
-      </h1>
+      <div class="row">
+        <div class="col-sm-10">
+          <h1 class="white">
+            <i class="fa fa-book"></i> {{session}} <br />
+            <small>{{discipline.title}}</small>
+          </h1>
+        </div>
+        <div class="col-sm-2">
+          {% if user == discipline.teacher and not session.is_finished %}
+            <button class="btn btn-danger btn-block"
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#finish-{{session.id}}-modal">
+                    <i class="fa fa-lock"></i>
+                    {% trans 'Finalizar' %}
+            </button>
+            {% include 'modules/finish.html' %}
+          {% endif %}
+        </div>
+      </div>
     </div>
 
     <!-- TBL session markdown description -->

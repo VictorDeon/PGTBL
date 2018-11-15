@@ -72,3 +72,9 @@ textarea {
 .modal-body {
   color: black;
 }
+
+.label {
+  position: relative;
+  top: 35px;
+  left: 18px;
+}

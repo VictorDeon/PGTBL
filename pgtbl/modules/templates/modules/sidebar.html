@@ -11,6 +11,7 @@
        data-placement="right"
        title="{% trans 'Session' %}">
        <i class="fa fa-puzzle-piece icon-lg"></i>
+       <p>{% trans 'Session Details' %}</p>
     </a>
     <!-- Session files menu -->
     <a href="{% url 'files:module-list' discipline.slug session.id %}"
@@ -19,6 +20,7 @@
        data-placement="right"
        title="{% trans 'Files' %}">
        <i class="fa fa-folder-open-o icon-lg"></i>
+       <p>{% trans 'Session Files' %}</p>
     </a>
     <!-- Session grade menu -->
     <a href="{% url 'grades:list' discipline.slug session.id %}"
@@ -27,6 +29,7 @@
        data-placement="right"
        title="{% trans 'Session Grades' %}">
        <i class="fa fa-graduation-cap icon-lg"></i>
+       <p>{% trans 'Session Grades' %}</p>
     </a>
     <!-- Session exercise menu -->
     <a href="{% url 'exercises:list' discipline.slug session.id %}"
@@ -35,15 +38,29 @@
        data-placement="right"
        title="{% trans 'Exercise list' %}">
        <i class="fa fa-leanpub icon-lg"></i>
+       <p>{% trans 'Session Exercises' %}</p>
     </a>
-    <!-- Session dashboard menu -->
-    <a href="#"
-       class="btn"
-       data-toggle="tooltip"
-       data-placement="right"
-       title="{% trans 'Dashboard' %}">
-       <i class="fa fa-bar-chart icon-lg"></i>
-    </a>
+    {% if user in discipline.students.all %}
+      <!-- Session dashboard menu -->
+      <a href="{% url 'dashboard:dashboard' discipline.slug session.id %}"
+         class="btn"
+         data-toggle="tooltip"
+         data-placement="right"
+         title="{% trans 'Dashboard' %}">
+         <i class="fa fa-bar-chart icon-lg"></i>
+         <p>{% trans 'Student Dashboard' %}</p>
+      </a>
+    {% else %}
+      <!-- Session report menu -->
+      <a href="#"
+         class="btn"
+         data-toggle="tooltip"
+         data-placement="right"
+         title="{% trans 'Report' %}">
+         <i class="fa fa-bar-chart icon-lg"></i>
+         <p>{% trans 'Teacher Report' %}</p>
+      </a>
+    {% endif %}
     <!-- Session iRAT menu -->
     {% if date > irat_datetime and user in discipline.students.all %}
       <a href="{% url 'irat:result' discipline.slug session.id %}"
@@ -52,6 +69,7 @@
          data-placement="right"
          title="{% trans 'Test iRAT Result' %}">
          <i class="fa fa-street-view icon-lg"></i>
+         <p>{% trans 'iRAT Result' %}</p>
       </a>
     {% else %}
       <a href="{% url 'irat:list' discipline.slug session.id %}"
@@ -60,6 +78,7 @@
          data-placement="right"
          title="{% trans 'Test iRAT' %}">
          <i class="fa fa-street-view icon-lg"></i>
+         <p>{% trans 'iRAT Test' %}</p>
       </a>
     {% endif %}
 
@@ -71,6 +90,7 @@
          data-placement="right"
          title="{% trans 'Test gRAT Result' %}">
          <i class="fa fa-group icon-lg"></i>
+         <p>{% trans 'gRAT Result' %}</p>
       </a>
     {% else %}
       <a href="{% url 'grat:list' discipline.slug session.id %}"
@@ -79,6 +99,7 @@
          data-placement="right"
          title="{% trans 'Test gRAT' %}">
          <i class="fa fa-group icon-lg"></i>
+         <p>{% trans 'gRAT Test' %}</p>
       </a>
     {% endif %}
 
@@ -89,6 +110,7 @@
        data-placement="right"
        title="{% trans 'Test practical' %}">
        <i class="fa fa-crosshairs icon-lg"></i>
+       <p>{% trans 'Practical Test' %}</p>
     </a>
 
     <!-- Session peer test menu -->
@@ -98,6 +120,7 @@
        data-placement="right"
        title="{% trans 'Pair Review' %}">
        <i class="fa fa-vcard-o icon-lg"></i>
+       <p>{% trans 'Peer Review Test' %}</p>
     </a>
 
     <!-- Session appeal menu -->
@@ -107,6 +130,7 @@
        data-placement="right"
        title="{% trans 'Appeal' %}">
        <i class="fa fa-gavel icon-lg"></i>
+       <p>{% trans 'Session Appeal' %}</p>
     </a>
   </div>
 </div>

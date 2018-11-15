@@ -25,7 +25,9 @@ TBL_APPS = [
     'practical_test',
     'exercises',
     'irat',
-    'grat'
+    'grat',
+    'rank',
+    'dashboard'
 ]
 
 EXTERNAL_APPS = [

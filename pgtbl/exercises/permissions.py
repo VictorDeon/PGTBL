@@ -19,3 +19,16 @@ def show_questions_permission(permission, user, view):
         return True
 
     return False
+
+@register_object_checker()
+def only_edit_by_teacher(permission, user, view):
+    """
+    Only teacher can edit gamification weight
+    """
+
+    discipline = view.get_discipline()
+
+    if user == discipline.teacher:
+        return True
+
+    return False
