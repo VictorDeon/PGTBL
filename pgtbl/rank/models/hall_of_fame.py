@@ -33,6 +33,24 @@ class HallOfFameGroup(models.Model):
         blank=True
     )
 
+    gamification_score = models.IntegerField(
+        _("Gamification total score"),
+        default=0,
+        help_text=_('Gamification group total scores.')
+    )
+
+    first_position_once = models.BooleanField(
+        _("First Position once badge"),
+        default=False,
+        help_text=_('Group in first position once')
+    )
+
+    first_position_always = models.BooleanField(
+        _("First Position always badge"),
+        default=False,
+        help_text=_('Group in first position always')
+    )
+
     created_at = models.DateTimeField(
         _('Created at'),
         help_text=_("Date that the group is created."),

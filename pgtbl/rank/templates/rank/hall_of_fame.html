@@ -77,21 +77,108 @@
                 </span>
               </div>
               <div class="panel-body">
-                {% for student in group.students.all %}
-                  {% if forloop.first %}<div class="row">{% endif %}
-                  <div class="col-sm-2">
-                    <figure>
-                      {% if student.photo %}
-                        <img src="{{ student.photo.url }}" class="img-thumbnail img-responsive" alt="Alunos" />
-                      {% else %}
-                        <img src="{% static 'rank/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos" />
-                      {% endif %}
-                      <figcaption>{{ student.get_short_name }}</figcaption>
-                    </figure>
+                <div class="row">
+                  <div class="col-sm-12">
+                    {% for student in group.students.all %}
+                      {% if forloop.first %}<div class="row">{% endif %}
+                      <div class="col-sm-2">
+                        <figure class="student-figure">
+                          {% if student.photo %}
+                            <img src="{{ student.photo.url }}" class="img-thumbnail img-responsive" alt="Alunos" />
+                          {% else %}
+                            <img src="{% static 'rank/img/user.png' %}" class="img-thumbnail img-responsive" alt="Alunos" />
+                          {% endif %}
+                          <figcaption>{{ student.get_short_name }}</figcaption>
+                        </figure>
+                      </div>
+                      {% if forloop.counter|divisibleby:6 %}</div><div class="row">{% endif %}
+                      {% if forloop.last %}</div>{% endif %}
+                    {% endfor %}
                   </div>
-                  {% if forloop.counter|divisibleby:6 %}</div><div class="row">{% endif %}
-                  {% if forloop.last %}</div>{% endif %}
-                {% endfor %}
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">{% trans 'Badges' %}</div>
+                      <div class="panel-body">
+                        <div class="row">
+                          {% if group.gamification_score > 500 %}
+                            <div class="col-sm-2">
+                              <figure>
+                                <img
+                                  src="{% static 'dashboard/img/500.png' %}"
+                                  class="img-responsive badges"
+                                  alt="{% trans '500 Group Points' %}"
+                                />
+                                <figcaption class="text-center">{% trans '500 Group Points' %}</figcaption>
+                              </figure>
+                            </div>
+                          {% endif %}
+                          {% if group.gamification_score > 1000 %}
+                            <div class="col-sm-2">
+                              <figure>
+                                <img
+                                  src="{% static 'dashboard/img/1000.png' %}"
+                                  class="img-responsive badges"
+                                  alt="{% trans '1500 Group Points' %}"
+                                />
+                                <figcaption class="text-center">{% trans '1000 Group Points' %}</figcaption>
+                              </figure>
+                            </div>
+                          {% endif %}
+                          {% if group.gamification_score > 2000 %}
+                            <div class="col-sm-2">
+                              <figure>
+                                <img
+                                  src="{% static 'dashboard/img/2000.png' %}"
+                                  class="img-responsive badges"
+                                  alt="{% trans '2000 Group Points' %}"
+                                />
+                                <figcaption class="text-center">{% trans '2000 Group Points' %}</figcaption>
+                              </figure>
+                            </div>
+                          {% endif %}
+                          {% if group.gamification_score > 3000 %}
+                            <div class="col-sm-2">
+                              <figure>
+                                <img
+                                  src="{% static 'dashboard/img/3000.png' %}"
+                                  class="img-responsive badges"
+                                  alt="{% trans '3000 Group Points' %}"
+                                />
+                                <figcaption class="text-center">{% trans '3000 Group Points' %}</figcaption>
+                              </figure>
+                            </div>
+                           {% endif %}
+                          {% if group.first_position_once %}
+                            <div class="col-sm-2">
+                              <figure>
+                                <img
+                                  src="{% static 'dashboard/img/first_position.png' %}"
+                                  class="img-responsive badges"
+                                  alt="{% trans 'First position' %}"
+                                />
+                                <figcaption class="text-center">{% trans 'First Position Once' %}</figcaption>
+                              </figure>
+                            </div>
+                          {% endif %}
+                          {% if group.first_position_always %}
+                            <div class="col-sm-2">
+                              <figure>
+                                <img
+                                  src="{% static 'dashboard/img/trophy.png' %}"
+                                  class="img-responsive badges"
+                                  alt="{% trans 'Always first position' %}"
+                                />
+                                <figcaption class="text-center">{% trans 'First Position Always' %}</figcaption>
+                              </figure>
+                            </div>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           {% empty %}

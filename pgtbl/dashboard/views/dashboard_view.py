@@ -100,20 +100,20 @@ class DashboardDetailView(LoginRequiredMixin,
 
         total_score = 0
         first_position = False
-        all_first_position = True
+        always_first_position = True
 
         for gamification in gamifications:
             if gamification.first_position:
                 first_position = True
             else:
-                all_first_position = False
+                always_first_position = False
 
             total_score += gamification.total_score
 
         result = {
             'total_score': total_score,
             'first_position': first_position,
-            'all_first_position': all_first_position
+            'all_first_position': always_first_position
         }
 
         return result

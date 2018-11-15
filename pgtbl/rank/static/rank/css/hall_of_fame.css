@@ -6,10 +6,28 @@
   background-image: url('../img/wood.jpg');
 }
 
-figure > img {
+.student-figure > img {
   width: 150px;
   border: 15px ridge gold !important;
   box-shadow: 5px 5px 5px grey;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.badges {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-height: 130px;
+  width: 100%;
+}
+
+@media screen and (max-width: 480px) {
+    .badges {
+      max-height: 130px;
+      max-width: 130px;
+    }
 }
 
 figcaption {

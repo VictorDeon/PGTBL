@@ -11,7 +11,7 @@ from disciplines.models import Discipline
 from groups.models import Group
 from irat.models import IRATSubmission
 from grat.models import GRATSubmission
-from exercises.models import ExerciseSubmission
+from exercises.models import ExerciseSubmission, GamificationPointSubmission
 from peer_review.models import PeerReviewSubmission
 from grades.models import Grade, FinalGrade
 from rank.models import HallOfFameGroup
@@ -86,6 +86,7 @@ class DisciplineResetView(LoginRequiredMixin,
         Group.objects.filter(discipline=discipline).delete()
         FinalGrade.objects.filter(discipline=discipline).delete()
 
+
         self.remove_students_and_monitors(discipline)
 
         for session in discipline.tbl_sessions.all():
@@ -95,6 +96,7 @@ class DisciplineResetView(LoginRequiredMixin,
             GRATSubmission.objects.filter(session=session).delete()
             PeerReviewSubmission.objects.filter(session=session).delete()
             ExerciseSubmission.objects.filter(session=session).delete()
+            GamificationPointSubmission.objects.filter(session=session).delete()
             Grade.objects.filter(session=session).delete()
 
     def create_hall_of_fame(self, discipline):
@@ -110,9 +112,27 @@ class DisciplineResetView(LoginRequiredMixin,
 
             group = self.get_groups()[0]
 
+            gamifications = GamificationPointSubmission.objects.filter(group=group)
+
+            total_score = 0
+            first_position = False
+            always_first_position = True
+
+            for gamification in gamifications:
+                if gamification.first_position:
+                    first_position = True
+                else:
+                    always_first_position = False
+
+                total_score += gamification.total_score
+
             hall_of_fame = HallOfFameGroup.objects.create(
                 discipline=discipline,
-                title=group.title
+                title=group.title,
+                gamification_score=total_score,
+                first_position_once=first_position,
+                first_position_always=always_first_position
+
             )
 
             for student in group.students.all():
