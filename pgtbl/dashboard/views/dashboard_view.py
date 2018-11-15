@@ -110,10 +110,13 @@ class DashboardDetailView(LoginRequiredMixin,
 
             total_score += gamification.total_score
 
+        if not gamifications:
+            always_first_position = False
+
         result = {
             'total_score': total_score,
             'first_position': first_position,
-            'all_first_position': always_first_position
+            'always_first_position': always_first_position
         }
 
         return result

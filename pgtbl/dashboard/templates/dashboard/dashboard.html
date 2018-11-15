@@ -133,6 +133,11 @@
                   <div class="panel-heading gradient">{% trans 'Group Badges' %}</div>
                   <div class="panel-body badges-body">
                     <div class="row">
+                      {% if badges.total_score < 500 and not badges.first_position %}
+                        <div class="col-sm-12">
+                          <div class="well">{% trans 'This group has not received any badge yet' %}</div>
+                        </div>
+                      {% endif %}
                       {% if badges.total_score > 500 %}
                         <div class="col-sm-2">
                           <figure>
@@ -193,7 +198,7 @@
                           </figure>
                         </div>
                       {% endif %}
-                      {% if badges.all_first_position %}
+                      {% if badges.always_first_position %}
                         <div class="col-sm-2">
                           <figure>
                             <img

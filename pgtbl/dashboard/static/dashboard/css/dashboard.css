@@ -6,6 +6,17 @@
   max-height: 130px;
 }
 
+@media screen and (max-width: 480px) {
+    .position {
+      position: absolute;
+      font-weight: bold;
+      z-index: 1;
+      font-size: 34px;
+      top: 12px;
+      left: 60px;
+    }
+}
+
 .fa-star {
   color: gold;
   text-shadow: 3px 2px 4px floralwhite;
