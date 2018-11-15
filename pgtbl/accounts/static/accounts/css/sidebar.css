@@ -20,7 +20,7 @@
 
 .icon-lg {
   font-size: 48px;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 /* /* Message events block */
@@ -48,4 +48,12 @@
   color: #b71c1c;
   font-size: 15px;
   background-color: transparent;
+}
+
+.sidebar-title {
+  color: white;
+}
+
+.notification {
+  margin-right: 35px;
 }
