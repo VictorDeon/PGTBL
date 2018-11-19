@@ -9,6 +9,7 @@
        class="btn"
        data-toggle="tooltip"
        data-placement="right"
+       data-intro='Aqui você acessa os detalhes da disciplina'
        title="{% trans 'Description' %}">
        <i class="fa fa-book icon-lg"></i>
     </a>
@@ -17,6 +18,7 @@
     <a href="{% url 'disciplines:students' discipline.slug %}"
        class="btn"
        data-toggle="tooltip"
+       data-intro='Aqui você acessa a lista de estudantes'
        data-placement="right"
        title="{% trans 'Student list' %}">
        <i class="fa fa-slideshare icon-lg"></i>
@@ -26,6 +28,7 @@
     <a href="{% url 'grades:result' discipline.slug %}"
        class="btn"
        data-toggle="tooltip"
+       data-intro='Aqui você acessa a grade'
        data-placement="right"
        title="{% trans 'Grades' %}">
        <i class="fa fa-graduation-cap icon-lg"></i>
@@ -35,6 +38,7 @@
     <a href="{% url 'groups:list' discipline.slug %}"
        class="btn"
        data-toggle="tooltip"
+       data-intro='Aqui você acessa a lista grupos'
        data-placement="right"
        title="{% trans 'Groups' %}">
        <i class="fa fa-group icon-lg"></i>
@@ -45,6 +49,7 @@
        class="btn"
        data-toggle="tooltip"
        data-placement="right"
+       data-intro='Aqui você acessa o rank do grupo'
        title="{% trans 'Group rank' %}">
        <i class="fa fa-trophy icon-lg"></i>
     </a>
@@ -54,6 +59,7 @@
        class="btn"
        data-toggle="tooltip"
        data-placement="right"
+       data-intro='Aqui você acessa a lista de módulos'
        title="{% trans 'TBL sessions' %}">
        <i class="fa fa-puzzle-piece icon-lg"></i>
     </a>
@@ -62,9 +68,17 @@
     <a href="{% url 'files:list' discipline.slug %}"
        class="btn"
        data-toggle="tooltip"
+       data-intro='Aqui você acessa os arquivos'
        data-placement="right"
        title="{% trans 'Files' %}">
        <i class="fa fa-folder-open-o icon-lg"></i>
     </a>
+
+    <button type="button"
+        class="btn side-button"
+        data-toggle="modal"
+        onClick="introJs().start()">
+        <i class="fa fa-question-circle-o icon-lg"></i>
+    </button>
   </div>
 </div>
