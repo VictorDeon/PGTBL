@@ -81,6 +81,16 @@
             </li>
           {% endif %}
 
+          <!-- Help button -->
+          <li>
+            <a href="#"
+               class="navbar-link"
+               onClick="introJs().start()">
+              <i class="fa fa-question-circle-o"></i>
+              {% trans 'Help' %}
+            </a>
+          </li>
+
           <!-- Logout link -->
           <li>
             <a href="{% url 'accounts:logout' %}"
