@@ -38,16 +38,15 @@
             <div class="row">
               <div class="col-sm-2">
                 {% if position == 1 %}
-                  <span class="position">{{position}}°</span>
-                  <span class="first"><i class="fa fa-trophy"></i></span>
+                  <img src="{% static 'dashboard/img/medal1.png' %}" class="img-responsive medal" alt="1" />
                 {% elif position == 2 %}
-                  <span class="position">{{position}}°</span>
-                  <span class="second"><i class="fa fa-trophy"></i></span>
+                  <img src="{% static 'dashboard/img/medal2.png' %}" class="img-responsive medal" alt="1" />
                 {% else %}
-                  {% if position < 10 %}
+                  {% if position == 3 %}
+                    <img src="{% static 'dashboard/img/medal3.png' %}" class="img-responsive medal" alt="1" />
+                  {% else %}
                     <span class="position">{{position}}°</span>
                   {% endif %}
-                  <span class="third"><i class="fa fa-trophy"></i></span>
                 {% endif %}
               </div>
               <div class="col-sm-10">
