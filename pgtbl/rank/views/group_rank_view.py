@@ -6,6 +6,7 @@ from django.views.generic import ListView
 
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
+from exercises.models import GamificationPointSubmission
 from groups.models import Group
 from rank.utils import get_group_grades
 
@@ -20,7 +21,7 @@ class GroupRankView(LoginRequiredMixin,
     """
 
     template_name = 'rank/group_rank.html'
-    context_object_name = 'groups'
+    context_object_name = 'results'
 
     permissions_required = ['show_rank_permission']
 
@@ -69,13 +70,48 @@ class GroupRankView(LoginRequiredMixin,
         groups_grade = get_group_grades(self.get_discipline())
 
         sorted_groups = sorted(groups_grade, key=operator.itemgetter('grade'), reverse=True)
-        # print(sorted_groups)
 
-        groups = []
+        results = []
         for group_dict in sorted_groups[:3]:
             group = Group.objects.get(id=group_dict['id'])
-            groups.append(group)
+            result = self.get_badges(group)
+            results.append(result)
 
-        return groups
+        print(results)
+
+        return results
+
+    def get_badges(self, group):
+        """
+        Get total points to visualize badges.
+        """
+
+        gamifications = GamificationPointSubmission.objects.filter(
+            group=group
+        )
+
+        total_score = 0
+        first_position = False
+        always_first_position = True
+
+        for gamification in gamifications:
+            if gamification.first_position:
+                first_position = True
+            else:
+                always_first_position = False
+
+            total_score += gamification.total_score
+
+        if not gamifications:
+            always_first_position = False
+
+        result = {
+            'group': group,
+            'total_score': total_score,
+            'first_position': first_position,
+            'always_first_position': always_first_position
+        }
+
+        return result
 
 
