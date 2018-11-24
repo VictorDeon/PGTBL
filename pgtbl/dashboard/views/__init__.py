@@ -1,1 +1,2 @@
 from .dashboard_view import DashboardDetailView
+from .report_view import ReportDetailView

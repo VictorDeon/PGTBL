@@ -52,7 +52,7 @@
       </a>
     {% else %}
       <!-- Session report menu -->
-      <a href="#"
+      <a href="{% url 'dashboard:report' discipline.slug session.id %}"
          class="btn"
          data-toggle="tooltip"
          data-placement="right"

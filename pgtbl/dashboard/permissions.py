@@ -14,3 +14,16 @@ def show_dashboard_permission(permission, user, view):
         return True
 
     return False
+
+@register_object_checker()
+def show_report_permission(permission, user, view):
+    """
+    Only teacher can access the report.
+    """
+
+    discipline = view.get_discipline()
+
+    if user == discipline.teacher:
+        return True
+
+    return False
