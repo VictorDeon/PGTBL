@@ -75,37 +75,12 @@
   min-height: 120px;
 }
 
-.first > .fa-trophy {
-  font-size: 105px;
-  color: gold;
-  text-shadow: 5px 5px 5px grey;
-  position: relative;
-  left: 10px;
-}
-
-.second > .fa-trophy {
-  font-size: 105px;
-  color: silver;
-  text-shadow: 5px 5px 5px grey;
-  position: relative;
-  left: 10px;
-}
-
-.third > .fa-trophy {
-  font-size: 105px;
-  color: #9e7547;
-  text-shadow: 5px 5px 5px grey;
-  position: relative;
-  left: 10px;
-}
-
 .position {
   position: absolute;
   font-weight: bold;
-  z-index: 1;
-  font-size: 34px;
-  top: 12px;
-  right: 76px;
+  font-size: 80px;
+  right: 30px;
+  color: white;
 }
 
 .text-size {

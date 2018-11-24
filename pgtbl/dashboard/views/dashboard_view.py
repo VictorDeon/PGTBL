@@ -158,7 +158,8 @@ class DashboardDetailView(LoginRequiredMixin,
             total_score = 0
 
             for submission in group.point_submissions.all():
-                total_score += submission.total_score
+                if submission.session == self.get_session():
+                    total_score += submission.total_score
 
             group = {
                 'id': group.id,

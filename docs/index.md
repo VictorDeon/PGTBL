@@ -1,7 +1,7 @@
 # PGTBL: Plataforma gerenciadora de Team Based Learning.
 ***
 
-![TBL](https://user-images.githubusercontent.com/14116020/27844653-b26ac236-60fa-11e7-9e87-b105b4878180.png)
+![logo](https://user-images.githubusercontent.com/14116020/48957651-17711600-ef41-11e8-9500-59c0c95fb089.png)
 
 Aprendizagem baseada em equipe ou TBL é uma estratégia de ensino aprendizagem colaborativa que se concentra em um ciclo de três passos:
  

@@ -45,9 +45,13 @@
   top: 8px;
 }
 
-img {
+.img-thumbnail {
   box-shadow: 15px 12px 32px black;
   border-radius: 50% !important;
+}
+
+.badges {
+  max-height: 130px;
 }
 
 .media-body {
