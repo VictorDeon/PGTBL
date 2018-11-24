@@ -52,21 +52,33 @@ class ReportDetailView(LoginRequiredMixin,
         context = super(ReportDetailView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
-        context['irat-data'] = None
-        context['grat-data'] = None
+        context['questions_options'] = self.get_options(
+            title="Number of correct answers for questions",
+            haxis="Questions",
+            vaxis="Number of correct answers"
+        )
+        context['irat_data'] = None
+        context['grat_data'] = None
 
         return context
+
+    def get_options(self, title, haxis, vaxis):
+        """
+        Get the specific options
+        """
+
+        options = {
+            "title": _(title),
+            "hAxis": _(haxis),
+            "vAxis": _(vaxis)
+        }
+
+        return options
 
     def get_object(self, queryset=None):
         """
         Get gamification students points
         """
-
-        options = {
-            "title": _("Number of correct answers for questions"),
-            "hAxis": _("Questions"),
-            "vAxis": _("Number of correct answers")
-        }
 
         graphic = []
 
@@ -85,11 +97,6 @@ class ReportDetailView(LoginRequiredMixin,
             report.append(self.get_total_score(gRAT_submissions))
 
             graphic.append(report)
-
-        result = {
-            "graphic": graphic,
-            "options": options
-        }
 
         return graphic
 

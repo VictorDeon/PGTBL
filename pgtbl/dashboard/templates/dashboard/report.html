@@ -9,6 +9,10 @@
 
 {% block js %}
   <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="{% static 'dashboard/js/utils.js' %}"></script>
+  <script src="{% static 'dashboard/js/chartQuestions.js' %}"></script>
+  <script src="{% static 'dashboard/js/chartStudentsiRAT.js' %}"></script>
+  <script src="{% static 'dashboard/js/chartStudentsgRAT.js' %}"></script>
   <script src="{% static 'dashboard/js/report.js' %}"></script>
 {% endblock %}
 
@@ -66,6 +70,7 @@
             <div id="chart-questions"></div>
             <div id='png-questions'></div>
             <div id="questions-data" class="hidden">{{question_data}}</div>
+            <div id="questions-options" class="hidden">{{questions_options}}</div>
           </div>
         </div>
         <hr />
