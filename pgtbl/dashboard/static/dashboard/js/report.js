@@ -9,20 +9,12 @@ google.charts.setOnLoadCallback(drawChartStudentsgRAT);
 // instantiates the line chart, passes in the data and
 // draws it.
 function drawChartQuestions() {
+  var graphic = document.getElementById('questions-data').innerHTML
+  graphic = parser(graphic)
+  graphic.splice(0, 0, ['Questões', 'iRAT', 'gRAT'])
+
   // Create the table
-  var data = new google.visualization.arrayToDataTable([
-    ['Questões', 'iRAT', 'gRAT'],
-    ['Q1',  10, 20],
-    ['Q2',  25, 33],
-    ['Q3',  8,   15],
-    ['Q4',  32, 50],
-    ['Q5',  40, 50],
-    ['Q6',  50, 50],
-    ['Q7',  22, 32],
-    ['Q8',  11, 10],
-    ['Q9',  27, 20],
-    ['Q10', 10, 20],
-  ]);
+  var data = new google.visualization.arrayToDataTable(graphic);
 
   // Set chart options
   var options = {
@@ -114,8 +106,26 @@ function drawChartStudentsgRAT() {
   chart.draw(data, options)
 }
 
-$(window).resize(function(){
+window.onresize = function(){
   drawChartQuestions();
   drawChartStudentsiRAT();
   drawChartStudentsgRAT();
-});
+};
+
+function parser(string) {
+  var array = []
+  var array1 = string.split("],")
+  for (i in array1) {
+    array1[i] = array1[i].replace(/\s/g, '')
+    array1[i] = array1[i].replace(/'/g, '')
+    array1[i] = array1[i].replace("[", '')
+    array1[i] = array1[i].replace("[", '')
+    array1[i] = array1[i].replace("]", '')
+    array1[i] = array1[i].replace("]", '')
+    var array2 = array1[i].split(",")
+    array2[1] = parseInt(array2[1])
+    array2[2] = parseInt(array2[2])
+    array.push(array2)
+  }
+  return array
+}

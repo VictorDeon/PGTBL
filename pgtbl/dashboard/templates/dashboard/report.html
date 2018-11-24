@@ -15,8 +15,8 @@
 {% block content %}
   <div class="page-header profile">
     <h1 class="white">
-      <i class="fa fa-bar-chart"></i> Relatórios da Sessão 01<br />
-      <small>Medição e Análise</small>
+      <i class="fa fa-bar-chart"></i> {% trans 'Session Report:' %}: {{session.title}}<br />
+      <small>{{discipline.title}}</small>
     </h1>
   </div>
   <div class="row fix-row white">
@@ -25,7 +25,7 @@
         <div class="panel panel-default report-left gradient">
           <div class="panel-body">
             <div class="col-sm-6">
-              <h4><i class="fa fa-bar-chart-o"></i> Média iRAT</h4>
+              <h4><i class="fa fa-bar-chart-o"></i> {% trans 'iRAT Average' %}</h4>
               <p><i class="fa fa-calendar"></i> 20/04/2017 às 15:30</p>
             </div>
             <div class="col-sm-6">
@@ -40,7 +40,7 @@
         <div class="panel panel-default report-right gradient">
           <div class="panel-body">
             <div class="col-sm-6">
-              <h4><i class="fa fa-bar-chart-o"></i> Média gRAT</h4>
+              <h4><i class="fa fa-bar-chart-o"></i> {% trans 'gRAT Average' %}</h4>
               <p><i class="fa fa-calendar"></i> 20/04/2017 às 15:30</p>
             </div>
             <div class="col-sm-6">
@@ -55,18 +55,8 @@
     <div class="panel panel-default report">
       <div class="panel-heading">
         <div class="row">
-          <div class="col-sm-8">
-            <i class="fa fa-wpforms"></i> Relatórios iRAT e gRAT
-          </div>
-          <div class="col-sm-2">
-            <span class="pull-right">
-              <i class="fa fa-chevron-up"></i> 39%
-            </span>
-          </div>
-          <div class="col-sm-2">
-            <span class="pull-right">
-              <i class="fa fa-chevron-down"></i> -12%
-            </span>
+          <div class="col-sm-12">
+            <i class="fa fa-wpforms"></i> {% trans 'iRAT and gRAT Report' %}
           </div>
         </div>
       </div>
@@ -75,6 +65,7 @@
           <div class="col-md-12">
             <div id="chart-questions"></div>
             <div id='png-questions'></div>
+            <div id="questions-data" class="hidden">{{question_data}}</div>
           </div>
         </div>
         <hr />
@@ -82,6 +73,7 @@
           <div class="col-md-12">
             <div id="chart-students-irat"></div>
             <div id='png-irat'></div>
+            <div id="irat-data" class="hidden"></div>
           </div>
         </div>
         <hr />
@@ -89,6 +81,7 @@
           <div class="col-md-12">
             <div id="chart-students-grat"></div>
             <div id='png-grat'></div>
+            <div id="grat-data" class="hidden"></div>
           </div>
         </div>
       </div>
