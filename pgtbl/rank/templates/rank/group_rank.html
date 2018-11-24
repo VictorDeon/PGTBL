@@ -29,17 +29,16 @@
   </div>
   <div class="row fix-row">
     <div class="col-sm-12">
-      <div class="panel-group">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <b>Rank de grupos</b> <span><i class="fa fa-flag-checkered"></i></span>
-          </div>
-          <div class="panel-body">
-            {% for group in groups %}
+      {% for result in results %}
+        <div class="panel-group">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <b>{{ result.group.title }}</b>
+            </div>
+            <div class="panel-body">
               <div class="media">
                 <div class="media-body">
-                  <h2 class="media-heading">{{ group.title }}</h2>
-                  {% for student in group.students.all %}
+                  {% for student in result.group.students.all %}
                     {% if forloop.first %}<div class="row">{% endif %}
                     <div class="col-sm-2">
                       <figure>
@@ -72,13 +71,98 @@
                   </div>
                 {% endif %}
               </div>
-              {% if not forloop.last %}<hr />{% endif %}
-            {% empty %}
-              <div class="well">{% trans 'There are no teams in rank yet.' %}</div>
-            {% endfor %}
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  Badges
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    {% if result.total_score < 500 and not result.first_position %}
+                      <div class="col-sm-12">
+                        <div class="well">{% trans 'This group has not received any badge yet' %}</div>
+                      </div>
+                    {% endif %}
+                    {% if result.total_score > 500 %}
+                      <div class="col-sm-2">
+                        <figure>
+                          <img
+                            src="{% static 'dashboard/img/500.png' %}"
+                            class="img-responsive badges"
+                            alt="{% trans '500 Group Points' %}"
+                          />
+                          <figcaption class="text-center">{% trans '500 Group Points' %}</figcaption>
+                        </figure>
+                      </div>
+                    {% endif %}
+                    {% if result.total_score > 1000 %}
+                      <div class="col-sm-2">
+                        <figure>
+                          <img
+                            src="{% static 'dashboard/img/1000.png' %}"
+                            class="img-responsive badges"
+                            alt="{% trans '1500 Group Points' %}"
+                          />
+                          <figcaption class="text-center">{% trans '1000 Group Points' %}</figcaption>
+                        </figure>
+                      </div>
+                    {% endif %}
+                    {% if result.total_score > 2000 %}
+                      <div class="col-sm-2">
+                        <figure>
+                          <img
+                            src="{% static 'dashboard/img/2000.png' %}"
+                            class="img-responsive badges"
+                            alt="{% trans '2000 Group Points' %}"
+                          />
+                          <figcaption class="text-center">{% trans '2000 Group Points' %}</figcaption>
+                        </figure>
+                      </div>
+                    {% endif %}
+                    {% if result.total_score > 3000 %}
+                      <div class="col-sm-2">
+                        <figure>
+                          <img
+                            src="{% static 'dashboard/img/3000.png' %}"
+                            class="img-responsive badges"
+                            alt="{% trans '3000 Group Points' %}"
+                          />
+                          <figcaption class="text-center">{% trans '3000 Group Points' %}</figcaption>
+                        </figure>
+                      </div>
+                     {% endif %}
+                    {% if result.first_position %}
+                      <div class="col-sm-2">
+                        <figure>
+                          <img
+                            src="{% static 'dashboard/img/first_position.png' %}"
+                            class="img-responsive badges"
+                            alt="{% trans 'First position' %}"
+                          />
+                          <figcaption class="text-center">{% trans 'First Position Once' %}</figcaption>
+                        </figure>
+                      </div>
+                    {% endif %}
+                    {% if result.always_first_position %}
+                      <div class="col-sm-2">
+                        <figure>
+                          <img
+                            src="{% static 'dashboard/img/trophy.png' %}"
+                            class="img-responsive badges"
+                            alt="{% trans 'Always first position' %}"
+                          />
+                          <figcaption class="text-center">{% trans 'First Position Always' %}</figcaption>
+                        </figure>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      {% empty %}
+        <div class="well">{% trans 'There are no teams in rank yet.' %}</div>
+      {% endfor %}
     </div>
   </div>
 {% endblock %}
