@@ -4,9 +4,12 @@ from django.views.generic import DetailView
 
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
+from grades.models import Grade
 from grat.models import GRATSubmission
+from groups.models import Group
 from irat.models import IRATSubmission
 from modules.models import TBLSession
+from modules.utils import get_datetimes
 from questions.models import Question
 
 
@@ -52,28 +55,27 @@ class ReportDetailView(LoginRequiredMixin,
         context = super(ReportDetailView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
         context['session'] = self.get_session()
-        context['questions_options'] = self.get_options(
-            title="Number of correct answers for questions",
-            haxis="Questions",
-            vaxis="Number of correct answers"
-        )
-        context['irat_data'] = None
-        context['grat_data'] = None
+        context['questions_options'] = {
+            "title": _("Number of correct answers for questions"),
+            "hAxis": _("Questions"),
+            "vAxis": _("Number of correct answers")
+        }
+        context['questions'] = self.get_questions()
+        context['irat_data'] = self.get_irat_data()
+        context['grat_data'] = self.get_grat_data()
+        context['irat_average'] = self.get_irat_average()
+        context['grat_average'] = self.get_grat_average()
 
         return context
 
-    def get_options(self, title, haxis, vaxis):
+    def get_questions(self):
         """
-        Get the specific options
+        Get the question to iRAT and gRAT tests.
         """
 
-        options = {
-            "title": _(title),
-            "hAxis": _(haxis),
-            "vAxis": _(vaxis)
-        }
+        questions = Question.objects.filter(session=self.get_session(), is_exercise=False)
 
-        return options
+        return questions
 
     def get_object(self, queryset=None):
         """
@@ -82,7 +84,7 @@ class ReportDetailView(LoginRequiredMixin,
 
         graphic = []
 
-        questions = Question.objects.filter(session=self.get_session(), is_exercise=False)
+        questions = self.get_questions()
 
         count = 0
         for question in questions:
@@ -113,3 +115,114 @@ class ReportDetailView(LoginRequiredMixin,
                 total_score += submission.score
 
         return total_score
+
+    def get_irat_data(self):
+        """
+        Get the iRAT data to populate graphic.
+        """
+
+        questions = self.get_questions()
+
+        discipline = self.get_discipline()
+
+        result = []
+        for student in discipline.students.all():
+            table = [student.username]
+
+            for question in questions:
+                try:
+                    submission = IRATSubmission.objects.get(
+                        session=self.get_session(),
+                        question=question,
+                        user=student
+                    )
+                    table.append(submission.score)
+                except:
+                    table.append(0)
+
+            result.append(table)
+
+        return result
+
+    def get_irat_average(self):
+        """
+        Get the iRAT average
+        """
+
+        grades = Grade.objects.filter(
+            session=self.get_session()
+        )
+
+        total = 0
+        for grade in grades:
+            total += grade.irat
+
+        if len(grades) > 0:
+            average = total/len(grades)
+        else:
+            average = 0
+
+        irat_datetime, grat_datetime = get_datetimes(self.get_session())
+
+        result = {
+            'average': average,
+            'data': irat_datetime
+        }
+
+        return result
+
+    def get_grat_average(self):
+        """
+        Get the iRAT average
+        """
+
+        grades = Grade.objects.filter(
+            session=self.get_session()
+        )
+
+        total = 0
+        for grade in grades:
+            total += grade.grat
+
+        if len(grades) > 0:
+            average = total / len(grades)
+        else:
+            average = 0
+
+        irat_datetime, grat_datetime = get_datetimes(self.get_session())
+
+        result = {
+            'average': average,
+            'data': grat_datetime
+        }
+
+        return result
+
+    def get_grat_data(self):
+        """
+        Get the gRAT data to populate graphic.
+        """
+
+        questions = self.get_questions()
+
+        groups = Group.objects.filter(discipline=self.get_discipline())
+
+        result = []
+        for group in groups:
+            table = []
+            table.append(group.title)
+
+            for question in questions:
+                try:
+                    submission = GRATSubmission.objects.get(
+                        session=self.get_session(),
+                        question=question,
+                        group=group
+                    )
+                    table.append(submission.score)
+                except:
+                    table.append(0)
+
+            result.append(table)
+
+        return result

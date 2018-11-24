@@ -10,7 +10,9 @@ function parser(string) {
     array1[i] = array1[i].replace("]", '')
     var array2 = array1[i].split(",")
     for (j = 1; j < array2.length; j++) {
+      if (!array2[j].includes("Q")) {
         array2[j] = parseInt(array2[j])
+      }
     }
     array.push(array2)
   }
