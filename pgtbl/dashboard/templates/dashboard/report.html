@@ -1,0 +1,142 @@
+{% extends 'modules/details.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'dashboard/css/report.css' %}" />
+{% endblock %}
+
+{% block js %}
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="{% static 'dashboard/js/utils.js' %}"></script>
+  <script src="{% static 'dashboard/js/report.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="page-header profile">
+    <h1 class="white">
+      <i class="fa fa-bar-chart"></i> {% trans 'Session Report:' %}: {{session.title}}<br />
+      <small>{{discipline.title}}</small>
+    </h1>
+  </div>
+  <div class="row fix-row white">
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="panel panel-default report-left gradient">
+          <div class="panel-body">
+            <div class="col-sm-6">
+              <h4><i class="fa fa-bar-chart-o"></i> {% trans 'iRAT Average' %}</h4>
+              <p><i class="fa fa-calendar"></i>
+                {% if session.irat_datetime %}
+                 {{irat_average.data|date:"d/m/Y H:i"}}
+                {% else %}
+                 {% trans 'The date has not yet been defined' %}
+                {% endif %}
+              </p>
+            </div>
+            <div class="col-sm-6">
+              <h1 class="pull-right">{{irat_average.average | floatformat:1}}</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="panel panel-default report-right gradient">
+          <div class="panel-body">
+            <div class="col-sm-6">
+              <h4><i class="fa fa-bar-chart-o"></i> {% trans 'gRAT Average' %}</h4>
+              <p><i class="fa fa-calendar"></i>
+                {% if session.irat_datetime %}
+                 {{grat_average.data|date:"d/m/Y H:i"}}
+                {% else %}
+                 {% trans 'The date has not yet been defined' %}
+                {% endif %}
+              </p>
+            </div>
+            <div class="col-sm-6">
+              <h1 class="pull-right">{{grat_average.average | floatformat:1}}</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row fix-row">
+    <div class="panel panel-default report">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-sm-12">
+            <i class="fa fa-wpforms"></i> {% trans 'iRAT and gRAT Report' %}
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div id="chart-questions"></div>
+            <div id='png-questions'></div>
+            <div id="questions-data" class="hidden">{{question_data}}</div>
+            <div id="questions-options" class="hidden">{{questions_options}}</div>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-hover table-condensed">
+                <thead>
+                      <tr>
+                        <th>{% trans 'Group' %}</th>
+                        {% for question in questions %}
+                          <th>Q{{forloop.counter}}</th>
+                        {% endfor %}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for result in grat_data %}
+                        <tr>
+                          {% for data in result %}
+                            <td>{{data}}</td>
+                          {% endfor %}
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+              </table>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-hover table-condensed">
+                <thead>
+                      <tr>
+                        <th>{% trans 'Username' %}</th>
+                        {% for question in questions %}
+                          <th>Q{{forloop.counter}}</th>
+                        {% endfor %}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for result in irat_data %}
+                        <tr>
+                          {% for data in result %}
+                            <td>{{data}}</td>
+                          {% endfor %}
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

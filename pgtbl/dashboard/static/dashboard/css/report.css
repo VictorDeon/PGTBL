@@ -1,0 +1,19 @@
+.panel-heading {
+  background-color: #286090 !important;
+  color: white !important;
+}
+
+.report-left {
+  border-radius: 5px 0 0 0;
+  margin-bottom: 0;
+}
+
+.report-right {
+  border-radius: 0 5px 0 0;
+  margin-bottom: 0;
+}
+
+.report {
+  width: 100%;
+  border-radius: 0 0 5px 5px;
+}
