@@ -1,0 +1,125 @@
+{% extends 'appeals/list.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'appeals/css/detail.css' %}" />
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'appeals:detail' discipline.slug session.id appeal.id %}">
+      {{appeal.title}}
+    </a>
+  </li>
+{% endblock %}
+
+<!-- Discipline list block -->
+{% block content %}
+  <div class="container-fluid">
+    <div class="page-header profile">
+      <h1 class="white">
+        <i class="fa fa-balance-scale"></i>
+        {% trans 'Appeal Detail' %}<br />
+        <small>{{discipline.title}} - {{session.title}}</small>
+      </h1>
+    </div>
+    <div class="row fix-row white">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="panel panel-default questions gradient">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <table class="table table-responsive">
+                    <tr>
+                      <th>
+                        <i class="fa fa-graduation-cap"></i>
+                        {% trans 'Course' %}:
+                      </th>
+                      <td>{{ discipline.course }}</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <i class="fa fa-book"></i>
+                        {% trans 'Discipline' %}:
+                      </th>
+                      <td>{{ discipline.title }}</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <i class="fa fa-user"></i>
+                        {% trans 'Teacher' %}:
+                      </th>
+                      <td>{{ discipline.teacher.get_short_name }}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row fix-row">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-sm-11 text-center">
+              <b>{{appeal.title}}</b>
+            </div>
+            {% if user == appeal.student %}
+              <div class="col-sm-1">
+                <a href="#"
+                   class="roles pull-right"
+                   data-toggle="modal"
+                   data-target="#delete-{{appeal.id}}-modal">
+                   <i class="fa fa-trash"></i>
+                </a>
+                {% include 'appeals/delete.html' %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <p><b>{% trans 'Question' %}</b>: {{appeal.question.title}}</p>
+              <div class="panel panel-default">
+                <div class="panel-body img-responsive-markdown">
+                  {% if appeal.is_accept %}
+                    <span class="label label-success pull-right">{% trans 'Accept' %}</span>
+                  {% endif %}
+                  {{appeal.description_markdown}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <h2>{% trans 'Comments' %}</h2>
+              <hr />
+              <div class="panel panel-default">
+                <div class="panel-body">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% if user == appeal.student %}
+            <div class="row">
+              <div class="col-sm-offset-10 col-sm-2">
+                <a href="{% url 'appeals:update' discipline.slug session.id appeal.id %}"
+                   class="btn btn-primary btn-lg edit-button">
+                   <i class="fa fa-edit"></i>
+                </a>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

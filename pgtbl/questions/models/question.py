@@ -63,7 +63,12 @@ class Question(models.Model):
         Question string.
         """
 
-        return self.title
+        title = self.title[:100]
+
+        if len(self.title) > 100:
+            title += "..."
+
+        return title
 
     class Meta:
         verbose_name = _('Question')

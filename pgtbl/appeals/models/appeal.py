@@ -1,6 +1,8 @@
 from django.conf import settings
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
+from markdown_deux import markdown
 
 from groups.models import Group
 from modules.models import TBLSession
@@ -21,11 +23,6 @@ class Appeal(models.Model):
     description = models.TextField(
         _('Description'),
         help_text=_('Appeal description')
-    )
-
-    slug = models.SlugField(
-        _('Shortcut'),
-        help_text=_('URL string shortcut')
     )
 
     is_accept = models.BooleanField(
@@ -80,7 +77,15 @@ class Appeal(models.Model):
         Question string.
         """
 
-        return "{0}: {1}".format(self.title, self.question.name)
+        return "{0}: {1}".format(self.title, self.question.title)
+
+    def description_markdown(self):
+        """
+        Transform description in markdown and render in html with safe
+        """
+
+        content = self.description
+        return mark_safe(markdown(content))
 
     class Meta:
         verbose_name = _('Appeal')

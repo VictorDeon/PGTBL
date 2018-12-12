@@ -16,7 +16,8 @@ class AppealDetailView(LoginRequiredMixin,
     """
 
     model = Appeal
-    template_name = 'appeals/details.html'
+    template_name = 'appeals/detail.html'
+    context_object_name = 'appeal'
     permissions_required = []
 
     def get_discipline(self):
@@ -64,6 +65,7 @@ class AppealDetailView(LoginRequiredMixin,
 
         context = super(AppealDetailView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
+        context['session'] = self.get_session()
         context['irat_datetime'] = irat_datetime
         context['grat_datetime'] = grat_datetime
 

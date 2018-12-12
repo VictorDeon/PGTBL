@@ -54,24 +54,6 @@
                       </th>
                       <td>{{ discipline.teacher.get_short_name }}</td>
                     </tr>
-                    {% if user != discipline.teacher %}
-                      <tr>
-                        <th>
-                          <i class="fa fa-user"></i>
-                          {% trans 'Student' %}:
-                        </th>
-                        <td>{{ user.get_short_name }}</td>
-                      </tr>
-                    {% endif %}
-                    {% if group %}
-                      <tr>
-                        <th>
-                          <i class="fa fa-users"></i>
-                          {% trans 'Group' %}:
-                        </th>
-                        <td>{{ group }}</td>
-                      </tr>
-                    {% endif %}
                   </table>
                 </div>
               </div>
@@ -103,18 +85,22 @@
           {% include 'core/search.html' %}
           <br />
           {% for appeal in appeals %}
-            <!-- News title -->
-            <h2>
-              {{ appeal.title }}
-              <small>({{ appeal.created_at }})</small> <br />
-              <small>{{appeal.question.title}}</small>
-            </h2>
+            <div class="row">
+              <div class="col-sm-11">
+                <h2>
+                  {{ appeal.title }}
+                  <small>({{ appeal.created_at }})</small>
+                </h2>
+              </div>
+              <div class="col-sm-1">
+                {% if appeal.is_accept %}
+                  <span class="label label-success">{% trans 'Accept' %}</span>
+                {% endif %}
+              </div>
+            </div>
 
-            <!-- News details -->
             <p class="text-justify">
-              <!-- Truntate the word in character 35 -->
-              {{ appeal.description|truncatewords:35 }}
-              <!-- Go to absolute url defined in news model -->
+              <b>{% trans 'Question' %}</b>: {{appeal.question.title | truncatewords:35}}
               <a href="{% url 'appeals:detail' discipline.slug session.id appeal.id %}">
                 {% trans 'Read more' %}
               </a>
@@ -129,14 +115,16 @@
               {% trans 'No appeals available' %}.
             </div>
           {% endfor %}
-          <div class="row">
-            <div class="col-sm-offset-10 col-sm-2">
-              <a href="{% url 'appeals:create' discipline.slug session.id %}"
-                 class="btn btn-primary btn-lg create-button">
-                 <i class="fa fa-plus"></i>
-              </a>
+          {% if user in discipline.students.all %}
+            <div class="row">
+              <div class="col-sm-offset-10 col-sm-2">
+                <a href="{% url 'appeals:create' discipline.slug session.id %}"
+                   class="btn btn-primary btn-lg create-button">
+                   <i class="fa fa-plus"></i>
+                </a>
+              </div>
             </div>
-          </div>
+          {% endif %}
           {% include 'core/pagination.html' %}
         </div>
       </div>

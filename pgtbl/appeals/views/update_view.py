@@ -93,12 +93,14 @@ class AppealUpdateView(LoginRequiredMixin,
 
         discipline = self.get_discipline()
         session = self.get_session()
+        appeal = self.get_object()
 
         success_url = reverse_lazy(
             'appeals:detail',
             kwargs={
                 'slug': discipline.slug,
-                'pk': session.id
+                'session_id': session.id,
+                'pk': appeal.id
             }
         )
 

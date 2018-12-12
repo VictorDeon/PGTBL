@@ -50,12 +50,12 @@ class AppealDeleteView(LoginRequiredMixin,
 
         session = self.get_session()
 
-        archive = Appeal.objects.get(
+        appeal = Appeal.objects.get(
             session=session,
             pk=self.kwargs.get('pk', '')
         )
 
-        return archive
+        return appeal
 
     def get_success_url(self):
         """
@@ -69,7 +69,7 @@ class AppealDeleteView(LoginRequiredMixin,
             'appeals:list',
             kwargs={
                 'slug': discipline.slug,
-                'pk': session.id
+                'session_id': session.id
             }
         )
 
