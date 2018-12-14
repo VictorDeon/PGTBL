@@ -80,5 +80,16 @@
        <i class="fa fa-folder-open-o icon-lg"></i>
        <p>{% trans 'Discipline Files' %}</p>
     </a>
+
+    <!-- Forum menu -->
+    <a href="{% url 'forum:list' discipline.slug %}"
+       class="btn"
+       data-toggle="tooltip"
+       data-intro='Aqui você acessa o forum de avisos e dúvidas'
+       data-placement="right"
+       title="{% trans 'Forum' %}">
+       <i class="fa fa fa-comments-o icon-lg"></i>
+       <p>{% trans 'Forum' %}</p>
+    </a>
   </div>
 </div>

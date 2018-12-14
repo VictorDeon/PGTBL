@@ -28,14 +28,16 @@ TBL_APPS = [
     'grat',
     'rank',
     'dashboard',
-    'appeals'
+    'appeals',
+    'forum'
 ]
 
 EXTERNAL_APPS = [
     'rolepermissions',
     'widget_tweaks',
     'markdown_deux',
-    'pagedown'
+    'pagedown',
+    'taggit'
 ]
 
 PRODUCTION_APPS = DJANGO_APPS + TBL_APPS + EXTERNAL_APPS

@@ -14,7 +14,7 @@ appeals_patterns = [
         views.AppealCreateView.as_view(),
         name='create'
     ),
-path(
+    path(
         '<int:pk>/detail/',
         views.AppealDetailView.as_view(),
         name='detail'

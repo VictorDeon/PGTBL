@@ -74,7 +74,7 @@ class Appeal(models.Model):
 
     def __str__(self):
         """
-        Question string.
+        Appeal string.
         """
 
         return "{0}: {1}".format(self.title, self.question.title)

@@ -1,0 +1,84 @@
+{% extends 'forum/list.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'forum/css/detail.css' %}" />
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'forum:detail' discipline.slug topic.id %}">
+      {{topic.title}}
+    </a>
+  </li>
+{% endblock %}
+
+<!-- Discipline list block -->
+{% block content %}
+  <div class="container-fluid">
+    <div class="page-header profile">
+      <h1 class="white">
+        <i class="fa fa-comments-o"></i>
+        {% trans 'Topic Detail' %}<br />
+        <small>{{discipline.title}}</small>
+      </h1>
+    </div>
+    <div class="row fix-row">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-sm-11 text-center">
+              <b>{% trans 'Topic' %}: {{topic.title}}</b>
+            </div>
+            {% if user == topic.author %}
+              <div class="col-sm-1">
+                <a href="#"
+                   class="roles pull-right"
+                   data-toggle="modal"
+                   data-target="#delete-{{topic.id}}-modal">
+                   <i class="fa fa-trash"></i>
+                </a>
+                {% include 'forum/delete.html' %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="panel panel-default">
+                <div class="panel-body img-responsive-markdown">
+                  {{topic.content_markdown}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <h2>{% trans 'Comments' %}</h2>
+              <hr />
+              <div class="panel panel-default">
+                <div class="panel-body">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% if user == topic.author %}
+            <div class="row">
+              <div class="col-sm-offset-10 col-sm-2">
+                <a href="{% url 'forum:update' discipline.slug topic.id %}"
+                   class="btn btn-primary btn-lg edit-button">
+                   <i class="fa fa-edit"></i>
+                </a>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
