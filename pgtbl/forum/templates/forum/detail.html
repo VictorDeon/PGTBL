@@ -47,13 +47,30 @@
           </div>
         </div>
         <div class="panel-body">
+          <div class="panel panel-default">
+            {% trans 'Created by' %} {{topic.author.get_short_name}} |
+            {{topic.qtd_answers}} {% trans 'answer' %}{{topic.qtd_answers | pluralize}} |
+            {{topic.views}} {% trans 'View' %}{{topic.views | pluralize}}
+            <div class="panel-body img-responsive-markdown">
+              {{topic.content_markdown}}
+            </div>
+          </div>
           <div class="row">
-            <div class="col-sm-12">
-              <div class="panel panel-default">
-                <div class="panel-body img-responsive-markdown">
-                  {{topic.content_markdown}}
-                </div>
-              </div>
+            <div class="col-sm-6">
+              <i class="fa fa-tags"></i> tags:
+              {% for tag in topic.tags.all %}
+                <!-- Go to topic-tag url and pass by argment the slug from tag -->
+                <a href="{% url 'forum:list-tagged' discipline.slug tag.slug %}" class="no-decoration">
+                   {{tag}}
+                </a>{% if not forloop.last %},{% endif %}
+              {% empty %}
+                {% trans 'There is no tags' %}
+              {% endfor %}
+            </div>
+            <div class="col-sm-6">
+              <p class="pull-right">
+                {% trans 'Updated at' %} {{topic.updated_at | timesince}} {% trans 'ago' %}
+              </p>
             </div>
           </div>
           <div class="row">

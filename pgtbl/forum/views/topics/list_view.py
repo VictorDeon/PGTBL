@@ -15,7 +15,7 @@ class TopicListView(LoginRequiredMixin,
     """
 
     template_name = 'forum/list.html'
-    paginate_by = 10
+    paginate_by = 5
     context_object_name = 'topics'
 
     permissions_required = []
@@ -38,6 +38,11 @@ class TopicListView(LoginRequiredMixin,
 
         context = super(TopicListView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
+        context['tags'] = Topic.tags.all()
+
+        tag = self.kwargs.get('tag', '')
+        if tag:
+            context['tag'] = tag
 
         return context
 
@@ -51,6 +56,25 @@ class TopicListView(LoginRequiredMixin,
         )
 
         topics = self.search_topics(topics)
+        topics = self.filter_topics(topics)
+
+        tag = self.kwargs.get('tag', '')
+
+        if tag:
+            topics = topics.filter(tags__slug__icontains=tag)
+
+        return topics
+
+    def filter_topics(self, topics):
+        """
+        Filter topics
+        """
+
+        filtered = self.request.GET.get('filter')
+        if filtered == 'viewed':
+            topics = topics.order_by('-views')
+        elif filtered == 'commented':
+            topics = topics.order_by('-qtd_answers')
 
         return topics
 

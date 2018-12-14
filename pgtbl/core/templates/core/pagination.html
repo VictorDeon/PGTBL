@@ -3,7 +3,7 @@
   <!-- Verify if has previous page, otherwise disable the button -->
   {% if page_obj.has_previous %}
     <li class="waves-effect">
-      <a href="?page={{page_obj.previous_page_number}}">
+      <a href="?page={{page_obj.previous_page_number}}{% if request.GET.filter %}&filter={{request.GET.filter}}{% endif %}">
         <span class="fa fa-chevron-left"></span>
       </a>
     </li>
@@ -16,14 +16,14 @@
   <!-- Insert the buttons of pages and active the current page -->
   {% for page in paginator.page_range %}
     <li class=" waves-effect {% if page == page_obj.number %}active{% endif %}">
-      <a href="?page={{page}}">{{ page }}</a>
+      <a href="?page={{page}}{% if request.GET.filter %}&filter={{request.GET.filter}}{% endif %}">{{ page }}</a>
     </li>
   {% endfor %}
 
   <!-- Verify if has next page, otherwise disable the button -->
   {% if page_obj.has_next %}
     <li class="waves-effect">
-      <a href="?page={{page_obj.next_page_number}}">
+      <a href="?page={{page_obj.next_page_number}}{% if request.GET.filter %}&filter={{request.GET.filter}}{% endif %}">
         <span class="fa fa-chevron-right"></span>
       </a>
     </li>

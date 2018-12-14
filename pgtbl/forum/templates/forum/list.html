@@ -30,7 +30,19 @@
         <div class="row">
           <div class="panel panel-default questions gradient">
             <div class="panel-body panel-header">
-              <h4>{% trans 'Topics' %}</h4>
+              <div class="row">
+                <div class="col-sm-4">
+                  <h4>{% trans 'Topics' %}</h4>
+                </div>
+                <div class="col-sm-8">
+                  {% if tag %}
+                    <h4 class="pull-right">
+                      <i class="fa fa-tag"></i>
+                      {{ tag }}
+                    </h4>
+                  {% endif %}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -49,21 +61,35 @@
                 <h2>
                   <a href="{% url 'forum:detail' discipline.slug topic.id %}">
                     {{ topic.title }}
-                  </a><br />
-                  <small>({{ topic.created_at }})</small>
+                  </a>
                 </h2>
 
-                <!-- News tags -->
-                <p><i class="fa fa-tags"></i> tags:
-                  {% for tag in topic.tags.all %}
-                    <!-- Go to topic-tag url and pass by argment the slug from tag -->
-                    <a href="#" class="no-decoration">
-                       {{tag}}
-                    </a>{% if not forloop.last %},{% endif %}
-                  {% empty %}
-                    {% trans 'There is no tags' %}
-                  {% endfor %}
+                <p>
+                  {% trans 'Created by' %} {{topic.author.get_short_name}} |
+                  {{topic.qtd_answers}} {% trans 'answer' %}{{topic.qtd_answers | pluralize}} |
+                  {{topic.views}} {% trans 'View' %}{{topic.views | pluralize}}
                 </p>
+
+                <!-- News tags -->
+                <div class="row">
+                  <div class="col-sm-6">
+                    <i class="fa fa-tags"></i> tags:
+                    {% for tag in topic.tags.all %}
+                      <!-- Go to topic-tag url and pass by argment the slug from tag -->
+                      <a href="{% url 'forum:list-tagged' discipline.slug tag.slug %}" class="no-decoration">
+                         {{tag}}
+                      </a>{% if not forloop.last %},{% endif %}
+                    {% empty %}
+                      {% trans 'There is no tags' %}
+                    {% endfor %}
+                  </div>
+                  <div class="col-sm-6">
+                    <span class="pull-right">
+                      {% trans 'Updated at' %} {{topic.updated_at | timesince}} {% trans 'ago' %}
+                    </span>
+                  </div>
+                </div>
+
 
                 {% if not forloop.last %}
                   <hr />
@@ -77,6 +103,35 @@
             <div class="col-sm-4">
               <div class="panel panel-default">
                 <div class="panel-body">
+                  <h4>{% trans 'Filter' %}</h4>
+                  <hr />
+
+                  <div class="list-group">
+                    <a href="{% url 'forum:list' discipline.slug %}" class="list-group-item">
+                      <i class="fa fa-refresh"></i>
+                      {% trans 'Most recent' %}
+                    </a>
+                    <a href="?filter=viewed" class="list-group-item">
+                      <i class="fa fa-eye"></i>
+                      {% trans 'Most viewed' %}
+                    </a>
+                    <a href="?filter=commented" class="list-group-item">
+                      <i class="fa fa-comments"></i>
+                      {% trans 'Most commented' %}
+                    </a>
+                  </div>
+
+                  <h4>{% trans 'Tags' %}</h4>
+                  <hr />
+
+                  {% for tag in tags %}
+                    <a href="{% url 'forum:list-tagged' discipline.slug tag.slug %}" class="no-decoration">
+                        <i class="fa fa-tag"></i>
+                       {{tag}}
+                    </a>{% if not forloop.last %} | {% endif %}
+                  {% empty %}
+                    {% trans 'There is no tags' %}
+                  {% endfor %}
                 </div>
               </div>
             </div>

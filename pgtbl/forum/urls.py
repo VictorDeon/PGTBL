@@ -10,6 +10,11 @@ forum_patterns = [
         name='list'
     ),
     path(
+        '<slug:tag>/',
+        views.TopicListView.as_view(),
+        name='list-tagged'
+    ),
+    path(
         'create-topic/',
         views.TopicCreateView.as_view(),
         name='create'
