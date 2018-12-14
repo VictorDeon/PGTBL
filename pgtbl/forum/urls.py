@@ -10,19 +10,24 @@ forum_patterns = [
         name='list'
     ),
     path(
-        '<slug:tag>/',
-        views.TopicListView.as_view(),
-        name='list-tagged'
-    ),
-    path(
         'create-topic/',
         views.TopicCreateView.as_view(),
         name='create'
     ),
     path(
+        '<slug:tag>/',
+        views.TopicListView.as_view(),
+        name='list-tagged'
+    ),
+    path(
         '<int:pk>/topic-detail/',
         views.TopicDetailView.as_view(),
         name='detail'
+    ),
+    path(
+        '<int:pk>/submit-answer/',
+        views.AnswerView.as_view(),
+        name='submit-answer'
     ),
     path(
         '<int:pk>/update-topic/',
@@ -34,6 +39,16 @@ forum_patterns = [
         views.TopicDeleteView.as_view(),
         name='delete'
     ),
+    path(
+        '<int:topic_id>/answer/<int:pk>/delete/',
+        views.AnswerDeleteView.as_view(),
+        name='delete-answer'
+    ),
+    path(
+        '<int:topic_id>/answer/<int:pk>/correct/',
+        views.CorrectAnswerView.as_view(),
+        name='correct-answer'
+    )
 ]
 
 urlpatterns = [

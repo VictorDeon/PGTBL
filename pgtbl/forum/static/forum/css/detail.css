@@ -40,3 +40,32 @@
 .btn:active:focus, .btn:focus {
   outline: none;
 }
+
+.created {
+  padding-left: 16px;
+}
+
+/* Answer */
+textarea {
+  resize: none;
+}
+
+.dropdown-menu {
+  min-width: 100%;
+}
+
+.btn-link {
+  color: black;
+}
+
+.btn-link:hover {
+  text-decoration: none;
+}
+
+.btn-delete:hover {
+  color: red;
+}
+
+.btn-correct:hover {
+  color: green;
+}

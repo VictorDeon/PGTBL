@@ -28,10 +28,10 @@
     </div>
     <div class="row fix-row">
       <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading gradient">
           <div class="row">
             <div class="col-sm-11 text-center">
-              <b>{% trans 'Topic' %}: {{topic.title}}</b>
+              <h4>{% trans 'Topic' %}: {{topic.title}}</h4>
             </div>
             {% if user == topic.author %}
               <div class="col-sm-1">
@@ -48,9 +48,9 @@
         </div>
         <div class="panel-body">
           <div class="panel panel-default">
-            {% trans 'Created by' %} {{topic.author.get_short_name}} |
+            <span class="created">{% trans 'Created by' %} {{topic.author.get_short_name}} |
             {{topic.qtd_answers}} {% trans 'answer' %}{{topic.qtd_answers | pluralize}} |
-            {{topic.views}} {% trans 'View' %}{{topic.views | pluralize}}
+              {{topic.views}} {% trans 'View' %}{{topic.views | pluralize}} </span>
             <div class="panel-body img-responsive-markdown">
               {{topic.content_markdown}}
             </div>
@@ -79,6 +79,81 @@
               <hr />
               <div class="panel panel-default">
                 <div class="panel-body">
+                  {% for answer in topic.answers.all %}
+                    <div class="row">
+                      <div class="col-sm-10">
+                        <h5><b>{{answer.author.get_short_name}}</b> {% trans 'said' %} {{answer.created_at | timesince}} {% trans 'ago' %}:</h5>
+                      </div>
+                      <div class="col-sm-2">
+                        {% if answer.author == user or topic.author == user%}
+                          <div class="dropdown">
+                            <button
+                              class="btn btn-primary gradient dropdown-toggle btn-block"
+                              type="button"
+                              data-toggle="dropdown">
+                              {% trans 'Options' %}
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu">
+                                {% if answer.author == user %}
+                                  <li>
+                                    <form action="{% url 'forum:delete-answer' discipline.slug topic.id answer.id %}" method="post">
+                                      {% csrf_token %}
+                                      <button
+                                        type="submit"
+                                        class="btn btn-link btn-delete">
+                                        <i class="fa fa-trash"></i>
+                                        {% trans 'Delete' %}
+                                      </button>
+                                    </form>
+                                  </li>
+                                {% endif %}
+                                {% if topic.author == user %}
+                                  <li>
+                                    <form action="{% url 'forum:correct-answer' discipline.slug topic.id answer.id %}" method="post">
+                                      {% csrf_token %}
+                                      <button
+                                        type="submit"
+                                        class="btn btn-link btn-correct">
+                                        <i class="fa fa-check"></i>
+                                        {% trans 'Correct Answer' %}
+                                      </button>
+                                    </form>
+                                  </li>
+                                {% endif %}
+                              </ul>
+                          </div>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <p class="text-justify">
+                     {{answer.content | linebreaksbr}}
+                    </p>
+                    {% if answer.is_correct %}
+                      <span class="label label-success">{% trans 'Correct Answer' %}</span>
+                    {% endif %}
+                    <hr />
+                  {% empty %}
+                    <div class="well">{% trans 'There is no comments in this topic' %}</div>
+                    <hr />
+                  {% endfor %}
+                  <form method="post" action="{% url 'forum:submit-answer' discipline.slug topic.id %}" novalidate>
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="{{form.content.id_for_label}}">{% trans 'Comment' %}:</label>
+                      <textarea
+                        class="form-control"
+                        rows="5"
+                        id="{{form.content.id_for_label}}"
+                        placeholder="{{form.content.help_text}}"
+                        name="{{form.content.name}}"></textarea>
+                    </div>
+
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-block gradient">
+                      <i class="fa fa-send"></i> {% trans 'Send' %}
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>

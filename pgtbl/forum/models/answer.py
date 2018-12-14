@@ -58,3 +58,18 @@ class Answer(models.Model):
         verbose_name = _('Answer')
         verbose_name_plural = _('Answers')
         ordering = ['-is_correct', 'created_at']
+
+
+def post_save_answer(created, instance, **kwargs):
+  if created:
+    instance.topic.qtd_answers = instance.topic.answers.count()
+    instance.topic.save()
+
+
+def post_delete_answer(instance, **kwargs):
+  instance.topic.qtd_answers = instance.topic.answers.count()
+  instance.topic.save()
+
+
+models.signals.post_save.connect(post_save_answer, sender=Answer, dispatch_uid='post_save_answer')
+models.signals.post_delete.connect(post_delete_answer, sender=Answer, dispatch_uid='post_save_answer')

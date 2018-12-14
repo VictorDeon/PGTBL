@@ -3,6 +3,7 @@ from django.views.generic import DetailView
 
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
+from forum.forms import AnswerForm
 from forum.models import Topic
 
 
@@ -48,5 +49,19 @@ class TopicDetailView(LoginRequiredMixin,
 
         context = super(TopicDetailView, self).get_context_data(**kwargs)
         context['discipline'] = self.get_discipline()
+        context['form'] = AnswerForm()
+
+        self.increment_views()
 
         return context
+
+    def increment_views(self):
+        """
+        Increment views
+        """
+
+        topic = self.get_object()
+
+        if topic.author != self.request.user:
+            topic.views += 1
+            topic.save()

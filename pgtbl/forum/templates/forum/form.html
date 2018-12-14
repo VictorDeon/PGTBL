@@ -1,4 +1,4 @@
-{% extends 'disciplines/details.html' %}
+{% extends 'forum/list.html' %}
 {% load static %}
 {% load i18n %}
 
@@ -18,6 +18,15 @@
   <script type="text/javascript" src="/static/pagedown_init.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.7/marked.min.js"></script>
   <script src="{% static 'core/js/markdown.js' %}"></script>
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'forum:create' discipline.slug %}">
+      {% trans 'Create Topic' %}
+    </a>
+  </li>
 {% endblock %}
 
 {% block content %}
