@@ -57,6 +57,24 @@
                     </tr>
                   </table>
                 </div>
+                <div class="col-md-6">
+                  <table class="table table-responsive">
+                    <tr>
+                      <th>
+                        <i class="fa fa-users"></i>
+                        {% trans 'Group' %}:
+                      </th>
+                      <td>{{ appeal.group.title }}</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <i class="fa fa-user"></i>
+                        {% trans 'Student' %}:
+                      </th>
+                      <td>{{ appeal.student.get_short_name }}</td>
+                    </tr>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -67,11 +85,11 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="row">
-            <div class="col-sm-11 text-center">
+            <div class="col-sm-10 text-center">
               <b>{{appeal.title}}</b>
             </div>
             {% if user == appeal.student %}
-              <div class="col-sm-1">
+              <div class="col-sm-2">
                 <a href="#"
                    class="roles pull-right"
                    data-toggle="modal"
@@ -79,6 +97,28 @@
                    <i class="fa fa-trash"></i>
                 </a>
                 {% include 'appeals/delete.html' %}
+              </div>
+            {% endif %}
+            {% if user == discipline.teacher %}
+              <div class="col-sm-2">
+                <form action="{% url 'appeals:approve' discipline.slug session.id appeal.id %}" method="post">
+                  {% csrf_token %}
+                  {% if not appeal.is_accept %}
+                    <button
+                      class="btn btn-success btn-block"
+                      type="submit">
+                      <i class="fa fa-check"></i>
+                      {% trans 'Approve' %}
+                    </button>
+                  {% else %}
+                    <button
+                      class="btn btn-danger btn-block"
+                      type="submit">
+                      <i class="fa fa-close"></i>
+                      {% trans 'Disapprove' %}
+                    </button>
+                  {% endif %}
+                </form>
               </div>
             {% endif %}
           </div>
@@ -103,6 +143,52 @@
               <hr />
               <div class="panel panel-default">
                 <div class="panel-body">
+                  {% for comment in appeal.comments.all %}
+                    <div class="row">
+                      <div class="col-sm-10">
+                        <h5><b>{{comment.author.get_short_name}}</b> {% trans 'said' %} {{comment.created_at | timesince}} {% trans 'ago' %}:</h5>
+                      </div>
+                      <div class="col-sm-2">
+                        {% if comment.author == user %}
+                          <form action="{% url 'appeals:delete-comment' discipline.slug session.id appeal.id comment.id %}" method="post">
+                            {% csrf_token %}
+                            <button
+                              class="btn btn-danger btn-block"
+                              type="submit">
+                              <i class="fa fa-trash"></i>
+                              {% trans 'Delete' %}
+                            </button>
+                          </form>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <p class="text-justify">
+                     {{comment.content | linebreaksbr}}
+                    </p>
+                    <hr />
+                  {% empty %}
+                    <div class="well">{% trans 'There is no comments in this appeal' %}</div>
+                    <hr />
+                  {% endfor %}
+                  <form method="post" action="{% url 'appeals:submit-comment' discipline.slug session.id appeal.id %}" novalidate>
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="{{form.content.id_for_label}}">{% trans 'Comment' %}:</label>
+                      <textarea
+                        class="form-control"
+                        rows="5"
+                        id="{{form.content.id_for_label}}"
+                        placeholder="{{form.content.help_text}}"
+                        name="{{form.content.name}}"></textarea>
+                    </div>
+
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-block gradient">
+                      <i class="fa fa-send"></i>
+                      {% trans 'Send' %}
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>

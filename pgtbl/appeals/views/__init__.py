@@ -3,3 +3,6 @@ from .detail_view import AppealDetailView
 from .create_view import AppealCreateView
 from .update_view import AppealUpdateView
 from .delete_view import AppealDeleteView
+from .approve_view import AppealApproveView
+from .comments.create_view import CommentCreateView
+from .comments.delete_view import CommentDeleteView

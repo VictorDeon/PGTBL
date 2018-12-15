@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView
 
+from appeals.forms import CommentForm
 from appeals.models import Appeal
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
@@ -68,5 +69,6 @@ class AppealDetailView(LoginRequiredMixin,
         context['session'] = self.get_session()
         context['irat_datetime'] = irat_datetime
         context['grat_datetime'] = grat_datetime
+        context['form'] = CommentForm()
 
         return context
