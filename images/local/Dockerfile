@@ -13,9 +13,9 @@ RUN apt-get install -y python3-dev \
     build-essential
 
 # Install pip dependecies
-COPY requirements/requirements-dev.txt /requirements/local.txt
+COPY requirements/ /requirements
 RUN pip3 install --upgrade pip
-RUN pip3 install -r /requirements/local.txt
+RUN pip3 install -r /requirements/requirements-dev.txt
 
 # Create a user
 RUN useradd -m developer
