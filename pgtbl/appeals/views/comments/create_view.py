@@ -22,7 +22,7 @@ class CommentCreateView(LoginRequiredMixin,
     model = Comment
     template_name = 'appeals/detail.html'
     form_class = CommentForm
-    permissions_required = []
+    permissions_required = ['show_appeals']
 
     def get_discipline(self):
         """

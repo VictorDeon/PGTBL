@@ -19,7 +19,7 @@ class CommentDeleteView(LoginRequiredMixin,
 
     model = Comment
 
-    permissions_required = []
+    permissions_required = ['delete_comment_appeal']
 
     def get_discipline(self):
         """

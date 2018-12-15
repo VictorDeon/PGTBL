@@ -20,7 +20,7 @@ class AppealListView(LoginRequiredMixin,
     paginate_by = 10
     context_object_name = 'appeals'
 
-    permissions_required = []
+    permissions_required = ['show_appeals']
 
     def get_discipline(self):
         """

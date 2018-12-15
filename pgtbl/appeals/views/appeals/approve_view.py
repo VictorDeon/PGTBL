@@ -20,7 +20,7 @@ class AppealApproveView(LoginRequiredMixin,
 
     model = Appeal
 
-    permissions_required = []
+    permissions_required = ['approve_appeal']
 
     def get_discipline(self):
         """

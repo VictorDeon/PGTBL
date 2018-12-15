@@ -19,7 +19,7 @@ class AppealDetailView(LoginRequiredMixin,
     model = Appeal
     template_name = 'appeals/detail.html'
     context_object_name = 'appeal'
-    permissions_required = []
+    permissions_required = ['show_appeals']
 
     def get_discipline(self):
         """

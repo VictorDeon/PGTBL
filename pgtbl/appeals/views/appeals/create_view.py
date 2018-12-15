@@ -24,7 +24,7 @@ class AppealCreateView(LoginRequiredMixin,
     model = Appeal
     template_name = 'appeals/form.html'
     form_class = AppealForm
-    permissions_required = []
+    permissions_required = ['create_appeal']
 
     def get_discipline(self):
         """
