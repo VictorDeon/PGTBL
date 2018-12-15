@@ -36,7 +36,8 @@ class Notification(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         verbose_name=_('Sender'),
-        related_name="notifications_sent"
+        related_name="notifications_sent",
+        null=True
     )
 
     discipline = models.ForeignKey(

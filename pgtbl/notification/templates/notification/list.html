@@ -74,10 +74,14 @@
             <!-- News tags -->
             <div class="row">
               <div class="col-sm-6">
-                <p><b>
-                  {% trans 'Sent by' %} {{notification.sender.get_short_name}}
-                  {% trans 'from discipline' %} {{notification.discipline.title}}
-                </b></p>
+                {% if notification.sender %}
+                  <p><b>
+                    {% trans 'Sent by' %} {{notification.sender.get_short_name}}
+                    {% trans 'from discipline' %} {{notification.discipline.title}}
+                  </b></p>
+                {% else %}
+                  <p><b>{% trans 'Discipline' %}: {{notification.discipline.title}}<p><b>
+                {% endif %}
               </div>
               <div class="col-sm-6">
                 <span class="pull-right">

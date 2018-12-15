@@ -61,7 +61,7 @@
       </a>
     {% endif %}
 
-    <!-- Button to open message modal -->
+    <!-- Open message -->
     <a href="{% url 'notifications:list' %}"
        class="btn" data-toggle="tooltip"
        data-placement="right"
@@ -69,7 +69,7 @@
        data-intro='Aqui você acessa suas mensagens'
        >
        <i class="fa fa-envelope icon-lg"></i>
-       <p>{% trans 'Notification' %}</p>
+       <p>{{user.notifications.count}} {% trans 'Notification' %}{{user.notifications.count | pluralize}}</p>
     </a>
 
     <!-- Button to open delete user modal -->
