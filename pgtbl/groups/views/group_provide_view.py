@@ -7,6 +7,7 @@ from django.contrib import messages
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from core.generics import ObjectRedirectView
+from notification.models import Notification
 
 
 class GroupProvideView(LoginRequiredMixin,
@@ -73,12 +74,25 @@ class GroupProvideView(LoginRequiredMixin,
         """
 
         discipline = self.get_object()
+        title = _("Groups available")
+        description = _("{0} discipline groups available.".format(discipline.title))
 
         if discipline.was_group_provided:
             discipline.was_group_provided = False
+            title = _("Groups unavailable")
+            description = _("{0} discipline groups unavailable.".format(discipline.title))
         else:
             discipline.was_group_provided = True
 
         discipline.save()
+
+        for student in discipline.students.all():
+            Notification.objects.create(
+                title=title,
+                description=description,
+                sender=discipline.teacher,
+                receiver=student,
+                discipline=discipline
+            )
 
         return redirect(self.get_success_url())

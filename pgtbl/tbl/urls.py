@@ -21,7 +21,8 @@ urlpatterns = [
     url(r'', include('rank.urls')),
     url(r'', include('dashboard.urls')),
     url(r'', include('appeals.urls')),
-    url(r'', include('forum.urls'))
+    url(r'', include('forum.urls')),
+    url(r'', include('notification.urls'))
 ]
 
 # While in development mode we will use relative URL for static and average

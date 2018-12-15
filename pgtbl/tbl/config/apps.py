@@ -29,7 +29,8 @@ TBL_APPS = [
     'rank',
     'dashboard',
     'appeals',
-    'forum'
+    'forum',
+    'notification'
 ]
 
 EXTERNAL_APPS = [

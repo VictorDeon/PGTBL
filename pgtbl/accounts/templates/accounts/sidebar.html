@@ -62,16 +62,15 @@
     {% endif %}
 
     <!-- Button to open message modal -->
-    <button type="button"
-            class="btn side-button message-button"
-            data-toggle="modal"
-            data-target="#message-modal"
-			data-placement="right"
-            data-intro='Aqui você acessa suas mensagens'>
-            <i class="fa fa-envelope icon-lg"></i>
-            <span class="badge">05</span>
-            <p class="notification">{% trans 'Notification' %}</p>
-    </button>
+    <a href="{% url 'notifications:list' %}"
+       class="btn" data-toggle="tooltip"
+       data-placement="right"
+       title="{% trans 'Notification' %}"
+       data-intro='Aqui você acessa suas mensagens'
+       >
+       <i class="fa fa-envelope icon-lg"></i>
+       <p>{% trans 'Notification' %}</p>
+    </a>
 
     <!-- Button to open delete user modal -->
     <button type="button"

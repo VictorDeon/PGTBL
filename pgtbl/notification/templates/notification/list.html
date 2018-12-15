@@ -1,0 +1,103 @@
+{% extends 'accounts/profile.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'notification/css/list.css' %}" />
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'notifications:list' %}">
+      {% trans 'Notifications' %}
+    </a>
+  </li>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="page-header profile">
+      <h1 class="white">
+        <i class="fa fa-comments-o"></i>
+        {% trans 'Notifications' %}<br />
+        <small>{{user.get_short_name}}</small>
+      </h1>
+    </div>
+    <div class="row fix-row">
+      <div class="panel panel-default panel-content">
+        <div class="panel-heading gradient">
+          <div class="row">
+            <div class="col-sm-11 text-center">
+              <h4 class="text-center">
+                {{notifications.count}} {% trans 'Notification' %}{{notifications.count | pluralize}}
+              </h4>
+            </div>
+            <div class="col-sm-1">
+              <a href="#"
+                 class="delete-all pull-right"
+                 data-toggle="modal"
+                 data-target="#delete-notifications-modal">
+                 <i class="fa fa-trash"></i>
+              </a>
+              {% include 'notification/delete.html' %}
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <!-- Appeals List -->
+          {% include 'core/search.html' %}
+          <br />
+
+          {% for notification in notifications %}
+            <div class="row">
+              <div class="col-sm-11">
+                <h2>{{ notification.title }}</h2>
+              </div>
+              <div class="col-sm-1">
+                <form action="{% url 'notifications:delete' notification.id %}" method="post">
+                  {% csrf_token %}
+                  <button
+                    type="submit"
+                    class="roles btn-link pull-right">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <p>
+              {{ notification.description | linebreaksbr }}
+            </p>
+
+            <!-- News tags -->
+            <div class="row">
+              <div class="col-sm-6">
+                <p><b>
+                  {% trans 'Sent by' %} {{notification.sender.get_short_name}}
+                  {% trans 'from discipline' %} {{notification.discipline.title}}
+                </b></p>
+              </div>
+              <div class="col-sm-6">
+                <span class="pull-right">
+                  {% trans 'Sent' %} {{notification.created_at | timesince}} {% trans 'ago' %}
+                </span>
+              </div>
+            </div>
+
+            {% if not forloop.last %}
+              <hr />
+            {% endif %}
+          {% empty %}
+            <div class="alert alert-info">
+              {% trans 'No notifications received' %}.
+            </div>
+          {% endfor %}
+
+          {% include 'core/pagination.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

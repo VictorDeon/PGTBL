@@ -1,0 +1,37 @@
+.panel-heading {
+  color: white !important;
+}
+
+.roles {
+  cursor: pointer;
+  color: red;
+  font-size: 30px;
+  margin-top: 15px;
+}
+
+.roles:hover, .roles:focus {
+  color: red;
+}
+
+.text {
+  color: black;
+}
+
+.delete-all {
+  cursor: pointer;
+  color: whitesmoke;
+  font-size: 25px;
+}
+
+.delete-all:hover, .delete-all:focus {
+  color: white;
+}
+
+.panel-content {
+  border-radius: 0 0 5px 5px;
+}
+
+.panel-header {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
