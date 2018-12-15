@@ -26,23 +26,55 @@
       </h1>
     </div>
     <div class="row fix-row white">
-      <div class="col-sm-12">
-        <div class="row">
-          <div class="panel panel-default questions gradient">
-            <div class="panel-body panel-header">
-              <div class="row">
-                <div class="col-sm-4">
-                  <h4>{% trans 'Topics' %}</h4>
-                </div>
-                <div class="col-sm-8">
-                  {% if tag %}
-                    <h4 class="pull-right">
+      <div class="panel panel-default questions gradient">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-6">
+              <table class="table table-responsive">
+                <tr>
+                  <th>
+                    <i class="fa fa-graduation-cap"></i>
+                    {% trans 'Course' %}:
+                  </th>
+                  <td>{{ discipline.course }}</td>
+                </tr>
+                <tr>
+                  <th>
+                    <i class="fa fa-book"></i>
+                    {% trans 'Discipline' %}:
+                  </th>
+                  <td>{{ discipline.title }}</td>
+                </tr>
+                <tr>
+                  <th>
+                    <i class="fa fa-user"></i>
+                    {% trans 'Teacher' %}:
+                  </th>
+                  <td>{{ discipline.teacher.get_short_name }}</td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-md-6">
+              <table class="table table-responsive">
+                {% if tag %}
+                  <tr>
+                    <th>
                       <i class="fa fa-tag"></i>
-                      {{ tag }}
-                    </h4>
-                  {% endif %}
-                </div>
-              </div>
+                      Tag
+                    </th>
+                    <td>{{ tag }}</td>
+                  </tr>
+                {% endif %}
+                {% if request.GET.filter %}
+                  <tr>
+                    <th>
+                      <i class="fa fa-filter"></i>
+                      {% trans 'Filter' %}
+                    </th>
+                    <td>{{request.GET.filter}}</td>
+                  </tr>
+                {% endif %}
+              </table>
             </div>
           </div>
         </div>
@@ -50,6 +82,9 @@
     </div>
     <div class="row fix-row">
       <div class="panel panel-default panel-content">
+        <div class="panel-heading gradient">
+          <h4 class="text-center">{% trans 'Forum' %}</h4>
+        </div>
         <div class="panel-body">
           <!-- Appeals List -->
           {% include 'core/search.html' %}

@@ -38,6 +38,14 @@
   color: white;
 }
 
+.approve-icon:hover {
+  color: green;
+}
+
+.disapprove-icon:focus {
+  color: red;
+}
+
 /* Modals */
 .modal-footer {
   background-color: #263238 !important;
@@ -68,4 +76,8 @@
 
 .table {
   margin-bottom: 0;
+}
+
+textarea {
+  resize: none;
 }

@@ -39,3 +39,12 @@
 .btn:active:focus, .btn:focus {
   outline: none;
 }
+
+.table>tbody>tr>th, .table>tbody>tr>td {
+  padding: 5px;
+  border-top: none;
+}
+
+.table {
+  margin-bottom: 0;
+}

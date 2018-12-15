@@ -26,6 +26,57 @@
         <small>{{discipline.title}}</small>
       </h1>
     </div>
+    <div class="row fix-row white">
+      <div class="panel panel-default questions gradient">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-6">
+              <table class="table table-responsive">
+                <tr>
+                  <th>
+                    <i class="fa fa-graduation-cap"></i>
+                    {% trans 'Course' %}:
+                  </th>
+                  <td>{{ discipline.course }}</td>
+                </tr>
+                <tr>
+                  <th>
+                    <i class="fa fa-book"></i>
+                    {% trans 'Discipline' %}:
+                  </th>
+                  <td>{{ discipline.title }}</td>
+                </tr>
+                <tr>
+                  <th>
+                    <i class="fa fa-user"></i>
+                    {% trans 'Teacher' %}:
+                  </th>
+                  <td>{{ discipline.teacher.get_short_name }}</td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-md-6">
+              <table class="table table-responsive">
+                <tr>
+                  <th>
+                    <i class="fa fa-user"></i>
+                    {% trans 'Author' %}:
+                  </th>
+                  <td>{{ topic.author.get_short_name }}</td>
+                </tr>
+                <tr>
+                  <th>
+                    <i class="fa fa-eye"></i>
+                    {% trans 'Views' %}:
+                  </th>
+                  <td>{{topic.views}} {% trans 'View' %}{{topic.views | pluralize}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="row fix-row">
       <div class="panel panel-default">
         <div class="panel-heading gradient">
@@ -48,9 +99,6 @@
         </div>
         <div class="panel-body">
           <div class="panel panel-default">
-            <span class="created">{% trans 'Created by' %} {{topic.author.get_short_name}} |
-            {{topic.qtd_answers}} {% trans 'answer' %}{{topic.qtd_answers | pluralize}} |
-              {{topic.views}} {% trans 'View' %}{{topic.views | pluralize}} </span>
             <div class="panel-body img-responsive-markdown">
               {{topic.content_markdown}}
             </div>
@@ -75,7 +123,7 @@
           </div>
           <div class="row">
             <div class="col-sm-12">
-              <h2>{% trans 'Comments' %}</h2>
+              <h2>{{topic.qtd_answers}} {% trans 'Answer' %}{{topic.qtd_answers | pluralize}}</h2>
               <hr />
               <div class="panel panel-default">
                 <div class="panel-body">

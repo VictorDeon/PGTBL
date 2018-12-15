@@ -45,6 +45,15 @@
   padding-left: 16px;
 }
 
+.table>tbody>tr>th, .table>tbody>tr>td {
+  padding: 5px;
+  border-top: none;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
 /* Answer */
 textarea {
   resize: none;

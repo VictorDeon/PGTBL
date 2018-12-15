@@ -51,4 +51,19 @@ class Comment(models.Model):
     class Meta:
         verbose_name = _('Comment')
         verbose_name_plural = _('Comments')
-        ordering = ['created_at']
+        ordering = ['-created_at']
+
+
+def post_save_comment(created, instance, **kwargs):
+  if created:
+    instance.appeal.qtd_comments = instance.appeal.comments.count()
+    instance.appeal.save()
+
+
+def post_delete_comment(instance, **kwargs):
+  instance.appeal.qtd_comments = instance.appeal.comments.count()
+  instance.appeal.save()
+
+
+models.signals.post_save.connect(post_save_comment, sender=Comment, dispatch_uid='post_save_comment')
+models.signals.post_delete.connect(post_delete_comment, sender=Comment, dispatch_uid='post_save_comment')

@@ -31,6 +31,13 @@ class Appeal(models.Model):
         help_text=_('If the appeals make sense this need to be accept.')
     )
 
+    qtd_comments = models.IntegerField(
+        _("Qtd Comments"),
+        default=0,
+        blank=True,
+        help_text=_("Comment quantity")
+    )
+
     question = models.ForeignKey(
         Question,
         on_delete=models.CASCADE,
