@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
 # Create software folder and install requirements
 ADD . /software
 WORKDIR /software
-RUN pip3 install -r pgtbl/requirements.txt
+RUN pip3 install -r requirements/requirements-prod.txt
 
 # Insert Enviroment variable
 ENV MODE_ENVIROMENT=production
