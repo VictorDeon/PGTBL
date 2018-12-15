@@ -38,11 +38,23 @@
   color: white;
 }
 
-.approve-icon:hover {
+.approve-icon {
+  cursor: pointer;
+  color: whitesmoke;
+  font-size: 25px;
+}
+
+.approve-icon:hover, .approve-icon:focus {
   color: green;
 }
 
-.disapprove-icon:focus {
+.disapprove-icon {
+  cursor: pointer;
+  color: whitesmoke;
+  font-size: 25px;
+}
+
+.disapprove-icon:hover, .disapprove-icon:focus {
   color: red;
 }
 
