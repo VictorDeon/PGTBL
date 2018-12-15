@@ -11,9 +11,11 @@ def show_appeals(permission, user, view):
     discipline = view.get_discipline()
     session = view.get_session()
 
+    if user == discipline.teacher:
+        return True
+
     if (user in discipline.students.all() or
-        user in discipline.monitors.all() or
-        user == discipline.teacher and
+        user in discipline.monitors.all() and
         not session.is_closed):
         return True
 
@@ -27,6 +29,7 @@ def create_appeal(permission, user, view):
     """
 
     discipline = view.get_discipline()
+    session = view.get_session()
 
     if user in discipline.students.all() and not session.is_closed:
         return True

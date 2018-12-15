@@ -12,6 +12,7 @@ from groups.models import Group
 from modules.models import TBLSession
 from appeals.forms import AppealForm
 from modules.utils import get_datetimes
+from notification.models import Notification
 
 
 class AppealCreateView(LoginRequiredMixin,
@@ -72,6 +73,25 @@ class AppealCreateView(LoginRequiredMixin,
         form.instance.student = self.request.user
         form.instance.group = self.get_student_group()
         form.save()
+
+        discipline = self.get_discipline()
+
+        for monitor in discipline.monitors.all():
+            Notification.objects.create(
+                title=_("Appeal Created"),
+                description=_("Appeal {0} created by group {1}".format(form.instance.title, self.get_student_group())),
+                sender=self.request.user,
+                receiver=monitor,
+                discipline=discipline
+            )
+
+        Notification.objects.create(
+            title=_("Appeal Created"),
+            description=_("Appeal {0} created by group {1}".format(form.instance.title, self.get_student_group())),
+            sender=self.request.user,
+            receiver=discipline.teacher,
+            discipline=discipline
+        )
 
         messages.success(self.request, _('Appeal created successfully.'))
 

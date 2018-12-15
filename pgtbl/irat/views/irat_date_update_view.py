@@ -10,6 +10,7 @@ from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from modules.models import TBLSession
 from irat.forms import IRATDateForm
+from notification.models import Notification
 
 
 class IRATDateUpdateView(LoginRequiredMixin,
@@ -63,6 +64,23 @@ class IRATDateUpdateView(LoginRequiredMixin,
             return redirect(self.get_success_url())
 
         messages.success(self.request, _('iRAT date updated successfully.'))
+
+        discipline = self.get_discipline()
+        session = self.get_object()
+
+        description = _("iRAT date update to {0} from session {1}".format(
+            form.instance.irat_datetime.strftime("%d/%m/%Y às %H:%M"),
+            session.title
+        ))
+
+        for student in discipline.students.all():
+            Notification.objects.create(
+                title=_("iRAT date updated"),
+                description=description,
+                sender=discipline.teacher,
+                receiver=student,
+                discipline=discipline
+            )
 
         return super(IRATDateUpdateView, self).form_valid(form)
 

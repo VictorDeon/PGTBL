@@ -9,6 +9,7 @@ from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from forum.forms import TopicForm
 from forum.models import Topic
+from notification.models import Notification
 
 
 class TopicCreateView(LoginRequiredMixin,
@@ -52,6 +53,37 @@ class TopicCreateView(LoginRequiredMixin,
         form.instance.author = self.request.user
         form.instance.discipline = self.get_discipline()
         form.save()
+
+        discipline = self.get_discipline()
+
+        for student in discipline.students.all():
+            if student != self.request.user:
+                Notification.objects.create(
+                    title=_("Topic created"),
+                    description=_("Topic {0} created".format(form.instance.title)),
+                    sender=self.request.user,
+                    receiver=student,
+                    discipline=discipline
+                )
+
+        for monitor in discipline.monitors.all():
+            if monitor != self.request.user:
+                Notification.objects.create(
+                    title=_("Topic created"),
+                    description=_("Topic {0} created".format(form.instance.title)),
+                    sender=self.request.user,
+                    receiver=monitor,
+                    discipline=discipline
+                )
+
+        if discipline.teacher != self.request.user:
+            Notification.objects.create(
+                title=_("Topic created"),
+                description=_("Topic {0} created".format(form.instance.title)),
+                sender=self.request.user,
+                receiver=discipline.teacher,
+                discipline=discipline
+            )
 
         messages.success(self.request, _('Topic created successfully.'))
 
