@@ -18,7 +18,7 @@ class TopicListView(LoginRequiredMixin,
     paginate_by = 5
     context_object_name = 'topics'
 
-    permissions_required = []
+    permissions_required = ['show_forum']
 
     def get_discipline(self):
         """

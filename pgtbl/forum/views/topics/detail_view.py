@@ -17,7 +17,7 @@ class TopicDetailView(LoginRequiredMixin,
     model = Topic
     template_name = 'forum/detail.html'
     context_object_name = 'topic'
-    permissions_required = []
+    permissions_required = ['show_forum']
 
     def get_discipline(self):
         """

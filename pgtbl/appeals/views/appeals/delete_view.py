@@ -19,7 +19,7 @@ class AppealDeleteView(LoginRequiredMixin,
 
     model = Appeal
 
-    permissions_required = ['edit_and_update_appeal']
+    permissions_required = ['edit_and_delete_appeal']
 
     def get_discipline(self):
         """

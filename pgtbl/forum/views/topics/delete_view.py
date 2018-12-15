@@ -18,7 +18,7 @@ class TopicDeleteView(LoginRequiredMixin,
 
     model = Topic
 
-    permissions_required = []
+    permissions_required = ['edit_and_delete_topic_and_answer']
 
     def get_discipline(self):
         """

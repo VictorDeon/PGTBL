@@ -22,7 +22,7 @@ class TopicUpdateView(LoginRequiredMixin,
     context_object_name = 'topic'
     form_class = TopicForm
 
-    permissions_required = []
+    permissions_required = ['edit_and_delete_topic_and_answer']
 
     def get_discipline(self):
         """

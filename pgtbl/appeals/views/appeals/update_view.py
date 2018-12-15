@@ -24,7 +24,7 @@ class AppealUpdateView(LoginRequiredMixin,
     context_object_name = 'appeal'
     form_class = AppealForm
 
-    permissions_required = ['edit_and_update_appeal']
+    permissions_required = ['edit_and_delete_appeal']
 
     def get_discipline(self):
         """

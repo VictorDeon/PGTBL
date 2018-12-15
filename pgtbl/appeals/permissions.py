@@ -35,7 +35,7 @@ def create_appeal(permission, user, view):
 
 
 @register_object_checker()
-def edit_and_update_appeal(permission, user, view):
+def edit_and_delete_appeal(permission, user, view):
     """
     Only the appeal owner can edit or delete a appeal.
     """

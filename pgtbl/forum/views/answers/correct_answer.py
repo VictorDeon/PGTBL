@@ -19,7 +19,7 @@ class CorrectAnswerView(LoginRequiredMixin,
 
     model = Answer
 
-    permissions_required = []
+    permissions_required = ['correct_answer']
 
     def get_discipline(self):
         """

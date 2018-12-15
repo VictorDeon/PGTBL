@@ -21,7 +21,7 @@ class AnswerView(LoginRequiredMixin,
     model = Answer
     template_name = 'forum/detail.html'
     form_class = AnswerForm
-    permissions_required = []
+    permissions_required = ['show_forum']
 
     def get_discipline(self):
         """

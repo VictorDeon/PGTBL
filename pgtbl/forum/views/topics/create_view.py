@@ -21,7 +21,7 @@ class TopicCreateView(LoginRequiredMixin,
     model = Topic
     template_name = 'forum/form.html'
     form_class = TopicForm
-    permissions_required = []
+    permissions_required = ['show_forum']
 
     def get_discipline(self):
         """
