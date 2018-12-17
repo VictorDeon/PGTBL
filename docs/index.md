@@ -15,7 +15,7 @@ Aprendizagem baseada em equipe ou TBL é uma estratégia de ensino aprendizagem 
 ## Como funciona?
 ***
 
-![tbl](https://user-images.githubusercontent.com/14116020/36345612-6802041a-1415-11e8-8fc2-21cc84d39553.png)
+![tbl](https://user-images.githubusercontent.com/14116020/50112729-2ccb1e80-0227-11e9-9fb9-82d67b184cb9.png)
 
 ### Preparação:
  

@@ -85,7 +85,7 @@ A proposta desse projeto envolve a utilização de certos recursos:
 ### 7.2 Processo de desenvolvimento
 ***
  
-![desenvolvimento](https://user-images.githubusercontent.com/14116020/45258236-c19dc080-b38a-11e8-8a82-53e1d7082841.png)
+![desenvolvimento](https://user-images.githubusercontent.com/14116020/50121743-d8cd3380-0240-11e9-8ec5-96be09c011e2.png)
 
 ***
 ## 8. Riscos
