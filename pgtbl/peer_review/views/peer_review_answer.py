@@ -207,9 +207,11 @@ class PeerReviewAnswerView(LoginRequiredMixin,
         discipline = self.get_discipline()
         session = self.get_session()
 
+        description = form['comment'].value() + "\nPeer Review Session: " + str(session.title) + "\nScore: " + str(form['score'].value())
+
         Notification.objects.create(
             title=_("Peer Review Anonymously"),
-            description=form['comment'].value() + "\nPeer Review Session: " + str(session.title),
+            description=description,
             receiver=student,
             discipline=discipline
         )

@@ -29,7 +29,7 @@
                   />
                 {% else %}
                   <img
-                    src="{% static 'core/img/parallax.jpg' %}"
+                    src="{% static 'core/img/logo.png' %}"
                     class="img-thumbnail img-responsive center-block"
                     alt="{% trans 'Without image'%}"
                   />
@@ -61,7 +61,7 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <p class="text-justify">
-                      {{ news.content|truncatewords:50 }}
+                      {{ news.content|truncatewords:10 }}
                     </p>
                   </div>
                 </div>
