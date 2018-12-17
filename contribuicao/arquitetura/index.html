@@ -411,7 +411,7 @@
 <p>5 - O web server (nginx) retorna a resposta para o web client (navegador)</p>
 <p>O projeto será implementado utilizando o framework <a href="https://www.djangoproject.com/">Django</a> na versão 2.0. O django utiliza-se do MVT (Model-View-Template) como uma adaptação do MVC (Model-View-Controller), o que muda é que a view do MVC virou template do MVT e a controller do MVC virou view do MVT, nas views utilizaremos as <a href="http://ccbv.co.uk/">Classe Based Views</a>. Esse framework fará comunicação com o banco de dados Postgresql e o servidor nginx.</p>
 <h4 id="21-pacotes-significativos-do-ponto-de-vista-da-arquitetura">2.1 Pacotes Significativos do Ponto de Vista da Arquitetura</h4>
-<p><img alt="package" src="https://user-images.githubusercontent.com/14116020/44312142-d6a9b400-a3c9-11e8-91aa-b5efb1d0dd03.png" /></p>
+<p><img alt="package" src="https://user-images.githubusercontent.com/14116020/50112829-62700780-0227-11e9-9e7c-c44b7e9c6d9a.png" /></p>
 <p>Os pacotes dos apps:</p>
 <ul>
 <li><strong>locale</strong>: Pasta que irá ter toda a tradução do software para pt-BR.</li>
@@ -439,12 +439,12 @@
 <p>Os pacotes do projeto pgtbl:</p>
 <ul>
 <li><strong>manage</strong>: Arquivo de configuração geral do django.</li>
-<li><strong>requirements</strong>: Arquivos para instalar dependências da aplicação através do seguinte comando <code>pip3 install -r requirements.txt</code></li>
 </ul>
 <p>Os pacotes gerais do projeto:</p>
 <ul>
 <li><strong>Vagrantfile</strong>: Arquivo que gerencia a máquina virtual de desenvolvimento, criado para desenvolvedores que queiram desenvolver em sistemas operacionais diferentes do Linux, como Windows ou Mac, precisa ter o <a href="https://www.vagrantup.com/docs/installation/">Vagrant</a> instalado.</li>
 <li><strong>Makefile</strong>: Arquivo de atalhos para comandos muito usados pelos desenvolvedores.</li>
+<li><strong>requirements</strong>: Pasta de arquivos para instalar dependências da aplicação através do seguinte comando <code>pip3 install -r requirements-dev.txt</code> ou <code>pip3 install -r requirements-prod.txt</code> dependendo do ambiente na qual você quer instalar as dependências.</li>
 <li><strong>docker-compose</strong>: Arquivos que gerencia todos os containers da aplicação (deploy, homolog, production, test e
   desenvolvimento).</li>
 <li><strong>.travis</strong>: Arquivo que gerencia a entrega continua da aplicação através da ferramenta Travis CI no github.</li>
@@ -464,7 +464,7 @@
 <hr />
 <p>Um diagrama de classe UML descreve o objeto e informações de estruturas usadas pelo seu aplicativo, internamente e comunicação com seus usuários. Ele descreve as informações sem referência a qualquer implementação específica.[<a href="https://msdn.microsoft.com/pt-br/library/dd409437.aspx">1</a>]</p>
 <p><strong>Observação</strong>: Os diagramas abaixo vão ser criados ao longo do projeto.</p>
-<p><img alt="diagramadeclasse" src="https://user-images.githubusercontent.com/14116020/38151245-db5e0c7c-3438-11e8-8d41-638a176889bf.png" /></p>
+<p><img alt="diagramadeclasse" src="https://user-images.githubusercontent.com/14116020/50118869-33ae5d00-0238-11e9-9623-65a1c7f4f4d6.png" /></p>
 <hr />
 <h2 id="4-framework-i">4. Framework i*</h2>
 <hr />
@@ -552,16 +552,10 @@
 <td>Título da notícia</td>
 </tr>
 <tr>
-<td>image</td>
-<td>Image</td>
-<td>opcional</td>
-<td>Imagem da notícia</td>
-</tr>
-<tr>
-<td>created_at</td>
-<td>date</td>
-<td>automático</td>
-<td>Data de criação da noticia</td>
+<td>content</td>
+<td>string</td>
+<td>obrigatório</td>
+<td>corpo da notícia</td>
 </tr>
 <tr>
 <td>link</td>
@@ -570,16 +564,22 @@
 <td>Link da notícia</td>
 </tr>
 <tr>
-<td>content</td>
-<td>string</td>
-<td>obrigatório</td>
-<td>corpo da notícia</td>
+<td>image</td>
+<td>Image</td>
+<td>opcional</td>
+<td>Imagem da notícia</td>
 </tr>
 <tr>
 <td>tags</td>
 <td>List&lt;<a href="#tags">Tag</a>&gt;</td>
 <td>opcional</td>
 <td>tags da notícia</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>date</td>
+<td>automático</td>
+<td>Data de criação da noticia</td>
 </tr>
 <tr>
 <td>slug</td>
@@ -607,16 +607,16 @@
 <td>Nome de usuário para identificação do mesmo, pode ser usado para logar</td>
 </tr>
 <tr>
-<td>email</td>
-<td>string</td>
-<td>obrigatório, único</td>
-<td>Email que pode ser usado como username do usuário</td>
-</tr>
-<tr>
 <td>name</td>
 <td>string</td>
 <td>obrigatório</td>
 <td>Nome completo do usuário</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>obrigatório, único</td>
+<td>Email que pode ser usado como username do usuário</td>
 </tr>
 <tr>
 <td>institution</td>
@@ -637,16 +637,22 @@
 <td>Foto do usuário</td>
 </tr>
 <tr>
-<td>is_teacher</td>
-<td>boolean</td>
-<td>obrigatório</td>
-<td>Verifica se o usuário é professor ou aluno</td>
-</tr>
-<tr>
 <td>last_login</td>
 <td>date</td>
 <td>automático</td>
 <td>Ultimo momento que o usuário logou</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>date</td>
+<td>automático</td>
+<td>Data de criação da conta</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>date</td>
+<td>automático</td>
+<td>Data de modificação da informações da conta</td>
 </tr>
 <tr>
 <td>is_active</td>
@@ -661,16 +667,10 @@
 <td>Verifica se o usuário é super administrador</td>
 </tr>
 <tr>
-<td>created_at</td>
-<td>date</td>
-<td>automático</td>
-<td>Data de criação da conta</td>
-</tr>
-<tr>
-<td>updated_at</td>
-<td>date</td>
-<td>automático</td>
-<td>Data de modificação da informações da conta</td>
+<td>is_teacher</td>
+<td>boolean</td>
+<td>obrigatório</td>
+<td>Verifica se o usuário é professor ou aluno</td>
 </tr>
 </tbody>
 </table>
@@ -775,6 +775,61 @@
 <td>automático</td>
 <td>Data de modificação da disciplina</td>
 </tr>
+<tr>
+<td>objects</td>
+<td>DisciplineManager</td>
+<td>automático</td>
+<td>Gerenciador de disciplinas do Django</td>
+</tr>
+</tbody>
+</table>
+<h4 id="notification"><a name="notification">Notification</a>:</h4>
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo</th>
+<th>Característica</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>discipline</td>
+<td><a href="#discipline">Discipline</a></td>
+<td>obrigatório</td>
+<td>Disciplina na qual a notificação foi enviada</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>obrigatório</td>
+<td>Título da notificação</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>opcional</td>
+<td>Descrição da notificação</td>
+</tr>
+<tr>
+<td>sender</td>
+<td><a href="#user">User</a></td>
+<td>obrigatório</td>
+<td>Quem enviou a notificação</td>
+</tr>
+<tr>
+<td>receiver</td>
+<td><a href="#user">User</a></td>
+<td>obrigatório</td>
+<td>Quem recebeu a notificação</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>date</td>
+<td>automático</td>
+<td>Data de criação da notificação</td>
+</tr>
 </tbody>
 </table>
 <h4 id="group"><a name="group">Group</a>:</h4>
@@ -801,16 +856,16 @@
 <td>Disciplina na qual o grupo pertence</td>
 </tr>
 <tr>
-<td>students</td>
-<td>List&lt;<a href="#user">User</a>&gt;</td>
-<td>obrigatório</td>
-<td>Lista de estudantes que faz parte do grupo</td>
-</tr>
-<tr>
 <td>students_limit</td>
 <td>inteiro positivo</td>
 <td>padrão 0 e obrigatório</td>
 <td>Limite de estudantes no grupo</td>
+</tr>
+<tr>
+<td>students</td>
+<td>List&lt;<a href="#user">User</a>&gt;</td>
+<td>obrigatório</td>
+<td>Lista de estudantes que faz parte do grupo</td>
 </tr>
 <tr>
 <td>created_at</td>
@@ -875,6 +930,61 @@
 </tr>
 </tbody>
 </table>
+<h4 id="halloffamegroup"><a name="halloffame">HallOfFameGroup</a>:</h4>
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo</th>
+<th>Característica</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>discipline</td>
+<td><a href="#discipline">Discipline</a></td>
+<td>obrigatório</td>
+<td>Disciplina na qual o hall of fame pertence</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>obrigatório</td>
+<td>Título do grupo</td>
+</tr>
+<tr>
+<td>students</td>
+<td>List&lt;<a href="#user">User</a>&gt;</td>
+<td>obrigatório</td>
+<td>Lista de estudantes que faz parte do grupo que ganhou o hall of fame</td>
+</tr>
+<tr>
+<td>gamification_score</td>
+<td>integer</td>
+<td>obrigatório</td>
+<td>Pontuação total do grupo na gamificação</td>
+</tr>
+<tr>
+<td>first_position_once</td>
+<td>boolean</td>
+<td>obrigatório, default False</td>
+<td>O grupo ficou pelo menos uma vez em primeiro lugar em uma sessão de TBL</td>
+</tr>
+<tr>
+<td>first_position_always</td>
+<td>boolean</td>
+<td>obrigatório, default False</td>
+<td>O grupo sempre ficou em primeiro lugar nas sessões de TBL</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>date</td>
+<td>automático</td>
+<td>Data de criação do grupo</td>
+</tr>
+</tbody>
+</table>
 <h4 id="file"><a name="file">File</a>:</h4>
 <table>
 <thead>
@@ -921,6 +1031,122 @@
 <td>date</td>
 <td>automático</td>
 <td>Data de modificação do arquivo</td>
+</tr>
+</tbody>
+</table>
+<h4 id="topic"><a name="topic">Topic</a>:</h4>
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo</th>
+<th>Característica</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>obrigatório</td>
+<td>Título do tópico do fórum</td>
+</tr>
+<tr>
+<td>content</td>
+<td>string</td>
+<td>obrigatório</td>
+<td>Conteúdo do tópico do fórum</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>List<Tag></td>
+<td>obrigatório</td>
+<td>Tag que qualifica e categoriza o tópico</td>
+</tr>
+<tr>
+<td>views</td>
+<td>integer</td>
+<td>obrigatório, default 0</td>
+<td>Quantidade de pessoas que visualizou o tópico</td>
+</tr>
+<tr>
+<td>author</td>
+<td><a href="#user">User</a></td>
+<td>obrigatório</td>
+<td>Usuário que criou o tópico, pode ser professor, aluno ou monitor</td>
+</tr>
+<tr>
+<td>discipline</td>
+<td><a href="#discipline">Discipline</a></td>
+<td>obrigatório</td>
+<td>Disciplina na qual tópico do fórum pertence</td>
+</tr>
+<tr>
+<td>qtd_answers</td>
+<td>integer</td>
+<td>obrigatório, default 0</td>
+<td>Quantidade de respostas tem o tópico</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>date</td>
+<td>automático</td>
+<td>Data de criação do tópico</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>date</td>
+<td>automático</td>
+<td>Data de modificação do tópico</td>
+</tr>
+</tbody>
+</table>
+<h4 id="answer"><a name="answer">Answer</a>:</h4>
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo</th>
+<th>Característica</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>author</td>
+<td><a href="#user">User</a></td>
+<td>obrigatório</td>
+<td>Usuário que respondeu o tópico, pode ser professor, aluno ou monitor</td>
+</tr>
+<tr>
+<td>topic</td>
+<td><a href="#topic">Topic</a></td>
+<td>obrigatório</td>
+<td>Tópico na qual a resposta pertence</td>
+</tr>
+<tr>
+<td>content</td>
+<td>string</td>
+<td>obrigatório</td>
+<td>Conteúdo da resposta do tópico</td>
+</tr>
+<tr>
+<td>is_correct</td>
+<td>boolean</td>
+<td>obrigatório, default False</td>
+<td>Especifica qual é a resposta correta.</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>date</td>
+<td>automático</td>
+<td>Data de criação do tópico</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>date</td>
+<td>automático</td>
+<td>Data de modificação do tópico</td>
 </tr>
 </tbody>
 </table>
@@ -979,6 +1205,12 @@
 <td>Verifica se a sessão ta fechada ou não</td>
 </tr>
 <tr>
+<td>is_finished</td>
+<td>booleano</td>
+<td>padrão falso</td>
+<td>Verifica se a sessão ta finalizada, ou seja, suas notas serão geradas e fechadas permanentemente</td>
+</tr>
+<tr>
 <td>irat_datetime</td>
 <td>datetime</td>
 <td>obrigatório</td>
@@ -1021,16 +1253,16 @@
 <td>Verifica se a avaliação prática está visivel pelos alunos</td>
 </tr>
 <tr>
-<td>practical_description</td>
-<td>string</td>
-<td>obrigatório</td>
-<td>Descrição da avaliação prática</td>
-</tr>
-<tr>
 <td>practical_weight</td>
 <td>inteiro positivo</td>
 <td>opcional, padrão 4</td>
 <td>Peso da avaliação prática</td>
+</tr>
+<tr>
+<td>practical_description</td>
+<td>string</td>
+<td>obrigatório</td>
+<td>Descrição da avaliação prática</td>
 </tr>
 <tr>
 <td>peer_review_available</td>
@@ -1071,7 +1303,7 @@
 <tbody>
 <tr>
 <td>session</td>
-<td><a href="#session">Session</a></td>
+<td><a href="#session">TBLSession</a></td>
 <td>obrigatório</td>
 <td>Sessão TBL que a nota pertence</td>
 </tr>
@@ -1138,7 +1370,7 @@
 <tbody>
 <tr>
 <td>session</td>
-<td><a href="#session">Session</a></td>
+<td><a href="#session">TBLSession</a></td>
 <td>obrigatório</td>
 <td>Sessão TBL que o arquivo pertence</td>
 </tr>
@@ -1156,16 +1388,16 @@
 </thead>
 <tbody>
 <tr>
-<td>session</td>
-<td><a href="#session">Session</a></td>
-<td>obrigatório</td>
-<td>Sessão TBL que a questão pertence</td>
-</tr>
-<tr>
 <td>title</td>
 <td>string</td>
 <td>obrigatório</td>
 <td>Título da questão</td>
+</tr>
+<tr>
+<td>session</td>
+<td><a href="#session">TBLSession</a></td>
+<td>obrigatório</td>
+<td>Sessão TBL que a questão pertence</td>
 </tr>
 <tr>
 <td>level</td>
@@ -1211,16 +1443,16 @@
 </thead>
 <tbody>
 <tr>
-<td>question</td>
-<td><a href="#question">Question</a></td>
-<td>obrigatório</td>
-<td>Questão na qual a alternativa pertence</td>
-</tr>
-<tr>
 <td>title</td>
 <td>string</td>
 <td>obrigatório</td>
 <td>Título da alternativa</td>
+</tr>
+<tr>
+<td>question</td>
+<td><a href="#question">Question</a></td>
+<td>obrigatório</td>
+<td>Questão na qual a alternativa pertence</td>
 </tr>
 <tr>
 <td>is_correct</td>
@@ -1254,8 +1486,20 @@
 </thead>
 <tbody>
 <tr>
+<td>correct_alternative</td>
+<td>string</td>
+<td>obrigatório</td>
+<td>Título da alternativa correta</td>
+</tr>
+<tr>
+<td>score</td>
+<td>inteiro positivo</td>
+<td>obrigatório, padrao 0</td>
+<td>Pontuação da alternativa</td>
+</tr>
+<tr>
 <td>session</td>
-<td><a href="#session">Session</a></td>
+<td><a href="#session">TBLSession</a></td>
 <td>obrigatório</td>
 <td>Sessão TBL que a submissão foi realizada</td>
 </tr>
@@ -1270,18 +1514,6 @@
 <td><a href="#user">User</a></td>
 <td>obrigatório</td>
 <td>Usuário que submeteu a questão</td>
-</tr>
-<tr>
-<td>correct_alternative</td>
-<td>string</td>
-<td>obrigatório</td>
-<td>Título da alternativa correta</td>
-</tr>
-<tr>
-<td>score</td>
-<td>inteiro positivo</td>
-<td>obrigatório, padrao 0</td>
-<td>Pontuação da alternativa</td>
 </tr>
 <tr>
 <td>created_at</td>
@@ -1303,8 +1535,20 @@
 </thead>
 <tbody>
 <tr>
+<td>correct_alternative</td>
+<td>string</td>
+<td>obrigatório</td>
+<td>Título da alternativa correta</td>
+</tr>
+<tr>
+<td>score</td>
+<td>inteiro positivo</td>
+<td>obrigatório, padrao 0</td>
+<td>Pontuação da alternativa</td>
+</tr>
+<tr>
 <td>session</td>
-<td><a href="#session">Session</a></td>
+<td><a href="#session">TBLSession</a></td>
 <td>obrigatório</td>
 <td>Sessão TBL que a submissão foi realizada</td>
 </tr>
@@ -1319,18 +1563,6 @@
 <td><a href="#user">User</a></td>
 <td>obrigatório</td>
 <td>Estudante que submeteu a questão</td>
-</tr>
-<tr>
-<td>correct_alternative</td>
-<td>string</td>
-<td>obrigatório</td>
-<td>Título da alternativa correta</td>
-</tr>
-<tr>
-<td>score</td>
-<td>inteiro positivo</td>
-<td>obrigatório, padrao 0</td>
-<td>Pontuação da alternativa</td>
 </tr>
 <tr>
 <td>created_at</td>
@@ -1352,8 +1584,20 @@
 </thead>
 <tbody>
 <tr>
+<td>correct_alternative</td>
+<td>string</td>
+<td>obrigatório</td>
+<td>Título da alternativa correta</td>
+</tr>
+<tr>
+<td>score</td>
+<td>inteiro positivo</td>
+<td>obrigatório, padrao 0</td>
+<td>Pontuação da alternativa</td>
+</tr>
+<tr>
 <td>session</td>
-<td><a href="#session">Session</a></td>
+<td><a href="#session">TBLSession</a></td>
 <td>obrigatório</td>
 <td>Sessão TBL que a submissão foi realizada</td>
 </tr>
@@ -1370,28 +1614,236 @@
 <td>Estudante do grupo que submeteu a questão</td>
 </tr>
 <tr>
+<td>created_at</td>
+<td>date</td>
+<td>automático</td>
+<td>Data de criação da submissão</td>
+</tr>
+<tr>
 <td>group</td>
 <td><a href="#group">Group</a></td>
 <td>obrigatório</td>
 <td>Grupo que submeteu a questão</td>
 </tr>
+</tbody>
+</table>
+<h4 id="peerreviewsubmission"><a name="peer_review_submission">PeerReviewSubmission</a>:</h4>
+<table>
+<thead>
 <tr>
-<td>correct_alternative</td>
-<td>string</td>
+<th>Atributo</th>
+<th>Tipo</th>
+<th>Característica</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>session</td>
+<td><a href="#session">TBLSession</a></td>
 <td>obrigatório</td>
-<td>Título da alternativa correta</td>
+<td>Sessão TBL que a submissão foi realizada</td>
 </tr>
 <tr>
 <td>score</td>
 <td>inteiro positivo</td>
 <td>obrigatório, padrao 0</td>
-<td>Pontuação da alternativa</td>
+<td>Pontuação da avaliação</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>string</td>
+<td>opcional</td>
+<td>Comentário anônimo da avaliação de peer review</td>
+</tr>
+<tr>
+<td>user</td>
+<td><a href="#user">User</a></td>
+<td>obrigatório</td>
+<td>Estudante do grupo que submeteu a peer review</td>
+</tr>
+<tr>
+<td>student</td>
+<td><a href="#user">User</a></td>
+<td>obrigatório</td>
+<td>Estudante do grupo que recebeu a peer review</td>
+</tr>
+<tr>
+<td>group</td>
+<td><a href="#group">Group</a></td>
+<td>obrigatório</td>
+<td>Grupo do aluno que submeteu a peer review</td>
 </tr>
 <tr>
 <td>created_at</td>
 <td>date</td>
 <td>automático</td>
 <td>Data de criação da submissão</td>
+</tr>
+</tbody>
+</table>
+<h4 id="gamificationpointsubmission"><a name="gamification_submission">GamificationPointSubmission</a>:</h4>
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo</th>
+<th>Característica</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>session</td>
+<td><a href="#session">TBLSession</a></td>
+<td>obrigatório</td>
+<td>Sessão TBL que a submissão foi realizada</td>
+</tr>
+<tr>
+<td>student</td>
+<td><a href="#user">User</a></td>
+<td>obrigatório</td>
+<td>Estudante que fez a pontuação</td>
+</tr>
+<tr>
+<td>group</td>
+<td><a href="#group">Group</a></td>
+<td>obrigatório</td>
+<td>Grupo do aluno que fez a pontuação</td>
+</tr>
+<tr>
+<td>total_score</td>
+<td>inteiro positivo</td>
+<td>obrigatório, padrao 0</td>
+<td>Pontuação total do aluno</td>
+</tr>
+<tr>
+<td>first_position</td>
+<td>booleano</td>
+<td>obrigatório, padrao False</td>
+<td>Verifica se o grupo ficou em primeiro lugar na sessão de TBL</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>date</td>
+<td>automático</td>
+<td>Data de criação da submissão</td>
+</tr>
+</tbody>
+</table>
+<h4 id="appeal"><a name="appeal">Appeal</a>:</h4>
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo</th>
+<th>Característica</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>obrigatório</td>
+<td>Título da apelação</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>obrigatório</td>
+<td>Corpo da apelação</td>
+</tr>
+<tr>
+<td>is_accept</td>
+<td>boolean</td>
+<td>obrigatório, default False</td>
+<td>Verifica se a apelação foi aceita ou não pelo professor</td>
+</tr>
+<tr>
+<td>qtd_comments</td>
+<td>integer</td>
+<td>obrigatório, default 0</td>
+<td>Quantidade de comentários da apelação</td>
+</tr>
+<tr>
+<td>question</td>
+<td><a href="#question">Question</a></td>
+<td>obrigatório</td>
+<td>Questão na qual a apelação foi submetida</td>
+</tr>
+<tr>
+<td>student</td>
+<td><a href="#user">User</a></td>
+<td>obrigatório</td>
+<td>Estudante que fez solicitou a apelação</td>
+</tr>
+<tr>
+<td>group</td>
+<td><a href="#group">Group</a></td>
+<td>obrigatório</td>
+<td>Grupo do estudante que solicitou a apelação</td>
+</tr>
+<tr>
+<td>session</td>
+<td><a href="#session">TBLSession</a></td>
+<td>obrigatório</td>
+<td>Sessão TBL que a apelação foi submetida</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>date</td>
+<td>automático</td>
+<td>Data de criação da submissão</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>date</td>
+<td>automático</td>
+<td>Data de atualização da submissão</td>
+</tr>
+</tbody>
+</table>
+<h4 id="comment"><a name="comment">Comment</a>:</h4>
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo</th>
+<th>Característica</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>author</td>
+<td><a href="#user">User</a></td>
+<td>obrigatório</td>
+<td>Usuário que comentou na apelação do colega</td>
+</tr>
+<tr>
+<td>appeal</td>
+<td><a href="#appeal">Appeal</a></td>
+<td>obrigatório</td>
+<td>Apelação na qual o comentário foi feito</td>
+</tr>
+<tr>
+<td>content</td>
+<td>string</td>
+<td>obrigatório</td>
+<td>Corpo do comentário</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>date</td>
+<td>automático</td>
+<td>Data de criação da submissão</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>date</td>
+<td>automático</td>
+<td>Data de atualização da submissão</td>
 </tr>
 </tbody>
 </table>
@@ -1416,6 +1868,41 @@
 <li>Uma disciplina pode ter vários monitores, e um monitor pode estar em várias disciplinas.</li>
 <li><strong>Cardinalidade</strong>: NxM</li>
 </ul>
+<p>TOPIC pertence USER:</p>
+<ul>
+<li>Um tópico do fórum é criado por um usuário, e um usuário pode criar vários tópicos.</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>TOPIC pertence DISCIPLINE:</p>
+<ul>
+<li>Um tópico do fórum pertence a uma disciplina, e uma disciplina pode ter vários tópicos.</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>ANSWER pertence USER:</p>
+<ul>
+<li>Uma resposta ao tópico do fórum é criado por um usuário, e um usuário pode inserir várias respostas.</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>ANSWER pertence TOPIC:</p>
+<ul>
+<li>Uma resposta pertence a um tópico do fórum, e um tópico do fórum pode ter várias respostas, mas apenas 1 correta.</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>NOTIFICATION pertence DISCIPLINE:</p>
+<ul>
+<li>Uma notificação é enviada por meio de uma disciplina, e uma disciplina pode ter várias notificações</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>NOTIFICATION é enviado USER:</p>
+<ul>
+<li>Uma notificação é enviada por um usuário, e um usuário pode enviar várias notificações.</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>NOTIFICATION é recebido USER:</p>
+<ul>
+<li>Uma notificação é recebida por um usuário, e um usuário pode receber várias notificações.</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
 <p>GROUP tem USER (Estudante):</p>
 <ul>
 <li>Um grupo pode ter vários estudantes, e um estudante pode estar em vários grupos.</li>
@@ -1426,32 +1913,42 @@
 <li>Um grupo pertencer a uma disciplina, porém uma disciplina poder ter vários grupos.</li>
 <li><strong>Cardinalidade</strong>: Nx1</li>
 </ul>
-<p>DISCIPLINEFILE pertence DISCIPLINE:</p>
+<p>HALL OF FAME GROUP pertence DISCIPLINE:</p>
+<ul>
+<li>Um grupo no hall of fame pertencer a uma disciplina, porém uma disciplina poder ter vários grupos no hall of fame.</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>HALL OF FAME GROUP tem USER:</p>
+<ul>
+<li>Um grupo no hall of fame tem vários estudantes, porém um estudante pertence a um único grupo do hall of fame da disciplina.</li>
+<li><strong>Cardinalidade</strong>: 1xN</li>
+</ul>
+<p>DISCIPLINE FILE pertence DISCIPLINE:</p>
 <ul>
 <li>Um arquivo pertencer a uma disciplina, porém uma disciplina poder ter vários arquivos.</li>
 <li><strong>Cardinalidade</strong>: Nx1</li>
 </ul>
-<p>FINALGRADE pertence DISCIPLINE:</p>
+<p>FINAL GRADE pertence DISCIPLINE:</p>
 <ul>
 <li>Uma nota pertencer a uma disciplina, porém uma disciplina poder ter vários notas.</li>
 <li><strong>Cardinalidade</strong>: Nx1</li>
 </ul>
-<p>FINALGRADE pertence USER (Estudante):</p>
+<p>FINAL GRADE pertence USER (Estudante):</p>
 <ul>
 <li>Uma nota pertencer a um estudante, porém um estudante poder ter várias notas.</li>
 <li><strong>Cardinalidade</strong>: Nx1</li>
 </ul>
-<p>TBLSESSION pertence DISCIPLINE:</p>
+<p>TBL SESSION pertence DISCIPLINE:</p>
 <ul>
 <li>Uma sessão de TBL pertencer a uma disciplina, porém uma disciplina poder ter várias sessões de TBL.</li>
 <li><strong>Cardinalidade</strong>: Nx1</li>
 </ul>
-<p>SESSIONFILE pertence TBLSESSION:</p>
+<p>SESSION FILE pertence TBL SESSION:</p>
 <ul>
 <li>Um arquivo pertencer a uma sessão de TBL, porém uma sessão de TBL poder ter vários arquivos.</li>
 <li><strong>Cardinalidade</strong>: Nx1</li>
 </ul>
-<p>GRADE pertence TBLSESSION:</p>
+<p>GRADE pertence TBL SESSION:</p>
 <ul>
 <li>Um nota pertencer a uma sessão de TBL, porém uma sessão de TBL poder ter várias notas.</li>
 <li><strong>Cardinalidade</strong>: Nx1</li>
@@ -1466,7 +1963,7 @@
 <li>Um nota pertencer a uma grupo, porém uma grupo poder ter várias notas.</li>
 <li><strong>Cardinalidade</strong>: Nx1</li>
 </ul>
-<p>QUESTION pertence TBLSESSION:</p>
+<p>QUESTION pertence TBL SESSION:</p>
 <ul>
 <li>Um questão pertencer a sessão de TBL, porém uma sessão de TBL poder ter várias questões.</li>
 <li><strong>Cardinalidade</strong>: Nx1</li>
@@ -1476,7 +1973,7 @@
 <li>Uma alternativa pertencer a uma questão, porém uma questão tem 4 alternativas.</li>
 <li><strong>Cardinalidade</strong>: 4x1</li>
 </ul>
-<p>SUBMISSION pertence TBLSESSION:</p>
+<p>SUBMISSION pertence TBL SESSION:</p>
 <ul>
 <li>Uma submissão (exercise, iRAT e gRAT) pertencer a sessão de TBL, porém uma sessão de TBL poder ter várias submissões.</li>
 <li><strong>Cardinalidade</strong>: Nx1</li>
@@ -1491,9 +1988,74 @@
 <li>Uma submissão (exercise, iRAT e gRAT) pertence a um usuário, porém um usuário poder ter várias submissões.</li>
 <li><strong>Cardinalidade</strong>: Nx1</li>
 </ul>
-<p>SUBMISSION pertence GROUP:</p>
+<p>GRAT_SUBMISSION pertence GROUP:</p>
 <ul>
-<li>Uma submissão (gRAT) pertence a um grupo, porém um grupo poder ter várias submissões.</li>
+<li>Uma submissão (gRAT) pertence a um grupo, porém um grupo poder ter várias submissões gRAT.</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>PEER REVIEW SUBMISSION pertence TBL SESSION:</p>
+<ul>
+<li>Uma submissão (peer review) pertence a uma sessão de TBL, e uma sessão de TBL pode ter várias submissões Peer Review</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>PEER REVIEW SUBMISSION pertence USER:</p>
+<ul>
+<li>Uma submissão (peer review) é enviada por um estudante, e um estudante pode enviar várias submissões Peer Review para colegas diferentes.</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>PEER REVIEW SUBMISSION pertence USER:</p>
+<ul>
+<li>Uma submissão (peer review) é recebida por um estudante, e um estudante pode receber várias submissões Peer Review de colegas diferentes.</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>PEER REVIEW SUBMISSION pertence GROUP:</p>
+<ul>
+<li>Uma submissão (peer review) pertence a um estudante do grupo, e um grupo pode receber várias submissões Peer Review de colegas diferentes.</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>GAMIFICATION POINT SUBMISSION pertence TBL SESSION:</p>
+<ul>
+<li>Uma submissão (gamificação) pertence a uma sessão de TBL, e uma sessão de TBL pode ter várias submissões de gamificação</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>GAMIFICATION POINT SUBMISSION pertence USER:</p>
+<ul>
+<li>Uma submissão (gamificação) é conquistada por um estudante, e um estudante pode conquistar várias submissões de gamificação.</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>GAMIFICATION POINT SUBMISSION pertence GROUP:</p>
+<ul>
+<li>Uma submissão (gamificação) pertence a um estudante do grupo, e um grupo pode conquistar várias submissões de gamificação.</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>APPEAL pertence QUESTION:</p>
+<ul>
+<li>Uma apelação pertence a uma questão, e uma questão pode ter várias apelações</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>APPEAL pertence TBL SESSION:</p>
+<ul>
+<li>Uma apelação pertence a uma sessão de TBL, e uma sessão de TBL pode ter várias apelações</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>APPEAL pertence USER:</p>
+<ul>
+<li>Uma apelação é enviada por um estudante, e um estudante pode enviar várias apelações</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>APPEAL pertence GROUP:</p>
+<ul>
+<li>Uma apelação é enviada por um estudante de um grupo, e um grupo pode ter várias apelações de estudantes diferentes.</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>COMMENT pertence USER:</p>
+<ul>
+<li>Um comentário é enviada por um estudante para uma apelação, e um estudante pode enviar várias comentários para essa apelação</li>
+<li><strong>Cardinalidade</strong>: Nx1</li>
+</ul>
+<p>COMMENT pertence APPEAL:</p>
+<ul>
+<li>Um comentário pertence a uma apelação, e uma apelação pode ter vários comentários</li>
 <li><strong>Cardinalidade</strong>: Nx1</li>
 </ul>
 <hr />
