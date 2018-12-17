@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-23 18:30-0300\n"
+"POT-Creation-Date: 2018-12-17 16:25-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,244 +18,227 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: core/apps.py:7 core/templates/core/navbar.html:46
-#: core/templates/core/news.html:9 core/templates/core/news_details.html:18
-#: core/templates/core/news_list.html:18
-msgid "News"
-msgstr "Notícias"
-
-#: core/forms.py:16
-msgid "Name"
-msgstr "Nome"
-
-#: core/forms.py:17
-msgid "Insert your name."
-msgstr "Insira seu nome."
-
-#: core/forms.py:21
-msgid "Email"
-msgstr "Email"
-
-#: core/forms.py:22
-msgid "Insert your email."
-msgstr "Insira seu email."
-
-#: core/forms.py:27
-msgid "Message"
-msgstr "Mensagem"
-
-#: core/forms.py:28
-msgid "Insert the message."
-msgstr "Insira sua mensagem."
-
-#: core/generics.py:101
-#, python-brace-format
-msgid "Empty list and {class_name}.allow_empty is False."
-msgstr "Lista vazia e {class_name}.allow_empty é Falso."
-
-#: core/models.py:11 core/models.py:28
-msgid "Tag"
-msgstr "Tag"
-
-#: core/models.py:16 core/models.py:73
-msgid "Identify"
-msgstr "Identificador"
-
-#: core/models.py:29
-msgid "Tags"
-msgstr "Tags"
-
-#: core/models.py:38
-msgid "Title"
-msgstr "Título"
-
-#: core/models.py:39
-msgid "Title of information."
-msgstr "Título da informação."
-
-#: core/models.py:45
-msgid "Image about information."
-msgstr "Imagem sobre a informação."
-
-#: core/models.py:46
-msgid "Image"
-msgstr "Imagem"
-
-#: core/models.py:52
-msgid "Created at"
-msgstr "Criado em"
-
-#: core/models.py:53
-msgid "Date of creation of information"
-msgstr "Data de criação da informação"
-
-#: core/models.py:58
-msgid "Link of information"
-msgstr "Link da informação"
-
-#: core/models.py:63
-msgid "Description"
-msgstr "Descrição"
-
-#: core/permissions.py:51 core/permissions.py:96
-msgid "You are not authorized to do this action."
-msgstr "Você não tem autorização para fazer essa ação."
-
-#: core/templates/core/contact.html:10 core/templates/core/navbar.html:55
-msgid "Contact"
-msgstr "Contato"
-
-#: core/templates/core/contact.html:90
-msgid "Send"
-msgstr "Enviar"
-
-#: core/templates/core/features.html:8 core/templates/core/navbar.html:37
+#: pgtbl/core/templates/core/navbar.html:44
+#: pgtbl/core/templates/home/features.html:8
 msgid "Features"
 msgstr "Funcionalidades"
 
-#: core/templates/core/features.html:22
+#: pgtbl/core/templates/core/navbar.html:53
+#: pgtbl/core/templates/news/details.html:18
+#: pgtbl/core/templates/news/list.html:18 pgtbl/core/templates/news/news.html:9
+msgid "News"
+msgstr "Notícias"
+
+#: pgtbl/core/templates/core/navbar.html:62
+#: pgtbl/core/templates/home/contact.html:9
+msgid "Contact"
+msgstr "Contato"
+
+#: pgtbl/core/templates/core/navbar.html:71
+#: pgtbl/core/templates/home/footer.html:13
+#: pgtbl/core/templates/home/footer.html:55
+msgid "About"
+msgstr "Sobre"
+
+#: pgtbl/core/templates/core/navbar.html:86
+msgid "Profile"
+msgstr "Perfil"
+
+#: pgtbl/core/templates/core/navbar.html:98
+msgid "Help"
+msgstr "Ajuda"
+
+#: pgtbl/core/templates/core/navbar.html:108
+msgid "Logout"
+msgstr "Sair"
+
+#: pgtbl/core/templates/core/navbar.html:120
+msgid "Register"
+msgstr "Cadastro"
+
+#: pgtbl/core/templates/core/navbar.html:129
+msgid "Login"
+msgstr "Entrar"
+
+#: pgtbl/core/templates/core/search.html:12
+msgid "Search"
+msgstr "Pesquisar"
+
+#: pgtbl/core/templates/home/contact.html:108
+msgid "Send"
+msgstr "Enviar"
+
+#: pgtbl/core/templates/home/features.html:22
 msgid "Manage disciplines and students"
 msgstr "Gerenciar disciplinas e estudantes"
 
-#: core/templates/core/features.html:27
+#: pgtbl/core/templates/home/features.html:28
 msgid ""
-" The teacher can add, remove, create and edit courses and classes and "
-"provide the password for them to enter. in addition to being able to remove "
-"students from the discipline and add it to other disciplines of their own "
-"and to manage their grades. "
-msgstr ""
+"\n"
+"              The teacher can add, remove, create and edit courses and "
+"classes and provide the\n"
+"              password for them to enter. in addition to being able to "
+"remove students from the\n"
+"              discipline and add it to other disciplines of their own and to "
+"manage their grades.\n"
+"            "
+msgstr "\n"
 "O professor pode adicionar, remover, criar e editar disciplinas e turmas e "
 "disponibilizar a senha de acesso a elas para os alunos entrarem. além de "
 "poder remover estudantes da disciplina e adicioná-lo em outras disciplinas "
 "de sua autoria e gerenciar suas notas."
 
-#: core/templates/core/features.html:41
+#: pgtbl/core/templates/home/features.html:46
 msgid "TBL features"
 msgstr "Funcionalidades do TBL"
 
-#: core/templates/core/features.html:46
+#: pgtbl/core/templates/home/features.html:52
 msgid ""
-" Functions related to the phases of preparation, guarantee of preparation or "
-"RAT, iRAT, gRAT and appeals, Application of concepts and evaluation in pairs "
-msgstr ""
+"\n"
+"              Functions related to the phases of preparation, guarantee of "
+"preparation or RAT, iRAT, gRAT and\n"
+"              appeals, Application of concepts and evaluation in pairs\n"
+"            "
+msgstr "\n"
 "Funcionalidades relacionadas às fases de preparação, garantia de preparo ou "
 "RAT, iRAT, gRAT e apelações, Aplicação de conceitos e avaliação em pares"
 
-#: core/templates/core/features.html:60
+#: pgtbl/core/templates/home/features.html:69
 msgid "Report"
 msgstr "Relatório"
 
-#: core/templates/core/features.html:66
+#: pgtbl/core/templates/home/features.html:75
 msgid ""
-" The teacher will have a dashboard with reports of student performance on "
-"each assessment question, feedback to what he or she should focus on most in "
-"class, and generate a csv of student proofs with their answers. "
-msgstr ""
+"\n"
+"              The teacher will have a dashboard with reports of student "
+"performance on each assessment question,\n"
+"              feedback to what he or she should focus on most in class, and "
+"generate a csv of student proofs with\n"
+"              their answers.\n"
+"            "
+msgstr "\n"
 "O professor terá um dashboard com relatórios do desempenho dos alunos em "
 "cada questão da avaliação, tendo um feedback para o que ele deve focar mais "
 "nas aulas, além de poder gerar um csv das provas dos alunos com suas "
 "respectivas respostas."
 
-#: core/templates/core/features.html:80
+#: pgtbl/core/templates/home/features.html:93
 msgid "Rank and Gamification"
 msgstr "Rank e Gameficação"
 
-#: core/templates/core/features.html:85
+#: pgtbl/core/templates/home/features.html:99
 msgid ""
-" There will also be a group rank in which the first place will be displayed "
-"in the Hall of Fame that will be seen by new students of the next semesters, "
-"there is no individual rank because the objective is not the competition but "
-"the collaboration. In addition to having a gamefication in the list of "
-"exercises among other places of the software. "
-msgstr ""
+"\n"
+"              There will also be a group rank in which the first place will "
+"be displayed in the Hall of Fame that\n"
+"              will be seen by new students of the next semesters, there is "
+"no individual rank because the objective\n"
+"              is not the competition but the collaboration. In addition to "
+"having a gamefication in the list of\n"
+"              exercises among other places of the software.\n"
+"            "
+msgstr "\n"
 "Terá também um rank de grupos, na qual o primeiro colocado ficará exposto no "
 "Hall da Fama que será visto por novos alunos dos próximos semestres, não há "
 "rank individual porque o objetivo não é a competição e sim a colaboração. "
 "Além de ter uma gameficação na lista de exercícios entre outros locais do "
 "software."
 
-#: core/templates/core/footer.html:13 core/templates/core/footer.html:55
-#: core/templates/core/navbar.html:64
-msgid "About"
-msgstr "Sobre"
-
-#: core/templates/core/footer.html:23 core/templates/core/footer.html:145
+#: pgtbl/core/templates/home/footer.html:23
+#: pgtbl/core/templates/home/footer.html:183
 msgid "Advantages"
 msgstr "Vantagens"
 
-#: core/templates/core/footer.html:33 core/templates/core/footer.html:180
+#: pgtbl/core/templates/home/footer.html:33
+#: pgtbl/core/templates/home/footer.html:227
 msgid "Documentation"
 msgstr "Documentação"
 
-#: core/templates/core/footer.html:43 core/templates/core/footer.html:194
+#: pgtbl/core/templates/home/footer.html:43
+#: pgtbl/core/templates/home/footer.html:241
 msgid "How to use"
 msgstr "Como usar"
 
-#: core/templates/core/footer.html:63 core/templates/core/footer.html:84
+#: pgtbl/core/templates/home/footer.html:63
+#: pgtbl/core/templates/home/footer.html:87
 msgid "Preparation"
 msgstr "Preparação"
 
-#: core/templates/core/footer.html:64
+#: pgtbl/core/templates/home/footer.html:64
 msgid "iRAT"
 msgstr "iRAT"
 
-#: core/templates/core/footer.html:65
+#: pgtbl/core/templates/home/footer.html:65
 msgid "gRAT"
 msgstr "gRAT"
 
-#: core/templates/core/footer.html:66
+#: pgtbl/core/templates/home/footer.html:66
 msgid "Appeal"
 msgstr "Apelação"
 
-#: core/templates/core/footer.html:67
+#: pgtbl/core/templates/home/footer.html:67
 msgid "Feedback"
 msgstr "Feedback"
 
-#: core/templates/core/footer.html:68 core/templates/core/footer.html:124
+#: pgtbl/core/templates/home/footer.html:68
+#: pgtbl/core/templates/home/footer.html:153
 msgid "Application oriented activities"
 msgstr "Aplicação orientada a atividades"
 
-#: core/templates/core/footer.html:69 core/templates/core/footer.html:132
+#: pgtbl/core/templates/home/footer.html:69
+#: pgtbl/core/templates/home/footer.html:164
 msgid "Pair test"
 msgstr "Avaliação em pares"
 
-#: core/templates/core/footer.html:78
+#: pgtbl/core/templates/home/footer.html:78
 msgid ""
-" Team-based learning or TBL is a collaborative learning teaching strategy "
-"that focuses on a three-step cycle: Preparation, Class or RAT Assessment, "
-"and Small Application-Focused Project "
-msgstr ""
+"\n"
+"              Team-based learning or TBL is a collaborative learning "
+"teaching strategy that focuses on a\n"
+"              three-step cycle: Preparation, Class or RAT Assessment, and "
+"Small Application-Focused Project\n"
+"            "
+msgstr "\n"
 "Aprendizagem baseada em equipe ou TBL é uma estratégia de ensino "
 "aprendizagem colaborativa que se concentra em um ciclo de três passos: "
 "Preparação, Avaliação em classe ou RAT e Pequeno projeto centrado na "
 "aplicação"
 
-#: core/templates/core/footer.html:86
+#: pgtbl/core/templates/home/footer.html:89
 msgid ""
-"Basically, the teacher will provide articles and books for study, in which "
-"the students will be able to download, this material will be the preparation "
-"for the evaluation, in addition to having an area for resolution of the list "
-"of exercises."
-msgstr ""
+"\n"
+"              Basically, the teacher will provide articles and books for "
+"study, in which the students will be able\n"
+"              to download, this material will be the preparation for the "
+"evaluation, in addition to having an area\n"
+"              for resolution of the list of exercises.\n"
+"            "
+msgstr "\n"
 "Basicamente a(o) professor(a) irá disponibilizar de artigos e livros para "
 "estudo, na qual os alunos irão poder baixar, esse material será a preparação "
 "para a avaliação, além de ter uma área para resolução de lista de exercícios."
 
-#: core/templates/core/footer.html:92
+#: pgtbl/core/templates/home/footer.html:99
 msgid "Individual test: iRAT"
 msgstr "Prova individual: iRAT"
 
-#: core/templates/core/footer.html:94
+#: pgtbl/core/templates/home/footer.html:101
 msgid ""
-" Answered individually without consultation or any material, it consists of "
-"10 to 20 questions of multiple choice contemplating the most relevant "
-"concepts of the readings or activities indicated previously, each question "
-"will have 4 alternatives and the student will be able to distribute points "
-"among the alternatives, for example if in doubt between alternative A and C, "
-"you can distribute your 4 points in 2 in A and 2 in C, if the correct answer "
-"is to C you get 2 points out of 4 and the sum of all points divided by the "
-"total points of the test is calculated the student's grade "
-msgstr ""
+"\n"
+"              Answered individually without consultation or any material, it "
+"consists of 10 to 20 questions of\n"
+"              multiple choice contemplating the most relevant concepts of "
+"the readings or activities indicated\n"
+"              previously, each question will have 4 alternatives and the "
+"student will be able to distribute points\n"
+"              among the alternatives, for example if in doubt between "
+"alternative A and C, you can distribute your\n"
+"              4 points in 2 in A and 2 in C, if the correct answer is to C "
+"you get 2 points out of 4 and the sum of\n"
+"              all points divided by the total points of the test is "
+"calculated the student's grade\n"
+"            "
+msgstr "\n"
 "Respondido individualmente sem consulta ou qualquer material, consiste de 10 "
 "a 20 questões de múltipla escolha contemplando os conceitos mais relevantes "
 "das leituras ou das atividades indicadas previamente, cada questão vai ter 4 "
@@ -265,23 +248,29 @@ msgstr ""
 "pontos dos 4 e a somatória de todos os pontos dividido pelo total de pontos "
 "da prova é calculado a nota do aluno nessa avaliação."
 
-#: core/templates/core/footer.html:100
+#: pgtbl/core/templates/home/footer.html:114
 msgid "Team test: gRAT"
 msgstr "Prova em grupo: gRAT"
 
-#: core/templates/core/footer.html:102
+#: pgtbl/core/templates/home/footer.html:116
 msgid ""
-" Answered in a group without consultation or any material, consists of the "
-"same questions of the iRAT, each alternative of the question the student "
-"will have to specify the order of choice, for example, among the 4 "
-"alternatives of the question he places 4 points in the first alternative, if "
-"it is correct the student receives a total score that is 4, if the correct "
-"one is the alternative with 2 points the student receives 2 points, 1 point "
-"equals 1 point and 0 points equals no point in the question, after the "
-"student will have immediate feedbacks of the correct answer through scratch "
-"card, the sum of all points divided by the total is calculated by the group "
-"note in that evaluation.  "
-msgstr ""
+"\n"
+"              Answered in a group without consultation or any material, "
+"consists of the same questions of the iRAT,\n"
+"              each alternative of the question the student will have to "
+"specify the order of choice, for example,\n"
+"              among the 4 alternatives of the question he places 4 points in "
+"the first alternative, if it is correct\n"
+"              the student receives a total score that is 4, if the correct "
+"one is the alternative with 2 points the\n"
+"              student receives 2 points, 1 point equals 1 point and 0 points "
+"equals no point in the question, after\n"
+"              the student will have immediate feedbacks of the correct "
+"answer through scratch card, the sum of all\n"
+"              points divided by the total is calculated by the group note in "
+"that evaluation.\n"
+"            "
+msgstr "\n"
 "Respondido em grupo sem consulta ou qualquer material, consiste das mesmas "
 "questões do iRAT, a cada alternativa da questão o aluno terá que especificar "
 "a ordem de escolha, por exemplo, entre as 4 alternativas da questão ele "
@@ -292,51 +281,66 @@ msgstr ""
 "resposta certa através de raspadinha, o somatório de todos os pontos "
 "dividido pelo total é calculado a nota do grupo nessa avaliação."
 
-#: core/templates/core/footer.html:108
+#: pgtbl/core/templates/home/footer.html:130
 msgid "Appels"
 msgstr "Apelações"
 
-#: core/templates/core/footer.html:110
+#: pgtbl/core/templates/home/footer.html:132
 msgid ""
-" Teams may appeal if they do not agree with the correct answer, all appeals "
-"must be accompanied by arguments, suggestions for improvement and "
-"consultation with relevant bibliographic sources. The team should also "
-"propose the new format and the correct answer to the question.  "
-msgstr ""
+"\n"
+"              Teams may appeal if they do not agree with the correct answer, "
+"all appeals must be accompanied by\n"
+"              arguments, suggestions for improvement and consultation with "
+"relevant bibliographic sources. The\n"
+"              team should also propose the new format and the correct answer "
+"to the question.\n"
+"            "
+msgstr "\n"
 "As equipes podem recorrer no caso de não concordar com a resposta indicado "
 "como correta, todo apelo deve ser feito acompanhado de argumentação, "
 "sugestão de melhoria e com consulta a fontes bibliográficas pertinentes. A "
 "equipe deve também propor o novo formato e a resposta correta da questão."
 
-#: core/templates/core/footer.html:116
+#: pgtbl/core/templates/home/footer.html:142
 msgid "Instructor feedback"
 msgstr "Feedback do professor"
 
-#: core/templates/core/footer.html:118
+#: pgtbl/core/templates/home/footer.html:144
 msgid ""
-" After the assessments and the appeals the instructor will pick up the "
-"questions that the students missed the most and give feedback about them.  "
-msgstr ""
+"\n"
+"              After the assessments and the appeals the instructor will pick "
+"up the questions that the students missed\n"
+"              the most and give feedback about them.\n"
+"            "
+msgstr "\n"
 "Após as avaliações e as apelações o instrutor irá pegar as questões que os "
 "alunos mais erraram e dar feedbacks sobre elas."
 
-#: core/templates/core/footer.html:126
+#: pgtbl/core/templates/home/footer.html:155
 msgid ""
-" The application-centric project executes all the knowledge acquired in a "
-"real context of the proposed topic. "
-msgstr ""
+"\n"
+"              The application-centric project executes all the knowledge "
+"acquired in a real context of the proposed\n"
+"              topic.\n"
+"            "
+msgstr "\n"
 "O projeto centrado na aplicação executa todo o conhecimento adquirido em um "
 "contexto real do tópico proposto."
 
-#: core/templates/core/footer.html:134
+#: pgtbl/core/templates/home/footer.html:166
 msgid ""
-" During the semester peer evaluations may take place in which each member of "
-"the team will evaluate the other team members, a maximum score will be "
-"provided for each member to distribute among the other members of the team "
-"and a field to say why the score may enter feedback for the teammate, this "
-"evaluation does not need to identify if it will be anonymous and the score "
-"will be part of the individual note of each team member.  "
-msgstr ""
+"\n"
+"              During the semester peer evaluations may take place in which "
+"each member of the team will evaluate\n"
+"              the other team members, a maximum score will be provided for "
+"each member to distribute among the other\n"
+"              members of the team and a field to say why the score may enter "
+"feedback for the teammate, this evaluation\n"
+"              does not need to identify if it will be anonymous and the "
+"score will be part of the individual note of\n"
+"              each team member.\n"
+"            "
+msgstr "\n"
 "Durante o semestre pode ocorrer avaliações em pares na qual cada integrante "
 "da equipe irá avaliar os outros integrantes da equipe, será disponibilizado "
 "uma pontuação máxima para cada membro distribuir entre os outros membros da "
@@ -344,154 +348,199 @@ msgstr ""
 "para o colega de equipe, essa avaliação não precisa se identificar ela será "
 "anônima e a pontuação fará parte da nota individual de cada membro da equipe."
 
-#: core/templates/core/footer.html:150
+#: pgtbl/core/templates/home/footer.html:188
 msgid "The use of TBL has some advantages"
 msgstr "O uso do TBL tem algumas vantagens:"
 
-#: core/templates/core/footer.html:153
+#: pgtbl/core/templates/home/footer.html:191
 msgid "Collaboration"
 msgstr "Colaboração"
 
-#: core/templates/core/footer.html:154
+#: pgtbl/core/templates/home/footer.html:192
 msgid "The main objective is the learning in teams, one helping the other"
 msgstr "O objetivo principal é o aprendizado em times, um ajudando o outro."
 
-#: core/templates/core/footer.html:157
+#: pgtbl/core/templates/home/footer.html:195
 msgid "Entertainment"
 msgstr "Entretenimento"
 
-#: core/templates/core/footer.html:158
+#: pgtbl/core/templates/home/footer.html:196
 msgid ""
-" The software has an idea of gamefication, having competition between teams "
-"so that the teams can train the collaboration between them.  "
-msgstr ""
+"\n"
+"            The software has an idea of gamefication, having competition "
+"between teams so that the teams can\n"
+"            train the collaboration between them.\n"
+"          "
+msgstr "\n"
 "O software tem a ideia de gameficação, tem uma competição entre os times, "
 "com isso o time pode melhorar sua colaboração entre si, o que torna uma "
 "competição saudavel."
 
-#: core/templates/core/footer.html:161
+#: pgtbl/core/templates/home/footer.html:202
 msgid "Training"
 msgstr "Capacitação"
 
-#: core/templates/core/footer.html:162
+#: pgtbl/core/templates/home/footer.html:203
 msgid ""
-" Professionals more qualified for the job market, because the methodology "
-"makes the student to study constantly and work as a team.  "
-msgstr ""
+"\n"
+"            Professionals more qualified for the job market, because the "
+"methodology makes the student to study\n"
+"            constantly and work as a team.\n"
+"          "
+msgstr "\n"
 "Profissionais mais qualificados para o mercado de trabalho, porque a "
 "metodologia faz com que o aluno estude constantemente e trabalhe em equipe."
 
-#: core/templates/core/footer.html:165
+#: pgtbl/core/templates/home/footer.html:209
 msgid "Innovation"
 msgstr "Inovação"
 
-#: core/templates/core/footer.html:166
+#: pgtbl/core/templates/home/footer.html:210
 msgid "Get out of the cold and try something new"
 msgstr "Sair do comodismo e experimentar algo novo"
 
-#: core/templates/core/footer.html:169
+#: pgtbl/core/templates/home/footer.html:213
 msgid "Teaching learning"
 msgstr "Ensino aprendizado"
 
-#: core/templates/core/footer.html:170
+#: pgtbl/core/templates/home/footer.html:214
 msgid ""
-" The student becomes more participative and motivated to learn and the "
-"teacher makes the class more active and interesting "
-msgstr ""
+"\n"
+"            The student becomes more participative and motivated to learn "
+"and the teacher makes the class more\n"
+"            active and interesting.\n"
+"          "
+msgstr "\n"
 "O estudante se torna mais participativo e motivado a aprender e os "
 "professores fazem com que as aulas fiquem mais ativas e interessantes"
 
-#: core/templates/core/footer.html:184
+#: pgtbl/core/templates/home/footer.html:231
 msgid "The documentation is found in the"
 msgstr "A documentação se encontra na"
 
-#: core/templates/core/footer.html:185
+#: pgtbl/core/templates/home/footer.html:232
 msgid "wiki of project"
 msgstr "wiki do projeto"
 
-#: core/templates/core/footer.html:186
+#: pgtbl/core/templates/home/footer.html:233
 msgid "Project repository"
 msgstr "Repositorio do projeto"
 
-#: core/templates/core/footer.html:209
+#: pgtbl/core/templates/home/footer.html:257
 msgid "Video about TBL methodology"
 msgstr "Vídeo sobre a métodologia TBL."
 
-#: core/templates/core/footer.html:221
-msgid "Video of how to use the software"
+#: pgtbl/core/templates/home/footer.html:270
+msgid "Video of what is the software PGTBL"
 msgstr "Vídeo sobre o uso do software."
 
-#: core/templates/core/footer.html:234
+#: pgtbl/core/templates/home/footer.html:283
 msgid "Team Based Learning. Code licensed GPL-3.0"
 msgstr "Team Based Learning. Licença GPL-3.0"
 
-#: core/templates/core/footer.html:239
+#: pgtbl/core/templates/home/footer.html:288
 msgid "Designed and built by"
 msgstr "Projetado por"
 
-#: core/templates/core/footer.html:241
+#: pgtbl/core/templates/home/footer.html:290
 msgid "Team members"
 msgstr "Membros do time"
 
-#: core/templates/core/navbar.html:79
-msgid "Profile"
-msgstr "Perfil"
-
-#: core/templates/core/navbar.html:89
-msgid "Logout"
-msgstr "Sair"
-
-#: core/templates/core/navbar.html:101
-msgid "Register"
-msgstr "Cadastro"
-
-#: core/templates/core/navbar.html:110
-msgid "Login"
-msgstr "Entrar"
-
-#: core/templates/core/news.html:34
-msgid "Without image"
-msgstr "Sem imagens"
-
-#: core/templates/core/news.html:47 core/templates/core/news_details.html:70
-#: core/templates/core/news_list.html:66
-msgid "There is no tags"
-msgstr "Não há tags"
-
-#: core/templates/core/news.html:74 core/templates/core/news_list.html:52
-msgid "Read more"
-msgstr "Leia mais"
-
-#: core/templates/core/news.html:82
-msgid "There is no news"
-msgstr "Não há notíciais"
-
-#: core/templates/core/news.html:91
-msgid "See all news"
-msgstr "Veja todas as notícias"
-
-#: core/templates/core/news_details.html:48
+#: pgtbl/core/templates/news/details.html:48
 msgid "Image news"
 msgstr "Imagem da notícia"
 
-#: core/templates/core/news_details.html:78
-#: core/templates/core/news_list.html:28
+#: pgtbl/core/templates/news/details.html:70
+#: pgtbl/core/templates/news/list.html:65
+#: pgtbl/core/templates/news/news.html:47
+msgid "There is no tags"
+msgstr "Não há tags"
+
+#: pgtbl/core/templates/news/details.html:78
+#: pgtbl/core/templates/news/list.html:28
 msgid "Back"
 msgstr "Voltar"
 
-#: core/templates/core/news_list.html:76
+#: pgtbl/core/templates/news/list.html:52
+#: pgtbl/core/templates/news/news.html:74
+msgid "Read more"
+msgstr "Leia mais"
+
+#: pgtbl/core/templates/news/list.html:75
 msgid "No news available"
 msgstr "Nenhuma notícia disponível"
 
-#: core/templates/core/search.html:12
-msgid "Search"
-msgstr "Pesquisar"
+#: pgtbl/core/templates/news/news.html:34
+msgid "Without image"
+msgstr "Sem imagens"
 
-#: core/views.py:58
-#, python-brace-format
+#: pgtbl/core/templates/news/news.html:82
+msgid "There is no news"
+msgstr "Não há notíciais"
+
+#: pgtbl/core/templates/news/news.html:91
+msgid "See all news"
+msgstr "Veja todas as notícias"
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Insert your name."
+msgstr "Insira seu nome."
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Insert your email."
+msgstr "Insira seu email."
+
+msgid "Message"
+msgstr "Mensagem"
+
+msgid "Insert the message."
+msgstr "Insira sua mensagem."
+
+msgid "Empty list and {class_name}.allow_empty is False."
+msgstr "Lista vazia e {class_name}.allow_empty é Falso."
+
+msgid "Tag"
+msgstr "Tag"
+
+msgid "Identify"
+msgstr "Identificador"
+
+msgid "Tags"
+msgstr "Tags"
+
+msgid "Title"
+msgstr "Título"
+
+msgid "Title of information."
+msgstr "Título da informação."
+
+msgid "Image about information."
+msgstr "Imagem sobre a informação."
+
+msgid "Image"
+msgstr "Imagem"
+
+msgid "Created at"
+msgstr "Criado em"
+
+msgid "Date of creation of information"
+msgstr "Data de criação da informação"
+
+msgid "Link of information"
+msgstr "Link da informação"
+
+msgid "Description"
+msgstr "Descrição"
+
+msgid "You are not authorized to do this action."
+msgstr "Você não tem autorização para fazer essa ação."
+
 msgid "PGTBL - message from {0}"
 msgstr "PGTBL - messagem de {0}"
 
-#: core/views.py:73
 msgid "Message sent successfully."
 msgstr "Mensagem enviada com sucesso."

@@ -1,0 +1,163 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-17 16:25-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: pgtbl/forum/templates/forum/delete.html:20
+#: pgtbl/forum/templates/forum/delete.html:42
+#: pgtbl/forum/templates/forum/detail.html:153
+msgid "Delete"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/delete.html:27
+msgid "Are you sure you want to delete"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/delete.html:51
+msgid "Cancel"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/detail.html:25
+msgid "Topic Detail"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/detail.html:38
+#: pgtbl/forum/templates/forum/list.html:37
+msgid "Course"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/detail.html:45
+#: pgtbl/forum/templates/forum/list.html:44
+msgid "Discipline"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/detail.html:52
+#: pgtbl/forum/templates/forum/list.html:51
+msgid "Teacher"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/detail.html:63
+msgid "Author"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/detail.html:70
+msgid "Views"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/detail.html:72
+#: pgtbl/forum/templates/forum/list.html:105
+msgid "View"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/detail.html:85
+msgid "Topic"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/detail.html:115
+#: pgtbl/forum/templates/forum/list.html:118
+#: pgtbl/forum/templates/forum/list.html:168
+msgid "There is no tags"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/detail.html:120
+#: pgtbl/forum/templates/forum/list.html:123
+msgid "Updated at"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/detail.html:120
+#: pgtbl/forum/templates/forum/detail.html:133
+#: pgtbl/forum/templates/forum/list.html:123
+msgid "ago"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/detail.html:126
+msgid "Answer"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/detail.html:133
+msgid "said"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/detail.html:142
+msgid "Options"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/detail.html:166
+#: pgtbl/forum/templates/forum/detail.html:180
+msgid "Correct Answer"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/detail.html:184
+msgid "There is no comments in this topic"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/detail.html:190
+msgid "Comment"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/detail.html:202
+#: pgtbl/forum/templates/forum/form.html:149
+msgid "Send"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/form.html:27
+#: pgtbl/forum/templates/forum/form.html:37
+msgid "Create Topic"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/form.html:140
+msgid "Preview"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/list.html:14
+#: pgtbl/forum/templates/forum/list.html:24
+#: pgtbl/forum/templates/forum/list.html:86
+msgid "Forum"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/list.html:72
+#: pgtbl/forum/templates/forum/list.html:141
+msgid "Filter"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/list.html:103
+msgid "Created by"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/list.html:104
+msgid "answer"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/list.html:134
+msgid "No topics available"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/list.html:147
+msgid "Most recent"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/list.html:151
+msgid "Most viewed"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/list.html:155
+msgid "Most commented"
+msgstr ""
+
+#: pgtbl/forum/templates/forum/list.html:159
+msgid "Tags"
+msgstr ""

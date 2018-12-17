@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-23 18:30-0300\n"
+"POT-Creation-Date: 2018-12-17 16:25-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,185 +18,164 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: groups/models.py:24
-msgid "Title"
-msgstr "Título"
-
-#: groups/models.py:26
-msgid "Title of group"
-msgstr "Título do grupo"
-
-#: groups/models.py:30
-msgid "Students limit"
-msgstr "Limite de estudantes"
-
-#: groups/models.py:32
-msgid "Students limit to get into the group."
-msgstr "Limite de estudantes que pode ser inserido no grupo"
-
-#: groups/models.py:43
-msgid "Created at"
-msgstr "Criado em"
-
-#: groups/models.py:44
-msgid "Date that the group is created."
-msgstr "Data que o grupo foi criado."
-
-#: groups/models.py:49
-msgid "Updated at"
-msgstr "Atualizado em"
-
-#: groups/models.py:50
-msgid "Date that the group is updated"
-msgstr "Data em que o grupo foi atualizado"
-
-#: groups/models.py:63 groups/templates/groups/students.html:14
-msgid "Group"
-msgstr "Grupo"
-
-#: groups/models.py:64
-msgid "Groups"
-msgstr "Grupos"
-
-#: groups/templates/groups/add_group.html:17
+#: pgtbl/groups/templates/groups/add_group.html:16
 msgid "Add group"
 msgstr "Adicionar grupo"
 
-#: groups/templates/groups/add_group.html:26
+#: pgtbl/groups/templates/groups/add_group.html:26
 msgid "Group title"
 msgstr "Título do grupo"
 
-#: groups/templates/groups/add_group.html:32
+#: pgtbl/groups/templates/groups/add_group.html:41
 msgid "Number of students"
 msgstr "Número de estudantes"
 
-#: groups/templates/groups/add_group.html:39
+#: pgtbl/groups/templates/groups/add_group.html:58
 msgid "Add"
 msgstr "Adicionar"
 
-#: groups/templates/groups/delete.html:20
+#: pgtbl/groups/templates/groups/delete.html:20
 msgid "Delete Group"
 msgstr "Deletar grupo"
 
-#: groups/templates/groups/delete.html:27
+#: pgtbl/groups/templates/groups/delete.html:27
 msgid "Are you sure you want to delete"
 msgstr "Tem certeza que deseja deletar"
 
-#: groups/templates/groups/delete.html:42 groups/templates/groups/list.html:148
+#: pgtbl/groups/templates/groups/delete.html:42
+#: pgtbl/groups/templates/groups/list.html:148
 msgid "Delete"
 msgstr "Deletar"
 
-#: groups/templates/groups/delete.html:51
-#: groups/templates/groups/remove_student.html:51
+#: pgtbl/groups/templates/groups/delete.html:51
+#: pgtbl/groups/templates/groups/remove_student.html:51
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: groups/templates/groups/form.html:15 groups/templates/groups/form.html:25
-#: groups/templates/groups/form.html:94
+#: pgtbl/groups/templates/groups/form.html:15
+#: pgtbl/groups/templates/groups/form.html:100
 msgid "Edit"
 msgstr "Editar"
 
-#: groups/templates/groups/list.html:14
+#: pgtbl/groups/templates/groups/list.html:14
 msgid "Group list"
 msgstr "Lista de grupos"
 
-#: groups/templates/groups/list.html:28
+#: pgtbl/groups/templates/groups/list.html:28
 msgid "Student groups"
 msgstr "Lista de estudantes"
 
-#: groups/templates/groups/list.html:37
+#: pgtbl/groups/templates/groups/list.html:37
 msgid "Available"
 msgstr "Disponível"
 
-#: groups/templates/groups/list.html:41
+#: pgtbl/groups/templates/groups/list.html:41
 msgid "Unavailable"
 msgstr "Indisponível"
 
-#: groups/templates/groups/list.html:91 groups/templates/groups/list.html:93
+#: pgtbl/groups/templates/groups/list.html:91
+#: pgtbl/groups/templates/groups/list.html:93
 msgid "Student"
 msgstr "Estudante"
 
-#: groups/templates/groups/list.html:110
+#: pgtbl/groups/templates/groups/list.html:110
 msgid "There is no students in this group."
 msgstr "Não há estudantes nesse grupo."
 
-#: groups/templates/groups/list.html:125
+#: pgtbl/groups/templates/groups/list.html:125
 msgid "Add student"
 msgstr "Adicionar estudantes"
 
-#: groups/templates/groups/list.html:134
+#: pgtbl/groups/templates/groups/list.html:134
 msgid "Edit group"
 msgstr "Editar grupo"
 
-#: groups/templates/groups/list.html:160
+#: pgtbl/groups/templates/groups/list.html:160
 msgid "There is no groups"
 msgstr "Não há grupos"
 
-#: groups/templates/groups/list.html:172
+#: pgtbl/groups/templates/groups/list.html:172
 msgid "Provide"
 msgstr "Disponibilizar"
 
-#: groups/templates/groups/remove_student.html:20
-#: groups/templates/groups/remove_student.html:42
+#: pgtbl/groups/templates/groups/remove_student.html:20
+#: pgtbl/groups/templates/groups/remove_student.html:42
 msgid "Remove"
 msgstr "Remover"
 
-#: groups/templates/groups/remove_student.html:27
+#: pgtbl/groups/templates/groups/remove_student.html:27
 msgid "Are you sure you want to remove"
 msgstr "Tem certeza que deseja remover"
 
-#: groups/templates/groups/students.html:23
+#: pgtbl/groups/templates/groups/students.html:14
+msgid "Group"
+msgstr "Grupo"
+
+#: pgtbl/groups/templates/groups/students.html:23
 msgid "Students List"
 msgstr "Lista de estudantes"
 
-#: groups/templates/groups/students.html:31
+#: pgtbl/groups/templates/groups/students.html:31
 msgid "Students"
 msgstr "Estudantes"
 
-#: groups/templates/groups/students.html:63
+#: pgtbl/groups/templates/groups/students.html:63
 msgid "There is no students."
 msgstr "Não há estudantes"
 
-#: groups/views.py:45 groups/views.py:111 groups/views.py:196
-#: groups/views.py:271 groups/views.py:338 groups/views.py:427
-#: groups/views.py:524 groups/views.py:629
-msgid "You are not authorized to do this action."
-msgstr "Você não tem autorização para realizar essa ação."
+#~ msgid "Title"
+#~ msgstr "Título"
 
-#: groups/views.py:141
-msgid "Group created successfully."
-msgstr "Grupo criado com sucesso."
+#~ msgid "Title of group"
+#~ msgstr "Título do grupo"
 
-#: groups/views.py:152
-msgid "Invalid fields, please fill in the fields correctly."
-msgstr "Campo invalido, por favor preencha os campos corretamente."
+#~ msgid "Students limit"
+#~ msgstr "Limite de estudantes"
 
-#: groups/views.py:231
-msgid "Group updated successfully."
-msgstr "Grupo atualizado com sucesso."
+#~ msgid "Students limit to get into the group."
+#~ msgstr "Limite de estudantes que pode ser inserido no grupo"
 
-#: groups/views.py:304
-msgid "Group deleted successfully."
-msgstr "Grupo deletado com sucesso."
+#~ msgid "Created at"
+#~ msgstr "Criado em"
 
-#: groups/views.py:361
-msgid "Groups available."
-msgstr "Grupos disponíveis"
+#~ msgid "Date that the group is created."
+#~ msgstr "Data que o grupo foi criado."
 
-#: groups/views.py:363
-msgid "Groups unavailable."
-msgstr "Grupos indisponíveis"
+#~ msgid "Updated at"
+#~ msgstr "Atualizado em"
 
-#: groups/views.py:574
-msgid "Crowded group."
-msgstr "Grupo lotado."
+#~ msgid "Date that the group is updated"
+#~ msgstr "Data em que o grupo foi atualizado"
 
-#: groups/views.py:583
-#, python-brace-format
-msgid "{0} was inserted in the group: {1}"
-msgstr "{0} foi inserido no grupo: {1}"
+#~ msgid "Groups"
+#~ msgstr "Grupos"
 
-#: groups/views.py:679
-#, python-brace-format
-msgid "The student {0} is removed from {1}"
-msgstr "O estudante {0} foi removido de {1}"
+#~ msgid "You are not authorized to do this action."
+#~ msgstr "Você não tem autorização para realizar essa ação."
+
+#~ msgid "Group created successfully."
+#~ msgstr "Grupo criado com sucesso."
+
+#~ msgid "Invalid fields, please fill in the fields correctly."
+#~ msgstr "Campo invalido, por favor preencha os campos corretamente."
+
+#~ msgid "Group updated successfully."
+#~ msgstr "Grupo atualizado com sucesso."
+
+#~ msgid "Group deleted successfully."
+#~ msgstr "Grupo deletado com sucesso."
+
+#~ msgid "Groups available."
+#~ msgstr "Grupos disponíveis"
+
+#~ msgid "Groups unavailable."
+#~ msgstr "Grupos indisponíveis"
+
+#~ msgid "Crowded group."
+#~ msgstr "Grupo lotado."
+
+#~ msgid "{0} was inserted in the group: {1}"
+#~ msgstr "{0} foi inserido no grupo: {1}"
+
+#~ msgid "The student {0} is removed from {1}"
+#~ msgstr "O estudante {0} foi removido de {1}"

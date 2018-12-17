@@ -1,0 +1,167 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-17 16:25-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: pgtbl/irat/templates/irat/date.html:9
+msgid "Edit iRAT date"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/date.html:39
+#: pgtbl/irat/templates/irat/irat.html:136
+#: pgtbl/irat/templates/irat/update.html:53
+msgid "Edit"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/info.html:8
+msgid "Rules"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/info.html:11
+msgid "The rules are very simple"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/info.html:13
+msgid "We have 4 options per question: A, B, C, D"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/info.html:14
+msgid "You will have 4 points to distribute in each question."
+msgstr ""
+
+#: pgtbl/irat/templates/irat/info.html:15
+msgid "You can not enter more than 4 points in an option."
+msgstr ""
+
+#: pgtbl/irat/templates/irat/info.html:16
+msgid "The sum of the options has to give 4 points, can not go beyond that."
+msgstr ""
+
+#: pgtbl/irat/templates/irat/info.html:17
+msgid ""
+"The question will only be considered if the sum of the points of the "
+"alternatives is between 0 and 4"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/info.html:18
+#: pgtbl/irat/templates/irat/info.html:19
+#: pgtbl/irat/templates/irat/info.html:20
+#: pgtbl/irat/templates/irat/info.html:21
+msgid "Example"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/info.html:18
+msgid "Insert 4 points in option A."
+msgstr ""
+
+#: pgtbl/irat/templates/irat/info.html:19
+msgid "Insert 2 points in option B and 2 points in option C."
+msgstr ""
+
+#: pgtbl/irat/templates/irat/info.html:20
+msgid "Insert 3 points in option A and 1 points in option D."
+msgstr ""
+
+#: pgtbl/irat/templates/irat/info.html:21
+msgid "Insert 1 points in each option."
+msgstr ""
+
+#: pgtbl/irat/templates/irat/irat.html:14
+#: pgtbl/irat/templates/irat/irat.html:104
+msgid "iRAT"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/irat.html:25
+msgid "Individual Readiness Assurance Test (iRAT)"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/irat.html:37
+#: pgtbl/irat/templates/irat/result.html:36
+msgid "Course"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/irat.html:42
+#: pgtbl/irat/templates/irat/result.html:41
+msgid "Discipline"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/irat.html:47
+#: pgtbl/irat/templates/irat/result.html:46
+msgid "Teacher"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/irat.html:77
+msgid "The date has not yet been defined"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/irat.html:88
+msgid "The date of the evaluation has not yet been defined"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/irat.html:145
+msgid "Delete"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/irat.html:250
+msgid "Answer"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/irat.html:256
+msgid "There is no questions in this session."
+msgstr ""
+
+#: pgtbl/irat/templates/irat/pagination.html:8
+#: pgtbl/irat/templates/irat/pagination.html:15
+msgid "Back"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/pagination.html:22
+msgid "Next"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/pagination.html:28
+msgid "Conclude"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/result.html:14
+#: pgtbl/irat/templates/irat/result.html:24
+msgid "iRAT result"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/result.html:64
+msgid "Result"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/result.html:69
+msgid "Question"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/result.html:70
+msgid "Correct option"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/result.html:87
+msgid "Total"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/result.html:89
+msgid "Grade"
+msgstr ""
+
+#: pgtbl/irat/templates/irat/update.html:9
+msgid "Edit iRAT"
+msgstr ""

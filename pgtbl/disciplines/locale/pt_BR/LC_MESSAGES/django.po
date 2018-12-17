@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-23 18:30-0300\n"
+"POT-Creation-Date: 2018-12-17 16:25-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,222 +18,222 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: disciplines/forms.py:60
-msgid "Access Password"
-msgstr "Senha de acesso"
-
-#: disciplines/models.py:59
-msgid "Title"
-msgstr "Título"
-
-#: disciplines/models.py:61
-msgid "Discipline title"
-msgstr "Título da disciplina"
-
-#: disciplines/models.py:65 disciplines/templates/disciplines/sidebar.html:12
-msgid "Description"
-msgstr "Ementa"
-
-#: disciplines/models.py:66
-msgid "Discipline description"
-msgstr "Ementa da disciplina"
-
-#: disciplines/models.py:70 disciplines/templates/disciplines/list.html:48
-#: disciplines/templates/disciplines/list.html:144
-msgid "Course"
-msgstr "Curso"
-
-#: disciplines/models.py:73
-msgid "Discipline course"
-msgstr "Curso da disciplina"
-
-#: disciplines/models.py:77
-msgid "Shortcut"
-msgstr "URL atalho"
-
-#: disciplines/models.py:78
-msgid "URL string shortcut"
-msgstr "String de atalho da URL"
-
-#: disciplines/models.py:83
-msgid "Enter a valid classroom, the classroom need to be 'Class A-Z'"
-msgstr ""
-"Entre com uma turma valida, as turmas seguem o seguinte formato 'Turma A-Z'"
-
-#: disciplines/models.py:87
-msgid "Classroom"
-msgstr "Turma"
-
-#: disciplines/models.py:89
-msgid "Classroom title of discipline."
-msgstr "Turma da disciplina"
-
-#: disciplines/models.py:94
-msgid "Password"
-msgstr "Senha da turma"
-
-#: disciplines/models.py:96
-msgid "Password to get into the class."
-msgstr "Senha para entrar na turma."
-
-#: disciplines/models.py:101
-msgid "Students limit"
-msgstr "Limite de estudantes"
-
-#: disciplines/models.py:103
-msgid "Students limit to get in the class."
-msgstr "Limite de estudantes para entrar na turma."
-
-#: disciplines/models.py:107
-#, python-format
-msgid "There can be no more than %(limit_value)s students in the class."
-msgstr "Não pode haver mais que %(limit_value)s estudantes na turma."
-
-#: disciplines/models.py:111
-#, python-format
-msgid "Must have at least %(limit_value)s students in class."
-msgstr "Deve haver no mínimo %(limit_value)s estudantes na turma."
-
-#: disciplines/models.py:117
-msgid "Monitors limit"
-msgstr "Limite de monitores"
-
-#: disciplines/models.py:119
-msgid "Monitors limit to insert in the class."
-msgstr "Limite de monitores para entrar na turma."
-
-#: disciplines/models.py:123
-#, python-format
-msgid "There can be no more than %(limit_value)s monitors in the class."
-msgstr "Não pode haver mais de %(limit_value)s monitores na turma."
-
-#: disciplines/models.py:127
-#, python-format
-msgid "Ensure this value is greater than or equal to %(limit_value)s."
-msgstr "Tenha certeza que este valor é maior ou igual a %(limit_value)s."
-
-#: disciplines/models.py:133
-msgid "Is closed?"
-msgstr "Está fechada?"
-
-#: disciplines/models.py:135
-msgid "Close discipline."
-msgstr "Fechar turma."
-
-#: disciplines/models.py:139
-msgid "Was group provided?"
-msgstr "O grupo foi disponibilizado?"
-
-#: disciplines/models.py:141
-msgid "Provide groups to students see."
-msgstr "Disponibilizar grupos para os estudantes verem."
-
-#: disciplines/models.py:148 disciplines/templates/disciplines/details.html:69
-#: disciplines/templates/disciplines/list.html:62
-#: disciplines/templates/disciplines/list.html:139
-#: disciplines/templates/disciplines/users.html:72
-msgid "Teacher"
-msgstr "Professor"
-
-#: disciplines/models.py:170
-msgid "Created at"
-msgstr "Criado em"
-
-#: disciplines/models.py:171
-msgid "Date that the discipline is created."
-msgstr "Data que a disciplina foi criada."
-
-#: disciplines/models.py:177
-msgid "Updated at"
-msgstr "Atualizado em"
-
-#: disciplines/models.py:178
-msgid "Date that the discipline is updated."
-msgstr "Data em que a disciplina foi atualizada"
-
-#: disciplines/models.py:202 disciplines/templates/disciplines/list.html:55
-msgid "Discipline"
-msgstr "Disciplina"
-
-#: disciplines/models.py:203
-msgid "Disciplines"
-msgstr "Disciplinas"
-
-#: disciplines/templates/disciplines/delete.html:21
+#: pgtbl/disciplines/templates/disciplines/delete.html:21
 msgid "Delete Discipline"
 msgstr "Deletar disciplina"
 
-#: disciplines/templates/disciplines/delete.html:28
+#: pgtbl/disciplines/templates/disciplines/delete.html:28
 msgid "Are you sure you want to delete"
 msgstr "Tem certeza que deseja deletar"
 
-#: disciplines/templates/disciplines/delete.html:43
+#: pgtbl/disciplines/templates/disciplines/delete.html:43
 msgid "Delete"
 msgstr "Deletar"
 
-#: disciplines/templates/disciplines/delete.html:52
-#: disciplines/templates/disciplines/remove_student.html:57
+#: pgtbl/disciplines/templates/disciplines/delete.html:52
+#: pgtbl/disciplines/templates/disciplines/reset.html:54
+#: pgtbl/disciplines/templates/students/remove.html:57
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: disciplines/templates/disciplines/details.html:44
-msgid "Closed"
-msgstr "Fechado"
+#: pgtbl/disciplines/templates/disciplines/details.html:45
+#, fuzzy
+#| msgid "Delete Discipline"
+msgid "Reset Discipline"
+msgstr "Deletar disciplina"
 
-#: disciplines/templates/disciplines/details.html:46
-msgid "Open"
-msgstr "Aberto"
+#: pgtbl/disciplines/templates/disciplines/details.html:68
+#: pgtbl/disciplines/templates/disciplines/list.html:61
+#: pgtbl/disciplines/templates/disciplines/list.html:138
+#: pgtbl/disciplines/templates/students/users.html:72
+msgid "Teacher"
+msgstr "Professor"
 
-#: disciplines/templates/disciplines/form.html:17
-msgid "Create Discipline"
-msgstr "Criar disciplina"
+#: pgtbl/disciplines/templates/disciplines/details.html:81
+#, fuzzy
+#| msgid "Discipline"
+msgid "Open Discipline"
+msgstr "Disciplina"
 
-#: disciplines/templates/disciplines/form.html:27
+#: pgtbl/disciplines/templates/disciplines/details.html:86
+#, fuzzy
+#| msgid "Close discipline."
+msgid "Close Discipline"
+msgstr "Fechar turma."
+
+#: pgtbl/disciplines/templates/disciplines/form.html:28
 msgid "Create discipline"
 msgstr "Criar disciplina"
 
-#: disciplines/templates/disciplines/form.html:109
+#: pgtbl/disciplines/templates/disciplines/form.html:130
 msgid "Preview"
 msgstr "Visualizar"
 
-#: disciplines/templates/disciplines/form.html:115
+#: pgtbl/disciplines/templates/disciplines/form.html:138
 msgid "ClassRoom"
 msgstr "Turma"
 
-#: disciplines/templates/disciplines/form.html:212
+#: pgtbl/disciplines/templates/disciplines/form.html:266
 msgid "Send"
 msgstr "Enviar"
 
-#: disciplines/templates/disciplines/list.html:15
+#: pgtbl/disciplines/templates/disciplines/list.html:14
 msgid "Search Discipline"
 msgstr "Procurar disciplina"
 
-#: disciplines/templates/disciplines/list.html:26
+#: pgtbl/disciplines/templates/disciplines/list.html:25
 msgid "Discipline list"
 msgstr "Lista de disciplina"
 
-#: disciplines/templates/disciplines/list.html:40
+#: pgtbl/disciplines/templates/disciplines/list.html:39
 msgid "Order"
 msgstr "Ordenar"
 
-#: disciplines/templates/disciplines/list.html:74
-#: disciplines/templates/disciplines/users.html:31
+#: pgtbl/disciplines/templates/disciplines/list.html:47
+#: pgtbl/disciplines/templates/disciplines/list.html:143
+msgid "Course"
+msgstr "Curso"
+
+#: pgtbl/disciplines/templates/disciplines/list.html:54
+msgid "Discipline"
+msgstr "Disciplina"
+
+#: pgtbl/disciplines/templates/disciplines/list.html:73
+#: pgtbl/disciplines/templates/students/users.html:31
 msgid "Search"
 msgstr "Procurar"
 
-#: disciplines/templates/disciplines/list.html:177
+#: pgtbl/disciplines/templates/disciplines/list.html:182
 msgid "There is no disciplines available"
 msgstr "Não há disciplina disponível"
 
-#: disciplines/templates/disciplines/remove_student.html:20
+#: pgtbl/disciplines/templates/disciplines/reset.html:20
+#: pgtbl/disciplines/templates/disciplines/reset.html:45
+msgid "Reset"
+msgstr ""
+
+#: pgtbl/disciplines/templates/disciplines/reset.html:27
+msgid ""
+"This action will close the discipline, all groups and submissions will be "
+"deleted and students and monitors removed."
+msgstr ""
+
+#: pgtbl/disciplines/templates/disciplines/reset.html:30
+#, fuzzy
+#| msgid "Are you sure you want to delete"
+msgid "Are you sure you want to reset"
+msgstr "Tem certeza que deseja deletar"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:13
+msgid "Description"
+msgstr "Ementa"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:15
+#, fuzzy
+#| msgid "Discipline title"
+msgid "Discipline Details"
+msgstr "Título da disciplina"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:24
+msgid "Student list"
+msgstr "Lista de estudante"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:26
+#: pgtbl/disciplines/templates/students/list.html:25
+msgid "Student List"
+msgstr "Lista de estudantes"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:35
+msgid "Grades"
+msgstr "Notas"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:37
+#, fuzzy
+#| msgid "Grades"
+msgid "Final Grades"
+msgstr "Notas"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:46
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:48
+msgid "Groups"
+msgstr "Grupos"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:57
+msgid "Group rank"
+msgstr "Rank de grupos"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:59
+#, fuzzy
+#| msgid "Group rank"
+msgid "Group Rank"
+msgstr "Rank de grupos"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:68
+msgid "TBL sessions"
+msgstr "Sessões TBL"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:70
+#, fuzzy
+#| msgid "TBL sessions"
+msgid "TBL Sessions"
+msgstr "Sessões TBL"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:79
+msgid "Files"
+msgstr "Arquivos"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:81
+#, fuzzy
+#| msgid "Discipline title"
+msgid "Discipline Files"
+msgstr "Título da disciplina"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:90
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:92
+msgid "Forum"
+msgstr ""
+
+#: pgtbl/disciplines/templates/students/list.html:14
+msgid "Students list"
+msgstr "Lista de estudantes"
+
+#: pgtbl/disciplines/templates/students/list.html:42
+msgid "All"
+msgstr "Todos"
+
+#: pgtbl/disciplines/templates/students/list.html:52
+#: pgtbl/disciplines/templates/students/users.html:49
+msgid "Students"
+msgstr "Estudantes"
+
+#: pgtbl/disciplines/templates/students/list.html:62
+#: pgtbl/disciplines/templates/students/users.html:52
+msgid "Monitors"
+msgstr "Monitores"
+
+#: pgtbl/disciplines/templates/students/list.html:101
+#: pgtbl/disciplines/templates/students/list.html:111
+msgid "Monitor"
+msgstr "Monitor"
+
+#: pgtbl/disciplines/templates/students/list.html:105
+#: pgtbl/disciplines/templates/students/list.html:113
+msgid "Student"
+msgstr "Estudante"
+
+#: pgtbl/disciplines/templates/students/list.html:149
+msgid "There is no students in this class."
+msgstr "Não há disciplina disponível nessa turma."
+
+#: pgtbl/disciplines/templates/students/remove.html:20
 msgid "Remove student"
 msgstr "Remover estudante"
 
-#: disciplines/templates/disciplines/remove_student.html:28
+#: pgtbl/disciplines/templates/students/remove.html:28
 msgid "Are you sure you want to leave the discipline ?"
 msgstr "Tem certeza que deseja deletar a disciplina ?"
 
-#: disciplines/templates/disciplines/remove_student.html:30
+#: pgtbl/disciplines/templates/students/remove.html:30
 #, fuzzy, python-format
 #| msgid "Are you sure you want to remove %(student)s from discipline ?\n"
 msgid ""
@@ -242,172 +242,173 @@ msgid ""
 "          "
 msgstr "Tem certeza que deseja remover %(student)s da disciplina ?\n"
 
-#: disciplines/templates/disciplines/remove_student.html:48
+#: pgtbl/disciplines/templates/students/remove.html:48
 msgid "Remove"
 msgstr "Remover"
 
-#: disciplines/templates/disciplines/sidebar.html:21
-msgid "Student list"
-msgstr "Lista de estudante"
-
-#: disciplines/templates/disciplines/sidebar.html:30
-msgid "Grades"
-msgstr "Notas"
-
-#: disciplines/templates/disciplines/sidebar.html:39
-msgid "Groups"
-msgstr "Grupos"
-
-#: disciplines/templates/disciplines/sidebar.html:48
-msgid "Group rank"
-msgstr "Rank de grupos"
-
-#: disciplines/templates/disciplines/sidebar.html:57
-msgid "TBL sessions"
-msgstr "Sessões TBL"
-
-#: disciplines/templates/disciplines/sidebar.html:66
-msgid "Files"
-msgstr "Arquivos"
-
-#: disciplines/templates/disciplines/students.html:14
-msgid "Students list"
-msgstr "Lista de estudantes"
-
-#: disciplines/templates/disciplines/students.html:25
-msgid "Student List"
-msgstr "Lista de estudantes"
-
-#: disciplines/templates/disciplines/students.html:42
-msgid "All"
-msgstr "Todos"
-
-#: disciplines/templates/disciplines/students.html:52
-#: disciplines/templates/disciplines/users.html:49
-msgid "Students"
-msgstr "Estudantes"
-
-#: disciplines/templates/disciplines/students.html:62
-#: disciplines/templates/disciplines/users.html:52
-msgid "Monitors"
-msgstr "Monitores"
-
-#: disciplines/templates/disciplines/students.html:101
-#: disciplines/templates/disciplines/students.html:111
-msgid "Monitor"
-msgstr "Monitor"
-
-#: disciplines/templates/disciplines/students.html:105
-#: disciplines/templates/disciplines/students.html:113
-msgid "Student"
-msgstr "Estudante"
-
-#: disciplines/templates/disciplines/students.html:149
-msgid "There is no students in this class."
-msgstr "Não há disciplina disponível nessa turma."
-
-#: disciplines/templates/disciplines/users.html:9
+#: pgtbl/disciplines/templates/students/users.html:9
 msgid "User list"
 msgstr "Lista de usuários"
 
-#: disciplines/templates/disciplines/users.html:18
+#: pgtbl/disciplines/templates/students/users.html:18
 msgid "User List"
 msgstr "Lista de usuários"
 
-#: disciplines/templates/disciplines/users.html:87
+#: pgtbl/disciplines/templates/students/users.html:87
 msgid "There is no users."
 msgstr "Não há usuários disponíveis"
 
-#: disciplines/tests/test_create_discipline.py:84
-#: disciplines/tests/test_create_discipline.py:87
-#: disciplines/tests/test_create_discipline.py:90
-#: disciplines/tests/test_update_discipline.py:102
-#: disciplines/tests/test_update_discipline.py:105
-#: disciplines/tests/test_update_discipline.py:108
-msgid "This field is required."
-msgstr "Este campo é obrigatório."
+#~ msgid "Access Password"
+#~ msgstr "Senha de acesso"
 
-#: disciplines/tests/test_create_discipline.py:94
-msgid "There can be no more than 60 students in the class."
-msgstr "Não pode haver mais que 60 estudantes na turma."
+#~ msgid "Title"
+#~ msgstr "Título"
 
-#: disciplines/tests/test_create_discipline.py:98
-msgid "There can be no more than 5 monitors in the class."
-msgstr "Não pode haver mais de 5 monitores na turma."
+#~ msgid "Discipline description"
+#~ msgstr "Ementa da disciplina"
 
-#: disciplines/tests/test_create_discipline.py:109
-msgid "Must have at least 5 students in class."
-msgstr "Deve haver no mínimo 5 estudantes na turma."
+#~ msgid "Discipline course"
+#~ msgstr "Curso da disciplina"
 
-#: disciplines/views.py:74
-msgid "Discipline created successfully."
-msgstr "Disciplina criada com sucesso."
+#~ msgid "Shortcut"
+#~ msgstr "URL atalho"
 
-#: disciplines/views.py:123
-msgid "Discipline updated successfully."
-msgstr "Disciplina atualizada com sucesso."
+#~ msgid "URL string shortcut"
+#~ msgstr "String de atalho da URL"
 
-#: disciplines/views.py:150
-msgid "Discipline deleted successfully."
-msgstr "Disciplina deletada com sucesso."
+#~ msgid "Enter a valid classroom, the classroom need to be 'Class A-Z'"
+#~ msgstr ""
+#~ "Entre com uma turma valida, as turmas seguem o seguinte formato 'Turma A-"
+#~ "Z'"
 
-#: disciplines/views.py:241
-msgid "Incorrect Password."
-msgstr "Senha incorreta."
+#~ msgid "Classroom"
+#~ msgstr "Turma"
 
-#: disciplines/views.py:249
-msgid "Discipline is closed."
-msgstr "Disciplina está fechada."
+#~ msgid "Classroom title of discipline."
+#~ msgstr "Turma da disciplina"
 
-#: disciplines/views.py:262
-#, python-brace-format
-msgid "You have been entered into the discipline: {0}"
-msgstr "Você acabou de entrar na disciplina: {0}"
+#~ msgid "Password"
+#~ msgstr "Senha da turma"
 
-#: disciplines/views.py:279 disciplines/views.py:686
-msgid "There are no more vacancies to monitor"
-msgstr "Não há mais vagas para monitor dessa disciplina."
+#~ msgid "Password to get into the class."
+#~ msgstr "Senha para entrar na turma."
 
-#: disciplines/views.py:287 disciplines/views.py:694
-msgid "You can't get into your own discipline."
-msgstr "Você não pode entrar na sua própria disciplina."
+#~ msgid "Students limit"
+#~ msgstr "Limite de estudantes"
 
-#: disciplines/views.py:309 disciplines/views.py:716
-msgid "Crowded discipline."
-msgstr "Turma cheia."
+#~ msgid "Students limit to get in the class."
+#~ msgstr "Limite de estudantes para entrar na turma."
 
-#: disciplines/views.py:488
-#, python-brace-format
-msgid "You can't remove {0} from {1}"
-msgstr "Você não pode remover {0} de {1}"
+#~ msgid "There can be no more than %(limit_value)s students in the class."
+#~ msgstr "Não pode haver mais que %(limit_value)s estudantes na turma."
 
-#: disciplines/views.py:513
-#, python-brace-format
-msgid "You have removed {0} from {1}"
-msgstr "Você não pode remover {0} de {1}"
+#~ msgid "Must have at least %(limit_value)s students in class."
+#~ msgstr "Deve haver no mínimo %(limit_value)s estudantes na turma."
 
-#: disciplines/views.py:524
-#, python-brace-format
-msgid "You left the discipline {0}"
-msgstr "Você saiu da disciplina {0}"
+#~ msgid "Monitors limit"
+#~ msgstr "Limite de monitores"
 
-#: disciplines/views.py:671
-#, python-brace-format
-msgid "{0} was inserted in the discipline: {1}"
-msgstr "{0} foi inserido na disciplina: {1}"
+#~ msgid "Monitors limit to insert in the class."
+#~ msgstr "Limite de monitores para entrar na turma."
 
-#: disciplines/views.py:780
-msgid "Successful modification"
-msgstr "Modificado com sucesso."
+#~ msgid "There can be no more than %(limit_value)s monitors in the class."
+#~ msgstr "Não pode haver mais de %(limit_value)s monitores na turma."
 
-#: disciplines/views.py:792
-msgid "You can't turn a teacher into a student."
-msgstr "Você não pode tornar professor em estudante."
+#~ msgid "Ensure this value is greater than or equal to %(limit_value)s."
+#~ msgstr "Tenha certeza que este valor é maior ou igual a %(limit_value)s."
 
-#: disciplines/views.py:825
-msgid "Student limit exceeded."
-msgstr "Limite de estudantes excedido"
+#~ msgid "Is closed?"
+#~ msgstr "Está fechada?"
 
-#: disciplines/views.py:841
-msgid "Monitor limit exceeded."
-msgstr "Limite de monitores excedido"
+#~ msgid "Was group provided?"
+#~ msgstr "O grupo foi disponibilizado?"
+
+#~ msgid "Provide groups to students see."
+#~ msgstr "Disponibilizar grupos para os estudantes verem."
+
+#~ msgid "Created at"
+#~ msgstr "Criado em"
+
+#~ msgid "Date that the discipline is created."
+#~ msgstr "Data que a disciplina foi criada."
+
+#~ msgid "Updated at"
+#~ msgstr "Atualizado em"
+
+#~ msgid "Date that the discipline is updated."
+#~ msgstr "Data em que a disciplina foi atualizada"
+
+#~ msgid "Disciplines"
+#~ msgstr "Disciplinas"
+
+#~ msgid "Closed"
+#~ msgstr "Fechado"
+
+#~ msgid "Open"
+#~ msgstr "Aberto"
+
+#~ msgid "Create Discipline"
+#~ msgstr "Criar disciplina"
+
+#~ msgid "This field is required."
+#~ msgstr "Este campo é obrigatório."
+
+#~ msgid "There can be no more than 60 students in the class."
+#~ msgstr "Não pode haver mais que 60 estudantes na turma."
+
+#~ msgid "There can be no more than 5 monitors in the class."
+#~ msgstr "Não pode haver mais de 5 monitores na turma."
+
+#~ msgid "Must have at least 5 students in class."
+#~ msgstr "Deve haver no mínimo 5 estudantes na turma."
+
+#~ msgid "Discipline created successfully."
+#~ msgstr "Disciplina criada com sucesso."
+
+#~ msgid "Discipline updated successfully."
+#~ msgstr "Disciplina atualizada com sucesso."
+
+#~ msgid "Discipline deleted successfully."
+#~ msgstr "Disciplina deletada com sucesso."
+
+#~ msgid "Incorrect Password."
+#~ msgstr "Senha incorreta."
+
+#~ msgid "Discipline is closed."
+#~ msgstr "Disciplina está fechada."
+
+#~ msgid "You have been entered into the discipline: {0}"
+#~ msgstr "Você acabou de entrar na disciplina: {0}"
+
+#~ msgid "There are no more vacancies to monitor"
+#~ msgstr "Não há mais vagas para monitor dessa disciplina."
+
+#~ msgid "You can't get into your own discipline."
+#~ msgstr "Você não pode entrar na sua própria disciplina."
+
+#~ msgid "Crowded discipline."
+#~ msgstr "Turma cheia."
+
+#~ msgid "You can't remove {0} from {1}"
+#~ msgstr "Você não pode remover {0} de {1}"
+
+#~ msgid "You have removed {0} from {1}"
+#~ msgstr "Você não pode remover {0} de {1}"
+
+#~ msgid "You left the discipline {0}"
+#~ msgstr "Você saiu da disciplina {0}"
+
+#~ msgid "{0} was inserted in the discipline: {1}"
+#~ msgstr "{0} foi inserido na disciplina: {1}"
+
+#~ msgid "Successful modification"
+#~ msgstr "Modificado com sucesso."
+
+#~ msgid "You can't turn a teacher into a student."
+#~ msgstr "Você não pode tornar professor em estudante."
+
+#~ msgid "Student limit exceeded."
+#~ msgstr "Limite de estudantes excedido"
+
+#~ msgid "Monitor limit exceeded."
+#~ msgstr "Limite de monitores excedido"

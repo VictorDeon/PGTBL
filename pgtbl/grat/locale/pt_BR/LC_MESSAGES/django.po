@@ -1,0 +1,167 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-17 16:25-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: pgtbl/grat/templates/grat/date.html:9
+msgid "Edit gRAT date"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/date.html:39
+#: pgtbl/grat/templates/grat/grat.html:136
+#: pgtbl/grat/templates/grat/update.html:53
+msgid "Edit"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/grat.html:14
+#: pgtbl/grat/templates/grat/grat.html:104
+msgid "gRAT"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/grat.html:25
+msgid "Group Readiness Assurance Test (gRAT)"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/grat.html:37
+#: pgtbl/grat/templates/grat/result.html:37
+msgid "Course"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/grat.html:42
+#: pgtbl/grat/templates/grat/result.html:42
+msgid "Discipline"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/grat.html:47
+#: pgtbl/grat/templates/grat/result.html:47
+msgid "Teacher"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/grat.html:77
+#: pgtbl/grat/templates/grat/grat.html:88
+msgid "The date has not yet been defined"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/grat.html:145
+msgid "Delete"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/grat.html:234
+msgid "Answer"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/grat.html:240
+msgid "There is no questions in this session."
+msgstr ""
+
+#: pgtbl/grat/templates/grat/info.html:8
+msgid "Rules"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/info.html:11
+msgid "The rules are very simple"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/info.html:13
+msgid "We have 4 options per alternative: 4 Points, 2 Points, 1 Point, 0 Point"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/info.html:14
+msgid ""
+"If alternative with 4 Points is correct, it earns 4 points, otherwise "
+"decreases in half"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/info.html:15
+msgid "You can only choose one option per alternative and can not be repeated"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/info.html:16
+msgid ""
+"After answering the question you can scratch the scratch card and see the "
+"correct answer"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/info.html:17
+#: pgtbl/grat/templates/grat/info.html:18
+#: pgtbl/grat/templates/grat/info.html:19
+#: pgtbl/grat/templates/grat/info.html:20
+#: pgtbl/grat/templates/grat/info.html:21
+msgid "Example"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/info.html:17
+msgid "Alternative A insert 4 Points"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/info.html:18
+msgid "Alternative B insert 1 Point"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/info.html:19
+msgid "Alternative C insert 2 Points"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/info.html:20
+msgid "Alternative D insert 0 Point"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/info.html:21
+msgid "Alternative C is correct, so you have earned 2 points"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/pagination.html:8
+#: pgtbl/grat/templates/grat/pagination.html:15
+msgid "Back"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/pagination.html:22
+msgid "Next"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/pagination.html:28
+msgid "Conclude"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/result.html:14
+#: pgtbl/grat/templates/grat/result.html:25
+msgid "gRAT result"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/result.html:65
+msgid "Result"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/result.html:70
+msgid "Question"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/result.html:71
+msgid "Correct option"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/result.html:88
+msgid "Total"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/result.html:90
+msgid "Grade"
+msgstr ""
+
+#: pgtbl/grat/templates/grat/update.html:9
+msgid "Edit gRAT"
+msgstr ""

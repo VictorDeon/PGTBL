@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-23 18:30-0300\n"
+"POT-Creation-Date: 2018-12-17 16:25-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,140 +18,125 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: grades/models.py:36
-msgid "iRAT grade"
-msgstr "Nota iRAT"
-
-#: grades/models.py:38
-msgid "iRAT test grade."
-msgstr "Nota da prova iRAT"
-
-#: grades/models.py:42
-msgid "gRAT grade"
-msgstr "Nota gRAT"
-
-#: grades/models.py:44
-msgid "gRAT test grade."
-msgstr "Nota da prova gRAT"
-
-#: grades/models.py:48
-msgid "Practical test grade"
-msgstr "Nota do projeto prático"
-
-#: grades/models.py:50
-msgid "Practical test grade."
-msgstr "Nota do projeto prático."
-
-#: grades/models.py:54
-msgid "Peer review grade"
-msgstr "Nota da avaliação em pares"
-
-#: grades/models.py:56
-msgid "Peer review grade."
-msgstr "Nota da avaliação em pares"
-
-#: grades/models.py:60 grades/models.py:145
-msgid "Created at"
-msgstr "Criado em"
-
-#: grades/models.py:61 grades/models.py:146
-msgid "Date that the session is created."
-msgstr "Data que a sessão foi criada."
-
-#: grades/models.py:66 grades/models.py:151
-msgid "Updated at"
-msgstr "Atualizado em"
-
-#: grades/models.py:67 grades/models.py:152
-msgid "Date that the session is updated."
-msgstr "Data que a sessão foi atualizada."
-
-#: grades/models.py:120
-msgid "TBL Session grades"
-msgstr "Notas da sessão de TBL"
-
-#: grades/models.py:121
-msgid "TBL Sessions grades"
-msgstr "Notas da sessão de TBL"
-
-#: grades/models.py:188 grades/models.py:189
-msgid "Discipline grades"
-msgstr "Notas da disciplina"
-
-#: grades/templates/grades/form.html:15
-msgid "Edit grade"
-msgstr "Editar notas"
-
-#: grades/templates/grades/form.html:25 grades/templates/grades/form.html:84
+#: pgtbl/grades/templates/grades/form.html:16
+#: pgtbl/grades/templates/grades/form.html:111
 msgid "Edit"
 msgstr "Editar"
 
-#: grades/templates/grades/form.html:25
+#: pgtbl/grades/templates/grades/form.html:16
 msgid "grade"
 msgstr "Nota"
 
-#: grades/templates/grades/list.html:14 grades/templates/grades/list.html:24
-#: grades/templates/grades/result.html:14
-#: grades/templates/grades/result.html:24
+#: pgtbl/grades/templates/grades/list.html:14
+#: pgtbl/grades/templates/grades/list.html:24
+#: pgtbl/grades/templates/grades/result.html:14
+#: pgtbl/grades/templates/grades/result.html:24
 msgid "Grades"
 msgstr "Notas"
 
-#: grades/templates/grades/list.html:33 grades/templates/grades/result.html:33
+#: pgtbl/grades/templates/grades/list.html:33
+#: pgtbl/grades/templates/grades/result.html:33
 msgid "Students"
 msgstr "Estudantes"
 
-#: grades/templates/grades/list.html:34
+#: pgtbl/grades/templates/grades/list.html:34
 msgid "Sessions"
 msgstr "Sessões"
 
-#: grades/templates/grades/list.html:37
+#: pgtbl/grades/templates/grades/list.html:37
 msgid "Group"
 msgstr "Grupo"
 
-#: grades/templates/grades/list.html:38 grades/templates/grades/result.html:37
+#: pgtbl/grades/templates/grades/list.html:38
+#: pgtbl/grades/templates/grades/result.html:37
 msgid "Username"
 msgstr "Usuário"
 
-#: grades/templates/grades/list.html:41
+#: pgtbl/grades/templates/grades/list.html:41
 msgid "Practical Test"
 msgstr "Prova prático"
 
-#: grades/templates/grades/list.html:42
+#: pgtbl/grades/templates/grades/list.html:42
 msgid "Peer Review"
 msgstr "Avaliação em pares"
 
-#: grades/templates/grades/list.html:43
+#: pgtbl/grades/templates/grades/list.html:43
 msgid "TBL grade"
 msgstr "Nota TBL"
 
-#: grades/templates/grades/list.html:70
+#: pgtbl/grades/templates/grades/list.html:70
+#: pgtbl/grades/templates/grades/result.html:52
 msgid "There are no grades."
 msgstr "Não há notas disponíveis."
 
-#: grades/templates/grades/result.html:34
+#: pgtbl/grades/templates/grades/result.html:34
 msgid "Final grade"
 msgstr "Nota final"
 
-#: grades/templates/grades/result.html:38
+#: pgtbl/grades/templates/grades/result.html:38
 msgid "Grade"
 msgstr "Nota"
 
-#: grades/templates/grades/result.html:39
+#: pgtbl/grades/templates/grades/result.html:39
 msgid "Status"
 msgstr "Status"
 
-#: grades/templates/grades/result.html:48
-msgid "Approved"
-msgstr "Aprovado"
+#~ msgid "iRAT grade"
+#~ msgstr "Nota iRAT"
 
-#: grades/templates/grades/result.html:51
-msgid "Disapproved"
-msgstr "Reprovado"
+#~ msgid "iRAT test grade."
+#~ msgstr "Nota da prova iRAT"
 
-#: grades/views.py:171
-msgid "Grades updated successfully."
-msgstr "Nota atualizada com sucesso."
+#~ msgid "gRAT grade"
+#~ msgstr "Nota gRAT"
 
-#: grades/views.py:183
-msgid "Grade need to be a number between 0 and 10."
-msgstr "Nota precisa ser um número entre 0 e 10."
+#~ msgid "gRAT test grade."
+#~ msgstr "Nota da prova gRAT"
+
+#~ msgid "Practical test grade"
+#~ msgstr "Nota do projeto prático"
+
+#~ msgid "Practical test grade."
+#~ msgstr "Nota do projeto prático."
+
+#~ msgid "Peer review grade"
+#~ msgstr "Nota da avaliação em pares"
+
+#~ msgid "Peer review grade."
+#~ msgstr "Nota da avaliação em pares"
+
+#~ msgid "Created at"
+#~ msgstr "Criado em"
+
+#~ msgid "Date that the session is created."
+#~ msgstr "Data que a sessão foi criada."
+
+#~ msgid "Updated at"
+#~ msgstr "Atualizado em"
+
+#~ msgid "Date that the session is updated."
+#~ msgstr "Data que a sessão foi atualizada."
+
+#~ msgid "TBL Session grades"
+#~ msgstr "Notas da sessão de TBL"
+
+#~ msgid "TBL Sessions grades"
+#~ msgstr "Notas da sessão de TBL"
+
+#~ msgid "Discipline grades"
+#~ msgstr "Notas da disciplina"
+
+#~ msgid "Edit grade"
+#~ msgstr "Editar notas"
+
+#~ msgid "Approved"
+#~ msgstr "Aprovado"
+
+#~ msgid "Disapproved"
+#~ msgstr "Reprovado"
+
+#~ msgid "Grades updated successfully."
+#~ msgstr "Nota atualizada com sucesso."
+
+#~ msgid "Grade need to be a number between 0 and 10."
+#~ msgstr "Nota precisa ser um número entre 0 e 10."

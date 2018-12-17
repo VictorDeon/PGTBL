@@ -1,0 +1,155 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-17 16:25-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: pgtbl/appeals/templates/appeals/delete.html:20
+#: pgtbl/appeals/templates/appeals/delete.html:42
+#: pgtbl/appeals/templates/appeals/detail.html:158
+msgid "Delete"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/delete.html:27
+msgid "Are you sure you want to delete"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/delete.html:51
+msgid "Cancel"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/detail.html:25
+msgid "Appeal Detail"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/detail.html:40
+#: pgtbl/appeals/templates/appeals/list.html:39
+msgid "Course"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/detail.html:47
+#: pgtbl/appeals/templates/appeals/list.html:46
+msgid "Discipline"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/detail.html:54
+#: pgtbl/appeals/templates/appeals/list.html:53
+msgid "Teacher"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/detail.html:65
+msgid "Group"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/detail.html:72
+msgid "Student"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/detail.html:127
+#: pgtbl/appeals/templates/appeals/list.html:103
+msgid "Question"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/detail.html:131
+#: pgtbl/appeals/templates/appeals/list.html:97
+msgid "Accept"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/detail.html:136
+msgid "Updated at"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/detail.html:136
+#: pgtbl/appeals/templates/appeals/detail.html:148
+msgid "ago"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/detail.html:141
+#: pgtbl/appeals/templates/appeals/detail.html:175
+msgid "Comment"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/detail.html:148
+msgid "said"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/detail.html:169
+msgid "There is no comments in this appeal"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/detail.html:188
+#: pgtbl/appeals/templates/appeals/form.html:132
+msgid "Send"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/form.html:28
+msgid "Create Appeal"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/form.html:51
+msgid "Select a question"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/form.html:123
+msgid "Preview"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/info.html:8
+msgid "Rules"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/info.html:11
+msgid "The rules of appeals"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/info.html:13
+msgid "Make an appeal if you disagree with any test question"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/info.html:14
+msgid ""
+"The appeal must have good references and justifications for its approval."
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/info.html:15
+msgid ""
+"The teacher will evaluate the appeal, give comments, and if approved, he can "
+"arrange his grade."
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/info.html:16
+msgid "Any student can comment on the appeal as well."
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/list.html:14
+msgid "Appeal List"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/list.html:24
+msgid "Appeal"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/list.html:70
+msgid "APPEALS"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/list.html:105
+msgid "Read more"
+msgstr ""
+
+#: pgtbl/appeals/templates/appeals/list.html:115
+msgid "No appeals available"
+msgstr ""

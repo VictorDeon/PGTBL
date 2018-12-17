@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-23 18:30-0300\n"
+"POT-Creation-Date: 2018-12-17 16:25-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,345 +18,336 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: accounts/admin.py:27
-msgid "Personal Information"
-msgstr "Informações Pessoais"
-
-#: accounts/admin.py:37
-msgid "Permissions"
-msgstr "Permissões"
-
-#: accounts/apps.py:7
-msgid "Accounts"
-msgstr "Contas"
-
-#: accounts/forms.py:16 accounts/templates/accounts/collapse.html:91
-#: accounts/templates/accounts/profile.html:86
-msgid "Teacher"
-msgstr "Professor(a)"
-
-#: accounts/forms.py:17 accounts/templates/accounts/profile.html:91
-msgid "Student"
-msgstr "Aluno(a)"
-
-#: accounts/forms.py:68 accounts/tests/test_reset_password.py:77
-msgid "There is no user found with this email"
-msgstr "Não há usuários com esse email"
-
-#: accounts/models.py:25
-msgid "Enter a valid username"
-msgstr "Entre com um usuário válido"
-
-#: accounts/models.py:26
-msgid ""
-"This value should only contain letters, numbers,         and characters ./@/"
-"+/-/_."
-msgstr ""
-"Este valor deve somente conter letras, números, e caracteres como @/./+/-/_."
-
-#: accounts/models.py:33 accounts/models.py:168 accounts/models.py:182
-#: accounts/tests/test_login.py:98
-msgid "User"
-msgstr "Usuário"
-
-#: accounts/models.py:39
-msgid "A user with that username already exists."
-msgstr "Um usuário com esse username já existe."
-
-#: accounts/models.py:44
-msgid "E-mail"
-msgstr "E-mail"
-
-#: accounts/models.py:45
-msgid "Email that will be used as username."
-msgstr "Email que será usado como usuário."
-
-#: accounts/models.py:48
-msgid "A user with that email already exists."
-msgstr "Um usuário com esse email já existe."
-
-#: accounts/models.py:53
-msgid "Name"
-msgstr "Nome"
-
-#: accounts/models.py:54
-msgid "Full user name."
-msgstr "Nome completo."
-
-#: accounts/models.py:59 accounts/templates/accounts/profile.html:121
-msgid "Institution"
-msgstr "Instituição"
-
-#: accounts/models.py:60
-msgid "University or School in which the user is inserted."
-msgstr "Universidade ou escola na qual o usuário está inserido."
-
-#: accounts/models.py:66 accounts/templates/accounts/collapse.html:100
-#: accounts/templates/accounts/profile.html:130
-msgid "Course"
-msgstr "Curso"
-
-#: accounts/models.py:67
-msgid "Course of university or Period of school."
-msgstr "Curso da universidade ou Série da escola."
-
-#: accounts/models.py:74
-msgid "Photo of user."
-msgstr "Foto do usuário."
-
-#: accounts/models.py:75
-msgid "Photo"
-msgstr "Foto"
-
-#: accounts/models.py:81
-msgid "Is Teacher?"
-msgstr "É professor?"
-
-#: accounts/models.py:82
-msgid "Verify if the user is teacher or student"
-msgstr "Verifica se o usuário é professor ou aluno"
-
-#: accounts/models.py:87
-msgid "Last Login"
-msgstr "Último login"
-
-#: accounts/models.py:88
-msgid "Last moment the user logged in."
-msgstr "Último momento em que o usuário estava logado."
-
-#: accounts/models.py:96
-msgid "Is Active?"
-msgstr "Está ativo?"
-
-#: accounts/models.py:97
-msgid "Verify if the user is active."
-msgstr "Verifica se o usuário ainda está ativo."
-
-#: accounts/models.py:103
-msgid "Is Staff?"
-msgstr "É administrador?"
-
-#: accounts/models.py:104
-msgid "Verify if the user is a staff."
-msgstr "Verifica se o usuário é um administrador."
-
-#: accounts/models.py:110 accounts/models.py:195
-msgid "Created at"
-msgstr "Criado em"
-
-#: accounts/models.py:111
-msgid "Date that the user is created."
-msgstr "Data que o usuário criou a conta."
-
-#: accounts/models.py:117
-msgid "Updated at"
-msgstr "Atualizado em"
-
-#: accounts/models.py:118
-msgid "Date that the user is updated."
-msgstr "Data que o usuário atualizou a conta."
-
-#: accounts/models.py:169
-msgid "Users"
-msgstr "Usuários"
-
-#: accounts/models.py:188
-msgid "Key"
-msgstr "Chave"
-
-#: accounts/models.py:201
-msgid "Confirmed?"
-msgstr "Confirmado?"
-
-#: accounts/models.py:219
-msgid "New password"
-msgstr "Nova senha"
-
-#: accounts/models.py:220
-msgid "New passwords"
-msgstr "Novas senhas"
-
-#: accounts/templates/accounts/collapse.html:10
+#: pgtbl/accounts/templates/accounts/collapse.html:10
 msgid "All Disciplines"
 msgstr "Todas as disciplinas"
 
-#: accounts/templates/accounts/collapse.html:19
+#: pgtbl/accounts/templates/accounts/collapse.html:19
 msgid "Student of discipline"
 msgstr "Estudante das disciplinas"
 
-#: accounts/templates/accounts/collapse.html:28
+#: pgtbl/accounts/templates/accounts/collapse.html:28
 msgid "Discipline monitor"
 msgstr "Monitor das disciplinas"
 
-#: accounts/templates/accounts/collapse.html:37
+#: pgtbl/accounts/templates/accounts/collapse.html:37
 msgid "Created Disciplines"
 msgstr "Disciplinas criadas"
 
-#: accounts/templates/accounts/collapse.html:116
-#: accounts/templates/accounts/login.html:70
+#: pgtbl/accounts/templates/accounts/collapse.html:91
+#: pgtbl/accounts/templates/accounts/profile.html:86
+msgid "Teacher"
+msgstr "Professor(a)"
+
+#: pgtbl/accounts/templates/accounts/collapse.html:100
+#: pgtbl/accounts/templates/accounts/profile.html:130
+msgid "Course"
+msgstr "Curso"
+
+#: pgtbl/accounts/templates/accounts/collapse.html:116
+#: pgtbl/accounts/templates/accounts/login.html:81
 msgid "Enter"
 msgstr "Entrar"
 
-#: accounts/templates/accounts/collapse.html:127
+#: pgtbl/accounts/templates/accounts/collapse.html:127
 msgid "Hall of Fame"
 msgstr "Hall da Fama"
 
-#: accounts/templates/accounts/collapse.html:140
-#: accounts/templates/accounts/edit_information.html:171
-#: accounts/templates/accounts/edit_password.html:103
+#: pgtbl/accounts/templates/accounts/collapse.html:140
+#: pgtbl/accounts/templates/accounts/edit_information.html:219
+#: pgtbl/accounts/templates/accounts/edit_password.html:121
 msgid "Edit"
 msgstr "Editar"
 
-#: accounts/templates/accounts/collapse.html:166
+#: pgtbl/accounts/templates/accounts/collapse.html:166
 msgid "There is no disciplines."
 msgstr "Não há disciplinas."
 
-#: accounts/templates/accounts/delete.html:20
+#: pgtbl/accounts/templates/accounts/delete.html:20
 msgid "Delete user"
 msgstr "Deletar usuário"
 
-#: accounts/templates/accounts/delete.html:27
+#: pgtbl/accounts/templates/accounts/delete.html:27
 msgid "Are you sure you want to delete your account"
 msgstr "Tem certeza que deseja deletar sua conta"
 
-#: accounts/templates/accounts/delete.html:41
+#: pgtbl/accounts/templates/accounts/delete.html:41
 msgid "Delete"
 msgstr "Deletar"
 
-#: accounts/templates/accounts/delete.html:50
+#: pgtbl/accounts/templates/accounts/delete.html:50
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: accounts/templates/accounts/edit_information.html:15
+#: pgtbl/accounts/templates/accounts/edit_information.html:14
 msgid "Edit information"
 msgstr "Editar informação"
 
-#: accounts/templates/accounts/edit_information.html:25
-#: accounts/templates/accounts/sidebar.html:21
+#: pgtbl/accounts/templates/accounts/edit_information.html:24
+#: pgtbl/accounts/templates/accounts/sidebar.html:23
 msgid "Edit personal information"
 msgstr "Editar informações pessoais"
 
-#: accounts/templates/accounts/edit_password.html:15
-#: accounts/templates/accounts/edit_password.html:24
-#: accounts/templates/accounts/sidebar.html:30
+#: pgtbl/accounts/templates/accounts/edit_password.html:14
+#: pgtbl/accounts/templates/accounts/edit_password.html:23
+#: pgtbl/accounts/templates/accounts/sidebar.html:34
 msgid "Edit password"
 msgstr "Editar senha"
 
-#: accounts/templates/accounts/login.html:76
+#: pgtbl/accounts/templates/accounts/login.html:87
 msgid "Forget password"
 msgstr "Esqueceu a senha"
 
-#: accounts/templates/accounts/profile.html:23
-#: accounts/templates/accounts/profile.html:56
-#: accounts/templates/accounts/sidebar.html:12
+#: pgtbl/accounts/templates/accounts/profile.html:23
+#: pgtbl/accounts/templates/accounts/profile.html:56
+#: pgtbl/accounts/templates/accounts/sidebar.html:12
+#: pgtbl/accounts/templates/accounts/sidebar.html:15
 msgid "Profile"
 msgstr "Perfil"
 
-#: accounts/templates/accounts/profile.html:105
+#: pgtbl/accounts/templates/accounts/profile.html:31
+msgid "Welcome"
+msgstr ""
+
+#: pgtbl/accounts/templates/accounts/profile.html:91
+msgid "Student"
+msgstr "Aluno(a)"
+
+#: pgtbl/accounts/templates/accounts/profile.html:105
 msgid "Change your name!"
 msgstr "Insira seu nome!"
 
-#: accounts/templates/accounts/profile.html:112
+#: pgtbl/accounts/templates/accounts/profile.html:112
 msgid "Email"
 msgstr "Email"
 
-#: accounts/templates/accounts/profile.html:143
+#: pgtbl/accounts/templates/accounts/profile.html:121
+msgid "Institution"
+msgstr "Instituição"
+
+#: pgtbl/accounts/templates/accounts/profile.html:143
 msgid "Last login"
 msgstr "Último login"
 
-#: accounts/templates/accounts/profile.html:147
+#: pgtbl/accounts/templates/accounts/profile.html:147
 msgid "Updated "
 msgstr "Atualizado "
 
-#: accounts/templates/accounts/profile.html:147
+#: pgtbl/accounts/templates/accounts/profile.html:147
 msgid " ago"
 msgstr " atrás"
 
-#: accounts/templates/accounts/register.html:17
+#: pgtbl/accounts/templates/accounts/register.html:16
 msgid "Register"
 msgstr "Cadastro"
 
-#: accounts/templates/accounts/register.html:87
+#: pgtbl/accounts/templates/accounts/register.html:104
 msgid "Select the type of user"
 msgstr "Selecione o tipo de usuário"
 
-#: accounts/templates/accounts/register.html:128
+#: pgtbl/accounts/templates/accounts/register.html:161
 msgid "Send"
 msgstr "Enviar"
 
-#: accounts/templates/accounts/reset_password.html:19
-#: accounts/templates/accounts/reset_password_confirm.html:72
+#: pgtbl/accounts/templates/accounts/reset_password.html:18
+#: pgtbl/accounts/templates/accounts/reset_password_confirm.html:83
 msgid "Reset password"
 msgstr "Resetar a senha"
 
-#: accounts/templates/accounts/reset_password.html:57
+#: pgtbl/accounts/templates/accounts/reset_password.html:61
 msgid "Send email"
 msgstr "Enviar email"
 
-#: accounts/templates/accounts/reset_password_confirm.html:18
+#: pgtbl/accounts/templates/accounts/reset_password_confirm.html:17
 msgid "Enter your new password"
 msgstr "Entre com sua nova senha"
 
-#: accounts/templates/accounts/reset_password_email.html:4
+#: pgtbl/accounts/templates/accounts/reset_password_email.html:4
 msgid "To create a new password access the link"
 msgstr "Para criar uma nova senha acesse o link"
 
-#: accounts/templates/accounts/reset_password_email.html:7
+#: pgtbl/accounts/templates/accounts/reset_password_email.html:7
 msgid "New Password"
 msgstr "Nova senha"
 
-#: accounts/templates/accounts/sidebar.html:39
+#: pgtbl/accounts/templates/accounts/sidebar.html:26
+#, fuzzy
+#| msgid "Updated at"
+msgid "Update Account"
+msgstr "Atualizado em"
+
+#: pgtbl/accounts/templates/accounts/sidebar.html:37
+#, fuzzy
+#| msgid "New Password"
+msgid "Update Password"
+msgstr "Nova senha"
+
+#: pgtbl/accounts/templates/accounts/sidebar.html:45
 msgid "Search discipline and classroom"
 msgstr "Procurar disciplinas e turmas"
 
-#: accounts/templates/accounts/sidebar.html:48
+#: pgtbl/accounts/templates/accounts/sidebar.html:48
+#, fuzzy
+#| msgid "Created Disciplines"
+msgid "Search Discipline"
+msgstr "Disciplinas criadas"
+
+#: pgtbl/accounts/templates/accounts/sidebar.html:56
 msgid "Create discipline and classroom"
 msgstr "Criar disciplinas e turmas"
 
-#: accounts/tests/test_edit_user.py:84 accounts/tests/test_edit_user.py:96
-#: accounts/tests/test_edit_user.py:108
-#: accounts/tests/test_reset_password.py:61
-msgid "This field is required."
-msgstr "Este campo é obrigatório."
+#: pgtbl/accounts/templates/accounts/sidebar.html:60
+#, fuzzy
+#| msgid "Created Disciplines"
+msgid "Create Discipline"
+msgstr "Disciplinas criadas"
 
-#: accounts/tests/test_login.py:91
-#, python-format
-msgid ""
-"Please enter a correct %(username)s and password. Note that both fields may "
-"be case-sensitive."
+#: pgtbl/accounts/templates/accounts/sidebar.html:68
+#: pgtbl/accounts/templates/accounts/sidebar.html:72
+msgid "Notification"
 msgstr ""
-"Por favor entre com o %(username)s e senha correto. Note que ambos os campos "
-"devem ser case-sensitive."
 
-#: accounts/tests/test_reset_password.py:48 accounts/views.py:285
-msgid "Requesting new password"
-msgstr "Solicitando nova senha"
+#: pgtbl/accounts/templates/accounts/sidebar.html:83
+#, fuzzy
+#| msgid "Delete user"
+msgid "Delete Account"
+msgstr "Deletar usuário"
 
-#: accounts/views.py:141
-msgid "Teacher created successfully."
-msgstr "Professor criado com sucesso."
+#~ msgid "Personal Information"
+#~ msgstr "Informações Pessoais"
 
-#: accounts/views.py:146
-msgid "Student created successfully."
-msgstr "Estudante criado com sucesso."
+#~ msgid "Permissions"
+#~ msgstr "Permissões"
 
-#: accounts/views.py:182
-msgid "User updated successfully."
-msgstr "Usuário atualizado com sucesso."
+#~ msgid "Accounts"
+#~ msgstr "Contas"
 
-#: accounts/views.py:212
-msgid "Accounts deleted successfully."
-msgstr "Conta deletada com sucesso."
+#~ msgid "There is no user found with this email"
+#~ msgstr "Não há usuários com esse email"
 
-#: accounts/views.py:252
-msgid "Password updated successfully."
-msgstr "Sua senha foi atualizada com sucesso."
+#~ msgid "Enter a valid username"
+#~ msgstr "Entre com um usuário válido"
 
-#: accounts/views.py:293
-msgid "An email was sent with more details on how to create a new password"
-msgstr ""
-"Um email será enviado com mais informações sobre como criar uma nova senha."
+#~ msgid ""
+#~ "This value should only contain letters, numbers,         and characters ./"
+#~ "@/+/-/_."
+#~ msgstr ""
+#~ "Este valor deve somente conter letras, números, e caracteres como @/./+/-/"
+#~ "_."
 
-#: accounts/views.py:344
-msgid "Your password was successfully updated."
-msgstr "Sua senha foi atualizada com sucesso."
+#~ msgid "User"
+#~ msgstr "Usuário"
+
+#~ msgid "A user with that username already exists."
+#~ msgstr "Um usuário com esse username já existe."
+
+#~ msgid "E-mail"
+#~ msgstr "E-mail"
+
+#~ msgid "Email that will be used as username."
+#~ msgstr "Email que será usado como usuário."
+
+#~ msgid "A user with that email already exists."
+#~ msgstr "Um usuário com esse email já existe."
+
+#~ msgid "Name"
+#~ msgstr "Nome"
+
+#~ msgid "Full user name."
+#~ msgstr "Nome completo."
+
+#~ msgid "University or School in which the user is inserted."
+#~ msgstr "Universidade ou escola na qual o usuário está inserido."
+
+#~ msgid "Course of university or Period of school."
+#~ msgstr "Curso da universidade ou Série da escola."
+
+#~ msgid "Photo of user."
+#~ msgstr "Foto do usuário."
+
+#~ msgid "Photo"
+#~ msgstr "Foto"
+
+#~ msgid "Is Teacher?"
+#~ msgstr "É professor?"
+
+#~ msgid "Verify if the user is teacher or student"
+#~ msgstr "Verifica se o usuário é professor ou aluno"
+
+#~ msgid "Last Login"
+#~ msgstr "Último login"
+
+#~ msgid "Last moment the user logged in."
+#~ msgstr "Último momento em que o usuário estava logado."
+
+#~ msgid "Is Active?"
+#~ msgstr "Está ativo?"
+
+#~ msgid "Verify if the user is active."
+#~ msgstr "Verifica se o usuário ainda está ativo."
+
+#~ msgid "Is Staff?"
+#~ msgstr "É administrador?"
+
+#~ msgid "Verify if the user is a staff."
+#~ msgstr "Verifica se o usuário é um administrador."
+
+#~ msgid "Created at"
+#~ msgstr "Criado em"
+
+#~ msgid "Date that the user is created."
+#~ msgstr "Data que o usuário criou a conta."
+
+#~ msgid "Date that the user is updated."
+#~ msgstr "Data que o usuário atualizou a conta."
+
+#~ msgid "Users"
+#~ msgstr "Usuários"
+
+#~ msgid "Key"
+#~ msgstr "Chave"
+
+#~ msgid "Confirmed?"
+#~ msgstr "Confirmado?"
+
+#~ msgid "New password"
+#~ msgstr "Nova senha"
+
+#~ msgid "New passwords"
+#~ msgstr "Novas senhas"
+
+#~ msgid "This field is required."
+#~ msgstr "Este campo é obrigatório."
+
+#~ msgid ""
+#~ "Please enter a correct %(username)s and password. Note that both fields "
+#~ "may be case-sensitive."
+#~ msgstr ""
+#~ "Por favor entre com o %(username)s e senha correto. Note que ambos os "
+#~ "campos devem ser case-sensitive."
+
+#~ msgid "Requesting new password"
+#~ msgstr "Solicitando nova senha"
+
+#~ msgid "Teacher created successfully."
+#~ msgstr "Professor criado com sucesso."
+
+#~ msgid "Student created successfully."
+#~ msgstr "Estudante criado com sucesso."
+
+#~ msgid "User updated successfully."
+#~ msgstr "Usuário atualizado com sucesso."
+
+#~ msgid "Accounts deleted successfully."
+#~ msgstr "Conta deletada com sucesso."
+
+#~ msgid "Password updated successfully."
+#~ msgstr "Sua senha foi atualizada com sucesso."
+
+#~ msgid "An email was sent with more details on how to create a new password"
+#~ msgstr ""
+#~ "Um email será enviado com mais informações sobre como criar uma nova "
+#~ "senha."
+
+#~ msgid "Your password was successfully updated."
+#~ msgstr "Sua senha foi atualizada com sucesso."
