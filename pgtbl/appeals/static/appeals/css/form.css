@@ -1,0 +1,24 @@
+.preview {
+  background-color: white;
+}
+
+textarea {
+  resize: none;
+}
+
+.input-group {
+  padding: 10px;
+}
+
+.icon-md {
+  font-size: 20px;
+}
+
+.submit-button {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.text-white {
+  color: white;
+}

@@ -1,0 +1,210 @@
+{% extends 'appeals/list.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'appeals/css/detail.css' %}" />
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'appeals:detail' discipline.slug session.id appeal.id %}">
+      {{appeal.title}}
+    </a>
+  </li>
+{% endblock %}
+
+<!-- Discipline list block -->
+{% block content %}
+  <div class="container-fluid">
+    <div class="page-header profile">
+      <h1 class="white">
+        <i class="fa fa-balance-scale"></i>
+        {% trans 'Appeal Detail' %}<br />
+        <small>{{discipline.title}} - {{session.title}}</small>
+      </h1>
+    </div>
+    <div class="row fix-row white">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="panel panel-default questions gradient">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <table class="table table-responsive">
+                    <tr>
+                      <th>
+                        <i class="fa fa-graduation-cap"></i>
+                        {% trans 'Course' %}:
+                      </th>
+                      <td>{{ discipline.course }}</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <i class="fa fa-book"></i>
+                        {% trans 'Discipline' %}:
+                      </th>
+                      <td>{{ discipline.title }}</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <i class="fa fa-user"></i>
+                        {% trans 'Teacher' %}:
+                      </th>
+                      <td>{{ discipline.teacher.get_short_name }}</td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col-md-6">
+                  <table class="table table-responsive">
+                    <tr>
+                      <th>
+                        <i class="fa fa-users"></i>
+                        {% trans 'Group' %}:
+                      </th>
+                      <td>{{ appeal.group.title }}</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <i class="fa fa-user"></i>
+                        {% trans 'Student' %}:
+                      </th>
+                      <td>{{ appeal.student.get_short_name }}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row fix-row">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-sm-11 text-center">
+              <h4>{{appeal.title}}</h4>
+            </div>
+            {% if user == appeal.student %}
+              <div class="col-sm-1">
+                <a href="#"
+                   class="roles pull-right"
+                   data-toggle="modal"
+                   data-target="#delete-{{appeal.id}}-modal">
+                   <i class="fa fa-trash"></i>
+                </a>
+                {% include 'appeals/delete.html' %}
+              </div>
+            {% endif %}
+            {% if user == discipline.teacher %}
+              <div class="col-sm-1">
+                <form action="{% url 'appeals:approve' discipline.slug session.id appeal.id %}" method="post">
+                  {% csrf_token %}
+                  {% if not appeal.is_accept %}
+                    <button
+                      class="btn-link approve-icon pull-right"
+                      type="submit">
+                      <i class="fa fa-check"></i>
+                    </button>
+                  {% else %}
+                    <button
+                      class="btn-link disapprove-icon pull-right"
+                      type="submit">
+                      <i class="fa fa-close"></i>
+                    </button>
+                  {% endif %}
+                </form>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <p><b>{% trans 'Question' %}</b>: {{appeal.question.title}}</p>
+              <div class="panel panel-default">
+                <div class="panel-body img-responsive-markdown">
+                  {% if appeal.is_accept %}
+                    <span class="label label-success pull-right">{% trans 'Accept' %}</span>
+                  {% endif %}
+                  {{appeal.description_markdown}}
+                </div>
+              </div>
+              <span class="pull-right">{% trans 'Updated at' %} {{appeal.updated_at | timesince}} {% trans 'ago' %}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <h2>{{appeal.qtd_comments}} {% trans 'Comment' %}{{appeal.qtd_comments | pluralize}}</h2>
+              <hr />
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  {% for comment in appeal.comments.all %}
+                    <div class="row">
+                      <div class="col-sm-10">
+                        <h5><b>{{comment.author.get_short_name}}</b> {% trans 'said' %} {{comment.created_at | timesince}} {% trans 'ago' %}:</h5>
+                      </div>
+                      <div class="col-sm-2">
+                        {% if comment.author == user %}
+                          <form action="{% url 'appeals:delete-comment' discipline.slug session.id appeal.id comment.id %}" method="post">
+                            {% csrf_token %}
+                            <button
+                              class="btn btn-danger btn-block"
+                              type="submit">
+                              <i class="fa fa-trash"></i>
+                              {% trans 'Delete' %}
+                            </button>
+                          </form>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <p class="text-justify">
+                     {{comment.content | linebreaksbr}}
+                    </p>
+                    <hr />
+                  {% empty %}
+                    <div class="well">{% trans 'There is no comments in this appeal' %}</div>
+                    <hr />
+                  {% endfor %}
+                  <form method="post" action="{% url 'appeals:submit-comment' discipline.slug session.id appeal.id %}" novalidate>
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="{{form.content.id_for_label}}">{% trans 'Comment' %}:</label>
+                      <textarea
+                        class="form-control"
+                        rows="5"
+                        id="{{form.content.id_for_label}}"
+                        placeholder="{{form.content.help_text}}"
+                        name="{{form.content.name}}"></textarea>
+                    </div>
+
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-block gradient">
+                      <i class="fa fa-send"></i>
+                      {% trans 'Send' %}
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% if user == appeal.student %}
+            <div class="row">
+              <div class="col-sm-offset-10 col-sm-2">
+                <a href="{% url 'appeals:update' discipline.slug session.id appeal.id %}"
+                   class="btn btn-primary btn-lg edit-button">
+                   <i class="fa fa-edit"></i>
+                </a>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

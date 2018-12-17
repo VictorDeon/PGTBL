@@ -1,0 +1,224 @@
+{% extends 'forum/list.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'forum/css/detail.css' %}" />
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'forum:detail' discipline.slug topic.id %}">
+      {{topic.title}}
+    </a>
+  </li>
+{% endblock %}
+
+<!-- Discipline list block -->
+{% block content %}
+  <div class="container-fluid">
+    <div class="page-header profile">
+      <h1 class="white">
+        <i class="fa fa-comments-o"></i>
+        {% trans 'Topic Detail' %}<br />
+        <small>{{discipline.title}}</small>
+      </h1>
+    </div>
+    <div class="row fix-row white">
+      <div class="panel panel-default questions gradient">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-6">
+              <table class="table table-responsive">
+                <tr>
+                  <th>
+                    <i class="fa fa-graduation-cap"></i>
+                    {% trans 'Course' %}:
+                  </th>
+                  <td>{{ discipline.course }}</td>
+                </tr>
+                <tr>
+                  <th>
+                    <i class="fa fa-book"></i>
+                    {% trans 'Discipline' %}:
+                  </th>
+                  <td>{{ discipline.title }}</td>
+                </tr>
+                <tr>
+                  <th>
+                    <i class="fa fa-user"></i>
+                    {% trans 'Teacher' %}:
+                  </th>
+                  <td>{{ discipline.teacher.get_short_name }}</td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-md-6">
+              <table class="table table-responsive">
+                <tr>
+                  <th>
+                    <i class="fa fa-user"></i>
+                    {% trans 'Author' %}:
+                  </th>
+                  <td>{{ topic.author.get_short_name }}</td>
+                </tr>
+                <tr>
+                  <th>
+                    <i class="fa fa-eye"></i>
+                    {% trans 'Views' %}:
+                  </th>
+                  <td>{{topic.views}} {% trans 'View' %}{{topic.views | pluralize}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row fix-row">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-sm-11 text-center">
+              <h4>{% trans 'Topic' %}: {{topic.title}}</h4>
+            </div>
+            {% if user == topic.author %}
+              <div class="col-sm-1">
+                <a href="#"
+                   class="roles pull-right"
+                   data-toggle="modal"
+                   data-target="#delete-{{topic.id}}-modal">
+                   <i class="fa fa-trash"></i>
+                </a>
+                {% include 'forum/delete.html' %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="panel panel-default">
+            <div class="panel-body img-responsive-markdown">
+              {{topic.content_markdown}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <i class="fa fa-tags"></i> tags:
+              {% for tag in topic.tags.all %}
+                <!-- Go to topic-tag url and pass by argment the slug from tag -->
+                <a href="{% url 'forum:list-tagged' discipline.slug tag.slug %}" class="no-decoration">
+                   {{tag}}
+                </a>{% if not forloop.last %},{% endif %}
+              {% empty %}
+                {% trans 'There is no tags' %}
+              {% endfor %}
+            </div>
+            <div class="col-sm-6">
+              <p class="pull-right">
+                {% trans 'Updated at' %} {{topic.updated_at | timesince}} {% trans 'ago' %}
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <h2>{{topic.qtd_answers}} {% trans 'Answer' %}{{topic.qtd_answers | pluralize}}</h2>
+              <hr />
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  {% for answer in topic.answers.all %}
+                    <div class="row">
+                      <div class="col-sm-10">
+                        <h5><b>{{answer.author.get_short_name}}</b> {% trans 'said' %} {{answer.created_at | timesince}} {% trans 'ago' %}:</h5>
+                      </div>
+                      <div class="col-sm-2">
+                        {% if answer.author == user or topic.author == user%}
+                          <div class="dropdown">
+                            <button
+                              class="btn btn-primary gradient dropdown-toggle btn-block"
+                              type="button"
+                              data-toggle="dropdown">
+                              {% trans 'Options' %}
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu">
+                                {% if answer.author == user %}
+                                  <li>
+                                    <form action="{% url 'forum:delete-answer' discipline.slug topic.id answer.id %}" method="post">
+                                      {% csrf_token %}
+                                      <button
+                                        type="submit"
+                                        class="btn btn-link btn-delete">
+                                        <i class="fa fa-trash"></i>
+                                        {% trans 'Delete' %}
+                                      </button>
+                                    </form>
+                                  </li>
+                                {% endif %}
+                                {% if topic.author == user %}
+                                  <li>
+                                    <form action="{% url 'forum:correct-answer' discipline.slug topic.id answer.id %}" method="post">
+                                      {% csrf_token %}
+                                      <button
+                                        type="submit"
+                                        class="btn btn-link btn-correct">
+                                        <i class="fa fa-check"></i>
+                                        {% trans 'Correct Answer' %}
+                                      </button>
+                                    </form>
+                                  </li>
+                                {% endif %}
+                              </ul>
+                          </div>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <p class="text-justify">
+                     {{answer.content | linebreaksbr}}
+                    </p>
+                    {% if answer.is_correct %}
+                      <span class="label label-success">{% trans 'Correct Answer' %}</span>
+                    {% endif %}
+                    <hr />
+                  {% empty %}
+                    <div class="well">{% trans 'There is no comments in this topic' %}</div>
+                    <hr />
+                  {% endfor %}
+                  <form method="post" action="{% url 'forum:submit-answer' discipline.slug topic.id %}" novalidate>
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="{{form.content.id_for_label}}">{% trans 'Comment' %}:</label>
+                      <textarea
+                        class="form-control"
+                        rows="5"
+                        id="{{form.content.id_for_label}}"
+                        placeholder="{{form.content.help_text}}"
+                        name="{{form.content.name}}"></textarea>
+                    </div>
+
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-block gradient">
+                      <i class="fa fa-send"></i> {% trans 'Send' %}
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% if user == topic.author %}
+            <div class="row">
+              <div class="col-sm-offset-10 col-sm-2">
+                <a href="{% url 'forum:update' discipline.slug topic.id %}"
+                   class="btn btn-primary btn-lg edit-button">
+                   <i class="fa fa-edit"></i>
+                </a>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,167 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-17 16:25-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: pgtbl/exercises/templates/exercises/info.html:8
+msgid "Rules"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/info.html:11
+msgid "The rules are very simple"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/info.html:13
+msgid "We have 4 options per question: A, B, C, D"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/info.html:14
+msgid "You will have 4 points to distribute in each question."
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/info.html:15
+msgid "You can not enter more than 4 points in an option."
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/info.html:16
+msgid "The sum of the options has to give 4 points, can not go beyond that."
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/info.html:17
+msgid ""
+"The question will only be considered if the sum of the points of the "
+"alternatives is between 0 and 4"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/info.html:18
+#: pgtbl/exercises/templates/exercises/info.html:19
+#: pgtbl/exercises/templates/exercises/info.html:20
+#: pgtbl/exercises/templates/exercises/info.html:21
+msgid "Example"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/info.html:18
+msgid "Insert 4 points in option A."
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/info.html:19
+msgid "Insert 2 points in option B and 2 points in option C."
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/info.html:20
+msgid "Insert 3 points in option A and 1 points in option D."
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/info.html:21
+msgid "Insert 1 points in each option."
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/list.html:14
+#: pgtbl/exercises/templates/exercises/list.html:24
+#: pgtbl/exercises/templates/exercises/result.html:14
+msgid "Exercise list"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/list.html:36
+#: pgtbl/exercises/templates/exercises/result.html:41
+msgid "Course"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/list.html:41
+#: pgtbl/exercises/templates/exercises/result.html:46
+msgid "Discipline"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/list.html:46
+#: pgtbl/exercises/templates/exercises/result.html:51
+msgid "Teacher"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/list.html:58
+msgid "Edit gamification weight"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/list.html:74
+msgid "EXERCISE LIST"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/list.html:106
+#: pgtbl/exercises/templates/exercises/update.html:37
+msgid "Edit"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/list.html:115
+msgid "Delete"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/list.html:220
+msgid "Answer"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/list.html:226
+msgid "There is no questions in this session."
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/pagination.html:8
+#: pgtbl/exercises/templates/exercises/pagination.html:15
+msgid "Back"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/pagination.html:22
+msgid "Next"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/pagination.html:28
+msgid "Conclude"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/result.html:19
+#: pgtbl/exercises/templates/exercises/result.html:29
+msgid "Exercise list result"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/result.html:66
+msgid "Reset"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/result.html:78
+msgid "Result"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/result.html:83
+msgid "Question"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/result.html:84
+msgid "Correct option"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/result.html:106
+msgid "Download CSV"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/result.html:110
+msgid "Total"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/result.html:112
+msgid "Grade"
+msgstr ""
+
+#: pgtbl/exercises/templates/exercises/update.html:9
+msgid "Edit exercise gamification weight"
+msgstr ""

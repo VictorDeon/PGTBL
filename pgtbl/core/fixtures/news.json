@@ -3,11 +3,11 @@
     "model": "core.news",
     "pk": 1,
     "fields": {
-        "title": "Funcionalidade de book",
+        "title": "Funcionalidade de gamifica\u00e7\u00e3o",
         "image": "",
         "created_at": "2018-07-15T03:28:41.277Z",
         "link": null,
-        "content": "O software ser\u00e1 atualizado com uma nova funcionalidade que o aluno poder\u00e1 dentro do software foliar os materiais disponbilizados pelo professor.",
+        "content": "A prepara\u00e7\u00e3o de uma sess\u00e3o de TBL ter\u00e1 uma pequena gamifica\u00e7\u00e3o de pontua\u00e7\u00f5es e badges para engajar os alunos a se prepararem para as avalia\u00e7\u00f5es que se seguem.",
         "slug": "funcionalidade-de-book",
         "tags": [
             3,

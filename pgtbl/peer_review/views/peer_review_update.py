@@ -7,6 +7,7 @@ from django.views.generic import UpdateView
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from modules.models import TBLSession
+from notification.models import Notification
 from peer_review.forms import PeerReviewForm
 
 
@@ -89,10 +90,36 @@ class PeerReviewUpdateView(LoginRequiredMixin,
     def form_valid(self, form):
         """
         Return the form with fields valided.
-
-        :param form:
-        :return HttpResponseRedirect:
         """
+
+        discipline = self.get_discipline()
+        session = self.get_session()
+
+        if (form.instance.peer_review_available and
+            form.instance.peer_review_available != session.peer_review_available):
+            title = _("Peer Review available")
+
+            for student in discipline.students.all():
+                Notification.objects.create(
+                    title=title,
+                    description=title,
+                    sender=discipline.teacher,
+                    receiver=student,
+                    discipline=discipline
+                )
+
+        elif (not form.instance.peer_review_available and
+            form.instance.peer_review_available != session.peer_review_available):
+            title = _("Peer Review unavailable")
+
+            for student in discipline.students.all():
+                Notification.objects.create(
+                    title=title,
+                    description=title,
+                    sender=discipline.teacher,
+                    receiver=student,
+                    discipline=discipline
+                )
 
         messages.success(self.request, _("Pair Review updated successfully."))
 

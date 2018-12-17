@@ -1,0 +1,87 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-17 16:25-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: pgtbl/practical_test/templates/practical_test/detail.html:14
+msgid "Practical test"
+msgstr ""
+
+#: pgtbl/practical_test/templates/practical_test/detail.html:25
+msgid "Practical Test"
+msgstr ""
+
+#: pgtbl/practical_test/templates/practical_test/detail.html:38
+msgid "Course"
+msgstr ""
+
+#: pgtbl/practical_test/templates/practical_test/detail.html:43
+msgid "Discipline"
+msgstr ""
+
+#: pgtbl/practical_test/templates/practical_test/detail.html:48
+msgid "Teacher"
+msgstr ""
+
+#: pgtbl/practical_test/templates/practical_test/detail.html:55
+msgid "Available"
+msgstr ""
+
+#: pgtbl/practical_test/templates/practical_test/detail.html:59
+msgid "Unavailable"
+msgstr ""
+
+#: pgtbl/practical_test/templates/practical_test/detail.html:74
+msgid "PRACTICAL TEST"
+msgstr ""
+
+#: pgtbl/practical_test/templates/practical_test/info.html:8
+msgid "Rules"
+msgstr ""
+
+#: pgtbl/practical_test/templates/practical_test/info.html:11
+msgid "The rules of practical test"
+msgstr ""
+
+#: pgtbl/practical_test/templates/practical_test/info.html:13
+msgid "Carefully read the full context of the evaluation."
+msgstr ""
+
+#: pgtbl/practical_test/templates/practical_test/info.html:14
+msgid "Perform what the practical project asks."
+msgstr ""
+
+#: pgtbl/practical_test/templates/practical_test/info.html:15
+msgid "Delivered to the teacher."
+msgstr ""
+
+#: pgtbl/practical_test/templates/practical_test/update.html:27
+#: pgtbl/practical_test/templates/practical_test/update.html:37
+msgid "Edit practical test"
+msgstr ""
+
+#: pgtbl/practical_test/templates/practical_test/update.html:60
+msgid "Make practical test available"
+msgstr ""
+
+#: pgtbl/practical_test/templates/practical_test/update.html:92
+msgid "Preview"
+msgstr ""
+
+#: pgtbl/practical_test/templates/practical_test/update.html:102
+msgid "Edit"
+msgstr ""

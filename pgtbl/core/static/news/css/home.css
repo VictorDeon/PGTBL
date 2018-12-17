@@ -10,3 +10,10 @@
 .news-button {
   margin-left: 15px;
 }
+
+@media screen and (min-width: 800px) {
+  .img-thumbnail {
+    min-height: 300px;
+    max-height: 300px;
+  }
+}

@@ -1,0 +1,67 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-17 16:25-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: pgtbl/notification/templates/notification/delete.html:20
+msgid "Delete Notifications"
+msgstr ""
+
+#: pgtbl/notification/templates/notification/delete.html:27
+msgid "Are you sure you want to delete all notifications"
+msgstr ""
+
+#: pgtbl/notification/templates/notification/delete.html:42
+msgid "Delete"
+msgstr ""
+
+#: pgtbl/notification/templates/notification/delete.html:51
+msgid "Cancel"
+msgstr ""
+
+#: pgtbl/notification/templates/notification/list.html:14
+#: pgtbl/notification/templates/notification/list.html:24
+msgid "Notifications"
+msgstr ""
+
+#: pgtbl/notification/templates/notification/list.html:34
+msgid "Notification"
+msgstr ""
+
+#: pgtbl/notification/templates/notification/list.html:79
+msgid "Sent by"
+msgstr ""
+
+#: pgtbl/notification/templates/notification/list.html:80
+msgid "from discipline"
+msgstr ""
+
+#: pgtbl/notification/templates/notification/list.html:83
+msgid "Discipline"
+msgstr ""
+
+#: pgtbl/notification/templates/notification/list.html:88
+msgid "Sent"
+msgstr ""
+
+#: pgtbl/notification/templates/notification/list.html:88
+msgid "ago"
+msgstr ""
+
+#: pgtbl/notification/templates/notification/list.html:98
+msgid "No notifications received"
+msgstr ""

@@ -57,7 +57,7 @@ staticfiles: pgtbl/manage.py
 json := database.json
 
 fixture: pgtbl/manage.py
-	# Create files with data
+	# Create files with data model = app_label.ModelName e json = pgtbl/app_name/fixtures/model-name.json
 	python3 pgtbl/manage.py dumpdata ${model} --indent 4 > ${json}
 
 populate: pgtbl/manage.py

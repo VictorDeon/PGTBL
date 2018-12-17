@@ -9,6 +9,7 @@ from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from groups.models import Group
 from modules.models import TBLSession
+from notification.models import Notification
 from peer_review.forms import PeerReviewAnswerForm
 from peer_review.models import PeerReviewSubmission
 
@@ -191,9 +192,26 @@ class PeerReviewAnswerView(LoginRequiredMixin,
             group=self.get_student_group()
         )
 
-        # self.send_message(student, form)
+        self.send_message(student, form)
 
         messages.success(
             self.request,
             _("Peer Review answered successfully.")
+        )
+
+    def send_message(self, student, form):
+        """
+        Send notification about peer review
+        """
+
+        discipline = self.get_discipline()
+        session = self.get_session()
+
+        description = form['comment'].value() + "\nPeer Review Session: " + str(session.title) + "\nScore: " + str(form['score'].value())
+
+        Notification.objects.create(
+            title=_("Peer Review Anonymously"),
+            description=description,
+            receiver=student,
+            discipline=discipline
         )

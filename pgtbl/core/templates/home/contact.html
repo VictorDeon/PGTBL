@@ -26,10 +26,11 @@
         <!-- Contact name field -->
         <div class="col-sm-6 {% if form.name.errors %}alert alert-warning{% endif %}">
           <div class="input-group">
-            <span class="input-group-addon gradient"
-                  data-toggle="tooltip"
-                  title="{{form.name.label}}">
-                  <i class="fa fa-user-circle contact-icon-size"></i>
+            <span
+              class="input-group-addon gradient"
+              data-toggle="tooltip"
+              title="{{form.name.label}}">
+              <i class="fa fa-user-circle contact-icon-size"></i>
             </span>
             <input
               type="text"
@@ -51,10 +52,11 @@
         <!-- Contact email field -->
         <div class="col-sm-6 {% if form.email.errors %}alert alert-warning{% endif %}">
           <div class="input-group">
-            <span class="input-group-addon gradient"
-                  data-toggle="tooltip"
-                  title="{{form.email.label}}">
-                  <i class="fa fa-envelope contact-icon-size"></i>
+            <span
+              class="input-group-addon gradient"
+              data-toggle="tooltip"
+              title="{{form.email.label}}">
+              <i class="fa fa-envelope contact-icon-size"></i>
             </span>
             <input
               type="email"
@@ -72,7 +74,7 @@
             </span>
           {% endfor %}
         </div>
-      </div> <!-- End row -->
+      </div>
 
       <br />
 
@@ -99,13 +101,14 @@
       <!-- submit and send email -->
       <div class="row">
         <div class="col-sm-12">
-          <button type="submit"
-                  class="btn btn-primary send-button">
-                  <i class="fa fa-send"></i>
-                  {% trans 'Send' %}
+          <button
+            type="submit"
+            class="btn btn-primary send-button">
+            <i class="fa fa-send"></i>
+            {% trans 'Send' %}
           </button>
         </div>
       </div>
-    </form> <!-- End contact email -->
-  </div> <!-- End Row -->
-</div> <!-- End div parallax -->
+    </form>
+  </div>
+</div>

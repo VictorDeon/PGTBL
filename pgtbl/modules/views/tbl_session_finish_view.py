@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse_lazy
 from django.views.generic import DeleteView
 from django.shortcuts import redirect
@@ -9,6 +10,7 @@ from exercises.models import GamificationPointSubmission
 from modules.models import TBLSession
 from grades.models import Grade
 from groups.models import Group
+from notification.models import Notification
 from peer_review.models import PeerReviewSubmission
 
 
@@ -51,6 +53,7 @@ class TBLSessionFinishView(LoginRequiredMixin,
             session.is_finished = True
             session.is_closed = True
             self.update_gamification()
+            self.send_notification(session)
 
             for student in discipline.students.all():
                 peer_review_grade = self.calcule_peer_review_grade(student)
@@ -59,6 +62,22 @@ class TBLSessionFinishView(LoginRequiredMixin,
         session.save()
 
         return redirect(redirect_url)
+
+    def send_notification(self, session):
+        """
+        Send notification to all students
+        """
+
+        discipline = self.get_discipline()
+
+        for student in discipline.students.all():
+            Notification.objects.create(
+                title=_("TBL session finished"),
+                description=_("TBL session {0} finished".format(session.title)),
+                sender=discipline.teacher,
+                receiver=student,
+                discipline=discipline
+            )
 
     def calcule_peer_review_grade(self, student):
         """

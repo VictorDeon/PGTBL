@@ -1,0 +1,159 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-17 16:25-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: pgtbl/peer_review/templates/peer_review/info.html:9
+msgid "Pair Review Rules"
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/info.html:12
+msgid "The rules of the game are very simple:"
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/info.html:14
+msgid ""
+"Peer evaluation is used to evaluate the performance of your teammates during "
+"TBL."
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/info.html:16
+msgid ""
+"\n"
+"            This evaluation is totally anonymous, only the evaluated student "
+"will receive the feedback and will not\n"
+"            appear his name.\n"
+"            "
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/info.html:22
+msgid ""
+"\n"
+"            The student can leave a comment for the evaluated colleague, "
+"this will appear in their profile\n"
+"            in anonymous.\n"
+"            "
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/info.html:27
+msgid ""
+"You will have 100 points to distribute among the participants in your group."
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/info.html:29
+msgid ""
+"\n"
+"            The sum of the evaluation of all the members of the group "
+"evaluating you will compose your grade in\n"
+"            this evaluation.\n"
+"            "
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/info.html:35
+msgid ""
+"\n"
+"            If the sum total of 100 points will have a bonus on the note, "
+"otherwise it will compose the score\n"
+"            according to the score.\n"
+"            "
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/info.html:40
+#: pgtbl/peer_review/templates/peer_review/info.html:46
+#: pgtbl/peer_review/templates/peer_review/info.html:52
+msgid "Example"
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/info.html:41
+msgid ""
+"\n"
+"            In a team of 5 members, each member inserts 20 points into you, "
+"then adding everything will give you\n"
+"            100 points and you will get a maximum score.\n"
+"            "
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/info.html:47
+msgid ""
+"\n"
+"            In a team of 5 members, each member inserts the score in you and "
+"the sum of the 110, soon you will receive\n"
+"            the maximum score plus a bonus.\n"
+"            "
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/info.html:53
+msgid ""
+"\n"
+"            In a team of 5 members, each member enters the score on you and "
+"the sum of the 80, then your score will\n"
+"            be calculated according to that score.\n"
+"            "
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/peer_review.html:14
+msgid "Peer Review"
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/peer_review.html:23
+#: pgtbl/peer_review/templates/peer_review/peer_review.html:107
+msgid "Pair Review"
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/peer_review.html:37
+msgid "Course"
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/peer_review.html:44
+msgid "Discipline"
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/peer_review.html:51
+msgid "Teacher"
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/peer_review.html:59
+msgid "Student"
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/peer_review.html:68
+msgid "Group"
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/peer_review.html:89
+msgid "Available"
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/peer_review.html:93
+msgid "Unavailable"
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/peer_review.html:166
+msgid "Send to"
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/peer_review.html:171
+msgid "There aren't students in this group."
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/update.html:9
+msgid "Edit Pair Review"
+msgstr ""
+
+#: pgtbl/peer_review/templates/peer_review/update.html:49
+msgid "Edit"
+msgstr ""

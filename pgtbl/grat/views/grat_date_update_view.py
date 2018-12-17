@@ -15,6 +15,8 @@ from grat.forms import GRATDateForm
 # Python imports
 from datetime import timedelta
 
+from notification.models import Notification
+
 
 class GRATDateUpdateView(LoginRequiredMixin,
                          PermissionMixin,
@@ -76,6 +78,23 @@ class GRATDateUpdateView(LoginRequiredMixin,
             return redirect(self.get_success_url())
 
         messages.success(self.request, _('gRAT date updated successfully.'))
+
+        discipline = self.get_discipline()
+        session = self.get_object()
+
+        description = _("gRAT date update to {0} from session {1}".format(
+            form.instance.irat_datetime.strftime("%d/%m/%Y às %H:%M"),
+            session.title
+        ))
+
+        for student in discipline.students.all():
+            Notification.objects.create(
+                title=_("gRAT date updated"),
+                description=description,
+                sender=discipline.teacher,
+                receiver=student,
+                discipline=discipline
+            )
 
         return super(GRATDateUpdateView, self).form_valid(form)
 

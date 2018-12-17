@@ -1,0 +1,155 @@
+{% extends 'forum/list.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+  <link href="{% static 'accounts/css/sidebar.css' %}" rel="stylesheet" />
+  <link href="{% static 'forum/css/form.css' %}" rel="stylesheet" />
+  <link href="{% static 'core/css/markdown.css' %}" rel="stylesheet" />
+  <link href="/" type="text/css" media="all" rel="stylesheet" />
+{% endblock %}
+
+{% block markdown %}
+  <script type="text/javascript" src="/static/pagedown/Markdown.Converter.js"></script>
+  <script type="text/javascript" src="/static/pagedown-extra/pagedown/Markdown.Converter.js"></script>
+  <script type="text/javascript" src="/static/pagedown/Markdown.Sanitizer.js"></script>
+  <script type="text/javascript" src="/static/pagedown/Markdown.Editor.js"></script>
+  <script type="text/javascript" src="/static/pagedown-extra/Markdown.Extra.js"></script>
+  <script type="text/javascript" src="/static/pagedown_init.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.7/marked.min.js"></script>
+  <script src="{% static 'core/js/markdown.js' %}"></script>
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li>
+    <a href="{% url 'forum:create' discipline.slug %}">
+      {% trans 'Create Topic' %}
+    </a>
+  </li>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    <!-- Header -->
+    <div class="page-header profile">
+      <h1 class="white">
+        {% trans 'Create Topic' %}
+      </h1>
+    </div>
+
+    <!-- Form -->
+    <div class="row">
+      <div class="col-sm-12">
+        <!-- Form without html5 validation -->
+        <form method="post" novalidate>
+          <!-- Form security -->
+          {% csrf_token %}
+
+          <!-- Get all erros from form -->
+          {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+              {{ error }}
+            </div>
+          {% endfor %}
+
+          <!-- Topic title field -->
+          <div class="{% if form.title.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
+            <div class="input-group">
+              <!-- Field icon -->
+              <span class="input-group-addon gradient"
+                    data-toggle="tooltip"
+                    title="{{form.title.label}}">
+                    <i class="fa fa-book"></i>
+              </span>
+
+              <!-- Field -->
+              <input
+                type="text"
+                name="{{form.title.name}}"
+                class="form-control"
+                placeholder="{{form.title.help_text}}"
+                value="{{topic.title}}"
+                required
+              />
+            </div>
+
+            <!-- Field errors -->
+            {% for error in form.title.errors %}
+              <span class="error">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+
+          <!-- Topic tags field -->
+          <div class="{% if form.tags.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
+            <div class="input-group">
+              <!-- Field icon -->
+              <span class="input-group-addon gradient"
+                    data-toggle="tooltip"
+                    title="{{form.tags.label}}">
+                    <i class="fa fa-tags"></i>
+              </span>
+
+              <!-- Field -->
+              <input
+                type="text"
+                name="{{form.tags.name}}"
+                class="form-control"
+                placeholder="{{form.tags.help_text}}"
+                value="{{topic.tag}}"
+                required
+              />
+            </div>
+
+            <!-- Field errors -->
+            {% for error in form.tags.errors %}
+              <span class="error">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+
+          <!-- Discipline description field -->
+          <div class="{% if form.content.errors %}alert alert-warning{% endif %}">
+            <!-- Input group -->
+            <div class="input-group">
+              <div id="{{form.content.id_for_label}}_wmd_button_bar"></div>
+              <textarea
+                type="text"
+                class="form-control wmd-input"
+                name="{{form.content.name}}"
+                placeholder="{{form.content.help_text}}"
+                id="{{form.content.id_for_label}}"
+                cols="130" rows="10">{{topic.content}}</textarea>
+            </div>
+
+            <!-- Field errors -->
+            {% for error in form.content.errors %}
+              <span class="error">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+
+          <!-- Discipline description preview -->
+          <fieldset>
+            <legend class="text-white">{% trans 'Preview' %}</legend>
+            <div class="col-sm-12 preview">
+              <div class="markdown-preview"></div>
+            </div>
+          </fieldset><br />
+
+          <!-- Submit button -->
+          <button type="submit"
+                  class="btn btn-primary submit-button center-block">
+                  <i class="fa fa-plus"></i> {% trans 'Send' %}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

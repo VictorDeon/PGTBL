@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-23 18:30-0300\n"
+"POT-Creation-Date: 2018-12-17 16:25-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,335 +18,366 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: modules/models.py:24
-msgid "Title"
-msgstr "Título"
-
-#: modules/models.py:26
-msgid "Session title."
-msgstr "Título da sessão"
-
-#: modules/models.py:30 modules/models.py:99
-msgid "Description"
-msgstr "Descrição"
-
-#: modules/models.py:31
-msgid "TBL session description."
-msgstr "Descrição da sessão de TBL"
-
-#: modules/models.py:35
-msgid "Is closed?"
-msgstr "Está fechada?"
-
-#: modules/models.py:37
-msgid "Close TBL session."
-msgstr "Fechar Sessão de TBL"
-
-#: modules/models.py:42
-msgid "iRAT date"
-msgstr "Data da avaliação iRAT"
-
-#: modules/models.py:45
-msgid "Date and time to provide the iRAT test."
-msgstr "Data e hora que será disponibilizado a avaliação iRAT."
-
-#: modules/models.py:49
-msgid "iRAT weight"
-msgstr "Peso da avaliação iRAT"
-
-#: modules/models.py:52
-msgid "iRAT test weight."
-msgstr "Peso da avaliação iRAT"
-
-#: modules/models.py:56
-msgid "iRAT durantion in minutes"
-msgstr "Duração da avaliação iRAT em minutos"
-
-#: modules/models.py:59
-msgid "iRAT duration in minutes to be answered."
-msgstr "Duração da avaliação iRAT em minutos para ser respondida."
-
-#: modules/models.py:64
-msgid "gRAT date"
-msgstr "Data da avaliação gRAT"
-
-#: modules/models.py:67
-msgid "Date and time to provide the gRAT test."
-msgstr "Data e hora que será disponibilizado a avaliação gRAT"
-
-#: modules/models.py:71
-msgid "gRAT test weight"
-msgstr "Peso da avaliação gRAT"
-
-#: modules/models.py:74
-msgid "gRAT test weight."
-msgstr "Peso da avaliação gRAT."
-
-#: modules/models.py:78
-msgid "gRAT durantion in minutes"
-msgstr "Duração da avaliação gRAT em minutos"
-
-#: modules/models.py:81
-msgid "gRAT duration in minutes to be answered."
-msgstr "Duração da avaliação gRAT em minutos para ser respondida."
-
-#: modules/models.py:86
-msgid "Release the practical test"
-msgstr "Disponibilizar a avaliação prática"
-
-#: modules/models.py:88
-msgid "Release the practical test."
-msgstr "Disponibilizar a avaliação prática"
-
-#: modules/models.py:92
-msgid "Practical test weight"
-msgstr "Peso da avaliação prática"
-
-#: modules/models.py:95
-msgid "Practical test weight."
-msgstr "Peso da avaliação prática"
-
-#: modules/models.py:100
-msgid "Practical test description."
-msgstr "Descrição da avaliação prática."
-
-#: modules/models.py:105
-msgid "Release the peer review test"
-msgstr "Disponibilizar a avaliação em pares"
-
-#: modules/models.py:107
-msgid "Release the peer review test to be answered."
-msgstr "Disponibilizar a avaliação em pares para ser respondida."
-
-#: modules/models.py:111
-msgid "Peer review weight"
-msgstr "Peso da avaliação em pares"
-
-#: modules/models.py:114
-msgid "Peer review weight."
-msgstr "Peso da avaliação em pares."
-
-#: modules/models.py:118
-msgid "Created at"
-msgstr "Criado em"
-
-#: modules/models.py:119
-msgid "Date that the session is created."
-msgstr "Data na qual a sessão de TBL foi criada."
-
-#: modules/models.py:124
-msgid "Updated at"
-msgstr "Atualizado em"
-
-#: modules/models.py:125
-msgid "Date that the session is updated."
-msgstr "Data na qual a sessão de TBL foi atualizada"
-
-#: modules/models.py:155
-msgid "TBL Session"
-msgstr "Sessão TBL"
-
-#: modules/models.py:156
-msgid "TBL Sessions"
-msgstr "Sessões TBL"
-
-#: modules/templates/modules/add.html:14
+#: pgtbl/modules/templates/modules/add.html:13
 msgid "Add TBL session"
 msgstr "Adicionar sessões de TBL"
 
-#: modules/templates/modules/add.html:22
+#: pgtbl/modules/templates/modules/add.html:22
 msgid "Session title"
 msgstr "Título da sessão"
 
-#: modules/templates/modules/add.html:26
+#: pgtbl/modules/templates/modules/add.html:35
 msgid "Session description"
 msgstr "Descrição da sessão"
 
-#: modules/templates/modules/add.html:32
+#: pgtbl/modules/templates/modules/add.html:48
 msgid "Close session"
 msgstr "Fechar sessão"
 
-#: modules/templates/modules/add.html:37
+#: pgtbl/modules/templates/modules/add.html:53
 msgid "Add"
 msgstr "Adicionar"
 
-#: modules/templates/modules/delete.html:20
-#: modules/templates/modules/delete.html:42
-#: modules/templates/modules/list.html:84
+#: pgtbl/modules/templates/modules/delete.html:20
+#: pgtbl/modules/templates/modules/delete.html:42
+#: pgtbl/modules/templates/modules/list.html:84
 msgid "Delete"
 msgstr "Deletar"
 
-#: modules/templates/modules/delete.html:27
+#: pgtbl/modules/templates/modules/delete.html:27
 msgid "Are you sure you want to delete"
 msgstr "Tem certeza que deseja deletar"
 
-#: modules/templates/modules/delete.html:51
+#: pgtbl/modules/templates/modules/delete.html:51
+#: pgtbl/modules/templates/modules/finish.html:54
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: modules/templates/modules/form.html:17
-#: modules/templates/modules/form.html:27
-#: modules/templates/modules/form.html:104
-#: modules/templates/modules/list.html:71
-#: modules/templates/modules/practical_update.html:79
+#: pgtbl/modules/templates/modules/details.html:41
+msgid "Finalizar"
+msgstr ""
+
+#: pgtbl/modules/templates/modules/finish.html:20
+#: pgtbl/modules/templates/modules/finish.html:45
+msgid "Finish"
+msgstr ""
+
+#: pgtbl/modules/templates/modules/finish.html:27
+msgid ""
+"After finished the peer review grades will be calculated, the group rank "
+"updated and sessions will be closed."
+msgstr ""
+
+#: pgtbl/modules/templates/modules/finish.html:30
+#, fuzzy
+#| msgid "Are you sure you want to delete"
+msgid "Are you sure you want to finish"
+msgstr "Tem certeza que deseja deletar"
+
+#: pgtbl/modules/templates/modules/form.html:28
+#: pgtbl/modules/templates/modules/form.html:119
+#: pgtbl/modules/templates/modules/list.html:71
 msgid "Edit"
 msgstr "Editar"
 
-#: modules/templates/modules/form.html:86
-#: modules/templates/modules/practical_update.html:69
+#: pgtbl/modules/templates/modules/form.html:101
 msgid "Preview"
 msgstr "Visualizar"
 
-#: modules/templates/modules/form.html:96
+#: pgtbl/modules/templates/modules/form.html:111
 msgid "Make session unavailable"
 msgstr "Fazer a sessão ficar indisponível"
 
-#: modules/templates/modules/list.html:14
+#: pgtbl/modules/templates/modules/list.html:14
 msgid "TBL session list"
 msgstr "Lista de sessões de TBL"
 
-#: modules/templates/modules/list.html:24
+#: pgtbl/modules/templates/modules/list.html:24
 msgid "TBL sessions"
 msgstr "Sessões de TBL"
 
-#: modules/templates/modules/list.html:42
+#: pgtbl/modules/templates/modules/list.html:42
 msgid "Unavailable"
 msgstr "Indisponível"
 
-#: modules/templates/modules/list.html:46
+#: pgtbl/modules/templates/modules/list.html:46
 msgid "Available"
 msgstr "Disponível"
 
-#: modules/templates/modules/list.html:64
-#: modules/templates/modules/list.html:98
+#: pgtbl/modules/templates/modules/list.html:64
+#: pgtbl/modules/templates/modules/list.html:98
 msgid "Enter"
 msgstr "Entrar"
 
-#: modules/templates/modules/list.html:107
+#: pgtbl/modules/templates/modules/list.html:107
 msgid "There is no sessions available."
 msgstr "Não há sessões de TBL disponíveis"
 
-#: modules/templates/modules/practical_info.html:8
-msgid "Rules"
-msgstr "Regras"
-
-#: modules/templates/modules/practical_info.html:11
-msgid "The rules of practical test"
-msgstr "Regras para a avaliação prática"
-
-#: modules/templates/modules/practical_info.html:13
-msgid "Carefully read the full context of the evaluation."
-msgstr "Cuidadosamente leia todo o contexto da avaliação."
-
-#: modules/templates/modules/practical_info.html:14
-msgid "Perform what the practical project asks."
-msgstr "Execute o que a avaliação prática pede."
-
-#: modules/templates/modules/practical_info.html:15
-msgid "Delivered to the teacher."
-msgstr "Entregue ao professor."
-
-#: modules/templates/modules/practical_test.html:14
-msgid "Practical test"
-msgstr "Avaliação prática"
-
-#: modules/templates/modules/practical_test.html:25
-msgid "Practical Test"
-msgstr "Avaliação prática"
-
-#: modules/templates/modules/practical_test.html:36
-msgid "Course"
-msgstr "Curso"
-
-#: modules/templates/modules/practical_test.html:41
-msgid "Discipline"
-msgstr "Disciplina"
-
-#: modules/templates/modules/practical_test.html:46
-msgid "Teacher"
-msgstr "Professor"
-
-#: modules/templates/modules/practical_test.html:59
-msgid "PRACTICAL TEST"
-msgstr "AVALIAÇÃO PRÁTICA"
-
-#: modules/templates/modules/practical_update.html:17
-#: modules/templates/modules/practical_update.html:27
-msgid "Edit practical test"
-msgstr "Editar avaliação prática"
-
-#: modules/templates/modules/practical_update.html:50
-msgid "Make practical test available"
-msgstr "Tornar a avaliação prática acessível"
-
-#: modules/templates/modules/sidebar.html:12
+#: pgtbl/modules/templates/modules/sidebar.html:12
 msgid "Session"
 msgstr "Sessão"
 
-#: modules/templates/modules/sidebar.html:20
+#: pgtbl/modules/templates/modules/sidebar.html:14
+#, fuzzy
+#| msgid "Session title"
+msgid "Session Details"
+msgstr "Título da sessão"
+
+#: pgtbl/modules/templates/modules/sidebar.html:21
 msgid "Files"
 msgstr "Arquivos"
 
-#: modules/templates/modules/sidebar.html:28
+#: pgtbl/modules/templates/modules/sidebar.html:23
+#, fuzzy
+#| msgid "Session title"
+msgid "Session Files"
+msgstr "Título da sessão"
+
+#: pgtbl/modules/templates/modules/sidebar.html:30
+#: pgtbl/modules/templates/modules/sidebar.html:32
 msgid "Session Grades"
 msgstr "Notas da sessão"
 
-#: modules/templates/modules/sidebar.html:36
+#: pgtbl/modules/templates/modules/sidebar.html:39
 msgid "Exercise list"
 msgstr "Lista de exercícios"
 
-#: modules/templates/modules/sidebar.html:44
+#: pgtbl/modules/templates/modules/sidebar.html:41
+#, fuzzy
+#| msgid "Session Grades"
+msgid "Session Exercises"
+msgstr "Notas da sessão"
+
+#: pgtbl/modules/templates/modules/sidebar.html:49
 msgid "Dashboard"
 msgstr "Relatório"
 
-#: modules/templates/modules/sidebar.html:53
+#: pgtbl/modules/templates/modules/sidebar.html:51
+#, fuzzy
+#| msgid "Dashboard"
+msgid "Student Dashboard"
+msgstr "Relatório"
+
+#: pgtbl/modules/templates/modules/sidebar.html:59
+msgid "Report"
+msgstr ""
+
+#: pgtbl/modules/templates/modules/sidebar.html:61
+#, fuzzy
+#| msgid "Teacher"
+msgid "Teacher Report"
+msgstr "Professor"
+
+#: pgtbl/modules/templates/modules/sidebar.html:70
 msgid "Test iRAT Result"
 msgstr "Resultado da avaliação iRAT"
 
-#: modules/templates/modules/sidebar.html:61
+#: pgtbl/modules/templates/modules/sidebar.html:72
+#, fuzzy
+#| msgid "Test iRAT Result"
+msgid "iRAT Result"
+msgstr "Resultado da avaliação iRAT"
+
+#: pgtbl/modules/templates/modules/sidebar.html:79
 msgid "Test iRAT"
 msgstr "Avaliação iRAT"
 
-#: modules/templates/modules/sidebar.html:72
+#: pgtbl/modules/templates/modules/sidebar.html:81
+#, fuzzy
+#| msgid "iRAT weight"
+msgid "iRAT Test"
+msgstr "Peso da avaliação iRAT"
+
+#: pgtbl/modules/templates/modules/sidebar.html:91
 msgid "Test gRAT Result"
 msgstr "Resultado da avaliação gRAT"
 
-#: modules/templates/modules/sidebar.html:80
+#: pgtbl/modules/templates/modules/sidebar.html:93
+#, fuzzy
+#| msgid "Test gRAT Result"
+msgid "gRAT Result"
+msgstr "Resultado da avaliação gRAT"
+
+#: pgtbl/modules/templates/modules/sidebar.html:100
 msgid "Test gRAT"
 msgstr "Avaliação gRAT"
 
-#: modules/templates/modules/sidebar.html:90
+#: pgtbl/modules/templates/modules/sidebar.html:102
+#, fuzzy
+#| msgid "gRAT date"
+msgid "gRAT Test"
+msgstr "Data da avaliação gRAT"
+
+#: pgtbl/modules/templates/modules/sidebar.html:111
 msgid "Test practical"
 msgstr "Avaliação prática"
 
-#: modules/templates/modules/sidebar.html:99
-msgid "Test Peer"
-msgstr "Avaliação em pares"
+#: pgtbl/modules/templates/modules/sidebar.html:113
+msgid "Practical Test"
+msgstr "Avaliação prática"
 
-#: modules/templates/modules/sidebar.html:108
+#: pgtbl/modules/templates/modules/sidebar.html:121
+#, fuzzy
+#| msgid "Preview"
+msgid "Pair Review"
+msgstr "Visualizar"
+
+#: pgtbl/modules/templates/modules/sidebar.html:123
+#, fuzzy
+#| msgid "Peer review weight"
+msgid "Peer Review Test"
+msgstr "Peso da avaliação em pares"
+
+#: pgtbl/modules/templates/modules/sidebar.html:131
 msgid "Appeal"
 msgstr "Apelação"
 
-#: modules/views_practical.py:40
-msgid "You are not authorized to do this action."
-msgstr "Você não está autorizado a fazer está ação."
+#: pgtbl/modules/templates/modules/sidebar.html:133
+#, fuzzy
+#| msgid "Session title"
+msgid "Session Appeal"
+msgstr "Título da sessão"
 
-#: modules/views_practical.py:154
-msgid "Practical test updated successfully."
-msgstr "Avaliação prática atualizada com sucesso."
+#~ msgid "Title"
+#~ msgstr "Título"
 
-#: modules/views_session.py:102
-msgid "TBL session created successfully."
-msgstr "Sessão de TBL criado com sucesso."
+#~ msgid "Session title."
+#~ msgstr "Título da sessão"
 
-#: modules/views_session.py:113
-msgid "Invalid fields, please fill in the fields correctly."
-msgstr "Campos invalidos, por favor preencha os campos corretamente."
+#~ msgid "Description"
+#~ msgstr "Descrição"
 
-#: modules/views_session.py:175
-msgid "TBL session updated successfully."
-msgstr "Sessão de TBL atualizada com sucesso."
+#~ msgid "TBL session description."
+#~ msgstr "Descrição da sessão de TBL"
 
-#: modules/views_session.py:230
-msgid "TBL session deleted successfully."
-msgstr "Sessão de TBL deletada com sucesso."
+#~ msgid "Is closed?"
+#~ msgstr "Está fechada?"
+
+#~ msgid "Close TBL session."
+#~ msgstr "Fechar Sessão de TBL"
+
+#~ msgid "iRAT date"
+#~ msgstr "Data da avaliação iRAT"
+
+#~ msgid "Date and time to provide the iRAT test."
+#~ msgstr "Data e hora que será disponibilizado a avaliação iRAT."
+
+#~ msgid "iRAT test weight."
+#~ msgstr "Peso da avaliação iRAT"
+
+#~ msgid "iRAT durantion in minutes"
+#~ msgstr "Duração da avaliação iRAT em minutos"
+
+#~ msgid "iRAT duration in minutes to be answered."
+#~ msgstr "Duração da avaliação iRAT em minutos para ser respondida."
+
+#~ msgid "Date and time to provide the gRAT test."
+#~ msgstr "Data e hora que será disponibilizado a avaliação gRAT"
+
+#~ msgid "gRAT test weight"
+#~ msgstr "Peso da avaliação gRAT"
+
+#~ msgid "gRAT test weight."
+#~ msgstr "Peso da avaliação gRAT."
+
+#~ msgid "gRAT durantion in minutes"
+#~ msgstr "Duração da avaliação gRAT em minutos"
+
+#~ msgid "gRAT duration in minutes to be answered."
+#~ msgstr "Duração da avaliação gRAT em minutos para ser respondida."
+
+#~ msgid "Release the practical test"
+#~ msgstr "Disponibilizar a avaliação prática"
+
+#~ msgid "Release the practical test."
+#~ msgstr "Disponibilizar a avaliação prática"
+
+#~ msgid "Practical test weight"
+#~ msgstr "Peso da avaliação prática"
+
+#~ msgid "Practical test weight."
+#~ msgstr "Peso da avaliação prática"
+
+#~ msgid "Practical test description."
+#~ msgstr "Descrição da avaliação prática."
+
+#~ msgid "Release the peer review test"
+#~ msgstr "Disponibilizar a avaliação em pares"
+
+#~ msgid "Release the peer review test to be answered."
+#~ msgstr "Disponibilizar a avaliação em pares para ser respondida."
+
+#~ msgid "Peer review weight."
+#~ msgstr "Peso da avaliação em pares."
+
+#~ msgid "Created at"
+#~ msgstr "Criado em"
+
+#~ msgid "Date that the session is created."
+#~ msgstr "Data na qual a sessão de TBL foi criada."
+
+#~ msgid "Updated at"
+#~ msgstr "Atualizado em"
+
+#~ msgid "Date that the session is updated."
+#~ msgstr "Data na qual a sessão de TBL foi atualizada"
+
+#~ msgid "TBL Session"
+#~ msgstr "Sessão TBL"
+
+#~ msgid "TBL Sessions"
+#~ msgstr "Sessões TBL"
+
+#~ msgid "Rules"
+#~ msgstr "Regras"
+
+#~ msgid "The rules of practical test"
+#~ msgstr "Regras para a avaliação prática"
+
+#~ msgid "Carefully read the full context of the evaluation."
+#~ msgstr "Cuidadosamente leia todo o contexto da avaliação."
+
+#~ msgid "Perform what the practical project asks."
+#~ msgstr "Execute o que a avaliação prática pede."
+
+#~ msgid "Delivered to the teacher."
+#~ msgstr "Entregue ao professor."
+
+#~ msgid "Practical test"
+#~ msgstr "Avaliação prática"
+
+#~ msgid "Course"
+#~ msgstr "Curso"
+
+#~ msgid "Discipline"
+#~ msgstr "Disciplina"
+
+#~ msgid "PRACTICAL TEST"
+#~ msgstr "AVALIAÇÃO PRÁTICA"
+
+#~ msgid "Edit practical test"
+#~ msgstr "Editar avaliação prática"
+
+#~ msgid "Make practical test available"
+#~ msgstr "Tornar a avaliação prática acessível"
+
+#~ msgid "Test Peer"
+#~ msgstr "Avaliação em pares"
+
+#~ msgid "You are not authorized to do this action."
+#~ msgstr "Você não está autorizado a fazer está ação."
+
+#~ msgid "Practical test updated successfully."
+#~ msgstr "Avaliação prática atualizada com sucesso."
+
+#~ msgid "TBL session created successfully."
+#~ msgstr "Sessão de TBL criado com sucesso."
+
+#~ msgid "Invalid fields, please fill in the fields correctly."
+#~ msgstr "Campos invalidos, por favor preencha os campos corretamente."
+
+#~ msgid "TBL session updated successfully."
+#~ msgstr "Sessão de TBL atualizada com sucesso."
+
+#~ msgid "TBL session deleted successfully."
+#~ msgstr "Sessão de TBL deletada com sucesso."

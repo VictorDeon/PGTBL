@@ -5,7 +5,7 @@
 # Author: Victor Arnaud <victorhad@gmail.com>
 
 sudo apt-get update && sudo apt-get install -y python3-pip && pip3 install django
-pip3 install -r pgtbl/requirements.txt
+pip3 install -r requirements/requirements-prod.txt
 make staticfiles
 
 sudo docker login --username $DOCKER_HUB_USER --password $DOCKER_HUB_PASS
