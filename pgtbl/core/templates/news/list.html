@@ -21,7 +21,7 @@
         <!-- News specific tag -->
         {% if tag %}
           <p class="lighten-blue-grey pull-right">
-            {{ tag }}
+             {{ tag }}
           </p>
           <a href="{% url 'core:news' %}"
              class="no-decoration">
@@ -56,7 +56,7 @@
             <!-- News tags -->
             <p><i class="fa fa-tags"></i> tags:
               {% for tag in news.tags.all %}
-                <!-- Go to news-tag url and pass by argment the slug from tag -->
+                <!-- Go to news-tag url and pass by argument the slug from tag -->
                 <a href="{% url 'core:news-tag' tag.slug %}" class="no-decoration">
                    {{tag}}
                    <!-- If is the last element on loop not insert , -->
@@ -75,8 +75,8 @@
               {% trans 'No news available' %}.
             </div>
           {% endfor %}
-        </div> <!-- Close panel body -->
-      </div> <!-- Close panel -->
+        </div>
+      </div>
 
       <!-- News pagination -->
       {% include 'core/pagination.html' %}

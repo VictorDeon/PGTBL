@@ -4,6 +4,11 @@ from core.models import News
 
 
 class NewsListView(ListView):
+    """
+    View to see all news
+    """
+
+
     paginate_by = 6
     template_name = 'news/list.html'
     context_object_name = 'news_list'

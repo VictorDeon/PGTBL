@@ -98,7 +98,7 @@ class PermissionMixin(object):
 
         return self.failure_redirect_path
 
-    def check_failed(self, request, *args, **kwargs):
+    def check_failed(self):
         """
         If user check fail, redirect the user to another place.
         """
