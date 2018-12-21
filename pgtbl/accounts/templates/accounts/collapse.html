@@ -6,7 +6,8 @@
   <!-- All disciplines -->
   <li>
     <a href="?filter=all#filter"
-       class="filter">
+       class="filter"
+       data-intro="{% trans 'Show all disciplines that you are part of.' %}">
        {% trans 'All Disciplines' %}
     </a>
   </li>
@@ -15,7 +16,8 @@
   {% if not user.is_teacher %}
   <li>
     <a href="?filter=student#filter"
-       class="filter">
+       class="filter"
+       data-intro="{% trans 'Show the disciplines that you are part of.' %}">
        {% trans 'Student of discipline' %}
     </a>
   </li>
@@ -24,7 +26,8 @@
   <!-- Discipline monitor -->
   <li>
     <a href="?filter=monitor#filter"
-       class="filter">
+       class="filter"
+       data-intro="{% trans 'Show the disciplines that you are monitor.' %}">
        {% trans 'Discipline monitor' %}
     </a>
   </li>
@@ -33,7 +36,8 @@
   {% if user.is_teacher %}
     <li>
       <a href="?filter=created#filter"
-         class="filter">
+         class="filter"
+         data-intro="{% trans 'Show the disciplines that you create' %}">
          {% trans 'Created Disciplines' %}
       </a>
     </li>

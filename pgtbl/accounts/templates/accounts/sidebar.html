@@ -10,7 +10,7 @@
        data-toggle="tooltip"
        data-placement="right"
        title="{% trans 'Profile' %}"
-       data-intro='Aqui você acessa o perfil'>
+       data-intro="{% trans 'User profile with his information and disciplines.' %}">
        <i class="fa fa-user icon-lg"></i>
        <p>{% trans 'Profile' %}</p>
     </a>
@@ -21,7 +21,7 @@
        data-toggle="tooltip"
        data-placement="right"
        title="{% trans 'Edit personal information' %}"
-       data-intro='Aqui você edita suas informações pessoais'>
+       data-intro="{% trans 'Page to edit your personal information.' %}">
        <i class="fa fa-edit icon-lg"></i>
        <p>{% trans 'Update Account' %}</p>
     </a>
@@ -32,7 +32,7 @@
        data-toggle="tooltip"
        data-placement="right"
        title="{% trans 'Edit password' %}"
-       data-intro='Aqui você altera sua senha'>
+       data-intro="{% trans 'Page to edit your password.' %}">
        <i class="fa fa-expeditedssl icon-lg"></i>
        <p>{% trans 'Update Password' %}</p>
     </a>
@@ -43,7 +43,7 @@
        data-toggle="tooltip"
        data-placement="right"
        title="{% trans 'Search discipline and classroom' %}"
-       data-intro='Aqui você pode procurar disciplinas e salas de aula'>
+       data-intro="{% trans 'Page to search for a specific discipline and enter it.' %}">
        <i class="fa fa-search icon-lg"></i>
        <p>{% trans 'Search Discipline' %}</p>
     </a>
@@ -54,7 +54,7 @@
          class="btn" data-toggle="tooltip"
          data-placement="right"
          title="{% trans 'Create discipline and classroom' %}"
-         data-intro='Aqui você pode criar disciplinas e salas de aula'
+         data-intro="{% trans 'Page to create a new discipline.' %}"
          >
          <i class="fa fa-book icon-lg"></i>
          <p>{% trans 'Create Discipline' %}</p>
@@ -66,7 +66,7 @@
        class="btn" data-toggle="tooltip"
        data-placement="right"
        title="{% trans 'Notification' %}"
-       data-intro='Aqui você acessa suas mensagens'
+       data-intro="{% trans 'Page to see all notifications.' %}"
        >
        <i class="fa fa-envelope icon-lg"></i>
        <p>{{user.notifications_received.count}} {% trans 'Notification' %}{{user.notifications_received.count | pluralize}}</p>
@@ -78,7 +78,7 @@
             data-toggle="modal"
             data-target="#delete-user-modal"
 			data-placement="right"
-            data-intro='Aqui você deleta seu usuário'>
+            data-intro="{% trans 'Here you delete your account' %}">
             <i class="fa fa-trash icon-lg"></i>
             <p>{% trans 'Delete Account' %}</p>
     </button>

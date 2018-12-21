@@ -4,6 +4,10 @@ body {
   overflow-x: hidden;
 }
 
+.introjs-helperLayer {
+  background-color: unset !important;
+}
+
 main {
   position: relative;
   top: 50px;

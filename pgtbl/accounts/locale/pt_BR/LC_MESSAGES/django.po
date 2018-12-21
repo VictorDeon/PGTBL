@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-17 16:25-0200\n"
+"POT-Creation-Date: 2018-12-21 14:47-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,47 +19,63 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: pgtbl/accounts/templates/accounts/collapse.html:10
+msgid "Show all disciplines that you are part of."
+msgstr "Mostra todas as disciplinas que você faz parte."
+
+#: pgtbl/accounts/templates/accounts/collapse.html:11
 msgid "All Disciplines"
 msgstr "Todas as disciplinas"
 
-#: pgtbl/accounts/templates/accounts/collapse.html:19
+#: pgtbl/accounts/templates/accounts/collapse.html:20
+msgid "Show the disciplines that you are part of."
+msgstr "Mostra as disciplinas que você faz parte."
+
+#: pgtbl/accounts/templates/accounts/collapse.html:21
 msgid "Student of discipline"
 msgstr "Estudante das disciplinas"
 
-#: pgtbl/accounts/templates/accounts/collapse.html:28
+#: pgtbl/accounts/templates/accounts/collapse.html:30
+msgid "Show the disciplines that you are monitor."
+msgstr "Mostras as disciplinas que você é monitor."
+
+#: pgtbl/accounts/templates/accounts/collapse.html:31
 msgid "Discipline monitor"
 msgstr "Monitor das disciplinas"
 
-#: pgtbl/accounts/templates/accounts/collapse.html:37
+#: pgtbl/accounts/templates/accounts/collapse.html:40
+msgid "Show the disciplines that you create"
+msgstr "Mostra as disciplinas que você criou."
+
+#: pgtbl/accounts/templates/accounts/collapse.html:41
 msgid "Created Disciplines"
 msgstr "Disciplinas criadas"
 
-#: pgtbl/accounts/templates/accounts/collapse.html:91
+#: pgtbl/accounts/templates/accounts/collapse.html:95
 #: pgtbl/accounts/templates/accounts/profile.html:86
 msgid "Teacher"
 msgstr "Professor(a)"
 
-#: pgtbl/accounts/templates/accounts/collapse.html:100
+#: pgtbl/accounts/templates/accounts/collapse.html:104
 #: pgtbl/accounts/templates/accounts/profile.html:130
 msgid "Course"
 msgstr "Curso"
 
-#: pgtbl/accounts/templates/accounts/collapse.html:116
-#: pgtbl/accounts/templates/accounts/login.html:81
+#: pgtbl/accounts/templates/accounts/collapse.html:120
+#: pgtbl/accounts/templates/accounts/login.html:80
 msgid "Enter"
 msgstr "Entrar"
 
-#: pgtbl/accounts/templates/accounts/collapse.html:127
+#: pgtbl/accounts/templates/accounts/collapse.html:131
 msgid "Hall of Fame"
 msgstr "Hall da Fama"
 
-#: pgtbl/accounts/templates/accounts/collapse.html:140
+#: pgtbl/accounts/templates/accounts/collapse.html:144
 #: pgtbl/accounts/templates/accounts/edit_information.html:219
 #: pgtbl/accounts/templates/accounts/edit_password.html:121
 msgid "Edit"
 msgstr "Editar"
 
-#: pgtbl/accounts/templates/accounts/collapse.html:166
+#: pgtbl/accounts/templates/accounts/collapse.html:170
 msgid "There is no disciplines."
 msgstr "Não há disciplinas."
 
@@ -94,7 +110,7 @@ msgstr "Editar informações pessoais"
 msgid "Edit password"
 msgstr "Editar senha"
 
-#: pgtbl/accounts/templates/accounts/login.html:87
+#: pgtbl/accounts/templates/accounts/login.html:86
 msgid "Forget password"
 msgstr "Esqueceu a senha"
 
@@ -107,7 +123,7 @@ msgstr "Perfil"
 
 #: pgtbl/accounts/templates/accounts/profile.html:31
 msgid "Welcome"
-msgstr ""
+msgstr "Bem-Vindo"
 
 #: pgtbl/accounts/templates/accounts/profile.html:91
 msgid "Student"
@@ -170,184 +186,202 @@ msgstr "Para criar uma nova senha acesse o link"
 msgid "New Password"
 msgstr "Nova senha"
 
+#: pgtbl/accounts/templates/accounts/sidebar.html:13
+msgid "User profile with his information and disciplines."
+msgstr "Perfil do usuário com suas principais informações e disciplinas."
+
+#: pgtbl/accounts/templates/accounts/sidebar.html:24
+msgid "Page to edit your personal information."
+msgstr "Página para editar suas informações pessoais"
+
 #: pgtbl/accounts/templates/accounts/sidebar.html:26
-#, fuzzy
-#| msgid "Updated at"
 msgid "Update Account"
-msgstr "Atualizado em"
+msgstr "Atualizar Conta"
+
+#: pgtbl/accounts/templates/accounts/sidebar.html:35
+msgid "Page to edit your password."
+msgstr "Página para editar sua senha."
 
 #: pgtbl/accounts/templates/accounts/sidebar.html:37
-#, fuzzy
-#| msgid "New Password"
 msgid "Update Password"
-msgstr "Nova senha"
+msgstr "Atualizar Senha"
 
 #: pgtbl/accounts/templates/accounts/sidebar.html:45
 msgid "Search discipline and classroom"
 msgstr "Procurar disciplinas e turmas"
 
+#: pgtbl/accounts/templates/accounts/sidebar.html:46
+msgid "Page to search for a specific discipline and enter it."
+msgstr "Página para procurar uma disciplina especifica e entrar nela."
+
 #: pgtbl/accounts/templates/accounts/sidebar.html:48
-#, fuzzy
-#| msgid "Created Disciplines"
 msgid "Search Discipline"
-msgstr "Disciplinas criadas"
+msgstr "Procurar Disciplina"
 
 #: pgtbl/accounts/templates/accounts/sidebar.html:56
 msgid "Create discipline and classroom"
 msgstr "Criar disciplinas e turmas"
 
+#: pgtbl/accounts/templates/accounts/sidebar.html:57
+msgid "Page to create a new discipline."
+msgstr "Página para criar uma nova disciplina"
+
 #: pgtbl/accounts/templates/accounts/sidebar.html:60
-#, fuzzy
-#| msgid "Created Disciplines"
 msgid "Create Discipline"
-msgstr "Disciplinas criadas"
+msgstr "Criar Disciplina"
 
 #: pgtbl/accounts/templates/accounts/sidebar.html:68
 #: pgtbl/accounts/templates/accounts/sidebar.html:72
 msgid "Notification"
-msgstr ""
+msgstr "Notificações"
+
+#: pgtbl/accounts/templates/accounts/sidebar.html:69
+msgid "Page to see all notifications."
+msgstr "Página para ver todas as suas notificações."
+
+#: pgtbl/accounts/templates/accounts/sidebar.html:81
+msgid "Here you delete your account"
+msgstr "Aqui você pode deletar sua conta."
 
 #: pgtbl/accounts/templates/accounts/sidebar.html:83
-#, fuzzy
-#| msgid "Delete user"
 msgid "Delete Account"
-msgstr "Deletar usuário"
+msgstr "Deletar Conta"
 
-#~ msgid "Personal Information"
-#~ msgstr "Informações Pessoais"
+msgid "Personal Information"
+msgstr "Informações Pessoais"
 
-#~ msgid "Permissions"
-#~ msgstr "Permissões"
+msgid "Permissions"
+msgstr "Permissões"
 
-#~ msgid "Accounts"
-#~ msgstr "Contas"
+msgid "Accounts"
+msgstr "Contas"
 
-#~ msgid "There is no user found with this email"
-#~ msgstr "Não há usuários com esse email"
+msgid "There is no user found with this email"
+msgstr "Não há usuários com esse email"
 
-#~ msgid "Enter a valid username"
-#~ msgstr "Entre com um usuário válido"
+msgid "Enter a valid username"
+msgstr "Entre com um usuário válido"
 
-#~ msgid ""
-#~ "This value should only contain letters, numbers,         and characters ./"
-#~ "@/+/-/_."
-#~ msgstr ""
-#~ "Este valor deve somente conter letras, números, e caracteres como @/./+/-/"
-#~ "_."
+msgid ""
+"This value should only contain letters, numbers,         and characters ./"
+"@/+/-/_."
+msgstr ""
+"Este valor deve somente conter letras, números, e caracteres como @/./+/-/"
+"_."
 
-#~ msgid "User"
-#~ msgstr "Usuário"
+msgid "User"
+msgstr "Usuário"
 
-#~ msgid "A user with that username already exists."
-#~ msgstr "Um usuário com esse username já existe."
+msgid "A user with that username already exists."
+msgstr "Um usuário com esse username já existe."
 
-#~ msgid "E-mail"
-#~ msgstr "E-mail"
+msgid "E-mail"
+msgstr "E-mail"
 
-#~ msgid "Email that will be used as username."
-#~ msgstr "Email que será usado como usuário."
+msgid "Email that will be used as username."
+msgstr "Email que será usado como usuário."
 
-#~ msgid "A user with that email already exists."
-#~ msgstr "Um usuário com esse email já existe."
+msgid "A user with that email already exists."
+msgstr "Um usuário com esse email já existe."
 
-#~ msgid "Name"
-#~ msgstr "Nome"
+msgid "Name"
+msgstr "Nome"
 
-#~ msgid "Full user name."
-#~ msgstr "Nome completo."
+msgid "Full user name."
+msgstr "Nome completo."
 
-#~ msgid "University or School in which the user is inserted."
-#~ msgstr "Universidade ou escola na qual o usuário está inserido."
+msgid "University or School in which the user is inserted."
+msgstr "Universidade ou escola na qual o usuário está inserido."
 
-#~ msgid "Course of university or Period of school."
-#~ msgstr "Curso da universidade ou Série da escola."
+msgid "Course of university or Period of school."
+msgstr "Curso da universidade ou Série da escola."
 
-#~ msgid "Photo of user."
-#~ msgstr "Foto do usuário."
+msgid "Photo of user."
+msgstr "Foto do usuário."
 
-#~ msgid "Photo"
-#~ msgstr "Foto"
+msgid "Photo"
+msgstr "Foto"
 
-#~ msgid "Is Teacher?"
-#~ msgstr "É professor?"
+msgid "Is Teacher?"
+msgstr "É professor?"
 
-#~ msgid "Verify if the user is teacher or student"
-#~ msgstr "Verifica se o usuário é professor ou aluno"
+msgid "Verify if the user is teacher or student"
+msgstr "Verifica se o usuário é professor ou aluno"
 
-#~ msgid "Last Login"
-#~ msgstr "Último login"
+msgid "Last Login"
+msgstr "Último login"
 
-#~ msgid "Last moment the user logged in."
-#~ msgstr "Último momento em que o usuário estava logado."
+msgid "Last moment the user logged in."
+msgstr "Último momento em que o usuário estava logado."
 
-#~ msgid "Is Active?"
-#~ msgstr "Está ativo?"
+msgid "Is Active?"
+msgstr "Está ativo?"
 
-#~ msgid "Verify if the user is active."
-#~ msgstr "Verifica se o usuário ainda está ativo."
+msgid "Verify if the user is active."
+msgstr "Verifica se o usuário ainda está ativo."
 
-#~ msgid "Is Staff?"
-#~ msgstr "É administrador?"
+msgid "Is Staff?"
+msgstr "É administrador?"
 
-#~ msgid "Verify if the user is a staff."
-#~ msgstr "Verifica se o usuário é um administrador."
+msgid "Verify if the user is a staff."
+msgstr "Verifica se o usuário é um administrador."
 
-#~ msgid "Created at"
-#~ msgstr "Criado em"
+msgid "Created at"
+msgstr "Criado em"
 
-#~ msgid "Date that the user is created."
-#~ msgstr "Data que o usuário criou a conta."
+msgid "Date that the user is created."
+msgstr "Data que o usuário criou a conta."
 
-#~ msgid "Date that the user is updated."
-#~ msgstr "Data que o usuário atualizou a conta."
+msgid "Date that the user is updated."
+msgstr "Data que o usuário atualizou a conta."
 
-#~ msgid "Users"
-#~ msgstr "Usuários"
+msgid "Users"
+msgstr "Usuários"
 
-#~ msgid "Key"
-#~ msgstr "Chave"
+msgid "Key"
+msgstr "Chave"
 
-#~ msgid "Confirmed?"
-#~ msgstr "Confirmado?"
+msgid "Confirmed?"
+msgstr "Confirmado?"
 
-#~ msgid "New password"
-#~ msgstr "Nova senha"
+msgid "New password"
+msgstr "Nova senha"
 
-#~ msgid "New passwords"
-#~ msgstr "Novas senhas"
+msgid "New passwords"
+msgstr "Novas senhas"
 
-#~ msgid "This field is required."
-#~ msgstr "Este campo é obrigatório."
+msgid "This field is required."
+msgstr "Este campo é obrigatório."
 
-#~ msgid ""
-#~ "Please enter a correct %(username)s and password. Note that both fields "
-#~ "may be case-sensitive."
-#~ msgstr ""
-#~ "Por favor entre com o %(username)s e senha correto. Note que ambos os "
-#~ "campos devem ser case-sensitive."
+msgid ""
+"Please enter a correct %(username)s and password. Note that both fields "
+"may be case-sensitive."
+msgstr ""
+"Por favor entre com o %(username)s e senha correto. Note que ambos os "
+"campos devem ser case-sensitive."
 
-#~ msgid "Requesting new password"
-#~ msgstr "Solicitando nova senha"
+msgid "Requesting new password"
+msgstr "Solicitando nova senha"
 
-#~ msgid "Teacher created successfully."
-#~ msgstr "Professor criado com sucesso."
+msgid "Teacher created successfully."
+msgstr "Professor criado com sucesso."
 
-#~ msgid "Student created successfully."
-#~ msgstr "Estudante criado com sucesso."
+msgid "Student created successfully."
+msgstr "Estudante criado com sucesso."
 
-#~ msgid "User updated successfully."
-#~ msgstr "Usuário atualizado com sucesso."
+msgid "User updated successfully."
+msgstr "Usuário atualizado com sucesso."
 
-#~ msgid "Accounts deleted successfully."
-#~ msgstr "Conta deletada com sucesso."
+msgid "Accounts deleted successfully."
+msgstr "Conta deletada com sucesso."
 
-#~ msgid "Password updated successfully."
-#~ msgstr "Sua senha foi atualizada com sucesso."
+msgid "Password updated successfully."
+msgstr "Sua senha foi atualizada com sucesso."
 
-#~ msgid "An email was sent with more details on how to create a new password"
-#~ msgstr ""
-#~ "Um email será enviado com mais informações sobre como criar uma nova "
-#~ "senha."
+msgid "An email was sent with more details on how to create a new password"
+msgstr ""
+"Um email será enviado com mais informações sobre como criar uma nova "
+"senha."
 
-#~ msgid "Your password was successfully updated."
-#~ msgstr "Sua senha foi atualizada com sucesso."
+msgid "Your password was successfully updated."
+msgstr "Sua senha foi atualizada com sucesso."
