@@ -36,11 +36,12 @@ notebook: pgtbl/manage.py
 
 # TRANSLATION --------------------------------------------------
 
-files := "pgtbl/*.py"
+ignore := "pgtbl/*.py"
+files := "pgtbl/**"
 
 messages:
 	# Create a django.po to insert translations (pt-BR)
-	django-admin makemessages -l pt_BR -i ${files}
+	django-admin makemessages -l pt_BR -i ${ignore} --pythonpath ${files}
 
 compilemessages:
 	# Create translations
