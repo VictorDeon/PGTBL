@@ -40,6 +40,7 @@
             <button class="btn btn-danger btn-block"
                     type="button"
                     data-toggle="modal"
+                    data-intro="{% trans 'Reset discipline to the beginning of a new semester' %}"
                     data-target="#reset-{{ discipline.id }}-modal">
                     <i class="fa fa-backward"></i>
                     {% trans 'Reset Discipline' %}
@@ -64,7 +65,7 @@
             </div>
           {% endif %}
 
-          <div class="media-body">
+          <div class="media-body media-teacher">
             <h4 class="media-heading"><b>{% trans 'Teacher' %}:</b> {{discipline.teacher.name}}</h4>
             <p>{{discipline.teacher.email}}</p>
           </div>
@@ -81,7 +82,8 @@
                 {% trans 'Open Discipline' %}
               </button>
             {% else %}
-              <button type="submit" class="btn btn-danger btn-block close-button">
+              <button type="submit" class="btn btn-danger btn-block close-button"
+                data-intro="{% trans 'Close the discipline, no one else can enter.' %}">
                 <i class="fa fa-eye-slash"></i>
                 {% trans 'Close Discipline' %}
               </button>

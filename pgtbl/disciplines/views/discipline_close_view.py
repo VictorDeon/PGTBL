@@ -10,6 +10,9 @@ from disciplines.models import Discipline
 class DisciplineCloseView(LoginRequiredMixin,
                           PermissionMixin,
                           DeleteView):
+    """
+    Close the discipline, no one else can enter.
+    """
 
     model = Discipline
     template_name = 'disciplines/details.html'

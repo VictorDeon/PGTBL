@@ -7,6 +7,7 @@ class DisciplineUpdateForm(forms.ModelForm):
     """
     Form to create a new discipline.
     """
+
     description = forms.CharField(
         widget=PagedownWidget(
             css=("core/css/markdown.css"),

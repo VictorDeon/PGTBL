@@ -38,7 +38,6 @@
             <!-- All disciplines -->
             <li>
               <a class="text-center" href="{% url 'disciplines:students' discipline.slug %}">
-                <i class="fa fa-list-ul"></i>
                 {% trans 'All' %}
               </a>
             </li>
@@ -46,8 +45,8 @@
             <!-- Filter by students -->
             <li>
               <a class="text-center" href="?filter=students">
-                <span class="badge">
-                  {{discipline.students.count}}/{{discipline.students_limit}}
+                <span class="badge pull-left">
+                  {{discipline.students.count | stringformat:"02d"}}/{{discipline.students_limit | stringformat:"02d"}}
                 </span>
                 {% trans 'Students' %}
               </a>
@@ -56,8 +55,8 @@
             <!-- Filter by monitors -->
             <li>
               <a class="text-center" href="?filter=monitors">
-                <span class="badge">
-                  {{discipline.monitors.count}}/{{discipline.monitors_limit}}
+                <span class="badge pull-left">
+                  {{discipline.monitors.count | stringformat:"02d"}}/{{discipline.monitors_limit | stringformat:"02d"}}
                 </span>
                 {% trans 'Monitors' %}
               </a>
@@ -83,7 +82,7 @@
     {% for student in students %}
       <div class="col-sm-4">
         <!-- Student -->
-        <div class="media">
+        <div class="media media-students">
           <div class="media-left">
             <!-- Photo -->
             {% if student.photo %}

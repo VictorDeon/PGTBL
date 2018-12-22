@@ -6,12 +6,14 @@ from django.urls import reverse_lazy
 from django.views.generic import DeleteView
 from django.shortcuts import redirect
 
+from appeals.models import Appeal
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
 from groups.models import Group
 from irat.models import IRATSubmission
 from grat.models import GRATSubmission
 from exercises.models import ExerciseSubmission, GamificationPointSubmission
+from notification.models import Notification
 from peer_review.models import PeerReviewSubmission
 from grades.models import Grade, FinalGrade
 from rank.models import HallOfFameGroup
@@ -85,6 +87,7 @@ class DisciplineResetView(LoginRequiredMixin,
 
         Group.objects.filter(discipline=discipline).delete()
         FinalGrade.objects.filter(discipline=discipline).delete()
+        Notification.objects.filter(discipline=discipline).delete()
 
 
         self.remove_students_and_monitors(discipline)
@@ -98,6 +101,7 @@ class DisciplineResetView(LoginRequiredMixin,
             ExerciseSubmission.objects.filter(session=session).delete()
             GamificationPointSubmission.objects.filter(session=session).delete()
             Grade.objects.filter(session=session).delete()
+            Appeal.objects.filter(session=session).delete()
 
     def create_hall_of_fame(self, discipline):
         """
@@ -142,7 +146,7 @@ class DisciplineResetView(LoginRequiredMixin,
 
     def verify_if_hall_of_fame_exists(self, discipline):
         """
-        Verify if group in Hall of Fame exists to not duplacate.
+        Verify if group in Hall of Fame exists to not duplicate.
         """
 
         hall_of_fame = HallOfFameGroup.objects.filter(discipline=discipline)
