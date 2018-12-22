@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-22 15:30-0200\n"
+"POT-Creation-Date: 2018-12-22 16:02-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,370 +18,402 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: pgtbl/accounts/templates/accounts/collapse.html:10
-msgid "Show all disciplines that you are part of."
-msgstr "Mostra todas as disciplinas que você faz parte."
+#: admin.py:27
+msgid "Personal Information"
+msgstr "Informações Pessoais"
 
-#: pgtbl/accounts/templates/accounts/collapse.html:11
-msgid "All Disciplines"
-msgstr "Todas as disciplinas"
+#: admin.py:36
+msgid "Permissions"
+msgstr "Permissões"
 
-#: pgtbl/accounts/templates/accounts/collapse.html:20
-msgid "Show the disciplines that you are part of."
-msgstr "Mostra as disciplinas que você faz parte."
+#: apps.py:7
+msgid "Accounts"
+msgstr "Contas"
 
-#: pgtbl/accounts/templates/accounts/collapse.html:21
-msgid "Student of discipline"
-msgstr "Estudante das disciplinas"
+#: forms/password_reset_form.py:27 tests/test_reset_password.py:77
+msgid "There is no user found with this email"
+msgstr "Não há usuários com esse email"
 
-#: pgtbl/accounts/templates/accounts/collapse.html:30
-msgid "Show the disciplines that you are monitor."
-msgstr "Mostras as disciplinas que você é monitor."
-
-#: pgtbl/accounts/templates/accounts/collapse.html:31
-msgid "Discipline monitor"
-msgstr "Monitor das disciplinas"
-
-#: pgtbl/accounts/templates/accounts/collapse.html:40
-msgid "Show the disciplines that you create"
-msgstr "Mostra as disciplinas que você criou."
-
-#: pgtbl/accounts/templates/accounts/collapse.html:41
-msgid "Created Disciplines"
-msgstr "Disciplinas criadas"
-
-#: pgtbl/accounts/templates/accounts/collapse.html:95
-#: pgtbl/accounts/templates/accounts/profile.html:86
+#: forms/user_creation_form.py:16 templates/accounts/collapse.html:95
+#: templates/accounts/profile.html:86
 msgid "Teacher"
 msgstr "Professor(a)"
 
-#: pgtbl/accounts/templates/accounts/collapse.html:104
-#: pgtbl/accounts/templates/accounts/profile.html:130
-msgid "Course"
-msgstr "Curso"
-
-#: pgtbl/accounts/templates/accounts/collapse.html:120
-#: pgtbl/accounts/templates/accounts/login.html:80
-msgid "Enter"
-msgstr "Entrar"
-
-#: pgtbl/accounts/templates/accounts/collapse.html:131
-msgid "Hall of Fame"
-msgstr "Hall da Fama"
-
-#: pgtbl/accounts/templates/accounts/collapse.html:144
-#: pgtbl/accounts/templates/accounts/edit_information.html:219
-#: pgtbl/accounts/templates/accounts/edit_password.html:121
-msgid "Edit"
-msgstr "Editar"
-
-#: pgtbl/accounts/templates/accounts/collapse.html:170
-msgid "There is no disciplines."
-msgstr "Não há disciplinas."
-
-#: pgtbl/accounts/templates/accounts/delete.html:20
-msgid "Delete user"
-msgstr "Deletar usuário"
-
-#: pgtbl/accounts/templates/accounts/delete.html:27
-msgid "Are you sure you want to delete your account"
-msgstr "Tem certeza que deseja deletar sua conta"
-
-#: pgtbl/accounts/templates/accounts/delete.html:41
-msgid "Delete"
-msgstr "Deletar"
-
-#: pgtbl/accounts/templates/accounts/delete.html:50
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: pgtbl/accounts/templates/accounts/edit_information.html:14
-msgid "Edit information"
-msgstr "Editar informação"
-
-#: pgtbl/accounts/templates/accounts/edit_information.html:24
-#: pgtbl/accounts/templates/accounts/sidebar.html:23
-msgid "Edit personal information"
-msgstr "Editar informações pessoais"
-
-#: pgtbl/accounts/templates/accounts/edit_password.html:14
-#: pgtbl/accounts/templates/accounts/edit_password.html:23
-#: pgtbl/accounts/templates/accounts/sidebar.html:34
-msgid "Edit password"
-msgstr "Editar senha"
-
-#: pgtbl/accounts/templates/accounts/login.html:86
-msgid "Forget password"
-msgstr "Esqueceu a senha"
-
-#: pgtbl/accounts/templates/accounts/profile.html:23
-#: pgtbl/accounts/templates/accounts/profile.html:56
-#: pgtbl/accounts/templates/accounts/sidebar.html:12
-#: pgtbl/accounts/templates/accounts/sidebar.html:15
-msgid "Profile"
-msgstr "Perfil"
-
-#: pgtbl/accounts/templates/accounts/profile.html:31
-msgid "Welcome"
-msgstr "Bem-Vindo"
-
-#: pgtbl/accounts/templates/accounts/profile.html:91
+#: forms/user_creation_form.py:17 templates/accounts/profile.html:91
 msgid "Student"
 msgstr "Aluno(a)"
 
-#: pgtbl/accounts/templates/accounts/profile.html:105
-msgid "Change your name!"
-msgstr "Insira seu nome!"
+#: models/password_reset.py:15 models/user.py:18 models/user.py:152
+#: tests/test_login.py:98
+msgid "User"
+msgstr "Usuário"
 
-#: pgtbl/accounts/templates/accounts/profile.html:112
-msgid "Email"
-msgstr "Email"
+#: models/password_reset.py:21
+msgid "Key"
+msgstr "Chave"
 
-#: pgtbl/accounts/templates/accounts/profile.html:121
+#: models/password_reset.py:28 models/user.py:94
+msgid "Created at"
+msgstr "Criado em"
+
+#: models/password_reset.py:34
+msgid "Confirmed?"
+msgstr "Confirmado?"
+
+#: models/password_reset.py:52
+msgid "New password"
+msgstr "Nova senha"
+
+#: models/password_reset.py:53
+msgid "New passwords"
+msgstr "Novas senhas"
+
+#: models/user.py:23
+msgid "A user with that username already exists."
+msgstr "Um usuário com esse username já existe."
+
+#: models/user.py:28
+msgid "E-mail"
+msgstr "E-mail"
+
+#: models/user.py:29
+msgid "Email that will be used as username."
+msgstr "Email que será usado como usuário."
+
+#: models/user.py:32
+msgid "A user with that email already exists."
+msgstr "Um usuário com esse email já existe."
+
+#: models/user.py:37
+msgid "Name"
+msgstr "Nome"
+
+#: models/user.py:38
+msgid "Full user name."
+msgstr "Nome completo."
+
+#: models/user.py:43 templates/accounts/profile.html:121
 msgid "Institution"
 msgstr "Instituição"
 
-#: pgtbl/accounts/templates/accounts/profile.html:143
+#: models/user.py:44
+msgid "University or School in which the user is inserted."
+msgstr "Universidade ou escola na qual o usuário está inserido."
+
+#: models/user.py:50 templates/accounts/collapse.html:104
+#: templates/accounts/profile.html:130
+msgid "Course"
+msgstr "Curso"
+
+#: models/user.py:51
+msgid "Course of university or Period of school."
+msgstr "Curso da universidade ou Série da escola."
+
+#: models/user.py:58
+msgid "Photo of user."
+msgstr "Foto do usuário."
+
+#: models/user.py:59
+msgid "Photo"
+msgstr "Foto"
+
+#: models/user.py:65
+msgid "Is Teacher?"
+msgstr "É professor?"
+
+#: models/user.py:66
+msgid "Verify if the user is teacher or student"
+msgstr "Verifica se o usuário é professor ou aluno"
+
+#: models/user.py:71
+msgid "Last Login"
+msgstr "Último login"
+
+#: models/user.py:72
+msgid "Last moment the user logged in."
+msgstr "Último momento em que o usuário estava logado."
+
+#: models/user.py:80
+msgid "Is Active?"
+msgstr "Está ativo?"
+
+#: models/user.py:81
+msgid "Verify if the user is active."
+msgstr "Verifica se o usuário ainda está ativo."
+
+#: models/user.py:87
+msgid "Is Staff?"
+msgstr "É administrador?"
+
+#: models/user.py:88
+msgid "Verify if the user is a staff."
+msgstr "Verifica se o usuário é um administrador."
+
+#: models/user.py:95
+msgid "Date that the user is created."
+msgstr "Data que o usuário criou a conta."
+
+#: models/user.py:101
+msgid "Updated at"
+msgstr "Atualizado em"
+
+#: models/user.py:102
+msgid "Date that the user is updated."
+msgstr "Data que o usuário atualizou a conta."
+
+#: models/user.py:153
+msgid "Users"
+msgstr "Usuários"
+
+#: templates/accounts/collapse.html:10
+msgid "Show all disciplines that you are part of."
+msgstr "Mostra todas as disciplinas que você faz parte."
+
+#: templates/accounts/collapse.html:11
+msgid "All Disciplines"
+msgstr "Todas as disciplinas"
+
+#: templates/accounts/collapse.html:20
+msgid "Show the disciplines that you are part of."
+msgstr "Mostra as disciplinas que você faz parte."
+
+#: templates/accounts/collapse.html:21
+msgid "Student of discipline"
+msgstr "Estudante das disciplinas"
+
+#: templates/accounts/collapse.html:30
+msgid "Show the disciplines that you are monitor."
+msgstr "Mostras as disciplinas que você é monitor."
+
+#: templates/accounts/collapse.html:31
+msgid "Discipline monitor"
+msgstr "Monitor das disciplinas"
+
+#: templates/accounts/collapse.html:40
+msgid "Show the disciplines that you create"
+msgstr "Mostra as disciplinas que você criou."
+
+#: templates/accounts/collapse.html:41
+msgid "Created Disciplines"
+msgstr "Disciplinas criadas"
+
+#: templates/accounts/collapse.html:120 templates/accounts/login.html:80
+msgid "Enter"
+msgstr "Entrar"
+
+#: templates/accounts/collapse.html:131
+msgid "Hall of Fame"
+msgstr "Hall da Fama"
+
+#: templates/accounts/collapse.html:144
+#: templates/accounts/edit_information.html:219
+#: templates/accounts/edit_password.html:121
+msgid "Edit"
+msgstr "Editar"
+
+#: templates/accounts/collapse.html:170
+msgid "There is no disciplines."
+msgstr "Não há disciplinas."
+
+#: templates/accounts/delete.html:20
+msgid "Delete user"
+msgstr "Deletar usuário"
+
+#: templates/accounts/delete.html:27
+msgid "Are you sure you want to delete your account"
+msgstr "Tem certeza que deseja deletar sua conta"
+
+#: templates/accounts/delete.html:41
+msgid "Delete"
+msgstr "Deletar"
+
+#: templates/accounts/delete.html:50
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: templates/accounts/edit_information.html:14
+msgid "Edit information"
+msgstr "Editar informação"
+
+#: templates/accounts/edit_information.html:24
+#: templates/accounts/sidebar.html:23
+msgid "Edit personal information"
+msgstr "Editar informações pessoais"
+
+#: templates/accounts/edit_password.html:14
+#: templates/accounts/edit_password.html:23 templates/accounts/sidebar.html:34
+msgid "Edit password"
+msgstr "Editar senha"
+
+#: templates/accounts/login.html:86
+msgid "Forget password"
+msgstr "Esqueceu a senha"
+
+#: templates/accounts/profile.html:23 templates/accounts/profile.html:56
+#: templates/accounts/sidebar.html:12 templates/accounts/sidebar.html:15
+msgid "Profile"
+msgstr "Perfil"
+
+#: templates/accounts/profile.html:31
+msgid "Welcome"
+msgstr "Bem-Vindo"
+
+#: templates/accounts/profile.html:105
+msgid "Change your name!"
+msgstr "Insira seu nome!"
+
+#: templates/accounts/profile.html:112
+msgid "Email"
+msgstr "Email"
+
+#: templates/accounts/profile.html:143
 msgid "Last login"
 msgstr "Último login"
 
-#: pgtbl/accounts/templates/accounts/profile.html:147
+#: templates/accounts/profile.html:147
 msgid "Updated "
 msgstr "Atualizado "
 
-#: pgtbl/accounts/templates/accounts/profile.html:147
+#: templates/accounts/profile.html:147
 msgid " ago"
 msgstr " atrás"
 
-#: pgtbl/accounts/templates/accounts/register.html:16
+#: templates/accounts/register.html:16
 msgid "Register"
 msgstr "Cadastro"
 
-#: pgtbl/accounts/templates/accounts/register.html:104
+#: templates/accounts/register.html:104
 msgid "Select the type of user"
 msgstr "Selecione o tipo de usuário"
 
-#: pgtbl/accounts/templates/accounts/register.html:161
+#: templates/accounts/register.html:161
 msgid "Send"
 msgstr "Enviar"
 
-#: pgtbl/accounts/templates/accounts/reset_password.html:18
-#: pgtbl/accounts/templates/accounts/reset_password_confirm.html:83
+#: templates/accounts/reset_password.html:18
+#: templates/accounts/reset_password_confirm.html:83
 msgid "Reset password"
 msgstr "Resetar a senha"
 
-#: pgtbl/accounts/templates/accounts/reset_password.html:61
+#: templates/accounts/reset_password.html:61
 msgid "Send email"
 msgstr "Enviar email"
 
-#: pgtbl/accounts/templates/accounts/reset_password_confirm.html:17
+#: templates/accounts/reset_password_confirm.html:17
 msgid "Enter your new password"
 msgstr "Entre com sua nova senha"
 
-#: pgtbl/accounts/templates/accounts/reset_password_email.html:4
+#: templates/accounts/reset_password_email.html:4
 msgid "To create a new password access the link"
 msgstr "Para criar uma nova senha acesse o link"
 
-#: pgtbl/accounts/templates/accounts/reset_password_email.html:7
+#: templates/accounts/reset_password_email.html:7
 msgid "New Password"
 msgstr "Nova senha"
 
-#: pgtbl/accounts/templates/accounts/sidebar.html:13
+#: templates/accounts/sidebar.html:13
 msgid "User profile with his information and disciplines."
 msgstr "Perfil do usuário com suas principais informações e disciplinas."
 
-#: pgtbl/accounts/templates/accounts/sidebar.html:24
+#: templates/accounts/sidebar.html:24
 msgid "Page to edit your personal information."
 msgstr "Página para editar suas informações pessoais"
 
-#: pgtbl/accounts/templates/accounts/sidebar.html:26
+#: templates/accounts/sidebar.html:26
 msgid "Update Account"
 msgstr "Atualizar Conta"
 
-#: pgtbl/accounts/templates/accounts/sidebar.html:35
+#: templates/accounts/sidebar.html:35
 msgid "Page to edit your password."
 msgstr "Página para editar sua senha."
 
-#: pgtbl/accounts/templates/accounts/sidebar.html:37
+#: templates/accounts/sidebar.html:37
 msgid "Update Password"
 msgstr "Atualizar Senha"
 
-#: pgtbl/accounts/templates/accounts/sidebar.html:45
+#: templates/accounts/sidebar.html:45
 msgid "Search discipline and classroom"
 msgstr "Procurar disciplinas e turmas"
 
-#: pgtbl/accounts/templates/accounts/sidebar.html:46
+#: templates/accounts/sidebar.html:46
 msgid "Page to search for a specific discipline and enter it."
 msgstr "Página para procurar uma disciplina especifica e entrar nela."
 
-#: pgtbl/accounts/templates/accounts/sidebar.html:48
+#: templates/accounts/sidebar.html:48
 msgid "Search Discipline"
 msgstr "Procurar Disciplina"
 
-#: pgtbl/accounts/templates/accounts/sidebar.html:56
+#: templates/accounts/sidebar.html:56
 msgid "Create discipline and classroom"
 msgstr "Criar disciplinas e turmas"
 
-#: pgtbl/accounts/templates/accounts/sidebar.html:57
+#: templates/accounts/sidebar.html:57
 msgid "Page to create a new discipline."
 msgstr "Página para criar uma nova disciplina"
 
-#: pgtbl/accounts/templates/accounts/sidebar.html:60
+#: templates/accounts/sidebar.html:60
 msgid "Create Discipline"
 msgstr "Criar Disciplina"
 
-#: pgtbl/accounts/templates/accounts/sidebar.html:68
-#: pgtbl/accounts/templates/accounts/sidebar.html:72
+#: templates/accounts/sidebar.html:68 templates/accounts/sidebar.html:72
 msgid "Notification"
 msgstr "Notificações"
 
-#: pgtbl/accounts/templates/accounts/sidebar.html:69
+#: templates/accounts/sidebar.html:69
 msgid "Page to see all notifications."
 msgstr "Página para ver todas as suas notificações."
 
-#: pgtbl/accounts/templates/accounts/sidebar.html:81
+#: templates/accounts/sidebar.html:81
 msgid "Here you delete your account"
 msgstr "Aqui você pode deletar sua conta."
 
-#: pgtbl/accounts/templates/accounts/sidebar.html:83
+#: templates/accounts/sidebar.html:83
 msgid "Delete Account"
 msgstr "Deletar Conta"
 
-#~ msgid "Personal Information"
-#~ msgstr "Informações Pessoais"
+#: tests/test_login.py:91
+#, python-format
+msgid ""
+"Please enter a correct %(username)s and password. Note that both fields may "
+"be case-sensitive."
+msgstr ""
+"Por favor entre com o %(username)s e senha correto. Note que ambos os campos "
+"devem ser case-sensitive."
 
-#~ msgid "Permissions"
-#~ msgstr "Permissões"
+#: tests/test_reset_password.py:48 views/reset_password_view.py:44
+msgid "Requesting new password"
+msgstr "Solicitando nova senha"
 
-#~ msgid "Accounts"
-#~ msgstr "Contas"
+#: tests/test_reset_password.py:61 tests/test_user_update.py:84
+#: tests/test_user_update.py:96 tests/test_user_update.py:108
+msgid "This field is required."
+msgstr "Este campo é obrigatório."
 
-#~ msgid "There is no user found with this email"
-#~ msgstr "Não há usuários com esse email"
+#: views/password_update_view.py:43
+msgid "Password updated successfully."
+msgstr "Sua senha foi atualizada com sucesso."
 
-#~ msgid "Enter a valid username"
-#~ msgstr "Entre com um usuário válido"
+#: views/reset_password_confirm_view.py:56
+msgid "Your password was successfully updated."
+msgstr "Sua senha foi atualizada com sucesso."
 
-#~ msgid ""
-#~ "This value should only contain letters, numbers,         and characters ./"
-#~ "@/+/-/_."
-#~ msgstr ""
-#~ "Este valor deve somente conter letras, números, e caracteres como @/./+/-/"
-#~ "_."
+#: views/reset_password_view.py:52
+msgid "An email was sent with more details on how to create a new password"
+msgstr ""
+"Um email será enviado com mais informações sobre como criar uma nova senha."
 
-#~ msgid "User"
-#~ msgstr "Usuário"
+#: views/user_create_view.py:47
+msgid "Teacher created successfully."
+msgstr "Professor criado com sucesso."
 
-#~ msgid "A user with that username already exists."
-#~ msgstr "Um usuário com esse username já existe."
+#: views/user_create_view.py:52
+msgid "Student created successfully."
+msgstr "Estudante criado com sucesso."
 
-#~ msgid "E-mail"
-#~ msgstr "E-mail"
+#: views/user_delete_view.py:35
+msgid "Accounts deleted successfully."
+msgstr "Conta deletada com sucesso."
 
-#~ msgid "Email that will be used as username."
-#~ msgstr "Email que será usado como usuário."
-
-#~ msgid "A user with that email already exists."
-#~ msgstr "Um usuário com esse email já existe."
-
-#~ msgid "Name"
-#~ msgstr "Nome"
-
-#~ msgid "Full user name."
-#~ msgstr "Nome completo."
-
-#~ msgid "University or School in which the user is inserted."
-#~ msgstr "Universidade ou escola na qual o usuário está inserido."
-
-#~ msgid "Course of university or Period of school."
-#~ msgstr "Curso da universidade ou Série da escola."
-
-#~ msgid "Photo of user."
-#~ msgstr "Foto do usuário."
-
-#~ msgid "Photo"
-#~ msgstr "Foto"
-
-#~ msgid "Is Teacher?"
-#~ msgstr "É professor?"
-
-#~ msgid "Verify if the user is teacher or student"
-#~ msgstr "Verifica se o usuário é professor ou aluno"
-
-#~ msgid "Last Login"
-#~ msgstr "Último login"
-
-#~ msgid "Last moment the user logged in."
-#~ msgstr "Último momento em que o usuário estava logado."
-
-#~ msgid "Is Active?"
-#~ msgstr "Está ativo?"
-
-#~ msgid "Verify if the user is active."
-#~ msgstr "Verifica se o usuário ainda está ativo."
-
-#~ msgid "Is Staff?"
-#~ msgstr "É administrador?"
-
-#~ msgid "Verify if the user is a staff."
-#~ msgstr "Verifica se o usuário é um administrador."
-
-#~ msgid "Created at"
-#~ msgstr "Criado em"
-
-#~ msgid "Date that the user is created."
-#~ msgstr "Data que o usuário criou a conta."
-
-#~ msgid "Date that the user is updated."
-#~ msgstr "Data que o usuário atualizou a conta."
-
-#~ msgid "Users"
-#~ msgstr "Usuários"
-
-#~ msgid "Key"
-#~ msgstr "Chave"
-
-#~ msgid "Confirmed?"
-#~ msgstr "Confirmado?"
-
-#~ msgid "New password"
-#~ msgstr "Nova senha"
-
-#~ msgid "New passwords"
-#~ msgstr "Novas senhas"
-
-#~ msgid "This field is required."
-#~ msgstr "Este campo é obrigatório."
-
-#~ msgid ""
-#~ "Please enter a correct %(username)s and password. Note that both fields "
-#~ "may be case-sensitive."
-#~ msgstr ""
-#~ "Por favor entre com o %(username)s e senha correto. Note que ambos os "
-#~ "campos devem ser case-sensitive."
-
-#~ msgid "Requesting new password"
-#~ msgstr "Solicitando nova senha"
-
-#~ msgid "Teacher created successfully."
-#~ msgstr "Professor criado com sucesso."
-
-#~ msgid "Student created successfully."
-#~ msgstr "Estudante criado com sucesso."
-
-#~ msgid "User updated successfully."
-#~ msgstr "Usuário atualizado com sucesso."
-
-#~ msgid "Accounts deleted successfully."
-#~ msgstr "Conta deletada com sucesso."
-
-#~ msgid "Password updated successfully."
-#~ msgstr "Sua senha foi atualizada com sucesso."
-
-#~ msgid "An email was sent with more details on how to create a new password"
-#~ msgstr ""
-#~ "Um email será enviado com mais informações sobre como criar uma nova "
-#~ "senha."
-
-#~ msgid "Your password was successfully updated."
-#~ msgstr "Sua senha foi atualizada com sucesso."
+#: views/user_update_view.py:42
+msgid "User updated successfully."
+msgstr "Usuário atualizado com sucesso."
