@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-21 14:47-0200\n"
+"POT-Creation-Date: 2018-12-22 15:05-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,30 +36,32 @@ msgstr "Deletar"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: pgtbl/disciplines/templates/disciplines/details.html:45
-#, fuzzy
-#| msgid "Delete Discipline"
-msgid "Reset Discipline"
-msgstr "Deletar disciplina"
+#: pgtbl/disciplines/templates/disciplines/details.html:43
+msgid "Reset discipline to the beginning of a new semester"
+msgstr "Resetar a disciplina para o inicio de um novo semestre"
 
-#: pgtbl/disciplines/templates/disciplines/details.html:68
+#: pgtbl/disciplines/templates/disciplines/details.html:46
+msgid "Reset Discipline"
+msgstr "Resetar Disciplina"
+
+#: pgtbl/disciplines/templates/disciplines/details.html:69
 #: pgtbl/disciplines/templates/disciplines/list.html:61
 #: pgtbl/disciplines/templates/disciplines/list.html:138
 #: pgtbl/disciplines/templates/students/users.html:72
 msgid "Teacher"
 msgstr "Professor"
 
-#: pgtbl/disciplines/templates/disciplines/details.html:81
-#, fuzzy
-#| msgid "Discipline"
+#: pgtbl/disciplines/templates/disciplines/details.html:82
 msgid "Open Discipline"
-msgstr "Disciplina"
+msgstr "Abrir Disciplina"
 
 #: pgtbl/disciplines/templates/disciplines/details.html:86
-#, fuzzy
-#| msgid "Close discipline."
+msgid "Close the discipline, no one else can enter."
+msgstr "Fechar a disciplina, ninguém mais entra."
+
+#: pgtbl/disciplines/templates/disciplines/details.html:88
 msgid "Close Discipline"
-msgstr "Fechar turma."
+msgstr "Fechar Disciplina"
 
 #: pgtbl/disciplines/templates/disciplines/form.html:28
 msgid "Create discipline"
@@ -110,29 +112,35 @@ msgstr "Não há disciplina disponível"
 #: pgtbl/disciplines/templates/disciplines/reset.html:20
 #: pgtbl/disciplines/templates/disciplines/reset.html:45
 msgid "Reset"
-msgstr ""
+msgstr "Resetar"
 
 #: pgtbl/disciplines/templates/disciplines/reset.html:27
 msgid ""
 "This action will close the discipline, all groups and submissions will be "
 "deleted and students and monitors removed."
 msgstr ""
+"Essa ação irá fechar a disciplina, todos os seus grupos e submissões irão ser "
+"deletados e os estudantes e monitores removidos da disciplina."
 
 #: pgtbl/disciplines/templates/disciplines/reset.html:30
-#, fuzzy
-#| msgid "Are you sure you want to delete"
 msgid "Are you sure you want to reset"
 msgstr "Tem certeza que deseja deletar"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:12
+msgid "Page with the discipline details."
+msgstr "Página com a ementa da disciplina."
 
 #: pgtbl/disciplines/templates/disciplines/sidebar.html:13
 msgid "Description"
 msgstr "Ementa"
 
 #: pgtbl/disciplines/templates/disciplines/sidebar.html:15
-#, fuzzy
-#| msgid "Discipline title"
 msgid "Discipline Details"
-msgstr "Título da disciplina"
+msgstr "Ementa da disciplina"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:22
+msgid "Page with list of students and monitors."
+msgstr "Página com a lista de estudantes e monitores."
 
 #: pgtbl/disciplines/templates/disciplines/sidebar.html:24
 msgid "Student list"
@@ -143,85 +151,101 @@ msgstr "Lista de estudante"
 msgid "Student List"
 msgstr "Lista de estudantes"
 
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:33
+msgid "Page with discipline final grades."
+msgstr "Página com as notas finais da disciplina."
+
 #: pgtbl/disciplines/templates/disciplines/sidebar.html:35
 msgid "Grades"
 msgstr "Notas"
 
 #: pgtbl/disciplines/templates/disciplines/sidebar.html:37
-#, fuzzy
-#| msgid "Grades"
 msgid "Final Grades"
-msgstr "Notas"
+msgstr "Notas Finais"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:44
+msgid "Page with discipline group list."
+msgstr "Página com a lista de grupos da disciplina."
 
 #: pgtbl/disciplines/templates/disciplines/sidebar.html:46
 #: pgtbl/disciplines/templates/disciplines/sidebar.html:48
 msgid "Groups"
 msgstr "Grupos"
 
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:56
+msgid "Page rank of groups."
+msgstr "Página com o rank de grupos."
+
 #: pgtbl/disciplines/templates/disciplines/sidebar.html:57
 msgid "Group rank"
 msgstr "Rank de grupos"
 
 #: pgtbl/disciplines/templates/disciplines/sidebar.html:59
-#, fuzzy
-#| msgid "Group rank"
 msgid "Group Rank"
 msgstr "Rank de grupos"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:67
+msgid "Page with list of TBL Sessions."
+msgstr "Página com a lista de Sessões de TBL."
 
 #: pgtbl/disciplines/templates/disciplines/sidebar.html:68
 msgid "TBL sessions"
 msgstr "Sessões TBL"
 
 #: pgtbl/disciplines/templates/disciplines/sidebar.html:70
-#, fuzzy
-#| msgid "TBL sessions"
 msgid "TBL Sessions"
 msgstr "Sessões TBL"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:77
+msgid "Page with list of discipline files."
+msgstr "Página com a lista de arquivos da disciplina."
 
 #: pgtbl/disciplines/templates/disciplines/sidebar.html:79
 msgid "Files"
 msgstr "Arquivos"
 
 #: pgtbl/disciplines/templates/disciplines/sidebar.html:81
-#, fuzzy
-#| msgid "Discipline title"
 msgid "Discipline Files"
-msgstr "Título da disciplina"
+msgstr "Arquivos da Disciplina"
+
+#: pgtbl/disciplines/templates/disciplines/sidebar.html:88
+msgid "Forum page"
+msgstr "Página com o fórum de duvidas"
 
 #: pgtbl/disciplines/templates/disciplines/sidebar.html:90
 #: pgtbl/disciplines/templates/disciplines/sidebar.html:92
 msgid "Forum"
-msgstr ""
+msgstr "Fórum"
 
 #: pgtbl/disciplines/templates/students/list.html:14
 msgid "Students list"
 msgstr "Lista de estudantes"
 
-#: pgtbl/disciplines/templates/students/list.html:42
+#: pgtbl/disciplines/templates/students/list.html:41
 msgid "All"
 msgstr "Todos"
 
-#: pgtbl/disciplines/templates/students/list.html:52
+#: pgtbl/disciplines/templates/students/list.html:51
 #: pgtbl/disciplines/templates/students/users.html:49
 msgid "Students"
 msgstr "Estudantes"
 
-#: pgtbl/disciplines/templates/students/list.html:62
+#: pgtbl/disciplines/templates/students/list.html:61
 #: pgtbl/disciplines/templates/students/users.html:52
 msgid "Monitors"
 msgstr "Monitores"
 
-#: pgtbl/disciplines/templates/students/list.html:101
-#: pgtbl/disciplines/templates/students/list.html:111
+#: pgtbl/disciplines/templates/students/list.html:100
+#: pgtbl/disciplines/templates/students/list.html:110
 msgid "Monitor"
 msgstr "Monitor"
 
-#: pgtbl/disciplines/templates/students/list.html:105
-#: pgtbl/disciplines/templates/students/list.html:113
+#: pgtbl/disciplines/templates/students/list.html:104
+#: pgtbl/disciplines/templates/students/list.html:112
 msgid "Student"
 msgstr "Estudante"
 
-#: pgtbl/disciplines/templates/students/list.html:149
+#: pgtbl/disciplines/templates/students/list.html:148
 msgid "There is no students in this class."
 msgstr "Não há disciplina disponível nessa turma."
 
@@ -231,16 +255,17 @@ msgstr "Remover estudante"
 
 #: pgtbl/disciplines/templates/students/remove.html:28
 msgid "Are you sure you want to leave the discipline ?"
-msgstr "Tem certeza que deseja deletar a disciplina ?"
+msgstr "Tem certeza que deseja sair da disciplina ?"
 
 #: pgtbl/disciplines/templates/students/remove.html:30
-#, fuzzy, python-format
-#| msgid "Are you sure you want to remove %(student)s from discipline ?\n"
 msgid ""
 "\n"
 "            Are you sure you want to remove %(student)s from discipline ?\n"
 "          "
-msgstr "Tem certeza que deseja remover %(student)s da disciplina ?\n"
+msgstr ""
+"\n"
+"            Tem certeza que deseja remover %(student)s da disciplina ?\n"
+"          "
 
 #: pgtbl/disciplines/templates/students/remove.html:48
 msgid "Remove"
@@ -258,157 +283,153 @@ msgstr "Lista de usuários"
 msgid "There is no users."
 msgstr "Não há usuários disponíveis"
 
-#~ msgid "Access Password"
-#~ msgstr "Senha de acesso"
+msgid "Access Password"
+msgstr "Senha de acesso"
 
-#~ msgid "Title"
-#~ msgstr "Título"
+msgid "Title"
+msgstr "Título"
 
-#~ msgid "Discipline description"
-#~ msgstr "Ementa da disciplina"
+msgid "Discipline description"
+msgstr "Ementa da disciplina"
 
-#~ msgid "Discipline course"
-#~ msgstr "Curso da disciplina"
+msgid "Discipline course"
+msgstr "Curso da disciplina"
 
-#~ msgid "Shortcut"
-#~ msgstr "URL atalho"
+msgid "Shortcut"
+msgstr "URL atalho"
 
-#~ msgid "URL string shortcut"
-#~ msgstr "String de atalho da URL"
+msgid "URL string shortcut"
+msgstr "String de atalho da URL"
 
-#~ msgid "Enter a valid classroom, the classroom need to be 'Class A-Z'"
-#~ msgstr ""
-#~ "Entre com uma turma valida, as turmas seguem o seguinte formato 'Turma A-"
-#~ "Z'"
+msgid "Enter a valid classroom, the classroom need to be 'Class A-Z'"
+msgstr ""
+"Entre com uma turma valida, as turmas seguem o seguinte formato 'Turma A-Z'"
 
-#~ msgid "Classroom"
-#~ msgstr "Turma"
+msgid "Classroom"
+msgstr "Turma"
 
-#~ msgid "Classroom title of discipline."
-#~ msgstr "Turma da disciplina"
+msgid "Classroom title of discipline."
+msgstr "Turma da disciplina"
 
-#~ msgid "Password"
-#~ msgstr "Senha da turma"
+msgid "Password"
+msgstr "Senha da turma"
 
-#~ msgid "Password to get into the class."
-#~ msgstr "Senha para entrar na turma."
+msgid "Password to get into the class."
+msgstr "Senha para entrar na turma."
 
-#~ msgid "Students limit"
-#~ msgstr "Limite de estudantes"
+msgid "Students limit"
+msgstr "Limite de estudantes"
 
-#~ msgid "Students limit to get in the class."
-#~ msgstr "Limite de estudantes para entrar na turma."
+msgid "Students limit to get in the class."
+msgstr "Limite de estudantes para entrar na turma."
 
-#~ msgid "There can be no more than %(limit_value)s students in the class."
-#~ msgstr "Não pode haver mais que %(limit_value)s estudantes na turma."
+msgid "There can be no more than %(limit_value)s students in the class."
+msgstr "Não pode haver mais que %(limit_value)s estudantes na turma."
 
-#~ msgid "Must have at least %(limit_value)s students in class."
-#~ msgstr "Deve haver no mínimo %(limit_value)s estudantes na turma."
+msgid "Must have at least %(limit_value)s students in class."
+msgstr "Deve haver no mínimo %(limit_value)s estudantes na turma."
 
-#~ msgid "Monitors limit"
-#~ msgstr "Limite de monitores"
+msgid "Monitors limit"
+msgstr "Limite de monitores"
 
-#~ msgid "Monitors limit to insert in the class."
-#~ msgstr "Limite de monitores para entrar na turma."
+msgid "Monitors limit to insert in the class."
+msgstr "Limite de monitores para entrar na turma."
 
-#~ msgid "There can be no more than %(limit_value)s monitors in the class."
-#~ msgstr "Não pode haver mais de %(limit_value)s monitores na turma."
+msgid "There can be no more than %(limit_value)s monitors in the class."
+msgstr "Não pode haver mais de %(limit_value)s monitores na turma."
 
-#~ msgid "Ensure this value is greater than or equal to %(limit_value)s."
-#~ msgstr "Tenha certeza que este valor é maior ou igual a %(limit_value)s."
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr "Tenha certeza que este valor é maior ou igual a %(limit_value)s."
 
-#~ msgid "Is closed?"
-#~ msgstr "Está fechada?"
+msgid "Is closed?"
+msgstr "Está fechada?"
 
-#~ msgid "Was group provided?"
-#~ msgstr "O grupo foi disponibilizado?"
+msgid "Was group provided?"
+msgstr "O grupo foi disponibilizado?"
 
-#~ msgid "Provide groups to students see."
-#~ msgstr "Disponibilizar grupos para os estudantes verem."
+msgid "Provide groups to students see."
+msgstr "Disponibilizar grupos para os estudantes verem."
 
-#~ msgid "Created at"
-#~ msgstr "Criado em"
+msgid "Created at"
+msgstr "Criado em"
 
-#~ msgid "Date that the discipline is created."
-#~ msgstr "Data que a disciplina foi criada."
+msgid "Updated at"
+msgstr "Atualizado em"
 
-#~ msgid "Updated at"
-#~ msgstr "Atualizado em"
+msgid "Date that the discipline is updated."
+msgstr "Data em que a disciplina foi atualizada"
 
-#~ msgid "Date that the discipline is updated."
-#~ msgstr "Data em que a disciplina foi atualizada"
+msgid "Disciplines"
+msgstr "Disciplinas"
 
-#~ msgid "Disciplines"
-#~ msgstr "Disciplinas"
+msgid "Closed"
+msgstr "Fechado"
 
-#~ msgid "Closed"
-#~ msgstr "Fechado"
+msgid "Open"
+msgstr "Aberto"
 
-#~ msgid "Open"
-#~ msgstr "Aberto"
+msgid "Create Discipline"
+msgstr "Criar disciplina"
 
-#~ msgid "Create Discipline"
-#~ msgstr "Criar disciplina"
+msgid "This field is required."
+msgstr "Este campo é obrigatório."
 
-#~ msgid "This field is required."
-#~ msgstr "Este campo é obrigatório."
+msgid "There can be no more than 60 students in the class."
+msgstr "Não pode haver mais que 60 estudantes na turma."
 
-#~ msgid "There can be no more than 60 students in the class."
-#~ msgstr "Não pode haver mais que 60 estudantes na turma."
+msgid "There can be no more than 5 monitors in the class."
+msgstr "Não pode haver mais de 5 monitores na turma."
 
-#~ msgid "There can be no more than 5 monitors in the class."
-#~ msgstr "Não pode haver mais de 5 monitores na turma."
+msgid "Must have at least 5 students in class."
+msgstr "Deve haver no mínimo 5 estudantes na turma."
 
-#~ msgid "Must have at least 5 students in class."
-#~ msgstr "Deve haver no mínimo 5 estudantes na turma."
+msgid "Discipline created successfully."
+msgstr "Disciplina criada com sucesso."
 
-#~ msgid "Discipline created successfully."
-#~ msgstr "Disciplina criada com sucesso."
+msgid "Discipline updated successfully."
+msgstr "Disciplina atualizada com sucesso."
 
-#~ msgid "Discipline updated successfully."
-#~ msgstr "Disciplina atualizada com sucesso."
+msgid "Discipline deleted successfully."
+msgstr "Disciplina deletada com sucesso."
 
-#~ msgid "Discipline deleted successfully."
-#~ msgstr "Disciplina deletada com sucesso."
+msgid "Incorrect Password."
+msgstr "Senha incorreta."
 
-#~ msgid "Incorrect Password."
-#~ msgstr "Senha incorreta."
+msgid "Discipline is closed."
+msgstr "Disciplina está fechada."
 
-#~ msgid "Discipline is closed."
-#~ msgstr "Disciplina está fechada."
+msgid "You have been entered into the discipline: {0}"
+msgstr "Você acabou de entrar na disciplina: {0}"
 
-#~ msgid "You have been entered into the discipline: {0}"
-#~ msgstr "Você acabou de entrar na disciplina: {0}"
+msgid "There are no more vacancies to monitor"
+msgstr "Não há mais vagas para monitor dessa disciplina."
 
-#~ msgid "There are no more vacancies to monitor"
-#~ msgstr "Não há mais vagas para monitor dessa disciplina."
+msgid "You can't get into your own discipline."
+msgstr "Você não pode entrar na sua própria disciplina."
 
-#~ msgid "You can't get into your own discipline."
-#~ msgstr "Você não pode entrar na sua própria disciplina."
+msgid "Crowded discipline."
+msgstr "Turma cheia."
 
-#~ msgid "Crowded discipline."
-#~ msgstr "Turma cheia."
+msgid "You can't remove {0} from {1}"
+msgstr "Você não pode remover {0} de {1}"
 
-#~ msgid "You can't remove {0} from {1}"
-#~ msgstr "Você não pode remover {0} de {1}"
+msgid "You have removed {0} from {1}"
+msgstr "Você não pode remover {0} de {1}"
 
-#~ msgid "You have removed {0} from {1}"
-#~ msgstr "Você não pode remover {0} de {1}"
+msgid "You left the discipline {0}"
+msgstr "Você saiu da disciplina {0}"
 
-#~ msgid "You left the discipline {0}"
-#~ msgstr "Você saiu da disciplina {0}"
+msgid "{0} was inserted in the discipline: {1}"
+msgstr "{0} foi inserido na disciplina: {1}"
 
-#~ msgid "{0} was inserted in the discipline: {1}"
-#~ msgstr "{0} foi inserido na disciplina: {1}"
+msgid "Successful modification"
+msgstr "Modificado com sucesso."
 
-#~ msgid "Successful modification"
-#~ msgstr "Modificado com sucesso."
+msgid "You can't turn a teacher into a student."
+msgstr "Você não pode tornar professor em estudante."
 
-#~ msgid "You can't turn a teacher into a student."
-#~ msgstr "Você não pode tornar professor em estudante."
+msgid "Student limit exceeded."
+msgstr "Limite de estudantes excedido"
 
-#~ msgid "Student limit exceeded."
-#~ msgstr "Limite de estudantes excedido"
-
-#~ msgid "Monitor limit exceeded."
-#~ msgstr "Limite de monitores excedido"
+msgid "Monitor limit exceeded."
+msgstr "Limite de monitores excedido"
