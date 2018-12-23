@@ -19,15 +19,18 @@
 <!-- Discipline list block -->
 {% block content %}
   <div class="container-fluid">
+    <!-- Header -->
     <div class="page-header fix-row">
       <h1 class="white">
         <i class="fa fa-slideshare"></i> {% trans 'Discipline files' %}<br />
         <small>{{discipline.title}}</small>
       </h1>
     </div>
+    <!-- Body -->
     <div class="panel-group fix-row" id="accordion">
       {% for file in files %}
         <div class="panel panel-default">
+          <!-- Collapse Header -->
           <div class="panel-heading">
             <h4 class="panel-title">
               <a data-toggle="collapse"
@@ -43,7 +46,10 @@
               </a>
             </h4>
           </div>
+
+          <!-- Collapse body -->
           <div id="collapse{{file.id}}" class="panel-collapse collapse out">
+            <!-- Description -->
             <div class="panel-body">
               {{file.description|linebreaksbr}}
             </div>
@@ -52,12 +58,14 @@
                 <div class="row">
                   <div class="col-md-8">
                     <div class="btn-group btn-group-justified">
+                      <!-- Download file -->
                       <div class="btn-group">
                         <a href="{{file.archive.url}}" download="{{file.get_title}}" class="btn btn-primary">
                            <i class="fa fa-download"></i>
                            {% trans 'Download' %}
                         </a>
                       </div>
+                      <!-- Edit file -->
                       <div class="btn-group">
                         <a class="btn btn-primary"
                            href="{% url 'files:update' discipline.slug file.id %}">
@@ -67,6 +75,7 @@
                       </div>
                     </div>
                   </div>
+                  <!-- Delete file -->
                   <div class="col-md-4">
                     <div class="btn-group btn-group-justified">
                       <div class="btn-group">
@@ -84,6 +93,7 @@
                 </div>
               </div>
             {% else %}
+              <!-- Download file by student -->
               <div class="btn-group btn-group-justified">
                 <div class="btn-group">
                   <a href="{{file.archive.url}}" download="{{file.get_title}}" class="btn btn-primary">
@@ -100,6 +110,7 @@
       {% endfor %}
     </div>
 
+    <!-- Create file by teacher -->
     {% if user == discipline.teacher or user in discipline.monitors.all %}
       <button class="btn btn-primary btn-lg add-button"
               type="button"

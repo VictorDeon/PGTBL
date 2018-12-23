@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-22 15:30-0200\n"
+"POT-Creation-Date: 2018-12-23 17:13-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,128 +18,143 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: pgtbl/files/templates/files/discipline/add_file.html:13
-#: pgtbl/files/templates/files/module/add_file.html:13
-msgid "Add file"
-msgstr "Adicionar arquivo"
+#: models/file.py:11
+msgid "Title"
+msgstr "Título"
 
-#: pgtbl/files/templates/files/discipline/add_file.html:23
-#: pgtbl/files/templates/files/module/add_file.html:23
-msgid "File title"
-msgstr "Titulo do arquivo"
+#: models/file.py:13
+msgid "Title of file."
+msgstr "Título do arquivo"
 
-#: pgtbl/files/templates/files/discipline/add_file.html:36
-#: pgtbl/files/templates/files/module/add_file.html:36
+#: models/file.py:17
+msgid "Description"
+msgstr "Descrição"
+
+#: models/file.py:19
+msgid "Description of file."
+msgstr "Descrição do arquivo"
+
+#: models/file.py:24 templates/files/discipline/add_file.html:41
+#: templates/files/module/add_file.html:41
 msgid "File extension"
 msgstr "Extensão do arquivo"
 
-#: pgtbl/files/templates/files/discipline/add_file.html:49
-#: pgtbl/files/templates/files/module/add_file.html:49
+#: models/file.py:26
+msgid "File extension."
+msgstr "Extensão do arquivo"
+
+#: models/file.py:30 models/file.py:74
+msgid "File"
+msgstr "Arquivo"
+
+#: models/file.py:35
+msgid "Created at"
+msgstr "Criado em"
+
+#: models/file.py:36
+msgid "Date that the file is created."
+msgstr "Data que o arquivo foi criado."
+
+#: models/file.py:41
+msgid "Updated at"
+msgstr "Atualizado em"
+
+#: models/file.py:42
+msgid "Date that the file is updated"
+msgstr "Data em que o arquivo foi modificado."
+
+#: models/file.py:75
+msgid "Files"
+msgstr "Arquivos"
+
+#: templates/files/discipline/add_file.html:14
+#: templates/files/module/add_file.html:14
+msgid "Add file"
+msgstr "Adicionar arquivo"
+
+#: templates/files/discipline/add_file.html:26
+#: templates/files/module/add_file.html:26
+msgid "File title"
+msgstr "Titulo do arquivo"
+
+#: templates/files/discipline/add_file.html:56
+#: templates/files/module/add_file.html:56
 msgid "File description"
 msgstr "Descrição do arquivo"
 
-#: pgtbl/files/templates/files/discipline/add_file.html:69
-#: pgtbl/files/templates/files/module/add_file.html:69
+#: templates/files/discipline/add_file.html:80
+#: templates/files/module/add_file.html:80
 msgid "Add"
 msgstr "Adicionar"
 
-#: pgtbl/files/templates/files/discipline/delete.html:20
-#: pgtbl/files/templates/files/discipline/delete.html:42
-#: pgtbl/files/templates/files/discipline/list.html:78
-#: pgtbl/files/templates/files/module/delete.html:20
-#: pgtbl/files/templates/files/module/delete.html:42
-#: pgtbl/files/templates/files/module/list.html:78
+#: templates/files/discipline/delete.html:20
+#: templates/files/discipline/delete.html:42
+#: templates/files/discipline/list.html:87
+#: templates/files/module/delete.html:20 templates/files/module/delete.html:42
+#: templates/files/module/list.html:87
 msgid "Delete"
 msgstr "Deletar"
 
-#: pgtbl/files/templates/files/discipline/delete.html:27
-#: pgtbl/files/templates/files/module/delete.html:27
+#: templates/files/discipline/delete.html:27
+#: templates/files/module/delete.html:27
 msgid "Are you sure you want to delete"
 msgstr "Tem certeza que deseja remover"
 
-#: pgtbl/files/templates/files/discipline/delete.html:51
-#: pgtbl/files/templates/files/module/delete.html:51
+#: templates/files/discipline/delete.html:51
+#: templates/files/module/delete.html:51
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: pgtbl/files/templates/files/discipline/form.html:15
-#: pgtbl/files/templates/files/discipline/form.html:152
-#: pgtbl/files/templates/files/module/form.html:15
-#: pgtbl/files/templates/files/module/form.html:152
+#: templates/files/discipline/form.html:15
+#: templates/files/discipline/form.html:152 templates/files/module/form.html:15
+#: templates/files/module/form.html:152
 msgid "Edit"
 msgstr "Editar"
 
-#: pgtbl/files/templates/files/discipline/list.html:14
-#: pgtbl/files/templates/files/module/list.html:14
+#: templates/files/discipline/list.html:14 templates/files/module/list.html:14
 msgid "File list"
 msgstr "Lista de arquivos"
 
-#: pgtbl/files/templates/files/discipline/list.html:24
+#: templates/files/discipline/list.html:25
 msgid "Discipline files"
 msgstr "Arquivos da disciplina"
 
-#: pgtbl/files/templates/files/discipline/list.html:58
-#: pgtbl/files/templates/files/discipline/list.html:91
-#: pgtbl/files/templates/files/module/list.html:58
-#: pgtbl/files/templates/files/module/list.html:91
+#: templates/files/discipline/list.html:65
+#: templates/files/discipline/list.html:101 templates/files/module/list.html:65
+#: templates/files/module/list.html:101
 msgid "Download"
 msgstr "Baixar"
 
-#: pgtbl/files/templates/files/discipline/list.html:65
-#: pgtbl/files/templates/files/module/list.html:65
+#: templates/files/discipline/list.html:73 templates/files/module/list.html:73
 msgid "Edit file"
 msgstr "Editar arquivo"
 
-#: pgtbl/files/templates/files/discipline/list.html:99
-#: pgtbl/files/templates/files/module/list.html:99
+#: templates/files/discipline/list.html:109
+#: templates/files/module/list.html:109
 msgid "There is no files"
 msgstr "Não há arquivos disponiveis"
 
-#: pgtbl/files/templates/files/module/list.html:24
+#: templates/files/module/list.html:25
 msgid "TBL Session files"
 msgstr "Arquivos da sessão do TBL"
 
-#~ msgid "Title"
-#~ msgstr "Título"
+#: tests/discipline/test_discipline_file_update.py:130
+#: tests/modules/test_module_files_update.py:145
+msgid "This field is required."
+msgstr "Este campo é requerido."
 
-#~ msgid "Title of file."
-#~ msgstr "Título do arquivo"
+#: views/discipline_file/create_view.py:48 views/module_file/create_view.py:61
+msgid "File created successfully."
+msgstr "Arquivos criado com sucesso."
 
-#~ msgid "Description"
-#~ msgstr "Descrição"
+#: views/discipline_file/create_view.py:59 views/module_file/create_view.py:72
+msgid "Invalid fields, please fill in the fields correctly."
+msgstr "Campo invalido, por favor preencha os campos corretamente."
 
-#~ msgid "Description of file."
-#~ msgstr "Descrição do arquivo"
+#: views/discipline_file/delete_view.py:49 views/module_file/delete_view.py:78
+msgid "File deleted successfully."
+msgstr "Arquivo deletado com sucesso."
 
-#~ msgid "File extension."
-#~ msgstr "Extensão do arquivo"
-
-#~ msgid "File"
-#~ msgstr "Arquivo"
-
-#~ msgid "Created at"
-#~ msgstr "Criado em"
-
-#~ msgid "Date that the file is created."
-#~ msgstr "Data que o arquivo foi criado."
-
-#~ msgid "Updated at"
-#~ msgstr "Atualizado em"
-
-#~ msgid "Date that the file is updated"
-#~ msgstr "Data em que o arquivo foi modificado."
-
-#~ msgid "Files"
-#~ msgstr "Arquivos"
-
-#~ msgid "File created successfully."
-#~ msgstr "Arquivos criado com sucesso."
-
-#~ msgid "Invalid fields, please fill in the fields correctly."
-#~ msgstr "Campo invalido, por favor preencha os campos corretamente."
-
-#~ msgid "File updated successfully."
-#~ msgstr "Arquivo atualizado com sucesso."
-
-#~ msgid "File deleted successfully."
-#~ msgstr "Arquivo deletado com sucesso."
+#: views/discipline_file/update_view.py:54 views/module_file/update_view.py:87
+msgid "File updated successfully."
+msgstr "Arquivo atualizado com sucesso."

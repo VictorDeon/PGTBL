@@ -20,7 +20,6 @@ class ModuleFileListView(LoginRequiredMixin,
     paginate_by = 10
     context_object_name = 'files'
 
-    # Modificar
     permissions_required = [
         'show_files_permission',
         'show_tbl_file_session'
@@ -71,7 +70,6 @@ class ModuleFileListView(LoginRequiredMixin,
 
         session = self.get_session()
 
-        # Modificar
         files = ModuleFile.objects.filter(
             session=session
         )
