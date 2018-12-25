@@ -75,16 +75,25 @@ class GroupProvideView(LoginRequiredMixin,
 
         discipline = self.get_object()
         title = _("Groups available")
-        description = _("{0} discipline groups available.".format(discipline.title))
+        description = _("Discipline groups available.".format(discipline.title))
 
         if discipline.was_group_provided:
             discipline.was_group_provided = False
             title = _("Groups unavailable")
-            description = _("{0} discipline groups unavailable.".format(discipline.title))
+            description = _("Discipline groups unavailable.".format(discipline.title))
         else:
             discipline.was_group_provided = True
 
         discipline.save()
+
+        self.send_notification(discipline, title, description)
+
+        return redirect(self.get_success_url())
+
+    def send_notification(self, discipline, title, description):
+        """
+        Send notification to all students that the group is available or unavailable.
+        """
 
         for student in discipline.students.all():
             Notification.objects.create(
@@ -94,5 +103,3 @@ class GroupProvideView(LoginRequiredMixin,
                 receiver=student,
                 discipline=discipline
             )
-
-        return redirect(self.get_success_url())
