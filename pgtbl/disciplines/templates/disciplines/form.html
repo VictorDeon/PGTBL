@@ -25,7 +25,11 @@
     <!-- Header -->
     <div class="page-header profile">
       <h1 class="white">
-        {% trans 'Create discipline' %}
+        {% if not discipline %}
+          {% trans 'Create discipline' %}
+        {% else %}
+          {% trans 'Edit discipline' %}
+        {% endif %}
       </h1>
     </div>
 

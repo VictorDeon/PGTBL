@@ -23,9 +23,15 @@
 {% block breadcrumb %}
   {{ block.super }}
   <li>
-    <a href="{% url 'forum:create' discipline.slug %}">
-      {% trans 'Create Topic' %}
-    </a>
+    {% if not topic %}
+      <a href="{% url 'forum:create' discipline.slug %}">
+        {% trans 'Create Topic' %}
+      </a>
+    {% else %}
+      <a href="{% url 'forum:update' discipline.slug topic.id %}">
+        {% trans 'Edit Topic' %}
+      </a>
+    {% endif %}
   </li>
 {% endblock %}
 
@@ -34,7 +40,11 @@
     <!-- Header -->
     <div class="page-header profile">
       <h1 class="white">
-        {% trans 'Create Topic' %}
+        {% if not topic %}
+          {% trans 'Create Topic' %}
+        {% else %}
+          {% trans 'Edit Topic' %}
+        {% endif %}
       </h1>
     </div>
 
@@ -113,7 +123,7 @@
             {% endfor %}
           </div>
 
-          <!-- Discipline description field -->
+          <!-- Topic content field -->
           <div class="{% if form.content.errors %}alert alert-warning{% endif %}">
             <!-- Input group -->
             <div class="input-group">
@@ -135,7 +145,7 @@
             {% endfor %}
           </div>
 
-          <!-- Discipline description preview -->
+          <!-- Topic content preview -->
           <fieldset>
             <legend class="text-white">{% trans 'Preview' %}</legend>
             <div class="col-sm-12 preview">

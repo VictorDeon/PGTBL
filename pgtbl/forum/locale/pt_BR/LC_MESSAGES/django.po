@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-22 15:30-0200\n"
+"POT-Creation-Date: 2018-12-26 17:55-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,147 +18,238 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: pgtbl/forum/templates/forum/delete.html:20
-#: pgtbl/forum/templates/forum/delete.html:42
-#: pgtbl/forum/templates/forum/detail.html:153
-msgid "Delete"
-msgstr ""
-
-#: pgtbl/forum/templates/forum/delete.html:27
-msgid "Are you sure you want to delete"
-msgstr ""
-
-#: pgtbl/forum/templates/forum/delete.html:51
-msgid "Cancel"
-msgstr ""
-
-#: pgtbl/forum/templates/forum/detail.html:25
-msgid "Topic Detail"
-msgstr ""
-
-#: pgtbl/forum/templates/forum/detail.html:38
-#: pgtbl/forum/templates/forum/list.html:37
-msgid "Course"
-msgstr ""
-
-#: pgtbl/forum/templates/forum/detail.html:45
-#: pgtbl/forum/templates/forum/list.html:44
-msgid "Discipline"
-msgstr ""
-
-#: pgtbl/forum/templates/forum/detail.html:52
-#: pgtbl/forum/templates/forum/list.html:51
-msgid "Teacher"
-msgstr ""
-
-#: pgtbl/forum/templates/forum/detail.html:63
+#: models/answer.py:16 models/topic.py:38 templates/forum/detail.html:66
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
-#: pgtbl/forum/templates/forum/detail.html:70
-msgid "Views"
-msgstr ""
-
-#: pgtbl/forum/templates/forum/detail.html:72
-#: pgtbl/forum/templates/forum/list.html:105
-msgid "View"
-msgstr ""
-
-#: pgtbl/forum/templates/forum/detail.html:85
+#: models/answer.py:23 models/topic.py:91 templates/forum/detail.html:88
 msgid "Topic"
-msgstr ""
+msgstr "Tópico"
 
-#: pgtbl/forum/templates/forum/detail.html:115
-#: pgtbl/forum/templates/forum/list.html:118
-#: pgtbl/forum/templates/forum/list.html:168
-msgid "There is no tags"
-msgstr ""
+#: models/answer.py:28 models/topic.py:23
+msgid "Content"
+msgstr "Conteúdo"
 
-#: pgtbl/forum/templates/forum/detail.html:120
-#: pgtbl/forum/templates/forum/list.html:123
+#: models/answer.py:29
+msgid "Answer topic content"
+msgstr "Conteúdo da resposta"
+
+#: models/answer.py:33
+msgid "Is correct?"
+msgstr "Está correta?"
+
+#: models/answer.py:39 models/topic.py:56
+msgid "Created at"
+msgstr "Criado em"
+
+#: models/answer.py:40
+msgid "Date that the answer is created."
+msgstr "Data que a resposta foi criada."
+
+#: models/answer.py:45 models/topic.py:62 templates/forum/detail.html:127
+#: templates/forum/list.html:127
 msgid "Updated at"
-msgstr ""
+msgstr "Atualizado há"
 
-#: pgtbl/forum/templates/forum/detail.html:120
-#: pgtbl/forum/templates/forum/detail.html:133
-#: pgtbl/forum/templates/forum/list.html:123
-msgid "ago"
-msgstr ""
+#: models/answer.py:46
+msgid "Date that the answer is updated."
+msgstr "Data que a resposta foi atualizada"
 
-#: pgtbl/forum/templates/forum/detail.html:126
+#: models/answer.py:58 templates/forum/detail.html:134
 msgid "Answer"
-msgstr ""
+msgstr "Resposta"
 
-#: pgtbl/forum/templates/forum/detail.html:133
+#: models/answer.py:59
+msgid "Answers"
+msgstr "Respostas"
+
+#: models/topic.py:17
+msgid "Title"
+msgstr "Título"
+
+#: models/topic.py:19
+msgid "Topic title"
+msgstr "Título do tópico"
+
+#: models/topic.py:24
+msgid "Topic forum content"
+msgstr "Conteúdo do tópico"
+
+#: models/topic.py:30
+msgid "User views count"
+msgstr "Contador de visualizações"
+
+#: models/topic.py:50
+msgid "Answer Count"
+msgstr "Contador de respostas"
+
+#: models/topic.py:57
+msgid "Date that the topic is created."
+msgstr "Data em que o tópico foi criado."
+
+#: models/topic.py:63
+msgid "Date that the topic is updated."
+msgstr "Data em que o tópico foi atualizado."
+
+#: models/topic.py:92
+msgid "Topics"
+msgstr "Tópicos"
+
+#: templates/forum/delete.html:20 templates/forum/delete.html:42
+#: templates/forum/detail.html:162
+msgid "Delete"
+msgstr "Deletar"
+
+#: templates/forum/delete.html:27
+msgid "Are you sure you want to delete"
+msgstr "Tem certeza que deseja deletar"
+
+#: templates/forum/delete.html:51
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: templates/forum/detail.html:26
+msgid "Topic Detail"
+msgstr "Detalhes do tópico"
+
+#: templates/forum/detail.html:41 templates/forum/list.html:40
+msgid "Course"
+msgstr "Curso"
+
+#: templates/forum/detail.html:48 templates/forum/list.html:47
+msgid "Discipline"
+msgstr "Disciplina"
+
+#: templates/forum/detail.html:55 templates/forum/list.html:54
+msgid "Teacher"
+msgstr "Professor"
+
+#: templates/forum/detail.html:73
+msgid "Views"
+msgstr "Visualizações"
+
+#: templates/forum/detail.html:75 templates/forum/list.html:109
+msgid "View"
+msgstr "Visualização"
+
+#: templates/forum/detail.html:121 templates/forum/list.html:122
+#: templates/forum/list.html:173
+msgid "There is no tags"
+msgstr "Não há tags"
+
+#: templates/forum/detail.html:127 templates/forum/detail.html:141
+#: templates/forum/list.html:127
+msgid "ago"
+msgstr "atrás"
+
+#: templates/forum/detail.html:141
 msgid "said"
-msgstr ""
+msgstr "disse"
 
-#: pgtbl/forum/templates/forum/detail.html:142
+#: templates/forum/detail.html:150
 msgid "Options"
-msgstr ""
+msgstr "Opções"
 
-#: pgtbl/forum/templates/forum/detail.html:166
-#: pgtbl/forum/templates/forum/detail.html:180
+#: templates/forum/detail.html:176 templates/forum/detail.html:191
 msgid "Correct Answer"
-msgstr ""
+msgstr "Resposta Correta"
 
-#: pgtbl/forum/templates/forum/detail.html:184
+#: templates/forum/detail.html:195
 msgid "There is no comments in this topic"
-msgstr ""
+msgstr "Não há comentários neste tópico"
 
-#: pgtbl/forum/templates/forum/detail.html:190
+#: templates/forum/detail.html:202
 msgid "Comment"
-msgstr ""
+msgstr "Comentario"
 
-#: pgtbl/forum/templates/forum/detail.html:202
-#: pgtbl/forum/templates/forum/form.html:149
+#: templates/forum/detail.html:214 templates/forum/form.html:159
 msgid "Send"
-msgstr ""
+msgstr "Enviar"
 
-#: pgtbl/forum/templates/forum/form.html:27
-#: pgtbl/forum/templates/forum/form.html:37
+#: templates/forum/form.html:28 templates/forum/form.html:44
 msgid "Create Topic"
-msgstr ""
+msgstr "Criar tópico"
 
-#: pgtbl/forum/templates/forum/form.html:140
+#: templates/forum/form.html:32 templates/forum/form.html:46
+msgid "Edit Topic"
+msgstr "Editar Tópico"
+
+#: templates/forum/form.html:150
 msgid "Preview"
-msgstr ""
+msgstr "Visualização"
 
-#: pgtbl/forum/templates/forum/list.html:14
-#: pgtbl/forum/templates/forum/list.html:24
-#: pgtbl/forum/templates/forum/list.html:86
+#: templates/forum/list.html:14 templates/forum/list.html:25
+#: templates/forum/list.html:89
 msgid "Forum"
-msgstr ""
+msgstr "Fórum"
 
-#: pgtbl/forum/templates/forum/list.html:72
-#: pgtbl/forum/templates/forum/list.html:141
+#: templates/forum/list.html:75 templates/forum/list.html:146
 msgid "Filter"
-msgstr ""
+msgstr "Filtro"
 
-#: pgtbl/forum/templates/forum/list.html:103
+#: templates/forum/list.html:107
 msgid "Created by"
-msgstr ""
+msgstr "Criado por"
 
-#: pgtbl/forum/templates/forum/list.html:104
+#: templates/forum/list.html:108
 msgid "answer"
-msgstr ""
+msgstr "resposta"
 
-#: pgtbl/forum/templates/forum/list.html:134
+#: templates/forum/list.html:138
 msgid "No topics available"
-msgstr ""
+msgstr "Não há tópicos disponíveis"
 
-#: pgtbl/forum/templates/forum/list.html:147
+#: templates/forum/list.html:152
 msgid "Most recent"
-msgstr ""
+msgstr "Mais recentes"
 
-#: pgtbl/forum/templates/forum/list.html:151
+#: templates/forum/list.html:156
 msgid "Most viewed"
-msgstr ""
+msgstr "Mais vistas"
 
-#: pgtbl/forum/templates/forum/list.html:155
+#: templates/forum/list.html:160
 msgid "Most commented"
-msgstr ""
+msgstr "Mais comentadas"
 
-#: pgtbl/forum/templates/forum/list.html:159
+#: templates/forum/list.html:164
 msgid "Tags"
-msgstr ""
+msgstr "Tags"
+
+#: views/answers/answer_view.py:57
+msgid "Answer created successfully."
+msgstr "Resposta criada com sucesso."
+
+#: views/answers/answer_view.py:68 views/topics/create_view.py:107
+msgid "Invalid fields, please fill in the fields correctly."
+msgstr "Campos invalidos, por favor preencha os campos corretamente."
+
+#: views/answers/correct_answer.py:101
+msgid "Answer modify to correct with successfully."
+msgstr "Resposta modificada para correta com sucesso."
+
+#: views/answers/delete_answer.py:73
+msgid "Answer deleted successfully."
+msgstr "Resposta deletada com sucesso."
+
+#: views/topics/create_view.py:59
+msgid "Topic created successfully."
+msgstr "Tópico criado com sucesso."
+
+#: views/topics/create_view.py:73 views/topics/create_view.py:83
+#: views/topics/create_view.py:92
+msgid "Topic created"
+msgstr "Tópico criado"
+
+#: views/topics/create_view.py:74 views/topics/create_view.py:84
+#: views/topics/create_view.py:93
+#, python-brace-format
+msgid "Topic {0} created"
+msgstr "Tópico {0} criado"
+
+#: views/topics/delete_view.py:60
+msgid "Topic deleted successfully."
+msgstr "Tópico deletado com sucesso."
+
+#: views/topics/update_view.py:66
+msgid "Topic updated successfully."
+msgstr "Tópico atualizado com sucesso."

@@ -54,6 +54,17 @@ class TopicCreateView(LoginRequiredMixin,
         form.instance.discipline = self.get_discipline()
         form.save()
 
+        self.send_notification(form)
+
+        messages.success(self.request, _('Topic created successfully.'))
+
+        return super(TopicCreateView, self).form_valid(form)
+
+    def send_notification(self, form):
+        """
+        Send notification when a topic is created.
+        """
+
         discipline = self.get_discipline()
 
         for student in discipline.students.all():
@@ -85,9 +96,6 @@ class TopicCreateView(LoginRequiredMixin,
                 discipline=discipline
             )
 
-        messages.success(self.request, _('Topic created successfully.'))
-
-        return super(TopicCreateView, self).form_valid(form)
 
     def form_invalid(self, form):
         """

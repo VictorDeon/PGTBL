@@ -19,6 +19,7 @@
 <!-- Discipline list block -->
 {% block content %}
   <div class="container-fluid">
+    <!-- Header -->
     <div class="page-header profile">
       <h1 class="white">
         <i class="fa fa-comments-o"></i>
@@ -26,6 +27,8 @@
         <small>{{discipline.title}}</small>
       </h1>
     </div>
+
+    <!-- Body -->
     <div class="row fix-row white">
       <div class="panel panel-default questions gradient">
         <div class="panel-body">
@@ -84,6 +87,7 @@
             <div class="col-sm-11 text-center">
               <h4>{% trans 'Topic' %}: {{topic.title}}</h4>
             </div>
+            <!-- Delete a topic -->
             {% if user == topic.author %}
               <div class="col-sm-1">
                 <a href="#"
@@ -98,12 +102,14 @@
           </div>
         </div>
         <div class="panel-body">
+          <!-- Content -->
           <div class="panel panel-default">
             <div class="panel-body img-responsive-markdown">
               {{topic.content_markdown}}
             </div>
           </div>
           <div class="row">
+            <!-- Tags -->
             <div class="col-sm-6">
               <i class="fa fa-tags"></i> tags:
               {% for tag in topic.tags.all %}
@@ -115,6 +121,7 @@
                 {% trans 'There is no tags' %}
               {% endfor %}
             </div>
+            <!-- Date -->
             <div class="col-sm-6">
               <p class="pull-right">
                 {% trans 'Updated at' %} {{topic.updated_at | timesince}} {% trans 'ago' %}
@@ -122,6 +129,7 @@
             </div>
           </div>
           <div class="row">
+            <!-- ANSWER CONTENT -->
             <div class="col-sm-12">
               <h2>{{topic.qtd_answers}} {% trans 'Answer' %}{{topic.qtd_answers | pluralize}}</h2>
               <hr />
@@ -141,6 +149,7 @@
                               data-toggle="dropdown">
                               {% trans 'Options' %}
                               <span class="caret"></span></button>
+                            <!-- Delete answer -->
                               <ul class="dropdown-menu">
                                 {% if answer.author == user %}
                                   <li>
@@ -155,6 +164,7 @@
                                     </form>
                                   </li>
                                 {% endif %}
+                                <!-- Correct answer -->
                                 {% if topic.author == user %}
                                   <li>
                                     <form action="{% url 'forum:correct-answer' discipline.slug topic.id answer.id %}" method="post">
@@ -173,6 +183,7 @@
                         {% endif %}
                       </div>
                     </div>
+                    <!-- Answer content -->
                     <p class="text-justify">
                      {{answer.content | linebreaksbr}}
                     </p>
@@ -184,6 +195,7 @@
                     <div class="well">{% trans 'There is no comments in this topic' %}</div>
                     <hr />
                   {% endfor %}
+                  <!-- Answer form -->
                   <form method="post" action="{% url 'forum:submit-answer' discipline.slug topic.id %}" novalidate>
                     {% csrf_token %}
                     <div class="form-group">
@@ -207,6 +219,7 @@
             </div>
           </div>
 
+          <!-- Edit topic -->
           {% if user == topic.author %}
             <div class="row">
               <div class="col-sm-offset-10 col-sm-2">

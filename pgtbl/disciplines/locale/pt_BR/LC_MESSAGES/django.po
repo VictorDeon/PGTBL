@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-22 15:39-0200\n"
+"POT-Creation-Date: 2018-12-26 17:56-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,7 +57,9 @@ msgstr "URL em forma de texto"
 
 #: models/discipline.py:83
 msgid "Enter a valid classroom, the classroom need to be 'Class A-Z'"
-msgstr "Entre com uma turma valida, a turma precisa ser no seguinte formato: 'Turma A-Z'"
+msgstr ""
+"Entre com uma turma valida, a turma precisa ser no seguinte formato: 'Turma "
+"A-Z'"
 
 #: models/discipline.py:87
 msgid "Classroom"
@@ -194,19 +196,23 @@ msgstr "Fecha a disciplina, ninguém mais entra."
 msgid "Close Discipline"
 msgstr "Fecha a disciplina"
 
-#: templates/disciplines/form.html:28
+#: templates/disciplines/form.html:29
 msgid "Create discipline"
 msgstr "Cria a disciplina"
 
-#: templates/disciplines/form.html:130
+#: templates/disciplines/form.html:31
+msgid "Edit discipline"
+msgstr "Editar disciplina"
+
+#: templates/disciplines/form.html:134
 msgid "Preview"
 msgstr "Visualizar"
 
-#: templates/disciplines/form.html:138
+#: templates/disciplines/form.html:142
 msgid "ClassRoom"
 msgstr "Turma"
 
-#: templates/disciplines/form.html:266
+#: templates/disciplines/form.html:270
 msgid "Send"
 msgstr "Enviar"
 
@@ -239,8 +245,8 @@ msgid ""
 "This action will close the discipline, all groups and submissions will be "
 "deleted and students and monitors removed."
 msgstr ""
-"Essa ação irá fechar a disciplina, todos os grupos e submissões irão ser"
-"deletados e os estudantes e monitores removidos."
+"Essa ação irá fechar a disciplina, todos os grupos e submissões irão "
+"serdeletados e os estudantes e monitores removidos."
 
 #: templates/disciplines/reset.html:30
 msgid "Are you sure you want to reset"
@@ -374,7 +380,8 @@ msgid ""
 "          "
 msgstr ""
 "\n"
-"            Tem certeza que deseja remover o estudante %(student)s da disciplina ?\n"
+"            Tem certeza que deseja remover o estudante %(student)s da "
+"disciplina ?\n"
 "          "
 
 #: templates/students/remove.html:48

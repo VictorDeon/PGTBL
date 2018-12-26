@@ -18,6 +18,7 @@
 
 {% block content %}
   <div class="container-fluid">
+    <!-- Header -->
     <div class="page-header profile">
       <h1 class="white">
         <i class="fa fa-comments-o"></i>
@@ -25,6 +26,8 @@
         <small>{{discipline.title}}</small>
       </h1>
     </div>
+
+    <!-- Body -->
     <div class="row fix-row white">
       <div class="panel panel-default questions gradient">
         <div class="panel-body">
@@ -86,12 +89,13 @@
           <h4 class="text-center">{% trans 'Forum' %}</h4>
         </div>
         <div class="panel-body">
-          <!-- Appeals List -->
+          <!-- Forum search -->
           {% include 'core/search.html' %}
           <br />
 
           <div class="row">
             <div class="col-sm-8">
+              <!-- Forum topics -->
               {% for topic in topics %}
                 <h2>
                   <a href="{% url 'forum:detail' discipline.slug topic.id %}">
@@ -105,7 +109,7 @@
                   {{topic.views}} {% trans 'View' %}{{topic.views | pluralize}}
                 </p>
 
-                <!-- News tags -->
+                <!-- Topic tags -->
                 <div class="row">
                   <div class="col-sm-6">
                     <i class="fa fa-tags"></i> tags:
@@ -135,6 +139,7 @@
                 </div>
               {% endfor %}
             </div>
+            <!-- Forum filter and tags -->
             <div class="col-sm-4">
               <div class="panel panel-default">
                 <div class="panel-body">
@@ -172,6 +177,7 @@
             </div>
           </div>
 
+          <!-- Add topic -->
           <div class="row">
             <div class="col-sm-offset-10 col-sm-2">
               <a href="{% url 'forum:create' discipline.slug %}"
