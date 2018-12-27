@@ -145,6 +145,13 @@ class TBLSessionFinishView(LoginRequiredMixin,
 
             results.append(group_result)
 
+        self.set_gamification_winner(groups, results)
+
+    def set_gamification_winner(self, groups, results):
+        """
+        Verify who is the winner of tbl session and set the first_position to True.
+        """
+
         bigger = 0
         group_winner = groups[0]
 

@@ -31,14 +31,16 @@
             <small>{{discipline.title}}</small>
           </h1>
         </div>
+        <!-- Finish TBL session -->
         <div class="col-sm-2">
           {% if user == discipline.teacher and not session.is_finished %}
             <button class="btn btn-danger btn-block"
                     type="button"
+                    data-intro="{% trans 'Finish TBL Session.' %}"
                     data-toggle="modal"
                     data-target="#finish-{{session.id}}-modal">
                     <i class="fa fa-lock"></i>
-                    {% trans 'Finalizar' %}
+                    {% trans 'Finish' %}
             </button>
             {% include 'modules/finish.html' %}
           {% endif %}
