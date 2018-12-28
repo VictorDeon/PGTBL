@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-22 15:30-0200\n"
+"POT-Creation-Date: 2018-12-28 14:40-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,151 +18,244 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: pgtbl/exercises/templates/exercises/info.html:8
+#: models/exercise_submission.py:16 models/point_submission.py:17
+msgid "TBL sessions"
+msgstr "Sessão TBL"
+
+#: models/exercise_submission.py:23
+msgid "Questions"
+msgstr "Questões"
+
+#: models/exercise_submission.py:30
+msgid "Users"
+msgstr "Usuários"
+
+#: models/exercise_submission.py:35
+msgid "Correct Alternative"
+msgstr "Alternativa correta"
+
+#: models/exercise_submission.py:37
+msgid "Correct alternative title."
+msgstr "Título da alternativa correta."
+
+#: models/exercise_submission.py:41
+msgid "Score"
+msgstr "Pontuação"
+
+#: models/exercise_submission.py:43
+msgid "Question score answered."
+msgstr "Pontuação da questão respondida."
+
+#: models/exercise_submission.py:47 models/point_submission.py:48
+msgid "Created at"
+msgstr "Criado em"
+
+#: models/exercise_submission.py:48 models/point_submission.py:49
+msgid "Date that the submission of question is created."
+msgstr "Data que a submissão da questão foi criada."
+
+#: models/exercise_submission.py:66
+msgid "Exercise Submission"
+msgstr "Submissão do exercício"
+
+#: models/exercise_submission.py:67
+msgid "Exercise Submissions"
+msgstr "Submissão dos exercícios"
+
+#: models/point_submission.py:24
+msgid "Students"
+msgstr "Estudantes"
+
+#: models/point_submission.py:31
+msgid "Groups"
+msgstr "Grupos"
+
+#: models/point_submission.py:36
+msgid "Total Score"
+msgstr "Pontuação total"
+
+#: models/point_submission.py:38
+msgid "Student total score answered."
+msgstr "Pontuação total respondida pelo estudante."
+
+#: models/point_submission.py:42
+msgid "Is first position?"
+msgstr "É o primeira lugar?"
+
+#: models/point_submission.py:44
+msgid "Is first position in this session?"
+msgstr "Foi primeiro colocado nessa sessão?"
+
+#: models/point_submission.py:66
+msgid "Gamification Point Submission"
+msgstr "Submissão da pontuação da gamificação"
+
+#: models/point_submission.py:67
+msgid "Gamification Point Submissions"
+msgstr "Submissão das pontuações da gamificação"
+
+#: templates/exercises/info.html:8
 msgid "Rules"
-msgstr ""
+msgstr "Regras"
 
-#: pgtbl/exercises/templates/exercises/info.html:11
+#: templates/exercises/info.html:11
 msgid "The rules are very simple"
-msgstr ""
+msgstr "As regras são bem simples"
 
-#: pgtbl/exercises/templates/exercises/info.html:13
+#: templates/exercises/info.html:13
 msgid "We have 4 options per question: A, B, C, D"
-msgstr ""
+msgstr "Nós temos 4 alternativas por questão: A, B, C ou D"
 
-#: pgtbl/exercises/templates/exercises/info.html:14
+#: templates/exercises/info.html:14
 msgid "You will have 4 points to distribute in each question."
-msgstr ""
+msgstr "Você vai ter 4 pontos para distribuir entre as alternativas da questão."
 
-#: pgtbl/exercises/templates/exercises/info.html:15
+#: templates/exercises/info.html:15
 msgid "You can not enter more than 4 points in an option."
-msgstr ""
+msgstr "Você não pode entrar com mais de 4 pontos por alternativa."
 
-#: pgtbl/exercises/templates/exercises/info.html:16
+#: templates/exercises/info.html:16
 msgid "The sum of the options has to give 4 points, can not go beyond that."
-msgstr ""
+msgstr "A soma da 4 alternativas tem que dar 4 pontos, caso contrario não irá submeter."
 
-#: pgtbl/exercises/templates/exercises/info.html:17
+#: templates/exercises/info.html:17
 msgid ""
 "The question will only be considered if the sum of the points of the "
 "alternatives is between 0 and 4"
 msgstr ""
+"A questão vai somente ser considerada se a soma do ponto das "
+"alternativas estiver entre 0 e 4"
 
-#: pgtbl/exercises/templates/exercises/info.html:18
-#: pgtbl/exercises/templates/exercises/info.html:19
-#: pgtbl/exercises/templates/exercises/info.html:20
-#: pgtbl/exercises/templates/exercises/info.html:21
+#: templates/exercises/info.html:18 templates/exercises/info.html:19
+#: templates/exercises/info.html:20 templates/exercises/info.html:21
 msgid "Example"
-msgstr ""
+msgstr "Exemplo"
 
-#: pgtbl/exercises/templates/exercises/info.html:18
+#: templates/exercises/info.html:18
 msgid "Insert 4 points in option A."
-msgstr ""
+msgstr "Pode inserir 4 pontos na alternativa A."
 
-#: pgtbl/exercises/templates/exercises/info.html:19
+#: templates/exercises/info.html:19
 msgid "Insert 2 points in option B and 2 points in option C."
-msgstr ""
+msgstr "Pode inserir 2 pontos na alternativa B e 2 pontos na alternativa C."
 
-#: pgtbl/exercises/templates/exercises/info.html:20
+#: templates/exercises/info.html:20
 msgid "Insert 3 points in option A and 1 points in option D."
-msgstr ""
+msgstr "Pode inserir 3 pontos na alternativa A e 1 na alternativa D."
 
-#: pgtbl/exercises/templates/exercises/info.html:21
+#: templates/exercises/info.html:21
 msgid "Insert 1 points in each option."
-msgstr ""
+msgstr "Pode inserir 1 ponto em cada alternativa."
 
-#: pgtbl/exercises/templates/exercises/list.html:14
-#: pgtbl/exercises/templates/exercises/list.html:24
-#: pgtbl/exercises/templates/exercises/result.html:14
+#: templates/exercises/list.html:14 templates/exercises/list.html:25
+#: templates/exercises/result.html:14
 msgid "Exercise list"
-msgstr ""
+msgstr "Lista de exercícios"
 
-#: pgtbl/exercises/templates/exercises/list.html:36
-#: pgtbl/exercises/templates/exercises/result.html:41
+#: templates/exercises/list.html:39 templates/exercises/result.html:44
 msgid "Course"
-msgstr ""
+msgstr "Curso"
 
-#: pgtbl/exercises/templates/exercises/list.html:41
-#: pgtbl/exercises/templates/exercises/result.html:46
+#: templates/exercises/list.html:44 templates/exercises/result.html:49
 msgid "Discipline"
-msgstr ""
+msgstr "Disciplina"
 
-#: pgtbl/exercises/templates/exercises/list.html:46
-#: pgtbl/exercises/templates/exercises/result.html:51
+#: templates/exercises/list.html:49 templates/exercises/result.html:54
 msgid "Teacher"
-msgstr ""
+msgstr "Professor"
 
-#: pgtbl/exercises/templates/exercises/list.html:58
+#: templates/exercises/list.html:61
 msgid "Edit gamification weight"
-msgstr ""
+msgstr "Editar peso da gamificação"
 
-#: pgtbl/exercises/templates/exercises/list.html:74
+#: templates/exercises/list.html:79
 msgid "EXERCISE LIST"
-msgstr ""
+msgstr "LISTA DE EXERCÍCIO"
 
-#: pgtbl/exercises/templates/exercises/list.html:106
-#: pgtbl/exercises/templates/exercises/update.html:37
+#: templates/exercises/list.html:115 templates/exercises/update.html:40
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
-#: pgtbl/exercises/templates/exercises/list.html:115
+#: templates/exercises/list.html:125
 msgid "Delete"
-msgstr ""
+msgstr "Deletar"
 
-#: pgtbl/exercises/templates/exercises/list.html:220
+#: templates/exercises/list.html:241
 msgid "Answer"
-msgstr ""
+msgstr "Responder"
 
-#: pgtbl/exercises/templates/exercises/list.html:226
+#: templates/exercises/list.html:247
 msgid "There is no questions in this session."
-msgstr ""
+msgstr "Não há questões nessa sessão."
 
-#: pgtbl/exercises/templates/exercises/pagination.html:8
-#: pgtbl/exercises/templates/exercises/pagination.html:15
+#: templates/exercises/pagination.html:8 templates/exercises/pagination.html:15
 msgid "Back"
-msgstr ""
+msgstr "Voltar"
 
-#: pgtbl/exercises/templates/exercises/pagination.html:22
+#: templates/exercises/pagination.html:23
 msgid "Next"
-msgstr ""
+msgstr "Próximo"
 
-#: pgtbl/exercises/templates/exercises/pagination.html:28
+#: templates/exercises/pagination.html:29
 msgid "Conclude"
-msgstr ""
+msgstr "Concluir"
 
-#: pgtbl/exercises/templates/exercises/result.html:19
-#: pgtbl/exercises/templates/exercises/result.html:29
+#: templates/exercises/result.html:19 templates/exercises/result.html:30
 msgid "Exercise list result"
-msgstr ""
+msgstr "Resultado da lista de exercício"
 
-#: pgtbl/exercises/templates/exercises/result.html:66
+#: templates/exercises/result.html:69
 msgid "Reset"
-msgstr ""
+msgstr "Resetar"
 
-#: pgtbl/exercises/templates/exercises/result.html:78
+#: templates/exercises/result.html:83
 msgid "Result"
-msgstr ""
+msgstr "Resultado"
 
-#: pgtbl/exercises/templates/exercises/result.html:83
+#: templates/exercises/result.html:88
 msgid "Question"
-msgstr ""
+msgstr "Questão"
 
-#: pgtbl/exercises/templates/exercises/result.html:84
+#: templates/exercises/result.html:89
 msgid "Correct option"
-msgstr ""
+msgstr "Opção correta"
 
-#: pgtbl/exercises/templates/exercises/result.html:106
+#: templates/exercises/result.html:114
 msgid "Download CSV"
-msgstr ""
+msgstr "Baixar CSV"
 
-#: pgtbl/exercises/templates/exercises/result.html:110
+#: templates/exercises/result.html:120
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
-#: pgtbl/exercises/templates/exercises/result.html:112
+#: templates/exercises/result.html:122
 msgid "Grade"
-msgstr ""
+msgstr "Nota"
 
-#: pgtbl/exercises/templates/exercises/update.html:9
+#: templates/exercises/update.html:10
 msgid "Edit exercise gamification weight"
-msgstr ""
+msgstr "Editar peso da gamificação da lista de exercícios"
+
+#: views/answer_question_view.py:129
+msgid "Question answered successfully."
+msgstr "Questão respondida com sucesso."
+
+#: views/answer_question_view.py:151
+msgid "You can only enter from 0 to 4 points"
+msgstr "Você somente pode entrar com 0 a 4 pontos"
+
+#: views/answer_question_view.py:202
+msgid "You can only submit the question once."
+msgstr "Você só pode submeter a questão uma única vez."
+
+#: views/answer_question_view.py:209"
+msgid "You only have 4 points to distribute to the 4 alternatives."
+msgstr "Você somente vai ter 4 pontos para distribuir entre as 4 alternativas da questão."
+
+#: views/exercise_update_view.py:43
+msgid "Exercise gamification weight updated successfully."
+msgstr "Peso da gamificação da lista de exercício atualizado com sucesso."
+
+#: views/reset_exercise_view.py:115
+msgid "Exercise list reseted successfully."
+msgstr "Lista de exercícios resetada com sucesso."

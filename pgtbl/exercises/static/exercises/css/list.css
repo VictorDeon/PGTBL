@@ -8,20 +8,18 @@
   margin-bottom: 0;
 }
 
-.course {
-  padding-right: 34px;
+.table {
+  font-size: 18px;
+  margin-bottom: 0;
 }
 
-.classes {
-  padding-right: 5px;
+th, td {
+  border-top: initial !important;
+  padding: 1px !important;
 }
 
 .fa-book {
-  padding-right: 7px;
-}
-
-.teacher {
-  padding-right: 4px;
+  padding-right: 8px;
 }
 
 .fa-user {

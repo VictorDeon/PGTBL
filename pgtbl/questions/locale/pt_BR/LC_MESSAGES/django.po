@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-22 15:30-0200\n"
+"POT-Creation-Date: 2018-12-28 14:54-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,414 +18,153 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: pgtbl/questions/templates/questions/delete.html:20
-#: pgtbl/questions/templates/questions/delete.html:42
-msgid "Delete"
-msgstr "Deletar"
+#: models/alternative.py:12 models/question.py:12
+msgid "Title"
+msgstr "Título"
 
-#: pgtbl/questions/templates/questions/delete.html:27
-msgid "Are you sure you want to delete the question"
-msgstr "Tem certeza que deseja deletar a questão"
+#: models/alternative.py:14
+msgid "Alternative title."
+msgstr "Título da alternativa."
 
-#: pgtbl/questions/templates/questions/delete.html:51
-msgid "Cancel"
-msgstr "Cancelar"
+#: models/alternative.py:18
+msgid "Is correct?"
+msgstr "É a resposta certa?"
 
-#: pgtbl/questions/templates/questions/form.html:15
-msgid "Update Question"
-msgstr "Atualizar questão"
+#: models/alternative.py:20
+msgid "Is correct alternative to answer the question."
+msgstr "É a alternativa correta para responder a questão."
 
-#: pgtbl/questions/templates/questions/form.html:118
-#, fuzzy
-#| msgid "Is exercises?"
-msgid "Is exercise?"
-msgstr "É exercício?"
+#: models/alternative.py:30 models/question.py:50
+msgid "Created at"
+msgstr "Criado em"
 
-#: pgtbl/questions/templates/questions/form.html:132
+#: models/alternative.py:31
+msgid "Date that the alternative of question is created."
+msgstr "Data que a alternativa da questão foi criada."
+
+#: models/alternative.py:36 models/question.py:56
+msgid "Updated at"
+msgstr "Atualizado em"
+
+#: models/alternative.py:37
+msgid "Date that the alternative of question is updated."
+msgstr "Data que a alternativa da questão foi atualizada."
+
+#: models/alternative.py:49
+msgid "Alternative"
+msgstr "Alternativa"
+
+#: models/alternative.py:50 templates/questions/form.html:132
 msgid "Alternatives"
 msgstr "Alternativas"
 
-#: pgtbl/questions/templates/questions/form.html:171
+#: models/question.py:14
+msgid "Question title."
+msgstr "Título da questão"
+
+#: models/question.py:24 models/question.py:33
+msgid "Basic"
+msgstr "Básico"
+
+#: models/question.py:25
+msgid "Intermediary"
+msgstr "Intermediario"
+
+#: models/question.py:26
+msgid "Advanced"
+msgstr "Avançado"
+
+#: models/question.py:30
+msgid "Level"
+msgstr "Nível"
+
+#: models/question.py:34
+msgid "Difficulty level"
+msgstr "Nível de dificuldade"
+
+#: models/question.py:38
+msgid "Topic"
+msgstr "Tópico"
+
+#: models/question.py:40
+msgid "Question topic."
+msgstr "Tópico da questão"
+
+#: models/question.py:44
+msgid "Is it an exercises?"
+msgstr "É um exercício?"
+
+#: models/question.py:46
+msgid "Exercise are questions that appear in the exercises list."
+msgstr "Exercício são questões que aparecem somente na lista de exercícios."
+
+#: models/question.py:51
+msgid "Date that the question is created."
+msgstr "Data que a questão foi criada."
+
+#: models/question.py:57
+msgid "Date that the question is updated."
+msgstr "Data que a questão foi atualizada."
+
+#: models/question.py:74
+msgid "Question"
+msgstr "Questão"
+
+#: models/question.py:75
+msgid "Questions"
+msgstr "Questões"
+
+#: templates/questions/delete.html:20 templates/questions/delete.html:42
+msgid "Delete"
+msgstr "Deletar"
+
+#: templates/questions/delete.html:27
+msgid "Are you sure you want to delete the question"
+msgstr "Tem certeza que deseja deletar a questão"
+
+#: templates/questions/delete.html:51
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: templates/questions/form.html:15
+msgid "Update Question"
+msgstr "Atualizar questão"
+
+#: templates/questions/form.html:118
+msgid "Is exercise?"
+msgstr "É exercício?"
+
+#: templates/questions/form.html:171
 msgid "Submit"
+msgstr "Enviar"
+
+#: views/create_question_view.py:108
+msgid "Question created successfully."
+msgstr "Questão criada com sucesso."
+
+#: views/create_question_view.py:126 views/update_question_view.py:136
+msgid "All the alternatives need to be filled."
+msgstr "Todas as alternativas precisam ser preenchidas"
+
+#: views/create_question_view.py:140 views/update_question_view.py:150
+msgid ""
+"The question only needs one correct alternative,                       check "
+"if there is more than one or no longer insert one"
 msgstr ""
-
-#~ msgid "Date and time to provide the iRAT test"
-#~ msgstr "Data e hora que será disponibilizado a avaliação iRAT"
-
-#~ msgid "4 Points"
-#~ msgstr "4 Pontos"
-
-#~ msgid "2 Points"
-#~ msgstr "2 Pontos"
-
-#~ msgid "1 Point "
-#~ msgstr "1 Ponto"
-
-#~ msgid "0 Points"
-#~ msgstr "0 Pontos"
-
-#~ msgid "Date and time to provide the gRAT test"
-#~ msgstr "Data e hora que será disponibilizado a avaliação gRAT"
-
-#~ msgid "Title"
-#~ msgstr "Título"
-
-#~ msgid "Question title."
-#~ msgstr "Título da questão"
-
-#~ msgid "Basic"
-#~ msgstr "Básico"
-
-#~ msgid "Intermediary"
-#~ msgstr "Intermediario"
-
-#~ msgid "Advanced"
-#~ msgstr "Avançado"
-
-#~ msgid "Level"
-#~ msgstr "Nível"
-
-#~ msgid "Difficulty level"
-#~ msgstr "Nível de dificuldade"
-
-#~ msgid "Topic"
-#~ msgstr "Tópico"
-
-#~ msgid "Question topic."
-#~ msgstr "Tópico da questão"
-
-#~ msgid "Is it an exercises?"
-#~ msgstr "É um exercício?"
-
-#~ msgid "Exercise are questions that appear in the exercises list."
-#~ msgstr "Exercício são questões que aparecem somente na lista de exercícios."
-
-#~ msgid "Created at"
-#~ msgstr "Criado em"
-
-#~ msgid "Date that the question is created."
-#~ msgstr "Data que a questão foi criada."
-
-#~ msgid "Updated at"
-#~ msgstr "Atualizado em"
-
-#~ msgid "Date that the question is updated."
-#~ msgstr "Data que a questão foi atualizada."
-
-#~ msgid "Question"
-#~ msgstr "Questão"
-
-#~ msgid "Questions"
-#~ msgstr "Questões"
-
-#~ msgid "Alternative title."
-#~ msgstr "Título da alternativa."
-
-#~ msgid "Is correct?"
-#~ msgstr "É a resposta certa?"
-
-#~ msgid "Is correct alternative to answer the question."
-#~ msgstr "É a alternativa correta para responder a questão."
-
-#~ msgid "Date that the alternative of question is created."
-#~ msgstr "Data que a alternativa da questão foi criada."
-
-#~ msgid "Date that the alternative of question is updated."
-#~ msgstr "Data que a alternativa da questão foi atualizada."
-
-#~ msgid "Alternative"
-#~ msgstr "Alternativa"
-
-#~ msgid "TBL sessions"
-#~ msgstr "Sessões TBL"
-
-#~ msgid "Users"
-#~ msgstr "Usuários"
-
-#~ msgid "Correct Alternative"
-#~ msgstr "Alternativa correta"
-
-#~ msgid "Correct alternative title."
-#~ msgstr "Título da alternativa correta."
-
-#~ msgid "Score"
-#~ msgstr "Pontuação"
-
-#~ msgid "Question score answered."
-#~ msgstr "Pontuação da questão respondida."
-
-#~ msgid "Date that the submission of question is created."
-#~ msgstr "Data que a submissão da questão foi criada."
-
-#~ msgid "Exercise Submission"
-#~ msgstr "Submissão do exercício"
-
-#~ msgid "Exercise Submissions"
-#~ msgstr "Submissões dos exercícios"
-
-#~ msgid "iRAT Submission"
-#~ msgstr "Submissão do iRAT"
-
-#~ msgid "iRAT Submissions"
-#~ msgstr "Submissões do iRAT"
-
-#~ msgid "Groups"
-#~ msgstr "Grupos"
-
-#~ msgid "gRAT Submission"
-#~ msgstr "Submissão do gRAT"
-
-#~ msgid "gRAT Submissions"
-#~ msgstr "Submissões do gRAT"
-
-#~ msgid "Create Question"
-#~ msgstr "Criar questão"
-
-#~ msgid "Create"
-#~ msgstr "Criar"
-
-#~ msgid "gRAT"
-#~ msgstr "gRAT"
-
-#~ msgid "Group Readiness Assurance Test (gRAT)"
-#~ msgstr "Teste de garantia de prontidão em grupo (gRAT)"
-
-#~ msgid "Course"
-#~ msgstr "Curso"
-
-#~ msgid "Discipline"
-#~ msgstr "Disciplina"
-
-#~ msgid "Teacher"
-#~ msgstr "Professor"
-
-#~ msgid "Edit"
-#~ msgstr "Editar"
-
-#~ msgid "Answer"
-#~ msgstr "Responder"
-
-#~ msgid "There is no questions in this session."
-#~ msgstr "Não há questões nessa sessão."
-
-#~ msgid "Edit gRAT date"
-#~ msgstr "Editar a data da avaliação gRAT"
-
-#~ msgid "Rules"
-#~ msgstr "Regras"
-
-#~ msgid "The rules are very simple"
-#~ msgstr "As regras são bem simples"
-
-#~ msgid ""
-#~ "We have 4 options per alternative: 4 Points, 2 Points, 1 Point, 0 Point"
-#~ msgstr ""
-#~ "Nós temos 4 opções por alternativa: 4 Pontos, 2 Pontos, 1 Ponto, 0 Pontos"
-
-#~ msgid ""
-#~ "If alternative with 4 Points is correct, it earns 4 points, otherwise "
-#~ "decreases in half"
-#~ msgstr ""
-#~ "Se a alternativa com 4 pontos for a correta, você ganha 4 pontos, caso "
-#~ "contrario, vai caindo os pontos pela metade"
-
-#~ msgid ""
-#~ "You can only choose one option per alternative and can not be repeated"
-#~ msgstr ""
-#~ "Você somente pode escolher uma única opção por alternativa e não pode ser "
-#~ "repetida"
-
-#~ msgid ""
-#~ "After answering the question you can scratch the scratch card and see the "
-#~ "correct answer"
-#~ msgstr ""
-#~ "Após responder a questão você pode raspar a raspadinha e ver o resultado"
-
-#~ msgid "Example"
-#~ msgstr "Exemplo"
-
-#~ msgid "Alternative A insert 4 Points"
-#~ msgstr "Alternativa A insere 4 Pontos"
-
-#~ msgid "Alternative B insert 1 Point"
-#~ msgstr "Alternativa B insere 1 Ponto"
-
-#~ msgid "Alternative C insert 2 Points"
-#~ msgstr "Alternativa C insere 2 Pontos"
-
-#~ msgid "Alternative D insert 0 Point"
-#~ msgstr "Alternativa D insere 0 Pontos"
-
-#~ msgid "Alternative C is correct, so you have earned 2 points"
-#~ msgstr "Alternativa C foi a correta, logo você recebe 2 pontos na questão"
-
-#~ msgid "Back"
-#~ msgstr "Voltar"
-
-#~ msgid "Next"
-#~ msgstr "Próximo"
-
-#~ msgid "Conclude"
-#~ msgstr "Concluir"
-
-#~ msgid "gRAT result"
-#~ msgstr "Resultado da avaliação gRAT"
-
-#~ msgid "Result"
-#~ msgstr "Resultado"
-
-#~ msgid "Correct option"
-#~ msgstr "Opção correta"
-
-#~ msgid "Total"
-#~ msgstr "Total"
-
-#~ msgid "Grade"
-#~ msgstr "Nota"
-
-#~ msgid "Edit gRAT"
-#~ msgstr "Editar gRAT"
-
-#~ msgid "iRAT"
-#~ msgstr "iRAT"
-
-#~ msgid "Individual Readiness Assurance Test (iRAT)"
-#~ msgstr "Teste de garantia de prontidão individual (iRAT)"
-
-#~ msgid "Edit iRAT date"
-#~ msgstr "Editar a data da avaliação iRAT"
-
-#~ msgid "We have 4 options per question: A, B, C, D"
-#~ msgstr "Nós temos 4 alternativas por questão: A, B, C, D"
-
-#~ msgid "You will have 4 points to distribute in each question."
-#~ msgstr "Você terá 4 pontos para distribuir em cada questão."
-
-#~ msgid "You can not enter more than 4 points in an option."
-#~ msgstr "Você não pode entrar com mais de 4 pontos por opção."
-
-#~ msgid "The sum of the options has to give 4 points, can not go beyond that."
-#~ msgstr "A soma das opções tem que dar 4 pontos, não pode ir além disso."
-
-#~ msgid ""
-#~ "The question will only be considered if the sum of the points of the "
-#~ "alternatives is between 0 and 4"
-#~ msgstr ""
-#~ "A questão vai somente ser considerada se a soma dos pontos de cada "
-#~ "alternativa estiver entre 0 e 4"
-
-#~ msgid "Insert 4 points in option A."
-#~ msgstr "Insira 4 pontos na alternativa A."
-
-#~ msgid "Insert 2 points in option B and 2 points in option C."
-#~ msgstr "Insira 2 pontos na alternativa B e 2 na alternativa C."
-
-#~ msgid "Insert 3 points in option A and 1 points in option D."
-#~ msgstr "Insira 3 pontos na alternativa A e 1 na alternativa D."
-
-#~ msgid "Insert 1 points in each option."
-#~ msgstr "Insira 1 ponto em cada alternativa."
-
-#~ msgid "iRAT result"
-#~ msgstr "Resultado da avaliação iRAT"
-
-#~ msgid "Edit iRAT"
-#~ msgstr "Editar iRAT"
-
-#~ msgid "Exercise list"
-#~ msgstr "Lista de exercícios"
-
-#~ msgid "EXERCISE LIST"
-#~ msgstr "LISTA DE EXERCÍCIOS"
-
-#~ msgid "Exercise list result"
-#~ msgstr "Resultado da lista de exercício"
-
-#~ msgid "Reset"
-#~ msgstr "Resetar"
-
-#~ msgid "Download CSV"
-#~ msgstr "Baixar CSV"
-
-#~ msgid "Update"
-#~ msgstr "Atualizar"
-
-#~ msgid "Question answered successfully."
-#~ msgstr "Questão respondida com sucesso."
-
-#~ msgid "You can only submit the question once."
-#~ msgstr "Você somente pode submeter a questão uma única vez."
-
-#~ msgid ""
-#~ "You only have 4 points to distribute to the               4 alternatives."
-#~ msgstr "Você tem somente 4 pontos para distribuir entre as 4 alternativas."
-
-#~ msgid "Exercise list reseted successfully."
-#~ msgstr "Lista de exercícios resetada com sucesso."
-
-#~ msgid "You are not authorized to do this action."
-#~ msgstr "Você não está autorizado a fazer está ação."
-
-#~ msgid "gRAT updated successfully."
-#~ msgstr "gRAT atualizada com sucesso."
-
-#~ msgid "gRAT date must to be filled in."
-#~ msgstr "A data da avaliação gRAT deve ser preenchida."
-
-#~ msgid "gRAT date must to be later than today's date."
-#~ msgstr "A data da avaliação gRAT deve ser maior que a data de hoje."
-
-#~ msgid "gRAT date must to be later than iRAT date with its duration."
-#~ msgstr ""
-#~ "A data da avaliação gRAT deve ser maior que a data da avaliação iRAT com "
-#~ "sua duração."
-
-#~ msgid "gRAT date updated successfully."
-#~ msgstr "A data da avaliação gRAT foi atualizada com sucesso."
-
-#~ msgid "Student must be in a group to answer the test."
-#~ msgstr "Estudante precisam estar em um grupo para responder a prova."
-
-#~ msgid "You can't repeat the options."
-#~ msgstr "Você não pode repetir está opção."
-
-#~ msgid "Your group has already answered this question."
-#~ msgstr "Seu grupo já respondeu essa questão."
-
-#~ msgid "iRAT updated successfully."
-#~ msgstr "iRAT atualizado com sucesso."
-
-#~ msgid "iRAT date must to be filled in."
-#~ msgstr "A data da avaliaçào iRAT deve ser preenchida"
-
-#~ msgid "iRAT date must to be later than today's date."
-#~ msgstr "A data da avaliação iRAT deve ser maior que a data de hoje."
-
-#~ msgid "iRAT date updated successfully."
-#~ msgstr "iRAT atualizado com sucesso."
-
-#~ msgid "Question created successfully."
-#~ msgstr "Questão criada com sucesso."
-
-#~ msgid "All the alternatives need to be filled."
-#~ msgstr "Todas as alternativas precisam ser preenchidas"
-
-#~ msgid ""
-#~ "The question only needs one correct alternative,                       "
-#~ "check if there is more than one or no longer insert one"
-#~ msgstr ""
-#~ "A questão somente precisa de uma única alternativa correta, verifique se "
-#~ "há uma e somente uma alternativa correta"
-
-#~ msgid ""
-#~ "Invalid fields, please fill in the questions fields and               "
-#~ "alternative fields correctly."
-#~ msgstr ""
-#~ "Campos invalidos, por favor preencha os campos e alternativas "
-#~ "corretamente."
-
-#~ msgid "Question updated successfully."
-#~ msgstr "Questão atualizada com sucesso."
-
-#~ msgid "Question deleted successfully."
-#~ msgstr "Questão deletada com sucesso."
+"A questão somente precisa de uma única alternativa correta, verifique se há "
+"uma e somente uma alternativa correta"
+
+#: views/create_question_view.py:155 views/update_question_view.py:165
+msgid ""
+"Invalid fields, please fill in the questions fields and               "
+"alternative fields correctly."
+msgstr ""
+"Campos invalidos, por favor preencha os campos e alternativas corretamente."
+
+#: views/delete_question_view.py:86
+msgid "Question deleted successfully."
+msgstr "Questão deletada com sucesso."
+
+#: views/update_question_view.py:118
+msgid "Question updated successfully."
+msgstr "Questão atualizada com sucesso."

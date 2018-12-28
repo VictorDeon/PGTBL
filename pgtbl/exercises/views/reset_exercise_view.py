@@ -108,6 +108,20 @@ class ResetExerciseView(LoginRequiredMixin,
 
             submission.delete()
 
+        self.insert_gamification_points(total_score)
+
+        messages.success(
+            self.request,
+            _("Exercise list reseted successfully.")
+        )
+
+        return redirect(self.get_success_url())
+
+    def insert_gamification_points(self, total_score):
+        """
+        Insert gamification point to dashboard
+        """
+
         if self.get_student_group():
             try:
                 gamification = GamificationPointSubmission.objects.get(
@@ -125,10 +139,3 @@ class ResetExerciseView(LoginRequiredMixin,
                     group=self.get_student_group(),
                     total_score=total_score
                 )
-
-        messages.success(
-            self.request,
-            _("Exercise list reseted successfully.")
-        )
-
-        return redirect(self.get_success_url())
