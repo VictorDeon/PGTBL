@@ -149,27 +149,34 @@ class GRATAnswerQuestionView(LoginRequiredMixin, FormView):
                 forms=[form1, form2, form3, form4]
             )
 
-            correct_alternative = None
-            for alternative in question.alternatives.all():
-                if alternative.is_correct:
-                    correct_alternative = alternative
-
-            if success:
-                messages.success(
-                    self.request,
-                    _("Question answered successfully.")
-                )
-
-                GRATSubmission.objects.create(
-                    session=self.get_session(),
-                    group=self.get_student_group(),
-                    user=self.request.user,
-                    question=question,
-                    correct_alternative=correct_alternative.title,
-                    score=score
-                )
+            self.create_submission(success, question, score)
 
         return redirect(self.get_success_url())
+
+    def create_submission(self, success, question, score):
+        """
+        Create a submission to answer
+        """
+
+        correct_alternative = None
+        for alternative in question.alternatives.all():
+            if alternative.is_correct:
+                correct_alternative = alternative
+
+        if success:
+            messages.success(
+                self.request,
+                _("Question answered successfully.")
+            )
+
+            GRATSubmission.objects.create(
+                session=self.get_session(),
+                group=self.get_student_group(),
+                user=self.request.user,
+                question=question,
+                correct_alternative=correct_alternative.title,
+                score=score
+            )
 
     def get_question_score(self, question, forms):
         """
@@ -195,7 +202,22 @@ class GRATAnswerQuestionView(LoginRequiredMixin, FormView):
         Validate the submission.
         """
 
-        # Verify is student is in some group
+        if not self.student_in_group():
+            return False
+
+        if self.repeated_option(forms):
+            return False
+
+        if self.has_submited(question):
+            return False
+
+        return True
+
+    def student_in_group(self):
+        """
+        Verify if student is in some group
+        """
+
         if not self.get_student_group():
             messages.error(
                 self.request,
@@ -204,7 +226,13 @@ class GRATAnswerQuestionView(LoginRequiredMixin, FormView):
 
             return False
 
-        # Verify repeated options
+        return True
+
+    def repeated_option(self, forms):
+        """
+        Verify if the option is repeated.
+        """
+
         answers = [0, 1, 2, 4]
 
         for form in forms:
@@ -212,15 +240,20 @@ class GRATAnswerQuestionView(LoginRequiredMixin, FormView):
                 answers.remove(int(form['score'].value()))
 
         if len(answers) != 0:
-
             messages.error(
                 self.request,
                 _("You can't repeat the options.")
             )
 
-            return False
+            return True
 
-        # Verify if has only one submission from the user group
+        return False
+
+    def has_submited(self, question):
+        """
+        Verify if has only one submission from the user group
+        """
+
         submissions = GRATSubmission.objects.filter(
             session=self.get_session(),
             question=question,
@@ -228,12 +261,11 @@ class GRATAnswerQuestionView(LoginRequiredMixin, FormView):
         )
 
         if submissions.count() != 0:
-
             messages.error(
                 self.request,
                 _("Your group has already answered this question.")
             )
 
-            return False
+            return True
 
-        return True
+        return False

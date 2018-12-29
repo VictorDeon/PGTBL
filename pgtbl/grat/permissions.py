@@ -2,6 +2,7 @@ from rolepermissions.permissions import register_object_checker
 from django.utils import timezone
 from datetime import timedelta
 
+
 @register_object_checker()
 def crud_tests(permission, user, view):
     """
@@ -14,6 +15,7 @@ def crud_tests(permission, user, view):
         return True
 
     return False
+
 
 @register_object_checker()
 def show_questions_permission(permission, user, view):
@@ -33,6 +35,7 @@ def show_questions_permission(permission, user, view):
         return True
 
     return False
+
 
 @register_object_checker()
 def show_test_result(permission, user, view):

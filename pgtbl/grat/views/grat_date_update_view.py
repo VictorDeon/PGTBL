@@ -79,6 +79,15 @@ class GRATDateUpdateView(LoginRequiredMixin,
 
         messages.success(self.request, _('gRAT date updated successfully.'))
 
+        self.send_notification(form)
+
+        return super(GRATDateUpdateView, self).form_valid(form)
+
+    def send_notification(self, form):
+        """
+        Send notification to all students
+        """
+
         discipline = self.get_discipline()
         session = self.get_object()
 
@@ -95,8 +104,6 @@ class GRATDateUpdateView(LoginRequiredMixin,
                 receiver=student,
                 discipline=discipline
             )
-
-        return super(GRATDateUpdateView, self).form_valid(form)
 
     def get_success_url(self):
         """
