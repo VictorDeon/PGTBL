@@ -65,6 +65,15 @@ class IRATDateUpdateView(LoginRequiredMixin,
 
         messages.success(self.request, _('iRAT date updated successfully.'))
 
+        self.send_notification(form)
+
+        return super(IRATDateUpdateView, self).form_valid(form)
+
+    def send_notification(self, form):
+        """
+        Send notification to all students
+        """
+
         discipline = self.get_discipline()
         session = self.get_object()
 
@@ -81,8 +90,6 @@ class IRATDateUpdateView(LoginRequiredMixin,
                 receiver=student,
                 discipline=discipline
             )
-
-        return super(IRATDateUpdateView, self).form_valid(form)
 
     def get_success_url(self):
         """

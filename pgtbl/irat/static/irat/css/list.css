@@ -8,24 +8,27 @@
   margin-bottom: 0;
 }
 
-.course {
-  padding-right: 34px;
+.table {
+  font-size: 18px;
+  margin-bottom: 0;
 }
 
-.classes {
-  padding-right: 5px;
+th, td {
+  border-top: initial !important;
+  padding: 1px !important;
 }
 
 .fa-book {
-  padding-right: 7px;
-}
-
-.teacher {
-  padding-right: 4px;
+  padding-right: 8px;
 }
 
 .fa-user {
   padding-right: 11px;
+}
+
+.btn-group>.btn:first-child:not(:last-child):not(.btn-danger) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .roles {
@@ -101,4 +104,9 @@
 
 .form-group {
   padding-top: 12px;
+}
+
+.update, .update:hover, .update:focus {
+  text-decoration: none;
+  color: white;
 }

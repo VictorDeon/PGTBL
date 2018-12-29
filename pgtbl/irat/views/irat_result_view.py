@@ -133,7 +133,6 @@ class IRATResultView(LoginRequiredMixin,
         questions = self.get_questions()
         submissions = self.get_queryset()
 
-        # Calcule the grade
         score = 0
         grade = 0
 
@@ -145,7 +144,21 @@ class IRATResultView(LoginRequiredMixin,
         if total > 0:
             grade = (score / total) * 10
 
-        # Create a grade for specific student
+        self.create_grade(grade)
+
+        result = {
+            'score': score,
+            'total': total,
+            'grade': "{0:.2f}".format(grade)
+        }
+
+        return result
+
+    def create_grade(self, grade):
+        """
+        Create a grade for specific student
+        """
+
         discipline = self.get_discipline()
 
         grades = Grade.objects.filter(
@@ -160,12 +173,3 @@ class IRATResultView(LoginRequiredMixin,
                 group=self.get_student_group(),
                 irat=grade
             )
-
-        # Store the result and return it
-        result = {
-            'score': score,
-            'total': total,
-            'grade': "{0:.2f}".format(grade)
-        }
-
-        return result
