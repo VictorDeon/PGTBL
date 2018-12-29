@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-22 15:30-0200\n"
+"POT-Creation-Date: 2018-12-29 18:12-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,151 +18,262 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: pgtbl/grat/templates/grat/date.html:9
+#: forms/grat_form.py:22
+msgid "Date and time to provide the gRAT test"
+msgstr "Date e hora que foi disponibilizado a avaliação gRAT"
+
+#: forms/grat_form.py:38
+msgid "4 Points"
+msgstr "4 Pontos"
+
+#: forms/grat_form.py:39
+msgid "2 Points"
+msgstr "2 Pontos"
+
+#: forms/grat_form.py:40
+msgid "1 Point "
+msgstr "1 Ponto"
+
+#: forms/grat_form.py:41
+msgid "0 Points"
+msgstr "0 Pontos"
+
+#: models/grat_submission.py:17
+msgid "TBL sessions"
+msgstr "Sessões TBL"
+
+#: models/grat_submission.py:24
+msgid "Questions"
+msgstr "Questões"
+
+#: models/grat_submission.py:31
+msgid "Users"
+msgstr "Usuários"
+
+#: models/grat_submission.py:38
+msgid "Groups"
+msgstr "Grupos"
+
+#: models/grat_submission.py:43
+msgid "Correct Alternative"
+msgstr "Alternativa correta"
+
+#: models/grat_submission.py:45
+msgid "Correct alternative title."
+msgstr "Título da alternativa correta."
+
+#: models/grat_submission.py:49
+msgid "Score"
+msgstr "Pontuação"
+
+#: models/grat_submission.py:51
+msgid "Question score answered."
+msgstr "Pontuação da questão respondida"
+
+#: models/grat_submission.py:55
+msgid "Created at"
+msgstr "Criado em"
+
+#: models/grat_submission.py:56
+msgid "Date that the submission of question is created."
+msgstr "Data que foi submetida a questão criada."
+
+#: models/grat_submission.py:74
+msgid "gRAT Submission"
+msgstr "Submissão da avaliação gRAT"
+
+#: models/grat_submission.py:75
+msgid "gRAT Submissions"
+msgstr "Submissões da avaliação gRAT"
+
+#: templates/grat/date.html:9
 msgid "Edit gRAT date"
-msgstr ""
+msgstr "Editar data da avaliação gRAT"
 
-#: pgtbl/grat/templates/grat/date.html:39
-#: pgtbl/grat/templates/grat/grat.html:136
-#: pgtbl/grat/templates/grat/update.html:53
+#: templates/grat/date.html:39 templates/grat/grat.html:159
+#: templates/grat/update.html:53
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
-#: pgtbl/grat/templates/grat/grat.html:14
-#: pgtbl/grat/templates/grat/grat.html:104
+#: templates/grat/grat.html:14 templates/grat/grat.html:121
 msgid "gRAT"
-msgstr ""
+msgstr "gRAT"
 
-#: pgtbl/grat/templates/grat/grat.html:25
+#: templates/grat/grat.html:26
 msgid "Group Readiness Assurance Test (gRAT)"
-msgstr ""
+msgstr "Avaliação em grupo (gRAT)"
 
-#: pgtbl/grat/templates/grat/grat.html:37
-#: pgtbl/grat/templates/grat/result.html:37
+#: templates/grat/grat.html:43 templates/grat/result.html:42
 msgid "Course"
-msgstr ""
+msgstr "Curso"
 
-#: pgtbl/grat/templates/grat/grat.html:42
-#: pgtbl/grat/templates/grat/result.html:42
+#: templates/grat/grat.html:50 templates/grat/result.html:49
 msgid "Discipline"
-msgstr ""
+msgstr "Disciplina"
 
-#: pgtbl/grat/templates/grat/grat.html:47
-#: pgtbl/grat/templates/grat/result.html:47
+#: templates/grat/grat.html:57 templates/grat/result.html:56
 msgid "Teacher"
-msgstr ""
+msgstr "Professor"
 
-#: pgtbl/grat/templates/grat/grat.html:77
-#: pgtbl/grat/templates/grat/grat.html:88
+#: templates/grat/grat.html:91 templates/grat/grat.html:102
 msgid "The date has not yet been defined"
-msgstr ""
+msgstr "A data da avaliação não foi definida ainda."
 
-#: pgtbl/grat/templates/grat/grat.html:145
+#: templates/grat/grat.html:168
 msgid "Delete"
-msgstr ""
+msgstr "Deletar"
 
-#: pgtbl/grat/templates/grat/grat.html:234
+#: templates/grat/grat.html:270
 msgid "Answer"
-msgstr ""
+msgstr "Responder"
 
-#: pgtbl/grat/templates/grat/grat.html:240
+#: templates/grat/grat.html:276
 msgid "There is no questions in this session."
-msgstr ""
+msgstr "Não a questões nessa sessão."
 
-#: pgtbl/grat/templates/grat/info.html:8
+#: templates/grat/info.html:8
 msgid "Rules"
-msgstr ""
+msgstr "Regras"
 
-#: pgtbl/grat/templates/grat/info.html:11
+#: templates/grat/info.html:11
 msgid "The rules are very simple"
-msgstr ""
+msgstr "As regras são bem simples"
 
-#: pgtbl/grat/templates/grat/info.html:13
+#: templates/grat/info.html:13
 msgid "We have 4 options per alternative: 4 Points, 2 Points, 1 Point, 0 Point"
-msgstr ""
+msgstr "Nós temos 4 tipos de apostas por alternativa: 4 Pontos, 2 Pontos, 1 Ponto e 0 Pontos"
 
-#: pgtbl/grat/templates/grat/info.html:14
+#: templates/grat/info.html:14
 msgid ""
 "If alternative with 4 Points is correct, it earns 4 points, otherwise "
 "decreases in half"
 msgstr ""
+"Se a alternativa correta é a que foi marcada com 4 pontos, o grupo ganha 4 pontos, caso contrario "
+"Decresce pela metade."
 
-#: pgtbl/grat/templates/grat/info.html:15
+#: templates/grat/info.html:15
 msgid "You can only choose one option per alternative and can not be repeated"
-msgstr ""
+msgstr "Você só pode escolher uma aposta por alternativa e não pode se repetir"
 
-#: pgtbl/grat/templates/grat/info.html:16
+#: templates/grat/info.html:16
 msgid ""
 "After answering the question you can scratch the scratch card and see the "
 "correct answer"
 msgstr ""
+"Após responder a questão você pode raspar a raspadinha e ver o "
+"resultado"
 
-#: pgtbl/grat/templates/grat/info.html:17
-#: pgtbl/grat/templates/grat/info.html:18
-#: pgtbl/grat/templates/grat/info.html:19
-#: pgtbl/grat/templates/grat/info.html:20
-#: pgtbl/grat/templates/grat/info.html:21
+#: templates/grat/info.html:17 templates/grat/info.html:18
+#: templates/grat/info.html:19 templates/grat/info.html:20
+#: templates/grat/info.html:21
 msgid "Example"
-msgstr ""
+msgstr "Exemplo"
 
-#: pgtbl/grat/templates/grat/info.html:17
+#: templates/grat/info.html:17
 msgid "Alternative A insert 4 Points"
-msgstr ""
+msgstr "Foi inserido 4 pontos na alternativa A"
 
-#: pgtbl/grat/templates/grat/info.html:18
+#: templates/grat/info.html:18
 msgid "Alternative B insert 1 Point"
-msgstr ""
+msgstr "Foi inserido 1 Ponto na alternativa B"
 
-#: pgtbl/grat/templates/grat/info.html:19
+#: templates/grat/info.html:19
 msgid "Alternative C insert 2 Points"
-msgstr ""
+msgstr "Foi inserido 2 pontos na alternativa C"
 
-#: pgtbl/grat/templates/grat/info.html:20
+#: templates/grat/info.html:20
 msgid "Alternative D insert 0 Point"
-msgstr ""
+msgstr "Foi inserido nenhum ponto na alternativa D"
 
-#: pgtbl/grat/templates/grat/info.html:21
+#: templates/grat/info.html:21
 msgid "Alternative C is correct, so you have earned 2 points"
-msgstr ""
+msgstr "A alternativa C é a correta, logo seu grupo ganhou 2 pontos"
 
-#: pgtbl/grat/templates/grat/pagination.html:8
-#: pgtbl/grat/templates/grat/pagination.html:15
+#: templates/grat/pagination.html:8 templates/grat/pagination.html:15
 msgid "Back"
-msgstr ""
+msgstr "Voltar"
 
-#: pgtbl/grat/templates/grat/pagination.html:22
+#: templates/grat/pagination.html:24
 msgid "Next"
-msgstr ""
+msgstr "Próximo"
 
-#: pgtbl/grat/templates/grat/pagination.html:28
+#: templates/grat/pagination.html:30
 msgid "Conclude"
-msgstr ""
+msgstr "Concluir"
 
-#: pgtbl/grat/templates/grat/result.html:14
-#: pgtbl/grat/templates/grat/result.html:25
+#: templates/grat/result.html:14 templates/grat/result.html:26
 msgid "gRAT result"
-msgstr ""
+msgstr "Resultado da avaliação gRAT"
 
-#: pgtbl/grat/templates/grat/result.html:65
+#: templates/grat/result.html:78
 msgid "Result"
-msgstr ""
+msgstr "Resultado"
 
-#: pgtbl/grat/templates/grat/result.html:70
+#: templates/grat/result.html:83
 msgid "Question"
-msgstr ""
+msgstr "Questão"
 
-#: pgtbl/grat/templates/grat/result.html:71
+#: templates/grat/result.html:84
 msgid "Correct option"
-msgstr ""
+msgstr "Alternativa correta"
 
-#: pgtbl/grat/templates/grat/result.html:88
+#: templates/grat/result.html:103
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
-#: pgtbl/grat/templates/grat/result.html:90
+#: templates/grat/result.html:105
 msgid "Grade"
-msgstr ""
+msgstr "Nota"
 
-#: pgtbl/grat/templates/grat/update.html:9
+#: templates/grat/update.html:9
 msgid "Edit gRAT"
-msgstr ""
+msgstr "Editar a avaliação gRAT"
+
+#: views/grat_answer_question_view.py:37 views/grat_view.py:40
+msgid "You are not authorized to do this action."
+msgstr "Você não tem autorização para realizar essa ação."
+
+#: views/grat_answer_question_view.py:169
+msgid "Question answered successfully."
+msgstr "Questão respondida com sucesso."
+
+#: views/grat_answer_question_view.py:224
+msgid "Student must be in a group to answer the test."
+msgstr "O estudante deve estar em um grupo para responder a avaliação."
+
+#: views/grat_answer_question_view.py:245
+msgid "You can't repeat the options."
+msgstr "Você não pode repetir essa opção."
+
+#: views/grat_answer_question_view.py:266
+msgid "Your group has already answered this question."
+msgstr "Seu grupo já respondeu essa questão."
+
+#: views/grat_date_update_view.py:57
+msgid "gRAT date must to be filled in."
+msgstr "Data da avaliação gRAT deve ser preenchida."
+
+#: views/grat_date_update_view.py:66
+msgid "gRAT date must to be later than today's date."
+msgstr "A data da avaliação gRAT deve ser após a data de hoje."
+
+#: views/grat_date_update_view.py:75
+msgid "gRAT date must to be later than iRAT date with its duration."
+msgstr "A data da avaliação gRAT deve ser após a data da avaliação iRAT e sua duração."
+
+#: views/grat_date_update_view.py:80
+msgid "gRAT date updated successfully."
+msgstr "Data da avaliação gRAT atualizado com sucesso."
+
+#: views/grat_date_update_view.py:94
+#, python-brace-format
+msgid "gRAT date update to {0} from session {1}"
+msgstr "Data da avaliação gRAT da sessão {1} atualizada para {0}"
+
+#: views/grat_date_update_view.py:101
+msgid "gRAT date updated"
+msgstr "Data da avaliação gRAT atualizada"
+
+#: views/grat_update_view.py:44
+msgid "gRAT updated successfully."
+msgstr "Avaliação gRAT atualizada com sucesso."

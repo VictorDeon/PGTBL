@@ -141,35 +141,31 @@
                 <div class="row">
                   <!-- gRAT by teacher -->
                   {% if user == discipline.teacher %}
+                    <!-- gRAT question edit and delete -->
+                    <div class="col-sm-12">
+                      <div class="btn-group pull-right">
+                        <a href="{% url 'questions:update-question' discipline.slug session.id question.id %}"
+                           class="btn btn-primary">
+                           <i class="fa fa-edit"></i>
+                           {% trans 'Edit' %}
+                        </a>
+                        <button type="button"
+                                class="btn btn-danger"
+                                data-toggle="modal"
+                                data-target="#delete-{{question.id}}-modal">
+                                <i class="fa fa-trash"></i>
+                                {% trans 'Delete' %}
+                        </button>
+                        {% include 'questions/delete.html' %}
+                      </div>
+                    </div>
+
                     <!-- gRAT question title -->
-                    <div class="col-sm-8">
+                    <div class="col-sm-12">
                       <h3 class="text-justify">
                         {{page_obj.number}}) {{question.title}}<br />
                         <small>{{question.topic}} - ({{question.level}})</small>
                       </h3>
-                    </div>
-
-                    <!-- gRAT question edit and delete -->
-                    <div class="col-sm-4">
-                      <div class="btn-group btn-group-justified">
-                        <div class="btn-group">
-                          <a href="{% url 'questions:update-question' discipline.slug session.id question.id %}"
-                             class="btn btn-primary">
-                             <i class="fa fa-edit"></i>
-                             {% trans 'Edit' %}
-                          </a>
-                        </div>
-                        <div class="btn-group">
-                          <button type="button"
-                                  class="btn btn-danger"
-                                  data-toggle="modal"
-                                  data-target="#delete-{{question.id}}-modal">
-                                  <i class="fa fa-trash"></i>
-                                  {% trans 'Delete' %}
-                          </button>
-                          {% include 'questions/delete.html' %}
-                        </div>
-                      </div>
                     </div>
 
                   <!-- Question by student -->
