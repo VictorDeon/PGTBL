@@ -33,7 +33,7 @@ def get_module_grade_csv(request, *args, **kwargs):
 
     # Create CSV file rows
     writer.writerow([
-        'Disciplina'
+        'Disciplina',
         'Grupos',
         'Usuários',
         'iRAT',

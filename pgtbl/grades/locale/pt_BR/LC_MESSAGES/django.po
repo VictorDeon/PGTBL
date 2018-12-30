@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-22 15:30-0200\n"
+"POT-Creation-Date: 2018-12-30 16:49-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,125 +18,150 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: pgtbl/grades/templates/grades/form.html:16
-#: pgtbl/grades/templates/grades/form.html:111
-msgid "Edit"
-msgstr "Editar"
-
-#: pgtbl/grades/templates/grades/form.html:16
-msgid "grade"
-msgstr "Nota"
-
-#: pgtbl/grades/templates/grades/list.html:14
-#: pgtbl/grades/templates/grades/list.html:24
-#: pgtbl/grades/templates/grades/result.html:14
-#: pgtbl/grades/templates/grades/result.html:24
-msgid "Grades"
-msgstr "Notas"
-
-#: pgtbl/grades/templates/grades/list.html:33
-#: pgtbl/grades/templates/grades/result.html:33
-msgid "Students"
-msgstr "Estudantes"
-
-#: pgtbl/grades/templates/grades/list.html:34
-msgid "Sessions"
-msgstr "Sessões"
-
-#: pgtbl/grades/templates/grades/list.html:37
-msgid "Group"
-msgstr "Grupo"
-
-#: pgtbl/grades/templates/grades/list.html:38
-#: pgtbl/grades/templates/grades/result.html:37
-msgid "Username"
-msgstr "Usuário"
-
-#: pgtbl/grades/templates/grades/list.html:41
-msgid "Practical Test"
-msgstr "Prova prático"
-
-#: pgtbl/grades/templates/grades/list.html:42
-msgid "Peer Review"
-msgstr "Avaliação em pares"
-
-#: pgtbl/grades/templates/grades/list.html:43
-msgid "TBL grade"
-msgstr "Nota TBL"
-
-#: pgtbl/grades/templates/grades/list.html:70
-#: pgtbl/grades/templates/grades/result.html:52
-msgid "There are no grades."
-msgstr "Não há notas disponíveis."
-
-#: pgtbl/grades/templates/grades/result.html:34
+#: models/final_grade.py:27 templates/grades/result.html:37
 msgid "Final grade"
 msgstr "Nota final"
 
-#: pgtbl/grades/templates/grades/result.html:38
-msgid "Grade"
-msgstr "Nota"
+#: models/final_grade.py:29
+msgid "Student final grade."
+msgstr "Nota final do estudante"
 
-#: pgtbl/grades/templates/grades/result.html:39
+#: models/final_grade.py:33 templates/grades/result.html:42
 msgid "Status"
 msgstr "Status"
 
-#~ msgid "iRAT grade"
-#~ msgstr "Nota iRAT"
+#: models/final_grade.py:35 views/grade_result_view.py:57
+msgid "Disapproved"
+msgstr "Reprovado"
 
-#~ msgid "iRAT test grade."
-#~ msgstr "Nota da prova iRAT"
+#: models/final_grade.py:36
+msgid "Student status"
+msgstr "Status do estudante"
 
-#~ msgid "gRAT grade"
-#~ msgstr "Nota gRAT"
+#: models/final_grade.py:40 models/grade.py:61
+msgid "Created at"
+msgstr "Criado em"
 
-#~ msgid "gRAT test grade."
-#~ msgstr "Nota da prova gRAT"
+#: models/final_grade.py:41 models/grade.py:62
+msgid "Date that the session is created."
+msgstr "Data que a sessão foi criada."
 
-#~ msgid "Practical test grade"
-#~ msgstr "Nota do projeto prático"
+#: models/final_grade.py:46 models/grade.py:67
+msgid "Updated at"
+msgstr "Atualizado em"
 
-#~ msgid "Practical test grade."
-#~ msgstr "Nota do projeto prático."
+#: models/final_grade.py:47 models/grade.py:68
+msgid "Date that the session is updated."
+msgstr "Data que a sessão foi atualizada."
 
-#~ msgid "Peer review grade"
-#~ msgstr "Nota da avaliação em pares"
+#: models/final_grade.py:83 models/final_grade.py:84
+msgid "Discipline grades"
+msgstr "Notas da disciplina"
 
-#~ msgid "Peer review grade."
-#~ msgstr "Nota da avaliação em pares"
+#: models/grade.py:37
+msgid "iRAT grade"
+msgstr "Nota iRAT"
 
-#~ msgid "Created at"
-#~ msgstr "Criado em"
+#: models/grade.py:39
+msgid "iRAT test grade."
+msgstr "Nota da prova iRAT"
 
-#~ msgid "Date that the session is created."
-#~ msgstr "Data que a sessão foi criada."
+#: models/grade.py:43
+msgid "gRAT grade"
+msgstr "Nota gRAT"
 
-#~ msgid "Updated at"
-#~ msgstr "Atualizado em"
+#: models/grade.py:45
+msgid "gRAT test grade."
+msgstr "Nota da prova gRAT"
 
-#~ msgid "Date that the session is updated."
-#~ msgstr "Data que a sessão foi atualizada."
+#: models/grade.py:49
+msgid "Practical test grade"
+msgstr "Nota do projeto prático"
 
-#~ msgid "TBL Session grades"
-#~ msgstr "Notas da sessão de TBL"
+#: models/grade.py:51
+msgid "Practical test grade."
+msgstr "Nota do projeto prático."
 
-#~ msgid "TBL Sessions grades"
-#~ msgstr "Notas da sessão de TBL"
+#: models/grade.py:55
+msgid "Peer review grade"
+msgstr "Nota da avaliação em pares"
 
-#~ msgid "Discipline grades"
-#~ msgstr "Notas da disciplina"
+#: models/grade.py:57
+msgid "Peer review grade."
+msgstr "Nota da avaliação em pares"
 
-#~ msgid "Edit grade"
-#~ msgstr "Editar notas"
+#: models/grade.py:133
+msgid "TBL Session grades"
+msgstr "Notas da sessão de TBL"
 
-#~ msgid "Approved"
-#~ msgstr "Aprovado"
+#: models/grade.py:134
+msgid "TBL Sessions grades"
+msgstr "Notas da sessão de TBL"
 
-#~ msgid "Disapproved"
-#~ msgstr "Reprovado"
+#: templates/grades/form.html:16
+msgid "Edit grade of"
+msgstr "Editar notas do estudante "
 
-#~ msgid "Grades updated successfully."
-#~ msgstr "Nota atualizada com sucesso."
+#: templates/grades/form.html:111
+msgid "Edit"
+msgstr "Editar"
 
-#~ msgid "Grade need to be a number between 0 and 10."
-#~ msgstr "Nota precisa ser um número entre 0 e 10."
+#: templates/grades/list.html:14 templates/grades/list.html:25
+#: templates/grades/result.html:14 templates/grades/result.html:25
+msgid "Grades"
+msgstr "Notas"
+
+#: templates/grades/list.html:36 templates/grades/result.html:36
+msgid "Students"
+msgstr "Estudantes"
+
+#: templates/grades/list.html:37
+msgid "Sessions"
+msgstr "Sessões"
+
+#: templates/grades/list.html:40
+msgid "Group"
+msgstr "Grupo"
+
+#: templates/grades/list.html:41 templates/grades/result.html:40
+msgid "Username"
+msgstr "Usuário"
+
+#: templates/grades/list.html:44
+msgid "Practical Test"
+msgstr "Prova prático"
+
+#: templates/grades/list.html:45
+msgid "Peer Review"
+msgstr "Avaliação em pares"
+
+#: templates/grades/list.html:46
+msgid "TBL grade"
+msgstr "Nota TBL"
+
+#: templates/grades/list.html:73 templates/grades/result.html:55
+msgid "There are no grades."
+msgstr "Não há notas disponíveis."
+
+#: templates/grades/result.html:41
+msgid "Grade"
+msgstr "Nota"
+
+#: tests/test_list_final_grade.py:211 views/grade_result_view.py:55
+msgid "Approved"
+msgstr "Aprovado"
+
+#: views/grade_update_view.py:37
+msgid "You are not authorized to do this action."
+msgstr "Você não está autorizado a fazer essa ação."
+
+#: views/grade_update_view.py:122
+msgid "Grades updated successfully."
+msgstr "Nota atualizada com sucesso."
+
+#: views/grade_update_view.py:134
+msgid "Grade need to be a number between 0 and 10."
+msgstr "Nota precisa ser um número entre 0 e 10."
+
+#~ msgid "grade"
+#~ msgstr "Nota"
