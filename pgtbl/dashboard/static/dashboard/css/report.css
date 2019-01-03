@@ -17,3 +17,7 @@
   width: 100%;
   border-radius: 0 0 5px 5px;
 }
+
+tr:first-child, td:first-child {
+  width: 200px;
+}

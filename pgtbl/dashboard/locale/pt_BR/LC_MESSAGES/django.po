@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-22 15:30-0200\n"
+"POT-Creation-Date: 2019-01-03 16:49-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,116 +18,125 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:16
-#: pgtbl/dashboard/templates/dashboard/report.html:92
+#: templates/dashboard/dashboard.html:17 templates/dashboard/report.html:104
 msgid "Group"
-msgstr ""
+msgstr "Grupo"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:56
+#: templates/dashboard/dashboard.html:65
 msgid "Total of points"
-msgstr ""
+msgstr "Pontuação total"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:64
+#: templates/dashboard/dashboard.html:75
 msgid "Move up"
-msgstr ""
+msgstr "Subir posição"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:67
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:86
+#: templates/dashboard/dashboard.html:78 templates/dashboard/dashboard.html:101
 msgid "point"
-msgstr ""
+msgstr "ponto"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:76
+#: templates/dashboard/dashboard.html:89
 msgid "Average points"
-msgstr ""
+msgstr "Média de pontos"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:84
+#: templates/dashboard/dashboard.html:99
 msgid "1st position bonus"
-msgstr ""
+msgstr "Bonus do 1º colocado"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:87
+#: templates/dashboard/dashboard.html:102
 msgid "on the average of TBL session"
-msgstr ""
+msgstr "na média da sessão de TBL"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:97
+#: templates/dashboard/dashboard.html:114
 msgid "Student Points"
-msgstr ""
+msgstr "Contribuição do grupo"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:114
+#: templates/dashboard/dashboard.html:131
 msgid "Point"
-msgstr ""
+msgstr "Pontuação"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:123
+#: templates/dashboard/dashboard.html:140
 msgid "There are no students submission in this group."
-msgstr ""
+msgstr "Não há submissões enviadas pelos estudantes desse grupo."
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:135
+#: templates/dashboard/dashboard.html:154
 msgid "Group Badges"
-msgstr ""
+msgstr "Medalhas do grupo"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:146
+#: templates/dashboard/dashboard.html:165
 msgid "This group has not received any badge yet"
-msgstr ""
+msgstr "Esse grupo não recebeu nenhuma medalha ainda"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:155
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:157
+#: templates/dashboard/dashboard.html:176
+#: templates/dashboard/dashboard.html:178
 msgid "500 Group Points"
-msgstr ""
+msgstr "Grupo alcançou 500 pontos"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:167
+#: templates/dashboard/dashboard.html:190
 msgid "1500 Group Points"
-msgstr ""
+msgstr "Grupo alcançou 1500 pontos"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:169
+#: templates/dashboard/dashboard.html:192
 msgid "1000 Group Points"
-msgstr ""
+msgstr "Grupo alcançou 1000 pontos"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:179
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:181
+#: templates/dashboard/dashboard.html:204
+#: templates/dashboard/dashboard.html:206
 msgid "2000 Group Points"
-msgstr ""
+msgstr "Grupo alcançou 2000 pontos"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:191
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:193
+#: templates/dashboard/dashboard.html:218
+#: templates/dashboard/dashboard.html:220
 msgid "3000 Group Points"
-msgstr ""
+msgstr "Grupo alcançou 3000 pontos"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:203
+#: templates/dashboard/dashboard.html:232
 msgid "First position"
-msgstr ""
+msgstr "Primeiro colocado"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:205
+#: templates/dashboard/dashboard.html:234
 msgid "First Position Once"
-msgstr ""
+msgstr "Medalha de primeiro colocado em uma sessão"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:215
+#: templates/dashboard/dashboard.html:246
 msgid "Always first position"
-msgstr ""
+msgstr "Grupo em primeiro colocado em todas as sessões"
 
-#: pgtbl/dashboard/templates/dashboard/dashboard.html:217
+#: templates/dashboard/dashboard.html:248
 msgid "First Position Always"
-msgstr ""
+msgstr "Grupo em primeiro colocado em todas as sessões"
 
-#: pgtbl/dashboard/templates/dashboard/report.html:19
+#: templates/dashboard/report.html:20
 msgid "Session Report:"
-msgstr ""
+msgstr "Relatório da sessão:"
 
-#: pgtbl/dashboard/templates/dashboard/report.html:29
+#: templates/dashboard/report.html:33
 msgid "iRAT Average"
-msgstr ""
+msgstr "Média da avaliação iRAT"
 
-#: pgtbl/dashboard/templates/dashboard/report.html:34
-#: pgtbl/dashboard/templates/dashboard/report.html:55
+#: templates/dashboard/report.html:38 templates/dashboard/report.html:61
 msgid "The date has not yet been defined"
-msgstr ""
+msgstr "A data não foi definida ainda."
 
-#: pgtbl/dashboard/templates/dashboard/report.html:50
+#: templates/dashboard/report.html:56
 msgid "gRAT Average"
-msgstr ""
+msgstr "Média da avaliação gRAT"
 
-#: pgtbl/dashboard/templates/dashboard/report.html:72
+#: templates/dashboard/report.html:79
 msgid "iRAT and gRAT Report"
-msgstr ""
+msgstr "Relatório das avaliações iRAT e gRAT"
 
-#: pgtbl/dashboard/templates/dashboard/report.html:119
+#: templates/dashboard/report.html:133
 msgid "Username"
-msgstr ""
+msgstr "Usuário"
+
+#: views/report_view.py:59
+msgid "Number of correct answers for questions"
+msgstr "Número de respostas corretas por questão"
+
+#: views/report_view.py:60
+msgid "Questions"
+msgstr "Questões"
+
+#: views/report_view.py:61
+msgid "Number of correct answers"
+msgstr "Número de respostas corretas"

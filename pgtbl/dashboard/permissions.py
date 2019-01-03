@@ -15,6 +15,7 @@ def show_dashboard_permission(permission, user, view):
 
     return False
 
+
 @register_object_checker()
 def show_report_permission(permission, user, view):
     """

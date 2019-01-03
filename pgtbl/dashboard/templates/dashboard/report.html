@@ -14,13 +14,17 @@
 {% endblock %}
 
 {% block content %}
+  <!-- Report header -->
   <div class="page-header profile">
     <h1 class="white">
       <i class="fa fa-bar-chart"></i> {% trans 'Session Report:' %}: {{session.title}}<br />
       <small>{{discipline.title}}</small>
     </h1>
   </div>
+
+  <!-- Report sub-header -->
   <div class="row fix-row white">
+    <!-- iRAT average -->
     <div class="col-sm-6">
       <div class="row">
         <div class="panel panel-default report-left gradient">
@@ -42,6 +46,8 @@
         </div>
       </div>
     </div>
+
+    <!-- gRAT average -->
     <div class="col-sm-6">
       <div class="row">
         <div class="panel panel-default report-right gradient">
@@ -66,6 +72,7 @@
   </div>
   <div class="row fix-row">
     <div class="panel panel-default report">
+      <!-- Report title -->
       <div class="panel-heading">
         <div class="row">
           <div class="col-sm-12">
@@ -73,7 +80,10 @@
           </div>
         </div>
       </div>
+
+      <!-- Report body -->
       <div class="panel-body">
+        <!-- Report graphic -->
         <div class="row">
           <div class="col-md-12">
             <div id="chart-questions"></div>
@@ -83,6 +93,8 @@
           </div>
         </div>
         <hr />
+
+        <!-- Report groups score -->
         <div class="row">
           <div class="col-md-12">
             <div class="table-responsive">
@@ -110,6 +122,8 @@
           </div>
         </div>
         <hr />
+
+        <!-- Report students score -->
         <div class="row">
           <div class="col-md-12">
             <div class="table-responsive">

@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block content %}
+  <!-- Dashboard header -->
   <div class="page-header">
     <div class="row">
       <div class="col-sm-8">
@@ -27,13 +28,18 @@
       </div>
     </div>
   </div>
+
+  <!-- Dashboard body -->
   <div class="row fix-row">
     <div class="col-sm-12">
       <div class="panel-group">
         <div class="panel panel-default panel-shadow">
+          <!-- Dashboard title -->
           <div class="panel-heading gradient title">
             <h4>{{group.title}}</h4>
           </div>
+
+          <!-- Dashboard group position -->
           <div class="panel-body wood-body">
             <div class="row">
               <div class="col-sm-2">
@@ -49,8 +55,11 @@
                   {% endif %}
                 {% endif %}
               </div>
+
+              <!-- Dashboard data -->
               <div class="col-sm-10">
                 <div class="row">
+                  <!-- Dashboard total scores -->
                   <div class="col-sm-3">
                     <div class="panel panel-default qtd-body">
                       <div class="panel-heading gradient">{% trans 'Total of points' %}</div>
@@ -59,6 +68,8 @@
                       </div>
                     </div>
                   </div>
+
+                  <!-- Dashboard move up -->
                   <div class="col-sm-3">
                     <div class="panel panel-default qtd-body">
                       <div class="panel-heading gradient">{% trans 'Move up' %}</div>
@@ -71,6 +82,8 @@
                       </div>
                     </div>
                   </div>
+
+                  <!-- Dashboard average -->
                   <div class="col-sm-3">
                     <div class="panel panel-default qtd-body">
                       <div class="panel-heading gradient">{% trans 'Average points' %}</div>
@@ -79,6 +92,8 @@
                       </div>
                     </div>
                   </div>
+
+                  <!-- Dashboard first position bonus -->
                   <div class="col-sm-3">
                     <div class="panel panel-default qtd-body">
                       <div class="panel-heading gradient">{% trans '1st position bonus' %}</div>
@@ -91,6 +106,8 @@
                 </div>
               </div>
             </div>
+
+            <!-- Dashboard student points -->
             <div class="row">
               <div class="col-sm-12">
                 <div class="panel panel-default qtd-body big-panel">
@@ -126,6 +143,8 @@
                 </div>
               </div>
             </div>
+
+            <!-- Dashboard group badges -->
             <div class="row">
               <div class="col-sm-12">
                 <div class="panel panel-default qtd-body big-panel">
@@ -146,6 +165,8 @@
                           <div class="well">{% trans 'This group has not received any badge yet' %}</div>
                         </div>
                       {% endif %}
+
+                      <!-- total score > 500 -->
                       {% if badges.total_score > 500 %}
                         <div class="col-sm-2">
                           <figure>
@@ -158,6 +179,8 @@
                           </figure>
                         </div>
                       {% endif %}
+
+                      <!-- total score > 1000 -->
                       {% if badges.total_score > 1000 %}
                         <div class="col-sm-2">
                           <figure>
@@ -170,6 +193,8 @@
                           </figure>
                         </div>
                       {% endif %}
+
+                      <!-- total score > 2000 -->
                       {% if badges.total_score > 2000 %}
                         <div class="col-sm-2">
                           <figure>
@@ -182,6 +207,8 @@
                           </figure>
                         </div>
                       {% endif %}
+
+                      <!-- total score > 3000 -->
                       {% if badges.total_score > 3000 %}
                         <div class="col-sm-2">
                           <figure>
@@ -194,6 +221,8 @@
                           </figure>
                         </div>
                        {% endif %}
+
+                      <!-- group first position in one session -->
                       {% if badges.first_position %}
                         <div class="col-sm-2">
                           <figure>
@@ -206,6 +235,8 @@
                           </figure>
                         </div>
                       {% endif %}
+
+                      <!-- group always in first position in all sessions -->
                       {% if badges.always_first_position %}
                         <div class="col-sm-2">
                           <figure>
