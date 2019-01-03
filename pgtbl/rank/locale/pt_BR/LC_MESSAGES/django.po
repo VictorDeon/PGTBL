@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-22 15:30-0200\n"
+"POT-Creation-Date: 2019-01-03 16:32-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,77 +18,113 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: pgtbl/rank/templates/rank/group_rank.html:82
-msgid "This group has not received any badge yet"
-msgstr ""
+#: models/hall_of_fame.py:23
+msgid "Title"
+msgstr "Título"
 
-#: pgtbl/rank/templates/rank/group_rank.html:91
-#: pgtbl/rank/templates/rank/group_rank.html:93
-#: pgtbl/rank/templates/rank/hall_of_fame.html:111
-#: pgtbl/rank/templates/rank/hall_of_fame.html:113
-msgid "500 Group Points"
-msgstr ""
+#: models/hall_of_fame.py:26
+msgid "Title of group"
+msgstr "Título do grupo"
 
-#: pgtbl/rank/templates/rank/group_rank.html:103
-#: pgtbl/rank/templates/rank/hall_of_fame.html:123
-msgid "1500 Group Points"
-msgstr ""
+#: models/hall_of_fame.py:37
+msgid "Gamification total score"
+msgstr "Pontuação total da gamificação"
 
-#: pgtbl/rank/templates/rank/group_rank.html:105
-#: pgtbl/rank/templates/rank/hall_of_fame.html:125
-msgid "1000 Group Points"
-msgstr ""
+#: models/hall_of_fame.py:39
+msgid "Gamification group total scores."
+msgstr "Pontuação total do grupo na gamificação."
 
-#: pgtbl/rank/templates/rank/group_rank.html:115
-#: pgtbl/rank/templates/rank/group_rank.html:117
-#: pgtbl/rank/templates/rank/hall_of_fame.html:135
-#: pgtbl/rank/templates/rank/hall_of_fame.html:137
-msgid "2000 Group Points"
-msgstr ""
+#: models/hall_of_fame.py:43
+msgid "First Position once badge"
+msgstr "Medalha de primeiro colocado em uma sessão"
 
-#: pgtbl/rank/templates/rank/group_rank.html:127
-#: pgtbl/rank/templates/rank/group_rank.html:129
-#: pgtbl/rank/templates/rank/hall_of_fame.html:147
-#: pgtbl/rank/templates/rank/hall_of_fame.html:149
-msgid "3000 Group Points"
-msgstr ""
+#: models/hall_of_fame.py:45
+msgid "Group in first position once"
+msgstr "Grupo na primeira posição em uma sessão"
 
-#: pgtbl/rank/templates/rank/group_rank.html:139
-#: pgtbl/rank/templates/rank/hall_of_fame.html:159
-msgid "First position"
-msgstr ""
+#: models/hall_of_fame.py:49
+msgid "First Position always badge"
+msgstr "Medalha de primeiro colocado em todas as sessões"
 
-#: pgtbl/rank/templates/rank/group_rank.html:141
-#: pgtbl/rank/templates/rank/hall_of_fame.html:161
-msgid "First Position Once"
-msgstr ""
+#: models/hall_of_fame.py:51
+msgid "Group in first position always"
+msgstr "Grupo em primeiro colocado em todas as sessões"
 
-#: pgtbl/rank/templates/rank/group_rank.html:151
-#: pgtbl/rank/templates/rank/hall_of_fame.html:171
-msgid "Always first position"
-msgstr ""
+#: models/hall_of_fame.py:55
+msgid "Created at"
+msgstr "Criado em"
 
-#: pgtbl/rank/templates/rank/group_rank.html:153
-#: pgtbl/rank/templates/rank/hall_of_fame.html:173
-msgid "First Position Always"
-msgstr ""
+#: models/hall_of_fame.py:56
+msgid "Date that the group is created."
+msgstr "Data que o grupo foi criado."
 
-#: pgtbl/rank/templates/rank/group_rank.html:164
-msgid "There are no teams in rank yet."
-msgstr ""
+#: models/hall_of_fame.py:86 models/hall_of_fame.py:87
+msgid "Hall of Fame Groups"
+msgstr "Grupos do Hall da Fama"
 
-#: pgtbl/rank/templates/rank/hall_of_fame.html:25
-msgid "Hall da fama"
-msgstr ""
-
-#: pgtbl/rank/templates/rank/hall_of_fame.html:44
-msgid "Winning groups each semester"
-msgstr ""
-
-#: pgtbl/rank/templates/rank/hall_of_fame.html:102
+#: templates/rank/group_rank.html:86 templates/rank/hall_of_fame.html:115
 msgid "Badges"
-msgstr ""
+msgstr "Medalhas"
 
-#: pgtbl/rank/templates/rank/hall_of_fame.html:185
+#: templates/rank/group_rank.html:92
+msgid "This group has not received any badge yet"
+msgstr "Esse grupo não recebeu medalhas ainda."
+
+#: templates/rank/group_rank.html:103 templates/rank/group_rank.html:105
+#: templates/rank/hall_of_fame.html:125 templates/rank/hall_of_fame.html:127
+msgid "500 Group Points"
+msgstr "Grupo alcançou 500 pontos"
+
+#: templates/rank/group_rank.html:117 templates/rank/hall_of_fame.html:139
+msgid "1500 Group Points"
+msgstr "Grupo alcançou 1500 pontos"
+
+#: templates/rank/group_rank.html:119 templates/rank/hall_of_fame.html:141
+msgid "1000 Group Points"
+msgstr "Grupo alcançou 1000 pontos"
+
+#: templates/rank/group_rank.html:131 templates/rank/group_rank.html:133
+#: templates/rank/hall_of_fame.html:153 templates/rank/hall_of_fame.html:155
+msgid "2000 Group Points"
+msgstr "Grupo alcançou 2000 pontos"
+
+#: templates/rank/group_rank.html:145 templates/rank/group_rank.html:147
+#: templates/rank/hall_of_fame.html:167 templates/rank/hall_of_fame.html:169
+msgid "3000 Group Points"
+msgstr "Grupo alcançou 3000 pontos"
+
+#: templates/rank/group_rank.html:159 templates/rank/hall_of_fame.html:181
+msgid "First position"
+msgstr "Primeiro colocado"
+
+#: templates/rank/group_rank.html:161 templates/rank/hall_of_fame.html:183
+msgid "First Position Once"
+msgstr "Primeiro colocado em uma sessão"
+
+#: templates/rank/group_rank.html:173 templates/rank/hall_of_fame.html:195
+msgid "Always first position"
+msgstr "Primeiro colocado em todas as sessões"
+
+#: templates/rank/group_rank.html:175 templates/rank/hall_of_fame.html:197
+msgid "First Position Always"
+msgstr "Primeiro colocado em todas as sessões"
+
+#: templates/rank/group_rank.html:186
+msgid "There are no teams in rank yet."
+msgstr "Não há grupos no rank ainda."
+
+#: templates/rank/hall_of_fame.html:26
+msgid "Hall of fame"
+msgstr "Hall da Fama"
+
+#: templates/rank/hall_of_fame.html:48
+msgid "Winning groups each semester"
+msgstr "Grupos ganhadores de cada semestre"
+
+#: templates/rank/hall_of_fame.html:209
 msgid "No groups in the Hall of Fame"
-msgstr ""
+msgstr "Não há grupos no Hall da Fama"
+
+#: views/group_rank_view.py:35
+msgid "You are not authorized to do this action."
+msgstr "Você não está autorizado a fazer essa ação."

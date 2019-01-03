@@ -17,12 +17,13 @@
 {% endblock %}
 
 {% block content %}
+  <!-- Hall of Fame header -->
   <div class="page-header">
     <div class="row">
       <div class="col-sm-8">
         <h1 class="white">
           <i class="fa fa-trophy"></i> {{ discipline.title }}<br />
-          <small>{% trans 'Hall da fama' %}</small>
+          <small>{% trans 'Hall of fame' %}</small>
         </h1>
       </div>
       <div class="col-sm-4 text-center">
@@ -36,14 +37,19 @@
       </div>
     </div>
   </div>
+
+  <!-- Hall of Fame body -->
   <div class="page-body">
     <div class="row">
+      <!-- header -->
       <div class="col-sm-8 white">
         <p class="pull-left">
           <i class="fa fa-users"></i>
           {%  trans 'Winning groups each semester' %}
         </p>
       </div>
+
+      <!-- search -->
       <div class="col-sm-4">
         <form method="get" accept-charset="utf-8">
           <div class="input-group">
@@ -64,11 +70,14 @@
       </div>
     </div>
     <br />
+
+    <!-- Hall of fame groups -->
     <div class="row">
       <div class="col-sm-12">
         <div class="panel-group">
           {% for group in hall_of_fame %}
             <div class="panel panel-default">
+              <!-- group title and semester -->
               <div class="panel-heading">
                 {{ group.title }}
                 <span class="pull-right">
@@ -76,6 +85,8 @@
                   <i class="fa fa-calendar"></i>
                 </span>
               </div>
+
+              <!-- group students -->
               <div class="panel-body">
                 <div class="row">
                   <div class="col-sm-12">
@@ -96,12 +107,15 @@
                     {% endfor %}
                   </div>
                 </div>
+
+                <!-- group badges -->
                 <div class="row">
                   <div class="col-sm-12">
                     <div class="panel panel-default">
                       <div class="panel-heading">{% trans 'Badges' %}</div>
                       <div class="panel-body">
                         <div class="row">
+                          <!-- gamification score > 500 -->
                           {% if group.gamification_score > 500 %}
                             <div class="col-sm-2">
                               <figure>
@@ -114,6 +128,8 @@
                               </figure>
                             </div>
                           {% endif %}
+
+                          <!-- gamification score > 1000 -->
                           {% if group.gamification_score > 1000 %}
                             <div class="col-sm-2">
                               <figure>
@@ -126,6 +142,8 @@
                               </figure>
                             </div>
                           {% endif %}
+
+                          <!-- gamification score > 2000 -->
                           {% if group.gamification_score > 2000 %}
                             <div class="col-sm-2">
                               <figure>
@@ -138,6 +156,8 @@
                               </figure>
                             </div>
                           {% endif %}
+
+                          <!-- gamification score > 3000 -->
                           {% if group.gamification_score > 3000 %}
                             <div class="col-sm-2">
                               <figure>
@@ -150,6 +170,8 @@
                               </figure>
                             </div>
                            {% endif %}
+
+                          <!-- gamification first position once -->
                           {% if group.first_position_once %}
                             <div class="col-sm-2">
                               <figure>
@@ -162,6 +184,8 @@
                               </figure>
                             </div>
                           {% endif %}
+
+                          <!-- gamification first position always -->
                           {% if group.first_position_always %}
                             <div class="col-sm-2">
                               <figure>
@@ -187,6 +211,8 @@
         </div>
       </div>
     </div>
+
+    <!-- pagination -->
     {% include 'core/pagination.html' %}
   </div>
 {% endblock %}

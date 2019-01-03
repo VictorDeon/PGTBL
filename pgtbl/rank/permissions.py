@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+
 @register_object_checker()
 def show_rank_permission(permission, user, view):
     """
@@ -21,6 +22,7 @@ def show_rank_permission(permission, user, view):
         return True
 
     return False
+
 
 @register_object_checker()
 def show_hall_of_fame(permission, user, view):

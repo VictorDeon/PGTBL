@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block content %}
+  <!-- Rank header -->
   <div class="page-header">
     <div class="row">
       <div class="col-sm-8">
@@ -27,17 +28,22 @@
       </div>
     </div>
   </div>
+
+  <!-- Rank body -->
   <div class="row fix-row">
     <div class="col-sm-12">
       {% for result in results %}
         <div class="panel-group">
           <div class="panel panel-default">
+            <!-- Group title -->
             <div class="panel-heading">
               <b>{{ result.group.title }}</b>
             </div>
+
             <div class="panel-body">
               <div class="media">
-                <div class="media-body">
+                <!-- Group students -->
+                <div class="media-body rank">
                   {% for student in result.group.students.all %}
                     {% if forloop.first %}<div class="row">{% endif %}
                     <div class="col-sm-2">
@@ -54,6 +60,8 @@
                     {% if forloop.last %}</div>{% endif %}
                   {% endfor %}
                 </div>
+
+                <!-- Group rank position -->
                 {% if forloop.counter == 1 %}
                   <div class="media-right">
                     <span class="position">1°</span>
@@ -71,9 +79,11 @@
                   </div>
                 {% endif %}
               </div>
+
+              <!-- Group badges -->
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  Badges
+                  {% trans 'Badges' %}
                 </div>
                 <div class="panel-body">
                   <div class="row">
@@ -82,6 +92,8 @@
                         <div class="well">{% trans 'This group has not received any badge yet' %}</div>
                       </div>
                     {% endif %}
+
+                    <!-- total score > 500 -->
                     {% if result.total_score > 500 %}
                       <div class="col-sm-2">
                         <figure>
@@ -94,6 +106,8 @@
                         </figure>
                       </div>
                     {% endif %}
+
+                    <!-- total score > 1000 -->
                     {% if result.total_score > 1000 %}
                       <div class="col-sm-2">
                         <figure>
@@ -106,6 +120,8 @@
                         </figure>
                       </div>
                     {% endif %}
+
+                    <!-- total score > 2000 -->
                     {% if result.total_score > 2000 %}
                       <div class="col-sm-2">
                         <figure>
@@ -118,6 +134,8 @@
                         </figure>
                       </div>
                     {% endif %}
+
+                    <!-- total score > 3000 -->
                     {% if result.total_score > 3000 %}
                       <div class="col-sm-2">
                         <figure>
@@ -130,6 +148,8 @@
                         </figure>
                       </div>
                      {% endif %}
+
+                    <!-- first position -->
                     {% if result.first_position %}
                       <div class="col-sm-2">
                         <figure>
@@ -142,6 +162,8 @@
                         </figure>
                       </div>
                     {% endif %}
+
+                    <!-- always first position -->
                     {% if result.always_first_position %}
                       <div class="col-sm-2">
                         <figure>
