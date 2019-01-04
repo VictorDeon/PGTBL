@@ -28,6 +28,10 @@
   padding-right: 11px;
 }
 
+.fa-users {
+  padding-right: 5px;
+}
+
 .roles {
   cursor: pointer;
   color: whitesmoke;

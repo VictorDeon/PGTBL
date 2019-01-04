@@ -18,6 +18,7 @@
 
 {% block content %}
   <div class="container-fluid">
+    <!-- Page header -->
     <div class="page-header profile">
       <h1 class="white">
         <i class="fa fa-balance-scale"></i>
@@ -25,6 +26,8 @@
         <small>{{discipline.title}} - {{session.title}}</small>
       </h1>
     </div>
+
+    <!-- Page sub-header -->
     <div class="row fix-row white">
       <div class="col-sm-12">
         <div class="row">
@@ -62,13 +65,18 @@
         </div>
       </div>
     </div>
+
+    <!-- Page body -->
     <div class="row fix-row">
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="row">
+            <!-- page title -->
             <div class="col-sm-11 text-center">
               <b>{% trans 'APPEALS' %}</b>
             </div>
+
+            <!-- page info -->
             <div class="col-sm-1">
               <a href="#"
                  class="roles pull-right"
@@ -80,10 +88,14 @@
             </div>
           </div>
         </div>
+
+        <!-- Appeals -->
         <div class="panel-body">
-          <!-- Appeals List -->
+          <!-- Appeals search -->
           {% include 'core/search.html' %}
           <br />
+
+          <!-- Appeal list -->
           {% for appeal in appeals %}
             <div class="row">
               <div class="col-sm-11">
@@ -115,6 +127,8 @@
               {% trans 'No appeals available' %}.
             </div>
           {% endfor %}
+
+          <!-- Add appeal button -->
           {% if user in discipline.students.all %}
             <div class="row">
               <div class="col-sm-offset-10 col-sm-2">
@@ -125,6 +139,8 @@
               </div>
             </div>
           {% endif %}
+
+          <!-- Appeal pagination -->
           {% include 'core/pagination.html' %}
         </div>
       </div>

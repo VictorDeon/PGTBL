@@ -74,6 +74,17 @@ class AppealCreateView(LoginRequiredMixin,
         form.instance.group = self.get_student_group()
         form.save()
 
+        self.send_notification(form)
+
+        messages.success(self.request, _('Appeal created successfully.'))
+
+        return super(AppealCreateView, self).form_valid(form)
+
+    def send_notification(self, form):
+        """
+        Send notification to all monitors and teacher
+        """
+
         discipline = self.get_discipline()
 
         for monitor in discipline.monitors.all():
@@ -92,10 +103,6 @@ class AppealCreateView(LoginRequiredMixin,
             receiver=discipline.teacher,
             discipline=discipline
         )
-
-        messages.success(self.request, _('Appeal created successfully.'))
-
-        return super(AppealCreateView, self).form_valid(form)
 
     def form_invalid(self, form):
         """

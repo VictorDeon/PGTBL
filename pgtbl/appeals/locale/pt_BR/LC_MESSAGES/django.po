@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-22 15:30-0200\n"
+"POT-Creation-Date: 2019-01-04 18:16-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,139 +18,255 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: pgtbl/appeals/templates/appeals/delete.html:20
-#: pgtbl/appeals/templates/appeals/delete.html:42
-#: pgtbl/appeals/templates/appeals/detail.html:158
-msgid "Delete"
-msgstr ""
+#: models/appeal.py:18
+msgid "Title"
+msgstr "Título"
 
-#: pgtbl/appeals/templates/appeals/delete.html:27
-msgid "Are you sure you want to delete"
-msgstr ""
+#: models/appeal.py:20
+msgid "Appeal title"
+msgstr "Título da apelação"
 
-#: pgtbl/appeals/templates/appeals/delete.html:51
-msgid "Cancel"
-msgstr ""
+#: models/appeal.py:24
+msgid "Description"
+msgstr "Descrição"
 
-#: pgtbl/appeals/templates/appeals/detail.html:25
-msgid "Appeal Detail"
-msgstr ""
+#: models/appeal.py:25
+msgid "Appeal description"
+msgstr "Descrição da apelação"
 
-#: pgtbl/appeals/templates/appeals/detail.html:40
-#: pgtbl/appeals/templates/appeals/list.html:39
-msgid "Course"
-msgstr ""
+#: models/appeal.py:29
+msgid "Is the appeals accept?"
+msgstr "A apelação foi aceita?"
 
-#: pgtbl/appeals/templates/appeals/detail.html:47
-#: pgtbl/appeals/templates/appeals/list.html:46
-msgid "Discipline"
-msgstr ""
+#: models/appeal.py:31
+msgid "If the appeals make sense this need to be accept."
+msgstr "Se a apelação faz sentido ela precisa ser aceita."
 
-#: pgtbl/appeals/templates/appeals/detail.html:54
-#: pgtbl/appeals/templates/appeals/list.html:53
-msgid "Teacher"
-msgstr ""
+#: models/appeal.py:35
+msgid "Qtd Comments"
+msgstr "Quantidade de comentários"
 
-#: pgtbl/appeals/templates/appeals/detail.html:65
-msgid "Group"
-msgstr ""
+#: models/appeal.py:38
+msgid "Comment quantity"
+msgstr "Quantidade de comentários"
 
-#: pgtbl/appeals/templates/appeals/detail.html:72
+#: models/appeal.py:50 templates/appeals/detail.html:75
 msgid "Student"
-msgstr ""
+msgstr "Estudante"
 
-#: pgtbl/appeals/templates/appeals/detail.html:127
-#: pgtbl/appeals/templates/appeals/list.html:103
-msgid "Question"
-msgstr ""
+#: models/appeal.py:70 models/comment.py:33
+msgid "Created at"
+msgstr "Criado em"
 
-#: pgtbl/appeals/templates/appeals/detail.html:131
-#: pgtbl/appeals/templates/appeals/list.html:97
-msgid "Accept"
-msgstr ""
+#: models/appeal.py:71
+msgid "Date that the appeals is created."
+msgstr "Data que a apelação foi criada."
 
-#: pgtbl/appeals/templates/appeals/detail.html:136
+#: models/appeal.py:77 models/comment.py:39 templates/appeals/detail.html:153
 msgid "Updated at"
-msgstr ""
+msgstr "Atualizado em"
 
-#: pgtbl/appeals/templates/appeals/detail.html:136
-#: pgtbl/appeals/templates/appeals/detail.html:148
-msgid "ago"
-msgstr ""
+#: models/appeal.py:78
+msgid "Date that the appeals is updated."
+msgstr "Data que a apelação foi atualizada."
 
-#: pgtbl/appeals/templates/appeals/detail.html:141
-#: pgtbl/appeals/templates/appeals/detail.html:175
+#: models/appeal.py:98 templates/appeals/list.html:25
+msgid "Appeal"
+msgstr "Apelação"
+
+#: models/appeal.py:99
+msgid "Appeals"
+msgstr "Apelações"
+
+#: models/comment.py:16
+msgid "Author"
+msgstr "Autor"
+
+#: models/comment.py:23
+msgid "Topic"
+msgstr "Tópico"
+
+#: models/comment.py:28
+msgid "Content"
+msgstr "Conteúdo"
+
+#: models/comment.py:29
+msgid "Answer appeal content"
+msgstr "Conteúdo da resposta da apelação"
+
+#: models/comment.py:34
+msgid "Date that the comment is created."
+msgstr "Data que o comentário foi criado."
+
+#: models/comment.py:40
+msgid "Date that the comment is updated."
+msgstr "Data que o comentário foi atualizado."
+
+#: models/comment.py:52 templates/appeals/detail.html:160
+#: templates/appeals/detail.html:198
 msgid "Comment"
-msgstr ""
+msgstr "Comentário"
 
-#: pgtbl/appeals/templates/appeals/detail.html:148
+#: models/comment.py:53
+msgid "Comments"
+msgstr "Comentários"
+
+#: templates/appeals/delete.html:20 templates/appeals/delete.html:42
+#: templates/appeals/detail.html:179
+msgid "Delete"
+msgstr "Deletar"
+
+#: templates/appeals/delete.html:27
+msgid "Are you sure you want to delete"
+msgstr "Tem certeza que deseja deletar"
+
+#: templates/appeals/delete.html:51
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: templates/appeals/detail.html:26
+msgid "Appeal Detail"
+msgstr "Detalhes da apelação"
+
+#: templates/appeals/detail.html:43 templates/appeals/list.html:42
+msgid "Course"
+msgstr "Curso"
+
+#: templates/appeals/detail.html:50 templates/appeals/list.html:49
+msgid "Discipline"
+msgstr "Disciplina"
+
+#: templates/appeals/detail.html:57 templates/appeals/list.html:56
+msgid "Teacher"
+msgstr "Professor"
+
+#: templates/appeals/detail.html:68
+msgid "Group"
+msgstr "Grupo"
+
+#: templates/appeals/detail.html:140 templates/appeals/list.html:115
+msgid "Question"
+msgstr "Questões"
+
+#: templates/appeals/detail.html:146 templates/appeals/list.html:109
+msgid "Accept"
+msgstr "Aceito"
+
+#: templates/appeals/detail.html:153 templates/appeals/detail.html:169
+msgid "ago"
+msgstr "atrás"
+
+#: templates/appeals/detail.html:169
 msgid "said"
-msgstr ""
+msgstr "disse"
 
-#: pgtbl/appeals/templates/appeals/detail.html:169
+#: templates/appeals/detail.html:190
 msgid "There is no comments in this appeal"
-msgstr ""
+msgstr "Não há comentários nessa apelação"
 
-#: pgtbl/appeals/templates/appeals/detail.html:188
-#: pgtbl/appeals/templates/appeals/form.html:132
+#: templates/appeals/detail.html:211 templates/appeals/form.html:136
 msgid "Send"
-msgstr ""
+msgstr "Enviar"
 
-#: pgtbl/appeals/templates/appeals/form.html:28
+#: templates/appeals/form.html:29
+msgid "Edit Appeal"
+msgstr "Editar apelação"
+
+#: templates/appeals/form.html:31
 msgid "Create Appeal"
-msgstr ""
+msgstr "Criar apelação"
 
-#: pgtbl/appeals/templates/appeals/form.html:51
+#: templates/appeals/form.html:55
 msgid "Select a question"
-msgstr ""
+msgstr "Selecionar a questão"
 
-#: pgtbl/appeals/templates/appeals/form.html:123
+#: templates/appeals/form.html:127
 msgid "Preview"
-msgstr ""
+msgstr "Visualizar"
 
-#: pgtbl/appeals/templates/appeals/info.html:8
+#: templates/appeals/info.html:8
 msgid "Rules"
-msgstr ""
+msgstr "Regras"
 
-#: pgtbl/appeals/templates/appeals/info.html:11
+#: templates/appeals/info.html:11
 msgid "The rules of appeals"
-msgstr ""
+msgstr "As regras para a apelação"
 
-#: pgtbl/appeals/templates/appeals/info.html:13
+#: templates/appeals/info.html:13
 msgid "Make an appeal if you disagree with any test question"
-msgstr ""
+msgstr "Crie uma apelação caso você discorde com alguma questão da prova"
 
-#: pgtbl/appeals/templates/appeals/info.html:14
+#: templates/appeals/info.html:14
 msgid ""
 "The appeal must have good references and justifications for its approval."
 msgstr ""
+"A apelação deve ter boas referências e justificativas para ser aprovada."
 
-#: pgtbl/appeals/templates/appeals/info.html:15
+#: templates/appeals/info.html:15
 msgid ""
 "The teacher will evaluate the appeal, give comments, and if approved, he can "
 "arrange his grade."
 msgstr ""
+"O professor vai avaliar a apelação, dar comentários, e se aprovado, ele pode "
+"modificar sua nota ou do seu grupo."
 
-#: pgtbl/appeals/templates/appeals/info.html:16
+#: templates/appeals/info.html:16
 msgid "Any student can comment on the appeal as well."
-msgstr ""
+msgstr "Qualquer estudante pode comentar na apelação"
 
-#: pgtbl/appeals/templates/appeals/list.html:14
+#: templates/appeals/list.html:14
 msgid "Appeal List"
-msgstr ""
+msgstr "Lista de apelações"
 
-#: pgtbl/appeals/templates/appeals/list.html:24
-msgid "Appeal"
-msgstr ""
-
-#: pgtbl/appeals/templates/appeals/list.html:70
+#: templates/appeals/list.html:76
 msgid "APPEALS"
-msgstr ""
+msgstr "APELAÇÕES"
 
-#: pgtbl/appeals/templates/appeals/list.html:105
+#: templates/appeals/list.html:117
 msgid "Read more"
-msgstr ""
+msgstr "Leia mais"
 
-#: pgtbl/appeals/templates/appeals/list.html:115
+#: templates/appeals/list.html:127
 msgid "No appeals available"
-msgstr ""
+msgstr "Não há apelações disponíveis"
+
+#: views/appeals/approve_view.py:103
+msgid "Appeal modify to approved with successfully."
+msgstr "Apelação aprovada com sucesso."
+
+#: views/appeals/approve_view.py:105
+msgid "Appeal modify to disapproved with successfully."
+msgstr "Apelação disaprovada com sucesso."
+
+#: views/appeals/create_view.py:79
+msgid "Appeal created successfully."
+msgstr "Apelação criada com sucesso."
+
+#: views/appeals/create_view.py:92 views/appeals/create_view.py:100
+msgid "Appeal Created"
+msgstr "Apelação criada"
+
+#: views/appeals/create_view.py:93 views/appeals/create_view.py:101
+#, python-brace-format
+msgid "Appeal {0} created by group {1}"
+msgstr "Apelação {0} criada pelo grupo {1}"
+
+#: views/appeals/create_view.py:114 views/comments/create_view.py:82
+msgid "Invalid fields, please fill in the fields correctly."
+msgstr "Campos invalidos, por favor preencha os campos corretamente."
+
+#: views/appeals/delete_view.py:76
+msgid "Appeals deleted successfully."
+msgstr "Apelação deletada com sucesso."
+
+#: views/appeals/update_view.py:85
+msgid "Appeal updated successfully."
+msgstr "Apelação atualizada com sucesso."
+
+#: views/comments/create_view.py:69
+msgid "Comment created successfully."
+msgstr "Comentário criado com sucesso."
+
+#: views/comments/delete_view.py:90
+msgid "Comment deleted successfully."
+msgstr "Comentário deletado com sucesso."
