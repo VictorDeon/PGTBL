@@ -96,38 +96,39 @@ class PracticalTestUpdateView(LoginRequiredMixin,
         Return the form with fields valided.
         """
 
-        discipline = self.get_discipline()
         session = self.get_object()
 
         if (form.instance.practical_available and
             form.instance.practical_available != session.practical_available):
             title = _("Practical test available")
 
-            for student in discipline.students.all():
-                Notification.objects.create(
-                    title=title,
-                    description=title,
-                    sender=discipline.teacher,
-                    receiver=student,
-                    discipline=discipline
-                )
+            self.send_notification(title)
 
         elif (not form.instance.practical_available and
             form.instance.practical_available != session.practical_available):
             title = _("Practical test unavailable")
 
-            for student in discipline.students.all():
-                Notification.objects.create(
-                    title=title,
-                    description=title,
-                    sender=discipline.teacher,
-                    receiver=student,
-                    discipline=discipline
-                )
+            self.send_notification(title)
 
         messages.success(self.request, _('Practical test updated successfully.'))
 
         return super(PracticalTestUpdateView, self).form_valid(form)
+
+    def send_notification(self, title):
+        """
+        Send notification when pratical test is available.
+        """
+
+        discipline = self.get_discipline()
+
+        for student in discipline.students.all():
+            Notification.objects.create(
+                title=title,
+                description=title,
+                sender=discipline.teacher,
+                receiver=student,
+                discipline=discipline
+            )
 
     def get_success_url(self):
         """

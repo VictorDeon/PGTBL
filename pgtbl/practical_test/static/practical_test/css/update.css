@@ -8,6 +8,7 @@ fieldset {
 
 fieldset > legend {
   color: white;
+  margin-bottom: 0;
 }
 
 .preview {
