@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-22 15:30-0200\n"
+"POT-Creation-Date: 2019-01-04 17:45-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,51 +18,91 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: pgtbl/notification/templates/notification/delete.html:20
-msgid "Delete Notifications"
-msgstr ""
+#: models/notification.py:18
+msgid "Title"
+msgstr "Título"
 
-#: pgtbl/notification/templates/notification/delete.html:27
-msgid "Are you sure you want to delete all notifications"
-msgstr ""
+#: models/notification.py:20
+msgid "Discipline title"
+msgstr "Título da disciplina"
 
-#: pgtbl/notification/templates/notification/delete.html:42
-msgid "Delete"
-msgstr ""
+#: models/notification.py:24
+msgid "Description"
+msgstr "Descrição"
 
-#: pgtbl/notification/templates/notification/delete.html:51
-msgid "Cancel"
-msgstr ""
+#: models/notification.py:25
+msgid "Discipline description"
+msgstr "Descrição da disciplina"
 
-#: pgtbl/notification/templates/notification/list.html:14
-#: pgtbl/notification/templates/notification/list.html:24
-msgid "Notifications"
-msgstr ""
+#: models/notification.py:31
+msgid "Receiver"
+msgstr "Destinatário"
 
-#: pgtbl/notification/templates/notification/list.html:34
+#: models/notification.py:38
+msgid "Sender"
+msgstr "Remetente"
+
+#: models/notification.py:52
+msgid "Created at"
+msgstr "Criado em"
+
+#: models/notification.py:53
+msgid "Date that the notification is created."
+msgstr "Data que a notificação foi criada."
+
+#: models/notification.py:66
 msgid "Notification"
-msgstr ""
+msgstr "Notificação"
 
-#: pgtbl/notification/templates/notification/list.html:79
+#: models/notification.py:67 templates/notification/list.html:14
+#: templates/notification/list.html:25 templates/notification/list.html:38
+msgid "Notifications"
+msgstr "Notificações"
+
+#: templates/notification/delete.html:20
+msgid "Delete Notifications"
+msgstr "Deletar notificações"
+
+#: templates/notification/delete.html:27
+msgid "Are you sure you want to delete all notifications"
+msgstr "Tem certeza que deseja deletar todas as notificações"
+
+#: templates/notification/delete.html:42
+msgid "Delete"
+msgstr "Deletar"
+
+#: templates/notification/delete.html:51
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: templates/notification/list.html:89
 msgid "Sent by"
-msgstr ""
+msgstr "Enviado por"
 
-#: pgtbl/notification/templates/notification/list.html:80
+#: templates/notification/list.html:90
 msgid "from discipline"
-msgstr ""
+msgstr "da disciplina"
 
-#: pgtbl/notification/templates/notification/list.html:83
+#: templates/notification/list.html:93
 msgid "Discipline"
-msgstr ""
+msgstr "Disciplina"
 
-#: pgtbl/notification/templates/notification/list.html:88
+#: templates/notification/list.html:98
 msgid "Sent"
-msgstr ""
+msgstr "Enviado"
 
-#: pgtbl/notification/templates/notification/list.html:88
+#: templates/notification/list.html:98
 msgid "ago"
-msgstr ""
+msgstr "atrás"
 
-#: pgtbl/notification/templates/notification/list.html:98
+#: templates/notification/list.html:108
 msgid "No notifications received"
-msgstr ""
+msgstr "Não há notificações recebidas"
+
+#: views/delete_all_view.py:53
+msgid "Notifications clean successfully."
+msgstr "Notificações removidas com sucesso."
+
+#: views/delete_view.py:43
+msgid "Notification deleted successfully."
+msgstr "Notificações deletadas com sucesso."

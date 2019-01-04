@@ -18,6 +18,7 @@
 
 {% block content %}
   <div class="container-fluid">
+    <!-- Page header -->
     <div class="page-header profile">
       <h1 class="white">
         <i class="fa fa-comments-o"></i>
@@ -25,15 +26,20 @@
         <small>{{user.get_short_name}}</small>
       </h1>
     </div>
+
+    <!-- Page body -->
     <div class="row fix-row">
       <div class="panel panel-default panel-content">
         <div class="panel-heading gradient">
           <div class="row">
+            <!-- Notification counter -->
             <div class="col-sm-11 text-center">
               <h4 class="text-center">
-                {{notifications.count}} {% trans 'Notification' %}{{notifications.count | pluralize}}
+                {{notifications.count}} {% trans 'Notifications' %}
               </h4>
             </div>
+
+            <!-- Delete all notifications -->
             <div class="col-sm-1">
               <a href="#"
                  class="delete-all pull-right"
@@ -46,15 +52,18 @@
           </div>
         </div>
         <div class="panel-body">
-          <!-- Appeals List -->
+          <!-- notification search -->
           {% include 'core/search.html' %}
           <br />
 
           {% for notification in notifications %}
             <div class="row">
+              <!-- Notification title -->
               <div class="col-sm-11">
                 <h2>{{ notification.title }}</h2>
               </div>
+
+              <!-- Notification delete -->
               <div class="col-sm-1">
                 <form action="{% url 'notifications:delete' notification.id %}" method="post">
                   {% csrf_token %}
@@ -67,11 +76,12 @@
               </div>
             </div>
 
+            <!-- Notification description -->
             <p>
               {{ notification.description | linebreaksbr }}
             </p>
 
-            <!-- News tags -->
+            <!-- notification info -->
             <div class="row">
               <div class="col-sm-6">
                 {% if notification.sender %}
@@ -99,6 +109,7 @@
             </div>
           {% endfor %}
 
+          <!-- Pagination -->
           {% include 'core/pagination.html' %}
         </div>
       </div>
