@@ -92,35 +92,36 @@ class PeerReviewUpdateView(LoginRequiredMixin,
         Return the form with fields valided.
         """
 
-        discipline = self.get_discipline()
         session = self.get_session()
 
         if (form.instance.peer_review_available and
             form.instance.peer_review_available != session.peer_review_available):
             title = _("Peer Review available")
 
-            for student in discipline.students.all():
-                Notification.objects.create(
-                    title=title,
-                    description=title,
-                    sender=discipline.teacher,
-                    receiver=student,
-                    discipline=discipline
-                )
+            self.send_notification(title)
 
         elif (not form.instance.peer_review_available and
             form.instance.peer_review_available != session.peer_review_available):
             title = _("Peer Review unavailable")
 
-            for student in discipline.students.all():
-                Notification.objects.create(
-                    title=title,
-                    description=title,
-                    sender=discipline.teacher,
-                    receiver=student,
-                    discipline=discipline
-                )
+            self.send_notification(title)
 
         messages.success(self.request, _("Pair Review updated successfully."))
 
         return super(PeerReviewUpdateView, self).form_valid(form)
+
+    def send_notification(self, title):
+        """
+        Send peer review comments to students group.
+        """
+
+        discipline = self.get_discipline()
+
+        for student in discipline.students.all():
+            Notification.objects.create(
+                title=title,
+                description=title,
+                sender=discipline.teacher,
+                receiver=student,
+                discipline=discipline
+            )

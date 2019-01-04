@@ -20,6 +20,7 @@ class PeerReviewView(LoginRequiredMixin,
 
     template_name = "peer_review/peer_review.html"
     context_object_name = "students"
+    paginate_by = 1
 
     permissions_required = ['show_peer_review_test']
 

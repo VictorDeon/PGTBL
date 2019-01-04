@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-22 15:30-0200\n"
+"POT-Creation-Date: 2019-01-04 17:31-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,21 +18,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: pgtbl/peer_review/templates/peer_review/info.html:9
+#: forms/peer_review_form.py:23
+msgid "Student score"
+msgstr "Pontuação do estudante"
+
+#: forms/peer_review_form.py:26
+msgid "Student comment"
+msgstr "Comentário para o estudante"
+
+#: models/peer_review.py:17
+msgid "TBL Session"
+msgstr "Sessão de TBL"
+
+#: models/peer_review.py:22
+msgid "Score"
+msgstr "Pontuação"
+
+#: models/peer_review.py:24
+msgid "Peer Review score to specific student"
+msgstr "Pontuação da avaliação em pares para um estudante especifico"
+
+#: models/peer_review.py:28
+msgid "Comment"
+msgstr "Comentário"
+
+#: models/peer_review.py:30
+msgid "Comment about the assessed student."
+msgstr "Comente sobre o aluno avaliado."
+
+#: models/peer_review.py:36
+msgid "Student who is evaluating"
+msgstr "Estudante que está sendo avaliado"
+
+#: models/peer_review.py:43
+msgid "Student being assessed"
+msgstr "Estudante sendo avaliado"
+
+#: models/peer_review.py:50 templates/peer_review/peer_review.html:72
+msgid "Group"
+msgstr "Grupo"
+
+#: models/peer_review.py:55
+msgid "Created at"
+msgstr "Criado em"
+
+#: models/peer_review.py:56
+msgid "Date that the submission is created."
+msgstr "Data que a submissão foi criada."
+
+#: models/peer_review.py:74
+msgid "Peer Review Submission"
+msgstr "Submissão da avaliação em pares"
+
+#: models/peer_review.py:75
+msgid "Peer Review Submissions"
+msgstr "Submissões das avaliações em pares"
+
+#: templates/peer_review/info.html:9
 msgid "Pair Review Rules"
-msgstr ""
+msgstr "Regras das avaliações em pares"
 
-#: pgtbl/peer_review/templates/peer_review/info.html:12
+#: templates/peer_review/info.html:12
 msgid "The rules of the game are very simple:"
-msgstr ""
+msgstr "As regras da avaliação são bem simples:"
 
-#: pgtbl/peer_review/templates/peer_review/info.html:14
+#: templates/peer_review/info.html:14
 msgid ""
 "Peer evaluation is used to evaluate the performance of your teammates during "
 "TBL."
 msgstr ""
+"Avaliação em pares é usada para avaliar a performace do seu time durante o "
+"TBL"
 
-#: pgtbl/peer_review/templates/peer_review/info.html:16
+#: templates/peer_review/info.html:16
 msgid ""
 "\n"
 "            This evaluation is totally anonymous, only the evaluated student "
@@ -40,8 +98,13 @@ msgid ""
 "            appear his name.\n"
 "            "
 msgstr ""
+"\n"
+"           Essa avaliação é totalmente anônima, somente o estudante avaliado "
+"irá receber o feedback e não irá\n"
+"           aparecer seu nome.\n"
+"           "
 
-#: pgtbl/peer_review/templates/peer_review/info.html:22
+#: templates/peer_review/info.html:22
 msgid ""
 "\n"
 "            The student can leave a comment for the evaluated colleague, "
@@ -49,112 +112,170 @@ msgid ""
 "            in anonymous.\n"
 "            "
 msgstr ""
+"\n"
+"            O aluno pode deixar um comentário para o colega avaliado, isso "
+"aparecerá no perfil deles\n"
+"            em anônimo.\n"
+"            "
 
-#: pgtbl/peer_review/templates/peer_review/info.html:27
+#: templates/peer_review/info.html:27
 msgid ""
-"You will have 100 points to distribute among the participants in your group."
+"You will have 100 points to distribute for each participant in your group."
 msgstr ""
+"Você terá 100 pontos para distribuir para cada participante do seu grupo."
 
-#: pgtbl/peer_review/templates/peer_review/info.html:29
+#: templates/peer_review/info.html:29
 msgid ""
 "\n"
-"            The sum of the evaluation of all the members of the group "
-"evaluating you will compose your grade in\n"
+"            The calculation of the evaluation of all the members of the "
+"group will compose your grade in\n"
 "            this evaluation.\n"
 "            "
 msgstr ""
+"\n"
+"            O cálculo da avaliação de todos os membros do grupo vai compor "
+"sua nota \n"
+"            nessa avaliação.\n"
+"            "
 
-#: pgtbl/peer_review/templates/peer_review/info.html:35
+#: templates/peer_review/info.html:35
 msgid ""
 "\n"
-"            If the sum total of 100 points will have a bonus on the note, "
-"otherwise it will compose the score\n"
-"            according to the score.\n"
+"            If the total gives 100 points you will get maximum score, "
+"otherwise your grade will be according\n"
+"            to your score.\n"
 "            "
 msgstr ""
+"\n"
+"            Se o total der 100 pontos, você irá receber nota máxima, caso "
+"contrário, sua nota vai ser proporcional\n"
+"            a pontuação recebida\n"
+"            "
 
-#: pgtbl/peer_review/templates/peer_review/info.html:40
-#: pgtbl/peer_review/templates/peer_review/info.html:46
-#: pgtbl/peer_review/templates/peer_review/info.html:52
+#: templates/peer_review/info.html:40 templates/peer_review/info.html:45
 msgid "Example"
-msgstr ""
+msgstr "Exemplo"
 
-#: pgtbl/peer_review/templates/peer_review/info.html:41
+#: templates/peer_review/info.html:41
 msgid ""
 "\n"
-"            In a team of 5 members, each member inserts 20 points into you, "
-"then adding everything will give you\n"
-"            100 points and you will get a maximum score.\n"
+"            In a team of 5 members, each member inserts 100 points into you, "
+"you will get a maximum score.\n"
 "            "
 msgstr ""
-
-#: pgtbl/peer_review/templates/peer_review/info.html:47
-msgid ""
 "\n"
-"            In a team of 5 members, each member inserts the score in you and "
-"the sum of the 110, soon you will receive\n"
-"            the maximum score plus a bonus.\n"
+"            Em um time com 5 membros, cada membro entra com 100 pontos para "
+"você, você terá nota máxima nessa avaliação.\n"
 "            "
-msgstr ""
 
-#: pgtbl/peer_review/templates/peer_review/info.html:53
+#: templates/peer_review/info.html:46
 msgid ""
 "\n"
 "            In a team of 5 members, each member enters the score on you and "
-"the sum of the 80, then your score will\n"
+"the calculation is 80, then your score will\n"
 "            be calculated according to that score.\n"
 "            "
 msgstr ""
+"\n"
+"            Em um time com 5 membros, cada membro entra com uma pontuação "
+"especifica e o calculo da 80 pontos, sua nota será calculada de acordo com "
+"essa pontuação.\n"
+"            "
 
-#: pgtbl/peer_review/templates/peer_review/peer_review.html:14
+#: templates/peer_review/peer_review.html:14
 msgid "Peer Review"
-msgstr ""
+msgstr "Avaliação em pares"
 
-#: pgtbl/peer_review/templates/peer_review/peer_review.html:23
-#: pgtbl/peer_review/templates/peer_review/peer_review.html:107
+#: templates/peer_review/peer_review.html:24
 msgid "Pair Review"
-msgstr ""
+msgstr "Avaliação em pares"
 
-#: pgtbl/peer_review/templates/peer_review/peer_review.html:37
+#: templates/peer_review/peer_review.html:41
 msgid "Course"
-msgstr ""
+msgstr "Curso"
 
-#: pgtbl/peer_review/templates/peer_review/peer_review.html:44
+#: templates/peer_review/peer_review.html:48
 msgid "Discipline"
-msgstr ""
+msgstr "Disciplina"
 
-#: pgtbl/peer_review/templates/peer_review/peer_review.html:51
+#: templates/peer_review/peer_review.html:55
 msgid "Teacher"
-msgstr ""
+msgstr "Professor"
 
-#: pgtbl/peer_review/templates/peer_review/peer_review.html:59
+#: templates/peer_review/peer_review.html:63
 msgid "Student"
-msgstr ""
+msgstr "Estudante"
 
-#: pgtbl/peer_review/templates/peer_review/peer_review.html:68
-msgid "Group"
-msgstr ""
-
-#: pgtbl/peer_review/templates/peer_review/peer_review.html:89
+#: templates/peer_review/peer_review.html:84
 msgid "Available"
-msgstr ""
+msgstr "Disponível"
 
-#: pgtbl/peer_review/templates/peer_review/peer_review.html:93
+#: templates/peer_review/peer_review.html:88
 msgid "Unavailable"
-msgstr ""
+msgstr "Indisponível"
 
-#: pgtbl/peer_review/templates/peer_review/peer_review.html:166
+#: templates/peer_review/peer_review.html:101
+msgid "Update Peer Review"
+msgstr "Editar avaliação em pares"
+
+#: templates/peer_review/peer_review.html:122
+msgid "PAIR REVIEW"
+msgstr "AVALIAÇÃO EM PARES"
+
+#: templates/peer_review/peer_review.html:193
 msgid "Send to"
-msgstr ""
+msgstr "Enviar para"
 
-#: pgtbl/peer_review/templates/peer_review/peer_review.html:171
-msgid "There aren't students in this group."
-msgstr ""
+#: templates/peer_review/peer_review.html:198
+msgid "There aren't students in your group."
+msgstr "Não há estudantes no seu grupo"
 
-#: pgtbl/peer_review/templates/peer_review/update.html:9
+#: templates/peer_review/update.html:9
 msgid "Edit Pair Review"
-msgstr ""
+msgstr "Editar avaliação em pares"
 
-#: pgtbl/peer_review/templates/peer_review/update.html:49
+#: templates/peer_review/update.html:49
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
+
+#: views/peer_review.py:34 views/peer_review_answer.py:38
+#: views/peer_review_update.py:34
+msgid "You are not authorized to do this action."
+msgstr "Você não está autorizado a realizar essa ação."
+
+#: views/peer_review.py:122
+#, python-brace-format
+msgid "{0} has't group"
+msgstr "{0} não tem grupo"
+
+#: views/peer_review_answer.py:149
+msgid "Student must be in a group to answer the test."
+msgstr "O estudante precisa está em um grupo para realizar a avaliação."
+
+#: views/peer_review_answer.py:158
+msgid "You can't insert a score bigger than 100 or less than 0"
+msgstr "Você não pode inserir uma pontuação acima de 100 ou menor que 0"
+
+#: views/peer_review_answer.py:174
+msgid "You already submit a review to this student."
+msgstr "Você já submeteu a revisão para esse estudante."
+
+#: views/peer_review_answer.py:199
+msgid "Peer Review answered successfully."
+msgstr "Avaliação em pares respondida com sucesso."
+
+#: views/peer_review_answer.py:213
+msgid "Peer Review Anonymously"
+msgstr "Avaliação em pares anônima."
+
+#: views/peer_review_update.py:99
+msgid "Peer Review available"
+msgstr "Avaliação em pares disponível"
+
+#: views/peer_review_update.py:105
+msgid "Peer Review unavailable"
+msgstr "Avaliação em pares indisponível"
+
+#: views/peer_review_update.py:109
+msgid "Pair Review updated successfully."
+msgstr "Avaliação em pares atualizada com sucesso."

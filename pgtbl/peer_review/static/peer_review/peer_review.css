@@ -22,6 +22,18 @@ th, td {
   padding: 1px !important;
 }
 
+.fa-book {
+  padding-right: 8px;
+}
+
+.fa-user {
+  padding-right: 11px;
+}
+
+.fa-users {
+  padding-right: 5px;
+}
+
 .roles {
   cursor: pointer;
   color: whitesmoke;
@@ -47,9 +59,8 @@ textarea {
 }
 
 .update {
-  position:relative;
-  bottom: 15px;
-  left: 15px;
+  position: relative;
+  top: 34px;
 }
 
 .update > a {
@@ -73,8 +84,11 @@ textarea {
   color: black;
 }
 
-.label {
-  position: relative;
-  top: 35px;
-  left: 18px;
+.submit-button:hover, .submit-button:focus {
+  text-decoration: none;
+  color: white;
+}
+
+.pagination {
+  margin: 0;
 }
