@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="{% static 'irat/css/list.css' %}" />
 {% endblock %}
 
+{% block js %}
+  <script src="{% static 'irat/js/feedback.js' %}"></script>
+{% endblock %}
+
 {% block breadcrumb %}
   {{ block.super }}
   <li>
@@ -159,7 +163,7 @@
                           {% include 'questions/delete.html' %}
                       </div>
                     </div>
-                    <div class="col-sm-12" id="question">
+                    <div class="col-sm-12">
                       <!-- question title -->
                       <h3 class="text-justify">
                         {{page_obj.number}}) {{question.title}}<br />
@@ -168,7 +172,7 @@
                     </div>
                   <!-- Question to student -->
                   {% else %}
-                    <div class="col-sm-12" id="question">
+                    <div class="col-sm-12">
                       <h3 class="text-justify">
                         {{page_obj.number}}) {{question.title}}<br />
                         <small>{{question.topic}} - ({{question.level}})</small>
@@ -177,108 +181,122 @@
                   {% endif %}
                 </div>
                 <hr />
+
                 <!-- Alternative forms -->
-                <form action="{% url 'irat:answer-question' discipline.slug session.id question.id page_obj.number %}" method="POST">
-                  {% csrf_token %}
+                {% if not submission %}
+                  <form action="{% url 'irat:answer-question' discipline.slug session.id question.id page_obj.number %}" method="POST">
+                    {% csrf_token %}
 
-                  <!-- Alternative 01 -->
-                  <div class="row">
-                    <div class="col-sm-1">
-                      <div class="form-group">
-                          <!-- Score field -->
-                          <input
-                            type="number"
-                            class="form-control"
-                            max="4"
-                            min="0"
-                            name="alternative01-{{form1.score.name}}"
-                            value="0"
-                            required
-                          />
+                    <!-- Alternative 01 -->
+                    <div class="row">
+                      <div class="col-sm-1">
+                        <div class="form-group">
+                            <!-- Score field -->
+                            <input
+                              type="number"
+                              class="form-control alternatives"
+                              max="4"
+                              min="0"
+                              onclick="validInput(this)"
+                              name="alternative01-{{form1.score.name}}"
+                              value="0"
+                              required
+                            />
+                        </div>
+                      </div>
+                      <div class="col-sm-11">
+                        <h4 class="text-justify">
+                          {{question.alternatives.all.0.title}}
+                        </h4>
                       </div>
                     </div>
-                    <div class="col-sm-11">
-                      <h4 class="text-justify">
-                        {{question.alternatives.all.0.title}}
-                      </h4>
-                    </div>
-                  </div>
 
-                  <!-- Alternative 02 -->
-                  <div class="row">
-                    <div class="col-sm-1">
-                      <div class="form-group">
-                          <!-- Score field -->
-                          <input
-                            type="number"
-                            class="form-control"
-                            max="4"
-                            min="0"
-                            name="alternative02-{{form2.score.name}}"
-                            value="0"
-                            required
-                          />
+                    <!-- Alternative 02 -->
+                    <div class="row">
+                      <div class="col-sm-1">
+                        <div class="form-group">
+                            <!-- Score field -->
+                            <input
+                              type="number"
+                              class="form-control alternatives"
+                              max="4"
+                              min="0"
+                              onclick="validInput(this)"
+                              name="alternative02-{{form2.score.name}}"
+                              value="0"
+                              required
+                            />
+                        </div>
+                      </div>
+                      <div class="col-sm-11">
+                        <h4 class="text-justify">
+                          {{question.alternatives.all.1.title}}
+                        </h4>
                       </div>
                     </div>
-                    <div class="col-sm-11">
-                      <h4 class="text-justify">
-                        {{question.alternatives.all.1.title}}
-                      </h4>
-                    </div>
-                  </div>
 
-                  <!-- Alternative 03 -->
-                  <div class="row">
-                    <div class="col-sm-1">
-                      <div class="form-group">
-                          <!-- Score field -->
-                          <input
-                            type="number"
-                            class="form-control"
-                            max="4"
-                            min="0"
-                            name="alternative03-{{form3.score.name}}"
-                            value="0"
-                            required
-                          />
+                    <!-- Alternative 03 -->
+                    <div class="row">
+                      <div class="col-sm-1">
+                        <div class="form-group">
+                            <!-- Score field -->
+                            <input
+                              type="number"
+                              class="form-control alternatives"
+                              max="4"
+                              min="0"
+                              onclick="validInput(this)"
+                              name="alternative03-{{form3.score.name}}"
+                              value="0"
+                              required
+                            />
+                        </div>
+                      </div>
+                      <div class="col-sm-11">
+                        <h4 class="text-justify">
+                          {{question.alternatives.all.2.title}}
+                        </h4>
                       </div>
                     </div>
-                    <div class="col-sm-11">
-                      <h4 class="text-justify">
-                        {{question.alternatives.all.2.title}}
-                      </h4>
-                    </div>
-                  </div>
 
-                  <!-- Alternative 04 -->
-                  <div class="row">
-                    <div class="col-sm-1">
-                      <div class="form-group">
-                          <!-- Score field -->
-                          <input
-                            type="number"
-                            class="form-control"
-                            max="4"
-                            min="0"
-                            name="alternative04-{{form4.score.name}}"
-                            value="0"
-                            required
-                          />
+                    <!-- Alternative 04 -->
+                    <div class="row">
+                      <div class="col-sm-1">
+                        <div class="form-group">
+                            <!-- Score field -->
+                            <input
+                              type="number"
+                              class="form-control alternatives"
+                              max="4"
+                              min="0"
+                              onclick="validInput(this)"
+                              name="alternative04-{{form4.score.name}}"
+                              value="0"
+                              required
+                            />
+                        </div>
+                      </div>
+                      <div class="col-sm-11">
+                        <h4 class="text-justify">
+                          {{question.alternatives.all.3.title}}
+                        </h4>
                       </div>
                     </div>
-                    <div class="col-sm-11">
-                      <h4 class="text-justify">
-                        {{question.alternatives.all.3.title}}
-                      </h4>
-                    </div>
-                  </div>
 
-                  <!-- Answer button -->
-                  <button type="submit" class="btn btn-primary submit-button center-block gradient">
-                    <i class="fa fa-edit"></i>
-                    {% trans 'Answer' %}
-                  </button>
-                </form>
+                    <!-- Answer button -->
+                    <button type="submit" class="btn btn-primary submit-button center-block gradient">
+                      <i class="fa fa-edit"></i>
+                      {% trans 'Answer' %}
+                    </button>
+                  </form>
+                <!-- Answer Feedback -->
+                {% else %}
+                  {% for alternative in question.alternatives.all %}
+                    <h4 class="text-justify">
+                      {{forloop.counter}}) {{alternative}}
+                    </h4>
+                  {% endfor %}
+                {% endif %}
               </div>
             </div>
           {% empty %}

@@ -112,6 +112,18 @@ class IRATAnswerQuestionView(LoginRequiredMixin, PermissionMixin, FormView):
         Form to insert scores and answer question.
         """
 
+        discipline = self.get_discipline()
+
+        if self.request.user == discipline.teacher or \
+           self.request.user in discipline.monitors.all():
+
+            messages.error(
+                self.request,
+                _("Only student can submit a question.")
+            )
+
+            return redirect(self.get_success_url())
+
         question = self.get_object()
 
         form1 = AnswerQuestionForm(request.POST, prefix="alternative01")

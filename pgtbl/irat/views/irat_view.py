@@ -6,6 +6,7 @@ from django.views.generic import ListView
 
 from core.permissions import PermissionMixin
 from disciplines.models import Discipline
+from irat.models import IRATSubmission
 from modules.models import TBLSession
 from modules.utils import get_datetimes
 from questions.models import Question
@@ -86,12 +87,40 @@ class IRATView(LoginRequiredMixin,
         context['session'] = self.get_session()
         context['date_form'] = IRATDateForm()
         context['irat_form'] = IRATForm()
+        context['submission'] = self.get_student_question_submissions()
         context['form1'] = AnswerQuestionForm(prefix="alternative01")
         context['form2'] = AnswerQuestionForm(prefix="alternative02")
         context['form3'] = AnswerQuestionForm(prefix="alternative03")
         context['form4'] = AnswerQuestionForm(prefix="alternative04")
 
         return context
+
+    def get_student_question_submissions(self):
+        """
+        Get the student submission for specific question.
+        """
+
+        questions = self.get_queryset()
+
+        page = self.request.GET.get("page")
+
+        if page:
+            page = int(page) - 1
+        else:
+            page = 0
+
+        submission = None
+
+        try:
+            submission = IRATSubmission.objects.get(
+                session=self.get_session(),
+                user=self.request.user,
+                question=questions[page]
+            )
+        except:
+            pass
+
+        return submission
 
     def get_queryset(self):
         """
