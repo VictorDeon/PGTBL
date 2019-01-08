@@ -11,6 +11,7 @@ fieldset > legend {
 
 textarea {
   resize: none;
+  overflow-y: scroll;
 }
 
 .alternative {

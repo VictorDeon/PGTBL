@@ -7,13 +7,24 @@
   <link rel="stylesheet" href="{% static 'questions/css/form.css' %}" />
 {% endblock %}
 
+{% block js %}
+  <script src="{% static 'questions/js/correct.js' %}"></script>
+{% endblock %}
+
 {% block content %}
   <div class="container-fluid">
     <!-- Header -->
     <div class="page-header profile">
       <h1 class="white">
-        {% trans 'Update Question' %}<br />
-        <small>{{discipline.title}} - {{session.title}}: {{question}}</small>
+        {% if question %}
+          {% trans 'Update Question' %}<br />
+        {% else %}
+          {% trans 'Create Question' %}<br />
+        {% endif %}
+        <small>
+          {{discipline.title}} - {{session.title}}
+          {% if question %}<span id="question">: {{question}}</span>{% endif %}
+        </small>
       </h1>
     </div>
 
@@ -44,13 +55,12 @@
               </span>
 
               <!-- Field -->
-              <input
+              <textarea
                 class="form-control"
-                type="text"
+                rows="3"
                 name="{{form.title.name}}"
                 placeholder="{{form.title.help_text}}"
-                value="{{question.title}}"
-              />
+              >{{question.title}}</textarea>
             </div>
 
             <!-- Field errors -->
@@ -141,24 +151,29 @@
 
               <div class="col-sm-10 alternative">
                 {% if form.title.value %}
-                  <input
+                  <textarea
                     class="form-control"
-                    type="text"
+                    rows="3"
                     name="alternatives-{{forloop.counter | add:-1}}-{{form.title.name}}"
                     placeholder="{{form.title.help_text}}"
-                    value="{{form.title.value}}"
-                  />
+                  >{{form.title.value}}</textarea>
                 {% else %}
-                  <input
+                  <textarea
                     class="form-control"
-                    type="text"
+                    rows="3"
                     name="alternatives-{{forloop.counter | add:-1}}-{{form.title.name}}"
                     placeholder="{{form.title.help_text}}"
-                  />
+                  ></textarea>
                 {% endif %}
               </div>
               <div class="col-sm-2">
-                {{form.is_correct}}
+                <input
+                  type="checkbox"
+                  name="alternatives-{{forloop.counter | add:-1}}-is_correct"
+                  id="id_alternatives-{{forloop.counter | add:-1}}-is_correct"
+                  onclick="disableCheckboxs(this)"
+                  {% if form.is_correct.value %}checked{% endif %}
+                />
                 {{ form.is_correct.label|capfirst }}
               </div>
             {% endfor %}
