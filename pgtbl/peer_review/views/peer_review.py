@@ -9,6 +9,7 @@ from disciplines.models import Discipline
 from groups.models import Group
 from modules.models import TBLSession
 from peer_review.forms import PeerReviewForm, PeerReviewAnswerForm
+from peer_review.models import PeerReviewSubmission
 
 
 class PeerReviewView(LoginRequiredMixin,
@@ -98,9 +99,38 @@ class PeerReviewView(LoginRequiredMixin,
         context['session'] = self.get_session()
         context['group'] = self.get_group()
         context['form'] = PeerReviewForm()
+        context['submission'] = self.get_student_peer_review_submissions()
         context['answer_form'] = PeerReviewAnswerForm()
 
         return context
+
+    def get_student_peer_review_submissions(self):
+        """
+        Get the student submission for specific peer review.
+        """
+
+        students = self.get_queryset()
+
+        page = self.request.GET.get("page")
+
+        if page:
+            page = int(page) - 1
+        else:
+            page = 0
+
+        submission = None
+
+        try:
+            submission = PeerReviewSubmission.objects.get(
+                session=self.get_session(),
+                user=self.request.user,
+                student=students[page],
+                group=self.get_group()
+            )
+        except:
+            pass
+
+        return submission
 
     def get_queryset(self):
         """

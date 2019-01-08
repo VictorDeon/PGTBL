@@ -15,7 +15,7 @@ peer_review_patterns = [
         name='update'
     ),
     path(
-        '<int:student_id>/answer/',
+        '<int:student_id>/answer/<int:peer_review_page>/',
         views.PeerReviewAnswerView.as_view(),
         name='answer-review'
     )

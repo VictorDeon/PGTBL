@@ -137,10 +137,64 @@
           <div class="panel panel-default">
             <div class="panel-body">
               {% for student in students %}
-                <!-- Peer review form -->
-                <form action="{% url 'peer_review:answer-review' discipline.slug session.id student.id %}" method="POST">
-                  {% csrf_token %}
+                {% if not submission %}
+                  <!-- Peer review form -->
+                  <form action="{% url 'peer_review:answer-review' discipline.slug session.id student.id page_obj.number %}" method="POST">
+                    {% csrf_token %}
 
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <!-- Student photo -->
+                        {% if student.photo %}
+                          <img src="{{ student.photo.url }}"
+                               class="img-thumbnail img-responsive"
+                               alt="Student"
+                          />
+                        {% else %}
+                          <img src="{% static 'accounts/img/user.png' %}"
+                               class="img-thumbnail img-responsive"
+                               alt="Student"
+                          />
+                        {% endif %}
+
+                        <!-- Student score -->
+                        <div class="form-group">
+                          <input
+                            type="number"
+                            class="form-control number"
+                            name="{{ answer_form.score.name }}"
+                            min="0"
+                            max="100"
+                            value="0"
+                            placeholder="{{ answer_form.score.label }}"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- Student comment -->
+                      <div class="col-sm-10">
+                        <h3>{{ student.get_short_name }}</h3>
+                        <div class="form-group">
+                          <label for="{{ answer_form.comment.id_for_label }}">
+                            {{ answer_form.comment.label }}
+                          </label>
+                          <textarea
+                            class="form-control"
+                            rows="5"
+                            id="{{ answer_form.comment.id_for_label }}"
+                            name="{{ answer_form.comment.name }}"
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Peer review submission -->
+                    <button type="submit" class="btn btn-primary btn-block">
+                      <i class="fa fa-send"></i>
+                      {% trans 'Send to' %} {{ student.get_short_name }}
+                    </button>
+                  </form>
+                {% else %}
                   <div class="row">
                     <div class="col-sm-2">
                       <!-- Student photo -->
@@ -161,38 +215,28 @@
                         <input
                           type="number"
                           class="form-control number"
-                          name="{{ answer_form.score.name }}"
-                          min="0"
-                          max="100"
-                          value="0"
-                          placeholder="{{ answer_form.score.label }}"
+                          value="{{submission.score}}"
+                          readonly
                         />
                       </div>
                     </div>
 
-                    <!-- Student comment -->
-                    <div class="col-sm-10">
-                      <h3>{{ student.get_short_name }}</h3>
-                      <div class="form-group">
-                        <label for="{{ answer_form.comment.id_for_label }}">
-                          {{ answer_form.comment.label }}
-                        </label>
-                        <textarea
-                          class="form-control"
-                          rows="5"
-                          id="{{ answer_form.comment.id_for_label }}"
-                          name="{{ answer_form.comment.name }}"
-                        ></textarea>
+                      <!-- Student comment -->
+                      <div class="col-sm-10">
+                        <h3>{{ student.get_short_name }}</h3>
+                        <div class="form-group">
+                          <label for="{{ answer_form.comment.id_for_label }}">
+                            {{ answer_form.comment.label }}
+                          </label>
+                          <textarea
+                            class="form-control"
+                            rows="5"
+                            readonly
+                          >{{submission.comment}}</textarea>
+                        </div>
                       </div>
                     </div>
-                  </div>
-
-                  <!-- Peer review submission -->
-                  <button type="submit" class="btn btn-primary btn-block">
-                    <i class="fa fa-send"></i>
-                    {% trans 'Send to' %} {{ student.get_short_name }}
-                  </button>
-                </form>
+                {% endif %}
                 {% if not forloop.last %}<hr />{% endif %}
               {% empty %}
                 <p>{% trans "There aren't students in your group." %}</p>

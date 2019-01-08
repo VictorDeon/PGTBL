@@ -100,6 +100,15 @@ class PeerReviewAnswerView(LoginRequiredMixin,
 
         return student
 
+    def get_page(self):
+        """
+        Get student submission page
+        """
+
+        page = self.kwargs.get('peer_review_page', '')
+
+        return page
+
     def get_success_url(self):
         """
         After answer the peer review redirect to module details
@@ -114,6 +123,8 @@ class PeerReviewAnswerView(LoginRequiredMixin,
                 'pk': self.kwargs.get('pk', '')
             }
         )
+
+        success_url += "?page={0}".format(self.get_page())
 
         return success_url
 
