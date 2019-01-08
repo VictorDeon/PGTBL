@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="{% static 'exercises/css/list.css' %}" />
 {% endblock %}
 
+{% block js %}
+  <script src="{% static 'exercises/js/feedback.js' %}"></script>
+{% endblock %}
+
 {% block breadcrumb %}
   {{ block.super }}
   <li>
@@ -126,7 +130,7 @@
                         {% include 'questions/delete.html' %}
                       </div>
                     </div>
-                    <div class="col-sm-12" id="question">
+                    <div class="col-sm-12">
                       <h3 class="text-justify">
                         {{page_obj.number}}) {{question.title}}<br />
                         <small>{{question.topic}} - ({{question.level}})</small>
@@ -134,7 +138,7 @@
                     </div>
                   <!-- question to students -->
                   {% else %}
-                    <div class="col-sm-12" id="question">
+                    <div class="col-sm-12">
                       <h3 class="text-justify">
                         {{page_obj.number}}) {{question.title}}<br />
                         <small>{{question.topic}} - ({{question.level}})</small>
@@ -154,9 +158,10 @@
                           <!-- Score field -->
                           <input
                             type="number"
-                            class="form-control"
+                            class="form-control alternatives"
                             max="4"
                             min="0"
+                            onclick="validInput(this)"
                             name="alternative01-{{form1.score.name}}"
                             value="0"
                             required
@@ -177,9 +182,10 @@
                           <!-- Score field -->
                           <input
                             type="number"
-                            class="form-control"
+                            class="form-control alternatives"
                             max="4"
                             min="0"
+                            onclick="validInput(this)"
                             name="alternative02-{{form2.score.name}}"
                             value="0"
                             required
@@ -200,9 +206,10 @@
                           <!-- Score field -->
                           <input
                             type="number"
-                            class="form-control"
+                            class="form-control alternatives"
                             max="4"
                             min="0"
+                            onclick="validInput(this)"
                             name="alternative03-{{form3.score.name}}"
                             value="0"
                             required
@@ -223,9 +230,10 @@
                           <!-- Score field -->
                           <input
                             type="number"
-                            class="form-control"
+                            class="form-control alternatives"
                             max="4"
                             min="0"
+                            onclick="validInput(this)"
                             name="alternative04-{{form4.score.name}}"
                             value="0"
                             required
@@ -240,7 +248,7 @@
                   </div>
 
                   <!-- Submit button -->
-                  <button type="submit" class="btn btn-primary submit-button center-block gradient">
+                  <button type="submit" class="btn btn-primary submit-button center-block gradient" id="button-submit">
                     <i class="fa fa-edit"></i>
                     {% trans 'Answer' %}
                   </button>
