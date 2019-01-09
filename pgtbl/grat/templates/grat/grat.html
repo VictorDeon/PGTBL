@@ -5,6 +5,12 @@
 {% block css %}
   <link rel="stylesheet" href="{% static 'accounts/css/sidebar.css' %}" />
   <link rel="stylesheet" href="{% static 'grat/css/list.css' %}" />
+  <link rel="stylesheet" href="{% static 'grat/css/scratch.css' %}" />
+{% endblock %}
+
+{% block js %}
+  <!--<script src="{% static 'grat/js/feedback.js' %}"></script>-->
+  <script src="{% static 'grat/js/scratch.js' %}"></script>
 {% endblock %}
 
 {% block breadcrumb %}
@@ -58,6 +64,15 @@
                     </th>
                     <td>{{ discipline.teacher.get_short_name }}</td>
                   </tr>
+                  {% if group %}
+                    <tr>
+                      <th>
+                        <i class="fa fa-users"></i>
+                        {% trans 'Group' %}:
+                      </th>
+                      <td>{{ group.title }}</td>
+                    </tr>
+                  {% endif %}
                 </table>
               </div>
 
@@ -181,91 +196,108 @@
                 <hr />
 
                 <!-- Alternative forms -->
-                <form action="{% url 'grat:answer-question' discipline.slug session.id question.id page_obj.number %}" method="POST">
-                  {% csrf_token %}
+                {% if not submission %}
+                  <form action="{% url 'grat:answer-question' discipline.slug session.id question.id page_obj.number %}" method="POST">
+                    {% csrf_token %}
 
-                  <!-- Alternative 01 -->
-                  <div class="row">
-                    <div class="col-sm-2">
-                      <div class="form-group">
-                          <!-- Score field -->
-                          <select class="form-control" name="alternative01-{{form1.score.name}}">
-                            {% for score in form1.score %}
-                              {{score}}
-                            {% endfor %}
-                          </select>
+                    <!-- Alternative 01 -->
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <div class="form-group">
+                            <!-- Score field -->
+                            <select
+                              class="form-control alternatives"
+                              onclick="validInput(this.options)"
+                              name="alternative01-{{form1.score.name}}">
+                              {% for score in form1.score %}
+                                {{score}}
+                              {% endfor %}
+                            </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-10">
+                        <h4 class="text-justify">
+                          {{question.alternatives.all.0.title}}
+                        </h4>
                       </div>
                     </div>
-                    <div class="col-sm-10">
-                      <h4 class="text-justify">
-                        {{question.alternatives.all.0.title}}
-                      </h4>
-                    </div>
-                  </div>
 
-                  <!-- Alternative 02 -->
-                  <div class="row">
-                    <div class="col-sm-2">
-                      <div class="form-group">
-                          <!-- Score field -->
-                          <select class="form-control" name="alternative02-{{form2.score.name}}">
-                            {% for score in form1.score%}
-                              {{score}}
-                            {% endfor %}
-                          </select>
+                    <!-- Alternative 02 -->
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <div class="form-group">
+                            <!-- Score field -->
+                            <select
+                              class="form-control alternatives"
+                              onclick="validInput(this.options)"
+                              name="alternative02-{{form2.score.name}}">
+                              {% for score in form1.score%}
+                                {{score}}
+                              {% endfor %}
+                            </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-10">
+                        <h4 class="text-justify">
+                          {{question.alternatives.all.1.title}}
+                        </h4>
                       </div>
                     </div>
-                    <div class="col-sm-10">
-                      <h4 class="text-justify">
-                        {{question.alternatives.all.1.title}}
-                      </h4>
-                    </div>
-                  </div>
 
-                  <!-- Alternative 03 -->
-                  <div class="row">
-                    <div class="col-sm-2">
-                      <div class="form-group">
-                          <!-- Score field -->
-                          <select class="form-control" name="alternative03-{{form3.score.name}}">
-                            {% for score in form1.score%}
-                              {{score}}
-                            {% endfor %}
-                          </select>
+                    <!-- Alternative 03 -->
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <div class="form-group">
+                            <!-- Score field -->
+                            <select
+                              class="form-control alternatives"
+                              onclick="validInput(this.options)"
+                              name="alternative03-{{form3.score.name}}">
+                              {% for score in form1.score%}
+                                {{score}}
+                              {% endfor %}
+                            </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-10">
+                        <h4 class="text-justify">
+                          {{question.alternatives.all.2.title}}
+                        </h4>
                       </div>
                     </div>
-                    <div class="col-sm-10">
-                      <h4 class="text-justify">
-                        {{question.alternatives.all.2.title}}
-                      </h4>
-                    </div>
-                  </div>
 
-                  <!-- Alternative 04 -->
-                  <div class="row">
-                    <div class="col-sm-2">
-                      <div class="form-group">
-                          <!-- Score field -->
-                          <select class="form-control" name="alternative04-{{form4.score.name}}">
-                            {% for score in form1.score%}
-                              {{score}}
-                            {% endfor %}
-                          </select>
+                    <!-- Alternative 04 -->
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <div class="form-group">
+                            <!-- Score field -->
+                            <select
+                              class="form-control alternatives"
+                              onclick="validInput(this.options)"
+                              name="alternative04-{{form4.score.name}}">
+                              {% for score in form1.score%}
+                                {{score}}
+                              {% endfor %}
+                            </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-10">
+                        <h4 class="text-justify">
+                          {{question.alternatives.all.3.title}}
+                        </h4>
                       </div>
                     </div>
-                    <div class="col-sm-10">
-                      <h4 class="text-justify">
-                        {{question.alternatives.all.3.title}}
-                      </h4>
-                    </div>
-                  </div>
 
-                  <!-- Submit button -->
-                  <button type="submit" class="btn btn-primary submit-button center-block gradient">
-                    <i class="fa fa-edit"></i>
-                    {% trans 'Answer' %}
-                  </button>
-                </form>
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary submit-button center-block gradient">
+                      <i class="fa fa-edit"></i>
+                      {% trans 'Answer' %}
+                    </button>
+                  </form>
+                <!-- Scratch cupon feedback -->
+                {% else %}
+                  {% include 'grat/scratch_cupon.html' %}
+                {% endif %}
               </div>
             </div>
           {% empty %}

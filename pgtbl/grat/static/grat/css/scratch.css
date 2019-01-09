@@ -1,0 +1,83 @@
+.scratch-wrap {
+	width:140px;
+	margin:auto;
+	height:140px;
+	position:relative;
+}
+
+.scratch-wrap canvas {
+	top:0;
+	left:0;
+	position:absolute;
+}
+
+.scratch-wrap .scratch {
+	width:100%;
+	height:100%;
+	padding:30px;
+	text-align:center;
+	position: relative;
+	bottom: 15px;
+}
+
+.scratch .photo {
+	width:40px;
+	height:40px;
+	margin:auto;
+	overflow:hidden;
+	border-radius:50%;
+	margin-bottom:10px;
+	border:2px solid #fff;
+	box-shadow:0 2px 10px 0 rgba(0,0,0,.16),0 2px 5px 0 rgba(0,0,0,.26);
+}
+
+.scratch .photo img {
+	width:100%;
+}
+
+.scratch .message {
+	padding:4px;
+	font-size:10px;
+	background:#fff;
+	border-radius:3px;
+	position:relative;
+	border:1px solid #ccc;
+	margin-left: -10px;
+	margin-right: -10px;
+}
+
+.scratch .message:before,
+.scratch .message:after {
+	top:0;
+	width:0;
+	height:0;
+	left:50%;
+	content:'';
+	margin-left:-8px;
+	position:absolute;
+	border:8px solid transparent;
+}
+
+.scratch .message:before {
+	top:-17px;
+	border-bottom:8px solid #ccc;
+}
+
+.scratch .message:after {
+	top:-15px;
+	border-bottom:8px solid #fff;
+}
+
+.hidden-messages {
+	visibility: hidden;
+}
+
+canvas {
+  cursor: url("../img/scratch.png"), auto;
+}
+
+.div-align {
+  min-height: 140px;
+  display:flex;
+  align-items: center;
+}

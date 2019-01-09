@@ -1,0 +1,94 @@
+{% load i18n %}
+{% load static %}
+
+<!-- Scratch 01 -->
+<div class="row">
+  <div class="col-sm-2">
+    <div class="scratch-wrap">
+      <div class="scratch" id="scratch1" style="visibility:hidden">
+        <div class="photo"><img src="{% static 'grat/img/bob.jpeg' %}"></div>
+        <div class="message" id="scratch-message1">Scratch Card</div>
+        {% if question.alternatives.all.0.is_correct %}
+          <div class="hidden-messages">{% trans 'Correct Answer' %}, {{submission.score}} Points</div>
+        {% else %}
+          <div class="hidden-messages">{% trans 'Wrong Answer' %}</div>
+        {% endif %}
+      </div>
+      <canvas id="canvas1" width="140" height="140"></canvas>
+    </div>
+  </div>
+  <div class="col-sm-10 div-align">
+    <h4 class="text-justify">
+      <b>1)</b> {{question.alternatives.all.0.title}}
+    </h4>
+  </div>
+</div>
+
+<!-- Scratch 02 -->
+<div class="row">
+  <div class="col-sm-2">
+    <div class="scratch-wrap">
+      <div class="scratch" id="scratch2" style="visibility:hidden">
+        <div class="photo"><img src="{% static 'grat/img/bob.jpeg' %}"></div>
+        <div class="message" id="scratch-message2">Scratch Card</div>
+        {% if question.alternatives.all.1.is_correct %}
+          <div class="hidden-messages">{% trans 'Correct Answer' %}, {{submission.score}} Points</div>
+        {% else %}
+          <div class="hidden-messages">{% trans 'Wrong Answer' %}</div>
+        {% endif %}
+      </div>
+      <canvas id="canvas2" width="140" height="140"></canvas>
+    </div>
+  </div>
+  <div class="col-sm-10 div-align">
+    <h4 class="text-justify">
+      <b>2)</b> {{question.alternatives.all.1.title}}
+    </h4>
+  </div>
+</div>
+
+<!-- Scratch 03 -->
+<div class="row">
+  <div class="col-sm-2">
+    <div class="scratch-wrap">
+      <div class="scratch" id="scratch3" style="visibility:hidden">
+        <div class="photo"><img src="{% static 'grat/img/bob.jpeg' %}"></div>
+        <div class="message" id="scratch-message3">Scratch Card</div>
+        {% if question.alternatives.all.2.is_correct %}
+          <div class="hidden-messages">{% trans 'Correct Answer' %}, {{submission.score}} Points</div>
+        {% else %}
+          <div class="hidden-messages">{% trans 'Wrong Answer' %}</div>
+        {% endif %}
+      </div>
+      <canvas id="canvas3" width="140" height="140"></canvas>
+    </div>
+  </div>
+  <div class="col-sm-10 div-align">
+    <h4 class="text-justify">
+      <b>3)</b> {{question.alternatives.all.2.title}}
+    </h4>
+  </div>
+</div>
+
+<!-- Scratch 04 -->
+<div class="row">
+  <div class="col-sm-2">
+    <div class="scratch-wrap">
+      <div class="scratch" id="scratch4" style="visibility:hidden">
+        <div class="photo"><img src="{% static 'grat/img/bob.jpeg' %}"></div>
+        <div class="message" id="scratch-message4">Scratch Card</div>
+        {% if question.alternatives.all.3.is_correct %}
+          <div class="hidden-messages">{% trans 'Correct Answer' %}, {{submission.score}} Points</div>
+        {% else %}
+          <div class="hidden-messages">{% trans 'Wrong Answer' %}</div>
+        {% endif %}
+      </div>
+      <canvas id="canvas4" width="140" height="140"></canvas>
+    </div>
+  </div>
+  <div class="col-sm-10 div-align">
+    <h4 class="text-justify">
+      <b>4)</b> {{question.alternatives.all.3.title}}
+    </h4>
+  </div>
+</div>
