@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-28 14:40-0200\n"
+"POT-Creation-Date: 2019-01-18 20:48-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,7 +38,7 @@ msgstr "Alternativa correta"
 msgid "Correct alternative title."
 msgstr "Título da alternativa correta."
 
-#: models/exercise_submission.py:41
+#: models/exercise_submission.py:41 templates/exercises/list.html:271
 msgid "Score"
 msgstr "Pontuação"
 
@@ -108,83 +108,80 @@ msgstr "Nós temos 4 alternativas por questão: A, B, C ou D"
 
 #: templates/exercises/info.html:14
 msgid "You will have 4 points to distribute in each question."
-msgstr "Você vai ter 4 pontos para distribuir entre as alternativas da questão."
+msgstr ""
+"Você vai ter 4 pontos para distribuir entre as alternativas da questão."
 
 #: templates/exercises/info.html:15
 msgid "You can not enter more than 4 points in an option."
 msgstr "Você não pode entrar com mais de 4 pontos por alternativa."
 
 #: templates/exercises/info.html:16
-msgid "The sum of the options has to give 4 points, can not go beyond that."
-msgstr "A soma da 4 alternativas tem que dar 4 pontos, caso contrario não irá submeter."
-
-#: templates/exercises/info.html:17
 msgid ""
 "The question will only be considered if the sum of the points of the "
 "alternatives is between 0 and 4"
 msgstr ""
-"A questão vai somente ser considerada se a soma do ponto das "
-"alternativas estiver entre 0 e 4"
+"A questão vai somente ser considerada se a soma do ponto das alternativas "
+"estiver entre 0 e 4"
 
-#: templates/exercises/info.html:18 templates/exercises/info.html:19
-#: templates/exercises/info.html:20 templates/exercises/info.html:21
+#: templates/exercises/info.html:17 templates/exercises/info.html:18
+#: templates/exercises/info.html:19 templates/exercises/info.html:20
 msgid "Example"
 msgstr "Exemplo"
 
-#: templates/exercises/info.html:18
+#: templates/exercises/info.html:17
 msgid "Insert 4 points in option A."
 msgstr "Pode inserir 4 pontos na alternativa A."
 
-#: templates/exercises/info.html:19
+#: templates/exercises/info.html:18
 msgid "Insert 2 points in option B and 2 points in option C."
 msgstr "Pode inserir 2 pontos na alternativa B e 2 pontos na alternativa C."
 
-#: templates/exercises/info.html:20
+#: templates/exercises/info.html:19
 msgid "Insert 3 points in option A and 1 points in option D."
 msgstr "Pode inserir 3 pontos na alternativa A e 1 na alternativa D."
 
-#: templates/exercises/info.html:21
+#: templates/exercises/info.html:20
 msgid "Insert 1 points in each option."
 msgstr "Pode inserir 1 ponto em cada alternativa."
 
-#: templates/exercises/list.html:14 templates/exercises/list.html:25
+#: templates/exercises/list.html:18 templates/exercises/list.html:29
 #: templates/exercises/result.html:14
 msgid "Exercise list"
 msgstr "Lista de exercícios"
 
-#: templates/exercises/list.html:39 templates/exercises/result.html:44
+#: templates/exercises/list.html:45 templates/exercises/result.html:44
 msgid "Course"
 msgstr "Curso"
 
-#: templates/exercises/list.html:44 templates/exercises/result.html:49
+#: templates/exercises/list.html:52 templates/exercises/result.html:49
 msgid "Discipline"
 msgstr "Disciplina"
 
-#: templates/exercises/list.html:49 templates/exercises/result.html:54
+#: templates/exercises/list.html:59 templates/exercises/result.html:54
 msgid "Teacher"
 msgstr "Professor"
 
-#: templates/exercises/list.html:61
+#: templates/exercises/list.html:73
 msgid "Edit gamification weight"
 msgstr "Editar peso da gamificação"
 
-#: templates/exercises/list.html:79
+#: templates/exercises/list.html:91
 msgid "EXERCISE LIST"
 msgstr "LISTA DE EXERCÍCIO"
 
-#: templates/exercises/list.html:115 templates/exercises/update.html:40
+#: templates/exercises/list.html:120 templates/exercises/update.html:40
 msgid "Edit"
 msgstr "Editar"
 
-#: templates/exercises/list.html:125
+#: templates/exercises/list.html:128
 msgid "Delete"
 msgstr "Deletar"
 
-#: templates/exercises/list.html:241
+#: templates/exercises/list.html:255
 msgid "Answer"
 msgstr "Responder"
 
-#: templates/exercises/list.html:247
+#: templates/exercises/list.html:276
 msgid "There is no questions in this session."
 msgstr "Não há questões nessa sessão."
 
@@ -248,9 +245,11 @@ msgstr "Você somente pode entrar com 0 a 4 pontos"
 msgid "You can only submit the question once."
 msgstr "Você só pode submeter a questão uma única vez."
 
-#: views/answer_question_view.py:209"
+#: views/answer_question_view.py:209
 msgid "You only have 4 points to distribute to the 4 alternatives."
-msgstr "Você somente vai ter 4 pontos para distribuir entre as 4 alternativas da questão."
+msgstr ""
+"Você somente vai ter 4 pontos para distribuir entre as 4 alternativas da "
+"questão."
 
 #: views/exercise_update_view.py:43
 msgid "Exercise gamification weight updated successfully."
@@ -259,3 +258,8 @@ msgstr "Peso da gamificação da lista de exercício atualizado com sucesso."
 #: views/reset_exercise_view.py:115
 msgid "Exercise list reseted successfully."
 msgstr "Lista de exercícios resetada com sucesso."
+
+#~ msgid "The sum of the options has to give 4 points, can not go beyond that."
+#~ msgstr ""
+#~ "A soma da 4 alternativas tem que dar 4 pontos, caso contrario não irá "
+#~ "submeter."

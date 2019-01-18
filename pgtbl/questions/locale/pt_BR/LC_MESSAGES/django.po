@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-28 14:54-0200\n"
+"POT-Creation-Date: 2019-01-18 20:50-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,7 +54,7 @@ msgstr "Data que a alternativa da questão foi atualizada."
 msgid "Alternative"
 msgstr "Alternativa"
 
-#: models/alternative.py:50 templates/questions/form.html:132
+#: models/alternative.py:50 templates/questions/form.html:142
 msgid "Alternatives"
 msgstr "Alternativas"
 
@@ -126,15 +126,19 @@ msgstr "Tem certeza que deseja deletar a questão"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: templates/questions/form.html:15
+#: templates/questions/form.html:20
 msgid "Update Question"
 msgstr "Atualizar questão"
 
-#: templates/questions/form.html:118
+#: templates/questions/form.html:22
+msgid "Create Question"
+msgstr "Criar questão"
+
+#: templates/questions/form.html:128
 msgid "Is exercise?"
 msgstr "É exercício?"
 
-#: templates/questions/form.html:171
+#: templates/questions/form.html:186
 msgid "Submit"
 msgstr "Enviar"
 

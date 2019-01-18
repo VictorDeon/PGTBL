@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-04 17:31-0200\n"
+"POT-Creation-Date: 2019-01-18 20:49-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -222,11 +222,11 @@ msgstr "Editar avaliação em pares"
 msgid "PAIR REVIEW"
 msgstr "AVALIAÇÃO EM PARES"
 
-#: templates/peer_review/peer_review.html:193
+#: templates/peer_review/peer_review.html:194
 msgid "Send to"
 msgstr "Enviar para"
 
-#: templates/peer_review/peer_review.html:198
+#: templates/peer_review/peer_review.html:242
 msgid "There aren't students in your group."
 msgstr "Não há estudantes no seu grupo"
 
@@ -238,33 +238,33 @@ msgstr "Editar avaliação em pares"
 msgid "Edit"
 msgstr "Editar"
 
-#: views/peer_review.py:34 views/peer_review_answer.py:38
+#: views/peer_review.py:35 views/peer_review_answer.py:38
 #: views/peer_review_update.py:34
 msgid "You are not authorized to do this action."
 msgstr "Você não está autorizado a realizar essa ação."
 
-#: views/peer_review.py:122
+#: views/peer_review.py:152
 #, python-brace-format
 msgid "{0} has't group"
 msgstr "{0} não tem grupo"
 
-#: views/peer_review_answer.py:149
+#: views/peer_review_answer.py:160
 msgid "Student must be in a group to answer the test."
 msgstr "O estudante precisa está em um grupo para realizar a avaliação."
 
-#: views/peer_review_answer.py:158
+#: views/peer_review_answer.py:169
 msgid "You can't insert a score bigger than 100 or less than 0"
 msgstr "Você não pode inserir uma pontuação acima de 100 ou menor que 0"
 
-#: views/peer_review_answer.py:174
+#: views/peer_review_answer.py:185
 msgid "You already submit a review to this student."
 msgstr "Você já submeteu a revisão para esse estudante."
 
-#: views/peer_review_answer.py:199
+#: views/peer_review_answer.py:210
 msgid "Peer Review answered successfully."
 msgstr "Avaliação em pares respondida com sucesso."
 
-#: views/peer_review_answer.py:213
+#: views/peer_review_answer.py:224
 msgid "Peer Review Anonymously"
 msgstr "Avaliação em pares anônima."
 

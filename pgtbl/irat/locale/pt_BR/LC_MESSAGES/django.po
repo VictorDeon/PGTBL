@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-29 17:09-0200\n"
+"POT-Creation-Date: 2019-01-18 20:47-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,7 +70,7 @@ msgstr "Submissões iRAT"
 msgid "Edit iRAT date"
 msgstr "Editar data da avaliação iRAT"
 
-#: templates/irat/date.html:42 templates/irat/irat.html:149
+#: templates/irat/date.html:42 templates/irat/irat.html:153
 #: templates/irat/update.html:53
 msgid "Edit"
 msgstr "Editar"
@@ -89,7 +89,8 @@ msgstr "Nós temo 4 alternativas por questão: A, B, C ou D"
 
 #: templates/irat/info.html:14
 msgid "You will have 4 points to distribute in each question."
-msgstr "Você vai ter 4 pontos para distribuir entre as alternativas dessa questão."
+msgstr ""
+"Você vai ter 4 pontos para distribuir entre as alternativas dessa questão."
 
 #: templates/irat/info.html:15
 msgid "You can not enter more than 4 points in an option."
@@ -100,8 +101,8 @@ msgid ""
 "The question will only be considered if the sum of the points of the "
 "alternatives is between 0 and 4"
 msgstr ""
-"A questão vai somente ser considerada se a soma dos ponto das"
-"alternativas estiver entre 0 e 4"
+"A questão vai somente ser considerada se a soma dos ponto dasalternativas "
+"estiver entre 0 e 4"
 
 #: templates/irat/info.html:17 templates/irat/info.html:18
 #: templates/irat/info.html:19 templates/irat/info.html:20
@@ -124,43 +125,43 @@ msgstr "Foi inserido 3 pontos na alternativa A e 1 ponto na alternativa D."
 msgid "Insert 1 points in each option."
 msgstr "Foi inserido 1 ponto em cada alternativa."
 
-#: templates/irat/irat.html:14 templates/irat/irat.html:120
+#: templates/irat/irat.html:18 templates/irat/irat.html:124
 msgid "iRAT"
 msgstr "iRAT"
 
-#: templates/irat/irat.html:26
+#: templates/irat/irat.html:30
 msgid "Individual Readiness Assurance Test (iRAT)"
 msgstr "Avaliação de preparo individual (iRAT)"
 
-#: templates/irat/irat.html:43 templates/irat/result.html:41
+#: templates/irat/irat.html:47 templates/irat/result.html:41
 msgid "Course"
 msgstr "Curso"
 
-#: templates/irat/irat.html:50 templates/irat/result.html:48
+#: templates/irat/irat.html:54 templates/irat/result.html:48
 msgid "Discipline"
 msgstr "Disciplina"
 
-#: templates/irat/irat.html:57 templates/irat/result.html:55
+#: templates/irat/irat.html:61 templates/irat/result.html:55
 msgid "Teacher"
 msgstr "Professor"
 
-#: templates/irat/irat.html:90
+#: templates/irat/irat.html:94
 msgid "The date has not yet been defined"
 msgstr "A data não foi definida ainda."
 
-#: templates/irat/irat.html:101
+#: templates/irat/irat.html:105
 msgid "The date of the evaluation has not yet been defined"
 msgstr "A data da avaliação não foi definida ainda."
 
-#: templates/irat/irat.html:157
+#: templates/irat/irat.html:161
 msgid "Delete"
 msgstr "Deletar"
 
-#: templates/irat/irat.html:279
+#: templates/irat/irat.html:289
 msgid "Answer"
 msgstr "Responder"
 
-#: templates/irat/irat.html:285
+#: templates/irat/irat.html:303
 msgid "There is no questions in this session."
 msgstr "Não há questões nessa sessão."
 
@@ -204,23 +205,27 @@ msgstr "Notas"
 msgid "Edit iRAT"
 msgstr "Editar iRAT"
 
-#: views/irat_answer_question_view.py:37 views/irat_view.py:40
+#: views/irat_answer_question_view.py:37 views/irat_view.py:41
 msgid "You are not authorized to do this action."
 msgstr "Você não está autorizado a realizar essa ação."
 
-#: views/irat_answer_question_view.py:148
+#: views/irat_answer_question_view.py:122
+msgid "Only student can submit a question."
+msgstr "Somente estudantes pode submeter a questão"
+
+#: views/irat_answer_question_view.py:160
 msgid "Question answered successfully."
 msgstr "Questão respondida com sucesso."
 
-#: views/irat_answer_question_view.py:170
+#: views/irat_answer_question_view.py:182
 msgid "You can only enter from 0 to 4 points"
 msgstr "Você só pode inserir de 0 a 4 pontos"
 
-#: views/irat_answer_question_view.py:222
+#: views/irat_answer_question_view.py:234
 msgid "You can only submit the question once."
 msgstr "Você só pode submeter a questão uma única vez"
 
-#: views/irat_answer_question_view.py:229
+#: views/irat_answer_question_view.py:241
 msgid "You only have 4 points to distribute to the 4 alternatives."
 msgstr "Você só tem 4 pontos para distribuir entre as 4 alternativas."
 
@@ -247,7 +252,9 @@ msgstr "data da avaliação iRAT atualizada"
 
 #: views/irat_result_view.py:40
 msgid "The results only be available when gRAT is done."
-msgstr "Os resultados só serão disponibilizados quando a avaliação gRAT for finalizada."
+msgstr ""
+"Os resultados só serão disponibilizados quando a avaliação gRAT for "
+"finalizada."
 
 #: views/irat_update_view.py:43
 msgid "iRAT updated successfully."
