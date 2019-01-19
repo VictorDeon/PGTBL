@@ -1,28 +1,29 @@
-from django.conf.urls import url, include
+from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'', include('core.urls')),
-    url(r'', include('accounts.urls')),
-    url(r'', include('disciplines.urls')),
-    url(r'', include('groups.urls')),
-    url(r'', include('files.urls')),
-    url(r'', include('modules.urls')),
-    url(r'', include('questions.urls')),
-    url(r'', include('grades.urls')),
-    url(r'', include('peer_review.urls')),
-    url(r'', include('practical_test.urls')),
-    url(r'', include('exercises.urls')),
-    url(r'', include('irat.urls')),
-    url(r'', include('grat.urls')),
-    url(r'', include('rank.urls')),
-    url(r'', include('dashboard.urls')),
-    url(r'', include('appeals.urls')),
-    url(r'', include('forum.urls')),
-    url(r'', include('notification.urls'))
+    path('admin/', admin.site.urls),
+    path('i18n/', include('django.conf.urls.i18n')),
+    path('', include('core.urls')),
+    path('', include('accounts.urls')),
+    path('', include('disciplines.urls')),
+    path('', include('groups.urls')),
+    path('', include('files.urls')),
+    path('', include('modules.urls')),
+    path('', include('questions.urls')),
+    path('', include('grades.urls')),
+    path('', include('peer_review.urls')),
+    path('', include('practical_test.urls')),
+    path('', include('exercises.urls')),
+    path('', include('irat.urls')),
+    path('', include('grat.urls')),
+    path('', include('rank.urls')),
+    path('', include('dashboard.urls')),
+    path('', include('appeals.urls')),
+    path('', include('forum.urls')),
+    path('', include('notification.urls'))
 ]
 
 # While in development mode we will use relative URL for static and average

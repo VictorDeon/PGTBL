@@ -1,4 +1,5 @@
 # Python functions
+from django.utils import translation
 import hashlib
 import string
 import random
@@ -38,3 +39,12 @@ def order(self, queryset):
         queryset = queryset.order_by(ordered)
 
     return queryset
+
+# ----------------------- CHANGE LANGUAGE ------------------------------- #
+def change_pgtbl_language(request, language):
+    """
+    Change PGTBL Language
+    """
+
+    translation.activate(language)
+    request.session[translation.LANGUAGE_SESSION_KEY] = language

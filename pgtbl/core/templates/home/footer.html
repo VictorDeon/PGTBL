@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load static %}
 
 <!-- Footer -->
 <div class="footer-nav-black">
@@ -276,7 +277,7 @@
 
 <!-- Copyright -->
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-9">
     <!-- License -->
     <p class="copyright">
       <i class="fa fa-copyright"></i>
@@ -289,5 +290,30 @@
     <a href="https://github.com/VictorArnaud/PGTBL/graphs/contributors" target="_blank">
       {% trans 'Team members' %}
     </a>
+  </div>
+  <div class="col-sm-3">
+
+    <!-- Change language -->
+    <form action="{% url 'set_language' %}" method="post" class="pull-right">
+      {% csrf_token %}
+      <input type="hidden" name="text" value="{{redirect_to}}" />
+
+      <div class="input-group">
+        <select class="form-control" name="language">
+          {% get_available_languages as LANGUAGES %}
+          {% get_language_info_list for LANGUAGES as languages %}
+          {% for language in languages %}
+            <option value="{{language.code}}" {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+              {{language.name_local}}
+            </option>
+          {% endfor %}
+        </select>
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="fa fa-language"></i>
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>

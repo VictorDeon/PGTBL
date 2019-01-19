@@ -8,6 +8,7 @@ from core.email import send_email_template
 from core.generics import FormListView
 from core.forms import SendEmailForm
 from core.models import News
+from core.utils import change_pgtbl_language
 
 
 class HomePageView(FormListView):
@@ -43,6 +44,7 @@ class HomePageView(FormListView):
         context = super(HomePageView, self).get_context_data()
         # Insert home and logged variables to template
         context['home'] = True
+
         return context
 
     def form_valid(self, form):

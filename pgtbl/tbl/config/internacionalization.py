@@ -8,8 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 # Language selection
 LANGUAGES = [
     ('pt-br', _('Portuguese')),
-    ('en-us', _('English')),
-    ('fr-ca', _('French'))
+    ('en', _('English'))
 ]
 
 # Language code for this installation. All choices can be found here:
