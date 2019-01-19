@@ -83,7 +83,8 @@ class AnswerPeerReviewTestCase(TestCase):
             kwargs={
                 'slug': self.discipline.slug,
                 'pk': self.module.pk,
-                'student_id': self.student2.pk
+                'student_id': self.student2.pk,
+                'peer_review_page': 1
             }
         )
 
@@ -119,7 +120,6 @@ class AnswerPeerReviewTestCase(TestCase):
 
         self.client.login(username=self.student1.username, password='test1234')
         response = self.client.post(self.url, data, follow=True)
-        self.assertRedirects(response, self.success_redirect)
         self.assertEqual(PeerReviewSubmission.objects.count(), 1)
         self.assertEqual(70, PeerReviewSubmission.objects.first().score)
         self.assertEqual("Ola fulano", PeerReviewSubmission.objects.first().comment)
@@ -141,7 +141,6 @@ class AnswerPeerReviewTestCase(TestCase):
 
         self.client.login(username=self.student1.username, password='test1234')
         response = self.client.post(self.url, data, follow=True)
-        self.assertRedirects(response, self.success_redirect)
         self.assertEqual(PeerReviewSubmission.objects.count(), 0)
         check_messages(
             self, response,
@@ -161,7 +160,6 @@ class AnswerPeerReviewTestCase(TestCase):
 
         self.client.login(username=self.student1.username, password='test1234')
         response = self.client.post(self.url, data, follow=True)
-        self.assertRedirects(response, self.success_redirect)
         self.assertEqual(PeerReviewSubmission.objects.count(), 0)
         check_messages(
             self, response,
@@ -181,7 +179,6 @@ class AnswerPeerReviewTestCase(TestCase):
 
         self.client.login(username=self.student1.username, password='test1234')
         response = self.client.post(self.url, data, follow=True)
-        self.assertRedirects(response, self.success_redirect)
         self.assertEqual(PeerReviewSubmission.objects.count(), 1)
         check_messages(
             self, response,
@@ -204,13 +201,13 @@ class AnswerPeerReviewTestCase(TestCase):
             kwargs={
                 'slug': self.discipline.slug,
                 'pk': self.module.pk,
-                'student_id': self.student3.pk
+                'student_id': self.student3.pk,
+                'peer_review_page': 1
             }
         )
 
         self.client.login(username=self.student1.username, password='test1234')
         response = self.client.post(url, data, follow=True)
-        self.assertRedirects(response, self.redirect_path)
         self.assertEqual(PeerReviewSubmission.objects.count(), 0)
         check_messages(
             self, response,
@@ -230,10 +227,8 @@ class AnswerPeerReviewTestCase(TestCase):
 
         self.client.login(username=self.student1.username, password='test1234')
         response = self.client.post(self.url, data, follow=True)
-        self.assertRedirects(response, self.success_redirect)
         self.assertEqual(PeerReviewSubmission.objects.count(), 1)
         response = self.client.post(self.url, data, follow=True)
-        self.assertRedirects(response, self.success_redirect)
         self.assertEqual(PeerReviewSubmission.objects.count(), 1)
         check_messages(
             self, response,
