@@ -1,5 +1,5 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bcbcac621e1847e7af8e61bc202a03c6)](https://www.codacy.com/app/VictorArnaud/PGTBL?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=VictorArnaud/PGTBL&amp;utm_campaign=Badge_Grade)
-[![Build Master Status](https://travis-ci.org/VictorArnaud/PGTBL.svg?branch=master)](https://travis-ci.org/VictorArnaud/PGTBL)
+[![Build Status](https://travis-ci.org/VictorDeon/PGTBL.svg?branch=master)](https://travis-ci.org/VictorDeon/PGTBL)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/bcbcac621e1847e7af8e61bc202a03c6)](https://www.codacy.com/app/VictorArnaud/PGTBL?utm_source=github.com&utm_medium=referral&utm_content=VictorArnaud/PGTBL&utm_campaign=Badge_Coverage)
 
 # Documentação do PGTBL: Plataforma de Gerenciamento da metodologia ativa de aprendizado Team Based Learning.
