@@ -105,6 +105,10 @@ ENV/
 # Media and static files
 mediafiles
 staticfiles
+.ignore
+.bash_history
+.ipython
+
 
 # Migrations and DB
 pgtbl/db.sqlite3

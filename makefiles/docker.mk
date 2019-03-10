@@ -1,37 +1,35 @@
 # DOCKER DEPLOY ------------------------------------------------
-file := "docker-compose.yml"
-
 up:
 	# Create and start containers
-	sudo docker-compose -f ${file} up -d
+	sudo docker-compose up -d
 
 build:
 	# Rebuild the docker compose
-	sudo docker-compose -f ${file} build
+	sudo docker-compose build
 
 restart:
 	# Restart services
-	sudo docker-compose -f ${file} restart
+	sudo docker-compose restart
 
 logs:
 	# View output from containers
-	sudo docker-compose -f ${file} logs -f -t
+	sudo docker-compose logs -f -t
 
 start:
 	# Start services
-	sudo docker-compose -f ${file} start
+	sudo docker-compose start
 
 stop:
 	# Stop services
-	sudo docker-compose -f ${file} stop
+	sudo docker-compose stop
 
 ps:
 	# List all running containers
-	sudo docker-compose -f ${file} ps
+	sudo docker-compose ps
 
 down:
 	# Stop and Remove all containers
-	sudo docker-compose -f ${file} down
+	sudo docker-compose down
 
 help:
 	# Help of docker-compose commands
@@ -43,4 +41,4 @@ images:
 
 exec:
 	# Get in the bash of tlb container
-	sudo docker exec -it tbl bash
+	sudo docker-compose exec pgtbl bash

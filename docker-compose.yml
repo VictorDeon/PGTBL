@@ -1,13 +1,44 @@
 version: '3'
-# Development enviroment
 services:
-  tbl-local:
-    image: victorhad/tbl:local
-    container_name: tbl-local
+  nginx:
+    image: victorhad/tbl:nginx
+    container_name: tbl-nginx
     build:
       context: .
-      dockerfile: ./images/local/Dockerfile
-    volumes:
-      - .:/home/developer/
+      dockerfile: ./dockers/nginx/Dockerfile
     ports:
-      - "8000:8080"
+      - "443:8000"
+      - "80:80"
+    volumes:
+      - ./.ignore/nginx:/var/log/nginx
+    depends_on:
+      - pgtbl
+
+  pgtbl:
+    image: victorhad/pgtbl:latest
+    container_name: pgtbl
+    build:
+      context: .
+      dockerfile: ./dockers/production/Dockerfile
+    environment:
+      - POSTGRES_NAME=pgtbl_db
+      - POSTGRES_USER=pgtbl
+      - POSTGRES_PASSWORD=pgtbl
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - CODACY_PROJECT_TOKEN=2856565478ce4400a4cd4731950bfb89
+    command: "./dockers/production/prod.sh"
+    volumes:
+      - .:/home/pgtbl/
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    container_name: pgtbl-db
+    environment:
+      - POSTGRES_DB=pgtbl_db
+      - POSTGRES_USER=pgtbl
+      - POSTGRES_PASSWORD=pgtbl
+    volumes:
+      - ./.ignore/postgres/postgres:/var/lib/postgresql/data

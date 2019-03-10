@@ -1,6 +1,6 @@
 exclude_paths:
   - 'docs/**'
-  - 'images/**'
+  - 'dockers/**'
   - 'makefiles/**'
   - 'scripts/**'
   - 'prototype/**'

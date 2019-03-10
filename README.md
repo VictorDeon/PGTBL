@@ -52,4 +52,4 @@ Conclui-se, assim, um módulo ou sessão TBL.
 
 ## Documentação
 
-Documentação: https://victorarnaud.github.io/PGTBL/ ou https://github.com/VictorArnaud/PGTBL/wiki
+Documentação: https://victordeon.github.io/PGTBL/ ou https://github.com/VictorDeon/PGTBL/wiki

@@ -1,6 +1,6 @@
 # Continuos deploy
 git fetch origin
-echo y | sudo docker-compose -f docker-compose.deploy.yml rm --stop tbl-nginx
-echo y | sudo docker-compose -f docker-compose.deploy.yml rm --stop tbl
+echo y | sudo docker-compose rm --stop nginx
+echo y | sudo docker-compose rm --stop pgtbl
 git pull origin master
-sudo docker-compose -f docker-compose.deploy.yml up -d --build
+sudo docker-compose up -d --build
