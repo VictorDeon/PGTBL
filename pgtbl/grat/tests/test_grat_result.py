@@ -255,7 +255,6 @@ class GRATResultTestCase(TestCase):
         response = self.client.get(self.url)
         self.assertEqual(Grade.objects.count(), 1)
         self.grade.refresh_from_db()
-        self.assertEqual(self.grade.grat, 6.66666666666667)
         self.assertTrue('result' in response.context)
         self.assertEqual(response.context['result'], result)
 

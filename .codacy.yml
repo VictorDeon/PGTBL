@@ -1,4 +1,6 @@
 exclude_paths:
+  - '**.md'
+  - '**.yml'
   - 'docs/**'
   - 'dockers/**'
   - 'makefiles/**'
@@ -10,4 +12,6 @@ exclude_paths:
   - 'pgtbl/**/migrations/**'
   - 'pgtbl/**/static/**'
   - 'pgtbl/**/templates/**'
+  - 'pgtbl/**/fixtures/**'
+  - 'pgtbl/**/apps.py'
   - 'pgtbl/**/__init__.py'

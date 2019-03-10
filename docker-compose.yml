@@ -2,7 +2,7 @@ version: '3'
 services:
   nginx:
     image: victorhad/tbl:nginx
-    container_name: tbl-nginx
+    container_name: pgtbl-nginx
     build:
       context: .
       dockerfile: ./dockers/nginx/Dockerfile
@@ -26,7 +26,6 @@ services:
       - POSTGRES_PASSWORD=pgtbl
       - POSTGRES_HOST=db
       - POSTGRES_PORT=5432
-      - CODACY_PROJECT_TOKEN=2856565478ce4400a4cd4731950bfb89
     command: "./dockers/production/prod.sh"
     volumes:
       - .:/home/pgtbl/
