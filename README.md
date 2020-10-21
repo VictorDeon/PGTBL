@@ -11,6 +11,12 @@ Este repositório tem por objetivo abrigar os documentos de engenharia de requis
 
 ![logo](https://user-images.githubusercontent.com/14116020/48957651-17711600-ef41-11e8-9500-59c0c95fb089.png)
 
+<div align="center">
+ 
+## Equipe
+
+</div>
+
 |     Membro         |Matrícula | Github |
 |--------------------|----------|--------|
 | Rafaella Junqueira | 16/0142628 | [@RafaellaJunqueira](https://github.com/RafaellaJunqueira) |
@@ -19,4 +25,4 @@ Este repositório tem por objetivo abrigar os documentos de engenharia de requis
 
 ## Documentação
 
-Documentação: https://victordeon.github.io/PGTBL/ ou https://github.com/VictorDeon/PGTBL/wiki
+A documentação original da plataforma pode ser encontrada no [Pages oficial](https://victordeon.github.io/PGTBL/) ou pela [Wiki](https://github.com/VictorDeon/PGTBL/wiki) do TCC do aluno Victor Deon.
