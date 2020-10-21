@@ -6,10 +6,11 @@
 # Projeto de requisitos - PGTBL
 
 </div>
+<div align="center">
 
 ![logo](https://user-images.githubusercontent.com/14116020/48957651-17711600-ef41-11e8-9500-59c0c95fb089.png)
 
-<div align="center">
+</div>
 
 ## Sobre o projeto
 Este repositório tem por objetivo abrigar os documentos de engenharia de requisitos que serão elaborados pelo Grupo 3 da disciplina Requisitos de Software. O intuito dessa documentação é identificar novos requisitos para o projeto **PGTBL, Plataforma de Gerenciamento da metodologia ativa de aprendizado Team Based Learning**.
