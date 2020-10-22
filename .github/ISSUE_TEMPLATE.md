@@ -7,9 +7,8 @@ about: Template padrão para criação das issues comuns
 Descrever issue brevemente, inserindo informações necessárias para o entendimento.
 
 ### Requisitos de aceitação:
-Descrever o que a issue precisa cumprir para ser considerada finalizada.
-
-- 
+- O documento deve conter tabela de versionamento
+- O documento deve conter bibliografia
 
 ### Tarefas:
-- [ ]  
+- [ ] Atualizar planejamento do projeto com as técnicas utilizadas (introspecção e moscow)
