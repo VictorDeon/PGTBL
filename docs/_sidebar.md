@@ -15,6 +15,5 @@
     - [Backlog do produto](/pages/backlog.md)
         - [Épicos](/pages/epicos.md)
         - [Histórias de usuário](/pages/historia-usuario.md)
-- [**Pós-rastreabilidade**](/pages/)
-    - [Backward-From](/pages/)
-    - [Forward-From](/pages/)
+- [**Pós-rastreabilidade**](/pages/backward.md)
+    - [Backward-From](/pages/backward.md)
