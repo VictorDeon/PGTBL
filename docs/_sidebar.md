@@ -1,5 +1,5 @@
 - [**Projeto**](/pages/proposta.md)
     - [Proposta de projeto](/pages/proposta.md)
-    - [Heatmap](/pages/heatmap.md)
     - [Metodologia](/pages/metodologia.md)
+    - [Heatmap](/pages/heatmap.md)
 - [**Pré-rastreabilidade**](/pages/)

@@ -3,7 +3,7 @@
 #### Histórico de Versão
 |    Data    | Versão | Descrição            | Autor(es)       |
 | :--------: | :----: | :------------------: | :-------------: |
-| 12.10.2020 |  0.2   | Criação do documento | Rafaella Junqueira |
+| 12.10.2020 |  0.1   | Criação do documento | Rafaella Junqueira |
 
 <div align="justify">
 
