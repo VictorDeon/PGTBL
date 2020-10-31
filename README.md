@@ -34,7 +34,7 @@ git clone https://github.com/RafaellaJunqueira/PGTBL.git
 ```
 
 **2. Construir o contêiner**
-Certifique-se de estar dentro da pasta PGTBL e, então, execute os comandos para construir e subir o contêiner, respectivamente
+<br> Certifique-se de estar dentro da pasta PGTBL e, então, execute os comandos para construir e subir o contêiner, respectivamente
 ```
 sudo docker-compose up –build
 ```
@@ -43,7 +43,7 @@ sudo docker-compose up
 ```
 
 **3. Acessar a plataforma**
-Após ccontruído e levantado o contêiner, acesse a plataforma PGTBL digitando o seguinte localhost na aba do navegador
+<br> Após construído e levantado o contêiner, acesse a plataforma PGTBL digitando o seguinte localhost na aba do navegador
 ```
 http://127.0.0.1/
 ```
