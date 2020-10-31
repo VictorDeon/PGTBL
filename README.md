@@ -25,6 +25,29 @@ Este repositório tem por objetivo abrigar os documentos de engenharia de requis
 | Ingrid Soares | | [@ingrdst](https://github.com/ingrdst) |
 | João Victor de Oliveira Matos| 17/0013987 |[@joao15victor08](https://github.com/joao15victor08)|
 
+## Instalação do ambiente
+Para rodar a plataforma em sua máquina local, siga os seguintes passos:
+
+**1. Clonar o repositório**
+```
+git clone https://github.com/RafaellaJunqueira/PGTBL.git
+```
+
+**2. Construir o contêiner**
+Certifique-se de estar dentro da pasta PGTBL e, então, execute os comandos para construir e subir o contêiner, respectivamente
+```
+sudo docker-compose up –build
+```
+```
+sudo docker-compose up
+```
+
+**3. Acessar a plataforma**
+Após ccontruído e levantado o contêiner, acesse a plataforma PGTBL digitando o seguinte localhost na aba do navegador
+```
+http://127.0.0.1/
+```
+
 ## Documentação
 
 A documentação original da plataforma pode ser encontrada no [Pages oficial](https://victordeon.github.io/PGTBL/) ou pela [Wiki](https://github.com/VictorDeon/PGTBL/wiki) do TCC do aluno Victor Deon.

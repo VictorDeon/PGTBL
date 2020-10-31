@@ -16,4 +16,3 @@
         - [Épicos](/pages/modelagem/epicos.md)
         - [Histórias de usuário](/pages/modelagem/historia-usuario.md)
 - [**Pós-rastreabilidade**](/pages/pos-rastreabilidade/backward.md)
-    - [Backward-From](/pages/pos-rastreabilidade/backward.md)
