@@ -64,6 +64,7 @@ Este storytelling tem o objetivo de identificar como um usuário em perfil de pr
 |:-------------------|:----------|:--------------------------|
 | João Victor Matos  | Narração  | Membro da equipe/ Usuário |
 | Rafaella Junqueira | Relatório | Membro da equipe          |
+
 **Resumo da narração**
 <!-- Coloque aqui sua narração -->
 <!-- Não esquecer de seguir a numeração anterior -->
