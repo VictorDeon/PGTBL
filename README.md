@@ -19,11 +19,11 @@ Este repositório tem por objetivo abrigar os documentos de engenharia de requis
 
 </div>
 
-|     Membro         |Matrícula | Github |
-|--------------------|----------|--------|
-| Rafaella Junqueira | 16/0142628 | [@RafaellaJunqueira](https://github.com/RafaellaJunqueira) |
-| Ingrid Soares | | [@ingrdst](https://github.com/ingrdst) |
-| João Victor de Oliveira Matos| 17/0013987 |[@joao15victor08](https://github.com/joao15victor08)|
+| Membro                        | Matrícula  | Github                                                     |
+|-------------------------------|------------|------------------------------------------------------------|
+| Rafaella Junqueira            | 16/0142628 | [@RafaellaJunqueira](https://github.com/RafaellaJunqueira) |
+| Ingrid Soares                 | 160125162  | [@ingrdst](https://github.com/ingrdst)                     |
+| João Victor de Oliveira Matos | 17/0013987 | [@joao15victor08](https://github.com/joao15victor08)       |
 
 ## Instalação do ambiente
 Para rodar a plataforma em sua máquina local, siga os seguintes passos:
@@ -36,7 +36,7 @@ git clone https://github.com/RafaellaJunqueira/PGTBL.git
 **2. Construir o contêiner**
 Certifique-se de estar dentro da pasta PGTBL e, então, execute os comandos para construir e subir o contêiner, respectivamente
 ```
-sudo docker-compose up –build
+sudo docker-compose up --build
 ```
 ```
 sudo docker-compose up

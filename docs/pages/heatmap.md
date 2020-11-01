@@ -7,3 +7,8 @@ O Heatmap é um mapa de calor utilizado neste projeto serve para representar vis
     <br> 
     Fonte: Elaboração própria
 </figcaption>
+
+#### Histórico de Versão
+| Data       | Versão | Descrição                  | Autor(es)          |
+|:----------:|:------:|:--------------------------:|:------------------:|
+| 31.10.2020 | 0.1    | Criação do documento       | Rafaella Junqueira |
