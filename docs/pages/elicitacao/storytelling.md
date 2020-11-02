@@ -29,8 +29,8 @@ Após uma série de tentativas para definir um nome para a "sala de aula", desco
 
 **Requisitos elicitados**
 
-| ID         | Descrição           | Prioridade     |
-|:-----------|:--------------------|:--------------:|
+| ID   | Descrição           | Prioridade     |
+|:-----|:--------------------|:--------------:|
 | ST01 | O sistema deve ser capaz de salvar temporariamente os dados digitados pelo usuário quando estes estiverem dentro dos padrões | Must |
 | ST02 | O sistema deve indicar as restrições nos campo de informação no momento em que o usuário inserir os dados | Should |
 | ST03 | O sistema deve disponibilizar a rastreabilidade dos caminhos percorridos pelo usuário para que este possa se localizar a qualquer momento na página  | Should |
@@ -47,17 +47,17 @@ Este storytelling tem o objetivo de identificar como um usuário em perfil de pr
 
 **Resumo da narração**
 
-O usuário ao utilizar a plataforma com perfil de professor, após conseguir criar uma disciplina e criar uma sessão TBl, ao tentar criar um exercicio percebeu que não possui uma indicação clara de onde deveria ir para criar, apenas um botão com um sinal de mais, também não é informado quais campos são obrigatórios e quais o limites deles.     
+O usuário ao utilizar a plataforma com perfil de professor, após conseguir criar uma disciplina e criar uma sessão TBL, ao tentar criar um exercicio percebeu que não possuia uma indicação clara sobre o local na plataforma onde são criadas as exercícios. O que existe é apenas um botão com um sinal de mais e, mesmo após acessada a área correta, não são informados quais campos são obrigatórios e as restrições de limite de dados exigidas por cada campo.     
 
-Também foi observado que ao criar um exercício sem marcar a alternativa correta o sistema avisa esse erro, porém já nao fica mais disponivel a opção de marcar qual alternativa esta correta, obrigando ao usuário ter que voltar para a lista de exercícios e clicar em criar outro, perdendo as informações anteriores. 
+Também foi observado que ao criar um exercício sem marcar a alternativa correta o sistema avisa esse erro, porém, a opção de marcar qual alternativa esta correta torna-se indisponível logo em seguida, obrigando ao usuário ter que voltar para a lista de exercícios e reiniciar o processo de criação de um exercício, perdendo as informações anteriormente inseridas. 
 
 
 **Requisitos elicitados**
 
-| ID         | Descrição           | Prioridade     |
-|:-----------|:--------------------|:--------------:|
-| ST04       | O sistema deve informar quais campos são obrigatórios | Should |
-| ST05 | Indicar com mais clareza o botão de criar exercícios | Could |
+| ID   | Descrição                                             | Prioridade     |
+|:-----|:------------------------------------------------------|:--------------:|
+| ST04 | O sistema deve informar quais campos são obrigatórios | Should         |
+| ST05 | Indicar com mais clareza o botão de criar exercícios  | Could          |
 | ST06 | O sistema deve permitir selecionar qual é a alternativa correta mesmo após erro de não ter selecionado antes | Should |
 
 ## Storytelling 3 - Criação de turma
