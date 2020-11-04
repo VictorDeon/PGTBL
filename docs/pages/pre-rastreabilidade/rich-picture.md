@@ -11,11 +11,16 @@ Foi utilizada a ferramenta <a href="https://app.diagrams.net/">Draw IO</a> para 
 
 ## 3. RP01
 
-Rich Picture que descreve funcionalidades do perfil de professor
+Rich Picture que descreve as principais funcionalidades
 
-<img src="./_media/rich_picture0.jpg">
+<img src="./_media/RC_geral.jpg">
 
 
+## 4. RP02
+
+Rich Picture que descreve a tarefa de criação de uma sessão TBl
+
+<img src="../RC_criar_sessao_TBL.jpg">
 
 </div>
 
