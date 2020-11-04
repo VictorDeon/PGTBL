@@ -1,5 +1,6 @@
 - [**Projeto**](/pages/proposta.md)
     - [Proposta de projeto](/pages/proposta.md)
+    - [Proposta de projeto](/pages/planejamento-entregas.md)
     - [Metodologia](/pages/metodologia.md)
     - [Heatmap](/pages/heatmap.md)
 - [**Pré-rastreabilidade**](/pages/pre-rastreabilidade/rich-picture.md)
