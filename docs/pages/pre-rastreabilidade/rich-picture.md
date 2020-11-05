@@ -25,8 +25,7 @@ Rich Picture que descreve a tarefa de criação de uma sessão TBL.
 </div>
 
 ## Bibliografia
-
-
+MONK, A; HOWARD, S. **Methods and Tools**. University of York York,, United Kindon, 1998.
 
 #### Histórico de Versão
 | Data       | Versão | Descrição                  | Autor(es)          |
