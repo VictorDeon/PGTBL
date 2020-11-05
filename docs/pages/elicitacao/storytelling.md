@@ -116,4 +116,4 @@ PMBOK, GUIA. **Um guia do conjunto de conhecimentos em gerenciamento de projetos
 |:----------:|:------:|:--------------------------:|:------------------:|
 | 31.10.2020 | 0.1    | Criação do documento       | Rafaella Junqueira |
 | 01.11.2020 | 0.2    | Adição storytelling 2      | João Victor |
-| 01.11.2020 | 0.3    | Adição storytelling 4      | João Victor |
+| 01.11.2020 | 0.3    | Adição storytelling 4      | Ingrid Soares|
