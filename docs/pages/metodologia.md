@@ -1,10 +1,5 @@
 # <center>Metodologia do projeto e Processos
 
-#### Histórico de Versão
-|    Data    | Versão | Descrição            | Autor(es)       |
-| :--------: | :----: | :------------------: | :-------------: |
-| 12.10.2020 |  0.1   | Criação do documento | Rafaella Junqueira |
-
 <div align="justify">
 
 ## 1. Introdução
@@ -144,3 +139,8 @@ Durante a elaboração desse documento, alguns documentos de metodologia de outr
 * [Documento de metodologia do projeto Acacia](https://fga-eps-mds.github.io/2019.2-Acacia/#/project_methodology)
   
 * [Documento de metodologia do projeto BCE](https://interacao-humano-computador.github.io/2020.1-BCE/#/pages/ponto_de_controle_1/metodologia_do_projeto)
+
+#### Histórico de Versão
+|    Data    | Versão | Descrição            | Autor(es)       |
+| :--------: | :----: | :------------------: | :-------------: |
+| 12.10.2020 |  0.1   | Criação do documento | Rafaella Junqueira |

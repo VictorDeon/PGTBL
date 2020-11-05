@@ -1,9 +1,5 @@
 # <center>Proposta do projeto
 
-#### Histórico de Versão
-|    Data    | Versão | Descrição            | Autor(es)       |
-| :--------: | :----: | :------------------: | :-------------: |
-| 21.10.2020 |  0.1   | Criação do documento | Rafaella Junqueira |
 
 <div align="justify">
 
@@ -34,3 +30,8 @@ A abordagem escolhida pelo grupo foi a abordagem ágil e, para isso, a principal
 
 ## 7. Conclusão
 O grupo utilizará o projeto inicial do aluno Victor Arnauld, referente ao desenvolvimento da plataforma PGTBL, como insumo para o projeto de requisitos. Ao final, pretende-se implementar funcionalidades como a capacidade de consolidar relatórios dos professores em planilhas Excel e melhorar o design da plataforma. Os objetivos específicos ainda se encontram em processo de lapidação por parte da equipe.  
+
+#### Histórico de Versão
+|    Data    | Versão | Descrição            | Autor(es)       |
+| :--------: | :----: | :------------------: | :-------------: |
+| 21.10.2020 |  0.1   | Criação do documento | Rafaella Junqueira |
