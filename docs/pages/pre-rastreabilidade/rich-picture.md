@@ -13,14 +13,24 @@ As Rich Pictures são uma forma de relacionar as experiências e percepções de
 
 Rich Picture que descreve as principais funcionalidades da plataforma.
 
-<img src="./_media/RC_geral.jpg">
+<img src="_media/RC_geral.jpeg">
+<figcaption align='center'>
+    <b>Figura 1 - Rich Picture de principais funcionalidades.</b>
+    <br> 
+    Fonte: Elaboração própria
+</figcaption>
 
 
 ## 4. RP02
 
 Rich Picture que descreve a tarefa de criação de uma sessão TBL.
 
-<img src="../RC_criar_sessao_TBL.jpg">
+<img src="_media/RC_criar_sessao_TBL.jpg">
+<figcaption align='center'>
+    <b>Figura 2 - Rich Picture de criação de tarefas TBL.</b>
+    <br> 
+    Fonte: Elaboração própria
+</figcaption>
 
 </div>
 
