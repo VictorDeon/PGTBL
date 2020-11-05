@@ -36,7 +36,7 @@ Após uma série de tentativas para definir um nome para a "sala de aula", desco
 | ST03 | O sistema deve disponibilizar a rastreabilidade dos caminhos percorridos pelo usuário para que este possa se localizar a qualquer momento na página  | Should |
 
 ## Storytelling 2 - Criação de exercícios na Seção TBL
-Este storytelling tem o objetivo de identificar como um usuário em perfil de professor realiza as tarefas para alcançar o objetivo de criar um exercício na seção TBL.
+Este storytelling tem o objetivo de identificar como um usuário em perfil de professor realiza as tarefas para alcançar o objetivo de criar um exercício na seção TBL dentro da disciplina.
 
 **Rastreabilidade**
 
@@ -60,8 +60,8 @@ Também foi observado que ao criar um exercício sem marcar a alternativa corret
 | ST05 | Indicar com mais clareza o botão de criar exercícios  | Could          |
 | ST06 | O sistema deve permitir selecionar qual é a alternativa correta mesmo após erro de não ter selecionado antes | Should |
 
-## Storytelling 3 - Criação de turma
-Este storytelling tem o objetivo de identificar como um usuário em perfil de professor realiza as tarefas para alcançar o objetivo de criação de uma turma.
+## Storytelling 3 - Criação de grupos
+Este storytelling tem o objetivo de identificar como um usuário em perfil de professor realiza as tarefas para alcançar o objetivo de criação de grupos de estudo dentro da disciplina.
 
 **Rastreabilidade**
 
@@ -71,18 +71,37 @@ Este storytelling tem o objetivo de identificar como um usuário em perfil de pr
 | João Victor Matos  | Relatório | Membro da equipe          |
 
 **Resumo da narração**
-<!-- Coloque aqui sua narração -->
-<!-- Não esquecer de seguir a numeração anterior -->
-<!-- Coloque seu nome na tabela de versionamento ao final -->
+Após criada uma disciplina, o usuário com maior familiaridade ao sistema, tentou criar um grupo e obteve sucesso, porém, ao clicar acidentalmente em "editar", não conseguiu cancelar a operação e precisou retornar para a página anterior utilizando a seta do navegador. Houve gasto de certo tempo para compreender o funcionamento do botão dito como "provide" e notou-se, então, que o clique resulta tanto na disponibilização como indisponibilização dos grupos para os alunos. A maneira como a ação é apresentada causou confusão por não apresentar mudança muito visível e não necessitar confirmar a operação, de tal forma que o usuário deixou o grupo indisponível sem querer.
+
+
 **Requisitos elicitados**
 
-| ID         | Descrição           | Prioridade     |
-|:-----------|:--------------------|:--------------:|
-| ST0X       |                     |                |
+| ID    | Descrição           | Prioridade     |
+|:------|:--------------------|:--------------:|
+| ST07  | O sistema deve oferecer campo de ajuda ao longo da página | Should |
+| ST08  | O sistema deve permitir que o usuário cancele uma operação indesejada | Must |
 
+## Storytelling 4 - Adição de arquivos
+Este storytelling tem o objetivo de identificar como um usuário em perfil de professor realiza as tarefas para alcançar o objetivo de adicionar um arquivo de estudo dentro de uma disciplina cadastrada.
 
+**Rastreabilidade**
 
+| Nome               | Papel     | Observação                |
+|:-------------------|:----------|:--------------------------|
+| Ingrid Soares      | Narração  | Membro da equipe/ Usuário |
+| Rafaella Junqueira | Relatório | Membro da equipe          |
 
+**Resumo da narração**
+O usuário ao tentar inserir um arquivo para um disciplina teve sua tentativa recusada por não ter especificado o campo de "tipo de arquivo", assim, teve que recomeçar todo o processo. A ação precisou passar por três tentativas para conseguir ser efetivada pois as restrições dos campos não foi especificada no início do processo, apenas quando a ação tentava ser concluida. A inserção do tipo de arquivo, porém, torna-se desnecessária pois ao inserir o tipo incorreto de arquivo, ainda assim ele foi carregado com sucesso. A opção de cancelamento da operação também não foi apresentada ao usuário.
+
+**Requisitos elicitados**
+
+| ID    | Descrição           | Prioridade     |
+|:------|:--------------------|:--------------:|
+| ST09  | O sistema deve ser capaz de salvar temporariamente os dados digitados pelo usuário quando estes estiverem dentro dos padrões | Must |
+| ST10  | O sistema deve indicar as restrições nos campo de informação no momento em que o usuário inserir os dados | Should |
+| ST11  | O sistema deve reconhecer a extensão do arquivo inserido | Could |
+| ST12  | O sistema deve permitir que o usuário cancele uma operação indesejada | Must |
 
 </div>
 
@@ -96,4 +115,5 @@ PMBOK, GUIA. **Um guia do conjunto de conhecimentos em gerenciamento de projetos
 | Data       | Versão | Descrição                  | Autor(es)          |
 |:----------:|:------:|:--------------------------:|:------------------:|
 | 31.10.2020 | 0.1    | Criação do documento       | Rafaella Junqueira |
-| 01.11.2020 | 0.2    | Adição storytelling 2       | João Victor |
+| 01.11.2020 | 0.2    | Adição storytelling 2      | João Victor |
+| 01.11.2020 | 0.3    | Adição storytelling 4      | João Victor |
