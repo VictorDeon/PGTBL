@@ -100,7 +100,7 @@ O usuário ao tentar inserir um arquivo para um disciplina teve sua tentativa re
 |:------|:--------------------|:--------------:|
 | ST09  | O sistema deve ser capaz de salvar temporariamente os dados digitados pelo usuário quando estes estiverem dentro dos padrões | Must |
 | ST10  | O sistema deve indicar as restrições nos campo de informação no momento em que o usuário inserir os dados | Should |
-| ST11  | O sistema deve reconhecer a extensão do arquivo inserido | Could |
+| ST11  | O sistema deve reconhecer a extensão de um arquivo inserido | Could |
 | ST12  | O sistema deve permitir que o usuário cancele uma operação indesejada | Must |
 
 </div>
