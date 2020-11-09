@@ -9,9 +9,10 @@ O objetivo deste projeto de requisitos é complementar a plataforma, elicitando 
 
 ## 2. Práticas utilizadas
 A engenharia de requisitos está dividida em 5 (cinco) etapas principais: pré-rastreabilidade, elicitação, análise, modelagem e pós-rastreabilidade, e para cada etapa, algumas técnicas serão utilizadas.
+
 * **Pré-rastreabilidade:** com o intuito de manter a ligação entre os requisitos e os interessados, serão utilizadas *rich pictures*, uma técnica que consiste em desenhos que podem ou não ser feitos à mão livre e que faz o criador compreender bem o problema e expressá-lo em forma de imagem;
 
-* **Elicitação:** para elicitar os requisitos foram escolhidas duas técnicas, a criação de *storytellings*, que permitem a compreensão do contexto de uso de acordo com a experiência narrada por um usuário. E também foi escolhida a técnica de *introspecção*, que visa compreender quais propriedades o sistema deve possuir para que seja um sucesso;
+* **Elicitação:** para elicitar os requisitos foram escolhidas duas técnicas, a criação de *storytellings*, que permitem a compreensão do contexto de uso de acordo com a experiência narrada por um usuário. E também foi escolhida a técnica de *introspecção*, que visa compreender quais propriedades o sistema deve possuir para que seja um sucesso. Ainda, os requisitos elicitados terão as prioridades definidas de acordo com a técnica MoSCoW (*Must, Should, Could, Won't*);
 
 * **Análise:** neste momento os requisitos levantados na fase anterior serão *verificados e validados*, ou seja, será analisado se soram elicitados os requisitos corretos e da maneira correta;
 
