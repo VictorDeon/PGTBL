@@ -8,6 +8,8 @@
     - [Storytelling](/pages/elicitacao/storytelling.md)
     <!-- - [Introspecção](/pages/elicitacao/introspeccao.md) -->
 - [**Análise de Requisitos**](/pages/analise/validar-storytelling.md)
+    - [Storytelling](/pages/analise/validar-storytelling.md)
+    - [Rich Pictures](/pages/analise/validar-rich-picture.md)
 
 <!-- - [**Modelagem**](/pages/modelagem/lexicos.md)
     - [Léxicos](/pages/modelagem/lexicos.md)
