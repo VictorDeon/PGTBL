@@ -5,7 +5,7 @@
 ## 1. Projeto
 Este projeto de requisitos é baseado na plataforma PGTBL desenvolvida como projeto de conclusão de curso do ex-aluno Victor Arnauld. A plataforma visa oferecer um serviço de ensino aprendizagem diferente do convencional, onde o aluno possuirá maior autonomia sobre seu aprendizado, conforme maiores detalhes podem ser encontrados na [proposta do projeto](/pages/proposta.md).
 
-O objetivo deste projeto de requisitos é complementar a plataforma, elicitando os requisitos relacionados à área de atuação na plataforma do usuário com perfil de professor. Assim, será possível verificar qual funcionalidade foi levantada mas não se encontra implementada e então sugerir melhorias para a plataforma.
+O objetivo deste projeto de requisitos é complementar a plataforma, elicitando os requisitos relacionados à área de atuação na plataforma do usuário com perfil de [professor](#l8-teacher). Assim, será possível verificar qual funcionalidade foi levantada mas não se encontra implementada e então sugerir melhorias para a plataforma.
 
 ## 2. Práticas utilizadas
 A engenharia de requisitos está dividida em 5 (cinco) etapas principais: pré-rastreabilidade, elicitação, análise, modelagem e pós-rastreabilidade, e para cada etapa, algumas técnicas serão utilizadas.

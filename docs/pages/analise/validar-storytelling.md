@@ -3,7 +3,7 @@
 <div align="justify">
 
 ## 1. Introdução
-A narração dos storytellings foi uma das técnicas utilizadas para elicitar os requisitos no que diz respeito à área de atuação do usuário com perfil de "professor". Após realizar os storyboards, é preciso então validar os dados coletados e a maneira como foi feito para verificar a qualidade das informações e dar prosseguimento ao projeto.
+A narração dos storytellings foi uma das técnicas utilizadas para elicitar os requisitos no que diz respeito à área de atuação do usuário com perfil de "[professor](#l8-teacher)". Após realizar os storyboards, é preciso então validar os dados coletados e a maneira como foi feito para verificar a qualidade das informações e dar prosseguimento ao projeto.
 
 ## 2. Metodologia 
 O método utilizado para realizar essa validação conta com uma lista de critérios de qualidade e, em seguida, uma análise de cada um dos storytellings em formato de checklist, para facilitar a identificação visual sobre cada relato. A tabela abaixo representa os critérios que serão utilizados.
@@ -36,8 +36,14 @@ As avaliações foram consolidadas em um único checklist para melhor visualiza�
 |       | **Classificação** | Bom |Bom |Bom |Bom |
  
 ## 4. Conclusão
-Os storyboards descritos contemplaram as funções pertencentes àquelas disponíveis para o usuário com perfil de "professor", e apresentaram os elementos necessários para uma boa ellicitação dos requisitos, como priorização, identificação e rastreabilidade. Deste modo, conclui-se que os resultados das narrativas realizadas podem ser incorporados ao projeto.
+Os storyboards descritos contemplaram as funções pertencentes àquelas disponíveis para o usuário com perfil de "[professor](#l8-teacher)", e apresentaram os elementos necessários para uma boa ellicitação dos requisitos, como priorização, identificação e rastreabilidade. Deste modo, conclui-se que os resultados das narrativas realizadas podem ser incorporados ao projeto.
 </div>
 
 ## Bibliografia
 DUVERNET, M. **Storytelling Techniques for Capturing Effective Requirements**. Disponível em https://babottomline.com/2012/11/27/storytelling-techniques-for-capturing-effective-requirements/ Acesso em 6 de novembro.
+
+
+#### Histórico de Versão
+| Data       | Versão | Descrição                  | Autor(es)          |
+|:----------:|:------:|:--------------------------:|:------------------:|
+| 04.11.2020 | 0.1    | Criação do documento       | Rafaella Junqueira |
