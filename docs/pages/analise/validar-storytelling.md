@@ -3,7 +3,7 @@
 <div align="justify">
 
 ## 1. Introdução
-A narração dos storytellings foi uma das técnicas utilizadas para elicitar os requisitos no que diz respeito à área de atuação do usuário com perfil de "[professor](#l8-teacher)". Após realizar os storyboards, é preciso então validar os dados coletados e a maneira como foi feito para verificar a qualidade das informações e dar prosseguimento ao projeto.
+A narração dos storytellings foi uma das técnicas utilizadas para elicitar os requisitos no que diz respeito à área de atuação do usuário com perfil de "professor". Após realizar os storytellings, é preciso então validar os dados coletados e a maneira como foi feito para verificar a qualidade das informações e dar prosseguimento ao projeto.
 
 ## 2. Metodologia 
 O método utilizado para realizar essa validação conta com uma lista de critérios de qualidade e, em seguida, uma análise de cada um dos storytellings em formato de checklist, para facilitar a identificação visual sobre cada relato. A tabela abaixo representa os critérios que serão utilizados.
@@ -31,12 +31,13 @@ As avaliações foram consolidadas em um único checklist para melhor visualiza�
 | **5** | Possui versionamento? |  ✔️ | ✔️ | ✔️ | ✔️ |
 | **6** | Possui objetivo/foco da narração? |  ✔️ | ✔️ | ✔️ | ✔️ |
 | **7** | Os requisitos possuem identificador? | ✔️ | ✔️ | ✔️ | ✔️ |
-| **8** | Narrativas de acordo com o escopo do projeto? | ✔️ | ✔️ | ✔️ | ✔ |
+| **8** | Narrativas de acordo com o escopo do projeto? | ✔️ | ✔️ | ✔️ | ✔️ |
 |       | **Percentual de validação** | 100 | 100 | 100 | 100 |
 |       | **Classificação** | Bom |Bom |Bom |Bom |
  
 ## 4. Conclusão
-Os storyboards descritos contemplaram as funções pertencentes àquelas disponíveis para o usuário com perfil de "[professor](#l8-teacher)", e apresentaram os elementos necessários para uma boa ellicitação dos requisitos, como priorização, identificação e rastreabilidade. Deste modo, conclui-se que os resultados das narrativas realizadas podem ser incorporados ao projeto.
+Os storytellings descritos contemplaram as funções pertencentes àquelas disponíveis para o usuário com perfil de "professor", e apresentaram os elementos necessários para uma boa elicitação dos requisitos, como priorização, identificação e rastreabilidade. Deste modo, conclui-se que os resultados das narrativas realizadas podem ser incorporados ao projeto.
+
 </div>
 
 ## Bibliografia
