@@ -113,7 +113,7 @@ msgstr "Disciplina"
 
 #: templates/grat/grat.html:63 templates/grat/result.html:56
 msgid "Teacher"
-msgstr "Professor"
+msgstr "[professor](#l8-teacher)"
 
 #: templates/grat/grat.html:71
 msgid "Group"

@@ -159,7 +159,7 @@ msgstr "Disciplina"
 
 #: templates/exercises/list.html:59 templates/exercises/result.html:54
 msgid "Teacher"
-msgstr "Professor"
+msgstr "[professor](#l8-teacher)"
 
 #: templates/exercises/list.html:73
 msgid "Edit gamification weight"

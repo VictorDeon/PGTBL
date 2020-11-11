@@ -36,7 +36,7 @@ msgstr "Disciplina"
 
 #: templates/practical_test/detail.html:56
 msgid "Teacher"
-msgstr "Professor"
+msgstr "[professor](#l8-teacher)"
 
 #: templates/practical_test/detail.html:65
 msgid "Available"
@@ -68,7 +68,7 @@ msgstr "Execute o que o projeto prático pede."
 
 #: templates/practical_test/info.html:15
 msgid "Delivered to the teacher."
-msgstr "Entregue ao professor."
+msgstr "Entregue ao [professor](#l8-teacher)."
 
 #: templates/practical_test/update.html:27
 #: templates/practical_test/update.html:37

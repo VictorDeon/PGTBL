@@ -143,7 +143,7 @@ msgstr "Disciplina"
 
 #: templates/irat/irat.html:61 templates/irat/result.html:55
 msgid "Teacher"
-msgstr "Professor"
+msgstr "[professor](#l8-teacher)"
 
 #: templates/irat/irat.html:94
 msgid "The date has not yet been defined"
