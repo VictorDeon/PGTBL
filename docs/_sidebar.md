@@ -6,7 +6,7 @@
 - [**Pré-rastreabilidade**](/pages/pre-rastreabilidade/rich-picture.md)
 - [**Elicitação de requisitos**](/pages/elicitacao/storytelling.md)
     - [Storytelling](/pages/elicitacao/storytelling.md)
-    <!-- - [Introspecção](/pages/elicitacao/introspeccao.md) -->
+    - [Introspecção](/pages/elicitacao/introspeccao.md)
 - [**Modelagem**](/pages/modelagem/lexicos.md)
     - [Léxicos](/pages/modelagem/lexicos.md)
 - [**Análise e Validação**](/pages/analise/validar-storytelling.md)
