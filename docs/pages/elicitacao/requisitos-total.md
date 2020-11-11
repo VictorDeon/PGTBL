@@ -28,13 +28,23 @@ Os requisitos foram todos agrupados em única tabela para melhor visualização 
 
 |  ID  | <center> Descrição | <center>Origem | Prioridade |
 |:----:|:-------------------|:---------------|:----------:|
-| RF01 |  |  |  |
-
+| RF01 |  Visualizar ranking individual | Personas 1 e 4 - Introspecção | Could/Should have |
+| RF02 |  Chat acadêmico | Persona 1 - Introspecção | Could have |
+| RF03 |  Aba de sugestões | Persona 1 - Introspecção | Should have |
+| RF04 |  Resultados associados aos aplicativos integrados | Persona 2 - Introspecção | Could have |
+| RF05 |  Alunos sugerirem melhorias no formato de aulas decidido pelo professor | Persona 2 - Introspecção | Could have |  
+| RF06 |  Sugestão de traduções e métodos por alunos | Persona 3 - Introspecção | Could have |  
+| RF07 |  Integração com aplicações de cada matérias | Persona 4 - Introspecção | Could have |  
+| RF08 |  Melhorias por parte de alunos e professores | Persona 4 - Introspecção | Should have |  
+  
 **Requisitos Não-Funcionais**
 
 |  ID  | <center> Descrição | <center>Origem | Prioridade |
 |:----:|:-------------------|:---------------|:----------:|
-| RNF01 |  |  |  |
+| RF01 |  Alteração de idiomas | Persona 3 - Introspecção | Must have | 
+| RF02 |  Traduções mais precisas | Persona 3 - Introspecção | Must have |
+| RF04 |  Integração com aplicativos | Persona 2 - Introspecção | Could have |
+
 
 </div>
 
