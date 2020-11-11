@@ -36,8 +36,15 @@ As avaliações foram consolidadas em um único checklist para melhor visualiza�
 |       | **Classificação** | Bom |Bom |Bom |Bom |
  
 ## 4. Conclusão
-Os storyboards descritos contemplaram as funções pertencentes àquelas disponíveis para o usuário com perfil de "professor", e apresentaram os elementos necessários para uma boa elicitação dos requisitos, como priorização, identificação e rastreabilidade. Deste modo, conclui-se que os resultados das narrativas realizadas podem ser incorporados ao projeto.
+Os storytellings descritos contemplaram as funções pertencentes àquelas disponíveis para o usuário com perfil de "professor", e apresentaram os elementos necessários para uma boa elicitação dos requisitos, como priorização, identificação e rastreabilidade. Deste modo, conclui-se que os resultados das narrativas realizadas podem ser incorporados ao projeto.
+
 </div>
 
 ## Bibliografia
 DUVERNET, M. **Storytelling Techniques for Capturing Effective Requirements**. Disponível em https://babottomline.com/2012/11/27/storytelling-techniques-for-capturing-effective-requirements/ Acesso em 6 de novembro.
+
+
+#### Histórico de Versão
+| Data       | Versão | Descrição                  | Autor(es)          |
+|:----------:|:------:|:--------------------------:|:------------------:|
+| 04.11.2020 | 0.1    | Criação do documento       | Rafaella Junqueira |
