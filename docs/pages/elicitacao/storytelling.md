@@ -12,7 +12,7 @@ A elicitação dos requisitos será feita por meio do método de _storytelling_ 
 Essa técnica de priorizaçao consiste em classificar o grau de importância dos requisitos, onde usa-se "Must" para requisitos de caráter mandatório para o projeto continuar; "Should" para requisitos que não são essenciais para o funcionamento do sistema mas deixariam a plicação muito melhor; "Could" para requisitos que seriam desejáveis mas não obrigatórios; e "Won't" para requisitos que não são prioridade no momento.
 
 ## Storytelling 1 - Criação de disciplinas
-Este storytelling tem o objetivo de identificar como um usuário em perfil de professor realiza as tarefas para alcançar o objetivo de criação de uma disciplina.
+Este storytelling tem o objetivo de identificar como um usuário em perfil de [professor](#l8-teacher) realiza as tarefas para alcançar o objetivo de criação de uma disciplina.
 
 **Rastreabilidade**
 
@@ -23,11 +23,11 @@ Este storytelling tem o objetivo de identificar como um usuário em perfil de pr
 
 **Resumo da narração**
 
-O usuário começou a utilizar a plataforma com o perfil de professor e, ao tentar criar uma disciplina, notou que somente após inserir todas as informações necessárias e tentar finalizar a criação da disciplina é que a plataforma informou algumas limitações aos campos de "título da sala" e "limite de estudantes". Então, todas as informações foram apagadas, inclusive as que estavam de acordo com o padrão exigido, de tal forma que, caso ocorresse algum outro erro, tudo deveria ser digitado novamente. 
+O usuário começou a utilizar a plataforma com o perfil de [professor](#l8-teacher) e, ao tentar criar uma disciplina, notou que somente após inserir todas as informações necessárias e tentar finalizar a criação da disciplina é que a plataforma informou algumas limitações aos campos de "título da sala" e "limite de estudantes". Então, todas as informações foram apagadas, inclusive as que estavam de acordo com o padrão exigido, de tal forma que, caso ocorresse algum outro erro, tudo deveria ser digitado novamente. 
 
 Após uma série de tentativas para definir um nome para a "sala de aula", descobriu que o mesmo deveria iniciar com a palavra "class" e que o campo de monitores também possuia um limite não especificado no momento em que um valor era inserido. Criada a disciplina, o usuário voltou à página de perfil para visualizar as disciplinas criadas e percebeu não saber se estava visualizando "todas as disciplinas" ou as "disciplinas criadas". No momento em que foi visualizar 
 
-**Requisitos elicitados**
+#### Requisitos - Storytelling 1
 
 | ID   | Descrição           | Prioridade     |
 |:-----|:--------------------|:--------------:|
@@ -36,7 +36,7 @@ Após uma série de tentativas para definir um nome para a "sala de aula", desco
 | ST03 | O sistema deve disponibilizar a rastreabilidade dos caminhos percorridos pelo usuário para que este possa se localizar a qualquer momento na página  | Should |
 
 ## Storytelling 2 - Criação de exercícios na Seção TBL
-Este storytelling tem o objetivo de identificar como um usuário em perfil de professor realiza as tarefas para alcançar o objetivo de criar um exercício na seção TBL dentro da disciplina.
+Este storytelling tem o objetivo de identificar como um usuário em perfil de [professor](#l8-teacher) realiza as tarefas para alcançar o objetivo de criar um exercício na seção TBL dentro da disciplina.
 
 **Rastreabilidade**
 
@@ -47,12 +47,11 @@ Este storytelling tem o objetivo de identificar como um usuário em perfil de pr
 
 **Resumo da narração**
 
-O usuário ao utilizar a plataforma com perfil de professor, após conseguir criar uma disciplina e criar uma sessão TBL, ao tentar criar um exercicio percebeu que não possuia uma indicação clara sobre o local na plataforma onde são criadas as exercícios. O que existe é apenas um botão com um sinal de mais e, mesmo após acessada a área correta, não são informados quais campos são obrigatórios e as restrições de limite de dados exigidas por cada campo.     
+O usuário ao utilizar a plataforma com perfil de [professor](#l8-teacher), após conseguir criar uma disciplina e criar uma sessão TBL, ao tentar criar um exercicio percebeu que não possuia uma indicação clara sobre o local na plataforma onde são criadas as exercícios. O que existe é apenas um botão com um sinal de mais e, mesmo após acessada a área correta, não são informados quais campos são obrigatórios e as restrições de limite de dados exigidas por cada campo.     
 
 Também foi observado que ao criar um exercício sem marcar a alternativa correta o sistema avisa esse erro, porém, a opção de marcar qual alternativa esta correta torna-se indisponível logo em seguida, obrigando ao usuário ter que voltar para a lista de exercícios e reiniciar o processo de criação de um exercício, perdendo as informações anteriormente inseridas. 
 
-
-**Requisitos elicitados**
+#### Requisitos - Storytelling 2
 
 | ID   | Descrição                                             | Prioridade     |
 |:-----|:------------------------------------------------------|:--------------:|
@@ -61,7 +60,7 @@ Também foi observado que ao criar um exercício sem marcar a alternativa corret
 | ST06 | O sistema deve permitir selecionar qual é a alternativa correta mesmo após erro de não ter selecionado antes | Should |
 
 ## Storytelling 3 - Criação de grupos
-Este storytelling tem o objetivo de identificar como um usuário em perfil de professor realiza as tarefas para alcançar o objetivo de criação de grupos de estudo dentro da disciplina.
+Este storytelling tem o objetivo de identificar como um usuário em perfil de [professor](#l8-teacher) realiza as tarefas para alcançar o objetivo de criação de grupos de estudo dentro da disciplina.
 
 **Rastreabilidade**
 
@@ -73,8 +72,8 @@ Este storytelling tem o objetivo de identificar como um usuário em perfil de pr
 **Resumo da narração**
 Após criada uma disciplina, o usuário com maior familiaridade ao sistema, tentou criar um grupo e obteve sucesso, porém, ao clicar acidentalmente em "editar", não conseguiu cancelar a operação e precisou retornar para a página anterior utilizando a seta do navegador. Houve gasto de certo tempo para compreender o funcionamento do botão dito como "provide" e notou-se, então, que o clique resulta tanto na disponibilização como indisponibilização dos grupos para os alunos. A maneira como a ação é apresentada causou confusão por não apresentar mudança muito visível e não necessitar confirmar a operação, de tal forma que o usuário deixou o grupo indisponível sem querer.
 
+#### Requisitos - Storytelling 3
 
-**Requisitos elicitados**
 
 | ID    | Descrição           | Prioridade     |
 |:------|:--------------------|:--------------:|
@@ -82,7 +81,7 @@ Após criada uma disciplina, o usuário com maior familiaridade ao sistema, tent
 | ST08  | O sistema deve permitir que o usuário cancele uma operação indesejada | Must |
 
 ## Storytelling 4 - Adição de arquivos
-Este storytelling tem o objetivo de identificar como um usuário em perfil de professor realiza as tarefas para alcançar o objetivo de adicionar um arquivo de estudo dentro de uma disciplina cadastrada.
+Este storytelling tem o objetivo de identificar como um usuário em perfil de [professor](#l8-teacher) realiza as tarefas para alcançar o objetivo de adicionar um arquivo de estudo dentro de uma disciplina cadastrada.
 
 **Rastreabilidade**
 
@@ -94,7 +93,7 @@ Este storytelling tem o objetivo de identificar como um usuário em perfil de pr
 **Resumo da narração**
 O usuário ao tentar inserir um arquivo para um disciplina teve sua tentativa recusada por não ter especificado o campo de "tipo de arquivo", assim, teve que recomeçar todo o processo. A ação precisou passar por três tentativas para conseguir ser efetivada pois as restrições dos campos não foi especificada no início do processo, apenas quando a ação tentava ser concluida. A inserção do tipo de arquivo, porém, torna-se desnecessária pois ao inserir o tipo incorreto de arquivo, ainda assim ele foi carregado com sucesso. A opção de cancelamento da operação também não foi apresentada ao usuário.
 
-**Requisitos elicitados**
+#### Requisitos - Storytelling 4
 
 | ID    | Descrição           | Prioridade     |
 |:------|:--------------------|:--------------:|

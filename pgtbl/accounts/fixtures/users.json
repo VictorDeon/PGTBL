@@ -771,7 +771,7 @@
     "model": "accounts.user",
     "pk": 34,
     "fields": {
-        "password": "pbkdf2_sha256$36000$fWADAbgDffNQ$NlXjOnlHmcwr4YvPohHOriUD9sGr6vYL3BCjSk4WQF8=",
+        "password": "pbkdf2_sha256$36000$fWADAbgDffNQ$N jOnlHmcwr4YvPohHOriUD9sGr6vYL3BCjSk4WQF8=",
         "is_superuser": false,
         "username": "14/0041478",
         "email": "gustavo_goncalves@gmail.com",
@@ -965,7 +965,7 @@
     "model": "accounts.user",
     "pk": 42,
     "fields": {
-        "password": "pbkdf2_sha256$36000$Lu5g3exUPEy5$QKbqt9rT9iupRrWkEt5fLI9VpEmSCWnGLXIJOSsbVfo=",
+        "password": "pbkdf2_sha256$36000$Lu5g3exUPEy5$QKbqt9rT9iupRrWkEt5fLI9VpEmSCWnG IJOSsbVfo=",
         "is_superuser": false,
         "username": "cris",
         "email": "cristiane_ramos@gmail.com",

@@ -1,18 +1,19 @@
-# Introspecção
+# <center>Introspecção
+
+<div align="justify">
 
 ## 1. Introdução
-A técnica de introspecção se baseia em imaginar que tipo de sistema seria utilizado ao executar determinada tarefa, utilizando este equipamento, entre outros. Ou
-seja, calcular as propriedades que o sistema deve possuir para que atenda as necessidades do seu público.
-***
+A técnica de introspecção se baseia em imaginar que tipo de sistema seria desejável por uma pessoa ao executar determinada tarefa utilizando um esquipamento específico, em um local específico, entre outros. Ou seja, o profissional da Engenharia de Requisitos deve imaginar o que gostaria que existisse no produto caso tivesse que desempenhar uma dada tarefa, com os equipamentos disponíveis no momento. Essa técnica auxiliar na identificação das propriedades que o sistema deve possuir para que atenda as necessidades do seu público alvo.
+
 ## 2. Objetivo
-Este documento tem por finalidade apresentar os requisitos funcionais elicitados pela técnica de introspecção.
-***
+Este documento tem a finalidade de apresentar os requisitos funcionais elicitados pela técnica de introspecção e, posteriormente, contribuir com a elicitação geral dos requisitos deste projeto.
+
 ## 3. Metodologia
-O analista de requisitos busca por histórias de usuário baseadas no que ele imagina que os usuarios do sistema precisam que seja fornecido pelo software separando tais necessidades por prioridades (MoSCoW).
-***
+O analista de requisitos busca por histórias de usuário baseadas no que ele imagina que os usuarios do sistema precisam que seja fornecido pelo software separando tais necessidades por prioridades (MoSCoW). Para documentar as introspecções foram criadas personas que representam usuários típicos da plataforma, e são definidas principalmente por seus objetivos. 
+
 ## 4. Introspecção
 <b>Personas</b><br>
-À partir de uma visão geral do produto e à fim de propor situações diferentes do previsto em um cenário comum de possibilidades, as personas aparecerem para se relacionarem com algum tipo de envolvimento, no contexto de requisitos, com o PGTBL, sendo esse contato direto ou não. A prioridade MoSCoW também será determinada de acordo com as necessidades da persona em questão.
+A partir de uma visão geral do produto e a fim de propor situações diferentes do previsto em um cenário comum de possibilidades, as personas aparecerem para se relacionarem com algum tipo de envolvimento, no contexto de requisitos, com o PGTBL, sendo esse contato direto ou não. A prioridade MoSCoW também será determinada de acordo com as necessidades da persona em questão.
 
 Exemplo de situações "comuns"
 <table role="table">
@@ -92,7 +93,7 @@ Exemplo de situações "comuns"
 </tbody>
 </table>
 
-<h5 id="requisitos-elicitados-moscow">Requisitos elicitados &amp; MoSCoW</h5>
+#### Requisitos - Persona 1
 <table>
 <thead>
 <tr>
@@ -105,23 +106,21 @@ Exemplo de situações "comuns"
 <tr>
 <td>INS01</td>
 <td>Ranking individual</td>
-<td>Could have</td>
+<td>Could   </td>
 </tr>
 <tr>
 <td>INS02</td>
 <td>Chat acadêmico.</td>
-<td>Could have</td>
+<td>Could   </td>
 </tr>
 <tr>
 <td>INS03</td>
 <td>Aba de sugestões.</td>
-<td>Should have</td>
+<td>Should   </td>
 </tr>
 </tbody>
 </table>
 <hr />
-
-
 
 <h4 id="persona-2-carlos">Persona 2 - Douglas</h4>
 <table>
@@ -163,7 +162,7 @@ Exemplo de situações "comuns"
 </tbody>
 </table>
 
-<h5 id="requisitos-elicitados-moscow">Requisitos elicitados &amp; MoSCoW</h5>
+#### Requisitos - Persona 2
 <table>
 <thead>
 <tr>
@@ -174,19 +173,19 @@ Exemplo de situações "comuns"
 </thead>
 <tbody>
 <tr>
-<td>INS01</td>
+<td>INS04</td>
 <td>Integração com aplicativos</td>
-<td>Could have</td>
+<td>Could   </td>
 </tr>
 <tr>
-<td>INS02</td>
+<td>INS05</td>
 <td>Resultados associados aos aplicativos integrados.</td>
-<td>Could have</td>
+<td>Could   </td>
 </tr>
 <tr>
-<td>INS03</td>
+<td>INS06</td>
 <td>Alunos sugerirem melhorias no formato de aulas decidido pelo professor.</td>
-<td>Could have</td>
+<td>Could   </td>
 </tr>
 </tbody>
 </table>
@@ -233,7 +232,7 @@ Exemplo de situações "comuns"
 </tbody>
 </table>
 
-<h5 id="requisitos-elicitados-moscow">Requisitos elicitados &amp; MoSCoW</h5>
+#### Requisitos - Persona 3
 <table>
 <thead>
 <tr>
@@ -244,19 +243,19 @@ Exemplo de situações "comuns"
 </thead>
 <tbody>
 <tr>
-<td>INS01</td>
+<td>INS07</td>
 <td>Alteração de idiomas</td>
-<td>Must have</td>
+<td>Must   </td>
 </tr>
 <tr>
-<td>INS02</td>
+<td>INS08</td>
 <td>Traduções mais precisas.</td>
-<td>Must have</td>
+<td>Must   </td>
 </tr>
 <tr>
-<td>INS03</td>
+<td>INS09</td>
 <td>Sugestão de traduções e métodos por alunos.</td>
-<td>Could have</td>
+<td>Could   </td>
 </tr>
 </tbody>
 </table>
@@ -302,7 +301,7 @@ Exemplo de situações "comuns"
 </tbody>
 </table>
 
-<h5 id="requisitos-elicitados-moscow">Requisitos elicitados &amp; MoSCoW</h5>
+#### Requisitos - Persona 4
 <table>
 <thead>
 <tr>
@@ -313,27 +312,33 @@ Exemplo de situações "comuns"
 </thead>
 <tbody>
 <tr>
-<td>INS01</td>
+<td>INS10</td>
 <td>Integração com aplicações de cada matérias</td>
-<td>Could have</td>
+<td>Could   </td>
 </tr>
 <tr>
-<td>INS02</td>
+<td>INS11</td>
 <td>Melhorias por parte de alunos e professores.</td>
-<td>Should have</td>
+<td>Should   </td>
 </tr>
 <tr>
-<td>INS03</td>
+<td>INS12</td>
 <td>Visualização individual de rankings.</td>
-<td>Should have</td>
+<td>Should   </td>
 </tr>
 </tbody>
 </table>
 <hr />
 
-***
+</div>
 
-## 5. Referências
-http://www2.dbd.puc-rio.br/pergamum/tesesabertas <br>
-https://www.fm2s.com.br/metodo-moscow/
-***
+## Bibliografia
+**Tese sobre Introspecção**. Disponível em http://www2.dbd.puc-rio.br/pergamum/tesesabertas
+
+**Técnica de priorização MoSCoW** Disponível em https://www.fm2s.com.br/metodo-moscow/ Acesso em 9 de novembro de 2020.
+
+#### Histórico de Versão
+| Data       | Versão | Descrição                  | Autor(es)          |
+|:----------:|:------:|:--------------------------:|:------------------:|
+| 08.11.2020 | 0.1    | Criação do documento       | Ingrid Soares |
+| 10.11.2020 | 0.1    | Revisão do documento       | Rafaella Junqueira |

@@ -11,11 +11,11 @@ Dessa maneira, visa-se que o leitor, seja ele usuário do sistema ou um investid
  
 ### 1.1 Finalidade
  
-O projeto TBL ou Team Based Learning é um modelo educacional já empregado em várias universidades que modifica a forma de aprendizado e avaliação tradicional, que ainda é empregado em muitas universidade e escolas. A finalidade do software é que a aplicação do TBL se torne algo mais fácil e constante, tornando o processo mais prazeroso, tanto para o aluno quanto para o professor através dessa tecnologia.
+O projeto TBL ou Team Based Learning é um modelo educacional já empregado em várias universidades que modifica a forma de aprendizado e avaliação tradicional, que ainda é empregado em muitas universidade e escolas. A finalidade do software é que a aplicação do TBL se torne algo mais fácil e constante, tornando o processo mais prazeroso, tanto para o aluno quanto para o [professor](#l8-teacher) através dessa tecnologia.
  
 ### 1.2 Escopo
  
-O objetivo inicial do projeto é a aplicação do software em disciplinas da UnB, substituído o método tradicional de ensino e avaliação, tornando o processo mais prazeroso, tanto para o aluno quanto para o professor através dessa tecnologia.
+O objetivo inicial do projeto é a aplicação do software em disciplinas da UnB, substituído o método tradicional de ensino e avaliação, tornando o processo mais prazeroso, tanto para o aluno quanto para o [professor](#l8-teacher) através dessa tecnologia.
  
 O sistema terá um design atrativo e será responsável por todo o processo do TBL desde a preparação até a avaliação em pares. Futuramente a aplicação terá um sistema de machine learning e Gamificação além de ser extensível a qualquer disciplina ou curso tanto superior como ensino médio.
  
@@ -96,7 +96,7 @@ Inicialmente o software vai ser voltado para fins educacionais, sendo implantado
   </tr>
   <tr>
     <td>Nosso produto</td>
-    <td>Visa tornar o ensino algo mais prazeroso para o professor e para o aluno, preparando ele para o mercado de trabalho.</td>
+    <td>Visa tornar o ensino algo mais prazeroso para o [professor](#l8-teacher) e para o aluno, preparando ele para o mercado de trabalho.</td>
   </tr>
 </table>
  
@@ -116,18 +116,18 @@ Inicialmente o software vai ser voltado para fins educacionais, sendo implantado
  
 |Nome|Descrição|
 |:---|:-------|
-|Professor|Pessoas que procuram um meio para melhorar o ensino e preparar seus alunos para o mercado.|
+|[professor](#l8-teacher)|Pessoas que procuram um meio para melhorar o ensino e preparar seus alunos para o mercado.|
 |Alunos|Pessoas que procurar aperfeiçoar seus conhecimento e se preparar para o mercado|
  
 ### 3.3 Perfis dos Usuários
  
 <table>
   <tr>
-    <td colspan="2"><b>Professores.</b></td>
+    <td colspan="2"><b>[professor](#l8-teacher)es.</b></td>
   </tr>
   <tr>
     <td>Representantes:</td>
-    <td>Professores</td>
+    <td>[professor](#l8-teacher)es</td>
   </tr>
   <tr>
     <td>Descrição:</td>
@@ -135,7 +135,7 @@ Inicialmente o software vai ser voltado para fins educacionais, sendo implantado
   </tr>
   <tr>
     <td>Responsabilidades:</td>
-    <td>gerenciamento das disciplinas e alunos usando o sistema baseado no TBL. O professor também é responsável por criar e gerenciar listas e avaliações.</td>
+    <td>gerenciamento das disciplinas e alunos usando o sistema baseado no TBL. O [professor](#l8-teacher) também é responsável por criar e gerenciar listas e avaliações.</td>
   </tr>
   <tr>
     <td>Critérios de Sucesso:</td>
@@ -202,11 +202,11 @@ Nesta seção, os recursos do sistema serão descritos usando uma abordagem de a
 
 |Recurso|Descrição|
 |:-----:|:--------|
-|Administrar Disciplinas e alunos|O professor pode adicionar, remover, criar e editar disciplinas e turmas e disponibilizar a senha de acesso a elas para os alunos entrarem, além de poder remover ou adicionar estudantes na turma e gerenciar suas notas.|
-|Criar conta|O professor e os alunos pode criar sua contas no sistema, apenas passando seus dados pessoais como nome, email, senha, e usuário|
+|Administrar Disciplinas e alunos|O [professor](#l8-teacher) pode adicionar, remover, criar e editar disciplinas e turmas e disponibilizar a senha de acesso a elas para os alunos entrarem, além de poder remover ou adicionar estudantes na turma e gerenciar suas notas.|
+|Criar conta|O [professor](#l8-teacher) e os alunos pode criar sua contas no sistema, apenas passando seus dados pessoais como nome, email, senha, e usuário|
 |Gerenciar dados pessoais|O usuário poderá editar sua senha e dados pessoais do usuário conforme necessário.|
 |Funcionalidades do TBL|Funcionalidades relacionadas às fases de preparação, garantia de preparo ou RAT, iRAT, gRAT e apelações, Aplicação de conceitos e avaliação em pares|
-|Relatório|O professor terá um dashboard com relatórios do desempenho dos alunos em cada questão da avaliação, tendo um feedback para o que ele deve focar mais nas aulas.|
+|Relatório|O [professor](#l8-teacher) terá um dashboard com relatórios do desempenho dos alunos em cada questão da avaliação, tendo um feedback para o que ele deve focar mais nas aulas.|
 |Rank e Gamificação|Terá também um rank de grupos, na qual o primeiro colocado ficará exposto no **Hall da Fama** que será visto por novos alunos dos próximos semestres, não há rank individual porque o objetivo não é a competição e sim a colaboração.|
  
 ***

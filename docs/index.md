@@ -5,7 +5,7 @@
 
 Aprendizagem baseada em equipe ou TBL é uma estratégia de ensino aprendizagem colaborativa que se concentra em um ciclo de três passos:
  
-**Preparação**: Basicamente a(o) professor(a) irá disponibilizar de artigos e livros para estudo que será a preparação para a avaliação;
+**Preparação**: Basicamente a(o) [professor](#l8-teacher)(a) irá disponibilizar de artigos e livros para estudo que será a preparação para a avaliação;
  
 **Avaliações em classe**: A primeira avaliação é individual e a segunda em grupo para testar o conhecimento adquirido na preparação cada um com seu respectivo peso;
  
@@ -21,7 +21,7 @@ Aprendizagem baseada em equipe ou TBL é uma estratégia de ensino aprendizagem 
  
 Etapa responsável por estudos individuais e pré classe pelos alunos.
  
-Os estudantes devem ser responsáveis por se prepararem individualmente para o trabalho em grupo (leituras prévias ou outras atividades definidas pelo professor com antecedência, tais como assistir à realização de um experimento, a uma conferência, a um filme, realizar entrevista, entre outras).
+Os estudantes devem ser responsáveis por se prepararem individualmente para o trabalho em grupo (leituras prévias ou outras atividades definidas pelo [professor](#l8-teacher) com antecedência, tais como assistir à realização de um experimento, a uma conferência, a um filme, realizar entrevista, entre outras).
  
 ### Garantia de preparo ou RAT:
  
@@ -33,7 +33,7 @@ Os estudantes devem ser responsáveis por se prepararem individualmente para o t
  
 **Apelação**: As equipes podem recorrer a apelação no caso de não concordar com a resposta indicado como correta, todo apelo deve ser feito acompanhado de argumentação, sugestão de melhoria e com consulta a fontes bibliográficas pertinentes. A equipe deve também propor o novo formato e a resposta correta da questão.
  
-**Feedback pelo professor**: O professor, buscando clarear conceitos fundamentais, oferece feedback a todos simultaneamente, de acordo com as questões que mais gerou dificuldade nas equipes e nos alunos, essas questões serão selecionadas por meio de gráficos disponibilizados no relatório para o professor. Ao final desta etapa, os estudantes devem estar confiantes a respeito dos conceitos fundamentais e poderão aplicá-los para resolver problemas mais complexos que serão oferecidos na etapa de aplicação do conhecimento, que se segue numa atividade de TBL.
+**Feedback pelo [professor](#l8-teacher)**: O [professor](#l8-teacher), buscando clarear conceitos fundamentais, oferece feedback a todos simultaneamente, de acordo com as questões que mais gerou dificuldade nas equipes e nos alunos, essas questões serão selecionadas por meio de gráficos disponibilizados no relatório para o [professor](#l8-teacher). Ao final desta etapa, os estudantes devem estar confiantes a respeito dos conceitos fundamentais e poderão aplicá-los para resolver problemas mais complexos que serão oferecidos na etapa de aplicação do conhecimento, que se segue numa atividade de TBL.
 
 ### Aplicação de conceitos:
  
