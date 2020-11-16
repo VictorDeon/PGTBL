@@ -68,3 +68,10 @@ Os requisitos foram todos agrupados em única tabela para melhor visualização 
 
 ## Bibliografia
 BEZERRA, Eduardo. **Princípios de análise e projeto de sistema com UML**. Rio de Janeiro, Elsevier, 2007.
+
+#### Histórico de Versão
+| Data       | Versão | Descrição                               | Autor(es)          |
+|:----------:|:------:|:---------------------------------------:|:------------------:|
+| 07.11.2020 | 0.1    | Criação do documento                    | Rafaella Junqueira |
+| 10.11.2020 | 0.2    | Inserção dos requisitos da introspecção | Ingrid Soares      |
+| 13.11.2020 | 0.3    | Finalização do documento                | Rafaella Junqueira |
