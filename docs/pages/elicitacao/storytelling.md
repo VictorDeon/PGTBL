@@ -77,7 +77,7 @@ Após criada uma disciplina, o usuário com maior familiaridade ao sistema, tent
 
 | ID    | Descrição           | Prioridade     |
 |:------|:--------------------|:--------------:|
-| ST07  | O sistema deve oferecer campo de ajuda ao longo da página | Should |
+| ST07  | O sistema deve oferecer campo de ajuda ao longo da página | Must |
 | ST08  | O sistema deve permitir que o usuário cancele uma operação indesejada | Must |
 
 ## Storytelling 4 - Adição de arquivos

@@ -105,17 +105,17 @@ Exemplo de situações "comuns"
 <tbody>
 <tr>
 <td>INS01</td>
-<td>Ranking individual</td>
+<td>O sistema deve permitir que o professor visualize o grau de participação do aluno na plataforma</td>
 <td>Could   </td>
 </tr>
 <tr>
 <td>INS02</td>
-<td>Chat acadêmico.</td>
+<td>O sistema deve possuir um chat acadêmico que possibilite a comunicação entre professor e aluno</td>
 <td>Could   </td>
 </tr>
 <tr>
 <td>INS03</td>
-<td>Aba de sugestões.</td>
+<td>O sistema deve possuir uma área para que os usuários possam deixar sugestões de melhoria para a plataforma</td>
 <td>Should   </td>
 </tr>
 </tbody>
@@ -174,17 +174,17 @@ Exemplo de situações "comuns"
 <tbody>
 <tr>
 <td>INS04</td>
-<td>Integração com aplicativos</td>
+<td>O sistema deve permitir integração com aplicativos externos</td>
 <td>Could   </td>
 </tr>
 <tr>
 <td>INS05</td>
-<td>Resultados associados aos aplicativos integrados.</td>
+<td>O sistema deve exibir os resultados obtidos nos aplicativos externos e integrados</td>
 <td>Could   </td>
 </tr>
 <tr>
 <td>INS06</td>
-<td>Alunos sugerirem melhorias no formato de aulas decidido pelo professor.</td>
+<td> O sistema deve permitir a inserção de vídeo-aulas na plataforma</td>
 <td>Could   </td>
 </tr>
 </tbody>
@@ -227,7 +227,7 @@ Exemplo de situações "comuns"
 </tr>
 <tr>
 <td><strong>O que ele acha que poderia mudar:</strong></td>
-<td>Alteração de idiomas para uso pessoal do aplicativo e traduções mais precisas para o professor e seus alunos. Alunos sugerirem edições às traduçõese métodos.</td>
+<td>Alteração de idiomas para uso pessoal do aplicativo e traduções mais precisas para o professor e seus alunos. Alunos sugerirem edições às traduções e métodos.</td>
 </tr>
 </tbody>
 </table>
@@ -244,18 +244,18 @@ Exemplo de situações "comuns"
 <tbody>
 <tr>
 <td>INS07</td>
-<td>Alteração de idiomas</td>
-<td>Must   </td>
+<td>O sistema deve permitir alteração de idioma para uso da plataforma</td>
+<td>Could</td>
 </tr>
 <tr>
 <td>INS08</td>
-<td>Traduções mais precisas.</td>
-<td>Must   </td>
+<td>O sistema deve fornecer traduções consistentes para os conteúdos das páginas</td>
+<td>Could</td>
 </tr>
 <tr>
 <td>INS09</td>
-<td>Sugestão de traduções e métodos por alunos.</td>
-<td>Could   </td>
+<td>Deve ser possível adicionar comentário em textos traduzidos de forma inadequada</td>
+<td>Could</td>
 </tr>
 </tbody>
 </table>
@@ -313,18 +313,18 @@ Exemplo de situações "comuns"
 <tbody>
 <tr>
 <td>INS10</td>
-<td>Integração com aplicações de cada matérias</td>
+<td>O sistema deve possuir uma lista de aplicativos de possível integração com a plataforma</td>
 <td>Could   </td>
 </tr>
 <tr>
 <td>INS11</td>
-<td>Melhorias por parte de alunos e professores.</td>
-<td>Should   </td>
+<td>O sistema deve permitir a correção de contests por juri-online </td>
+<td>Could </td>
 </tr>
 <tr>
 <td>INS12</td>
-<td>Visualização individual de rankings.</td>
-<td>Should   </td>
+<td>O sistema deve permitir o cadastro em grupo de alunos para realização de um contest</td>
+<td>Could</td>
 </tr>
 </tbody>
 </table>
