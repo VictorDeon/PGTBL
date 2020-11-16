@@ -27,7 +27,7 @@ O usuário começou a utilizar a plataforma com o perfil de [professor](#l8-teac
 
 Após uma série de tentativas para definir um nome para a "sala de aula", descobriu que o mesmo deveria iniciar com a palavra "class" e que o campo de monitores também possuia um limite não especificado no momento em que um valor era inserido. Criada a disciplina, o usuário voltou à página de perfil para visualizar as disciplinas criadas e percebeu não saber se estava visualizando "todas as disciplinas" ou as "disciplinas criadas". No momento em que foi visualizar 
 
-**Requisitos elicitados**
+#### Requisitos - Storytelling 1
 
 | ID   | Descrição           | Prioridade     |
 |:-----|:--------------------|:--------------:|
@@ -51,8 +51,7 @@ O usuário ao utilizar a plataforma com perfil de [professor](#l8-teacher), apó
 
 Também foi observado que ao criar um exercício sem marcar a alternativa correta o sistema avisa esse erro, porém, a opção de marcar qual alternativa esta correta torna-se indisponível logo em seguida, obrigando ao usuário ter que voltar para a lista de exercícios e reiniciar o processo de criação de um exercício, perdendo as informações anteriormente inseridas. 
 
-
-**Requisitos elicitados**
+#### Requisitos - Storytelling 2
 
 | ID   | Descrição                                             | Prioridade     |
 |:-----|:------------------------------------------------------|:--------------:|
@@ -73,12 +72,12 @@ Este storytelling tem o objetivo de identificar como um usuário em perfil de [p
 **Resumo da narração**
 Após criada uma disciplina, o usuário com maior familiaridade ao sistema, tentou criar um grupo e obteve sucesso, porém, ao clicar acidentalmente em "editar", não conseguiu cancelar a operação e precisou retornar para a página anterior utilizando a seta do navegador. Houve gasto de certo tempo para compreender o funcionamento do botão dito como "provide" e notou-se, então, que o clique resulta tanto na disponibilização como indisponibilização dos grupos para os alunos. A maneira como a ação é apresentada causou confusão por não apresentar mudança muito visível e não necessitar confirmar a operação, de tal forma que o usuário deixou o grupo indisponível sem querer.
 
+#### Requisitos - Storytelling 3
 
-**Requisitos elicitados**
 
 | ID    | Descrição           | Prioridade     |
 |:------|:--------------------|:--------------:|
-| ST07  | O sistema deve oferecer campo de ajuda ao longo da página | Should |
+| ST07  | O sistema deve oferecer campo de ajuda ao longo da página | Must |
 | ST08  | O sistema deve permitir que o usuário cancele uma operação indesejada | Must |
 
 ## Storytelling 4 - Adição de arquivos
@@ -94,13 +93,13 @@ Este storytelling tem o objetivo de identificar como um usuário em perfil de [p
 **Resumo da narração**
 O usuário ao tentar inserir um arquivo para um disciplina teve sua tentativa recusada por não ter especificado o campo de "tipo de arquivo", assim, teve que recomeçar todo o processo. A ação precisou passar por três tentativas para conseguir ser efetivada pois as restrições dos campos não foi especificada no início do processo, apenas quando a ação tentava ser concluida. A inserção do tipo de arquivo, porém, torna-se desnecessária pois ao inserir o tipo incorreto de arquivo, ainda assim ele foi carregado com sucesso. A opção de cancelamento da operação também não foi apresentada ao usuário.
 
-**Requisitos elicitados**
+#### Requisitos - Storytelling 4
 
 | ID    | Descrição           | Prioridade     |
 |:------|:--------------------|:--------------:|
 | ST09  | O sistema deve ser capaz de salvar temporariamente os dados digitados pelo usuário quando estes estiverem dentro dos padrões | Must |
 | ST10  | O sistema deve indicar as restrições nos campo de informação no momento em que o usuário inserir os dados | Should |
-| ST11  | O sistema deve reconhecer a extensão do arquivo inserido | Could |
+| ST11  | O sistema deve reconhecer a extensão de um arquivo inserido | Could |
 | ST12  | O sistema deve permitir que o usuário cancele uma operação indesejada | Must |
 
 </div>

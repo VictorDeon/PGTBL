@@ -93,7 +93,7 @@ Exemplo de situações "comuns"
 </tbody>
 </table>
 
-<h4 id="requisitos-elicitados-moscow">Requisitos elicitados &amp; MoSCoW</h4>
+#### Requisitos - Persona 1
 <table>
 <thead>
 <tr>
@@ -105,24 +105,22 @@ Exemplo de situações "comuns"
 <tbody>
 <tr>
 <td>INS01</td>
-<td>Ranking individual</td>
+<td>O sistema deve permitir que o professor visualize o grau de participação do aluno na plataforma</td>
 <td>Could   </td>
 </tr>
 <tr>
 <td>INS02</td>
-<td>Chat acadêmico.</td>
+<td>O sistema deve possuir um chat acadêmico que possibilite a comunicação entre professor e aluno</td>
 <td>Could   </td>
 </tr>
 <tr>
 <td>INS03</td>
-<td>Aba de sugestões.</td>
+<td>O sistema deve possuir uma área para que os usuários possam deixar sugestões de melhoria para a plataforma</td>
 <td>Should   </td>
 </tr>
 </tbody>
 </table>
 <hr />
-
-
 
 <h4 id="persona-2-carlos">Persona 2 - Douglas</h4>
 <table>
@@ -164,7 +162,7 @@ Exemplo de situações "comuns"
 </tbody>
 </table>
 
-<h4 id="requisitos-elicitados-moscow">Requisitos elicitados &amp; MoSCoW</h4>
+#### Requisitos - Persona 2
 <table>
 <thead>
 <tr>
@@ -175,18 +173,18 @@ Exemplo de situações "comuns"
 </thead>
 <tbody>
 <tr>
-<td>INS01</td>
-<td>Integração com aplicativos</td>
+<td>INS04</td>
+<td>O sistema deve permitir integração com aplicativos externos</td>
 <td>Could   </td>
 </tr>
 <tr>
-<td>INS02</td>
-<td>Resultados associados aos aplicativos integrados.</td>
+<td>INS05</td>
+<td>O sistema deve exibir os resultados obtidos nos aplicativos externos e integrados</td>
 <td>Could   </td>
 </tr>
 <tr>
-<td>INS03</td>
-<td>Alunos sugerirem melhorias no formato de aulas decidido pelo professor.</td>
+<td>INS06</td>
+<td> O sistema deve permitir a inserção de vídeo-aulas na plataforma</td>
 <td>Could   </td>
 </tr>
 </tbody>
@@ -229,12 +227,12 @@ Exemplo de situações "comuns"
 </tr>
 <tr>
 <td><strong>O que ele acha que poderia mudar:</strong></td>
-<td>Alteração de idiomas para uso pessoal do aplicativo e traduções mais precisas para o professor e seus alunos. Alunos sugerirem edições às traduçõese métodos.</td>
+<td>Alteração de idiomas para uso pessoal do aplicativo e traduções mais precisas para o professor e seus alunos. Alunos sugerirem edições às traduções e métodos.</td>
 </tr>
 </tbody>
 </table>
 
-<h4 id="requisitos-elicitados-moscow">Requisitos elicitados &amp; MoSCoW</h4>
+#### Requisitos - Persona 3
 <table>
 <thead>
 <tr>
@@ -245,19 +243,19 @@ Exemplo de situações "comuns"
 </thead>
 <tbody>
 <tr>
-<td>INS01</td>
-<td>Alteração de idiomas</td>
-<td>Must   </td>
+<td>INS07</td>
+<td>O sistema deve permitir alteração de idioma para uso da plataforma</td>
+<td>Could</td>
 </tr>
 <tr>
-<td>INS02</td>
-<td>Traduções mais precisas.</td>
-<td>Must   </td>
+<td>INS08</td>
+<td>O sistema deve fornecer traduções consistentes para os conteúdos das páginas</td>
+<td>Could</td>
 </tr>
 <tr>
-<td>INS03</td>
-<td>Sugestão de traduções e métodos por alunos.</td>
-<td>Could   </td>
+<td>INS09</td>
+<td>Deve ser possível adicionar comentário em textos traduzidos de forma inadequada</td>
+<td>Could</td>
 </tr>
 </tbody>
 </table>
@@ -303,7 +301,7 @@ Exemplo de situações "comuns"
 </tbody>
 </table>
 
-<h4 id="requisitos-elicitados-moscow">Requisitos elicitados &amp; MoSCoW</h4>
+#### Requisitos - Persona 4
 <table>
 <thead>
 <tr>
@@ -314,19 +312,19 @@ Exemplo de situações "comuns"
 </thead>
 <tbody>
 <tr>
-<td>INS01</td>
-<td>Integração com aplicações de cada matérias</td>
+<td>INS10</td>
+<td>O sistema deve possuir uma lista de aplicativos de possível integração com a plataforma</td>
 <td>Could   </td>
 </tr>
 <tr>
-<td>INS02</td>
-<td>Melhorias por parte de alunos e professores.</td>
-<td>Should   </td>
+<td>INS11</td>
+<td>O sistema deve permitir a correção de contests por juri-online </td>
+<td>Could </td>
 </tr>
 <tr>
-<td>INS03</td>
-<td>Visualização individual de rankings.</td>
-<td>Should   </td>
+<td>INS12</td>
+<td>O sistema deve permitir o cadastro em grupo de alunos para realização de um contest</td>
+<td>Could</td>
 </tr>
 </tbody>
 </table>
