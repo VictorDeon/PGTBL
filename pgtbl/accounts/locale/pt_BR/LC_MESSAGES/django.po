@@ -37,7 +37,7 @@ msgstr "Não há usuários com esse email"
 #: forms/user_creation_form.py:16 templates/accounts/collapse.html:95
 #: templates/accounts/profile.html:86
 msgid "Teacher"
-msgstr "Professor(a)"
+msgstr "[professor](#l8-teacher)(a)"
 
 #: forms/user_creation_form.py:17 templates/accounts/profile.html:91
 msgid "Student"
@@ -119,11 +119,11 @@ msgstr "Foto"
 
 #: models/user.py:65
 msgid "Is Teacher?"
-msgstr "É professor?"
+msgstr "É [professor](#l8-teacher)?"
 
 #: models/user.py:66
 msgid "Verify if the user is teacher or student"
-msgstr "Verifica se o usuário é professor ou aluno"
+msgstr "Verifica se o usuário é [professor](#l8-teacher) ou aluno"
 
 #: models/user.py:71
 msgid "Last Login"
@@ -408,7 +408,7 @@ msgstr ""
 
 #: views/user_create_view.py:47
 msgid "Teacher created successfully."
-msgstr "Professor criado com sucesso."
+msgstr "[professor](#l8-teacher) criado com sucesso."
 
 #: views/user_create_view.py:52
 msgid "Student created successfully."

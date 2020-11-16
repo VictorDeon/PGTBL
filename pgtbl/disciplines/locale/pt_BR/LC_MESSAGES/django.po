@@ -133,7 +133,7 @@ msgstr "Disponibilizar os grupos para os estudantes verem."
 #: templates/disciplines/list.html:61 templates/disciplines/list.html:138
 #: templates/students/users.html:72
 msgid "Teacher"
-msgstr "Professor"
+msgstr "[professor](#l8-teacher)"
 
 #: models/discipline.py:170
 msgid "Created at"
@@ -461,7 +461,7 @@ msgstr "Modificação realizada com sucesso."
 
 #: views/student_change_view.py:83
 msgid "You can't turn a teacher into a student."
-msgstr "Você não pode tornar um professor um estudante."
+msgstr "Você não pode tornar um [professor](#l8-teacher) um estudante."
 
 #: views/student_change_view.py:116
 msgid "Student limit exceeded."

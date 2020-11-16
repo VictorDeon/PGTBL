@@ -178,7 +178,7 @@ A partir das informações obtidas, esse modelo conceitual será utilizado para 
 |updated_at|date|automático|Data de modificação da informações da conta|
 |is_active|boolean|obrigatório|Verifica se o usuário está ativo no sistema|
 |is_staff|boolean|obrigatório|Verifica se o usuário é super administrador|
-|is_teacher|boolean|obrigatório|Verifica se o usuário é professor ou aluno|
+|is_teacher|boolean|obrigatório|Verifica se o usuário é [professor](#l8-teacher) ou aluno|
 
 #### <a name="discipline">Discipline</a>:
 
@@ -194,7 +194,7 @@ A partir das informações obtidas, esse modelo conceitual será utilizado para 
 |monitors_limit|inteiro positivo|valor máximo 5 e minimo 0, padrão 0 e obrigatório|Limite de monitores na turma|
 |is_closed|booleano|padrão falso|Verifica se a disciplina ta fechada ou não|
 |was_group_prodived|booleano|padrão falso|Disponibiliza os grupos para os alunos verem|
-|teacher|[User](#user)|obrigatório|Professor da disciplina|
+|teacher|[User](#user)|obrigatório|[professor](#l8-teacher) da disciplina|
 |students|List<[User](#user)>|obrigatório|Lista de estudantes da disciplina|
 |monitors|List<[User](#user)>|obrigatório|Lista de monitores da disciplina|
 |created_at|date|automático|Data de criação da disciplina|
@@ -265,7 +265,7 @@ A partir das informações obtidas, esse modelo conceitual será utilizado para 
 |content|string|obrigatório|Conteúdo do tópico do fórum|
 |tags|List<Tag>|obrigatório|Tag que qualifica e categoriza o tópico|
 |views|integer|obrigatório, default 0|Quantidade de pessoas que visualizou o tópico|
-|author|[User](#user)|obrigatório|Usuário que criou o tópico, pode ser professor, aluno ou monitor|
+|author|[User](#user)|obrigatório|Usuário que criou o tópico, pode ser [professor](#l8-teacher), aluno ou monitor|
 |discipline|[Discipline](#discipline)|obrigatório|Disciplina na qual tópico do fórum pertence|
 |qtd_answers|integer|obrigatório, default 0|Quantidade de respostas tem o tópico|
 |created_at|date|automático|Data de criação do tópico|
@@ -275,7 +275,7 @@ A partir das informações obtidas, esse modelo conceitual será utilizado para 
 
 |Atributo|Tipo|Característica|Descrição|
 |--------|----|--------------|---------|
-|author|[User](#user)|obrigatório|Usuário que respondeu o tópico, pode ser professor, aluno ou monitor|
+|author|[User](#user)|obrigatório|Usuário que respondeu o tópico, pode ser [professor](#l8-teacher), aluno ou monitor|
 |topic|[Topic](#topic)|obrigatório|Tópico na qual a resposta pertence|
 |content|string|obrigatório|Conteúdo da resposta do tópico|
 |is_correct|boolean|obrigatório, default False|Especifica qual é a resposta correta.|
@@ -416,7 +416,7 @@ A partir das informações obtidas, esse modelo conceitual será utilizado para 
 |--------|----|--------------|---------|
 |title|string|obrigatório|Título da apelação|
 |description|string|obrigatório|Corpo da apelação|
-|is_accept|boolean|obrigatório, default False|Verifica se a apelação foi aceita ou não pelo professor|
+|is_accept|boolean|obrigatório, default False|Verifica se a apelação foi aceita ou não pelo [professor](#l8-teacher)|
 |qtd_comments|integer|obrigatório, default 0|Quantidade de comentários da apelação|
 |question|[Question](#question)|obrigatório|Questão na qual a apelação foi submetida|
 |student|[User](#user)|obrigatório|Estudante que fez solicitou a apelação|
@@ -442,9 +442,9 @@ NEWS tem TAGS:
 - Uma noticia pode ter várias tags, e uma tag pode estar em várias noticias
 - **Cardinalidade**: NxM
 
-DISCIPLINE tem USER (Professor):
+DISCIPLINE tem USER ([professor](#l8-teacher)):
 
-- Uma disciplina tem um professor, e um professor pode ter várias disciplinas.
+- Uma disciplina tem um [professor](#l8-teacher), e um [professor](#l8-teacher) pode ter várias disciplinas.
 - **Cardinalidade**: Nx1
 
 DISCIPLINE tem USER (Estudante):

@@ -200,7 +200,7 @@ msgstr "Disciplina"
 
 #: templates/peer_review/peer_review.html:55
 msgid "Teacher"
-msgstr "Professor"
+msgstr "[professor](#l8-teacher)"
 
 #: templates/peer_review/peer_review.html:63
 msgid "Student"
