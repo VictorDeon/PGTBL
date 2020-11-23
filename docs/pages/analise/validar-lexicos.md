@@ -25,7 +25,7 @@ Possui impacto correto? |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ 
 As informações são suficientes para compreensão do léxico? |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |
 Possui rastro? |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |✔️ |
 Possui classificação? | ❌ |❌ |❌ |❌ |❌ |❌ |❌ |❌ |❌ |❌ |❌ |❌ |❌ |❌ |❌ |❌ |❌ |❌ |❌ |❌ |❌ |❌ |
-**Percentual de validação**|90|90|90|90|90|90|90|90|90|90|90|90|90|90|90|90|90|90|90|90|90| 
+**Percentual de validação**|80|80|80|80|80|80|80|80|80|80|80|80|80|80|80|80|80|80|80|80|80| 
 **Classificação**| Bom |Bom |Bom |Bom |Bom |Bom |Bom |Bom |Bom |Bom |Bom |Bom |Bom |Bom |Bom |Bom |Bom |Bom |Bom |Bom |Bom |
 
 ## 4. Conclusão
