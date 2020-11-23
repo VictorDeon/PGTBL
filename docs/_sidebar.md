@@ -11,6 +11,7 @@
     - [Requisitos elicitados](/pages/elicitacao/requisitos-total.md)
 - [**Modelagem**](/pages/modelagem/lexicos.md)
     - [Léxicos](/pages/modelagem/lexicos.md)
+    - [Backlog do produto](/pages/modelagem/backlog.md)
 - [**Análise e Validação**](/pages/analise/validar-storytelling.md)
     - [Validação Storytelling](/pages/analise/validar-storytelling.md)
     - [Validação Rich Pictures](/pages/analise/validar-rich-picture.md)
