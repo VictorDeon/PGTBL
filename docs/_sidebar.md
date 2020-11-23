@@ -14,6 +14,7 @@
 - [**Análise e Validação**](/pages/analise/validar-storytelling.md)
     - [Validação Storytelling](/pages/analise/validar-storytelling.md)
     - [Validação Rich Pictures](/pages/analise/validar-rich-picture.md)
+    - [Validação Léxicos](/pages/analise/validar-lexicos.md)
 
 <!-- - [**Modelagem**](/pages/modelagem/lexicos.md)
     - [Casos de Uso - UC's](/pages/modelagem/casos-uso.md
