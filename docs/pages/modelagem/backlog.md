@@ -9,7 +9,7 @@ O backlog do produto deste projeto é composto por histórias de usuário, as qu
 
 ## 2. Backlog do produto
 
-| Sprint | EP1 | EP2 | EP3 |EP4 |EP5 |EP6 |EP7 |EP8 |EP9 |  
+| Sprint | [EP1](#ep1)| [EP2](#ep2)| [EP3](#ep3)| [EP4](#ep4)| [EP5](#ep5)| [EP6](#ep6)| [EP7](#ep7)| [EP8](#ep8)| [EP9](#ep9)|  
 |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 | **Sprint 1** |
 | **Sprint 2** |
@@ -17,6 +17,10 @@ O backlog do produto deste projeto é composto por histórias de usuário, as qu
 | **Sprint 4** |
 | **Sprint 5** |
 | **Sprint 6** |
+| **Sprint 7** |
+| **Sprint 8** |
+| **Sprint 9** |
+| **Sprint 10** |
 
 ## 3. Épicos
 ### EP1
@@ -56,13 +60,36 @@ Mecanismos de pesquisa de matérias ou funcionalidades específicas.
 Gerenciar e modificar as opções da conta do usuário. Inclui ações como edição de perfil, segurança e outros aspectos relevantes ao usuário.
 
 ## 4. Histórias de Usuários
-|ID | Eu, como... | Gostaria de...| Para poder...| Prioridade |
-|:--:|:--:|:--:|:--:|:--:|
-| US01 | Membro da equipe | 
-| US02 |
-| US03 |
-| US04 |
-| US05 |
+|ID | Eu, como... | <center>Gostaria de...| <center>Para poder...| Prioridade |
+|:--:|:--:|:--|:--|:--:|
+| US01 | Membro da equipe | Elaborar o planejamento do projeto e heatmap da equipe | Organizar as entregas e a subdivisão de tarefas | Must |
+| US02 | Membro da equipe | Realizar um Benchmark da plataforma PGTBL | Encontrar as melhores práticas do mercado a serem aplicadas na plataforma | Should |
+| US03 | Desenvolvedor | Elaborar o Documento de Arquitetura | Fazer com que os componentes do software e do hardware possam ser compreendidos por todos os membros da equipe | Must |
+| US04 | Desenvolvedor | Elaborar o Documento de Especificação Suplementar | Detalhar os requisitos não funcionais do software | Should |
+| US05 | Membro da Equipe | Elaborar o Documento de Visão | Fazer com que o cliente compreenda o propósito do projeto | Must |
+| US06 | Membro da Equipe | Elaborar o Guia de Estilo | Definir os padrões a serem usados com a linguagem de programação e design da plataforma | Should | 
+| US07 | Membro da Equipe | Criar Protótipo de Baixa Fidelidade | Ser testado posteriormente com possíveis usuários da plataforma | Should |
+| US08 | Membro da Equipe | Testar o protótipo de baixa fidelidade com potenciais usuários | Colher feedbacks de uso para criação do protótipo de alta fidelidade | Should |
+| US09 | Membro da Equipe | Cirar Protótipo de Alta Fidelidade | Criar uma versão realística da estrutura visual do software | Must |
+| US10 | Membro da Equipe | Testar Protótipo de Alta Fidelidade | Verificar e validar as ideias de design e os caminhos desenhados para que o usuário execute suas tarefas na plataforma | Must |
+| US11 | Desenvolvedor | Criar a cena de login na aplicação | O Usuário possa interagir com o sistema de login e os dados possam ser inseridos | Must |
+| US12 | Usuário | Me cadastrar no PGTBL utilizando meu e-mail intitucional | Ter acesso às funcionalidades da plataforma | Must |
+| US13 | Usuário | Fazer Login | Entrar na minha conta já criada | Must |
+| US14 | Usuário | Editar perfil | Alterar minhas informações pessoais | Must | 
+| US15 | Usuário | Editar informações básicas de conta, como formação acadêmica e área do conhecimento relacionada | Atualizar ou alterar informações que eu julgue necessárias | Must |
+| US16 | Usuário | Cirar uma disciplina | Disponibilizar material de estudo para os alunos  | Must | 
+| US17 | Usuário | Visualizar a lista de alunos matriculados na disciplina | Gerenciar e controlar o decorrer da disciplina | Must |
+| US18 | Usuário | Lançar notas individuais aos alunos matriculados na disciplina | Controlar o desempenho dos meus alunos ao longo do semestre | Must |  
+| US19 | Usuário | Criar grupos de estudo | Disponibilizar atividades cuja realização se dá em grupo e incentivar o estudo em grupo por parte dos alunos | Must | 
+| US20 | Usuário | Visualizar um Ranking de grupos | Aplicar as técnicas de TBL para atividades em pares/ grupos | Should | 
+| US21 | Usuário | Comunicar-me com os alunos | Informá-los a respeito de provas, prazos, trabalhos ou assuntos necessários no momento, ou responde-los quando houverem dúvidas | Must |
+| US22 | Usuário | Criar uma Seção TBL | 
+| US2 | Usuário | 
+| US2 | Usuário | 
+| US2 | Usuário | 
+| US2 | Usuário | 
+| US2 | Usuário | 
+| US2 | Usuário | 
 
 
 
