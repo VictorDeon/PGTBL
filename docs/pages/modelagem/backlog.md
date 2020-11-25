@@ -9,18 +9,18 @@ O backlog do produto deste projeto é composto por histórias de usuário, as qu
 
 ## 2. Backlog do produto
 
-| Sprint | [EP1](#ep1)| [EP2](#ep2)| [EP3](#ep3)| [EP4](#ep4)| [EP5](#ep5)| [EP6](#ep6)| [EP7](#ep7)| [EP8](#ep8)| [EP9](#ep9)|  
-|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| **Sprint 1** |
-| **Sprint 2** |
-| **Sprint 3** |
-| **Sprint 4** |
-| **Sprint 5** |
-| **Sprint 6** |
-| **Sprint 7** |
-| **Sprint 8** |
-| **Sprint 9** |
-| **Sprint 10** |
+| Sprint | [EP1](#ep1)| [EP2](#ep2)| [EP3](#ep3)| [EP4](#ep4)| [EP5](#ep5)| [EP6](#ep6)| [EP7](#ep7)| [EP8](#ep8)| 
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| **Sprint 1** | US01<br>US02<br>US03 |
+| **Sprint 2** | US04<br>US05<br>US06 |
+| **Sprint 3** | | US12<br>US13<br>US14 |
+| **Sprint 4** | | | US16<br>US17<br>US18 |
+| **Sprint 5** | | | US19<br>US20<br>US21 |
+| **Sprint 6** | | | | US22<br>US23<br>US24 |
+| **Sprint 7** | | | | US25<br>US26 | US21<br>US27
+| **Sprint 8** | | | | | | US07<br>US08<br>US09|
+| **Sprint 9** | | | | | | US10 | US11 | US15 |
+| **Sprint 10** | | | | | | | US28 | |
 
 ## 3. Épicos
 ### EP1
@@ -48,14 +48,10 @@ Implementação de mecanismo que permita a comunicação entre dois usuários ca
 Criar protótipos de baixa e alta fidelidade do produto a fim de ter uma ideia inicial mais clara do produto.
 
 ### EP7
-**Funcionalidades da plataforma**
-Funcionalidades relacionadas ao app como a possibilidade de fechá-lo e também funcionalidades relacionadas ao sistema operacional do dispositivo, como exibir notificações.
+**Funcionalidades da plataforma**<br>
+Funcionalidades relacionadas à plataforma como a possibilidade de fechá-la e também funcionalidades relacionadas ao sistema operacional do dispositivo, como exibir notificações.
 
 ### EP8
-**Pesquisa**<br>
-Mecanismos de pesquisa de matérias ou funcionalidades específicas.
-
-### EP9
 **Configuração**<br>
 Gerenciar e modificar as opções da conta do usuário. Inclui ações como edição de perfil, segurança e outros aspectos relevantes ao usuário.
 
@@ -83,21 +79,22 @@ Gerenciar e modificar as opções da conta do usuário. Inclui ações como edi�
 | US19 | Usuário | Criar grupos de estudo | Disponibilizar atividades cuja realização se dá em grupo e incentivar o estudo em grupo por parte dos alunos | Must | 
 | US20 | Usuário | Visualizar um Ranking de grupos | Aplicar as técnicas de TBL para atividades em pares/ grupos | Should | 
 | US21 | Usuário | Comunicar-me com os alunos | Informá-los a respeito de provas, prazos, trabalhos ou assuntos necessários no momento, ou responde-los quando houverem dúvidas | Must |
-| US22 | Usuário | Criar uma Seção TBL | 
-| US2 | Usuário | 
-| US2 | Usuário | 
-| US2 | Usuário | 
-| US2 | Usuário | 
-| US2 | Usuário | 
-| US2 | Usuário | 
-
-
-
+| US22 | Usuário | Criar uma Seção TBL | Avaliar os alunos de acordo com a metodologia TBL | Must |
+| US23 | Usuário | Inserir arquivos na seção TBL | Disponibilizar aos alunos material de auxílio à disciplina | Must|
+| US24 | Usuário | Criar exercícios na seção TBL | Auxiliar os alunos no treinamento acerca dos conhecimentos adquiridos | Must | 
+| US25 | Usuário | Gerar relatórios | Acompanhar o desempenho dos alunos em cada aspecto definido na metodologia TBL | Should | 
+| US26 | Usuário | Criar testes para os alunos | Possibilitar avaliações de acordo com a metodologia TBL, como iRAT e gRAT | Must |
+| US27 | Usuário | Visualizar os recursos feitos sobre a disciplina | Auxiliar no desenvolvimento do aluno e aplicar melhorias na disciplina | Should |
+| US28 | Usuário | 	Receber Notificações | Ser avisado sobres quaisquer atividasdes relacionadas ao meu perfil | Should | 
+| US29 |  | |  |  | 
 
 
 </div>
 
 #### Histórico de Versão
-| Data       | Versão | Descrição                  | Autor(es)          |
-|:----------:|:------:|:--------------------------:|:------------------:|
-| 23.11.2020 | 0.1    | Criação do documento       | Rafaella Junqueira |
+| Data       | Versão | Descrição               | Autor(es)          |
+|:----------:|:------:|:-----------------------:|:------------------:|
+| 23.11.2020 | 0.1    | Criação do documento    | Rafaella Junqueira |
+| 24.11.2020 | 0.2    | Adição dos épicos<br>Adição de histórias de usuário| Rafaella Junqueira |
+| 25.11.2020 | 0.3    | Adição de histórias de usuário | Ingrid Soares |
+| 25.11.2020 | 0.4    | Adição da matriz de backlog | Rafaella Junqueira |
