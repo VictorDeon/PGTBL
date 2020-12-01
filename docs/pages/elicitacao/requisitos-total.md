@@ -8,8 +8,7 @@ Os requisitos foram elicitados utilizando mais de uma técnica de elicitação, 
 ## 2. Metodologia
 Os requisitos foram todos agrupados em única tabela para melhor visualização e também divididos em Requisitos Funcionais e Requisitos Não-funcionais. Segundo Bezerra (2007), os requisitos funcionais são aqueles que definem o comportamento do produto, as funcionalidades existentes, ou seja, é aquilo que descreve o que o sistema tem que fazer a cada ação de um usuário ou outro sistema. Já os requisitos não-funcionais são aqueles que descrevem as características que o sistema deve possuir, como padrões de desempenho, usabilidade, robustez, dentre outros.
 
-## 3. Requisitos elicitados
-**Total de requisitos**
+## 3. Requisitos elicitados e características de negócio
 
 |  ID  | <center> Descrição | <center>Prioridade |
 |:----:|:-------------------|:--------------------|
@@ -50,19 +49,33 @@ Os requisitos foram todos agrupados em única tabela para melhor visualização 
 | RF10 | O sistema deve possuir uma lista de aplicativos de possível integração com a plataforma | [INS10](/pages/elicitacao/introspeccao#requisitos-persona-4) | Could |
 | RF11 | O sistema deve permitir a correção de contests por juri-online | [INS11](/pages/elicitacao/introspeccao#requisitos-persona-4) | Could |
 | RF12 | O sistema deve permitir o cadastro em grupo de alunos para realização de um contest | [INS12](/pages/elicitacao/introspeccao#requisitos-persona-4) | Could |
+| RF13 | O sistema deve permitir que o usuário realize cadastro no sistema | [ST07](/pages/elicitacao/storytelling#requisitos-storytelling-3)| Must | 
+| RF14 | O sistema deve permitir que o usuário altere informações de perfil |  [ST08](/pages/elicitacao/storytelling#requisitos-storytelling-3)<br>[ST12](/pages/elicitacao/storytelling#requisitos-storytelling-4) |Must| 
+| RF15 | O sistema deve permitir que o usuário mantenha disciplinas | [ST01](/pages/elicitacao/storytelling#requisitos-storytelling-1)<br>[ST09](/pages/elicitacao/storytelling#requisitos-storytelling-4) | Must | 
+| RF16 | O sistema deve permitir que o usuário crie uma seção TBL | [ST12](/pages/elicitacao/storytelling#requisitos-storytelling-4) | Must | 
+| RF17 | O sistema deve permitir que o usuário altere informações referentes às disciplinas criadas | [ST04](/pages/elicitacao/storytelling#requisitos-storytelling-2) | Must | 
+| RF18 | O sistema deve permitir que o usuário consulte informações de alunos cadastrados em suas disciplinas | [INS01](/pages/elicitacao/introspeccao#requisitos-persona-1) | Must|
+| RF19 | O sistema deve permitir que o usuário crie testes para os alunos | [ST01](/pages/elicitacao/storytelling#requisitos-storytelling-1) | Must|
   
 **Requisitos Não-Funcionais**
 
 |  ID  | <center> Descrição | <center>Origem | Prioridade |
+|:----:|:-------------------|:---------------|:----------:| 
+| RNF01 | O sistema deve ser capaz de suportar mais de 40 mil usuários logados | Pesquisa bibliográfica| Must |
+| RNF02 | Indicar com mais clareza o botão de criar exercícios | [ST05](/pages/elicitacao/storytelling#requisitos-storytelling-2) | Could | 
+| RNF03 | O sistema deve indicar as restrições nos campo de informação no momento em que o usuário inserir os dados | [ST02](/pages/elicitacao/storytelling#requisitos-storytelling-1)<br>[ST10](/pages/elicitacao/storytelling#requisitos-storytelling-4) | Must |
+| RNF04 | O sistema deve permitir integração com aplicativos externos | [INS04](/pages/elicitacao/introspeccao#requisitos-persona-2) | Could | 
+
+
+**Características de Negócio**
+
+|  ID  | <center> Descrição | <center>Origem | Prioridade |
 |:----:|:-------------------|:---------------|:----------:|
-| RNF01 | O sistema deve ser capaz de salvar temporariamente os dados digitados pelo usuário quando estes estiverem dentro dos padrões | [ST01](/pages/elicitacao/storytelling#requisitos-storytelling-1)<br>[ST09](/pages/elicitacao/storytelling#requisitos-storytelling-4) | Must|
-| RNF02 | O sistema deve indicar as restrições nos campo de informação no momento em que o usuário inserir os dados | [ST02](/pages/elicitacao/storytelling#requisitos-storytelling-1)<br>[ST10](/pages/elicitacao/storytelling#requisitos-storytelling-4) | Must | 
-| RNF03 | O sistema deve disponibilizar a rastreabilidade dos caminhos percorridos pelo usuário para que este possa se localizar a qualquer momento na página | [ST03](/pages/elicitacao/storytelling#requisitos-storytelling-1) | Should | 
-| RNF04 | O sistema deve informar quais campos são obrigatórios |  [ST04](/pages/elicitacao/storytelling#requisitos-storytelling-2) | Should | 
-| RNF05 | Indicar com mais clareza o botão de criar exercícios | [ST05](/pages/elicitacao/storytelling#requisitos-storytelling-2) | Could | 
-| RNF06 | O sistema deve reconhecer a extensão do arquivo inserido |  [ST11](/pages/elicitacao/storytelling#requisitos-storytelling-4) | Could | 
-| RNF07 | O sistema deve permitir integração com aplicativos externos | [INS04](/pages/elicitacao/introspeccao#requisitos-persona-2) | Could | 
-| RNF08 | O sistema deve fornecer traduções consistentes para os conteúdos das páginas | [INS08](/pages/elicitacao/introspeccao#requisitos-persona-3) | Could |
+| CN01 | O sistema deve ser capaz de salvar temporariamente os dados digitados pelo usuário quando estes estiverem dentro dos padrões | [ST01](/pages/elicitacao/storytelling#requisitos-storytelling-1)<br>[ST09](/pages/elicitacao/storytelling#requisitos-storytelling-4) | Must|
+| CN02 | O sistema deve disponibilizar a rastreabilidade dos caminhos percorridos pelo usuário para que este possa se localizar a qualquer momento na página | [ST03](/pages/elicitacao/storytelling#requisitos-storytelling-1) | Should | 
+| CN03 | O sistema deve informar quais campos são obrigatórios | [ST04](/pages/elicitacao/storytelling#requisitos-storytelling-2) | Should | 
+| CN04 | O sistema deve reconhecer a extensão do arquivo inserido |  [ST11](/pages/elicitacao/storytelling#requisitos-storytelling-4) | Could |
+| CN05 | O sistema deve fornecer traduções consistentes para os conteúdos das páginas | [INS08](/pages/elicitacao/introspeccao#requisitos-persona-3) | Could |
 
 </div>
 

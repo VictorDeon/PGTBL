@@ -86,10 +86,13 @@ Gerenciar e modificar as opções da conta do usuário. Inclui ações como edi�
 | US26 | Usuário | Criar testes para os alunos | Possibilitar avaliações de acordo com a metodologia TBL, como iRAT e gRAT | Must |
 | US27 | Usuário | Visualizar os recursos feitos sobre a disciplina | Auxiliar no desenvolvimento do aluno e aplicar melhorias na disciplina | Should |
 | US28 | Usuário | 	Receber Notificações | Ser avisado sobres quaisquer atividasdes relacionadas ao meu perfil | Should | 
-| US29 |  | |  |  | 
 
 
 </div>
+
+## Bibliografia
+
+**Product Backlog** Disponível em: https://www.desenvolvimentoagil.com.br/scrum/product_backlog Acesso em 23 de novembro de 2020.
 
 #### Histórico de Versão
 | Data       | Versão | Descrição               | Autor(es)          |
