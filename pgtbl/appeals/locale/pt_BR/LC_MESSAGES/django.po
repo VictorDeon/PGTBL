@@ -138,7 +138,7 @@ msgstr "Disciplina"
 
 #: templates/appeals/detail.html:57 templates/appeals/list.html:56
 msgid "Teacher"
-msgstr "Professor"
+msgstr "[professor](#l8-teacher)"
 
 #: templates/appeals/detail.html:68
 msgid "Group"
@@ -207,7 +207,7 @@ msgid ""
 "The teacher will evaluate the appeal, give comments, and if approved, he can "
 "arrange his grade."
 msgstr ""
-"O professor vai avaliar a apelação, dar comentários, e se aprovado, ele pode "
+"O [professor](#l8-teacher) vai avaliar a apelação, dar comentários, e se aprovado, ele pode "
 "modificar sua nota ou do seu grupo."
 
 #: templates/appeals/info.html:16

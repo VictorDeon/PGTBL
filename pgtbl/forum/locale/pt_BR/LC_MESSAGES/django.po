@@ -122,7 +122,7 @@ msgstr "Disciplina"
 
 #: templates/forum/detail.html:55 templates/forum/list.html:54
 msgid "Teacher"
-msgstr "Professor"
+msgstr "[professor](#l8-teacher)"
 
 #: templates/forum/detail.html:73
 msgid "Views"

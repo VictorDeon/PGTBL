@@ -9,7 +9,7 @@ Este documento tem como objetivo apresentar uma visão inicial do projeto [PGTBL
 ## 2. Descrição do projeto
 ***
 
-O projeto é um trabalho de conclusão de curso (TCC) de Engenharia de Software de um aluno chamado [Victor Arnaud](https://github.com/VictorArnaud) da Universidade de Brasília (UnB) no campus de engenharias do gama (FGA) tendo como orientadores os professores Ricardo Ajax e Cristiane Soares Ramos. Além da participação da professora Elaine Venson que deu inicio ao projeto.
+O projeto é um trabalho de conclusão de curso (TCC) de Engenharia de Software de um aluno chamado [Victor Arnaud](https://github.com/VictorArnaud) da Universidade de Brasília (UnB) no campus de engenharias do gama (FGA) tendo como orientadores os [professor](#l8-teacher)es Ricardo Ajax e Cristiane Soares Ramos. Além da participação da [professor](#l8-teacher)a Elaine Venson que deu inicio ao projeto.
 
 ### 5W2H
 
@@ -47,13 +47,13 @@ Uma noção dos custos do projeto se encontra no [Plano de custos](https://githu
 ## 3. Justificativa
 ***
 
-O TBL ou Team Based Learning é um modelo educacional já empregado em várias universidades que modifica a forma de aprendizado e avaliação tradicional, que ainda é empregado em muitas universidade e escolas. A finalidade do software é que a aplicação do TBL se torne algo mais fácil e constante, tornando o processo mais prazeroso, tanto para o aluno quanto para o professor através dessa tecnologia.
+O TBL ou Team Based Learning é um modelo educacional já empregado em várias universidades que modifica a forma de aprendizado e avaliação tradicional, que ainda é empregado em muitas universidade e escolas. A finalidade do software é que a aplicação do TBL se torne algo mais fácil e constante, tornando o processo mais prazeroso, tanto para o aluno quanto para o [professor](#l8-teacher) através dessa tecnologia.
 
 ***
 ## 4. Objetivo do projeto
 ***
 
-O objetivo inicial do projeto é a aplicação do software em disciplinas da UnB, substituído o método tradicional de ensino e avaliação, tornando o processo mais prazeroso, tanto para o aluno quanto para o professor através dessa tecnologia.
+O objetivo inicial do projeto é a aplicação do software em disciplinas da UnB, substituído o método tradicional de ensino e avaliação, tornando o processo mais prazeroso, tanto para o aluno quanto para o [professor](#l8-teacher) através dessa tecnologia.
  
 O sistema terá um design atrativo e será responsável por todo o processo do TBL desde a preparação até a avaliação em pares. Futuramente a aplicação terá um sistema de machine learning e Gamificação além de ser extensível a qualquer disciplina ou curso tanto superior como ensino médio.
 

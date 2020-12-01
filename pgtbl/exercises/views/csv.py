@@ -55,7 +55,7 @@ def get_csv(request, *args, **kwargs):
     ])
     writer.writerow([
         'Disciplina: {0}'.format(discipline.title),
-        'Professor: {0}'.format(discipline.teacher),
+        '[professor](#l8-teacher): {0}'.format(discipline.teacher),
         'Sessão do TBL: {0}'.format(session.title),
         'Nota no exercicio: {0:.2f}'.format(grade)
     ])
